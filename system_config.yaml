@@ -1,0 +1,92 @@
+os:
+  name: "SEOSONA Video Factory"
+  version: "3.0.0"
+  workspace_path: "8_WORKSPACE"
+
+render:
+  resolution: [1080, 1920]
+  fps: 30
+  codec: "libx264"
+  audio_codec: "aac"
+
+platforms:
+  youtube:
+    video: {width: 1920, height: 1080, ratio: "16:9"}
+    thumbnail: {width: 1280, height: 720}
+    shorts: {width: 1080, height: 1920, ratio: "9:16", max_duration: 60}
+  tiktok:
+    video: {width: 1080, height: 1920, ratio: "9:16", max_duration: 60}
+    thumbnail: {width: 1080, height: 1920}
+  reels:
+    video: {width: 1080, height: 1920, ratio: "9:16", max_duration: 90}
+    thumbnail: {width: 1080, height: 1920}
+
+profiles:
+  seosona:
+    description: "Business oriented, professional, 100% Light Mode"
+    colors:
+      primary: "#FFFFFF"
+      secondary: "#F8FAFC"
+      text: "#0F172A"
+      highlight: "#F97316"
+      background: "#FFFFFF"
+    fonts:
+      main: "BeVietnamPro-Bold"
+      size: 70
+    voice:
+      engine: "vieneu"
+      model: "default"
+      fallback_engine: "edge-tts"
+      fallback_voice: "vi-VN-HoaiMyNeural"
+    logo: "Seosona_Logo.png"
+    animation: "slide_up"
+    brand_tone: "Chuyên nghiệp, uy tín, dẫn đầu thị trường, insight sắc bén"
+    target_audience: "Doanh nhân, Marketer, SEO Specialist"
+
+  cqa:
+    description: "Fun, creator-focused, dynamic, 100% Light Mode"
+    colors:
+      primary: "#F4F7FF"
+      secondary: "#FFFFFF"
+      text: "#1A1D2B"
+      highlight: "#4A60E9"
+      background: "#F4F7FF"
+    fonts:
+      main: "BeVietnamPro-Black"
+      size: 90
+    voice:
+      engine: "vieneu"
+      model: "chiquyet_clone_v1"
+      reference_audio: "5_ASSETS/voice_profiles/chiquyet_sample_4s.wav"
+      fallback_engine: "edge-tts"
+      fallback_voice: "vi-VN-NamMinhNeural"
+    logo: "Chi Quyet Academy Mascot Logo.png"
+    animation: "elastic_pop"
+    brand_tone: "Vui vẻ, gần gũi, truyền cảm hứng, dễ hiểu"
+    target_audience: "Người mới học SEO, Creator, Freelancer"
+
+api_keys:
+  pexels: "YOUR_PEXELS_API_KEY_HERE"
+  openai: "YOUR_OPENAI_API_KEY_HERE"
+  fish_audio: "YOUR_FISH_AUDIO_API_KEY_HERE"
+
+whisper:
+  model: "turbo"
+  language: "vi"
+  word_timestamps: true
+  hallucination_silence_threshold: 2
+
+sfx:
+  pop_dir: "5_ASSETS/sfx/pops"
+  transition_dir: "5_ASSETS/sfx/transitions"
+  pop_volume: 0.3
+  transition_volume: 0.6
+
+bgm:
+  dir: "5_ASSETS/bgm"
+  default_mood: "tech"
+  volume:
+    seosona: 0.08
+    cqa: 0.12
+  fade_in: 1.0
+  fade_out: 2.0

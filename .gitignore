@@ -1,0 +1,46 @@
+# Python Cache & Env
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+venv/
+env/
+.venv/
+
+# Node modules
+node_modules/
+npm-debug.log*
+
+# Mac OS
+.DS_Store
+
+# SEOSONA Temp & Output
+.temp/
+output/
+*._Archived_Duplicates/
+
+# Ignore Workspace completely (except README)
+8_WORKSPACE/*
+!8_WORKSPACE/README.md
+
+# Ignore Memory completely (except README)
+3_MEMORY/*
+!3_MEMORY/README.md
+
+# Ignore all media files globally to prevent accidental leaks
+*.mp4
+*.mp3
+*.wav
+*.mov
+*.avi
+*.mkv
+
+# UN-IGNORE media in 7_ASSETS because they are required system resources
+!7_ASSETS/**/*.mp3
+!7_ASSETS/**/*.mp4
+!7_ASSETS/**/*.wav
+!7_ASSETS/**/*.mov
+!7_ASSETS/**/*.avi
+
+# Ignore big logs
+*.log

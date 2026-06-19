@@ -1,0 +1,1308 @@
+1
+00:00:00,333 --> 00:00:01,333
+rồi xin chào anh em nhá
+
+2
+00:00:01,400 --> 00:00:03,800
+chào mừng anh em quay trở lại cái khóa học trí quyết chấm
+
+3
+00:00:04,000 --> 00:00:06,000
+academy thì ở cái video trước á
+
+4
+00:00:06,066 --> 00:00:08,300
+mình đã hướng dẫn cho anh em cái cách mà lập kế hoạch
+
+5
+00:00:08,400 --> 00:00:10,866
+content cho một cái website mới rồi ha à
+
+6
+00:00:10,866 --> 00:00:12,333
+cái website mới có nghĩa là cái website
+
+7
+00:00:12,400 --> 00:00:13,366
+nó chưa có cái gì cả
+
+8
+00:00:13,466 --> 00:00:14,500
+nó chưa có nội dung gì cả
+
+9
+00:00:15,066 --> 00:00:15,766
+còn trong cái video
+
+10
+00:00:15,766 --> 00:00:17,600
+này á mình sẽ tiếp tục hướng dẫn cho anh em
+
+11
+00:00:18,133 --> 00:00:20,666
+cách mà lên kế hoạch content cho một cái website cũ
+
+12
+00:00:20,900 --> 00:00:22,900
+có nghĩa là một cái website mà nó đã được hoạt động
+
+13
+00:00:23,300 --> 00:00:25,500
+và nó đã có rất là nhiều cái content lên rồi
+
+14
+00:00:25,800 --> 00:00:26,766
+thì về cơ bản á
+
+15
+00:00:26,800 --> 00:00:29,000
+các cái bước làm nó cũng tương tự giống như nhau
+
+16
+00:00:29,300 --> 00:00:32,500
+tuy nhiên ở cái website cũ á do là nó đã có cái content cũ
+
+17
+00:00:33,000 --> 00:00:35,133
+cho nên chúng ta cần phải thu thập cái dữ liệu cũ
+
+18
+00:00:35,300 --> 00:00:36,733
+để chúng ta bỏ vào cái file content
+
+19
+00:00:36,933 --> 00:00:39,866
+của chúng ta và cái việc này á sẽ giúp cho anh em biết rõ
+
+20
+00:00:39,933 --> 00:00:41,966
+được trên website của anh em đang có bài viết
+
+21
+00:00:42,100 --> 00:00:42,900
+nó như thế nào
+
+22
+00:00:42,900 --> 00:00:44,266
+bài nào có rồi bài nào chưa có
+
+23
+00:00:44,733 --> 00:00:47,333
+bài nào mình có thể xóa đi bài nào mình có thể viết mới
+
+24
+00:00:47,866 --> 00:00:49,333
+và anh em làm kỹ cái bước này á
+
+25
+00:00:49,333 --> 00:00:50,533
+thì anh em sẽ tránh được cái vấn đề
+
+26
+00:00:50,666 --> 00:00:51,766
+trùng lập nội dung với nhau
+
+27
+00:00:51,866 --> 00:00:52,533
+các cái chủ đề
+
+28
+00:00:52,533 --> 00:00:54,933
+các cái bài viết của chúng ta nó bị chồng chéo lẫn nhau
+
+29
+00:00:55,000 --> 00:00:56,266
+gây lãng phí cái nguồn lực
+
+30
+00:00:56,366 --> 00:00:58,766
+cũng như là làm seo mãi mà nó không hiệu quả
+
+31
+00:00:59,166 --> 00:01:01,066
+rồi ô kê mình sẽ bắt đầu luôn ha
+
+32
+00:01:08,600 --> 00:01:10,700
+rồi cái bối cảnh của cái video này á
+
+33
+00:01:10,866 --> 00:01:14,166
+là mình đã có một cái bộ từ khóa à của một cái website cũ ha
+
+34
+00:01:14,266 --> 00:01:15,066
+hôm trước thì mình đã
+
+35
+00:01:15,600 --> 00:01:17,500
+à có một cái file như thế này à
+
+36
+00:01:17,533 --> 00:01:19,066
+ở những cái video nghiên cứu từ khóa
+
+37
+00:01:19,166 --> 00:01:20,333
+thì mình đã có một cái dữ liệu
+
+38
+00:01:20,466 --> 00:01:22,500
+file như này và anh em cần phải hiểu là à
+
+39
+00:01:22,666 --> 00:01:24,200
+khi mà mình chốt được cái bộ từ khóa
+
+40
+00:01:24,333 --> 00:01:25,333
+thì mình mới bắt đầu đi làm
+
+41
+00:01:25,866 --> 00:01:26,733
+cái kế hoạch content
+
+42
+00:01:27,100 --> 00:01:28,266
+ha à thì cái file
+
+43
+00:01:28,500 --> 00:01:31,266
+à nghiên cứu từ khóa cho một cái website cũ như thế này á
+
+44
+00:01:31,333 --> 00:01:32,733
+bữa trước mình đã hướng dẫn cho anh em rồi
+
+45
+00:01:33,300 --> 00:01:36,000
+thì nó gồm có hai cái a sheet là một cái sheet data
+
+46
+00:01:36,366 --> 00:01:39,100
+group kia pin nè à với một sheet top list à
+
+47
+00:01:39,166 --> 00:01:40,300
+còn ở đây á cái plan
+
+48
+00:01:40,666 --> 00:01:42,866
+thì nó cũng tương tự như là cái cũ thôi ha
+
+49
+00:01:43,133 --> 00:01:45,066
+à thế thì cái việc này á à
+
+50
+00:01:45,133 --> 00:01:48,500
+mình sẽ phải đi check cái thứ hạng từ khóa của cái này ha
+
+51
+00:01:48,566 --> 00:01:50,066
+anh em ha à mình sẽ
+
+52
+00:01:50,533 --> 00:01:52,366
+mình cầm cái này mình check cái thứ hạng từ khóa
+
+53
+00:01:52,466 --> 00:01:55,100
+thì nó ở đây nó có khoảng một trăm tám mươi ba cái từ khóa
+
+54
+00:01:55,166 --> 00:01:55,866
+thôi à thì
+
+55
+00:01:55,866 --> 00:01:57,666
+mình vào cái công cụ sonatune à
+
+56
+00:01:57,666 --> 00:02:00,133
+và mình bấm vào keyword rank checker à
+
+57
+00:02:00,933 --> 00:02:04,066
+mình tạo một cái dự án ha à thì mình sẽ tạo một cái dự án
+
+58
+00:02:04,900 --> 00:02:06,866
+ô kê mình sẽ copy vào
+
+59
+00:02:06,933 --> 00:02:10,166
+và cái website của mình là cái website tiến vang audio ha
+
+60
+00:02:10,766 --> 00:02:11,966
+ở đây mình sẽ copy vào
+
+61
+00:02:15,533 --> 00:02:17,200
+rồi mình copy cái này vào
+
+62
+00:02:18,300 --> 00:02:21,333
+rồi à mình bấm submit và à mình chờ một xíu
+
+63
+00:02:23,600 --> 00:02:25,700
+rồi sau đó anh em mở cái file này lên
+
+64
+00:02:26,766 --> 00:02:28,766
+mình bấm vào kiểm tra ha ngay ha
+
+65
+00:02:29,700 --> 00:02:32,133
+thì chờ một chút nó sẽ trả về cái dữ liệu cho mình
+
+66
+00:02:32,266 --> 00:02:34,200
+và để tránh mất thời gian của anh em thì mình sẽ tua
+
+67
+00:02:34,400 --> 00:02:35,533
+nhanh cái khúc này à
+
+68
+00:02:35,600 --> 00:02:38,066
+và không có để anh em phải chờ đợi gì ha
+
+69
+00:02:38,700 --> 00:02:41,600
+ô kê sau khi mà nó check thứ hạng từ khóa xong á
+
+70
+00:02:41,800 --> 00:02:43,500
+thì chúng ta xuất cái dữ liệu xuống ha
+
+71
+00:02:44,900 --> 00:02:47,300
+rồi à mình sẽ mở cái file này lên
+
+72
+00:02:48,400 --> 00:02:50,200
+thì cái file dữ liệu của chúng ta á
+
+73
+00:02:50,366 --> 00:02:54,166
+nó sẽ gồm có những cái à cột là từ khóa từ khóa à
+
+74
+00:02:54,533 --> 00:02:55,333
+vị trí hiện tại
+
+75
+00:02:55,366 --> 00:02:56,000
+vị trí cũ
+
+76
+00:02:56,000 --> 00:02:58,266
+và vị trí tốt nhất thì chúng ta sẽ xóa bớt nó đi à
+
+77
+00:02:58,333 --> 00:03:00,266
+chúng ta chỉ để cái từ khóa với lại cái
+
+78
+00:03:00,766 --> 00:03:02,166
+à vị trí hiện tại và
+
+79
+00:03:02,766 --> 00:03:05,066
+à cái a ùa là tìm thấy thôi ha
+
+80
+00:03:05,366 --> 00:03:07,800
+rồi à thì nó sẽ còn ba cột như thế này anh em
+
+81
+00:03:08,166 --> 00:03:09,900
+ô kê mình sẽ xóa luôn cái này đi ha
+
+82
+00:03:10,133 --> 00:03:11,966
+bước tiếp theo thì anh em cần phải đi thu thập
+
+83
+00:03:12,066 --> 00:03:14,200
+cái dữ liệu của toàn bộ cái website à
+
+84
+00:03:14,266 --> 00:03:17,300
+thì anh em sử dụng cái công cụ skimming fox ha à đây à
+
+85
+00:03:17,333 --> 00:03:19,533
+anh em nhập cái tên domain của nó vào đây ha
+
+86
+00:03:19,766 --> 00:03:22,200
+rồi ô kê à sau đó anh em bấm start
+
+87
+00:03:22,566 --> 00:03:25,500
+thì để cho cái công cụ à screaming fox này nó sẽ
+
+88
+00:03:25,933 --> 00:03:28,600
+à thu thập toàn bộ cái dữ liệu của cái website này về
+
+89
+00:03:29,100 --> 00:03:31,200
+à thì để cũng tránh mất thời gian của anh em
+
+90
+00:03:31,500 --> 00:03:33,100
+thì mình cũng sẽ tua nhanh cái khúc này
+
+91
+00:03:33,133 --> 00:03:34,133
+mình sẽ cắt cái khúc này
+
+92
+00:03:34,266 --> 00:03:35,866
+không để cho anh em phải chờ đợi nữa ha
+
+93
+00:03:36,400 --> 00:03:38,766
+rồi thì sau khi mà anh em thấy cái à
+
+94
+00:03:38,933 --> 00:03:40,566
+cây này nó bằng một trăm phần trăm thì
+
+95
+00:03:40,800 --> 00:03:42,400
+nó đã thu thập xong rồi ha à
+
+96
+00:03:42,500 --> 00:03:45,700
+bước này thì anh em chọn vào ôn nè à và bấm html
+
+97
+00:03:46,100 --> 00:03:48,366
+à và tại vì sao mà mình lại bấm html
+
+98
+00:03:48,500 --> 00:03:50,466
+tại vì à nếu mà anh em để ôn này á
+
+99
+00:03:50,466 --> 00:03:52,466
+nó sẽ xuất dữ liệu ra những cái cả cái dữ liệu
+
+100
+00:03:52,600 --> 00:03:55,100
+u là hình ảnh thì mình chỉ lấy cái bài viết thôi à
+
+101
+00:03:55,133 --> 00:03:57,500
+mình lấy html thôi mình không có lấy hình ảnh ha
+
+102
+00:03:57,800 --> 00:04:00,566
+thì anh em bấm vào html và bấm vào xbox
+
+103
+00:04:00,700 --> 00:04:02,600
+thì chỗ này mình sẽ đặt tên cái file à
+
+104
+00:04:02,600 --> 00:04:03,700
+nó là tiến vàng đi
+
+105
+00:04:05,900 --> 00:04:07,966
+rồi chúng ta sẽ xuất xuống à
+
+106
+00:04:08,000 --> 00:04:09,866
+mình sẽ để ở desktop cho nó dễ ha
+
+107
+00:04:13,466 --> 00:04:15,800
+rồi à lúc này chúng ta đã có hai file
+
+108
+00:04:15,933 --> 00:04:18,700
+một file như thế này ha à và thêm một cái file kia nữa
+
+109
+00:04:19,000 --> 00:04:20,333
+à thì ở đây á anh em
+
+110
+00:04:20,666 --> 00:04:24,166
+à bôi đen à ba cái dòng này cho mình à và bấm control
+
+111
+00:04:24,700 --> 00:04:27,333
+à t này rồi ô kê
+
+112
+00:04:27,900 --> 00:04:31,166
+thì cái control này ha để nó móc cái hàm thôi nha
+
+113
+00:04:31,300 --> 00:04:34,566
+để nó à ra cho mình một cái dữ liệu bản như thế này thôi à
+
+114
+00:04:34,600 --> 00:04:35,900
+tiếp tục mình sẽ mở lại
+
+115
+00:04:36,266 --> 00:04:39,066
+cái file à mà mình vừa mới làm về ha
+
+116
+00:04:39,666 --> 00:04:42,200
+đây cái file mình thu thập à screaming fox đây
+
+117
+00:04:44,066 --> 00:04:47,400
+rồi à thì à anh em lấy giùm mình một cái cột này thôi ha
+
+118
+00:04:47,700 --> 00:04:51,133
+xred này là cái u l đó xred u l rồi
+
+119
+00:04:52,100 --> 00:04:53,933
+à ở đây nó có cái dữ liệu là bay này
+
+120
+00:04:54,000 --> 00:04:55,900
+những cái bay này là những cái mà phân bay á
+
+121
+00:04:55,900 --> 00:04:56,700
+thì mình có thể lọc
+
+122
+00:04:56,966 --> 00:04:59,866
+cái dữ liệu bay đi ha à mình sẽ xóa hết những cái này đi đi
+
+123
+00:05:02,266 --> 00:05:03,933
+rồi à sau đó thì mình
+
+124
+00:05:04,333 --> 00:05:07,400
+à tạo cho nó một cái bộ lọc nè data nè filter nè
+
+125
+00:05:07,866 --> 00:05:10,333
+rồi mình sẽ lọc những cái nào mà là bay
+
+126
+00:05:10,566 --> 00:05:11,700
+thì mình lọc nó hết ha
+
+127
+00:05:12,300 --> 00:05:14,133
+đó thì nó có rất là nhiều cái bay ở đây
+
+128
+00:05:14,333 --> 00:05:17,366
+anh em à mình sẽ xóa đi tại vì cái này á nó là à
+
+129
+00:05:17,400 --> 00:05:18,466
+mình không lấy cái bay nó
+
+130
+00:05:18,466 --> 00:05:19,766
+là cái chia trang ra thôi
+
+131
+00:05:19,900 --> 00:05:23,333
+mình không có lấy nó rồi à mình sẽ à
+
+132
+00:05:24,533 --> 00:05:26,533
+copy toàn bộ cái link này ha
+
+133
+00:05:26,666 --> 00:05:29,400
+nó có bảy trăm sáu mươi à lăm cái link nè
+
+134
+00:05:29,600 --> 00:05:31,533
+rồi ô kê mình sẽ copy toàn bộ cái link này
+
+135
+00:05:31,800 --> 00:05:34,100
+mình qua cái file keyword của mình ha thì đây
+
+136
+00:05:34,100 --> 00:05:35,066
+mình có cái file keyword
+
+137
+00:05:35,266 --> 00:05:36,666
+thì mình sẽ để nó ở đây ha
+
+138
+00:05:37,800 --> 00:05:40,666
+rồi tiếp tục mình lại à còn chu tê nữa ha
+
+139
+00:05:44,600 --> 00:05:46,933
+mình lại còn cho tê rồi
+
+140
+00:05:46,966 --> 00:05:48,800
+mình bấm ô kê thì ở đây á
+
+141
+00:05:48,866 --> 00:05:51,066
+nó sẽ ra tiếp cho mình một cái bảng nữa
+
+142
+00:05:51,300 --> 00:05:52,933
+thì mình sẽ làm gì à ở đây anh em
+
+143
+00:05:53,400 --> 00:05:56,900
+à lưu ý ha à bây giờ thì mình sẽ đi mình lọc trùng lặp
+
+144
+00:05:57,300 --> 00:06:01,300
+thì mình sẽ à để chuột vào cái cột c này mình giữ control
+
+145
+00:06:01,700 --> 00:06:04,133
+à mình bấm vào à nó nguyên cái cột c
+
+146
+00:06:04,766 --> 00:06:07,700
+và sau đó mình lại bấm vào cái cột f này đó
+
+147
+00:06:08,200 --> 00:06:12,066
+rồi bây giờ á là anh em vào cái home ha à nó có cái này
+
+148
+00:06:12,500 --> 00:06:13,300
+nó có cái a
+
+149
+00:06:13,366 --> 00:06:16,500
+nút này thì mình sẽ bấm vào và mình highlight nè
+
+150
+00:06:16,766 --> 00:06:19,566
+rồi cuối cùng mình chọn cái cuối là duplicate value này
+
+151
+00:06:19,766 --> 00:06:22,366
+thì à để mình tạo ra cho nó một cái bộ lọc ha
+
+152
+00:06:22,533 --> 00:06:23,366
+thế thì cái này á
+
+153
+00:06:23,700 --> 00:06:24,866
+anh em thấy nó màu đỏ nè
+
+154
+00:06:25,200 --> 00:06:28,000
+nó màu đỏ có nghĩa là nó đang bị trùng lặp với bên này rồi
+
+155
+00:06:28,066 --> 00:06:28,533
+bây giờ thì anh
+
+156
+00:06:28,533 --> 00:06:30,500
+em à sẽ sọt cái à
+
+157
+00:06:31,300 --> 00:06:34,766
+a tới z nè sột cái theo cái colo nè đó
+
+158
+00:06:35,200 --> 00:06:38,766
+thì à cái cột bên này nó đã trùng lập ha thì mình sẽ xóa đi
+
+159
+00:06:39,566 --> 00:06:41,000
+xóa những cái trùng lập đi ha
+
+160
+00:06:41,266 --> 00:06:42,666
+mình sẽ xóa những cái trùng lập đi
+
+161
+00:06:44,466 --> 00:06:49,300
+ô kê ở đây thì mình à xóa tới đây ha mình xóa tới đây rồi
+
+162
+00:06:50,166 --> 00:06:52,566
+à mình còn lại là bao nhiêu cái đây
+
+163
+00:06:52,933 --> 00:06:55,966
+copy xuống ha mình còn lại sáu trăm sáu mươi tám cái
+
+164
+00:06:56,333 --> 00:06:58,366
+thì mình copy nó qua bên cái file này
+
+165
+00:06:59,333 --> 00:07:03,366
+đây à mình sẽ copy qua cái à dòng này ha còn jov
+
+166
+00:07:03,733 --> 00:07:06,733
+rồi thế thì à à mình sẽ xóa cái cột này đi ha
+
+167
+00:07:07,566 --> 00:07:10,500
+thì ở đây á chúng ta đã có cái file dữ liệu thô rồi
+
+168
+00:07:10,600 --> 00:07:13,100
+bây giờ chúng ta chỉ cần add cái file này vào thôi ha
+
+169
+00:07:13,366 --> 00:07:15,133
+à thì anh em a lưu ý ở đây nè
+
+170
+00:07:17,900 --> 00:07:20,100
+đó ở đây ha
+
+171
+00:07:21,466 --> 00:07:24,200
+ô kê mình sẽ copy cái à
+
+172
+00:07:34,300 --> 00:07:38,400
+vào cái file vào cái file blend content này ha anh em ha
+
+173
+00:07:39,200 --> 00:07:40,400
+đây group này
+
+174
+00:07:41,100 --> 00:07:46,133
+đó bộ livestream ha rồi ô kê mình sẽ copy tiếp cái này
+
+175
+00:07:47,533 --> 00:07:48,466
+hai cái này ha
+
+176
+00:07:53,733 --> 00:07:54,533
+ok
+
+177
+00:07:59,366 --> 00:08:00,166
+bà nay
+
+178
+00:08:03,800 --> 00:08:07,200
+rồi tiếp tục thì mình sẽ copy cái url ha anh em ha
+
+179
+00:08:07,666 --> 00:08:09,000
+mình sẽ copy cái url
+
+180
+00:08:10,333 --> 00:08:14,766
+anh em lưu ý là nó phải đúng ha nó phải đúng u l ha rồi ô kê
+
+181
+00:08:15,400 --> 00:08:18,566
+ở đây thì mình sẽ copy cái link đăng bài đây ạ
+
+182
+00:08:20,133 --> 00:08:22,100
+rồi thế là mình đã có
+
+183
+00:08:22,533 --> 00:08:25,466
+à các cái dữ liệu là link đăng bài nè à
+
+184
+00:08:25,500 --> 00:08:27,000
+cái topic thì mình chưa có nè
+
+185
+00:08:27,200 --> 00:08:31,933
+grouping volume à tuto của à keyword thì mình đã có rồi à
+
+186
+00:08:31,966 --> 00:08:33,966
+thế thì cái việc còn lại á thì nó tương tự
+
+187
+00:08:34,200 --> 00:08:35,500
+thì anh em lưu ý ở đây ha
+
+188
+00:08:36,300 --> 00:08:38,600
+anh em lưu ý ở đây à lưu ý cái gì
+
+189
+00:08:39,600 --> 00:08:42,000
+thì à có những cái mà nó đã có bài viết nè
+
+190
+00:08:42,333 --> 00:08:45,200
+ha à ví dụ như cái này bộ livestream thì nó đã à
+
+191
+00:08:45,366 --> 00:08:47,400
+có rồi combo thu âm livestream ở đây nè
+
+192
+00:08:47,533 --> 00:08:52,066
+nó đã có rồi thì anh em sẽ à lọc ra cái a topic ha
+
+193
+00:08:52,166 --> 00:08:54,933
+ví dụ như bộ hát livestream đi chẳng hạn đi thì cái
+
+194
+00:08:55,266 --> 00:08:56,666
+à top mic của mình á
+
+195
+00:08:56,766 --> 00:08:58,100
+nó sẽ là à
+
+196
+00:08:59,200 --> 00:09:00,266
+bộ hát ha
+
+197
+00:09:01,300 --> 00:09:02,500
+bộ hát đó
+
+198
+00:09:03,666 --> 00:09:06,666
+rồi mic à thu âm thì mình để nó là mic
+
+199
+00:09:11,200 --> 00:09:12,200
+đó đó
+
+200
+00:09:12,566 --> 00:09:17,200
+thì à tương tự như cái video trước thôi ha à mic không dây à
+
+201
+00:09:17,400 --> 00:09:21,166
+mic không dây với mic thu âm thì có thể là à nó là mic thôi
+
+202
+00:09:23,400 --> 00:09:25,966
+mix đi mình để là mix đi cho nó dễ ha
+
+203
+00:09:27,133 --> 00:09:28,366
+rồi bộ mix đây
+
+204
+00:09:28,700 --> 00:09:31,700
+mình sẽ tiếp tục mình làm giống như cái clip trước anh em
+
+205
+00:09:32,466 --> 00:09:33,266
+mix đây ha
+
+206
+00:09:39,266 --> 00:09:45,166
+đây mic đây rồi à đây cũng là mic ha mình sẽ để nó là mic
+
+207
+00:09:46,400 --> 00:09:47,200
+mic nè
+
+208
+00:09:48,400 --> 00:09:51,666
+mix nè cái này là loa trợ giãn rồi thì mình sẽ để là loa
+
+209
+00:09:53,766 --> 00:09:54,600
+ô kê mix
+
+210
+00:09:58,100 --> 00:09:59,100
+à mic luôn
+
+211
+00:10:00,566 --> 00:10:01,366
+mic
+
+212
+00:10:02,066 --> 00:10:02,866
+à mic
+
+213
+00:10:04,266 --> 00:10:05,066
+à
+
+214
+00:10:06,333 --> 00:10:09,666
+x ô kê thì à anh em làm tương tự tương tự như vậy
+
+215
+00:10:10,200 --> 00:10:12,300
+rồi à tiếp tục à thì à
+
+216
+00:10:13,000 --> 00:10:15,600
+những cái dưới á thì anh em cứ làm tương tự ha còn
+
+217
+00:10:17,566 --> 00:10:20,266
+trên thai của nó là vào đây ha
+
+218
+00:10:21,766 --> 00:10:25,700
+mình sẽ à bấm vào xem nó đang là cái gì à
+
+219
+00:10:25,766 --> 00:10:27,966
+đây nó đang là danh mục sản phẩm ha anh em ha
+
+220
+00:10:28,166 --> 00:10:29,300
+nó đang là danh mục sản phẩm
+
+221
+00:10:29,700 --> 00:10:32,133
+đó thì mình để là danh mục sản phẩm
+
+222
+00:10:32,900 --> 00:10:35,133
+à thì anh em cũng nên kiểm tra lại ha
+
+223
+00:10:35,400 --> 00:10:39,500
+kiểm tra lại xem à cái ù l nó target đúng hay chưa à đây ha
+
+224
+00:10:39,866 --> 00:10:41,533
+thì à nó target đúng hay chưa
+
+225
+00:10:41,700 --> 00:10:43,600
+thằng này cũng là danh mục sản phẩm thì ô kê
+
+226
+00:10:44,166 --> 00:10:45,900
+trong cái trường hợp mà anh em à
+
+227
+00:10:45,933 --> 00:10:46,933
+mình đang là danh mục sản phẩm
+
+228
+00:10:47,000 --> 00:10:49,466
+nhưng mà đối thủ nó là bài viết hết thì anh em cũng phải
+
+229
+00:10:49,600 --> 00:10:50,600
+à xem xét lại ha
+
+230
+00:10:50,733 --> 00:10:53,566
+à là mình sẽ phải audit lại mình sẽ phải thay đổi ha
+
+231
+00:10:53,966 --> 00:10:54,300
+rồi
+
+232
+00:10:54,300 --> 00:10:57,866
+à cái này thì phân loại nó là cái bài sco là đúng rồi ha
+
+233
+00:10:57,933 --> 00:11:00,733
+rồi mic thu âm này à nó cũng là danh mục sản phẩm nè
+
+234
+00:11:01,966 --> 00:11:05,533
+à danh mục sản phẩm ha bộ mic thu âm nè à nó cũng là
+
+235
+00:11:06,000 --> 00:11:07,133
+à danh mục sản phẩm nè
+
+236
+00:11:13,533 --> 00:11:16,700
+rồi à micro nó là danh mục sản phẩm nè
+
+237
+00:11:16,966 --> 00:11:18,800
+thì bên này nó là bài sale hết ha
+
+238
+00:11:19,400 --> 00:11:21,300
+mấy cái bài này là bài mình sale ha
+
+239
+00:11:23,100 --> 00:11:23,900
+rồi
+
+240
+00:11:25,066 --> 00:11:26,300
+tương tự như vậy ha à
+
+241
+00:11:26,366 --> 00:11:30,066
+anh em sẽ làm tương tự như vậy à cho tới hết cái file này à
+
+242
+00:11:30,066 --> 00:11:32,500
+mình lưu ý một xíu ở cái video trước á
+
+243
+00:11:32,700 --> 00:11:36,000
+à thì mình à không có nói về cái a bây
+
+244
+00:11:37,000 --> 00:11:39,400
+thì trong video này á mình sẽ nói về cái bay luôn
+
+245
+00:11:39,533 --> 00:11:41,533
+trong cái trường hợp mà anh em làm một cái website
+
+246
+00:11:41,666 --> 00:11:42,733
+dịch vụ á thì cái chỗ
+
+247
+00:11:42,900 --> 00:11:44,066
+content thai này á
+
+248
+00:11:44,100 --> 00:11:45,000
+nó có thêm một cái nữa
+
+249
+00:11:45,500 --> 00:11:46,766
+à là cái bay ha à
+
+250
+00:11:46,766 --> 00:11:48,700
+cái bay nó cũng giống như trang chủ thôi à
+
+251
+00:11:48,700 --> 00:11:50,700
+mình sẽ ví dụ như cái trang cellona
+
+252
+00:11:51,100 --> 00:11:53,500
+của mình đi thì à cái trang này á nó
+
+253
+00:11:53,766 --> 00:11:55,966
+a những cái ùa là như là đào tạo nè
+
+254
+00:11:56,166 --> 00:11:58,533
+thì nó là cái bay ha anh em ha đây nó là cái bay
+
+255
+00:11:58,866 --> 00:12:00,266
+à thì cái bay nó khác à
+
+256
+00:12:00,366 --> 00:12:01,166
+với lại cái
+
+257
+00:12:01,533 --> 00:12:04,133
+à bài viết à là nó không cần phải nằm trong chuyên mục
+
+258
+00:12:04,366 --> 00:12:06,200
+và nó được design đẹp như thế này ha
+
+259
+00:12:06,300 --> 00:12:09,166
+còn bài viết á thì anh em không có được design đẹp như này à
+
+260
+00:12:09,366 --> 00:12:10,466
+mình sẽ so sánh cho anh em
+
+261
+00:12:10,900 --> 00:12:13,900
+thấy một xíu ha à ví dụ như đây à là một cái bài viết đó
+
+262
+00:12:13,933 --> 00:12:15,366
+bài viết thì cái phọt mát nó như này
+
+263
+00:12:15,366 --> 00:12:17,200
+còn cái bay á thì mình có thể design đẹp
+
+264
+00:12:17,533 --> 00:12:18,066
+thì trong một số
+
+265
+00:12:18,066 --> 00:12:20,800
+cái trường hợp đặc biệt anh em làm một cái website mà à
+
+266
+00:12:21,166 --> 00:12:23,166
+về dịch vụ á thì những cái dịch vụ chính của anh em
+
+267
+00:12:23,266 --> 00:12:25,166
+ví dụ như dịch vụ thiết kế nội thất đi à
+
+268
+00:12:25,266 --> 00:12:26,933
+hay là thi công nội thất đi thì anh em nên
+
+269
+00:12:27,333 --> 00:12:29,966
+à thiết kế một cái bay thì à tới cái phần này á
+
+270
+00:12:30,000 --> 00:12:33,366
+tới a thiết kế như nào á thì tới cái a module mà
+
+271
+00:12:33,766 --> 00:12:36,566
+cấu trúc website thì mình sẽ hướng dẫn cho anh em à
+
+272
+00:12:36,700 --> 00:12:38,266
+cái cách mà chúng ta có thể đi research
+
+273
+00:12:38,400 --> 00:12:40,700
+để chúng ta có thể làm việc với cốt để thiết kế ha
+
+274
+00:12:40,733 --> 00:12:42,566
+chứ còn chúng ta là cái người làm seo thì chúng ta
+
+275
+00:12:42,766 --> 00:12:43,566
+không biết thiết kế
+
+276
+00:12:44,100 --> 00:12:45,100
+à rồi thì mục đích
+
+277
+00:12:45,466 --> 00:12:48,066
+của cái việc mà chúng ta đi thu thập cái dữ liệu như này á
+
+278
+00:12:48,200 --> 00:12:49,000
+để chúng ta biết được
+
+279
+00:12:49,066 --> 00:12:51,166
+à trên website của chúng ta là nó đã có những cái
+
+280
+00:12:51,300 --> 00:12:54,766
+url này rồi thế thì còn những cái url mà nó chưa có
+
+281
+00:12:55,400 --> 00:12:57,800
+a ấy ở đây thì sao thì chúng ta cũng cần phải
+
+282
+00:12:58,100 --> 00:12:59,400
+à à là kiểm soát nó ha
+
+283
+00:12:59,466 --> 00:13:00,200
+thì kiểm soát như nào
+
+284
+00:13:00,200 --> 00:13:02,700
+thì tới cái modul audit thì chúng ta sẽ a kiểm soát
+
+285
+00:13:02,900 --> 00:13:05,500
+còn ở đây á chúng ta đang sco cho cái bộ từ khóa này á
+
+286
+00:13:05,933 --> 00:13:07,366
+à thì chúng ta biết được à
+
+287
+00:13:07,800 --> 00:13:09,766
+trên website của chúng ta nó đã có bao nhiêu cái ù
+
+288
+00:13:10,000 --> 00:13:11,266
+l ở đây rồi ha à
+
+289
+00:13:11,266 --> 00:13:14,266
+và chúng ta à sẽ lên cái kế hoạch content cái nào chưa có
+
+290
+00:13:14,566 --> 00:13:15,533
+ví dụ như cái này à
+
+291
+00:13:15,533 --> 00:13:17,600
+cái đầu thu âm micro không dây này à
+
+292
+00:13:17,600 --> 00:13:19,000
+nó chưa có ù l nào thì chúng ta
+
+293
+00:13:19,566 --> 00:13:22,300
+à sẽ phải đi chúng ta tạo cái con content cho nó à
+
+294
+00:13:22,333 --> 00:13:25,900
+hay là cái này à mà nó có content rồi đúng hông à thì
+
+295
+00:13:26,400 --> 00:13:28,700
+nó chưa có lên top cao thì chúng ta cũng cần phải
+
+296
+00:13:29,000 --> 00:13:30,766
+à à audit lại cái bài viết này
+
+297
+00:13:30,866 --> 00:13:32,466
+chúng ta xem cái bài viết này nó như thế nào
+
+298
+00:13:32,800 --> 00:13:34,500
+thì ở đây là cái kế hoạch content
+
+299
+00:13:34,766 --> 00:13:37,066
+thôi chứ mình chưa có hướng dẫn cho anh em audit
+
+300
+00:13:37,333 --> 00:13:38,133
+cho nên á à
+
+301
+00:13:38,166 --> 00:13:40,466
+là anh em làm tới cái bước này là quá là ô kê rồi
+
+302
+00:13:41,100 --> 00:13:41,900
+còn những cái
+
+303
+00:13:42,066 --> 00:13:43,800
+ô ở bên này thì nó cũng tương tự ha
+
+304
+00:13:43,866 --> 00:13:44,366
+ngày nào búp
+
+305
+00:13:44,366 --> 00:13:46,766
+lích hay này nọ các kiểu thì anh em điền vào thôi à
+
+306
+00:13:46,800 --> 00:13:47,933
+nó hông có gì khó cả
+
+307
+00:13:48,400 --> 00:13:51,533
+ở đây à tương tự là anh em đã có một cái file content
+
+308
+00:13:52,300 --> 00:13:55,600
+nó quá là ô kê rồi ha thì à ô này thì vẫn là số thứ tự ha
+
+309
+00:13:56,100 --> 00:13:58,066
+rồi thì để mà lập được một cái plan content
+
+310
+00:13:58,266 --> 00:14:00,400
+cho một cái website cũ á thì anh em cần phải đi
+
+311
+00:14:00,566 --> 00:14:02,200
+thu thập cái dữ liệu nó về đã ha
+
+312
+00:14:02,400 --> 00:14:04,366
+xem trên website của mình nó có bao nhiêu bài viết
+
+313
+00:14:04,533 --> 00:14:05,933
+và cái bộ từ khóa của mình á
+
+314
+00:14:06,000 --> 00:14:07,933
+nó phải gắn nhãn vào cái a
+
+315
+00:14:08,066 --> 00:14:11,066
+từ khóa nào nó đã có được tạo cái ù l đó rồi
+
+316
+00:14:11,300 --> 00:14:12,533
+và cái từ khóa nào nó chưa được tạo
+
+317
+00:14:13,133 --> 00:14:14,666
+và những cái bài viết kia á thì nó đang
+
+318
+00:14:14,800 --> 00:14:15,933
+focus tới cái từ khóa nào
+
+319
+00:14:16,366 --> 00:14:17,933
+thì chúng ta mới có cái nhìn tổng thể
+
+320
+00:14:18,066 --> 00:14:20,000
+và từ đó chúng ta phân bổ cái nguồn lực à
+
+321
+00:14:20,100 --> 00:14:21,700
+mình sửa bao nhiêu bài viết
+
+322
+00:14:21,933 --> 00:14:23,566
+hay là mình audit bao nhiêu bài viết
+
+323
+00:14:23,700 --> 00:14:25,000
+hay là mình tạo mới bao nhiêu bài viết
+
+324
+00:14:25,533 --> 00:14:28,333
+thì đó là toàn bộ cái cách mà chúng ta có thể lên một cái
+
+325
+00:14:28,566 --> 00:14:30,733
+plan content cho cái website cũ à
+
+326
+00:14:30,766 --> 00:14:32,733
+cảm ơn anh em đã theo dõi cái video này
+
+327
+00:14:32,800 --> 00:14:34,566
+hẹn gặp lại anh em ở những cái video sau
+

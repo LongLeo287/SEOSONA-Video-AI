@@ -1,0 +1,1976 @@
+1
+00:00:00,400 --> 00:00:01,466
+rồi xin chào anh em nhá
+
+2
+00:00:01,533 --> 00:00:04,000
+chào mừng anh em quay trở lại cái khóa học trí quyết chấm
+
+3
+00:00:04,166 --> 00:00:06,300
+academy ở cái video trước á
+
+4
+00:00:06,366 --> 00:00:09,100
+mình đã chia sẻ cho anh em cái mindset khi mà viết content
+
+5
+00:00:09,333 --> 00:00:10,666
+rồi còn trong cái video
+
+6
+00:00:10,800 --> 00:00:12,800
+này á mình sẽ chia sẻ cho anh em cái cách
+
+7
+00:00:12,966 --> 00:00:14,300
+mà lập cái kế hoạch content
+
+8
+00:00:14,700 --> 00:00:16,800
+để anh em làm content một cách bài bản
+
+9
+00:00:16,966 --> 00:00:18,566
+có định hướng rõ ràng ngay từ đầu
+
+10
+00:00:19,000 --> 00:00:20,766
+chứ không phải kiểu thích gì viết nấy
+
+11
+00:00:21,066 --> 00:00:23,866
+và thực tế á mình cũng gặp rất là nhiều anh em đầu tư
+
+12
+00:00:24,000 --> 00:00:25,300
+viết content rất là chất
+
+13
+00:00:25,666 --> 00:00:26,466
+rất là có tâm
+
+14
+00:00:26,700 --> 00:00:28,200
+nhưng do họ làm theo cảm tính
+
+15
+00:00:28,466 --> 00:00:31,600
+và kết quả là content trên website của họ rất là lan man
+
+16
+00:00:31,800 --> 00:00:34,900
+không có hệ thống anh em bị tốn công tốn sức và tốn tiền
+
+17
+00:00:35,366 --> 00:00:37,300
+nhưng kết quả thì không được như anh em kỳ vọng
+
+18
+00:00:37,600 --> 00:00:40,100
+ngoài ra nếu anh em làm một team seo
+
+19
+00:00:40,366 --> 00:00:41,900
+anh em không có cái plan content
+
+20
+00:00:42,166 --> 00:00:45,100
+nó rõ ràng thì anh em sẽ rất là khó để phân công công việc
+
+21
+00:00:45,333 --> 00:00:46,400
+cũng như là kiểm soát tiến độ
+
+22
+00:00:46,866 --> 00:00:49,566
+anh em không biết phân bổ nguồn lực vào cái topic nào
+
+23
+00:00:49,766 --> 00:00:52,166
+cái topic nào viết trước và cái topic nào viết sau
+
+24
+00:00:52,533 --> 00:00:54,266
+và đặc biệt á cái plan content này
+
+25
+00:00:54,600 --> 00:00:57,000
+sẽ giúp cho anh em dễ dàng kiểm soát cái dự án của mình
+
+26
+00:00:57,100 --> 00:00:58,566
+mình hơn rất là nhiều à
+
+27
+00:00:58,600 --> 00:01:00,700
+ngoài ra thì cái plan content này chúng
+
+28
+00:01:00,700 --> 00:01:03,533
+ta cũng có thể báo cáo hay là report với cấp trên
+
+29
+00:01:03,666 --> 00:01:04,800
+hoặc là với khách hàng của chúng ta
+
+30
+00:01:05,133 --> 00:01:06,766
+để thuận tiện cho anh em theo dõi á
+
+31
+00:01:06,800 --> 00:01:09,500
+thì mình sẽ chia cái mô đun lập plan content này
+
+32
+00:01:09,700 --> 00:01:10,566
+thành hai cái video
+
+33
+00:01:11,200 --> 00:01:12,166
+trong cái video này á
+
+34
+00:01:12,266 --> 00:01:14,766
+mình sẽ hướng dẫn cho anh em cái cách lập kế hoạch content
+
+35
+00:01:15,000 --> 00:01:16,933
+cho một cái website mới à
+
+36
+00:01:16,933 --> 00:01:17,733
+còn trong cái video
+
+37
+00:01:17,933 --> 00:01:18,566
+tiếp theo á
+
+38
+00:01:18,566 --> 00:01:21,200
+mình sẽ hướng dẫn cho anh em cái cách mà lập cái kế hoạch
+
+39
+00:01:21,333 --> 00:01:22,800
+content cho một cái website cũ
+
+40
+00:01:23,133 --> 00:01:24,600
+rồi ô kê mình sẽ bắt đầu nhé
+
+41
+00:01:32,300 --> 00:01:35,133
+rồi thì trong cái bối cảnh của cái video này á mình đang làm
+
+42
+00:01:35,500 --> 00:01:38,933
+co cho một cái website mà bán thiết bị vệ sinh inox à
+
+43
+00:01:39,000 --> 00:01:41,866
+và cái dữ liệu đầu vào của mình để mà lên cái kế hoạch
+
+44
+00:01:42,000 --> 00:01:44,333
+content á thì mình cần phải có một cái bộ từ khóa
+
+45
+00:01:44,400 --> 00:01:46,266
+nó đã được gom nhóm như thế này ha à
+
+46
+00:01:46,300 --> 00:01:47,166
+nó gồm có hai sheet
+
+47
+00:01:47,266 --> 00:01:50,200
+một sheet là gồm có từ khóa và một sheet là à
+
+48
+00:01:50,300 --> 00:01:52,066
+nó sẽ có cái a topic
+
+49
+00:01:52,266 --> 00:01:54,933
+cộng với lại cái từ khóa lên chung như thế này à
+
+50
+00:01:55,133 --> 00:01:57,100
+và để anh em làm được cái file này á
+
+51
+00:01:57,133 --> 00:01:58,600
+thì anh em có thể coi lại cái video
+
+52
+00:01:59,400 --> 00:02:01,966
+à mà mình hướng dẫn cho anh em nghiên cứu từ khóa
+
+53
+00:02:02,366 --> 00:02:04,900
+à một cái ship nữa là cái ship land content
+
+54
+00:02:05,300 --> 00:02:08,300
+thì nó gồm có rất rất là nhiều cái cột như thế này ha à
+
+55
+00:02:08,566 --> 00:02:10,733
+chúng ta sẽ phải điền cái dữ liệu vào đây
+
+56
+00:02:11,000 --> 00:02:12,866
+và chút xíu nữa mình sẽ giải thích cho anh em
+
+57
+00:02:12,966 --> 00:02:13,733
+điền như thế nào
+
+58
+00:02:13,733 --> 00:02:17,700
+và à từng cái ý nghĩa từng cái cột này nó sẽ ra sao ha
+
+59
+00:02:18,066 --> 00:02:19,700
+rồi à bây giờ thì mình sẽ tiến hành vào
+
+60
+00:02:19,733 --> 00:02:22,566
+cái bước đầu tiên là chúng ta copy dữ liệu qua bên cái
+
+61
+00:02:22,800 --> 00:02:23,700
+file plan content
+
+62
+00:02:24,066 --> 00:02:25,866
+thì chúng ta sẽ vào cái cột topic này
+
+63
+00:02:26,466 --> 00:02:27,666
+chúng ta copy toàn bộ
+
+64
+00:02:28,166 --> 00:02:30,866
+cái dữ liệu của cái sheet này vào cái file plan content
+
+65
+00:02:31,166 --> 00:02:33,400
+của chúng ta ha à mình sẽ copy control c
+
+66
+00:02:33,566 --> 00:02:36,966
+control v đây mình sẽ bỏ vào cái group này à control v
+
+67
+00:02:37,533 --> 00:02:40,266
+ô kê thế thì bây giờ á chúng ta đã có dữ liệu là
+
+68
+00:02:40,800 --> 00:02:45,133
+à ở đây nó sẽ thể hiện là cái url bồn cầu inax à
+
+69
+00:02:45,266 --> 00:02:47,866
+volume của nó như thế này và nó lên top được bao nhiêu đây
+
+70
+00:02:47,966 --> 00:02:49,100
+content thì à
+
+71
+00:02:49,466 --> 00:02:52,266
+à mình sẽ muốn tạo cho nó một cái bộ lọc ha anh em ha
+
+72
+00:02:52,733 --> 00:02:54,900
+rồi à chúng ta đã có một cái bộ lọc như thế này
+
+73
+00:02:55,800 --> 00:02:58,000
+thì cái nhiệm vụ tiếp theo của anh em á cần phải
+
+74
+00:02:58,466 --> 00:03:00,966
+à điền vào cái cột topic topic này á
+
+75
+00:03:01,000 --> 00:03:02,300
+là chúng ta sẽ phân theo chủ đề
+
+76
+00:03:02,666 --> 00:03:05,100
+à ví dụ như cái bộ từ khóa của chúng ta ở đây á
+
+77
+00:03:05,166 --> 00:03:07,533
+nó gồm có rất là nhiều cái chủ đề con một cái
+
+78
+00:03:07,700 --> 00:03:11,200
+website về thiết bị vệ sinh inax thì nó có bán bồn cầu này
+
+79
+00:03:11,300 --> 00:03:13,966
+nó có bán sen tắm này nó có bán lavabo này à
+
+80
+00:03:14,066 --> 00:03:16,266
+nó có a bán vòi à
+
+81
+00:03:16,566 --> 00:03:19,100
+rửa bát này thì à mỗi một cái
+
+82
+00:03:19,666 --> 00:03:20,666
+sản phẩm như thế này á
+
+83
+00:03:20,700 --> 00:03:23,300
+thì chúng ta nên phân ra làm một cái topic để chi
+
+84
+00:03:23,500 --> 00:03:24,300
+để để cho chúng ta
+
+85
+00:03:24,700 --> 00:03:25,533
+có thể phát triển content
+
+86
+00:03:25,800 --> 00:03:28,566
+dựa vào cái topic và sau này chúng ta audit content
+
+87
+00:03:28,733 --> 00:03:29,766
+nó cũng dễ hơn à
+
+88
+00:03:29,800 --> 00:03:32,600
+ví dụ như chúng ta biết được có bao nhiêu cái url
+
+89
+00:03:32,900 --> 00:03:33,700
+à mà chúng ta
+
+90
+00:03:33,866 --> 00:03:34,966
+à viết về cái bồn cầu
+
+91
+00:03:35,266 --> 00:03:37,666
+có bao nhiêu cái url mà chúng ta viết về cái sen tắm
+
+92
+00:03:37,866 --> 00:03:38,666
+có bao nhiêu cái url
+
+93
+00:03:38,766 --> 00:03:40,866
+chúng ta viết về lavabo thì ở đây á
+
+94
+00:03:40,866 --> 00:03:42,966
+anh em có thể search à từ a tới z ha
+
+95
+00:03:45,333 --> 00:03:47,333
+thì những cái này à những cái thường
+
+96
+00:03:47,466 --> 00:03:49,200
+những cái a như thế này á à
+
+97
+00:03:49,266 --> 00:03:50,366
+mình sẽ search ha
+
+98
+00:03:50,566 --> 00:03:51,366
+mình sẽ có thể search
+
+99
+00:03:51,500 --> 00:03:53,266
+nếu mà anh em không rảnh thì mình sẽ search
+
+100
+00:03:53,600 --> 00:03:54,800
+à xem nó là cái gì
+
+101
+00:03:55,066 --> 00:03:56,766
+rõ ràng nó là cái sản phẩm về bồn cầu
+
+102
+00:03:56,933 --> 00:03:59,066
+rồi thì mình sẽ để cái topic ở đây
+
+103
+00:03:59,100 --> 00:03:59,966
+nó là bồn cầu ha
+
+104
+00:04:02,266 --> 00:04:03,166
+bồn cầu nè
+
+105
+00:04:04,666 --> 00:04:06,366
+đó tương tự như vậy ha
+
+106
+00:04:07,500 --> 00:04:10,066
+tương tự như vậy thì mình sẽ để nó là bồn cầu
+
+107
+00:04:11,166 --> 00:04:15,700
+cái này thì anh em cần cái à lọc dữ liệu thôi rồi ô kê à
+
+108
+00:04:17,400 --> 00:04:20,766
+mình sẽ tiếp tục à bồn cầu nè
+
+109
+00:04:26,366 --> 00:04:30,400
+đó rồi bồn cầu inax nè
+
+110
+00:04:33,700 --> 00:04:34,533
+rồi bồn cầu
+
+111
+00:04:34,700 --> 00:04:37,333
+quá trời bồn cầu kìa anh em thì mình sẽ kéo xuống ha
+
+112
+00:04:41,400 --> 00:04:43,733
+mình sẽ biết được à bồn cầu này à
+
+113
+00:04:43,800 --> 00:04:45,900
+mình phải sale bao nhiêu cái u l ha
+
+114
+00:04:46,866 --> 00:04:47,666
+ô kê
+
+115
+00:04:48,966 --> 00:04:49,766
+bồn cầu
+
+116
+00:04:51,500 --> 00:04:53,733
+ô kê cái này thì bùn rửa chén ha
+
+117
+00:04:55,600 --> 00:04:56,900
+và mình sẽ làm từ từ
+
+118
+00:05:00,266 --> 00:05:03,666
+rồi à có cái bồn tắm đi mình sẽ phân ra bồn tắm
+
+119
+00:05:09,766 --> 00:05:11,900
+bồn tắm thì mình sẽ có bao nhiêu cái đây
+
+120
+00:05:15,166 --> 00:05:16,966
+rồi à bùn tiểu ha
+
+121
+00:05:20,866 --> 00:05:22,133
+mình sẽ làm từ từ ha
+
+122
+00:05:22,533 --> 00:05:24,366
+à bồn cầu thông minh cách sửa nè
+
+123
+00:05:24,466 --> 00:05:26,866
+thì nó sẽ phải vào cái nhóm bồn cầu của mình ha
+
+124
+00:05:28,333 --> 00:05:30,666
+cảm biến bồn cầu là bồn tiểu
+
+125
+00:05:31,500 --> 00:05:32,900
+à mình chưa có cái bồn tiểu
+
+126
+00:05:33,400 --> 00:05:35,600
+ô kê cầu à tránh rác
+
+127
+00:05:35,766 --> 00:05:38,766
+không có cấu tạo bồn cầu thì nó là bồn cầu ha
+
+128
+00:05:39,333 --> 00:05:41,533
+à rồi cấu tạo bồn cầu inax nè
+
+129
+00:05:42,166 --> 00:05:46,900
+nó là bồn cầu à chậu giặt thì mình sẽ để nó là chậu giặt ha
+
+130
+00:05:50,800 --> 00:05:52,766
+à những cái mà này mình chưa chắc
+
+131
+00:05:52,933 --> 00:05:55,266
+thì chút xíu nữa mình sẽ đi research à
+
+132
+00:05:55,300 --> 00:05:56,566
+còn bây giờ thì mình sẽ làm nhanh
+
+133
+00:05:57,100 --> 00:05:59,966
+để mà mình à đi research thôi ha
+
+134
+00:06:00,400 --> 00:06:02,200
+để mà mình à tiết kiệm thời gian thôi
+
+135
+00:06:03,066 --> 00:06:03,900
+rồi à
+
+136
+00:06:05,166 --> 00:06:08,333
+giá bệt inax thì cái bệt inax này á
+
+137
+00:06:08,500 --> 00:06:12,133
+nó là cái à bồn cầu rồi anh em ha nó là cái bồn cầu rồi
+
+138
+00:06:16,600 --> 00:06:17,400
+đó
+
+139
+00:06:20,200 --> 00:06:21,966
+ôn cầu rồi
+
+140
+00:06:23,400 --> 00:06:25,700
+anh em cứ làm tiếp tục tiếp tục như vậy ha
+
+141
+00:06:29,133 --> 00:06:31,466
+đó thì tới cái này là lapabo nè
+
+142
+00:06:32,000 --> 00:06:34,500
+thì cái này á anh em cần phải làm nó tỉ mỉ ha
+
+143
+00:06:35,900 --> 00:06:37,366
+lapabo ô kê
+
+144
+00:06:41,566 --> 00:06:44,666
+lắp bồn cầu thì mình sẽ để nó là bồn cầu nè
+
+145
+00:06:45,900 --> 00:06:49,533
+có thể là cái này à à mình sẽ tua nhanh ha
+
+146
+00:06:50,600 --> 00:06:51,766
+rồi nắp bồn cầu
+
+147
+00:06:53,100 --> 00:06:55,333
+nắp bồn cầu thì nó ở trong bồn cầu ha
+
+148
+00:06:58,533 --> 00:07:00,500
+rồi ô kê sau một hồi thì mình đã phân
+
+149
+00:07:01,000 --> 00:07:03,700
+cái topik của nó ra là khá là ô kê rồi
+
+150
+00:07:04,100 --> 00:07:05,366
+thì ở đây anh em thấy cái
+
+151
+00:07:05,866 --> 00:07:08,333
+topik bồn cầu nó chiếm trọng số khá là nhiều ha
+
+152
+00:07:08,866 --> 00:07:09,900
+ví dụ như mình sẽ xem
+
+153
+00:07:10,133 --> 00:07:12,866
+tổng cộng cái bồn cầu thì nó lên được bao nhiêu từ khóa ha
+
+154
+00:07:13,466 --> 00:07:15,333
+ở đây anh em xem à
+
+155
+00:07:15,466 --> 00:07:16,766
+tổng cộng bồn cầu thôi
+
+156
+00:07:16,800 --> 00:07:18,200
+nguyên ngách bồn cầu nó đã lên đến
+
+157
+00:07:18,333 --> 00:07:20,266
+sáu trăm sáu mươi ba từ khóa rồi à
+
+158
+00:07:20,300 --> 00:07:22,166
+có nghĩa là cái trọng số của nó chiếm rất là cao
+
+159
+00:07:22,566 --> 00:07:26,666
+à thế thì mình à có thể lập cái kế hoạch làm sao mà mình à
+
+160
+00:07:27,333 --> 00:07:28,800
+ưu tiên cái nhóm bồn cầu
+
+161
+00:07:29,133 --> 00:07:31,000
+để mà mình có thể phát triển content à
+
+162
+00:07:31,000 --> 00:07:32,866
+rồi ô kê thế thì đây là cái link đăng bài ha
+
+163
+00:07:32,866 --> 00:07:34,266
+khi nào mà anh em đăng bài à
+
+164
+00:07:34,266 --> 00:07:36,000
+ví dụ như anh em có một cái bài này à
+
+165
+00:07:36,000 --> 00:07:36,500
+cái u
+
+166
+00:07:36,500 --> 00:07:38,700
+l này thì anh em nhét vào đây để anh em dễ dàng quản lý
+
+167
+00:07:39,066 --> 00:07:40,700
+còn cái này thì là số thứ tự ha
+
+168
+00:07:40,866 --> 00:07:42,700
+anh em có thể đánh số thứ tự một hai nè
+
+169
+00:07:43,133 --> 00:07:46,266
+à ba này nọ các kiểu vào thì mình sẽ kéo xuống dưới ha đó
+
+170
+00:07:46,600 --> 00:07:49,300
+rồi một cái tiếp theo là cái cột mà content thai
+
+171
+00:07:49,666 --> 00:07:53,333
+à thì cái content thai này á là một trong những cái mà à
+
+172
+00:07:53,866 --> 00:07:55,266
+cực kỳ cực kỳ là quan trọng
+
+173
+00:07:55,566 --> 00:07:57,000
+mà anh em cần phải làm cho nó kỹ
+
+174
+00:07:57,566 --> 00:07:58,200
+thế thì
+
+175
+00:07:58,200 --> 00:08:01,200
+để mà anh em hiểu được cái content thai này á thì mình sẽ
+
+176
+00:08:01,700 --> 00:08:03,366
+à nói một chút xíu về lý thuyết
+
+177
+00:08:03,533 --> 00:08:05,333
+để cho anh em dễ dàng nắm bắt ha à
+
+178
+00:08:05,366 --> 00:08:08,133
+rồi thì cái content thai này á là cái loại content ha
+
+179
+00:08:08,200 --> 00:08:09,166
+trên website của chúng ta
+
+180
+00:08:09,366 --> 00:08:10,766
+nó sẽ có rất là nhiều cái loại content
+
+181
+00:08:11,466 --> 00:08:12,466
+và mỗi cái loại content
+
+182
+00:08:12,733 --> 00:08:16,166
+đó nó sẽ phù hợp với lại một cái ý định tìm kiếm khác nhau à
+
+183
+00:08:16,200 --> 00:08:19,100
+ví dụ như anh em có cái website về thương mại điện tử á
+
+184
+00:08:19,133 --> 00:08:21,900
+thì trên website của anh em có cái thứ nhất là trang chủ ha
+
+185
+00:08:22,000 --> 00:08:23,733
+trang chủ là một cái trang mà chúng ta show
+
+186
+00:08:24,000 --> 00:08:24,800
+những cái sản phẩm
+
+187
+00:08:25,000 --> 00:08:27,133
+những cái danh mục sản phẩm những cái
+
+188
+00:08:27,733 --> 00:08:29,166
+à lợi thế cạnh tranh của chúng ta
+
+189
+00:08:29,466 --> 00:08:31,200
+và cái trang chủ này á nó cũng phù hợp
+
+190
+00:08:31,333 --> 00:08:32,866
+ta ghép tới cái ý định tìm kiếm
+
+191
+00:08:32,966 --> 00:08:35,200
+nó khác nhau tùy theo cái mô hình kinh doanh của chúng ta
+
+192
+00:08:35,533 --> 00:08:37,066
+mà chúng ta sẽ phải à thiết
+
+193
+00:08:37,066 --> 00:08:38,766
+kế cái trang chủ hay là làm content cho
+
+194
+00:08:39,000 --> 00:08:40,000
+trang chủ để chúng ta có thể
+
+195
+00:08:40,200 --> 00:08:41,933
+seo được cái từ khóa hay là không
+
+196
+00:08:42,400 --> 00:08:43,300
+cái loại content thứ hai
+
+197
+00:08:43,766 --> 00:08:45,733
+à là cái loại content mà danh mục sản phẩm
+
+198
+00:08:46,200 --> 00:08:48,533
+thì danh mục sản phẩm á thì chúng ta sẽ phải
+
+199
+00:08:49,166 --> 00:08:51,966
+à tạo nhiều cái sản phẩm để nó chứa cái danh mục sản phẩm
+
+200
+00:08:52,333 --> 00:08:53,566
+thì cái danh mục sản phẩm này á
+
+201
+00:08:53,600 --> 00:08:55,866
+thường chúng ta sẽ target tới những cái từ khóa
+
+202
+00:08:56,000 --> 00:08:57,266
+mà nó phù hợp à
+
+203
+00:08:57,266 --> 00:08:59,000
+ví dụ như cái từ khóa bồn cầu inax
+
+204
+00:08:59,133 --> 00:09:01,566
+thì chúng ta cần phải tạo một cái danh mục sản phẩm chứ
+
+205
+00:09:01,566 --> 00:09:02,800
+chúng ta sẽ không thể nào mà viết
+
+206
+00:09:02,900 --> 00:09:04,866
+một cái bài viết là bồn cầu inax là gì
+
+207
+00:09:04,866 --> 00:09:07,666
+để sco cái từ khóa bồn cầu inax được à
+
+208
+00:09:07,666 --> 00:09:09,900
+cái loại content thứ ba à là cái sản phẩm
+
+209
+00:09:10,200 --> 00:09:12,133
+à thì cái link sản phẩm này á chúng ta sẽ
+
+210
+00:09:12,533 --> 00:09:14,733
+à phải có hình ảnh sẽ phải có mô tả sản phẩm
+
+211
+00:09:15,366 --> 00:09:18,866
+à và tùy theo cái từ khóa để chúng ta target vào xem cái
+
+212
+00:09:19,200 --> 00:09:21,566
+của là đó chúng ta có thể sale ở sản phẩm hay không
+
+213
+00:09:21,800 --> 00:09:25,666
+ví dụ như cái bồn cầu inax à một cái mã sản phẩm gì đó à
+
+214
+00:09:25,733 --> 00:09:27,600
+thì chúng ta không thể nào tạo một cái danh mục sản phẩm
+
+215
+00:09:27,700 --> 00:09:28,500
+để sale cho cái
+
+216
+00:09:28,866 --> 00:09:29,666
+link sản phẩm được
+
+217
+00:09:29,666 --> 00:09:31,800
+tại vì cái ý định tìm kiếm của cái từ khóa
+
+218
+00:09:32,100 --> 00:09:33,000
+à sản phẩm đó là
+
+219
+00:09:33,000 --> 00:09:33,900
+người ta muốn vào cái page
+
+220
+00:09:34,100 --> 00:09:35,466
+sản phẩm để người ta xem cái sản phẩm đó
+
+221
+00:09:35,566 --> 00:09:38,266
+thì chúng ta cũng không có thể nào viết bài được à
+
+222
+00:09:38,266 --> 00:09:40,166
+cái loại thứ tư à
+
+223
+00:09:40,300 --> 00:09:42,300
+đó là cái chuyên mục thì cái chuyên mục này á
+
+224
+00:09:42,500 --> 00:09:45,200
+chúng ta tạo ra chỉ để chứa cái bài viết thôi thường à
+
+225
+00:09:45,300 --> 00:09:47,066
+và chúng ta làm một cái website cho doanh nghiệp
+
+226
+00:09:47,200 --> 00:09:48,300
+chúng ta làm một cái website bình thường
+
+227
+00:09:48,733 --> 00:09:51,200
+thì chúng ta sẽ không seo cái trang chuyên mục này à
+
+228
+00:09:51,200 --> 00:09:52,666
+do vậy á là anh em đừng có
+
+229
+00:09:52,866 --> 00:09:54,866
+tạo nhiều cái trang chuyên mục này làm gì
+
+230
+00:09:55,133 --> 00:09:57,300
+cái loại thứ năm đó là bài viết ha à
+
+231
+00:09:57,366 --> 00:09:59,900
+bài viết thì chúng ta sẽ a phải viết bài à
+
+232
+00:10:00,100 --> 00:10:02,600
+có những cái từ khóa thông tin mà nó phù hợp với lại
+
+233
+00:10:02,733 --> 00:10:04,500
+cái bài viết thì chúng ta cần phải viết bài
+
+234
+00:10:05,066 --> 00:10:06,666
+à và cái loại cuối cùng
+
+235
+00:10:07,133 --> 00:10:08,266
+đó là các cái thẻ tag
+
+236
+00:10:08,400 --> 00:10:10,533
+thì thẻ tag thì nó lại chia ra làm hai loại nữa
+
+237
+00:10:10,700 --> 00:10:12,366
+thẻ tag về sản phẩm và thẻ tag về
+
+238
+00:10:12,766 --> 00:10:14,266
+à bài viết nữa là anh em tuyệt đối
+
+239
+00:10:14,700 --> 00:10:16,900
+không có nên tạo hai cái loại thẻ tác này à
+
+240
+00:10:17,000 --> 00:10:18,733
+mình không có nên tạo tầm bậy tầm bạ
+
+241
+00:10:18,866 --> 00:10:21,666
+ha thì tới cái video mà hướng dẫn onpage á à
+
+242
+00:10:21,766 --> 00:10:23,200
+mình sẽ hướng dẫn cho anh em cái cách mà
+
+243
+00:10:23,333 --> 00:10:25,900
+và chúng ta à kiểm soát cái url như thế nào à
+
+244
+00:10:25,900 --> 00:10:27,133
+tạo thể tác nó ở đâu hay
+
+245
+00:10:27,133 --> 00:10:28,400
+là tạo bài viết nó ở đâu ha
+
+246
+00:10:28,666 --> 00:10:31,600
+rồi ô kê thì mình sẽ tiếp tục làm cái plan content ha
+
+247
+00:10:31,766 --> 00:10:32,766
+ô kê thì à chúng ta
+
+248
+00:10:33,200 --> 00:10:34,166
+sẽ tiếp tục phải điền
+
+249
+00:10:34,700 --> 00:10:38,300
+à cái file content thai này vào ha à thì ở đây à
+
+250
+00:10:38,366 --> 00:10:40,200
+mình sẽ tạo một cái khối cho nó ha
+
+251
+00:10:40,333 --> 00:10:41,266
+trình thả xuống nè
+
+252
+00:10:41,533 --> 00:10:43,366
+thì chúng ta sẽ có a các cái loại content
+
+253
+00:10:43,600 --> 00:10:44,666
+đó là trang chủ ha
+
+254
+00:10:44,966 --> 00:10:46,566
+mình à để là trang chủ nè
+
+255
+00:10:47,700 --> 00:10:51,166
+ô kê à mình sẽ cho nó một cái màu gì đó cho nó đẹp đẹp ha
+
+256
+00:10:51,466 --> 00:10:54,533
+rồi à tới cái loại tiếp theo là bài viết ha
+
+257
+00:10:57,166 --> 00:11:00,666
+rồi à mình cũng để cho nó một cái màu gì đó ha à thêm nè
+
+258
+00:11:00,933 --> 00:11:02,400
+à tới cái chuyên mục ha
+
+259
+00:11:04,066 --> 00:11:07,166
+chuyên mục này để chứa bài viết ha anh em ha à ô kê
+
+260
+00:11:07,600 --> 00:11:10,066
+rồi tới thêm cái danh mục sản phẩm ha
+
+261
+00:11:10,800 --> 00:11:13,333
+à hay là mình để là category đi
+
+262
+00:11:27,166 --> 00:11:29,866
+rồi ô kê à tới a cái loại nữa
+
+263
+00:11:30,266 --> 00:11:32,800
+là cái loại à sản phẩm là product ha
+
+264
+00:11:34,500 --> 00:11:35,300
+rồi
+
+265
+00:11:36,000 --> 00:11:37,800
+nó sẽ có trang chủ bài viết
+
+266
+00:11:38,100 --> 00:11:38,466
+ô kê
+
+267
+00:11:38,466 --> 00:11:41,300
+thường thì chúng ta sẽ để à khoảng năm cái loại này thôi à
+
+268
+00:11:41,300 --> 00:11:44,166
+mình bấm xong ha à và bây giờ thì mình sẽ kéo xuống
+
+269
+00:11:45,800 --> 00:11:46,733
+kéo xuống hết luôn
+
+270
+00:11:53,800 --> 00:11:54,766
+rồi thì xong
+
+271
+00:11:54,866 --> 00:11:57,200
+thì cái nhiệm vụ của chúng ta thì phải đi xác định được
+
+272
+00:11:57,366 --> 00:11:59,700
+cái từ khóa này chúng ta seo ở đâu à
+
+273
+00:11:59,700 --> 00:12:00,300
+bằng cái cách mà
+
+274
+00:12:00,300 --> 00:12:01,900
+chúng ta phân loại cái loại content
+
+275
+00:12:02,266 --> 00:12:04,200
+ha à thì cái cách mà rất là đơn giản thôi
+
+276
+00:12:04,333 --> 00:12:05,300
+chúng ta sẽ lên trên google
+
+277
+00:12:05,600 --> 00:12:06,733
+chúng ta research à
+
+278
+00:12:06,733 --> 00:12:09,600
+ví dụ như cái từ khóa này à thì ở đây anh em thấy ha à à
+
+279
+00:12:09,733 --> 00:12:12,100
+tất cả những cái thằng này nó là danh mục sản phẩm này
+
+280
+00:12:12,300 --> 00:12:12,866
+danh mục sản phẩm
+
+281
+00:12:12,866 --> 00:12:14,733
+thì nó sẽ chứa nhiều cái sản phẩm như thế này
+
+282
+00:12:14,800 --> 00:12:15,400
+ha à
+
+283
+00:12:15,400 --> 00:12:18,766
+và à nó không phải là bài viết ha à đó ờ
+
+284
+00:12:19,100 --> 00:12:19,966
+mình xem tiếp này
+
+285
+00:12:20,366 --> 00:12:22,366
+thì thằng này nó cũng là danh mục sản phẩm và
+
+286
+00:12:22,700 --> 00:12:23,900
+bắt buộc thì chúng ta cần phải
+
+287
+00:12:24,533 --> 00:12:27,933
+à tạo một cái danh mục sản phẩm để sco cái từ khóa này
+
+288
+00:12:28,000 --> 00:12:31,166
+thế thì mình sẽ chọn vào đây là product category à
+
+289
+00:12:31,200 --> 00:12:32,200
+để mình biết được cái
+
+290
+00:12:32,500 --> 00:12:35,466
+cái url này thì mình cần phải tạo cái danh mục sản phẩm ha
+
+291
+00:12:35,733 --> 00:12:39,000
+rồi à tiếp tục tới cái bồn cầu inax một khối này à
+
+292
+00:12:39,000 --> 00:12:40,933
+thì mình cũng sẽ làm tiếp tục tương tự như vậy
+
+293
+00:12:41,000 --> 00:12:44,166
+ha thì à ở đây nó cũng là một cái danh mục sản phẩm ha đó
+
+294
+00:12:44,300 --> 00:12:45,600
+nó cũng là một cái danh mục sản phẩm
+
+295
+00:12:47,000 --> 00:12:50,133
+rồi đó đó là cái danh mục sản phẩm thì à các bạn à
+
+296
+00:12:50,266 --> 00:12:52,933
+thì anh em cứ research cái từ khóa đó lên trên google
+
+297
+00:12:53,133 --> 00:12:53,933
+xem ở trên google
+
+298
+00:12:54,000 --> 00:12:56,100
+nó đang target tới link nào thì mình follow
+
+299
+00:12:56,266 --> 00:12:58,766
+và thôi ha rồi cái bed inact này đó
+
+300
+00:12:58,866 --> 00:13:00,566
+thì cái này thì mình nghĩ nó là sản phẩm ha
+
+301
+00:13:00,800 --> 00:13:03,166
+tại vì nó là cái mã sản phẩm này anh em đó
+
+302
+00:13:03,366 --> 00:13:04,300
+và mình sẽ vào coi
+
+303
+00:13:05,066 --> 00:13:06,333
+rồi à anh em thấy ha
+
+304
+00:13:06,733 --> 00:13:10,666
+à thì nó là cái mã sản phẩm cho nên à nó trả về cái à
+
+305
+00:13:10,800 --> 00:13:13,866
+kết quả là một cái url sản phẩm như thế này anh em thấy ha
+
+306
+00:13:14,066 --> 00:13:15,266
+đó url sản phẩm nè
+
+307
+00:13:15,400 --> 00:13:17,466
+nó sẽ à được trình bày như thế này
+
+308
+00:13:17,600 --> 00:13:20,200
+thì cái này thì chắc chắn là mình sẽ phải tạo cái à
+
+309
+00:13:20,366 --> 00:13:21,166
+sản phẩm rồi ha
+
+310
+00:13:21,300 --> 00:13:23,866
+còn nếu mà mình tạo danh mục sản phẩm thì à nó hông có được
+
+311
+00:13:24,000 --> 00:13:24,266
+rồi
+
+312
+00:13:24,266 --> 00:13:27,300
+nắp bồn cầu inox nè thì à mình sẽ tiếp tục tiếp tục như vậy
+
+313
+00:13:27,733 --> 00:13:29,666
+à nắp bồn cầu inox nè anh em thấy hông
+
+314
+00:13:30,066 --> 00:13:31,533
+đó nó là một danh mục sản phẩm
+
+315
+00:13:31,966 --> 00:13:34,266
+mình không thể nào mà tạo một cái bài viết mà à
+
+316
+00:13:34,333 --> 00:13:35,766
+nắp bồn cầu inax là gì
+
+317
+00:13:35,800 --> 00:13:38,733
+để mình viết được thì mình cần phải tạo cái à sản phẩm đó
+
+318
+00:13:38,900 --> 00:13:40,800
+rồi cái này thì nó là bài viết
+
+319
+00:13:41,300 --> 00:13:43,300
+à hay là cái gì thì mình cứ search thôi ha
+
+320
+00:13:43,866 --> 00:13:46,333
+ô kê à nó là một cái a sản phẩm luôn ha
+
+321
+00:13:46,500 --> 00:13:49,866
+anh em ha đó thì à mình sẽ chọn nó là à sản phẩm
+
+322
+00:13:50,666 --> 00:13:52,266
+ô kê cái này thì nó là một cái mã
+
+323
+00:13:52,366 --> 00:13:53,666
+và mình sẽ chọn nó là cái sản phẩm
+
+324
+00:13:54,000 --> 00:13:56,266
+đó a bồn cầu hai khối này thì mình
+
+325
+00:13:56,266 --> 00:13:58,300
+không chắc thì mình à sẽ resort
+
+326
+00:13:59,166 --> 00:13:59,766
+đó thì
+
+327
+00:13:59,766 --> 00:14:02,400
+anh em thấy nó cũng là một cái danh mục sản phẩm thôi
+
+328
+00:14:02,533 --> 00:14:03,933
+đó thì tiếp tục
+
+329
+00:14:04,000 --> 00:14:05,133
+tiếp tục như vậy thì anh em sẽ
+
+330
+00:14:05,266 --> 00:14:07,666
+phiêu hết cái dữ liệu của cái ô content thai này
+
+331
+00:14:07,700 --> 00:14:10,733
+ha rồi à mình làm demo thì mình làm như thế này thôi
+
+332
+00:14:10,900 --> 00:14:12,466
+và hi vọng là anh em sẽ phải hiểu
+
+333
+00:14:12,966 --> 00:14:13,600
+cái này ha
+
+334
+00:14:13,600 --> 00:14:15,700
+hi vọng là anh em sẽ phải hiểu cái này và nắm được
+
+335
+00:14:15,866 --> 00:14:17,333
+để anh em có một cái kế hoạch content
+
+336
+00:14:17,666 --> 00:14:20,533
+nó tốt ha à chứ còn nếu mà anh em không phân biệt cái này á
+
+337
+00:14:20,600 --> 00:14:22,700
+thì anh em sẽ bị một cái à gọi là
+
+338
+00:14:22,866 --> 00:14:24,766
+ví dụ như cái từ khóa nó danh một sản phẩm
+
+339
+00:14:24,866 --> 00:14:26,066
+mà anh em lại cứ đi viết bài
+
+340
+00:14:26,200 --> 00:14:28,400
+thì không bao giờ anh em seo lên top được
+
+341
+00:14:28,666 --> 00:14:29,133
+cho nên á
+
+342
+00:14:29,133 --> 00:14:31,466
+cái bước này là cái bước cực kỳ cực kỳ là quan trọng
+
+343
+00:14:31,600 --> 00:14:33,100
+đó thì anh em làm xong cái
+
+344
+00:14:33,133 --> 00:14:34,966
+bước này thì anh em biết được trên website của anh em
+
+345
+00:14:35,066 --> 00:14:36,566
+đã sale cái bộ từ khóa này
+
+346
+00:14:36,866 --> 00:14:39,100
+thì cần tạo à bao nhiêu cái danh mục sản phẩm
+
+347
+00:14:39,166 --> 00:14:40,700
+bao nhiêu cái sản phẩm và bao nhiêu cái bài viết
+
+348
+00:14:40,800 --> 00:14:41,600
+để chúng ta có thể
+
+349
+00:14:42,000 --> 00:14:46,400
+à có những cái ù lờ đít mà nó tốt để chúng ta seo rồi à
+
+350
+00:14:46,466 --> 00:14:47,266
+mình sẽ à
+
+351
+00:14:47,300 --> 00:14:49,366
+không làm chỗ này nữa để tránh mất thời gian của anh em
+
+352
+00:14:49,466 --> 00:14:50,500
+thì mình sẽ tới một cái
+
+353
+00:14:50,866 --> 00:14:53,766
+à ô tiếp theo là cái ô phân loại thì thường á
+
+354
+00:14:53,866 --> 00:14:56,600
+mình sẽ phân loại ra xem cái u l này là cái u l
+
+355
+00:14:57,133 --> 00:15:00,900
+sco hay là cái ul ờ mà cái content bổ trợ thì ở đây á
+
+356
+00:15:00,966 --> 00:15:02,733
+sco mình sẽ định nghĩa là những cái ul
+
+357
+00:15:02,866 --> 00:15:03,800
+mà mình cam kết với khách hàng
+
+358
+00:15:04,366 --> 00:15:05,333
+còn nếu mà anh em làm
+
+359
+00:15:05,866 --> 00:15:07,733
+co cho công ty á thì ừ à
+
+360
+00:15:07,800 --> 00:15:10,366
+nó là những cái từ khóa chính á thì mình mới mới nên
+
+361
+00:15:10,566 --> 00:15:12,766
+focus vào còn những cái từ khóa mà thông tin
+
+362
+00:15:12,900 --> 00:15:14,600
+á thì mình sẽ để là bổ trợ ha
+
+363
+00:15:14,733 --> 00:15:16,133
+thì ở đây mình cũng sẽ tạo à
+
+364
+00:15:16,166 --> 00:15:17,733
+một cái trình thả xuống như thế này
+
+365
+00:15:17,966 --> 00:15:20,266
+rồi ô kê và mình sẽ để là bài sale ha
+
+366
+00:15:21,900 --> 00:15:23,366
+rồi cái này là bổ trợ
+
+367
+00:15:28,800 --> 00:15:31,166
+rồi à bài sale thì mình sẽ để màu xanh đi
+
+368
+00:15:31,366 --> 00:15:33,900
+hỗ trợ thì mình à để màu vàng đi ô kê
+
+369
+00:15:34,166 --> 00:15:36,300
+và mình vẫn lại sẽ tiếp tục kéo xuống
+
+370
+00:15:36,666 --> 00:15:38,000
+ô kê thì à
+
+371
+00:15:38,100 --> 00:15:39,166
+đối với mình á à
+
+372
+00:15:39,200 --> 00:15:41,066
+những cái từ khóa này là những cái từ khóa chính
+
+373
+00:15:41,166 --> 00:15:44,066
+những cái từ khóa bán hàng thì mình sẽ để là bài seo à
+
+374
+00:15:44,066 --> 00:15:46,733
+những cái từ khóa này mình cũng sẽ để là bài seo à
+
+375
+00:15:46,800 --> 00:15:47,600
+để mình biết được
+
+376
+00:15:47,900 --> 00:15:49,366
+cái bài seo này ha
+
+377
+00:15:49,800 --> 00:15:52,166
+rồi những cái này là toàn là những từ khóa bán hàng thôi
+
+378
+00:15:52,466 --> 00:15:54,600
+thì mình sẽ để nó là bài seo à bài
+
+379
+00:15:54,733 --> 00:15:57,600
+seo còn à ví dụ như cái từ khóa kích thước bồn cầu
+
+380
+00:15:57,733 --> 00:15:59,500
+này thì mình có thể là để là bài support
+
+381
+00:15:59,800 --> 00:16:02,400
+hay là bài bổ trợ ở đây đó thì à à
+
+382
+00:16:02,466 --> 00:16:04,933
+hai cái cột này là cực kỳ cực kỳ là quan trọng ha
+
+383
+00:16:05,333 --> 00:16:06,800
+à rồi tiếp tục thì à
+
+384
+00:16:06,866 --> 00:16:08,133
+tới cái cột tiếp theo
+
+385
+00:16:08,333 --> 00:16:11,266
+đó là cái ngày public thì ví dụ như anh em làm xong à
+
+386
+00:16:11,333 --> 00:16:12,600
+cái ngày nào thì anh em sẽ public
+
+387
+00:16:12,700 --> 00:16:13,800
+và anh em note lại cái ngày
+
+388
+00:16:13,900 --> 00:16:14,400
+ha à
+
+389
+00:16:14,400 --> 00:16:15,700
+ví dụ như hôm nay là à
+
+390
+00:16:15,766 --> 00:16:17,266
+cái ngày mười tám tháng tám thì mình à
+
+391
+00:16:17,500 --> 00:16:19,133
+sẽ để là mười tám tháng tám ha
+
+392
+00:16:20,333 --> 00:16:22,166
+đó hai không hai lăm
+
+393
+00:16:23,600 --> 00:16:27,200
+rồi ô kê à và cái ô này á thì anh em lên outline thì anh em
+
+394
+00:16:27,400 --> 00:16:28,533
+là viết content
+
+395
+00:16:28,733 --> 00:16:29,600
+thì anh em cần phải lên outline
+
+396
+00:16:29,733 --> 00:16:30,800
+và những cái video sau á
+
+397
+00:16:30,866 --> 00:16:32,100
+mình sẽ hướng dẫn cho anh em lên outline
+
+398
+00:16:32,166 --> 00:16:34,300
+thì anh em điền cái link outline vào đây à và
+
+399
+00:16:34,666 --> 00:16:36,066
+anh em chọn cái deadline
+
+400
+00:16:36,166 --> 00:16:38,733
+ví dụ như anh em giao cho nhân sự hay là mình tự làm
+
+401
+00:16:38,933 --> 00:16:41,066
+thì mình cũng nên đặt một cái deadline ha à
+
+402
+00:16:41,133 --> 00:16:43,533
+deadline ví dụ như khi nào mình lên xong cái outline
+
+403
+00:16:43,733 --> 00:16:46,300
+khi nào mà mình à lên xong cái bài content đó
+
+404
+00:16:46,566 --> 00:16:49,933
+và à à cái này thì cái người nào là cái người viết brief
+
+405
+00:16:50,000 --> 00:16:50,800
+người viết yêu cầu
+
+406
+00:16:50,800 --> 00:16:52,366
+và cái người nào là cái người mà viết bài
+
+407
+00:16:52,700 --> 00:16:54,933
+à và cái schema của nó là cái gì
+
+408
+00:16:55,066 --> 00:16:56,533
+thì sau này á anh em sẽ được
+
+409
+00:16:56,800 --> 00:16:59,700
+à mình chia sẻ những cái ô tiếp theo như thế này à
+
+410
+00:16:59,733 --> 00:17:02,966
+còn trong cái phạm vi của cái video này á thì anh em
+
+411
+00:17:03,400 --> 00:17:05,800
+à nắm được những cái như này là quá ô kê rồi
+
+412
+00:17:06,466 --> 00:17:09,800
+rồi à và anh em thấy ha và anh em thấy sau khi mà
+
+413
+00:17:10,366 --> 00:17:12,200
+à lập cái kế hoạch content xong
+
+414
+00:17:12,333 --> 00:17:15,366
+thì cái dự án của mình nó cũng rõ ràng hơn rất là nhiều ha
+
+415
+00:17:15,533 --> 00:17:17,000
+ví dụ như cái cột topic
+
+416
+00:17:17,166 --> 00:17:18,966
+này để mình biết được trên website của mình
+
+417
+00:17:19,533 --> 00:17:20,500
+à cái bồn cầu
+
+418
+00:17:20,566 --> 00:17:21,800
+cái topic bích bồn cầu á
+
+419
+00:17:21,800 --> 00:17:22,966
+nó có bao nhiêu cái u l
+
+420
+00:17:23,100 --> 00:17:24,966
+và nó có thể lên top được bao nhiêu cái từ khóa
+
+421
+00:17:25,533 --> 00:17:26,800
+và mình tạo bao nhiêu cái loại content
+
+422
+00:17:27,133 --> 00:17:27,900
+và cái loại content
+
+423
+00:17:27,900 --> 00:17:31,900
+đó là cái loại à bài seo hay là bài à bộ trợ à
+
+424
+00:17:31,966 --> 00:17:34,500
+có bao nhiêu bài seo và có bao nhiêu bài bộ trợ à à
+
+425
+00:17:34,533 --> 00:17:36,766
+và à những cái topic khác nữa thì à
+
+426
+00:17:36,900 --> 00:17:38,300
+dựa vào cái tình hình kinh doanh
+
+427
+00:17:38,466 --> 00:17:39,766
+hay dựa vào cái kế hoạch kinh doanh
+
+428
+00:17:40,000 --> 00:17:41,966
+hay là dựa vào cái kế hoạch marketing của mình
+
+429
+00:17:42,166 --> 00:17:43,000
+mà mình sẽ ưu tiên
+
+430
+00:17:43,400 --> 00:17:44,200
+ví dụ như trong cái
+
+431
+00:17:44,533 --> 00:17:46,500
+a video này trong cái bối cảnh của
+
+432
+00:17:46,800 --> 00:17:48,000
+cái website này thì mình sẽ
+
+433
+00:17:48,466 --> 00:17:50,100
+à ưu tiên cái topic bồn cầu
+
+434
+00:17:50,266 --> 00:17:51,800
+để mình có thể đẩy lên tại vì cái top
+
+435
+00:17:51,966 --> 00:17:52,733
+x bồn cầu
+
+436
+00:17:52,733 --> 00:17:55,133
+thì cái lượng volume cộng với lại cái lượng từ khóa
+
+437
+00:17:55,200 --> 00:17:56,000
+nó là nhiều nhất
+
+438
+00:17:56,066 --> 00:17:57,333
+trong cái trường hợp mà anh em cam kết
+
+439
+00:17:57,500 --> 00:17:59,333
+kbi với sếp hay là với khách hàng đi
+
+440
+00:17:59,733 --> 00:18:02,200
+thì ví dụ như tổng cái bộ từ khóa này á là một ngàn
+
+441
+00:18:02,266 --> 00:18:03,400
+chín trăm ba mươi cái từ khóa
+
+442
+00:18:03,866 --> 00:18:06,166
+à thì anh em làm cái top x bồn cầu này á
+
+443
+00:18:06,200 --> 00:18:06,900
+nó lên top
+
+444
+00:18:06,900 --> 00:18:08,866
+được đâu đó khoảng chừng hơn sáu trăm từ khóa rồi
+
+445
+00:18:09,200 --> 00:18:12,000
+à thì à nó đã chiếm cái trọng số đâu đó khoảng chừng
+
+446
+00:18:12,600 --> 00:18:13,666
+ba mươi phần trăm rồi ha
+
+447
+00:18:13,700 --> 00:18:14,766
+một cái topic thôi
+
+448
+00:18:14,800 --> 00:18:16,400
+nó đã chiếm đâu đó khoảng chừng ba mươi phần trăm rồi
+
+449
+00:18:16,600 --> 00:18:18,566
+thì anh em nên tập trung vào cái bồn cầu
+
+450
+00:18:18,933 --> 00:18:20,766
+chứ còn anh em không nên viết lan man ha
+
+451
+00:18:20,766 --> 00:18:21,700
+khi mà triển khai content
+
+452
+00:18:21,900 --> 00:18:23,133
+á thì anh em không nên viết lan man
+
+453
+00:18:23,200 --> 00:18:24,166
+và anh em sẽ phải à
+
+454
+00:18:24,200 --> 00:18:25,100
+viết theo topic
+
+455
+00:18:25,166 --> 00:18:27,300
+chứ hông phải là hôm nay anh em viết một cái bài về bồn cầu
+
+456
+00:18:27,600 --> 00:18:28,800
+hay là tạo một cái bài về bồn cầu
+
+457
+00:18:29,066 --> 00:18:31,066
+ngày mai anh em tạo một cái về bồn tắm thì
+
+458
+00:18:31,400 --> 00:18:33,666
+cái nội dung của anh em nó sẽ bị rất rất là lan man
+
+459
+00:18:33,866 --> 00:18:36,000
+và à à chính vì cái lan man như vậy á
+
+460
+00:18:36,066 --> 00:18:39,766
+google nó nhảy vào ừ nó xem thằng này nói về bồn cầu thì à
+
+461
+00:18:39,866 --> 00:18:42,366
+có vài bài nói về bồn cầu thôi xong cái lại có vài bài
+
+462
+00:18:42,400 --> 00:18:45,100
+nói về bồn tắm thôi thì mình nên phát triển à
+
+463
+00:18:45,166 --> 00:18:46,800
+cái chủ đề nên phát triển content
+
+464
+00:18:47,066 --> 00:18:49,766
+theo cái topic mà nó chuyên sâu luôn ha à
+
+465
+00:18:49,933 --> 00:18:50,933
+mình đã nói về bồn cầu
+
+466
+00:18:51,100 --> 00:18:52,533
+thì trên website của mình sẽ phải phụ
+
+467
+00:18:52,666 --> 00:18:53,933
+toàn bộ cái bài viết về bồn cầu
+
+468
+00:18:54,100 --> 00:18:55,966
+thì sau khi xong cái bồn cầu
+
+469
+00:18:56,166 --> 00:18:58,733
+thì chúng ta mới làm tới cái bồn tắm hay là à cái
+
+470
+00:18:59,066 --> 00:19:00,366
+chậu rửa chẳng hạn đi
+
+471
+00:19:00,600 --> 00:19:02,800
+đó là cái cách mà chúng ta có thể triển khai cái content
+
+472
+00:19:03,300 --> 00:19:04,966
+à làm sao cho nó hợp lý
+
+473
+00:19:05,166 --> 00:19:06,400
+làm sao cho nó tối ưu nhất
+
+474
+00:19:06,866 --> 00:19:09,366
+rồi đó là toàn bộ cái cách mà chúng ta lên một cái plan
+
+475
+00:19:09,700 --> 00:19:11,133
+content cho một cái website mới
+
+476
+00:19:11,366 --> 00:19:13,566
+thì ở trong cái video này á anh em cần phải lưu ý
+
+477
+00:19:13,933 --> 00:19:15,533
+cái cột mà content thai ha
+
+478
+00:19:15,800 --> 00:19:18,266
+và nó sẽ có năm cái loại định dạng content như vậy
+
+479
+00:19:18,366 --> 00:19:21,166
+và anh em cần phải biết được cái từ khóa nào seo ở đâu
+
+480
+00:19:21,266 --> 00:19:22,766
+có những cái từ khóa ở danh mục sản phẩm
+
+481
+00:19:23,200 --> 00:19:24,333
+có những cái từ khóa ở sản phẩm
+
+482
+00:19:24,500 --> 00:19:26,100
+và có những từ khóa mà ở bài viết
+
+483
+00:19:26,466 --> 00:19:28,333
+chứ không phải là cái từ khóa nào chúng ta cũng viết bài
+
+484
+00:19:28,733 --> 00:19:30,300
+hay là không phải là cái từ khóa nào chúng ta cũng
+
+485
+00:19:30,800 --> 00:19:32,266
+siêu ở trang chủ được à
+
+486
+00:19:32,366 --> 00:19:34,333
+thì để mà phân biệt cái từ khóa đó sale
+
+487
+00:19:34,533 --> 00:19:36,100
+ở đâu thì anh em cứ lên trên google
+
+488
+00:19:36,300 --> 00:19:37,533
+anh em research và anh em
+
+489
+00:19:37,533 --> 00:19:39,900
+sẽ chọn theo đối thủ cho nó chắc ha rồi
+
+490
+00:19:39,900 --> 00:19:42,333
+đó là toàn bộ cái cách mà chúng ta có thể lên được một cái
+
+491
+00:19:42,500 --> 00:19:43,300
+plan content
+
+492
+00:19:43,366 --> 00:19:44,966
+cho một cái website mới à
+
+493
+00:19:45,000 --> 00:19:46,966
+cảm ơn anh em đã theo dõi cái video này
+
+494
+00:19:47,000 --> 00:19:48,766
+hẹn gặp lại anh em ở những cái video sau
+

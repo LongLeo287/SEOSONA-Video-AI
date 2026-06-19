@@ -1,0 +1,496 @@
+1
+00:00:00,100 --> 00:00:01,066
+rồi xin chào anh em nhá
+
+2
+00:00:01,100 --> 00:00:03,400
+chào mừng anh em quay trở lại cái khóa học trí quyết chấm
+
+3
+00:00:03,600 --> 00:00:05,700
+academy trong cái video trước á
+
+4
+00:00:05,733 --> 00:00:07,300
+mình đã hướng dẫn cho anh em cái cách
+
+5
+00:00:07,500 --> 00:00:10,500
+research và lên một cái cấu trúc website nó như thế nào rồi
+
+6
+00:00:10,766 --> 00:00:13,733
+à và ở trong cái video này á mình sẽ lưu ý cho anh em
+
+7
+00:00:14,266 --> 00:00:15,733
+à một số cái trường hợp đặc biệt
+
+8
+00:00:16,266 --> 00:00:19,733
+à khi mà anh em triển khai để cho anh em đỡ bị hoang mang
+
+9
+00:00:20,100 --> 00:00:22,100
+à hoặc là triển khai sai ha à
+
+10
+00:00:22,200 --> 00:00:23,800
+rồi ô kê mình sẽ bắt đầu luôn ha
+
+11
+00:00:31,566 --> 00:00:33,733
+rồi ô kê ở đây là một cái bộ từ khóa
+
+12
+00:00:33,900 --> 00:00:36,466
+và mình đã gom nhóm nhà đã xác định được cái
+
+13
+00:00:36,900 --> 00:00:39,933
+à url cái loại url đích của nó là cái loại gì ha
+
+14
+00:00:40,000 --> 00:00:41,333
+cái loại content đó thì à
+
+15
+00:00:41,366 --> 00:00:42,900
+tất nhiên là ở đây là một cái video
+
+16
+00:00:43,066 --> 00:00:44,300
+mà mình làm demo cho anh em
+
+17
+00:00:44,600 --> 00:00:46,100
+để cho anh em hiểu hơn về cái à
+
+18
+00:00:46,166 --> 00:00:46,566
+research
+
+19
+00:00:46,566 --> 00:00:50,533
+cái cấu trúc website thì mình sẽ lấy a ít từ khóa thôi ha à
+
+20
+00:00:50,600 --> 00:00:52,666
+và cái mục tiêu của mình để mô tả cho anh em
+
+21
+00:00:52,900 --> 00:00:54,500
+dễ hiểu và dễ hình dung ra thôi ha
+
+22
+00:00:54,766 --> 00:00:56,933
+à à rồi à thế thì cái bối cảnh
+
+23
+00:00:57,200 --> 00:00:59,666
+của cái a website mà mình đang làm này á
+
+24
+00:00:59,766 --> 00:01:01,800
+nó sẽ có các cái loại định dạng content
+
+25
+00:01:02,400 --> 00:01:06,366
+à là bây là danh mục sản phẩm và là sản phẩm là à
+
+26
+00:01:06,466 --> 00:01:08,166
+nó vừa là một cái website bán hàng
+
+27
+00:01:08,300 --> 00:01:10,766
+mà nó vừa là một cái website cung cấp dịch vụ đó
+
+28
+00:01:11,000 --> 00:01:13,533
+thì à anh em sẽ phải lưu ý ha à
+
+29
+00:01:13,566 --> 00:01:17,100
+ví dụ như ở đây mình có một cái a tầng một của mình đi
+
+30
+00:01:17,166 --> 00:01:18,800
+mình sẽ để nó là tầng một đi
+
+31
+00:01:19,800 --> 00:01:20,366
+thì à
+
+32
+00:01:20,366 --> 00:01:23,333
+nó là thiết kế nội thất là đúng rồi ô kê tầng hai của mình
+
+33
+00:01:24,600 --> 00:01:26,866
+thì nó sẽ là cái biệt thự này
+
+34
+00:01:27,266 --> 00:01:29,800
+nó sẽ là cái a chung cư này và cái tầng bá
+
+35
+00:01:30,100 --> 00:01:32,166
+nó sẽ phải có cái phòng ngủ ha
+
+36
+00:01:32,333 --> 00:01:34,066
+biệt thự thì nó cũng có phòng ngủ á
+
+37
+00:01:34,700 --> 00:01:37,966
+phòng khách rồi tiếp tục à tới a các cái phòng bếp
+
+38
+00:01:38,400 --> 00:01:41,800
+hay là phòng à ăn gì đó à trong cái phòng bếp phòng khách á
+
+39
+00:01:42,100 --> 00:01:43,800
+à ví dụ như trong cái phòng ngủ này đi
+
+40
+00:01:43,900 --> 00:01:44,966
+anh em không thể nào mà để
+
+41
+00:01:45,200 --> 00:01:45,933
+cái tủ quần áo
+
+42
+00:01:45,933 --> 00:01:49,266
+tại sao tại vì cái tủ quần áo này á nó là danh mục sản phẩm
+
+43
+00:01:49,566 --> 00:01:51,966
+mà anh em lại để vào trong một cái bay à
+
+44
+00:01:52,100 --> 00:01:54,500
+hoặc là một cái bài viết đi thì nó sẽ không có hợp lý
+
+45
+00:01:54,966 --> 00:01:55,900
+thì trong cái trường hợp này á
+
+46
+00:01:55,966 --> 00:01:57,900
+anh em cần phải à tách nó ra à
+
+47
+00:01:58,166 --> 00:02:00,700
+nó cái tủ quần áo nó sẽ phải nằm ở đây nè à
+
+48
+00:02:00,766 --> 00:02:01,900
+nó sẽ phải nằm ở tầng một
+
+49
+00:02:02,400 --> 00:02:03,933
+và mấy cái việc mà anh em
+
+50
+00:02:04,300 --> 00:02:07,266
+à à làm cái cấu trúc website á thì đây nó gọi là cái
+
+51
+00:02:07,333 --> 00:02:08,500
+silo ảo đó
+
+52
+00:02:08,600 --> 00:02:11,766
+thì cái tủ quần áo này nó sẽ liên kết với phòng ngủ ha á
+
+53
+00:02:11,900 --> 00:02:13,200
+bằng các cái linh nội bộ
+
+54
+00:02:13,366 --> 00:02:14,766
+chứ không phải là nó sẽ là con
+
+55
+00:02:14,933 --> 00:02:16,200
+của cái thằng thiết kế nội thất
+
+56
+00:02:16,500 --> 00:02:19,066
+mà nó thể hiện ra cái bracket đâu anh em
+
+57
+00:02:19,333 --> 00:02:20,866
+đó là cái cách mà mình làm ha
+
+58
+00:02:20,933 --> 00:02:21,566
+anh em lưu ý
+
+59
+00:02:21,566 --> 00:02:24,400
+có những cái trường hợp mà cái website của mình vừa là trai
+
+60
+00:02:24,733 --> 00:02:25,666
+bán hàng mà vừa là
+
+61
+00:02:26,200 --> 00:02:27,200
+có dịch vụ ở trên đó
+
+62
+00:02:27,666 --> 00:02:30,300
+thì nó sẽ không có nằm con của những cái thằng dịch vụ đâu
+
+63
+00:02:30,366 --> 00:02:32,666
+thằng sản phẩm thì nó hoàn toàn nó khác ha à
+
+64
+00:02:32,700 --> 00:02:35,300
+ví dụ như nếu mà cái tủ quần áo này là một cái dịch vụ
+
+65
+00:02:35,366 --> 00:02:38,066
+dịch vụ đóng tủ quần áo hay là dịch vụ thiết kế tủ quần áo
+
+66
+00:02:38,200 --> 00:02:40,000
+thì nó có thể nằm ở trong cái thiết kế phòng ngủ
+
+67
+00:02:40,166 --> 00:02:40,966
+thì hông sao cả
+
+68
+00:02:41,266 --> 00:02:42,300
+còn trong cái trường hợp này
+
+69
+00:02:42,366 --> 00:02:43,866
+nó đã là một cái danh mục sản phẩm
+
+70
+00:02:44,000 --> 00:02:44,866
+thì anh em cần phải
+
+71
+00:02:45,366 --> 00:02:46,533
+để đưa nó vào tầng một
+
+72
+00:02:46,666 --> 00:02:47,900
+và trong cái tầng hai này á
+
+73
+00:02:47,933 --> 00:02:50,500
+thì ví dụ như nó sẽ có thể là nó có tủ quần áo
+
+74
+00:02:50,933 --> 00:02:53,266
+à ví dụ trong mỗi bộ từ khóa của mình ha
+
+75
+00:02:53,366 --> 00:02:54,566
+nó có thể là nó có cái tủ
+
+76
+00:02:55,100 --> 00:02:57,966
+à quần áo gỗ công nghiệp đi chẳng hạn đi
+
+77
+00:03:00,766 --> 00:03:01,566
+đó
+
+78
+00:03:02,000 --> 00:03:06,300
+hay là nó có thể tủ quần áo a a abc gì đó mà mình không còn
+
+79
+00:03:06,300 --> 00:03:09,400
+biết ha à và trong cái tủ giày này cũng vậy ha
+
+80
+00:03:09,533 --> 00:03:12,100
+tủ giày thì không thể nào mà mình để ở phòng khách được à
+
+81
+00:03:12,200 --> 00:03:14,466
+cái việc mà chúng ta sắp xếp một cái tủ giày ở ngoài đời
+
+82
+00:03:14,533 --> 00:03:16,300
+nó để trong phòng khách là hết sức là bình thường
+
+83
+00:03:16,733 --> 00:03:17,533
+tuy nhiên á à
+
+84
+00:03:17,600 --> 00:03:20,000
+nó thể hiện trên website thì nó cũng sẽ không thể nào
+
+85
+00:03:20,166 --> 00:03:21,466
+mà nó nằm ở trong cái
+
+86
+00:03:21,966 --> 00:03:24,000
+a nội thất phòng khách được ha à
+
+87
+00:03:24,100 --> 00:03:26,333
+nó cũng sẽ phải nằm tách biệt ra như thế này ha
+
+88
+00:03:26,400 --> 00:03:28,566
+trong cái tủ tủ giày này nó có tủ giày hai ngăn
+
+89
+00:03:28,666 --> 00:03:30,800
+ba ngăn gì đó thì tùy vào cái bộ từ khóa
+
+90
+00:03:30,966 --> 00:03:33,100
+hay là cái kệ ti vi này cũng vậy à
+
+91
+00:03:33,133 --> 00:03:35,533
+và cái chuyện mà thiết kế nội thất chung cư này á
+
+92
+00:03:35,766 --> 00:03:38,600
+ví dụ như ở đây á à nó sẽ có cái a chung cư
+
+93
+00:03:39,200 --> 00:03:40,000
+à năm mươi tư
+
+94
+00:03:41,133 --> 00:03:43,666
+mép này à thì mình sẽ để nó ở cái tầng hai
+
+95
+00:03:44,133 --> 00:03:46,466
+của thiết kế chung nội thất chung cư rồi tiếp tới
+
+96
+00:03:46,766 --> 00:03:50,066
+a chung cư năm mươi tư mét rồi năm mươi hai mét rồi
+
+97
+00:03:50,566 --> 00:03:52,733
+à một trăm ba mươi mét rồi đủ thứ hết ha
+
+98
+00:03:52,866 --> 00:03:54,666
+anh em cần phải lưu ý cái này ha
+
+99
+00:03:54,866 --> 00:03:55,966
+cần phải lưu ý cái này
+
+100
+00:03:56,066 --> 00:03:58,733
+để anh em có thể research và lên một cái cấu trúc website
+
+101
+00:03:58,866 --> 00:04:00,733
+cho nó chuẩn chỉnh cho nó đúng với lại
+
+102
+00:04:01,166 --> 00:04:03,166
+cái cấu trúc website của mình ha chứ hông phải
+
+103
+00:04:03,166 --> 00:04:04,866
+là anh em cứ cắm đầu cắm cổ vào
+
+104
+00:04:05,400 --> 00:04:07,333
+anh em nghĩ là cái tủ quần áo này nó phải
+
+105
+00:04:07,533 --> 00:04:08,333
+ở trong cái phòng ngủ
+
+106
+00:04:08,566 --> 00:04:11,066
+rồi anh em nhét nó vào làm cái record nó thì
+
+107
+00:04:11,300 --> 00:04:12,666
+nó không phải là như vậy ha
+
+108
+00:04:12,733 --> 00:04:13,600
+nó không phải là như vậy
+
+109
+00:04:13,766 --> 00:04:15,466
+cái bản chất của nó không phải là như vậy
+
+110
+00:04:15,900 --> 00:04:18,066
+cho nên anh em lưu ý với những cái trường hợp như thế này
+
+111
+00:04:18,166 --> 00:04:19,733
+ở trong cái video tiếp theo á
+
+112
+00:04:19,800 --> 00:04:21,100
+mình sẽ chia sẻ cho anh em
+
+113
+00:04:21,400 --> 00:04:22,700
+những cái lưu ý nó kỹ hơn
+
+114
+00:04:22,866 --> 00:04:25,266
+ở trong cái trường hợp này thì anh em nên làm như thế này ha
+
+115
+00:04:25,466 --> 00:04:26,900
+à không có nên gọi là
+
+116
+00:04:27,666 --> 00:04:31,000
+cố nhét cái tủ quần áo này vào trong cái nội thất phòng ngủ
+
+117
+00:04:31,166 --> 00:04:32,933
+ha cái gì nó cũng phải hợp lý
+
+118
+00:04:33,333 --> 00:04:35,733
+nếu mà anh em thấy a cố chấp mà anh em không có
+
+119
+00:04:35,900 --> 00:04:36,933
+làm cho nó hợp lý á
+
+120
+00:04:36,966 --> 00:04:39,133
+thì cái cấu trúc website của anh em cũng hông có đúng
+
+121
+00:04:39,300 --> 00:04:41,333
+tất nhiên là cái việc mà seo của anh em á
+
+122
+00:04:41,366 --> 00:04:42,500
+nó sẽ không có tốt
+
+123
+00:04:42,866 --> 00:04:45,166
+à rồi cảm ơn anh em đã theo dõi hết cái video này
+
+124
+00:04:45,266 --> 00:04:46,766
+hẹn gặp lại anh em ở những cái video sau
+

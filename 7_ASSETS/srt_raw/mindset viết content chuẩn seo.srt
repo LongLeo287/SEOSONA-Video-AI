@@ -1,0 +1,1304 @@
+1
+00:00:00,266 --> 00:00:03,733
+content là cái yếu tố xếp hạng quan trọng bậc nhất trong seo
+
+2
+00:00:04,166 --> 00:00:04,966
+mình chưa từng thấy
+
+3
+00:00:05,166 --> 00:00:07,500
+có một cái website nào mà content kém chất lượng
+
+4
+00:00:07,900 --> 00:00:09,866
+có thể tồn tại bền vững ở trên google
+
+5
+00:00:10,266 --> 00:00:11,300
+đối với cá nhân mình á
+
+6
+00:00:11,500 --> 00:00:13,900
+content cũng là một trong những cái thứ khó làm nhất
+
+7
+00:00:14,266 --> 00:00:15,800
+khi mà triển khai sco
+
+8
+00:00:15,966 --> 00:00:17,733
+nó đòi hỏi phải đầu tư chất xám
+
+9
+00:00:17,866 --> 00:00:19,400
+ngân sách và thời gian rất là nhiều
+
+10
+00:00:19,900 --> 00:00:20,700
+tuy nhiên mình thấy
+
+11
+00:00:20,966 --> 00:00:23,400
+có rất là nhiều anh em sẵn sàng chi mạnh cho content
+
+12
+00:00:23,866 --> 00:00:24,666
+nhưng vẫn thất bại
+
+13
+00:00:24,900 --> 00:00:26,666
+nguyên nhân không phải là vì họ thiếu tiền
+
+14
+00:00:27,200 --> 00:00:28,500
+hay là thiếu nhân sự viết bài
+
+15
+00:00:28,900 --> 00:00:32,300
+mà vì họ không có mindset đúng khi mà làm content seo
+
+16
+00:00:32,500 --> 00:00:34,300
+anh em cứ nghĩ rằng viết càng nhiều càng tốt
+
+17
+00:00:34,800 --> 00:00:35,666
+viết càng dài càng tốt
+
+18
+00:00:36,100 --> 00:00:38,000
+và anh em cứ chăm chăm vào các cái chỉ số
+
+19
+00:00:38,166 --> 00:00:39,700
+của rank max của google
+
+20
+00:00:39,933 --> 00:00:41,100
+để đánh giá cái chất lượng content
+
+21
+00:00:41,366 --> 00:00:44,300
+kết kết quả là sco cứ mãi dậm chân tại chỗ
+
+22
+00:00:44,666 --> 00:00:48,100
+khiến mọi chi phí và công sức bỏ ra cảm giác như là cốc cốc
+
+23
+00:00:48,266 --> 00:00:51,300
+và thế là anh em lại bước vào một cái vòng lặp quen thuộc
+
+24
+00:00:51,500 --> 00:00:52,300
+thử đủ mọi cách
+
+25
+00:00:52,500 --> 00:00:55,266
+và áp dụng thêm một vài cái mẹo mới mà người ta chia sẻ
+
+26
+00:00:55,700 --> 00:00:58,466
+rồi tiếp tục chờ đợi nhưng kết quả chẳng khác là bao
+
+27
+00:01:05,933 --> 00:01:07,000
+rồi xin chào anh em nhé
+
+28
+00:01:07,100 --> 00:01:09,100
+chào mừng anh em quay trở lại với cái khóa học
+
+29
+00:01:09,166 --> 00:01:09,966
+trí quyết chấm
+
+30
+00:01:10,066 --> 00:01:11,400
+academy trong cái video
+
+31
+00:01:11,600 --> 00:01:14,000
+này á mình sẽ chia sẻ cho anh em cái mindset
+
+32
+00:01:14,166 --> 00:01:15,800
+khi mà viết content seo
+
+33
+00:01:16,066 --> 00:01:18,500
+và đây là cái video cực kỳ cực kỳ là quan trọng
+
+34
+00:01:19,100 --> 00:01:20,500
+nếu mà anh em không nắm được cái
+
+35
+00:01:20,600 --> 00:01:21,500
+mindset này á
+
+36
+00:01:21,533 --> 00:01:24,500
+thì anh em sẽ không thể nào mà tạo dựng ra được cái bài viết
+
+37
+00:01:24,600 --> 00:01:25,466
+hay là cái bài content
+
+38
+00:01:25,766 --> 00:01:26,566
+nó chất lượng được
+
+39
+00:01:26,600 --> 00:01:27,366
+và đặc biệt
+
+40
+00:01:27,366 --> 00:01:29,800
+nếu mà anh em bỏ tiền ra thuê người để viết content
+
+41
+00:01:30,100 --> 00:01:31,933
+thì anh em cũng không thể nào kiểm soát được
+
+42
+00:01:32,000 --> 00:01:32,966
+họ viết có chất lượng
+
+43
+00:01:33,133 --> 00:01:33,933
+hay là không chất lượng
+
+44
+00:01:34,133 --> 00:01:36,866
+đầu tiên thì mình sẽ nói về cái bối cảnh hiện tại
+
+45
+00:01:37,200 --> 00:01:39,566
+với cái sự phát triển không ngừng của các cái công cụ
+
+46
+00:01:39,800 --> 00:01:41,400
+ai chỉ cần một cái cú
+
+47
+00:01:41,600 --> 00:01:44,266
+click chuột là anh em có thể tạo dựng ra hàng trăm
+
+48
+00:01:44,400 --> 00:01:45,866
+thậm chí là hàng nghìn bài viết
+
+49
+00:01:46,266 --> 00:01:48,333
+và từ đây cái vấn nạn spam content
+
+50
+00:01:48,700 --> 00:01:49,900
+nó xuất hiện rất rất là nhiều
+
+51
+00:01:50,366 --> 00:01:52,400
+à ngày xưa khi mà chưa có ai
+
+52
+00:01:52,766 --> 00:01:54,066
+thì một nhân sự viết content
+
+53
+00:01:54,300 --> 00:01:56,866
+của chúng ta có thể viết cùng lắm là được hai tới ba bài
+
+54
+00:01:57,133 --> 00:01:58,400
+tuy nhiên ở thời điểm hiện tại
+
+55
+00:01:58,900 --> 00:02:00,533
+chỉ cần một cái cú click chuột
+
+56
+00:02:00,733 --> 00:02:02,333
+là chúng ta có thể tạo ra hàng trăm
+
+57
+00:02:02,700 --> 00:02:04,466
+thậm chí là hàng ngàn bài viết khác nhau
+
+58
+00:02:04,666 --> 00:02:05,566
+cũng chính vì vậy á
+
+59
+00:02:05,666 --> 00:02:07,700
+một cái lượng nội dung lớn xuất hiện quá nhanh
+
+60
+00:02:08,200 --> 00:02:09,800
+khiến google nó cũng bị quá tải
+
+61
+00:02:10,333 --> 00:02:13,066
+và cái hệ thống của google nó cũng chỉ là hữu hạn
+
+62
+00:02:13,266 --> 00:02:16,100
+anh em cứ thử hình dung à chúng ta có một cái website
+
+63
+00:02:16,733 --> 00:02:18,566
+và đặt ở trên một cái hosting
+
+64
+00:02:18,900 --> 00:02:21,533
+cái dung lượng hosting này á nó là năm gb à
+
+65
+00:02:21,566 --> 00:02:22,366
+nhưng mà bây giờ
+
+66
+00:02:22,566 --> 00:02:24,400
+anh em có một cái lượng lớn dữ liệu
+
+67
+00:02:24,600 --> 00:02:25,933
+nó có thể lên tới sáu gb
+
+68
+00:02:26,200 --> 00:02:28,200
+bảy gb tám gb thậm chí là mười gb
+
+69
+00:02:28,733 --> 00:02:29,700
+thì lúc này à
+
+70
+00:02:29,700 --> 00:02:30,733
+cái hệ thống của chúng ta
+
+71
+00:02:30,800 --> 00:02:32,466
+cũng sẽ không thể nào hoạt động tốt được
+
+72
+00:02:32,933 --> 00:02:34,066
+nó cũng sẽ bị quá tải
+
+73
+00:02:34,466 --> 00:02:38,300
+và để xử lý cái vấn đề này á chúng ta có hai cái lựa chọn à
+
+74
+00:02:38,333 --> 00:02:41,000
+thứ nhất chúng ta có thể nâng cấp cái hosting của mình lên
+
+75
+00:02:41,333 --> 00:02:43,666
+à cho cái dung lượng của nó cao hơn à
+
+76
+00:02:43,700 --> 00:02:45,166
+cái thứ hai chúng ta có thể xóa
+
+77
+00:02:45,266 --> 00:02:47,200
+bớt đi những cái nội dung kém chất lượng
+
+78
+00:02:47,333 --> 00:02:48,300
+trên website của chúng ta
+
+79
+00:02:48,700 --> 00:02:50,500
+những cái hình ảnh những cái vi đê ô
+
+80
+00:02:51,000 --> 00:02:52,766
+mà nó không còn hữu ích nữa
+
+81
+00:02:52,933 --> 00:02:54,100
+thì chúng ta sẽ phải xóa đi
+
+82
+00:02:54,200 --> 00:02:56,566
+để làm cho cái tập dữ liệu của chúng ta nó nhẹ hơn
+
+83
+00:02:56,700 --> 00:02:59,366
+thì từ đó cái website của chúng ta mới hoạt động được à
+
+84
+00:02:59,366 --> 00:03:00,566
+và google cũng vậy
+
+85
+00:03:00,900 --> 00:03:02,066
+họ cũng cần phải thay đổi
+
+86
+00:03:02,566 --> 00:03:05,266
+à và họ tung ra rất là nhiều cái bảng cập nhật
+
+87
+00:03:05,500 --> 00:03:06,533
+có những cái bảng cập nhật
+
+88
+00:03:06,666 --> 00:03:09,066
+mà nó lên thời gian tới một tháng à
+
+89
+00:03:09,133 --> 00:03:12,000
+mình chưa bao giờ thấy google nó cập nhật liên tiếp như vậy
+
+90
+00:03:12,366 --> 00:03:13,733
+và sau mỗi một cái bảng cập nhật
+
+91
+00:03:13,900 --> 00:03:17,133
+á là hàng loạt các cái hiện tượng lạ nó xuất hiện à
+
+92
+00:03:17,166 --> 00:03:18,966
+như là các hiện tượng mất index
+
+93
+00:03:19,066 --> 00:03:22,100
+hoặc là cái url đó của chúng ta được google index
+
+94
+00:03:22,300 --> 00:03:24,900
+nhưng mà cái nội dung bên trong thì nó lại không index
+
+95
+00:03:25,266 --> 00:03:27,500
+hàng loạt các cái website lớn nhỏ rất top
+
+96
+00:03:27,700 --> 00:03:28,700
+nhưng mà không rõ nguyên nhân
+
+97
+00:03:29,333 --> 00:03:32,066
+chúng ta hãy thử đặt mình vào cái vị trí của google
+
+98
+00:03:32,733 --> 00:03:34,366
+google là một cái công ty công nghệ
+
+99
+00:03:34,866 --> 00:03:37,800
+à cái mối quan tâm lớn nhất của họ cũng sẽ là chi phí
+
+100
+00:03:38,266 --> 00:03:40,066
+google phải tốn rất là nhiều chi phí
+
+101
+00:03:40,600 --> 00:03:43,100
+à ví dụ như chi phí thu thập dữ liệu à
+
+102
+00:03:43,166 --> 00:03:44,166
+chi phí xử lý dữ liệu
+
+103
+00:03:44,700 --> 00:03:46,100
+chi phí truy xuất dữ liệu
+
+104
+00:03:46,300 --> 00:03:48,533
+và trả về cái kết quả tìm kiếm cho người dùng
+
+105
+00:03:48,866 --> 00:03:51,766
+và đây cũng là cái lý do mà google cũng cần phải thay đổi
+
+106
+00:03:52,366 --> 00:03:53,400
+họ cần phải thay đổi
+
+107
+00:03:53,933 --> 00:03:55,800
+để tiết kiệm cái chi phí hơn à
+
+108
+00:03:55,800 --> 00:03:56,133
+thì
+
+109
+00:03:56,133 --> 00:03:58,733
+cái công cụ tìm kiếm của họ mới phát triển và tồn tại được
+
+110
+00:03:59,166 --> 00:04:02,333
+và mình cũng tìm được một cái tài liệu à của cái anh dani
+
+111
+00:04:02,766 --> 00:04:05,533
+sudivan này anh này là cái người phát ngôn của google
+
+112
+00:04:06,100 --> 00:04:08,566
+thì đại loại trong cái tài liệu đó anh chia sẻ
+
+113
+00:04:08,766 --> 00:04:12,533
+google nó sẽ chia các cái website ra làm ba cái cấp độ à
+
+114
+00:04:12,600 --> 00:04:14,766
+cấp độ thứ nhất nó sẽ ưu tiên xếp hạng
+
+115
+00:04:15,100 --> 00:04:15,900
+và cấp độ thứ hai
+
+116
+00:04:16,366 --> 00:04:19,566
+nó sẽ ít ưu tiên xếp hạng hơn à còn cấp độ thứ ba à
+
+117
+00:04:19,700 --> 00:04:21,600
+hầu như là chúng ta sẽ không được xếp hạng
+
+118
+00:04:22,066 --> 00:04:23,466
+và để cái website của chúng ta
+
+119
+00:04:23,800 --> 00:04:26,300
+được google đẩy lên cái cấp độ ưu tiên số một
+
+120
+00:04:26,700 --> 00:04:27,800
+thì trên website của chúng ta
+
+121
+00:04:28,300 --> 00:04:29,533
+cần phải cung cấp cái nội dung
+
+122
+00:04:29,666 --> 00:04:31,133
+giá trị và hữu ích cho người dùng
+
+123
+00:04:31,366 --> 00:04:33,400
+nhìn lại lịch sử phát triển của google một xíu
+
+124
+00:04:33,866 --> 00:04:35,300
+thì trước năm hai ngàn không trăm mười một
+
+125
+00:04:35,533 --> 00:04:38,333
+google xếp hạng chủ yếu dựa trên tín hiệu là bách linh
+
+126
+00:04:38,533 --> 00:04:40,800
+lúc đó thì anh em seller chỉ có đi spam
+
+127
+00:04:40,966 --> 00:04:42,666
+backlink là có thể lên top được rồi
+
+128
+00:04:43,133 --> 00:04:44,600
+không có cần quan tâm gì tới content
+
+129
+00:04:45,266 --> 00:04:45,866
+đến tháng hai
+
+130
+00:04:45,866 --> 00:04:47,400
+năm hai ngàn không trăm mười một thì google
+
+131
+00:04:47,600 --> 00:04:49,666
+cho ra mắt cái thuật toán google panda
+
+132
+00:04:49,933 --> 00:04:51,000
+à thì cái thuật toán này
+
+133
+00:04:51,366 --> 00:04:54,266
+nó sẽ đánh mạnh vào những cái website mà có cái nội dung
+
+134
+00:04:54,500 --> 00:04:56,500
+thin content có cái nội dung kém chất lượng
+
+135
+00:04:56,733 --> 00:04:59,266
+và để thích nghi anh em seller truyền tai nhau à
+
+136
+00:04:59,366 --> 00:05:00,333
+lúc này thì viết content
+
+137
+00:05:00,600 --> 00:05:02,333
+thì phải từ ba trăm tới năm trăm chữ
+
+138
+00:05:02,900 --> 00:05:05,666
+à viết content theo công thức năm v kép một h
+
+139
+00:05:05,900 --> 00:05:08,600
+cứ mỗi một cái từ khóa là chúng ta tạo một cái bài viết
+
+140
+00:05:08,800 --> 00:05:09,900
+từ hai ngàn không trăm mười lăm
+
+141
+00:05:10,100 --> 00:05:11,133
+tới hai ngàn không trăm hai mươi hai
+
+142
+00:05:11,500 --> 00:05:13,733
+thì google tung ra rất là nhiều cái bảng cập nhật
+
+143
+00:05:14,100 --> 00:05:16,533
+cũng như là thuật toán quan trọng như google rank rank
+
+144
+00:05:16,733 --> 00:05:19,133
+google hummingbird à e e a t
+
+145
+00:05:19,333 --> 00:05:20,600
+google medic à
+
+146
+00:05:20,666 --> 00:05:23,366
+lúc này thì google hiểu hơn về cái ý định tìm kiếm
+
+147
+00:05:23,900 --> 00:05:26,100
+và cái thuật ngữ search intent được ra đời
+
+148
+00:05:26,400 --> 00:05:28,933
+khi mà người dùng có search một cái từ khóa nào đó
+
+149
+00:05:29,266 --> 00:05:30,466
+ở trên thanh công cụ tìm kiếm
+
+150
+00:05:30,900 --> 00:05:33,700
+thì google hiểu cái ý định đằng sau cái từ khóa đó
+
+151
+00:05:33,800 --> 00:05:35,466
+người dùng muốn tìm kiếm cái điều gì
+
+152
+00:05:36,100 --> 00:05:39,166
+và nó trả về cái kết quả để thỏa mãn cái ý định tìm kiếm đó
+
+153
+00:05:39,800 --> 00:05:41,366
+và anh em làm seo á
+
+154
+00:05:41,466 --> 00:05:43,166
+bắt đầu chúng ta phân tích ý định tìm kiếm
+
+155
+00:05:43,666 --> 00:05:46,533
+à rồi chúng ta lên outline và tạo dựng một cái bài viết
+
+156
+00:05:46,900 --> 00:05:49,800
+thì hầu như mười cái kết quả tìm kiếm ở trên google á
+
+157
+00:05:49,800 --> 00:05:51,000
+nó đều hao hao giống nhau
+
+158
+00:05:51,400 --> 00:05:52,766
+tại vì chúng ta cứ lên trên google
+
+159
+00:05:53,066 --> 00:05:55,266
+chúng ta thu thập cái dữ liệu của cái website
+
+160
+00:05:55,500 --> 00:05:56,800
+à mà nó đã được lên top
+
+161
+00:05:56,966 --> 00:05:59,700
+và chúng ta mô phỏng lại chúng ta spin lại
+
+162
+00:05:59,766 --> 00:06:01,733
+chúng ta viết nó hao hao hao hao giống như nhau
+
+163
+00:06:02,066 --> 00:06:03,166
+là đã đủ để lên top
+
+164
+00:06:03,566 --> 00:06:06,366
+và các cái website lớn á họ phụ rất là nhiều content
+
+165
+00:06:07,000 --> 00:06:08,666
+hầu như là cái cách nào họ cũng viết
+
+166
+00:06:09,066 --> 00:06:11,166
+và họ lên top rất rất là nhiều cái từ khóa
+
+167
+00:06:11,466 --> 00:06:13,533
+mà không liên quan gì tới ngành nghề của họ
+
+168
+00:06:13,933 --> 00:06:16,066
+và từ cuối năm hai ngàn không trăm hai hai trở
+
+169
+00:06:16,066 --> 00:06:16,866
+lại đây google
+
+170
+00:06:17,200 --> 00:06:19,466
+quan tâm hơn về cái content hữu ích
+
+171
+00:06:19,733 --> 00:06:20,533
+thậm chí là google
+
+172
+00:06:20,733 --> 00:06:23,566
+còn tung ra một cái bảng cập nhật là hết full content
+
+173
+00:06:24,100 --> 00:06:27,066
+cái cách làm content cũ à chúng ta lên trên google
+
+174
+00:06:27,333 --> 00:06:29,866
+chúng ta search cái từ khóa và chúng ta thu thập cái
+
+175
+00:06:30,300 --> 00:06:31,766
+thông tin của đối thủ về à
+
+176
+00:06:31,866 --> 00:06:33,933
+chúng ta viết lại thì nó không còn hiệu quả nữa
+
+177
+00:06:34,400 --> 00:06:36,300
+vậy như thế nào mới gọi là cái content
+
+178
+00:06:36,566 --> 00:06:37,500
+chất lượng và hữu ích
+
+179
+00:06:37,700 --> 00:06:38,400
+thì đầu tiên
+
+180
+00:06:38,400 --> 00:06:40,666
+anh em cần phải biết phân tích cái ý định tìm kiếm
+
+181
+00:06:40,866 --> 00:06:42,200
+hay còn gọi là search intent
+
+182
+00:06:42,333 --> 00:06:43,133
+ha ý định tìm kiếm
+
+183
+00:06:43,566 --> 00:06:44,666
+hay còn gọi là search intent
+
+184
+00:06:45,166 --> 00:06:47,933
+là cái ý định đằng sau mỗi cái từ khóa mà người dùng
+
+185
+00:06:48,133 --> 00:06:48,966
+người ta lên trên google
+
+186
+00:06:49,266 --> 00:06:51,600
+search google là một cái công cụ tìm kiếm
+
+187
+00:06:51,900 --> 00:06:55,066
+và cái mục đích cuối cùng của nó á là trả về cái kết quả
+
+188
+00:06:55,566 --> 00:06:58,900
+làm đáp ứng thỏa mãn được cái người dùng khi mà họ tìm kiếm
+
+189
+00:06:59,366 --> 00:07:00,866
+ví dụ như chúng ta lên trên google
+
+190
+00:07:01,133 --> 00:07:03,366
+chúng ta gõ cái từ khóa co là gì
+
+191
+00:07:03,666 --> 00:07:06,900
+mà nó lại trả về cái thông tin không liên quan gì tới co
+
+192
+00:07:07,100 --> 00:07:08,800
+thì chúng ta sẽ không sử dụng google nữa
+
+193
+00:07:09,300 --> 00:07:11,666
+và lúc này thì google cũng sẽ không bán được quảng cáo
+
+194
+00:07:11,933 --> 00:07:14,333
+và cái việc mà đi phân tích cái ý định tìm kiếm này
+
+195
+00:07:14,733 --> 00:07:17,000
+là một trong những cái công việc cực kỳ vì quan trọng
+
+196
+00:07:17,133 --> 00:07:18,300
+khi mà anh em viết content
+
+197
+00:07:18,900 --> 00:07:19,966
+nếu mà anh em viết content
+
+198
+00:07:20,666 --> 00:07:22,300
+không có nghiên cứu cái ý định tìm kiếm
+
+199
+00:07:22,533 --> 00:07:24,700
+mặc dù cái content của anh em có thể rất là hay
+
+200
+00:07:24,900 --> 00:07:25,733
+có thể là rất là tốt
+
+201
+00:07:26,133 --> 00:07:27,100
+nhưng mà cái nội dung đó
+
+202
+00:07:27,400 --> 00:07:29,500
+không phải là cái nội dung mà người dùng tìm kiếm
+
+203
+00:07:29,766 --> 00:07:31,000
+thì thì anh em cũng không thể nào
+
+204
+00:07:31,200 --> 00:07:33,200
+seo cái từ khóa nó lên top được
+
+205
+00:07:33,466 --> 00:07:35,066
+thứ hai là anh em cần phải xác định
+
+206
+00:07:35,166 --> 00:07:37,100
+được cái ngữ cảnh nguồn của website
+
+207
+00:07:37,600 --> 00:07:39,600
+và chúng ta cần phải tạo dựng được cái content
+
+208
+00:07:40,133 --> 00:07:41,700
+vừa đáp ứng được ý định tìm kiếm
+
+209
+00:07:42,266 --> 00:07:45,133
+nhưng mà nó cần phải vừa phù hợp với lại cái chuột
+
+210
+00:07:45,300 --> 00:07:47,266
+contact hay là cái ngữ cảnh nguồn của website
+
+211
+00:07:47,800 --> 00:07:49,266
+thì chúng ta mới lên top được
+
+212
+00:07:49,500 --> 00:07:52,300
+ví dụ như mình có một cái website chuyên về seo
+
+213
+00:07:52,533 --> 00:07:54,333
+mình sẽ không thể nào viết một cái bài viết
+
+214
+00:07:54,766 --> 00:07:56,200
+giống như thằng web việc làm được
+
+215
+00:07:56,566 --> 00:07:57,566
+mà cái website của mình
+
+216
+00:07:57,700 --> 00:08:00,266
+á cần phải cung cấp cái nội dung chuyên về seo
+
+217
+00:08:00,466 --> 00:08:02,766
+chứ mình sẽ không viết một cái bài viết seo là gì
+
+218
+00:08:02,933 --> 00:08:04,066
+công việc của một nhân viên sale
+
+219
+00:08:04,566 --> 00:08:07,066
+giống như cái bài viết của cái website chuyên về việc làm
+
+220
+00:08:07,500 --> 00:08:08,366
+vì cái ngữ cảnh
+
+221
+00:08:08,466 --> 00:08:09,200
+website của mình
+
+222
+00:08:09,200 --> 00:08:11,566
+là một cái website chia sẻ kiến thức về sco
+
+223
+00:08:11,733 --> 00:08:13,000
+mình bán cái khóa học sco
+
+224
+00:08:13,333 --> 00:08:15,933
+chứ không phải mình đang sco cho một cái website việc làm
+
+225
+00:08:16,166 --> 00:08:18,533
+search intent và ngữ cảnh nguồn là hai cái
+
+226
+00:08:18,566 --> 00:08:20,866
+yếu tố quyết định xem anh em viết nó như thế nào
+
+227
+00:08:21,366 --> 00:08:22,200
+viết theo cái hướng nào
+
+228
+00:08:22,600 --> 00:08:24,900
+ngoài ra thì mình còn có bốn cái tiêu chí
+
+229
+00:08:25,366 --> 00:08:27,600
+để khi mà anh em viết một cái bài viết chi tiết
+
+230
+00:08:27,900 --> 00:08:30,500
+thì anh em cần phải follow vào bốn cái tiêu chí này
+
+231
+00:08:30,933 --> 00:08:33,000
+thứ nhất là cái sự rõ ràng của nội dung
+
+232
+00:08:33,566 --> 00:08:35,333
+nghĩa là khi anh em viết một cái bài viết
+
+233
+00:08:35,533 --> 00:08:36,733
+thì anh em cần phải truyền tải
+
+234
+00:08:36,866 --> 00:08:39,333
+cái quan điểm của anh em một cách dễ hiểu và ngắn gọn
+
+235
+00:08:39,666 --> 00:08:40,466
+viết làm sao
+
+236
+00:08:40,466 --> 00:08:42,533
+để anh em có thể giải thích một cái vấn đề gì đó
+
+237
+00:08:42,666 --> 00:08:45,333
+nó cực kỳ cực kỳ là phức tạp một một cách dễ hiểu nhất
+
+238
+00:08:45,700 --> 00:08:47,966
+nếu mà anh em viết về những cái khái niệm phức tạp
+
+239
+00:08:48,133 --> 00:08:50,300
+thì anh em có thể thêm một cái đoạn ví dụ vào
+
+240
+00:08:50,533 --> 00:08:52,500
+để cho người dùng người ta dễ hình dung hơn
+
+241
+00:08:52,933 --> 00:08:54,766
+thứ hai là chiều sâu của nội dung
+
+242
+00:08:55,333 --> 00:08:58,200
+bài viết của anh em cần phải đi sâu về một cái chủ đề
+
+243
+00:08:58,500 --> 00:09:00,000
+và anh em cần phải nghiên cứu kỹ
+
+244
+00:09:00,133 --> 00:09:02,166
+những cái câu hỏi mà người dùng có thể tìm kiếm
+
+245
+00:09:02,566 --> 00:09:05,333
+ví dụ như anh em viết một cái bài viết về cách nấu bún bò
+
+246
+00:09:05,733 --> 00:09:08,766
+à thì nếu mà anh em chỉ có liệt kê ra bước một
+
+247
+00:09:08,866 --> 00:09:10,266
+bước hai bước ba nấu như thế nào
+
+248
+00:09:10,733 --> 00:09:13,400
+thì cái nội dung của anh em nó chưa có đủ độ sâu
+
+249
+00:09:13,866 --> 00:09:16,066
+người dùng có thể họ muốn biết nhiều hơn như vậy
+
+250
+00:09:16,566 --> 00:09:17,866
+ngoài cái công thức nấu ra
+
+251
+00:09:17,933 --> 00:09:20,333
+thì họ có thể tìm kiếm các cái mẹo pha nước chấm
+
+252
+00:09:20,600 --> 00:09:22,300
+hoặc là cái mẹo trình bày món ăn
+
+253
+00:09:22,500 --> 00:09:24,700
+hoặc là một cái mẹo lựa chọn nguyên liệu gì đó
+
+254
+00:09:25,133 --> 00:09:26,700
+tuy nhiên anh em cũng nên lưu ý
+
+255
+00:09:27,000 --> 00:09:28,500
+mình tránh việc viết lan man
+
+256
+00:09:28,700 --> 00:09:29,700
+viết sâu viết đủ
+
+257
+00:09:30,066 --> 00:09:31,333
+nó là một cái câu chuyện khác
+
+258
+00:09:31,733 --> 00:09:34,733
+và viết lan man nó lại là một cái bài toán hoàn toàn khác
+
+259
+00:09:35,133 --> 00:09:37,700
+cái điểm thứ ba là tính hữu ích của nội dung
+
+260
+00:09:38,066 --> 00:09:39,300
+nội dung hữu ích là nội dung
+
+261
+00:09:39,700 --> 00:09:41,900
+cần phải giải quyết được cái lý do đằng sau
+
+262
+00:09:42,100 --> 00:09:43,000
+cái tìm kiếm của họ
+
+263
+00:09:43,466 --> 00:09:46,466
+ví dụ như họ lên google và họ tìm kiếm cách nấu bún bò
+
+264
+00:09:46,700 --> 00:09:48,300
+thì rõ ràng họ đang muốn tìm kiếm
+
+265
+00:09:48,466 --> 00:09:50,066
+một cái cách nấu bún bò tại nhà
+
+266
+00:09:50,500 --> 00:09:51,500
+thơm ngon và dễ làm
+
+267
+00:09:51,800 --> 00:09:53,966
+và cái mục tiêu cái bài viết của mình lúc này
+
+268
+00:09:54,300 --> 00:09:55,200
+cần phải giúp họ
+
+269
+00:09:55,566 --> 00:09:58,133
+làm sao có thể nấu được một cái nồi bún bò tại nhà
+
+270
+00:09:58,800 --> 00:10:01,733
+đây là nơi mà chuyên môn của một cái người viết content
+
+271
+00:10:02,066 --> 00:10:04,133
+thể hiện nếu anh em không giỏi về nấu ăn
+
+272
+00:10:04,333 --> 00:10:05,933
+mà khi mà gặp cái bài viết này
+
+273
+00:10:06,066 --> 00:10:07,600
+thì anh em cần phải lên trên youtube
+
+274
+00:10:07,933 --> 00:10:09,966
+research xem các cái video hướng dẫn
+
+275
+00:10:10,300 --> 00:10:11,966
+và mình có thể chụp lại cái màn hình
+
+276
+00:10:12,533 --> 00:10:15,300
+của video à để mình có thể nhét vào bài viết
+
+277
+00:10:15,533 --> 00:10:17,166
+thì tăng cái tính thuyết phục hơn
+
+278
+00:10:17,200 --> 00:10:18,166
+cho cái bài viết của mình
+
+279
+00:10:18,600 --> 00:10:20,933
+à hoặc là anh em viết một cái chủ đề gì đó
+
+280
+00:10:21,366 --> 00:10:22,466
+mà mình không có kiến thức
+
+281
+00:10:23,000 --> 00:10:25,566
+thì mình cần phải biết cách đi research tài liệu
+
+282
+00:10:25,733 --> 00:10:27,966
+đi research những cái luận điểm vững chắc để để
+
+283
+00:10:28,133 --> 00:10:29,466
+mình đưa vào cái bài viết của mình
+
+284
+00:10:29,900 --> 00:10:31,333
+để thể hiện cái tính hữu ích
+
+285
+00:10:31,500 --> 00:10:33,733
+cái tính chuyên môn của mình ở trong cái bài viết đó
+
+286
+00:10:33,966 --> 00:10:36,200
+và cái điểm thứ tư là cái cách trình bày nội dung
+
+287
+00:10:36,666 --> 00:10:37,500
+một cái nội dung hay
+
+288
+00:10:37,700 --> 00:10:38,733
+một cái nội dung hữu ích
+
+289
+00:10:38,900 --> 00:10:41,200
+nhưng anh em trình bày nó rất là tệ à
+
+290
+00:10:41,266 --> 00:10:43,166
+làm cho người đọc rất là khó chịu khi đọc
+
+291
+00:10:43,500 --> 00:10:45,366
+thì họ cũng sẽ rất là dễ thoát ra
+
+292
+00:10:45,566 --> 00:10:46,366
+không có đọc nữa
+
+293
+00:10:46,766 --> 00:10:47,900
+thì từ cái hành vi này
+
+294
+00:10:47,966 --> 00:10:50,066
+google nó đánh giá cái website của chúng ta
+
+295
+00:10:50,133 --> 00:10:52,166
+nó đánh giá cái content của chúng ta là không tốt
+
+296
+00:10:52,666 --> 00:10:55,100
+anh em hãy viết làm sao cho cái đoạn văn nó ngắn
+
+297
+00:10:55,166 --> 00:10:56,900
+hai ba hàng thì mình sẽ xuống hàng
+
+298
+00:10:57,000 --> 00:10:58,366
+hai ba dòng thì mình sẽ xuống hàng
+
+299
+00:10:58,866 --> 00:11:01,366
+ngoài ra thì anh em nên thêm cái mục lục của bài viết
+
+300
+00:11:01,800 --> 00:11:04,133
+làm cho người dùng dễ dàng theo dõi cái bài viết đó hơn
+
+301
+00:11:04,500 --> 00:11:05,800
+thì một cái bài viết hữu ích
+
+302
+00:11:06,000 --> 00:11:06,800
+một cái bài viết hay
+
+303
+00:11:07,066 --> 00:11:09,733
+một cái bài viết cung cấp giá trị và được trình bày dễ hiểu
+
+304
+00:11:10,133 --> 00:11:11,966
+à thì người dùng người ta sẽ ở lại lâu
+
+305
+00:11:12,500 --> 00:11:13,600
+và đây là một trong những cái
+
+306
+00:11:13,600 --> 00:11:15,500
+điều mà rất là tốt trong sco
+
+307
+00:11:15,733 --> 00:11:17,866
+để cho anh em dễ dàng nắm bắt được cái kiến thức
+
+308
+00:11:17,933 --> 00:11:19,100
+trong cái video này á
+
+309
+00:11:19,166 --> 00:11:21,266
+thì mình sẽ tóm tắt lại một chút à
+
+310
+00:11:21,300 --> 00:11:23,900
+thứ nhất là anh em cần phải hiểu về cái bối cảnh hiện tại
+
+311
+00:11:24,300 --> 00:11:26,766
+anh em không nên tạo dựng cái content nó lan man nữa
+
+312
+00:11:27,066 --> 00:11:27,933
+cái thứ hai à
+
+313
+00:11:28,266 --> 00:11:31,500
+một cái content tốt thì nó cần phải đáp ứng ý định tìm kiếm
+
+314
+00:11:31,700 --> 00:11:34,133
+nó cần phải phù hợp với lại cái ngữ cảnh nguồn
+
+315
+00:11:34,366 --> 00:11:35,066
+cái thứ ba
+
+316
+00:11:35,066 --> 00:11:37,866
+là bốn cái tiêu chí mà giúp cho mình tạo dựng cái content
+
+317
+00:11:38,200 --> 00:11:39,566
+hữu ích cái content chất lượng
+
+318
+00:11:40,266 --> 00:11:41,533
+ngoài ra thì anh em cần lưu ý
+
+319
+00:11:41,900 --> 00:11:44,266
+mình sẽ không không sử dụng các cái công cụ thứ ba
+
+320
+00:11:44,566 --> 00:11:46,566
+để đánh giá cái chất lượng content ha
+
+321
+00:11:46,766 --> 00:11:48,666
+tại vì những cái chỉ số của công cụ thứ ba
+
+322
+00:11:48,966 --> 00:11:50,766
+thì họ đều có cái công thức riêng của họ
+
+323
+00:11:51,300 --> 00:11:53,466
+và cái tỷ lệ họ đánh giá đúng rất là thấp
+
+324
+00:11:53,600 --> 00:11:55,366
+theo như cái kinh nghiệm của mình rồi
+
+325
+00:11:55,400 --> 00:11:57,666
+cảm ơn anh em đã theo dõi hết cái video này
+
+326
+00:11:57,900 --> 00:11:59,733
+hẹn gặp lại anh em ở những cái video tiếp theo
+

@@ -1,0 +1,428 @@
+1
+00:00:00,600 --> 00:00:01,800
+rồi xin chào anh em nhá
+
+2
+00:00:01,900 --> 00:00:03,100
+trong cái video này á
+
+3
+00:00:03,166 --> 00:00:05,700
+mình sẽ chia sẻ cho anh em cái quy trình bảy bước
+
+4
+00:00:05,966 --> 00:00:08,466
+à để có thể nghiên cứu từ khóa chuẩn chỉnh
+
+5
+00:00:08,933 --> 00:00:10,533
+để có thể tìm ra được cái bộ
+
+6
+00:00:10,666 --> 00:00:12,666
+từ khóa tốt nhất cho cái dự án của anh em
+
+7
+00:00:13,166 --> 00:00:14,266
+thì cái quy trình này á
+
+8
+00:00:14,333 --> 00:00:15,666
+mình đã và đang áp dụng
+
+9
+00:00:15,766 --> 00:00:18,133
+trên hầu hết tất cả các cái dự án của mình
+
+10
+00:00:18,666 --> 00:00:19,933
+từ những cái dự án đặc biệt
+
+11
+00:00:20,133 --> 00:00:23,000
+thì mình sẽ chia sẻ cho anh em ở các cái video sau
+
+12
+00:00:23,400 --> 00:00:25,300
+và cái mục tiêu của cái video này á
+
+13
+00:00:25,366 --> 00:00:27,333
+mình muốn anh em có một cái góc nhìn tổng
+
+14
+00:00:27,500 --> 00:00:29,733
+quan về cái việc nghiên cứu từ khóa à
+
+15
+00:00:29,766 --> 00:00:31,333
+chúng ta có từng bước từng bước một
+
+16
+00:00:31,533 --> 00:00:34,800
+chúng ta à follow theo à chứ chúng ta sẽ không bị
+
+17
+00:00:35,133 --> 00:00:38,266
+lan man trong cái vấn đề mà nghiên cứu từ khóa ha à
+
+18
+00:00:38,300 --> 00:00:39,600
+anh em cần lưu ý cái này
+
+19
+00:00:40,133 --> 00:00:41,000
+thì cái bước thứ nhất
+
+20
+00:00:41,200 --> 00:00:42,900
+anh em cần phải xác định cái chuột
+
+21
+00:00:43,066 --> 00:00:45,366
+contact hay là cái ngữ cảnh nguồn của website
+
+22
+00:00:45,733 --> 00:00:47,933
+à bằng cái cách trả lời bốn cái câu hỏi
+
+23
+00:00:48,366 --> 00:00:51,300
+mà cái bài à lý thuyết mình đã chia sẻ rồi ha
+
+24
+00:00:51,666 --> 00:00:53,766
+anh em nào chưa xem cái bài đó thì có thể
+
+25
+00:00:54,333 --> 00:00:55,566
+kéo lên trên để có thể xem
+
+26
+00:00:56,133 --> 00:00:56,933
+bước thứ hai
+
+27
+00:00:57,000 --> 00:01:00,533
+sau khi mà anh em đã có cái thuộc contact rồi á thì anh em
+
+28
+00:01:00,800 --> 00:01:03,133
+xác định được cái city work hay
+
+29
+00:01:03,133 --> 00:01:06,800
+còn gọi là cái từ khóa hạt giống của cái dự án thì à
+
+30
+00:01:06,866 --> 00:01:08,200
+sau khi mà anh em xác định được
+
+31
+00:01:08,566 --> 00:01:10,500
+cái từ khóa hạt giống á à
+
+32
+00:01:10,566 --> 00:01:13,066
+thì anh em sẽ bỏ vào các cái công cụ
+
+33
+00:01:13,733 --> 00:01:14,666
+nghiên cứu từ khóa
+
+34
+00:01:15,000 --> 00:01:18,100
+để chúng ta có thể research ra được một cái bộ từ khóa
+
+35
+00:01:18,566 --> 00:01:20,800
+à nó liên quan tới cái ngành nghề của chúng ta
+
+36
+00:01:21,166 --> 00:01:23,166
+bước thứ tư sau khi mà các cái công cụ
+
+37
+00:01:23,300 --> 00:01:26,333
+đó nó trả về cho anh em một cái bộ từ khóa rồi á à
+
+38
+00:01:26,366 --> 00:01:27,766
+một cái danh sách từ khóa rồi á
+
+39
+00:01:27,900 --> 00:01:30,266
+thì anh em cần phải lọc thô nó đi à
+
+40
+00:01:30,300 --> 00:01:32,566
+tại vì các cái công cụ nó thường trả về
+
+41
+00:01:33,133 --> 00:01:35,200
+à những cái từ khóa mà nó không liên quan lắm
+
+42
+00:01:35,400 --> 00:01:37,266
+hoặc là những cái từ khóa mà nó lỗi thời
+
+43
+00:01:37,766 --> 00:01:39,000
+hoặc là những từ khóa
+
+44
+00:01:39,566 --> 00:01:42,266
+mà nó mang cái brand của đối thủ à
+
+45
+00:01:42,300 --> 00:01:43,300
+ví dụ như mình sale
+
+46
+00:01:43,566 --> 00:01:45,500
+cái từ khóa dịch vụ sale đi à
+
+47
+00:01:45,500 --> 00:01:47,566
+mà trong đó nó có cái từ khóa dịch vụ sale
+
+48
+00:01:47,800 --> 00:01:50,700
+sale sona thì đó là một cái từ khóa mà brand
+
+49
+00:01:51,133 --> 00:01:51,933
+mình sẽ không muốn sale
+
+50
+00:01:52,133 --> 00:01:55,500
+cái từ khóa mà cộng với tên thương hiệu của bên khác ha
+
+51
+00:01:55,900 --> 00:01:57,533
+à rồi sau khi mà chúng ta
+
+52
+00:01:58,066 --> 00:02:00,133
+có một cái bộ từ khóa thô xong rồi
+
+53
+00:02:00,666 --> 00:02:03,366
+thì anh em chuyển qua tới bước thứ năm à
+
+54
+00:02:03,400 --> 00:02:05,466
+đó là cái bước mà gom nhóm từ khóa
+
+55
+00:02:05,733 --> 00:02:06,966
+thì cái bước gom nhóm từ khóa
+
+56
+00:02:07,000 --> 00:02:08,766
+này á là một trong những cái bước cực
+
+57
+00:02:08,966 --> 00:02:10,400
+kỳ cực kỳ là quan trọng ha
+
+58
+00:02:10,900 --> 00:02:12,733
+nếu mà anh em không gom nhóm từ khóa
+
+59
+00:02:12,900 --> 00:02:14,566
+thì anh em sẽ phát triển rất là nhiều content
+
+60
+00:02:14,900 --> 00:02:16,200
+nó chồng chéo lên nhau
+
+61
+00:02:16,600 --> 00:02:18,400
+ở một cái chủ đề trên website của chúng ta
+
+62
+00:02:18,800 --> 00:02:19,400
+và google
+
+63
+00:02:19,400 --> 00:02:22,100
+nó sẽ đánh giá cái website của chúng ta là một cái website
+
+64
+00:02:22,333 --> 00:02:24,300
+spam hoàn toàn à thì từ đó
+
+65
+00:02:24,533 --> 00:02:26,600
+nó sẽ không cho cái website của chúng ta lên top
+
+66
+00:02:27,100 --> 00:02:29,566
+ngoài ra nếu mà anh em không gom nhóm từ khóa
+
+67
+00:02:29,800 --> 00:02:31,266
+thì anh em cũng tốn rất là nhiều
+
+68
+00:02:31,466 --> 00:02:33,566
+cái chi phí cho cái việc mà sản xuất content
+
+69
+00:02:34,166 --> 00:02:34,966
+một cái bài content
+
+70
+00:02:35,266 --> 00:02:37,766
+thì chúng ta có thể sale rất là nhiều cái từ khóa chung
+
+71
+00:02:37,866 --> 00:02:38,733
+cái ý định tìm kiếm
+
+72
+00:02:39,266 --> 00:02:41,533
+à chúng ta nên gom nhóm nó lại ha à
+
+73
+00:02:41,600 --> 00:02:43,966
+và cái việc này sẽ giúp cho chúng ta tiết kiệm được
+
+74
+00:02:44,333 --> 00:02:45,533
+khá nhiều cái chi phí content
+
+75
+00:02:46,366 --> 00:02:47,166
+và chúng ta còn
+
+76
+00:02:47,300 --> 00:02:49,933
+à làm được cái cấu trúc website nó chuẩn chỉnh nữa
+
+77
+00:02:50,500 --> 00:02:52,866
+sau khi mà anh em gom nhóm từ khóa xong rồi á
+
+78
+00:02:52,933 --> 00:02:54,933
+thì anh em sẽ chuyển tới với cái bước thứ sáu
+
+79
+00:02:55,300 --> 00:02:57,400
+đó là anh em lọc lại một lần cuối nữa
+
+80
+00:02:58,066 --> 00:02:59,133
+xem những cái từ khóa
+
+81
+00:02:59,300 --> 00:03:01,933
+những cái cụm topic nào nó không phù hợp
+
+82
+00:03:02,266 --> 00:03:05,266
+với lại cái chuột contact thì anh em bỏ đi ha
+
+83
+00:03:05,500 --> 00:03:07,733
+à thì anh em sẽ được một cái bộ từ khóa
+
+84
+00:03:08,133 --> 00:03:09,000
+à nó chuẩn chỉnh
+
+85
+00:03:09,066 --> 00:03:11,533
+nhất và cái bước cuối cùng trong cái quy trình này
+
+86
+00:03:11,866 --> 00:03:15,866
+là anh em đi xác định cái url đích à của cái từ khóa đó
+
+87
+00:03:16,100 --> 00:03:19,566
+xem cái từ khóa đó nó sale ở đâu trên website của chúng ta à
+
+88
+00:03:19,600 --> 00:03:22,066
+ví dụ như cái từ khóa đó nó có thể sale ở bài viết
+
+89
+00:03:22,400 --> 00:03:24,966
+à hoặc là nó có thể sale ở danh mục sản phẩm đi
+
+90
+00:03:25,066 --> 00:03:25,866
+chẳng hạn đi
+
+91
+00:03:25,900 --> 00:03:27,966
+thì chúng ta cần phải xác định cái định dạng content
+
+92
+00:03:28,333 --> 00:03:31,100
+cho cái topic của của từ khóa đó như thế nào à
+
+93
+00:03:31,100 --> 00:03:32,300
+cho nó chuẩn chỉnh ngay từ đầu
+
+94
+00:03:32,800 --> 00:03:35,333
+nếu mà anh em xác định sai cái url đích
+
+95
+00:03:35,500 --> 00:03:38,400
+thì cái từ khóa của anh em sẽ không lên top được à
+
+96
+00:03:38,466 --> 00:03:41,466
+mình ví dụ như có một cái từ khóa là máy rửa chén
+
+97
+00:03:41,766 --> 00:03:43,600
+thì thì cái từ khóa này á nó đang được google
+
+98
+00:03:43,866 --> 00:03:45,666
+đề xuất là những cái danh mục sản phẩm
+
+99
+00:03:46,100 --> 00:03:48,400
+nhưng mà anh em lại target nó vào một cái bài viết
+
+100
+00:03:48,733 --> 00:03:49,533
+thì không thể nào
+
+101
+00:03:49,533 --> 00:03:52,333
+mà anh em có thể thúc đẩy cái từ khóa này lên top được
+
+102
+00:03:52,733 --> 00:03:55,500
+hoặc là rất là khó ha hoặc rất là khó tại vì
+
+103
+00:03:56,000 --> 00:03:57,300
+nó không đúng cái định dạng content
+
+104
+00:03:57,866 --> 00:04:00,766
+à thì nó không cung cấp được đúng cái search intent
+
+105
+00:04:01,133 --> 00:04:04,300
+nên là cái việc ranh kinh là hầu như là không thể ha
+
+106
+00:04:04,700 --> 00:04:07,266
+rồi cảm ơn anh em đã theo dõi hết cái video này à
+
+107
+00:04:07,333 --> 00:04:09,300
+hẹn gặp lại anh em ở những cái video sau
+

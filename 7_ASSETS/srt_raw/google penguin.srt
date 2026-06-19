@@ -1,0 +1,680 @@
+1
+00:00:07,566 --> 00:00:09,600
+vào tháng tư năm hai ngàn không trăm mười hai á
+
+2
+00:00:09,733 --> 00:00:12,700
+google tung ra một cái con chim cánh cụt sát thủ
+
+3
+00:00:13,100 --> 00:00:15,733
+đó chính là google penguin à chỉ sau một đêm
+
+4
+00:00:16,133 --> 00:00:17,800
+thì hàng loạt cái website bay màu
+
+5
+00:00:18,100 --> 00:00:19,266
+traffic thì tụt giảm
+
+6
+00:00:19,533 --> 00:00:22,766
+không ít anh em seller thời đó phải lao đao à
+
+7
+00:00:22,800 --> 00:00:24,666
+rốt cuộc google penguin là gì
+
+8
+00:00:25,133 --> 00:00:26,533
+và tại sao nó lại trở thành
+
+9
+00:00:26,900 --> 00:00:29,766
+một trong những cái bước ngoặt lớn nhất trong ngành seo
+
+10
+00:00:30,100 --> 00:00:32,166
+để hiểu lý do penguin nó xuất hiện á
+
+11
+00:00:32,366 --> 00:00:33,966
+thì chúng ta cần quay ngược trở lại
+
+12
+00:00:34,166 --> 00:00:35,000
+cái thời điểm trước
+
+13
+00:00:35,100 --> 00:00:37,300
+năm hai ngàn không trăm mười hai một chút này á
+
+14
+00:00:37,600 --> 00:00:38,466
+google gần như
+
+15
+00:00:38,733 --> 00:00:41,766
+chỉ có dựa vào cái tín hiệu backlink để xếp hạng thôi
+
+16
+00:00:42,100 --> 00:00:43,733
+website nào càng bơm link nhiều
+
+17
+00:00:43,766 --> 00:00:46,966
+càng spam anchor text nhiều thì càng dễ dàng lên top
+
+18
+00:00:47,333 --> 00:00:49,000
+cái kết quả tìm kiếm lúc bấy giờ á
+
+19
+00:00:49,333 --> 00:00:52,000
+thì nó đầy rẫy những cái website rác ha à
+
+20
+00:00:52,066 --> 00:00:52,533
+nội dung
+
+21
+00:00:52,533 --> 00:00:54,766
+thì chẳng có cái gì hay ho và hữu ích cho người dùng
+
+22
+00:00:55,333 --> 00:00:57,866
+nhưng mà lại ngồi chễm trễ trên trang một của google
+
+23
+00:00:58,533 --> 00:01:01,566
+chỉ vì họ biết cái cách mà spam backlink đi nhiều backlink
+
+24
+00:01:01,966 --> 00:01:03,800
+và ở năm hai ngàn không trăm mười một á google
+
+25
+00:01:04,066 --> 00:01:06,266
+nó cũng đã tung ra cái thuật toán panda
+
+26
+00:01:06,600 --> 00:01:09,800
+để có thể xử lý được các cái nội dung rác này rồi à
+
+27
+00:01:09,800 --> 00:01:11,100
+tuy nhiên á họ cũng nhận ra
+
+28
+00:01:11,566 --> 00:01:15,000
+chỉ có mỗi cái thuật toán google panda á nó là chưa có đủ
+
+29
+00:01:15,166 --> 00:01:17,966
+đội ngũ của google á nhận thấy có một cái chiêu trò khác
+
+30
+00:01:18,300 --> 00:01:20,766
+đang phá hỏng cái trải nghiệm tìm kiếm của người dùng
+
+31
+00:01:21,066 --> 00:01:22,366
+trên cái công cụ tìm kiếm của họ
+
+32
+00:01:22,866 --> 00:01:24,866
+à đó chính là cái link spam
+
+33
+00:01:24,966 --> 00:01:26,700
+thế là ngày hai mươi tư tháng tư
+
+34
+00:01:26,866 --> 00:01:28,000
+năm hai ngàn không trăm mười hai
+
+35
+00:01:28,533 --> 00:01:31,666
+google chính thức tung ra cái thuật toán là google penguin
+
+36
+00:01:31,766 --> 00:01:33,733
+thuật toán này á sinh ra để tiêu diệt
+
+37
+00:01:34,100 --> 00:01:36,900
+những cái website đi backlink spam và không tự nhiên
+
+38
+00:01:37,600 --> 00:01:39,700
+đây thực sự là một cái cơn ác mộng
+
+39
+00:01:39,933 --> 00:01:41,766
+đối với giới seo lúc bấy giờ
+
+40
+00:01:42,133 --> 00:01:43,866
+những cái size mà bắn backlink bẩn
+
+41
+00:01:44,100 --> 00:01:45,866
+mất khỏi kết quả tìm kiếm của google
+
+42
+00:01:46,066 --> 00:01:46,866
+chỉ sau một đêm
+
+43
+00:01:47,166 --> 00:01:48,966
+chìa khóa thì tụt giảm không phanh
+
+44
+00:01:49,266 --> 00:01:51,400
+traffic thì lao dốc không có kiểm soát được
+
+45
+00:01:51,866 --> 00:01:54,900
+à rất là nhiều anh em seller hoang mang mất ăn mất ngủ
+
+46
+00:01:55,500 --> 00:01:58,500
+thậm chí là có những cái anh em mà phải bỏ nghề à
+
+47
+00:01:58,500 --> 00:01:59,300
+có thể nói google
+
+48
+00:01:59,466 --> 00:02:02,866
+penguin là một trong những cái cuộc thanh trừng thực thực sự
+
+49
+00:02:03,066 --> 00:02:03,866
+và nó trả lại
+
+50
+00:02:04,166 --> 00:02:07,066
+cái sự công bằng cho những cái website làm ăn chân chính
+
+51
+00:02:07,566 --> 00:02:09,366
+và từ đây cũng chấm dứt cái kỷ nguyên
+
+52
+00:02:09,533 --> 00:02:12,500
+thao túng thứ hạng tìm kiếm bằng backlink spam
+
+53
+00:02:12,733 --> 00:02:15,066
+vậy thì google penguin phạt những cái lỗi gì
+
+54
+00:02:15,533 --> 00:02:17,800
+thì theo như cái kinh nghiệm cá nhân của mình á
+
+55
+00:02:18,133 --> 00:02:21,566
+có bốn cái lỗi mà google penguin có thể phạt chúng ta
+
+56
+00:02:22,000 --> 00:02:22,900
+à cái thứ nhất
+
+57
+00:02:23,533 --> 00:02:24,733
+đó là link spam
+
+58
+00:02:24,966 --> 00:02:26,866
+có nghĩa là anh em bơm một cái lượng lớn
+
+59
+00:02:27,066 --> 00:02:29,100
+backlinks từ những cái forum
+
+60
+00:02:29,200 --> 00:02:31,266
+diễn đàn hay là những cái blog comment
+
+61
+00:02:31,800 --> 00:02:34,533
+hay là từ những cái website vệ tinh kém chất lượng à
+
+62
+00:02:34,566 --> 00:02:36,066
+nó không có traffic à
+
+63
+00:02:36,100 --> 00:02:36,900
+và hiện tại
+
+64
+00:02:36,900 --> 00:02:39,166
+thì mình thấy trên thị trường á vẫn còn rất là nhiều người
+
+65
+00:02:39,366 --> 00:02:41,000
+họ bán những cái loại bách linh này
+
+66
+00:02:41,366 --> 00:02:42,800
+với giá cực kỳ cực kỳ là rẻ
+
+67
+00:02:43,466 --> 00:02:47,800
+anh em cũng đừng có ham hố rồi lại bay luôn cái website ha à
+
+68
+00:02:47,900 --> 00:02:50,766
+cái thứ hai đó là spam anchor text
+
+69
+00:02:50,900 --> 00:02:53,600
+thì anh em đi backlink về cái từ khóa chính xác quá nhiều
+
+70
+00:02:54,166 --> 00:02:56,533
+khiến cho cái hồ sơ backlink của chúng ta mất tự nhiên
+
+71
+00:02:56,933 --> 00:02:57,566
+và google
+
+72
+00:02:57,566 --> 00:03:00,866
+penguin nó có thể xem đây là một cái dấu hiệu để thao túng
+
+73
+00:03:01,266 --> 00:03:03,866
+à nó có thể phạt những cái website như thế này à
+
+74
+00:03:03,933 --> 00:03:08,100
+cái lỗi thứ ba mà mình thấy á đó là link không liên quan à
+
+75
+00:03:08,133 --> 00:03:09,666
+ví dụ như anh em sco
+
+76
+00:03:09,766 --> 00:03:11,900
+cho một cái website là bán thiết bị vệ sinh đi
+
+77
+00:03:12,066 --> 00:03:13,966
+nhưng mà cái backlink trỏ về cái website
+
+78
+00:03:14,100 --> 00:03:15,066
+bán thiết bị vệ sinh này á
+
+79
+00:03:15,500 --> 00:03:17,466
+nó sẽ tới từ những cái website không liên quan
+
+80
+00:03:17,533 --> 00:03:19,300
+như là các website bán quần áo này
+
+81
+00:03:19,666 --> 00:03:22,066
+hay là như là cái website mà bán giày dép này
+
+82
+00:03:22,366 --> 00:03:22,666
+thì
+
+83
+00:03:22,666 --> 00:03:25,300
+nó hoàn toàn không có liên quan gì tới cái thiết bị vệ sinh
+
+84
+00:03:25,900 --> 00:03:26,900
+và đây cũng là một trong
+
+85
+00:03:26,900 --> 00:03:28,933
+những cái dấu hiệu mà spam link à
+
+86
+00:03:29,000 --> 00:03:29,400
+google
+
+87
+00:03:29,400 --> 00:03:31,566
+có thể nhận ra và có thể phạt cái website của chúng ta
+
+88
+00:03:32,100 --> 00:03:34,866
+cái thứ tư đó là mất cân bằng linh
+
+89
+00:03:35,166 --> 00:03:38,000
+ví dụ như anh em sale một cái từ khóa là đào tạo sale đi
+
+90
+00:03:38,300 --> 00:03:39,933
+và cái url này á anh em
+
+91
+00:03:40,300 --> 00:03:42,333
+đi một trăm cái backlink về cái url này
+
+92
+00:03:42,600 --> 00:03:44,533
+trong khi đó cái trang chủ của anh em á
+
+93
+00:03:44,766 --> 00:03:46,900
+nó chỉ có nhận được năm mươi cái bách linh
+
+94
+00:03:47,066 --> 00:03:48,766
+thì đây gọi là mất cân bằng linh
+
+95
+00:03:49,066 --> 00:03:50,966
+và lúc nào á trang chủ cũng phải là cái trang
+
+96
+00:03:51,400 --> 00:03:53,466
+mà được nhận nhiều bách linh nhất ha à
+
+97
+00:03:53,500 --> 00:03:56,600
+dù anh em có co cái trang chủ hay là không co cái trang chủ
+
+98
+00:03:57,066 --> 00:03:58,533
+thì anh anh em cũng phải đi cái
+
+99
+00:03:58,700 --> 00:04:00,300
+backlink về trang chủ nó nhiều nhất
+
+100
+00:04:00,566 --> 00:04:02,500
+để cho nó không bị mất cân bằng link
+
+101
+00:04:02,866 --> 00:04:05,200
+và mình cũng từng gặp rất là nhiều cái trường hợp mà anh em
+
+102
+00:04:05,366 --> 00:04:06,466
+bị mất cân bằng link ha
+
+103
+00:04:06,766 --> 00:04:09,166
+do là anh em không có tìm hiểu về thuật toán này
+
+104
+00:04:09,366 --> 00:04:10,133
+anh em cứ nghĩ
+
+105
+00:04:10,133 --> 00:04:13,400
+đi cái link nhiều về cái url đó thì càng dễ lên top
+
+106
+00:04:13,933 --> 00:04:15,300
+và cuối cùng thì anh em làm hoài
+
+107
+00:04:15,366 --> 00:04:16,466
+làm hoài mà nó không lên top
+
+108
+00:04:16,666 --> 00:04:18,700
+và thậm chí là cái website của anh em còn bị google
+
+109
+00:04:18,866 --> 00:04:20,533
+nó phạt nữa và khi mà google
+
+110
+00:04:20,766 --> 00:04:22,133
+penguin nó phạt anh em á
+
+111
+00:04:22,200 --> 00:04:24,900
+thì anh em sẽ thấy các cái dấu hiệu như sau đầu tiên
+
+112
+00:04:25,166 --> 00:04:27,200
+từ khóa của anh em có thể rớt ra trang
+
+113
+00:04:27,366 --> 00:04:28,900
+năm hoặc là ngoài top một trăm
+
+114
+00:04:29,133 --> 00:04:30,666
+trong một số cái trường hợp mà cái website
+
+115
+00:04:30,733 --> 00:04:31,533
+của anh em nó bị google
+
+116
+00:04:31,733 --> 00:04:33,000
+penguin nó phạt nặng á
+
+117
+00:04:33,000 --> 00:04:35,066
+thì nó có thể bay gần hết traffic luôn à
+
+118
+00:04:35,200 --> 00:04:37,333
+có nghĩa là nó phạt toàn bộ cái website của anh em luôn
+
+119
+00:04:37,800 --> 00:04:39,766
+đây là cái dấu hiệu rõ ràng nhất mà cái án phạt
+
+120
+00:04:39,900 --> 00:04:40,900
+penguin nó mang lại ha
+
+121
+00:04:41,166 --> 00:04:42,866
+và nó khác với lại google panda
+
+122
+00:04:43,166 --> 00:04:45,600
+thì cái google panda á nó chỉ phạt cái website của chúng ta
+
+123
+00:04:45,666 --> 00:04:46,966
+cái từ khóa của chúng ta bay
+
+124
+00:04:47,133 --> 00:04:48,300
+trang hai hoặc là trang ba thôi
+
+125
+00:04:48,866 --> 00:04:49,700
+điều này cũng chứng tỏ
+
+126
+00:04:49,900 --> 00:04:52,500
+backlink là một trong những cái yếu tố xếp hạng quan trọng
+
+127
+00:04:52,733 --> 00:04:53,866
+bậc thứ nhất à
+
+128
+00:04:53,900 --> 00:04:54,766
+chính vì vậy á
+
+129
+00:04:54,866 --> 00:04:57,100
+google nó mới phạt rất là nặng những cái website
+
+130
+00:04:57,200 --> 00:04:58,300
+có cái hành vi thao túng
+
+131
+00:04:58,700 --> 00:05:01,066
+để đánh lừa cái thuật toán xếp hạng của nó à
+
+132
+00:05:01,100 --> 00:05:02,133
+mình thấy thông thường á
+
+133
+00:05:02,166 --> 00:05:04,500
+những cái yếu tố nào xếp hạng càng mạnh á
+
+134
+00:05:04,666 --> 00:05:07,166
+thì google nó lại càng sợ anh em seller thao túng
+
+135
+00:05:07,533 --> 00:05:09,866
+nên nó thường phạt rất là nặng à
+
+136
+00:05:09,900 --> 00:05:11,133
+một số cái lưu ý quan trọng
+
+137
+00:05:11,200 --> 00:05:12,733
+mà mình muốn anh em nắm được nữa
+
+138
+00:05:13,100 --> 00:05:15,733
+đó là cả google penguin và google panda
+
+139
+00:05:16,066 --> 00:05:17,933
+nó không chỉ phạt toàn bộ cái website
+
+140
+00:05:18,400 --> 00:05:19,800
+mà nó có thể phạt bán phần
+
+141
+00:05:20,166 --> 00:05:23,666
+tức là nó có thể phạt một hoặc là hai cái url
+
+142
+00:05:23,933 --> 00:05:24,266
+hoặc là
+
+143
+00:05:24,266 --> 00:05:27,366
+một cái cụm chủ đề nào đó ở trên website của anh em thôi à
+
+144
+00:05:27,400 --> 00:05:28,366
+ví dụ như anh em sale
+
+145
+00:05:28,600 --> 00:05:30,533
+một cái website là bán thiết bị vệ sinh đi
+
+146
+00:05:30,966 --> 00:05:32,900
+thì trong cái website bán thiết bị vệ sinh này á
+
+147
+00:05:33,266 --> 00:05:35,600
+nó có các cái chủ đề như là bồn cầu à
+
+148
+00:05:35,700 --> 00:05:38,000
+bồn tắm thì nó có thể phạt cái chủ đề bồn cầu
+
+149
+00:05:38,166 --> 00:05:40,533
+nhưng mà nó sẽ không có phạt cái chủ đề bồn tắm à
+
+150
+00:05:40,566 --> 00:05:43,700
+nếu mà cái website của anh em bị rớt top một vài cái url
+
+151
+00:05:43,866 --> 00:05:44,933
+hay là một vài cái chủ đề
+
+152
+00:05:45,500 --> 00:05:47,800
+trên cái website của chúng ta á thì anh em cứ bình tĩnh
+
+153
+00:05:48,066 --> 00:05:49,066
+kiểm tra lại cái content
+
+154
+00:05:49,700 --> 00:05:51,700
+rồi chúng ta rà soát lại cái backlinks
+
+155
+00:05:51,966 --> 00:05:53,800
+và sử dụng cái phương pháp loại trừ
+
+156
+00:05:54,266 --> 00:05:55,733
+để tìm kiếm ra cái nguyên nhân
+
+157
+00:05:56,166 --> 00:05:58,600
+và phải tìm ra được cái nguyên nhân á thì chúng ta mới có
+
+158
+00:05:59,133 --> 00:06:00,933
+đưa ra được cái giải pháp để khắc phục
+
+159
+00:06:01,200 --> 00:06:03,366
+và anh em cứ yên tâm học cái khóa học này nha
+
+160
+00:06:03,700 --> 00:06:05,600
+mình cũng sẽ chia sẻ cho anh em chi tiết
+
+161
+00:06:05,733 --> 00:06:07,066
+cái cách kiểm tra và xử lý
+
+162
+00:06:07,566 --> 00:06:09,666
+để mà anh em có thể khôi phục lại thứ hạng
+
+163
+00:06:09,766 --> 00:06:10,700
+cái website của anh em
+
+164
+00:06:11,100 --> 00:06:12,466
+khi mà bị thuật toán nó phạt
+
+165
+00:06:12,766 --> 00:06:14,166
+hay là cái cách mà anh em có thể
+
+166
+00:06:14,333 --> 00:06:15,800
+building như thế nào cho nó
+
+167
+00:06:16,200 --> 00:06:17,500
+à hiệu quả cho nó an toàn
+
+168
+00:06:17,966 --> 00:06:20,500
+ở các video sau thì mình sẽ chia sẻ vấn đề này rồi
+
+169
+00:06:20,500 --> 00:06:22,300
+cảm ơn anh em đã theo dõi cái video này
+
+170
+00:06:22,700 --> 00:06:24,466
+hẹn gặp lại anh em ở những cái video sau
+

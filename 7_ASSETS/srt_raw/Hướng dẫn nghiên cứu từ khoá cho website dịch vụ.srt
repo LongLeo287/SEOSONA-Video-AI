@@ -1,0 +1,2512 @@
+1
+00:00:00,400 --> 00:00:01,533
+rồi xin chào anh em nhá
+
+2
+00:00:01,600 --> 00:00:02,766
+trong cái video này á
+
+3
+00:00:02,800 --> 00:00:04,800
+mình sẽ thị phạm cho anh em các cái bước
+
+4
+00:00:04,933 --> 00:00:07,733
+mà nghiên cứu từ khóa cho một cái website mới hoàn toàn
+
+5
+00:00:08,100 --> 00:00:09,400
+à thì nó sẽ như thế nào
+
+6
+00:00:10,066 --> 00:00:11,966
+và sau khi xem xong cái video này á
+
+7
+00:00:12,066 --> 00:00:14,000
+thì mình tin chắc rằng anh em cũng có thể
+
+8
+00:00:14,100 --> 00:00:15,466
+tự lên cho mình một cái bộ
+
+9
+00:00:15,566 --> 00:00:17,900
+từ khóa cho chính cái dự án của mình
+
+10
+00:00:18,466 --> 00:00:20,066
+ô kê chúng ta cùng nhau bắt đầu nhá
+
+11
+00:00:20,400 --> 00:00:21,200
+thì cái bước đầu tiên
+
+12
+00:00:21,566 --> 00:00:23,166
+của cái quy trình nghiên cứu từ khóa
+
+13
+00:00:23,466 --> 00:00:24,266
+à là cái bước
+
+14
+00:00:24,400 --> 00:00:25,766
+xác định cái ngữ cảnh nguồn
+
+15
+00:00:25,900 --> 00:00:28,300
+hay còn gọi là cái chuột contact của website ha
+
+16
+00:00:28,566 --> 00:00:31,200
+giả dụ như trong bối cảnh mình sale cho một website
+
+17
+00:00:31,333 --> 00:00:33,200
+cung cấp cái dịch vụ vệ sinh à
+
+18
+00:00:33,200 --> 00:00:36,066
+và cái đối tượng khách hàng của mình á là các cái công ty
+
+19
+00:00:36,133 --> 00:00:37,366
+hoặc là các cái hộ gia đình
+
+20
+00:00:37,766 --> 00:00:41,700
+họ có cái nhu cầu về à dịch vụ vệ sinh ha thì à à
+
+21
+00:00:41,766 --> 00:00:42,566
+chúng ta đi xác định
+
+22
+00:00:42,600 --> 00:00:44,700
+cái ngữ cảnh nguồn của cái website này á
+
+23
+00:00:44,766 --> 00:00:46,200
+thông qua bốn cái câu hỏi ha
+
+24
+00:00:46,466 --> 00:00:49,200
+à mục tiêu của cái website này là gì à
+
+25
+00:00:49,266 --> 00:00:51,533
+thì mục tiêu của website này á là thu hút khách hàng
+
+26
+00:00:51,600 --> 00:00:53,900
+tiềm năng từ đó sẽ bán được cái dịch vụ
+
+27
+00:00:54,300 --> 00:00:56,933
+à và cái giá trị mang lại cho cái người dùng là gì
+
+28
+00:00:57,333 --> 00:01:00,300
+à thì cái giá trị mà cái website của mình mang lại
+
+29
+00:01:00,366 --> 00:01:03,666
+á là cung cấp các cái dịch vụ và kiến thức xoay quanh à
+
+30
+00:01:03,800 --> 00:01:06,133
+những cái chủ đề của mình là dịch vụ vệ sinh ha
+
+31
+00:01:06,600 --> 00:01:09,466
+hay là giặt à thảm giặt à đồ đó
+
+32
+00:01:09,800 --> 00:01:11,733
+cách mà cái website của mình kiếm tiền ha
+
+33
+00:01:12,100 --> 00:01:13,766
+à là mình kiếm tiền bằng cái cách
+
+34
+00:01:14,133 --> 00:01:16,466
+mà mình sẽ bán đi cái dịch vụ của mình à
+
+35
+00:01:16,666 --> 00:01:18,666
+dịch một cái dịch vụ vệ sinh công nghiệp này à
+
+36
+00:01:18,700 --> 00:01:20,300
+dịch vụ giặt à sô pha này
+
+37
+00:01:20,366 --> 00:01:21,666
+dịch vụ giặt rèm cửa này
+
+38
+00:01:22,066 --> 00:01:23,400
+à rất là nhiều cái dịch vụ khác nữa
+
+39
+00:01:24,000 --> 00:01:25,000
+cái website này nó
+
+40
+00:01:25,400 --> 00:01:26,466
+hoạt động theo cái mô hình
+
+41
+00:01:26,700 --> 00:01:28,933
+là bán cái dịch vụ trực tiếp á các bạn à
+
+42
+00:01:28,966 --> 00:01:30,933
+nó không phải là một cái website affiliate
+
+43
+00:01:31,133 --> 00:01:33,600
+hay là nó cũng không phải là một cái website google
+
+44
+00:01:34,066 --> 00:01:34,866
+mệt để bán hàng
+
+45
+00:01:35,333 --> 00:01:38,866
+à cái website này là một cái website thuần về dịch vụ ha
+
+46
+00:01:39,300 --> 00:01:40,966
+các bạn cũng không nên quá bối rối
+
+47
+00:01:41,200 --> 00:01:42,733
+về cái việc mà xác định chuột
+
+48
+00:01:42,900 --> 00:01:44,366
+contact này cái mục đích duy nhất
+
+49
+00:01:44,966 --> 00:01:47,100
+để cho các bạn hiểu được cái website của mình hơn
+
+50
+00:01:47,266 --> 00:01:50,566
+trước khi mà các bạn bắt tay vào làm seo cho nó thôi à
+
+51
+00:01:50,700 --> 00:01:51,966
+các bạn cũng đừng có nên
+
+52
+00:01:52,666 --> 00:01:55,566
+suy nghĩ quá nhiều về cái vấn đề mà xác định chuột content
+
+53
+00:01:56,066 --> 00:01:58,366
+này cũng đừng có sợ sai ha à
+
+54
+00:01:58,366 --> 00:02:00,333
+nếu mà các bạn làm cho chính các bạn
+
+55
+00:02:00,533 --> 00:02:01,966
+thì các bạn cũng cần phải xác định rõ
+
+56
+00:02:02,333 --> 00:02:03,600
+cái mục đích của website
+
+57
+00:02:03,700 --> 00:02:04,166
+của các bạn
+
+58
+00:02:04,166 --> 00:02:06,700
+khi mà các bạn tạo ra cái website đó à để làm gì
+
+59
+00:02:06,900 --> 00:02:08,800
+trong cái trường hợp mà các bạn làm dịch vụ sale
+
+60
+00:02:09,166 --> 00:02:10,866
+hoặc là các bạn làm nhân viên sale
+
+61
+00:02:11,200 --> 00:02:12,300
+của một cái công ty nào đó
+
+62
+00:02:12,966 --> 00:02:13,800
+thì các bạn cũng nên
+
+63
+00:02:14,333 --> 00:02:15,700
+hỏi ý kiến khách hàng à
+
+64
+00:02:15,866 --> 00:02:17,133
+ngồi với khách hàng để hỏi
+
+65
+00:02:17,533 --> 00:02:18,666
+à rõ cái mục tiêu
+
+66
+00:02:18,766 --> 00:02:20,700
+mục đích của cái website của họ như thế nào
+
+67
+00:02:20,800 --> 00:02:21,800
+để các bạn có thể nắm được
+
+68
+00:02:22,166 --> 00:02:23,266
+từ đó mà các bạn có thể
+
+69
+00:02:23,733 --> 00:02:27,300
+à triển khai cái dự án sco nó a tốt nhất cho khách hàng
+
+70
+00:02:27,866 --> 00:02:28,966
+và từ đó các bạn có thể
+
+71
+00:02:29,100 --> 00:02:32,166
+research được một cái bộ từ khóa nó sát với mục tiêu nhất ha
+
+72
+00:02:32,666 --> 00:02:32,966
+rồi
+
+73
+00:02:32,966 --> 00:02:36,333
+sau khi mà mình đã xác định được cái ngữ cảnh nguồn rồi á
+
+74
+00:02:36,500 --> 00:02:37,700
+à thì cái bước thứ hai
+
+75
+00:02:38,333 --> 00:02:41,600
+à mình sẽ đi xác định cái city work thì ở đây á
+
+76
+00:02:41,700 --> 00:02:42,500
+cái city work
+
+77
+00:02:42,700 --> 00:02:44,966
+trong cái trường hợp này á là những cái từ khóa
+
+78
+00:02:45,166 --> 00:02:46,466
+vệ sinh công nghiệp nè à
+
+79
+00:02:46,533 --> 00:02:47,466
+giặt ghế sofa nè
+
+80
+00:02:47,533 --> 00:02:51,166
+giặt rèm nè thì mình đã có ba cái từ khóa này rồi ha
+
+81
+00:02:51,333 --> 00:02:53,666
+cái city work này thường là tên sản phẩm
+
+82
+00:02:53,766 --> 00:02:56,200
+dịch vụ mà cái website đó cung cấp ha các bạn ha
+
+83
+00:02:56,566 --> 00:02:57,666
+rồi à thế thì à
+
+84
+00:02:57,766 --> 00:03:00,133
+cái bước tiếp theo các bạn sẽ cầm những cái từ khóa này
+
+85
+00:03:00,533 --> 00:03:01,500
+à vào cái công cụ
+
+86
+00:03:01,866 --> 00:03:03,966
+để các bạn có thể tìm được những cái từ khóa
+
+87
+00:03:04,066 --> 00:03:08,166
+liên quan à thì các bạn vào cái công cụ sonatun ha à
+
+88
+00:03:08,200 --> 00:03:09,200
+sau đó các bạn vào
+
+89
+00:03:09,733 --> 00:03:12,200
+cái keyboard explorer này à
+
+90
+00:03:12,266 --> 00:03:13,900
+các bạn bấm vào overview à
+
+91
+00:03:13,933 --> 00:03:17,000
+và lúc này á các bạn đánh những cái từ khóa nó vào ha à
+
+92
+00:03:17,066 --> 00:03:18,733
+thì ở đây mình đã đánh sẵn cái từ khóa
+
+93
+00:03:18,866 --> 00:03:20,100
+là vệ sinh công nghiệp à
+
+94
+00:03:20,166 --> 00:03:24,066
+giặt ghế sofa và giặt rèm rồi à thì sau khi mà các bạn à
+
+95
+00:03:24,366 --> 00:03:26,266
+nhập cái từ khóa hạt giống vào
+
+96
+00:03:26,400 --> 00:03:27,733
+thì nó trả ra cho các bạn
+
+97
+00:03:27,866 --> 00:03:30,266
+là một ngàn hai trăm ba mươi chín cái từ khóa đây
+
+98
+00:03:30,600 --> 00:03:32,300
+à thì cái bước tiếp theo các bạn
+
+99
+00:03:32,866 --> 00:03:35,700
+à lọc cái từ khóa mà nó không liên quan đi ha
+
+100
+00:03:36,100 --> 00:03:37,266
+các bạn có thể sử dụng
+
+101
+00:03:37,533 --> 00:03:40,366
+à chính cái bộ lọc của công cụ sonatune à
+
+102
+00:03:40,400 --> 00:03:43,266
+hoặc là các bạn có thể download xuống excel
+
+103
+00:03:43,466 --> 00:03:44,766
+để các bạn có thể lọc à
+
+104
+00:03:44,800 --> 00:03:47,700
+thì ở đây mình sẽ chọn cái cách mà download xuống ha
+
+105
+00:03:47,933 --> 00:03:48,733
+để mình có thể lọc
+
+106
+00:03:49,500 --> 00:03:51,566
+ô kê à lúc này mình sẽ mở cái
+
+107
+00:03:52,533 --> 00:03:54,733
+phai lên thì khi mà các bạn à
+
+108
+00:03:54,966 --> 00:03:56,100
+download nó về á
+
+109
+00:03:56,133 --> 00:03:58,733
+thì nó cho mình một cái phai dữ liệu như thế này
+
+110
+00:03:59,100 --> 00:04:01,166
+thì lúc này mình sẽ muốn xóa đi những cái cột
+
+111
+00:04:01,300 --> 00:04:02,600
+mà nó dư thừa đi ha
+
+112
+00:04:02,766 --> 00:04:05,700
+mình sẽ giữ lại hai cột là volume và từ khóa thôi
+
+113
+00:04:07,666 --> 00:04:09,066
+ô kê à thì à
+
+114
+00:04:09,166 --> 00:04:12,000
+bây giờ à các bạn có thể tạo một cái bộ lọc cho nó ha
+
+115
+00:04:15,600 --> 00:04:18,900
+rồi mình sẽ search từ a tới z ha
+
+116
+00:04:20,533 --> 00:04:24,466
+thì ở đây á nó trả về rất là nhiều cái từ khóa mà
+
+117
+00:04:24,866 --> 00:04:25,666
+có thể liên quan
+
+118
+00:04:25,666 --> 00:04:28,000
+và có thể không liên quan thì các bạn lọc đi à
+
+119
+00:04:28,166 --> 00:04:31,266
+mình sẽ tìm những cái từ khóa mà à
+
+120
+00:04:31,566 --> 00:04:34,400
+không liên quan tới cái ngành của mình thì mình sẽ lọc đi à
+
+121
+00:04:34,466 --> 00:04:37,133
+ví dụ như cái từ khóa công ty vệ sinh công nghiệp
+
+122
+00:04:37,500 --> 00:04:39,133
+công ty vệ sinh hai bốn bảy này ấy
+
+123
+00:04:39,266 --> 00:04:41,766
+hai bốn giờ này à thì mình sẽ muốn xóa nó đi ha
+
+124
+00:04:43,733 --> 00:04:47,500
+tại vì nó là cái từ khóa của à đối thủ các bạn nó
+
+125
+00:04:47,966 --> 00:04:49,266
+cái từ khóa thương hiệu của đối thủ
+
+126
+00:04:49,533 --> 00:04:51,733
+hay là cái từ khóa công ty hoàn mỹ này à
+
+127
+00:04:51,733 --> 00:04:53,366
+mình cũng sẽ muốn xóa nó đi rồi
+
+128
+00:04:53,466 --> 00:04:54,366
+công ty cổ phần
+
+129
+00:04:54,866 --> 00:04:57,800
+à công nghiệp hoàn mỹ này mình cũng muốn xóa nó đi ha
+
+130
+00:04:58,700 --> 00:05:00,000
+à tương tự như vậy à
+
+131
+00:05:00,066 --> 00:05:01,966
+mình cũng sẽ muốn xóa những cái thằng này đi
+
+132
+00:05:04,933 --> 00:05:07,733
+à cái bước này thì mình sẽ a tua nhanh à
+
+133
+00:05:07,733 --> 00:05:09,566
+để tránh làm mất thời gian của các bạn ha
+
+134
+00:05:09,966 --> 00:05:12,933
+ô kê sau khi mà mình đã lọc hết các cái từ khóa
+
+135
+00:05:13,166 --> 00:05:15,600
+mà nó không liên quan tới cái chủ đề của mình đi
+
+136
+00:05:16,133 --> 00:05:18,700
+hay là những cái từ khóa của thứ thương hiệu của đối thủ
+
+137
+00:05:18,966 --> 00:05:20,200
+à thì cái bước tiếp theo
+
+138
+00:05:20,566 --> 00:05:23,900
+là chúng ta sẽ phải đi gom nhóm từ khóa thì à gom
+
+139
+00:05:23,933 --> 00:05:26,266
+nhóm từ khóa là cái bước cực kỳ cực kỳ là quan trọng
+
+140
+00:05:26,666 --> 00:05:28,500
+nếu mà bạn à không gom nhóm từ khóa
+
+141
+00:05:29,100 --> 00:05:32,333
+mà bạn cứ như thế này bạn viết a bài hay là bạn tạo content
+
+142
+00:05:32,700 --> 00:05:35,000
+thì rất là dễ tới cái vấn đề website của bạn
+
+143
+00:05:35,300 --> 00:05:36,966
+à nó bị spam content ha
+
+144
+00:05:37,200 --> 00:05:40,166
+à à thì đi gom nhóm từ khóa như thế nào à
+
+145
+00:05:40,200 --> 00:05:42,400
+gom nhóm từ khóa thì chúng ta sẽ có hai cách ha
+
+146
+00:05:42,566 --> 00:05:44,200
+thứ nhất là các bạn gom nhóm thủ công
+
+147
+00:05:44,666 --> 00:05:47,066
+cái thứ hai là các bạn có thể sử dụng tun ha
+
+148
+00:05:47,366 --> 00:05:48,700
+thì mình sẽ hướng dẫn cho các bạn
+
+149
+00:05:49,100 --> 00:05:50,733
+cái a nguyên lý a
+
+150
+00:05:50,900 --> 00:05:53,566
+còn các bạn sẽ lựa chọn cái cách sử dụng tun
+
+151
+00:05:53,933 --> 00:05:56,133
+hay là sử dụng à thủ công đều được cả
+
+152
+00:05:56,733 --> 00:05:59,600
+và khi mà các bạn nắm được cái nguyên lý này rồi á
+
+153
+00:05:59,866 --> 00:06:02,333
+thì các bạn cũng dễ dàng lựa chọn các cái công cụ
+
+154
+00:06:02,900 --> 00:06:06,133
+mà nó có thể có cái độ chính xác gom nhóm cao à
+
+155
+00:06:06,266 --> 00:06:07,733
+chứ còn ở trên thị trường bây giờ
+
+156
+00:06:08,133 --> 00:06:10,600
+có rất là nhiều cái công cụ gom nhóm từ khóa
+
+157
+00:06:10,866 --> 00:06:11,333
+tuy nhiên
+
+158
+00:06:11,333 --> 00:06:13,866
+à là cái kết quả nó trả về không được như mong đợi
+
+159
+00:06:14,200 --> 00:06:16,700
+à mình thấy hoàn toàn là sai luôn à rồi ô kê
+
+160
+00:06:16,966 --> 00:06:17,900
+thế thì ví dụ à
+
+161
+00:06:17,966 --> 00:06:20,300
+mình có cái từ khóa là vệ sinh công nghiệp này
+
+162
+00:06:20,400 --> 00:06:21,766
+với cái từ khóa vệ sinh công nghiệp này
+
+163
+00:06:22,266 --> 00:06:24,866
+thì hai cái này á à rất là có khả năng ba cái này
+
+164
+00:06:25,266 --> 00:06:27,366
+à rất là có khả năng nó chung với nhau ha
+
+165
+00:06:27,566 --> 00:06:30,500
+à thì các bạn có thể lên google các bạn search à
+
+166
+00:06:30,533 --> 00:06:33,400
+ví dụ như mình sẽ cầm hai cái từ khóa này à lên trên google
+
+167
+00:06:33,666 --> 00:06:36,333
+và mình search à xem nó a
+
+168
+00:06:36,533 --> 00:06:39,733
+có kết quả tìm kiếm giống nhau thì mình sẽ gom nó thành một
+
+169
+00:06:39,866 --> 00:06:41,533
+ha rồi à các bạn xem ha
+
+170
+00:06:41,800 --> 00:06:43,266
+thì ở đây à là cái
+
+171
+00:06:43,733 --> 00:06:46,466
+a clean sài gòn nè vua vệ sinh nè
+
+172
+00:06:47,000 --> 00:06:51,666
+à tkt nè các bạn xem ha à vua vệ sinh nè clean sài gòn nè
+
+173
+00:06:51,900 --> 00:06:55,100
+à tkt nè đó nó đều ra cái kết quả giống nhau ha
+
+174
+00:06:55,133 --> 00:06:56,166
+thằng này là bảng giá nè
+
+175
+00:06:56,566 --> 00:06:57,933
+à thằng này cũng là bảng giá nè
+
+176
+00:06:58,266 --> 00:07:00,400
+nó lên chung một cái url đó các bạn
+
+177
+00:07:00,700 --> 00:07:02,933
+hai từ khóa nó lên chung một cái url
+
+178
+00:07:03,566 --> 00:07:07,166
+thì nó có thể gom nhóm lại thành một cái bài viết ha
+
+179
+00:07:07,366 --> 00:07:09,300
+tại vì sao tại vì đối thủ nó đang sale
+
+180
+00:07:09,533 --> 00:07:12,266
+hai cái từ khóa này trên cùng một url
+
+181
+00:07:12,566 --> 00:07:14,533
+và chúng ta cũng sẽ làm được như đối thủ thôi
+
+182
+00:07:15,000 --> 00:07:18,300
+tại vì nó đã chứng minh được rằng à nó sale được và google
+
+183
+00:07:18,566 --> 00:07:20,666
+tại sao mà nó lại cho lên top như vậy
+
+184
+00:07:20,866 --> 00:07:23,266
+tại vì hai cái từ khóa này chung ý định tìm kiếm ha
+
+185
+00:07:23,500 --> 00:07:24,866
+rồi tiếp tục như vậy ha
+
+186
+00:07:24,966 --> 00:07:27,400
+các bạn sẽ a research tiếp những cái
+
+187
+00:07:27,700 --> 00:07:29,666
+ví dụ như a cái từ khóa vệ
+
+188
+00:07:29,666 --> 00:07:30,400
+sinh nhà xưởng
+
+189
+00:07:30,400 --> 00:07:32,800
+đi xem có gom nhóm chung được với cái từ khóa
+
+190
+00:07:32,900 --> 00:07:33,800
+vệ sinh công nghiệp hay không
+
+191
+00:07:33,900 --> 00:07:35,133
+thì các bạn à xem ha
+
+192
+00:07:36,533 --> 00:07:40,766
+vệ sinh nhà xưởng à thằng à tkt này à
+
+193
+00:07:40,933 --> 00:07:43,066
+tkt bảng giá vệ sinh công nghiệp ờ
+
+194
+00:07:43,166 --> 00:07:44,266
+hai cái vệ sinh nhà xưởng
+
+195
+00:07:44,466 --> 00:07:46,400
+và vệ sinh công nghiệp nó hoàn toàn nó khác nhau
+
+196
+00:07:46,800 --> 00:07:49,000
+thì nó sẽ ở một cái nhóm khác ha các bạn ha
+
+197
+00:07:49,266 --> 00:07:51,766
+rồi tiếp tục cái dịch vụ vệ sinh công nghiệp này
+
+198
+00:07:52,166 --> 00:07:53,166
+thế thì các bạn thấy ha
+
+199
+00:07:53,366 --> 00:07:55,366
+nó vẫn là cái thằng clean sài gòn nè
+
+200
+00:07:55,700 --> 00:07:57,733
+bảng giá nè vẫn là vua vệ sinh nè
+
+201
+00:07:57,866 --> 00:08:00,300
+nó cũng giống tương tự như những thằng như thế này à
+
+202
+00:08:00,366 --> 00:08:01,166
+nó giống như thế này
+
+203
+00:08:01,500 --> 00:08:02,300
+à thì chúng ta
+
+204
+00:08:02,566 --> 00:08:04,566
+có thể gom nó thành một nhóm ha à
+
+205
+00:08:04,600 --> 00:08:06,666
+ví dụ như cái từ khóa này nè đó
+
+206
+00:08:07,166 --> 00:08:09,966
+mình sẽ copy qua đây à với cái từ khóa này nè ha
+
+207
+00:08:10,666 --> 00:08:12,133
+nó là chung một nhóm các bạn
+
+208
+00:08:12,200 --> 00:08:13,766
+năm cái từ khóa này là chung một nhóm
+
+209
+00:08:14,166 --> 00:08:15,666
+đó là về cái mặt nguyên lý
+
+210
+00:08:16,133 --> 00:08:18,300
+à để chúng ta có thể gom nhóm từ khóa
+
+211
+00:08:18,766 --> 00:08:21,266
+khi mà các bạn hiểu cái nguyên lý này á thì các bạn à
+
+212
+00:08:21,666 --> 00:08:25,100
+sử dụng công cụ à để các bạn có thể gom nhóm ha à
+
+213
+00:08:25,100 --> 00:08:26,800
+mình không khuyến khích các bạn gom nhóm tay
+
+214
+00:08:27,166 --> 00:08:29,666
+và mình cũng không khuyến khích các bạn sử dụng các cái
+
+215
+00:08:30,000 --> 00:08:31,800
+a công cụ ai để có thể gom
+
+216
+00:08:31,866 --> 00:08:34,333
+nhóm tại vì nó gom à size trước quốc hết ha
+
+217
+00:08:34,533 --> 00:08:36,666
+để mình demo cho các bạn để các bạn hiểu
+
+218
+00:08:36,933 --> 00:08:38,666
+tại sao mà mình không khuyến khích các bạn sử dụng
+
+219
+00:08:38,766 --> 00:08:39,733
+các cái công cụ ai
+
+220
+00:08:40,366 --> 00:08:43,266
+để có thể gom nhóm từ khóa ha à thế thì mình sẽ test
+
+221
+00:08:43,700 --> 00:08:46,133
+và mình sẽ copy những cái từ khóa này à để
+
+222
+00:08:46,500 --> 00:08:50,700
+à vào thằng chat gbt mình test thôi ha à hãy phân cụm
+
+223
+00:08:52,366 --> 00:08:53,200
+những từ khóa
+
+224
+00:08:57,300 --> 00:08:58,366
+sao cho chúng
+
+225
+00:08:59,733 --> 00:09:01,566
+trung ý định tìm kiếm ha
+
+226
+00:09:06,966 --> 00:09:09,800
+ô kê mình sẽ copy hết vào ha
+
+227
+00:09:12,133 --> 00:09:14,400
+rồi bây giờ mình cho các bạn xem nè
+
+228
+00:09:19,266 --> 00:09:23,966
+đó thì à rõ ràng á là nó gom cái từ khóa dịch vụ
+
+229
+00:09:24,333 --> 00:09:26,100
+vệ sinh nhà xưởng này à
+
+230
+00:09:26,166 --> 00:09:27,300
+với lại cái từ khóa
+
+231
+00:09:27,966 --> 00:09:29,500
+à vệ sinh công nghiệp ha ha
+
+232
+00:09:29,600 --> 00:09:32,333
+chung một nhóm rồi cung cấp tạp vụ chung một nhóm à
+
+233
+00:09:32,400 --> 00:09:35,200
+hay là dịch vụ vệ sinh thì nó lại tách ra dọn nhà theo giờ
+
+234
+00:09:35,566 --> 00:09:36,366
+nó tách ra
+
+235
+00:09:36,933 --> 00:09:40,700
+vệ sinh sofa dịch vụ giặt sofa nó tách ra đó các bạn xem ha
+
+236
+00:09:40,866 --> 00:09:41,500
+nó
+
+237
+00:09:41,500 --> 00:09:46,266
+a đang tách ra những cái từ khóa a chung ý định tìm kiếm a
+
+238
+00:09:47,066 --> 00:09:47,866
+những cái à
+
+239
+00:09:48,000 --> 00:09:51,066
+từ khóa không chung ý định tìm kiếm mà nó lại gom vào à
+
+240
+00:09:51,066 --> 00:09:51,700
+cho nên á
+
+241
+00:09:51,700 --> 00:09:54,600
+mình không khuyến khích anh em sử dụng cái cách này ha à
+
+242
+00:09:54,766 --> 00:09:55,966
+anh em có thể sử dụng tay
+
+243
+00:09:56,166 --> 00:09:58,300
+nếu mà anh em không thích sử dụng tun thì anh em có
+
+244
+00:09:58,300 --> 00:09:59,100
+thể sử dụng tay
+
+245
+00:09:59,133 --> 00:10:02,266
+bằng cái cách mà anh em sẽ resort xem cái từ khóa nào nó
+
+246
+00:10:02,866 --> 00:10:05,200
+lên chung à nó lên cùng cái kết quả tìm kiếm
+
+247
+00:10:05,400 --> 00:10:07,733
+với lại cái từ khóa chính của mình thì anh em gom nó lại
+
+248
+00:10:07,800 --> 00:10:10,600
+thành một còn nếu mà trong cái trường hợp mà nó
+
+249
+00:10:11,133 --> 00:10:12,200
+lên không đúng à
+
+250
+00:10:12,333 --> 00:10:13,533
+cái ý định tìm kiếm của mình
+
+251
+00:10:13,566 --> 00:10:16,000
+thì anh em sẽ tách nó ra làm hai nhóm à
+
+252
+00:10:16,066 --> 00:10:17,666
+cái cách mà mình khuyến khích anh em
+
+253
+00:10:17,900 --> 00:10:19,333
+ở trong cái khóa học này á
+
+254
+00:10:19,566 --> 00:10:20,400
+là anh em có thể sử dụng
+
+255
+00:10:20,900 --> 00:10:24,500
+cái tính năng keyword grouping của sonatune à để anh em gom
+
+256
+00:10:24,766 --> 00:10:27,566
+ở đây anh em có thể vào cái keyword grouping v hai
+
+257
+00:10:27,933 --> 00:10:30,000
+và sau đó anh em tạo một cái project à
+
+258
+00:10:30,100 --> 00:10:32,766
+thì ở đây mình đã tạo sẵn một cái project rồi ha à
+
+259
+00:10:32,800 --> 00:10:34,366
+anh em bấm mở nó lên open
+
+260
+00:10:35,000 --> 00:10:36,766
+rồi à thì ở cái ô này á
+
+261
+00:10:36,900 --> 00:10:39,866
+nó sẽ cho phép anh em nhập từ khóa vào đây à
+
+262
+00:10:39,933 --> 00:10:42,266
+và cái công cụ này là một cái công cụ trả phí ha
+
+263
+00:10:42,300 --> 00:10:44,066
+cái tính năng này là một cái tính năng trả phí
+
+264
+00:10:44,800 --> 00:10:47,600
+thì cái nguyên lý hoạt động của cái công cụ này á à
+
+265
+00:10:47,666 --> 00:10:49,533
+nó sẽ đi lấy mười cái kết quả
+
+266
+00:10:50,000 --> 00:10:50,866
+à ở trên google
+
+267
+00:10:51,066 --> 00:10:54,366
+về sau đó nó sẽ chạy cái thuật toán vòng lập à
+
+268
+00:10:54,366 --> 00:10:56,066
+và cái kết quả của nó à
+
+269
+00:10:56,166 --> 00:10:58,266
+ví dụ như các bạn xét ở đây là ba
+
+270
+00:10:58,300 --> 00:11:00,266
+kết quả trùng lập là matching level
+
+271
+00:11:00,366 --> 00:11:01,766
+là ba thì nó sẽ gom vào à
+
+272
+00:11:01,766 --> 00:11:03,700
+cái từ khóa phụ của bạn nó à
+
+273
+00:11:03,900 --> 00:11:05,300
+lên chung ba cái kết quả
+
+274
+00:11:05,466 --> 00:11:07,900
+với cái từ khóa chính thì nó sẽ gom vào à
+
+275
+00:11:07,900 --> 00:11:10,000
+còn các bạn chọn là hai thì nó sẽ gom là hai
+
+276
+00:11:10,466 --> 00:11:11,933
+nhưng mà mình khuyến khích các bạn để cái
+
+277
+00:11:12,133 --> 00:11:13,200
+cái chỗ này là ba ha
+
+278
+00:11:13,300 --> 00:11:15,500
+tại vì theo như kinh nghiệm của mình á à
+
+279
+00:11:15,533 --> 00:11:16,600
+cái chỗ này nó là ba
+
+280
+00:11:17,166 --> 00:11:19,733
+thì nó sẽ trả về cái kết quả nó đúng nhất à
+
+281
+00:11:19,800 --> 00:11:20,866
+nó hợp lý nhất ha
+
+282
+00:11:21,100 --> 00:11:22,800
+rồi cái việc của các bạn bây giờ chỉ còn
+
+283
+00:11:22,966 --> 00:11:25,066
+copy cái bộ từ khóa của mình vào thôi ha
+
+284
+00:11:25,200 --> 00:11:26,400
+thì ở đây mình sẽ copy
+
+285
+00:11:26,700 --> 00:11:29,333
+à cái bộ từ khóa thôi không cần phải volume đâu các bạn
+
+286
+00:11:29,933 --> 00:11:30,966
+rồi bỏ vào đây
+
+287
+00:11:31,766 --> 00:11:34,566
+sau khi mà copy cái bộ từ khóa vào á thì các bạn bấm vào
+
+288
+00:11:34,733 --> 00:11:35,866
+start cho nó chạy ha
+
+289
+00:11:35,966 --> 00:11:39,266
+rồi đợi một xíu thì nó sẽ chạy xong à cho chúng ta
+
+290
+00:11:41,333 --> 00:11:43,733
+rồi rất nhanh thôi à nó đã chạy xong rồi
+
+291
+00:11:44,300 --> 00:11:47,000
+và nếu như các bạn gom nhóm bằng tay á thì một ngàn
+
+292
+00:11:47,166 --> 00:11:48,100
+từ khóa đâu đó
+
+293
+00:11:48,133 --> 00:11:50,166
+các bạn phải làm đâu đó khoảng mất ba bốn ngày
+
+294
+00:11:50,733 --> 00:11:54,600
+và đây các bạn à thấy ha à đây là cái keyword a
+
+295
+00:11:54,900 --> 00:11:56,933
+nó là một ngàn một trăm bảy mươi cái từ khóa
+
+296
+00:11:57,100 --> 00:11:59,166
+và nó đang trả về cho mình là hai trăm bốn mươi
+
+297
+00:11:59,300 --> 00:12:01,800
+cái à topic có nghĩa là
+
+298
+00:12:02,200 --> 00:12:05,266
+để mà sale một ngàn một trăm bảy mươi cái từ khóa này á
+
+299
+00:12:05,366 --> 00:12:07,333
+thì chúng ta sẽ phải tạo đâu đó khoảng chừng
+
+300
+00:12:07,566 --> 00:12:10,100
+hai trăm bốn mươi cái url trên website
+
+301
+00:12:10,366 --> 00:12:11,900
+để chúng ta sale cái bộ từ khóa này
+
+302
+00:12:12,300 --> 00:12:14,400
+và các bạn có thể kéo xuống đây và các bạn
+
+303
+00:12:15,100 --> 00:12:15,900
+kiểm tra ha
+
+304
+00:12:16,000 --> 00:12:18,566
+ví dụ như mình sẽ kiểm tra ở đây ví dụ như cái từ khóa này
+
+305
+00:12:19,000 --> 00:12:20,266
+mình xem nó có đúng hay không ha
+
+306
+00:12:20,700 --> 00:12:23,133
+mình sẽ search cái từ khóa này với lại cái từ khóa
+
+307
+00:12:24,366 --> 00:12:26,400
+rồi à dọn vệ sinh công nghiệp đi các bạn
+
+308
+00:12:26,533 --> 00:12:27,966
+mình sẽ chọn cái từ khóa này ha
+
+309
+00:12:28,400 --> 00:12:31,400
+để mình xem kiểm tra xem cái kết quả nó có trùng lập với
+
+310
+00:12:31,533 --> 00:12:32,766
+cái từ khóa chính của mình hay không
+
+311
+00:12:33,100 --> 00:12:35,000
+đó các bạn xem ha vệ sinh toàn cầu nè
+
+312
+00:12:35,266 --> 00:12:36,733
+bảng giá ha bảng giá
+
+313
+00:12:37,400 --> 00:12:42,066
+cgfc kìa rồi thằng này nữa đó các bạn xem ha à
+
+314
+00:12:43,100 --> 00:12:46,766
+gfc này rồi tk này đó à
+
+315
+00:12:46,800 --> 00:12:49,100
+vệ sinh toàn cầu này ba thằng nó trùng rồi ha
+
+316
+00:12:49,166 --> 00:12:50,666
+thì nó gom vào đó à
+
+317
+00:12:50,666 --> 00:12:51,900
+thì các bạn thấy cái kết quả của
+
+318
+00:12:52,066 --> 00:12:54,400
+công cụ sonatun nó trả về cũng khá là ô kê
+
+319
+00:12:55,000 --> 00:12:55,666
+và cái quan trọng
+
+320
+00:12:55,666 --> 00:12:58,366
+là nó tiết kiệm cho mình rất là nhiều cái thời gian à
+
+321
+00:12:58,400 --> 00:13:00,066
+nếu mà các bạn gom nhóm cái bộ
+
+322
+00:13:00,166 --> 00:13:02,500
+từ khóa mà đâu đó khoảng chừng một ngàn từ khóa
+
+323
+00:13:02,800 --> 00:13:04,300
+mà các bạn sử dụng tay à
+
+324
+00:13:04,400 --> 00:13:05,200
+các bạn sử dụng
+
+325
+00:13:05,400 --> 00:13:06,666
+cái cách gom nhóm thủ công
+
+326
+00:13:06,766 --> 00:13:09,533
+thì các bạn cũng phải mất đâu đó khoảng ba bốn ngày đó à
+
+327
+00:13:09,566 --> 00:13:10,733
+để mà ngồi research
+
+328
+00:13:10,900 --> 00:13:12,100
+thì các bạn sử dụng cái công cụ
+
+329
+00:13:12,266 --> 00:13:14,100
+sonatune này đâu đó tầm một trăm ngàn
+
+330
+00:13:14,333 --> 00:13:15,766
+thì các bạn đã gom nhóm được rồi
+
+331
+00:13:16,200 --> 00:13:17,600
+à và nó rất là tiết kiệm thời gian
+
+332
+00:13:17,733 --> 00:13:20,533
+mình à khuyến khích anh em sử dụng cái công cụ này ha
+
+333
+00:13:20,766 --> 00:13:24,766
+rồi à sau khi mà gom nhóm từ khóa xong thì chúng ta sẽ a
+
+334
+00:13:24,900 --> 00:13:26,200
+xuất cái file nó xuống ha
+
+335
+00:13:26,400 --> 00:13:27,200
+xuất cái file nó xuống
+
+336
+00:13:27,400 --> 00:13:28,966
+và mình sẽ muốn để cái file này lên
+
+337
+00:13:29,100 --> 00:13:31,200
+google drive để cho các bạn dễ nhìn ha
+
+338
+00:13:31,966 --> 00:13:33,000
+mình sẽ tải lên nè
+
+339
+00:13:34,133 --> 00:13:36,800
+ô kê và cái file mà mình tải về á à
+
+340
+00:13:36,866 --> 00:13:39,066
+thì nó sẽ trông nó như thế này à
+
+341
+00:13:39,066 --> 00:13:42,066
+và mình sẽ tiếp tục mình lọc à những cái dữ liệu thừa đi à
+
+342
+00:13:42,066 --> 00:13:43,933
+mình sẽ bỏ cái cột à đầu tiên đi ha
+
+343
+00:13:44,300 --> 00:13:46,100
+rồi mình sẽ bỏ luôn cái cột này đi
+
+344
+00:13:48,200 --> 00:13:50,800
+rồi à thì à ở đây à
+
+345
+00:13:50,900 --> 00:13:54,333
+nó sẽ cho mình một cái sheet gọi là keyword grouping data
+
+346
+00:13:54,866 --> 00:13:55,766
+thì cái sheet này á
+
+347
+00:13:55,900 --> 00:13:56,700
+nó sẽ cho mình biết
+
+348
+00:13:57,066 --> 00:13:58,800
+chi tiết cái từ khóa ha à
+
+349
+00:13:58,900 --> 00:14:01,900
+cái topic là cái từ khóa chính của cái nhóm đó đó các bạn
+
+350
+00:14:02,200 --> 00:14:05,300
+đó cái topic là cái từ khóa chính của cái nhóm này à và
+
+351
+00:14:05,766 --> 00:14:07,533
+cái từ khóa mà nó lên chung ở đây
+
+352
+00:14:07,566 --> 00:14:11,266
+ha à tiếp tới là cái volume của từng cái từ khóa à
+
+353
+00:14:11,333 --> 00:14:12,766
+và tới tổng cái volume
+
+354
+00:14:12,900 --> 00:14:15,000
+tổng cái volume này các bạn có thể xóa đi hoặc là
+
+355
+00:14:15,133 --> 00:14:15,966
+các bạn có thể giữ lại
+
+356
+00:14:16,133 --> 00:14:16,933
+ha à
+
+357
+00:14:16,933 --> 00:14:18,166
+và một cái quan trọng nữa
+
+358
+00:14:18,366 --> 00:14:20,700
+là ở cái công cụ này nó cho chúng ta biết cái điểm
+
+359
+00:14:20,900 --> 00:14:22,933
+matching boy matching boy là sao
+
+360
+00:14:23,166 --> 00:14:25,000
+matching boy có nghĩa là cái từ khóa này
+
+361
+00:14:25,566 --> 00:14:28,600
+nó lên top chung bao nhiêu cái url
+
+362
+00:14:28,766 --> 00:14:31,333
+ví dụ như cái từ khóa công ty dịch vụ vệ sinh công nghiệp
+
+363
+00:14:31,666 --> 00:14:33,566
+với cái từ khóa vệ sinh công nghiệp này à
+
+364
+00:14:33,600 --> 00:14:36,266
+nó cái điểm matching boy của nó là tám mươi thì
+
+365
+00:14:36,733 --> 00:14:37,966
+có nghĩa là cái từ khóa này
+
+366
+00:14:38,066 --> 00:14:39,500
+nó lên chung với cái từ khóa này
+
+367
+00:14:39,566 --> 00:14:40,366
+tám cái kết quả
+
+368
+00:14:40,500 --> 00:14:41,300
+ha à
+
+369
+00:14:41,333 --> 00:14:44,300
+hoặc là cái từ khóa dịch vụ vệ sinh công nghiệp uy tín này
+
+370
+00:14:44,766 --> 00:14:47,400
+à nó lên chung à bảy cái kết quả
+
+371
+00:14:47,566 --> 00:14:50,166
+cho nên á nó để cái matching boy nó là bảy mươi
+
+372
+00:14:50,600 --> 00:14:51,800
+và một cái lưu ý quan trọng là
+
+373
+00:14:51,800 --> 00:14:53,566
+cái điểm matching boy này nó càng lớn
+
+374
+00:14:54,066 --> 00:14:56,200
+thì cái tỷ lệ cái từ khóa phụ nó lên top
+
+375
+00:14:56,333 --> 00:14:58,300
+chung với cái từ khóa chính càng cao à
+
+376
+00:14:58,400 --> 00:14:59,566
+ví dụ như cái từ khóa
+
+377
+00:14:59,766 --> 00:15:01,966
+dịch vụ vệ sinh công nghiệp uy tín này nó là bảy mươi
+
+378
+00:15:02,400 --> 00:15:04,266
+thì cái từ khóa này lên top thì cái từ khóa
+
+379
+00:15:04,666 --> 00:15:06,400
+dịch vụ vệ sinh công nghiệp uy tín này à
+
+380
+00:15:06,600 --> 00:15:09,200
+chắc chắc chắn nó sẽ lên theo ha chắc chắn nó sẽ lên theo à
+
+381
+00:15:09,266 --> 00:15:11,600
+rồi cái shit tiếp theo đó là cái shit topic
+
+382
+00:15:11,800 --> 00:15:12,866
+ha thì à à
+
+383
+00:15:12,966 --> 00:15:16,100
+mình cũng sẽ xóa đi những cái cột không cần thiết à và
+
+384
+00:15:16,666 --> 00:15:20,533
+à ở đây thì cái shit này nó sẽ cho các bạn biết được à
+
+385
+00:15:20,666 --> 00:15:22,366
+cái topic nào là cái topic
+
+386
+00:15:22,566 --> 00:15:25,266
+mà nó lên top được nhiều từ khóa nhất ha à
+
+387
+00:15:25,300 --> 00:15:27,200
+các bạn có thể sử dụng bộ lọc ở đây
+
+388
+00:15:29,166 --> 00:15:31,866
+ví dụ như cái từ khóa dịch vụ vệ sinh nhà này
+
+389
+00:15:32,200 --> 00:15:34,400
+nó có thể lên được chín mươi tám cái từ khóa ha
+
+390
+00:15:34,500 --> 00:15:36,100
+ở một cái url này thôi
+
+391
+00:15:36,200 --> 00:15:38,900
+nó có thể lên được chín mươi tám cái từ khóa các bạn à
+
+392
+00:15:38,933 --> 00:15:40,666
+cái a dọn nhà theo giờ
+
+393
+00:15:40,800 --> 00:15:42,933
+này nó có thể lên được sáu mươi lăm cái từ khóa
+
+394
+00:15:43,466 --> 00:15:45,166
+cái thảm trải ghế gỗ
+
+395
+00:15:45,266 --> 00:15:47,800
+phòng khách này nó có thể lên được năm mươi bảy cái từ khóa
+
+396
+00:15:48,100 --> 00:15:49,366
+à đó là những cái thông tin
+
+397
+00:15:49,866 --> 00:15:50,666
+mà chúng ta nhận được
+
+398
+00:15:51,000 --> 00:15:52,800
+khi mà sử dụng sonatune
+
+399
+00:15:52,800 --> 00:15:55,366
+còn nếu mà các bạn sử dụng tay để gom nhóm á
+
+400
+00:15:55,400 --> 00:15:57,600
+thì các bạn cũng sẽ không có những cái số liệu như thế này
+
+401
+00:15:57,666 --> 00:15:59,100
+ha rồi à ô kê
+
+402
+00:15:59,200 --> 00:16:02,066
+còn cái cuối cùng là cái magic analytic là
+
+403
+00:16:02,400 --> 00:16:04,500
+là cái nghiên cứu đối thủ thôi thì nghiên cứu đối thủ
+
+404
+00:16:04,733 --> 00:16:06,266
+mình sẽ có một cái video riêng
+
+405
+00:16:06,733 --> 00:16:08,700
+để có thể nói về cái việc mà nghiên cứu đối thủ
+
+406
+00:16:08,866 --> 00:16:09,366
+cho nên
+
+407
+00:16:09,366 --> 00:16:12,166
+à ở cái video này mình sẽ không nói tới cái ship này ha à
+
+408
+00:16:12,166 --> 00:16:13,300
+mình sẽ xóa cái ship này đi
+
+409
+00:16:14,500 --> 00:16:15,300
+rồi à
+
+410
+00:16:15,333 --> 00:16:18,333
+cái bước tiếp theo à của chúng ta là chúng ta sẽ phải đi
+
+411
+00:16:18,933 --> 00:16:21,466
+à chọn những cái từ khóa mà nó có à
+
+412
+00:16:21,600 --> 00:16:23,966
+phù hợp với cái ngữ cảnh nguồn của website ha
+
+413
+00:16:24,300 --> 00:16:25,400
+à thế thì ở đây ha
+
+414
+00:16:25,800 --> 00:16:29,266
+cái từ khóa đầu tiên là cái từ khóa thảm trải ghế gỗ
+
+415
+00:16:29,533 --> 00:16:30,933
+phòng khách thì các bạn có thể
+
+416
+00:16:31,100 --> 00:16:33,700
+research xem cái từ khóa này nó là cái gì à
+
+417
+00:16:33,766 --> 00:16:36,700
+nó có phù hợp với lại cái website của mình hay không à
+
+418
+00:16:36,733 --> 00:16:38,000
+thì ở đây các bạn thấy rõ ràng
+
+419
+00:16:38,566 --> 00:16:42,500
+là nó là một cái website bán thảm ha à thảm trải ghế gỗ
+
+420
+00:16:42,900 --> 00:16:45,500
+chứ không phải là vệ sinh công nghiệp hay là vệ sinh gì
+
+421
+00:16:45,933 --> 00:16:48,100
+thì cái này các bạn nên bỏ nó đi ha à
+
+422
+00:16:48,200 --> 00:16:50,866
+mình sẽ đánh dấu là bỏ ha đó à
+
+423
+00:16:50,933 --> 00:16:53,966
+tương tự như vậy các bạn cũng sẽ có những cái từ khóa
+
+424
+00:16:54,200 --> 00:16:56,733
+mà không phù hợp với lại cái ngữ cảnh nguồn à
+
+425
+00:16:56,766 --> 00:16:59,766
+ví dụ như cái từ khóa giặt ghế nỉ ô tô này à
+
+426
+00:16:59,800 --> 00:17:00,866
+nó cũng không phù hợp ha
+
+427
+00:17:00,933 --> 00:17:04,533
+mình chỉ làm ở nhà cửa thôi và mình sẽ à đánh dấu là bỏ ha
+
+428
+00:17:04,900 --> 00:17:09,300
+rồi cung cấp tạp vụ ô kê mình có cung cấp tạp vụ à thì cái
+
+429
+00:17:10,300 --> 00:17:12,666
+cái này á à nếu mà các bạn làm dịch
+
+430
+00:17:12,666 --> 00:17:15,900
+vụ sco cho khách hàng hay là làm ở công ty á à
+
+431
+00:17:16,000 --> 00:17:17,866
+các bạn chưa có hiểu sản phẩm của mình
+
+432
+00:17:18,066 --> 00:17:19,000
+chưa có hiểu về công ty
+
+433
+00:17:19,566 --> 00:17:21,700
+thì các bạn cần phải à ngồi với khách hàng
+
+434
+00:17:21,900 --> 00:17:24,766
+hoặc là ngồi với lại một cái bạn nào ở công ty hiểu
+
+435
+00:17:25,333 --> 00:17:27,733
+để mà có thể lọc những cái từ khóa này ra ha
+
+436
+00:17:27,966 --> 00:17:30,533
+trong cái trường hợp mà các bạn làm dịch vụ seo á
+
+437
+00:17:30,533 --> 00:17:32,900
+mà các bạn không lọc cái này á thì rất là dễ toang ha
+
+438
+00:17:33,000 --> 00:17:33,733
+các bạn ha à
+
+439
+00:17:33,733 --> 00:17:35,466
+có những cái từ khóa mà mình không thể sale
+
+440
+00:17:35,700 --> 00:17:36,500
+được là như vậy đó
+
+441
+00:17:36,866 --> 00:17:38,566
+rồi mình cũng sẽ tiếp tục lọc à
+
+442
+00:17:38,700 --> 00:17:40,366
+và mình sẽ tua nhanh cái khúc này ha
+
+443
+00:17:40,566 --> 00:17:44,100
+à thì các bạn cứ xem cái từ khóa nào nó phù hợp với lại à
+
+444
+00:17:44,133 --> 00:17:46,900
+cái ngữ cảnh nguồn của mình mình có cung cấp cái dịch vụ đó
+
+445
+00:17:46,966 --> 00:17:48,966
+mình có cung cấp cái sản phẩm đó thì mình lấy vào
+
+446
+00:17:49,200 --> 00:17:51,300
+còn mình không cung cấp thì mình cho nó bỏ nó đi
+
+447
+00:17:51,800 --> 00:17:54,366
+ô kê sau khi mà mình à lọc đi các cái từ khóa
+
+448
+00:17:54,566 --> 00:17:55,366
+mà nó không phù hợp
+
+449
+00:17:55,566 --> 00:17:57,066
+với lại cái sổ content thì à
+
+450
+00:17:57,266 --> 00:18:00,766
+website á thì à đi đâu đó khoảng chừng à à chín mươi
+
+451
+00:18:01,466 --> 00:18:04,400
+chín mươi tư cái topix các bạn chín mươi tư cái topix còn
+
+452
+00:18:04,666 --> 00:18:05,600
+và còn lại đâu đó
+
+453
+00:18:05,666 --> 00:18:08,000
+khoảng chừng một trăm bốn mươi sáu cái topix ha à
+
+454
+00:18:08,066 --> 00:18:08,766
+và còn lại đâu
+
+455
+00:18:08,766 --> 00:18:10,533
+đó là chín trăm ba mươi sáu cái từ khóa
+
+456
+00:18:10,900 --> 00:18:13,100
+đó thì nếu mà các bạn không làm cái bước này á
+
+457
+00:18:13,133 --> 00:18:14,933
+mà các bạn lại mang cái bộ từ khóa này
+
+458
+00:18:15,300 --> 00:18:16,466
+để các bạn cam kết với khách hàng
+
+459
+00:18:16,733 --> 00:18:19,000
+à thì có những cái từ khóa nó không phù hợp và các bạn
+
+460
+00:18:19,333 --> 00:18:21,133
+à và lại mất rất là nhiều cái
+
+461
+00:18:21,600 --> 00:18:23,466
+a công sức để đi thuyết phục lại
+
+462
+00:18:24,133 --> 00:18:26,866
+hoặc là có thể là fail dự án trong cái trường hợp tệ nhất
+
+463
+00:18:26,933 --> 00:18:28,400
+mà khách hàng họ không hiểu cho mình ha
+
+464
+00:18:28,866 --> 00:18:31,366
+một cái lưu ý cho các bạn ở đây ha à
+
+465
+00:18:31,400 --> 00:18:31,966
+tổng cộng
+
+466
+00:18:31,966 --> 00:18:34,533
+là mình có chín trăm ba mươi sáu cái từ khóa và sale
+
+467
+00:18:34,800 --> 00:18:37,266
+trên một trăm bốn mươi sáu cái url à
+
+468
+00:18:37,300 --> 00:18:38,800
+tuy nhiên á các bạn xem ha à
+
+469
+00:18:38,900 --> 00:18:41,133
+có những cái chủ đề mà nó chiếm cái trọng số rất là cao
+
+470
+00:18:41,200 --> 00:18:44,266
+ở đây ha thì các bạn sale trên năm mươi hai cái url
+
+471
+00:18:44,466 --> 00:18:45,700
+và các bạn có thể lên top
+
+472
+00:18:45,900 --> 00:18:48,533
+được bảy trăm chín mươi sáu cái từ khóa rồi à
+
+473
+00:18:48,600 --> 00:18:50,966
+các bạn sử dụng cái phương pháp hai mươi tám mươi ha
+
+474
+00:18:51,466 --> 00:18:54,266
+à làm hai mươi phần trăm và à mình sẽ
+
+475
+00:18:54,733 --> 00:18:56,500
+có cái kết quả tám mươi phần trăm
+
+476
+00:18:57,166 --> 00:19:00,766
+thì à các bạn nên chú trọng vào những cái này à đó là cái
+
+477
+00:19:01,200 --> 00:19:02,666
+phương pháp luận của mình à
+
+478
+00:19:03,000 --> 00:19:04,766
+các bạn cũng nên follow theo cái này
+
+479
+00:19:05,533 --> 00:19:07,900
+cái này rồi cái bước tiếp theo à chúng ta
+
+480
+00:19:07,900 --> 00:19:10,566
+sẽ phải đi xác định cái từ khóa này nó nằm ở đâu
+
+481
+00:19:10,600 --> 00:19:11,466
+trên website của chúng ta
+
+482
+00:19:12,066 --> 00:19:13,400
+thì trên website của chúng ta á
+
+483
+00:19:13,400 --> 00:19:15,400
+nó sẽ có những cái loại định dạng content
+
+484
+00:19:15,700 --> 00:19:18,533
+khác nhau à ví dụ như là trang chủ à là page
+
+485
+00:19:18,800 --> 00:19:22,133
+là post là category à là chuyên mục thì chúng ta
+
+486
+00:19:22,500 --> 00:19:24,900
+à mỗi một cái loại định dạng content đó nó sẽ
+
+487
+00:19:25,500 --> 00:19:28,066
+à phù hợp với lại một cái từ khóa nó khác nhau
+
+488
+00:19:28,366 --> 00:19:30,866
+thế thì ở một cái website mà dịch vụ á
+
+489
+00:19:30,933 --> 00:19:32,300
+thường chúng ta sẽ sale ở bay
+
+490
+00:19:32,466 --> 00:19:34,733
+và boss chứ nó không có danh mục sản phẩm và sản phẩm
+
+491
+00:19:35,066 --> 00:19:37,666
+cho nên cái website này thường nó sẽ sale ở bay và boss
+
+492
+00:19:38,266 --> 00:19:41,333
+và bay và boss nó cũng tương tự với nhau thôi các bạn à
+
+493
+00:19:41,533 --> 00:19:42,666
+bay thì nó được thiết kế
+
+494
+00:19:43,300 --> 00:19:47,100
+à đẹp hơn là boss và nó tăng cái tỷ lệ chuyển đổi hơn
+
+495
+00:19:47,600 --> 00:19:50,933
+còn về cái vấn đề mà sco thì mình thấy cái nào nó sale
+
+496
+00:19:51,166 --> 00:19:52,133
+cũng được hết ha à
+
+497
+00:19:52,133 --> 00:19:52,933
+cái định dạng content
+
+498
+00:19:53,166 --> 00:19:55,133
+nó hầu hầu như là nó giống nhau à
+
+499
+00:19:55,166 --> 00:19:55,966
+ví dụ như cái
+
+500
+00:19:56,500 --> 00:19:58,200
+à từ khóa à dịch vụ
+
+501
+00:19:59,300 --> 00:20:01,333
+vụ thằng sinh nhà nó sale ở bay
+
+502
+00:20:01,700 --> 00:20:03,466
+và có thằng thì nó sale ở boss ha
+
+503
+00:20:03,533 --> 00:20:06,066
+ví dụ như thằng này thì nó đang sale ở boss các bạn
+
+504
+00:20:07,400 --> 00:20:11,133
+còn à ngược lại cái thằng này thì nó sale ở bay ha
+
+505
+00:20:11,466 --> 00:20:12,733
+còn ngược lại cái thằng này thì nó
+
+506
+00:20:12,800 --> 00:20:14,333
+sale ở bay các bạn thấy à
+
+507
+00:20:14,500 --> 00:20:16,366
+nó thiết kế cái bay khá là đẹp ha
+
+508
+00:20:16,700 --> 00:20:18,300
+thì tùy theo cái ngân sách của các bạn
+
+509
+00:20:18,366 --> 00:20:20,400
+các bạn có cái ngân sách nó tốt à
+
+510
+00:20:20,533 --> 00:20:23,000
+để mà thiết kế web thì các bạn nên làm ở page
+
+511
+00:20:23,333 --> 00:20:25,000
+còn nếu mà các bạn không có ngân sách tốt
+
+512
+00:20:25,500 --> 00:20:27,400
+thì các bạn nên sale ở bot ha à
+
+513
+00:20:27,500 --> 00:20:28,333
+mình vẫn khuyến khích
+
+514
+00:20:28,500 --> 00:20:30,966
+các bạn nên sale ở page những cái dịch vụ này à
+
+515
+00:20:31,333 --> 00:20:33,800
+để tăng cái tỷ lệ chuyển đổi a đơn hàng nhiều hơn
+
+516
+00:20:34,300 --> 00:20:36,866
+rồi thế thì à chúng ta đi xác định thôi à
+
+517
+00:20:36,900 --> 00:20:39,933
+ví dụ như ở đây mình sẽ muốn sale nó ở bay đi ha
+
+518
+00:20:40,300 --> 00:20:42,133
+à cái này cũng là một cái à
+
+519
+00:20:42,466 --> 00:20:45,200
+bay dịch vụ thì mình cũng sẽ sale nó ở bay đi à
+
+520
+00:20:45,333 --> 00:20:47,300
+vệ sinh công nghiệp thì mình cũng sẽ sale nó ở bay
+
+521
+00:20:47,933 --> 00:20:50,766
+à dịch vụ tại nhà thì mình cũng sẽ muốn sale nó ở bay
+
+522
+00:20:51,266 --> 00:20:52,966
+vệ sinh vải mình cũng muốn sale nó ở bay
+
+523
+00:20:53,466 --> 00:20:54,300
+à có những cái
+
+524
+00:20:54,733 --> 00:20:56,300
+như là mình sale ở boss á
+
+525
+00:20:56,300 --> 00:20:59,366
+là những cái a từ khóa mà thông tin ha
+
+526
+00:20:59,566 --> 00:21:00,566
+ví dụ như cách xử lý
+
+527
+00:21:00,933 --> 00:21:04,500
+sofa bị bẩn nè à thì mình sẽ sale nó ở boss đó
+
+528
+00:21:04,666 --> 00:21:06,600
+mình sale nó ở boss mình sẽ viết bài thôi
+
+529
+00:21:06,666 --> 00:21:07,733
+mình không có tạo một cái page
+
+530
+00:21:08,200 --> 00:21:11,000
+đó thì các bạn research ở đây ha các bạn thấy đa phần là
+
+531
+00:21:11,500 --> 00:21:14,966
+à tất cả những cái website này nó lên top đều là
+
+532
+00:21:15,466 --> 00:21:18,100
+những cái bài boss hết ha đều là những cái bài boss hết
+
+533
+00:21:18,366 --> 00:21:21,166
+đều là những cái bài viết bình thường hết không có gì cả à
+
+534
+00:21:21,266 --> 00:21:23,733
+rồi à những cái dịch vụ à thì à
+
+535
+00:21:23,866 --> 00:21:25,166
+chúng ta nên sale nó ở bay
+
+536
+00:21:25,333 --> 00:21:27,200
+vì để tăng cái tỷ lệ chuyển đổi ha
+
+537
+00:21:27,600 --> 00:21:29,366
+vệ sinh nhà xưởng sau xây dựng
+
+538
+00:21:30,700 --> 00:21:31,500
+dịch vụ vệ sinh
+
+539
+00:21:32,966 --> 00:21:36,733
+cách vệ sinh ghế da này à nó là boss ha à
+
+540
+00:21:37,466 --> 00:21:41,266
+giá vệ sinh công nghiệp à cái này là bảng giá thì có thể à
+
+541
+00:21:41,366 --> 00:21:43,166
+mình sẽ tạo boss là bảng giá đi
+
+542
+00:21:44,533 --> 00:21:47,733
+à giặt rèm cửa thì cái này à mình muốn tạo nó là bay
+
+543
+00:21:48,466 --> 00:21:49,366
+dịch vụ lau kính
+
+544
+00:21:52,266 --> 00:21:55,333
+thì à nếu mà các bạn không chắc á thì các bạn cứ lên google
+
+545
+00:21:55,500 --> 00:21:56,666
+các bạn search thôi ha
+
+546
+00:21:56,966 --> 00:22:00,100
+các bạn lên google các bạn search xem à nó sale ở đâu ha
+
+547
+00:22:00,166 --> 00:22:01,533
+thằng này thì nó đang sale ở bay
+
+548
+00:22:01,766 --> 00:22:05,333
+và nó cái lumen của nó là tên tên từ khóa luôn ha
+
+549
+00:22:05,733 --> 00:22:08,533
+rồi à các bạn xem thằng tiếp theo xem nó sale ở đâu
+
+550
+00:22:08,866 --> 00:22:12,000
+thằng này thì nó sale ở boss nha các bạn rồi tiếp tục
+
+551
+00:22:14,366 --> 00:22:17,800
+thằng này thì cũng ở boss luôn ha các bạn ha rồi tiếp tục
+
+552
+00:22:18,733 --> 00:22:20,766
+thì các bạn xem để các bạn đánh giá à
+
+553
+00:22:20,766 --> 00:22:22,500
+cái thằng này thì cũng sale ở boss luôn
+
+554
+00:22:26,133 --> 00:22:28,866
+thằng này nó sale ở boss luôn chứ hông phải bay đâu các bạn
+
+555
+00:22:29,066 --> 00:22:30,800
+bay thì nó sẽ phải được thiết kế ha
+
+556
+00:22:35,600 --> 00:22:38,700
+thằng này cũng ở boss thì đa phần là ở boss thôi ha à
+
+557
+00:22:38,733 --> 00:22:39,566
+nhưng mà à
+
+558
+00:22:39,733 --> 00:22:42,600
+nếu mà các bạn có ngân sách thì mình vẫn muốn sale nó ở bay
+
+559
+00:22:42,933 --> 00:22:45,200
+tại vì à nó là một cái dịch vụ ha
+
+560
+00:22:45,900 --> 00:22:46,866
+rồi cái này cũng vậy
+
+561
+00:22:46,966 --> 00:22:49,400
+cứ dịch vụ thì mình chọn nó là bay đi à
+
+562
+00:22:49,466 --> 00:22:51,966
+giá giặt rèm cửa thì mình bằng giá ha
+
+563
+00:22:52,133 --> 00:22:55,000
+mình sẽ à cho là boss rồi vệ sinh căn hộ
+
+564
+00:22:55,400 --> 00:22:57,266
+thì mình sẽ cho nó là bay ha
+
+565
+00:22:57,566 --> 00:22:59,866
+giặt ghế à giặt ghế này là cái gì
+
+566
+00:23:00,300 --> 00:23:01,100
+mình sẽ xem
+
+567
+00:23:01,800 --> 00:23:03,333
+nó có phải là dịch vụ hay không
+
+568
+00:23:04,466 --> 00:23:06,866
+đó nó là giặt ghế sofa ha các bạn ha
+
+569
+00:23:07,600 --> 00:23:10,400
+đó thì các bạn xem thằng này nó cũng sale ở bay này
+
+570
+00:23:10,500 --> 00:23:12,066
+nó rất là đẹp ha đó
+
+571
+00:23:12,966 --> 00:23:14,566
+mình cũng sẽ muốn sale nó ở bay
+
+572
+00:23:15,400 --> 00:23:19,600
+ô kê à vệ sinh nhà xưởng mình cũng sẽ muốn sale nó ở bay
+
+573
+00:23:20,133 --> 00:23:22,100
+công ty à vệ sinh à
+
+574
+00:23:23,566 --> 00:23:26,100
+thì à nếu mà các bạn xem à
+
+575
+00:23:26,666 --> 00:23:29,866
+ở đây là một cái bài post à danh sách công ty nè
+
+576
+00:23:30,366 --> 00:23:31,266
+các bạn xem ha
+
+577
+00:23:34,566 --> 00:23:37,266
+đây là nó là cái trang chủ ha các bạn
+
+578
+00:23:38,266 --> 00:23:40,400
+rồi thì thằng này nó là cái trang chủ
+
+579
+00:23:41,100 --> 00:23:42,466
+thằng này nó là trang chủ
+
+580
+00:23:46,766 --> 00:23:49,600
+nó là bài top list và bài trang chủ ha
+
+581
+00:23:49,900 --> 00:23:53,933
+top list và trang chủ đa phần thì à nếu mà các bạn à à
+
+582
+00:23:54,200 --> 00:23:55,200
+sale cái này à
+
+583
+00:23:55,333 --> 00:23:58,333
+có cái website này chỉ có một cái chủ đề về vệ sinh
+
+584
+00:23:58,400 --> 00:24:00,466
+như từ đầu mình phân tích thì mình sẽ muốn sale
+
+585
+00:24:00,600 --> 00:24:01,533
+nó ở trang chủ ha
+
+586
+00:24:01,600 --> 00:24:05,100
+mình sẽ tạo một cái a nữa à à trang chủ ha
+
+587
+00:24:10,100 --> 00:24:12,066
+ô kê mình sẽ để nó là trang chủ
+
+588
+00:24:14,000 --> 00:24:17,100
+dọn vệ sinh công nghiệp ha thì này nó là bay ha
+
+589
+00:24:17,766 --> 00:24:21,466
+vệ sinh a nhà sau xây dựng nó cũng là bay luôn các bạn
+
+590
+00:24:23,933 --> 00:24:26,066
+cung cấp tạp vụ à mình sẽ xem
+
+591
+00:24:26,666 --> 00:24:28,500
+cái nào mình không chắc thì mình sẽ lên mình
+
+592
+00:24:28,600 --> 00:24:29,500
+research các bạn
+
+593
+00:24:30,400 --> 00:24:31,766
+rồi ô kê tương tự như vậy
+
+594
+00:24:31,866 --> 00:24:33,700
+thì các bạn sẽ hoàn thành cái file này
+
+595
+00:24:33,733 --> 00:24:35,600
+ha thì à lưu ý rằng à
+
+596
+00:24:35,666 --> 00:24:37,666
+nếu mà các bạn không chắc thì các bạn cứ lên google
+
+597
+00:24:37,900 --> 00:24:40,866
+các bạn research tham khảo đối thủ xem nó đang target ở đâu
+
+598
+00:24:41,300 --> 00:24:43,866
+à nếu mà nó target ở bay thì mình sẽ
+
+599
+00:24:44,466 --> 00:24:45,266
+ta ghét ở page
+
+600
+00:24:45,600 --> 00:24:48,933
+nếu mà nó ta ghét ở bot thì mình sẽ sale bot
+
+601
+00:24:49,266 --> 00:24:50,566
+nếu mà nó là danh mục sản phẩm
+
+602
+00:24:50,900 --> 00:24:52,100
+thì mình phải tạo danh mục sản phẩm
+
+603
+00:24:52,900 --> 00:24:56,000
+nếu mà nó là sản phẩm thì mình phải tạo sản phẩm à
+
+604
+00:24:56,066 --> 00:24:57,266
+một cái nữa mình lưu ý
+
+605
+00:24:57,533 --> 00:25:00,933
+bay và boss nó hoàn toàn nó giống nhau về cái việc sco ha
+
+606
+00:25:01,133 --> 00:25:04,300
+nó chỉ có khác nhau về cái mặt mà trải nghiệm người dùng uix
+
+607
+00:25:04,466 --> 00:25:07,800
+thôi à thì bay à nó được thiết kế đẹp còn boss
+
+608
+00:25:07,900 --> 00:25:09,933
+thì nó chỉ có một mẫu trên website của chúng ta thôi
+
+609
+00:25:10,566 --> 00:25:13,266
+và mình khuyên các bạn nên target những cái từ khóa chính
+
+610
+00:25:13,366 --> 00:25:14,766
+những cái sản phẩm dịch vụ chính của mình
+
+611
+00:25:15,366 --> 00:25:16,166
+ở cái page
+
+612
+00:25:16,533 --> 00:25:19,500
+để chúng ta có thể thiết kế làm sao cho nó đẹp mắt à
+
+613
+00:25:19,566 --> 00:25:22,133
+làm sao cho nó tăng cái tỉ lệ chuyển đổi lên à
+
+614
+00:25:22,166 --> 00:25:24,400
+rồi đó là cái cách mà chúng ta lên một cái bộ từ
+
+615
+00:25:24,566 --> 00:25:25,933
+khóa cực kỳ cực kỳ là đơn giản
+
+616
+00:25:26,366 --> 00:25:27,166
+và nhanh chóng nữa
+
+617
+00:25:27,300 --> 00:25:30,766
+bây giờ thì à có công cụ nó hỗ trợ hầu như là gần hết
+
+618
+00:25:30,966 --> 00:25:33,466
+chúng ta cần phải tham gia vào những cái khâu à
+
+619
+00:25:33,566 --> 00:25:34,466
+rất là ít thôi
+
+620
+00:25:34,866 --> 00:25:36,933
+ngày xưa khi mà chưa có công cụ á à
+
+621
+00:25:37,100 --> 00:25:39,666
+cái bước nghiên cứu từ khóa này là một cái bước mà
+
+622
+00:25:40,333 --> 00:25:44,666
+à nó mất thời gian và nó chán nhất khi mà làm ceo à
+
+623
+00:25:44,866 --> 00:25:47,300
+bây giờ thì có công cụ nó hỗ trợ quá quá tốt rồi
+
+624
+00:25:47,800 --> 00:25:49,266
+và sau cái video này á
+
+625
+00:25:49,333 --> 00:25:52,166
+anh em có thể lên thử một cái bộ từ khóa à
+
+626
+00:25:52,266 --> 00:25:53,966
+để xem anh em hiểu bài tới đâu ha
+
+627
+00:25:54,200 --> 00:25:55,966
+cảm ơn anh em đã theo dõi cái video
+
+628
+00:25:56,500 --> 00:25:58,733
+à hẹn gặp lại anh em ở những cái video sau
+

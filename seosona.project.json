@@ -1,0 +1,37 @@
+{
+  "schema": "seosona.project.v1",
+  "name": "seosona-video",
+  "displayName": "SEOSONA Video Factory",
+  "domain": "video-production",
+  "stack": [
+    "python",
+    "ffmpeg",
+    "whisper",
+    "gpt-sovits"
+  ],
+  "osRoot": "D:/SEOSONA OS",
+  "memoryNamespace": "seosona-video",
+  "autonomy": {
+    "defaultLevel": "project_edit",
+    "requiresExplicitApproval": [
+      "os_core_patch",
+      "git_publish",
+      "deploy"
+    ]
+  },
+  "commands": {
+    "intake": "node \"D:/SEOSONA OS/1_CORE/scripts/seosona_capability_bridge.js\" route",
+    "lint": "python -m flake8 ."
+  },
+  "workflows": [
+    "autonomous-capability-activation",
+    "project-doctor",
+    "portable-rule-sync",
+    "project-memory-logging"
+  ],
+  "ruleFiles": [
+    "AGENTS.md",
+    ".clauderules",
+    ".cursorrules"
+  ]
+}
