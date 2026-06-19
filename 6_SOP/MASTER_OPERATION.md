@@ -1,49 +1,72 @@
 # TÀI LIỆU VẬN HÀNH CHUẨN (MASTER OPERATION)
-*Nơi lưu trữ trình tự vận hành của SEOSONA Video Micro-OS.*
+*Cập nhật: 2026-06-19 — Phiên bản v3.0 (HyperFrames Engine)*
 
-Hệ thống hoạt động theo **Trình tự Tuyến tính (Linear Pipeline)** đi từ Lõi (`1_CORE`) ra Không gian làm việc (`4_WORKSPACE`).
+Hệ thống hoạt động theo **Trình tự Tuyến tính (Linear Pipeline)** đi từ Router (`4_BRAIN/workflow_router.py`) ra Workspace (`8_WORKSPACE/`).
 
-## THỨ TỰ VẬN HÀNH TỔNG QUÁT (END-TO-END)
+## ENTRY POINT
 
-Dù sếp chọn Workflow nào (Video Tin tức, Video Academy, hay Short), trình tự máy móc chạy luôn tuân thủ 5 bước bất di bất dịch sau:
+```
+python 4_BRAIN/workflow_router.py "<input>" [brand] [ratio] [project_name]
+```
 
-### BƯỚC 1: SCRIPTING (Não Bộ lên Kịch bản)
-- **Công cụ:** Gọi LLM Agent (Gemini/Claude) từ `1_CORE/agents/`.
-- **Đầu vào:** Lấy kiến thức/SRT từ `2_KNOWLEDGE` hoặc `5_ASSETS/srt_raw`.
-- **Đầu ra:** File kịch bản JSON (Phân rõ Cảnh 1, Cảnh 2, Lời đọc, Hình ảnh).
-- **Quy tắc:** Mỗi câu không quá 20 từ, dùng phong cách "sếp Chí Quyết".
-
-### BƯỚC 2: TỔNG HỢP GIỌNG NÓI (TTS)
-- **Công cụ:** 
-  - Video SEOSONA: Dùng Text-to-Speech (TTS) tiêu chuẩn (Giọng AI phổ thông).
-  - Video CQ Academy: Kích hoạt `1_CORE/skills/tts_f5.js` (Voice Clone giọng sếp).
-- **Đầu ra:** File âm thanh `4_WORKSPACE/output/voiceover.wav`.
-
-### BƯỚC 2.5: VOICE-TO-SRT (Nhận diện Phụ đề) [MỚI]
-- **Công cụ:** Kích hoạt mô hình `faster-whisper`.
-- **Hành động:** Nghe lại file `voiceover.wav` vừa tạo và xuất ra file `4_WORKSPACE/output/subtitles.srt`. Đảm bảo khớp từng mili-giây phục vụ cho hiệu ứng Kinetic Typography.
-
-### BƯỚC 3: ASSET GATHERING (Săn lùng Hình ảnh)
-- **Công cụ:** Kích hoạt Playwright ẩn danh.
-- **Đầu vào:** Kịch bản JSON ở Bước 1 (Chỗ nào yêu cầu chụp ảnh Ahrefs/Google).
-- **Đầu ra:** Các file ảnh lưu vào `4_WORKSPACE/output/scene_1.png` v.v..
-- **Bỏ qua:** Nếu đang chạy Luồng làm video Short (Không cần ảnh).
-
-### BƯỚC 4: THUMBNAIL & METADATA (Bao bì sản phẩm)
-- **Công cụ:** Chạy `1_CORE/workflows/workflow4_thumbnail_gen.js`.
-- **Hành động:** 
-  1. Trộn Logo từ `5_ASSETS/logos` với Text.
-  2. Xuất ra 2 ảnh JPG nét căng (16:9 và 9:16).
-  3. LLM sinh ra file `metadata.json` chứa Tiêu đề, Tags, Hashtags chuẩn SEO.
-
-### BƯỚC 5: VIDEO COMPILATION (Lắp ráp & Xuất xưởng)
-- **Công cụ:** Chạy `1_CORE/skills/render_html.js` (Dùng thư viện html-video & FFmpeg).
-- **Đầu vào:** Lấy Audio (Bước 2) + Hình ảnh (Bước 3). Nếu là video Short thì lấy Audio ghép với Chữ chuyển động (Kinetic Typography).
-- **Đầu ra:** File MP4 cuối cùng nằm tại `4_WORKSPACE/output/FINAL_VIDEO.mp4`.
+Router tự động nhận diện đầu vào:
+- **YouTube URL** → Mode `download` (yt-dlp → repurpose)
+- **Website URL** → Mode `scrape` (scraper_agent → TTS → render)
+- **File .srt/.mp4** → Mode `repurpose` (clipper → shorts)
+- **Text/Script** → Mode `create` (TTS → render)
 
 ---
 
-**CƠ CHẾ KÍCH HOẠT:** 
-Khi hoàn thiện, sếp chỉ cần gõ 1 dòng lệnh duy nhất trên Terminal:
-`npm run video:short --source="12_cau_hoi.srt"`
-Hệ thống sẽ tự động chạy ngầm toàn bộ 5 bước trên.
+## THỨ TỰ VẬN HÀNH TỔNG QUÁT (END-TO-END)
+
+### BƯỚC 1: SCRIPTING / DATA INTAKE
+- **Mode `create`:** Nhận script text trực tiếp.
+- **Mode `scrape`:** `1_AGENTS/scraper_agent/scraper.py` cào nội dung từ URL.
+- **Mode `repurpose`:** `1_AGENTS/repurposer_agent/srt_analyzer.py` phân tích file SRT/MP4.
+
+### BƯỚC 2: TỔNG HỢP GIỌNG NÓI (TTS)
+- **Lexicon Filter:** `_apply_lexicon_filter()` ngầm dịch từ khóa tiếng Anh sang phiên âm Việt.
+- **Engine:** `2_SKILLS/voice_cloner/fish_audio_api.py` (fallback: Edge-TTS `vi-VN-HoaiMyNeural`).
+- **Đầu ra:** `8_WORKSPACE/<ProjectName>/.temp/voice.mp3`
+
+### BƯỚC 3: NHẬN DIỆN TIMESTAMPS
+- Ưu tiên: TTS native word boundaries.
+- Fallback: `_estimate_word_level_data_from_script()` (phân bổ theo trọng lượng từ).
+- Dự phòng: `2_SKILLS/srt_maker/whisper_engine.py` (ASR).
+- **Đầu ra:** `8_WORKSPACE/<ProjectName>/SRT/<ProjectName>.srt`
+
+### BƯỚC 4: ASSET GATHERING & SCENE GENERATION
+- `_make_news_scene_copy()` phân tích câu → tự chọn component mode:
+  - `dashboard`: Khi phát hiện con số/phần trăm.
+  - `source-card`: Khi nhắc đến nguồn báo cáo.
+  - `screenshot`: Mặc định (khung Browser mockup).
+- SFX tự sinh: `sfx_whoosh.wav` (chuyển cảnh) + `sfx_pop.wav` (hiện chữ).
+- BGM tự sinh: `bgm_news.mp3` (3 sóng sine trộn).
+
+### BƯỚC 5: VIDEO RENDER (HyperFrames Core)
+- `_write_hyperframes_render_project()` sinh toàn bộ HTML/CSS/GSAP.
+- Render: `npx hyperframes@0.6.112 render --format mp4 --output <path>`
+- **Frame 0 Hook:** Kicker + H1 luôn opacity 100% ngay giây 0.
+
+### BƯỚC 6: THUMBNAIL
+- `2_SKILLS/thumbnail_maker/thumbnail_generator.py` → HTML → Playwright → PNG.
+- Text lấy động từ `script_text`, không hardcode.
+- **Đầu ra:** `8_WORKSPACE/<ProjectName>/Thumbnail/<ProjectName>_Thumbnail.png`
+
+---
+
+## CẤU TRÚC OUTPUT
+
+```
+8_WORKSPACE/<ProjectName>/
+├── <ProjectName>.mp4          → Video chính
+├── SRT/<ProjectName>.srt      → Phụ đề
+├── Thumbnail/<ProjectName>_Thumbnail.png  → Ảnh bìa
+└── .temp/                     → File tạm (voice, hf_render/)
+```
+
+## CƠ CHẾ BẢO MẬT
+
+- API Keys: Lưu trong `.env` (root), load bởi `python-dotenv`.
+- Config: `system_config.yaml` dùng `${VAR}` placeholder.
+- `.gitignore`: Chặn `.env`, `8_WORKSPACE/*`, `3_MEMORY/*`, media files.

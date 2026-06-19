@@ -57,7 +57,7 @@ profiles:
     voice:
       engine: "vieneu"
       model: "chiquyet_clone_v1"
-      reference_audio: "5_ASSETS/voice_profiles/chiquyet_sample_4s.wav"
+      reference_audio: "7_ASSETS/voice_profiles/chiquyet_sample_4s.wav"
       fallback_engine: "edge-tts"
       fallback_voice: "vi-VN-NamMinhNeural"
     logo: "Chi Quyet Academy Mascot Logo.png"
@@ -66,9 +66,10 @@ profiles:
     target_audience: "Người mới học SEO, Creator, Freelancer"
 
 api_keys:
-  pexels: "YOUR_PEXELS_API_KEY_HERE"
-  openai: "YOUR_OPENAI_API_KEY_HERE"
-  fish_audio: "YOUR_FISH_AUDIO_API_KEY_HERE"
+  # LƯU Ý: Không điền Key thật vào đây. Hệ thống sẽ tự động đọc từ file .env
+  pexels: "${PEXELS_API_KEY}"
+  openai: "${OPENAI_API_KEY}"
+  fish_audio: "${FISH_AUDIO_API_KEY}"
 
 whisper:
   model: "turbo"
@@ -77,13 +78,13 @@ whisper:
   hallucination_silence_threshold: 2
 
 sfx:
-  pop_dir: "5_ASSETS/sfx/pops"
-  transition_dir: "5_ASSETS/sfx/transitions"
+  pop_dir: "7_ASSETS/sfx/pops"
+  transition_dir: "7_ASSETS/sfx/transitions"
   pop_volume: 0.3
   transition_volume: 0.6
 
 bgm:
-  dir: "5_ASSETS/bgm"
+  dir: "7_ASSETS/bgm"
   default_mood: "tech"
   volume:
     seosona: 0.08

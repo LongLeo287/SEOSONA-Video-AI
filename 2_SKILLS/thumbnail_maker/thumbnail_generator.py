@@ -1,133 +1,122 @@
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import os
-import textwrap
+import re
+import urllib.parse
+from playwright.sync_api import sync_playwright
 
-def hex_to_rgb(h):
-    h = h.lstrip('#')
-    return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
-
-def draw_text_with_shadow(draw, text, position, font, text_color, shadow_color="#0F172A"):
-    x, y = position
-    
-    # Modern Text Rendering: Stroke (Outline) + Shadow
-    # Vẽ bóng (Drop shadow)
-    shadow_offset = 8
-    draw.text((x + shadow_offset, y + shadow_offset), text, font=font, fill=shadow_color)
-    
-    # Vẽ text chính với viền dày (Stroke)
-    stroke_width = 5
-    stroke_color = "#FFFFFF" if text_color == hex_to_rgb("#0F172A") else "#0F172A"
-    
-    draw.text((x, y), text, font=font, fill=text_color, stroke_width=stroke_width, stroke_fill=stroke_color)
-
-def create_thumbnail(hook_text, output_path, brand_profile, bg_image_path=None, logo_path=None, aspect_ratio="9:16"):
+def extract_keyword(text):
     """
-    Creates a rich YouTube/TikTok thumbnail with Aspect Ratio support.
+    Simulate basic NLP to extract the most important keyword from a string.
+    Returns (prefix, keyword, suffix).
     """
-    print(f"Generating Rich Thumbnail ({aspect_ratio})...")
-    
-    # 1. Determine Dimensions
-    if aspect_ratio == "16:9":
-        W, H = 1920, 1080
-        wrap_width = 25 # Wider text wrap
-        font_size = 140
-        logo_pos = (150, 80) # Top left
-    else: # 9:16 default
-        W, H = 1080, 1920
-        wrap_width = 15
-        font_size = 120
-        logo_pos = (50, 50)
+    words = text.split()
+    if not words:
+        return "", "", ""
         
-    text_hex = brand_profile['colors']['text']
-    highlight_hex = brand_profile['colors']['highlight']
+    # Just take the last 1-2 words as the keyword for simplicity, 
+    # or the longest word. Let's just highlight the longest word if no explicit marker.
+    if len(words) <= 2:
+        return "", " ".join(words), ""
+        
+    # Find longest word to be the keyword
+    longest_word = max(words, key=len)
+    idx = words.index(longest_word)
     
-    # 2. Prepare Background
-    if bg_image_path and os.path.exists(bg_image_path):
-        try:
-            img = Image.open(bg_image_path).convert('RGB')
-            img_ratio = img.width / img.height
-            target_ratio = W / H
-            if img_ratio > target_ratio:
-                new_w = int(img.height * target_ratio)
-                left = (img.width - new_w) // 2
-                img = img.crop((left, 0, left + new_w, img.height))
-            else:
-                new_h = int(img.width / target_ratio)
-                top = (img.height - new_h) // 2
-                img = img.crop((0, top, img.width, top + new_h))
-                
-            img = img.resize((W, H))
-            img = img.filter(ImageFilter.GaussianBlur(10))
-        except Exception as e:
-            img = Image.new('RGB', (W, H), color=hex_to_rgb(brand_profile['colors']['background']))
+    prefix = " ".join(words[:idx])
+    keyword = words[idx]
+    suffix = " ".join(words[idx+1:])
+    
+    return prefix, keyword, suffix
+
+def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portrait_path=None, watermark="SEO", manual_title=None, manual_cta=None):
+    """
+    Generates a 1080x1920 thumbnail by rendering the HTML template using Playwright.
+    """
+    print("Generating HTML-based Thumbnail...")
+    
+    template_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '5_FRAMEWORK', 'html_renderer', 'templates', 'seosona_thumbnail_v1.html'))
+    logo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '7_ASSETS', 'logos', 'Seosona_Logo.png'))
+    
+    if not os.path.exists(template_path):
+        raise FileNotFoundError(f"Template not found at {template_path}")
+        
+    # Format logo path for HTML src
+    logo_uri = "file:///" + logo_path.replace("\\", "/")
+    
+    # NLP extraction
+    if manual_title:
+        title_1, title_kw, title_2 = manual_title
     else:
-        # Tự động tạo Gradient Background nếu không có ảnh tĩnh
-        img = Image.new('RGB', (W, H))
-        draw_bg = ImageDraw.Draw(img)
-        color_top = hex_to_rgb(brand_profile['colors']['primary'])
-        color_bottom = hex_to_rgb(brand_profile['colors']['secondary'])
-        for y in range(H):
-            r = int(color_top[0] + (color_bottom[0] - color_top[0]) * y / H)
-            g = int(color_top[1] + (color_bottom[1] - color_top[1]) * y / H)
-            b = int(color_top[2] + (color_bottom[2] - color_top[2]) * y / H)
-            draw_bg.line([(0, y), (W, y)], fill=(r, g, b))
-
-    # Gradient Tối góc dưới (Vignette) để nổi chữ
-    overlay = Image.new('RGBA', (W, H), (0, 0, 0, 0))
-    overlay_draw = ImageDraw.Draw(overlay)
-    for y in range(H//2, H):
-        alpha = int(200 * (y - H//2) / (H//2))
-        overlay_draw.line([(0, y), (W, y)], fill=(0, 0, 0, alpha))
-    img = Image.alpha_composite(img.convert('RGBA'), overlay).convert('RGB')
+        title_1, title_kw, title_2 = extract_keyword(main_title)
     
-    draw = ImageDraw.Draw(img)
+    if manual_cta:
+        cta_1, cta_kw, cta_2 = manual_cta
+    else:
+        cta_1, cta_kw, cta_2 = extract_keyword(cta)
     
-    # 3. Add Logo
-    if logo_path and os.path.exists(logo_path):
-        try:
-            logo = Image.open(logo_path).convert("RGBA")
-            l_w = 300 if aspect_ratio == "16:9" else 250
-            l_h = int(logo.height * (l_w / logo.width))
-            logo = logo.resize((l_w, l_h))
-            img.paste(logo, logo_pos, logo)
-        except Exception as e:
-            pass
+    # Format portrait path
+    if portrait_path and os.path.exists(portrait_path):
+        portrait_uri = "file:///" + os.path.abspath(portrait_path).replace("\\", "/")
+    else:
+        portrait_uri = ""
 
-    # 4. Prepare Font
-    try:
-        font_path = "D:/SEOSONA Video/7_ASSETS/fonts/Montserrat-Black.ttf"
-        if not os.path.exists(font_path):
-            font_path = "arial.ttf"
-        font = ImageFont.truetype(font_path, font_size)
-    except IOError:
-        font = ImageFont.load_default()
+    with open(template_path, 'r', encoding='utf-8') as f:
+        html_content = f.read()
 
-    # 5. Wrap and Draw Text
-    lines = textwrap.wrap(hook_text, width=wrap_width)
-    line_height = int(font_size * 1.3)
-    total_height = len(lines) * line_height
-    y_text = (H - total_height) // 2
+    # Replace variables
+    html_content = html_content.replace('{{LOGO_PATH}}', logo_uri)
+    html_content = html_content.replace('{{PORTRAIT_PATH}}', portrait_uri)
+    html_content = html_content.replace('{{WATERMARK}}', watermark)
+    html_content = html_content.replace('{{TOP_LABEL}}', top_label)
+    html_content = html_content.replace('{{MAIN_TITLE_1}}', title_1)
+    html_content = html_content.replace('{{MAIN_TITLE_KW}}', title_kw)
+    html_content = html_content.replace('{{MAIN_TITLE_2}}', title_2)
+    html_content = html_content.replace('{{HOOK}}', hook)
+    html_content = html_content.replace('{{CTA_1}}', cta_1)
+    html_content = html_content.replace('{{CTA_KW}}', cta_kw)
+    html_content = html_content.replace('{{CTA_2}}', cta_2)
     
-    for i, line in enumerate(lines):
-        color_to_use = hex_to_rgb(highlight_hex) if i % 2 == 0 else hex_to_rgb(text_hex)
+    # We save a temporary filled html file to render
+    temp_html_path = output_path + ".temp.html"
+    with open(temp_html_path, 'w', encoding='utf-8') as f:
+        f.write(html_content)
         
-        try:
-            text_bbox = draw.textbbox((0, 0), line, font=font)
-            text_width = text_bbox[2] - text_bbox[0]
-        except Exception:
-            text_width = len(line) * (font_size // 2)
-            
-        # Layout Logic
-        if aspect_ratio == "16:9":
-            # Align Left for YouTube standard
-            x_text = 150
-        else:
-            # Center for TikTok
-            x_text = (W - text_width) // 2
-            
-        draw_text_with_shadow(draw, line, (x_text, y_text), font, color_to_use)
-        y_text += line_height
-
-    img.save(output_path, quality=95)
-    print(f"Thumbnail ({aspect_ratio}) saved to {output_path}")
+    # Render with playwright
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page(viewport={"width": 1080, "height": 1920})
+        
+        file_uri = "file:///" + os.path.abspath(temp_html_path).replace("\\", "/")
+        file_uri = "file:///" + os.path.abspath(temp_html_path).replace("\\", "/")
+        page.goto(file_uri)
+        page.wait_for_load_state("networkidle")
+        
+        # Take screenshot of exact 1080x1920 area
+        page.screenshot(
+            path=output_path,
+            clip={'x': 0, 'y': 0, 'width': 1080, 'height': 1920}
+        )
+        
+        browser.close()
+        
+    # Cleanup temp
+    try:
+        os.remove(temp_html_path)
+    except:
+        pass
+        
+    print(f"Thumbnail successfully saved to {output_path}")
     return output_path
+
+if __name__ == "__main__":
+    # Quick Test
+    generate_html_thumbnail(
+        "Thumbnail_Test.png",
+        top_label="BÍ MẬT TRAFFIC 2026",
+        main_title="CÚ ĐẢO NGƯỢC THUẬT TOÁN GOOGLE",
+        hook="", # Hidden in HTML anyway
+        cta="GIẢI MÃ BÍ MẬT NGAY",
+        portrait_path=r"D:\SEOSONA Video\PTP_8811_nobg.png",
+        watermark="AI 2026",
+        manual_title=("CÚ ĐẢO NGƯỢC", "THUẬT TOÁN", "GOOGLE"),
+        manual_cta=("GIẢI MÃ", "BÍ MẬT", "NGAY")
+    )

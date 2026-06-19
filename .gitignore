@@ -42,5 +42,11 @@ output/
 !7_ASSETS/**/*.mov
 !7_ASSETS/**/*.avi
 
+# Ignore personal and reference data in ASSETS locally
+7_ASSETS/tham_khao/*
+7_ASSETS/srt_raw/*
+7_ASSETS/SEOSONA/*.pdf
+
+
 # Ignore big logs
 *.log

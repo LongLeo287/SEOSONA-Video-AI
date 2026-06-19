@@ -21,7 +21,7 @@ def detect_input_type(input_value):
     if input_value.startswith("http://") or input_value.startswith("https://"):
         if "youtube.com" in input_value or "youtu.be" in input_value:
             return "download", input_value
-        return "download", input_value
+        return "scrape", input_value
 
     # File detection
     if os.path.isfile(input_value):
@@ -70,6 +70,11 @@ def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
 
     elif mode == "repurpose":
         print("[Router] → Routing to: SRT Analyzer → Clipper → Render Pipeline")
+    elif mode == "scrape":
+        print("[Router] -> Step 1: Web Scraping (crawl4ai)")
+        print("[Router] -> Step 2: Extracting News Script (OpenAI)")
+        print("[Router] -> Step 3: Screen Recording B-Roll (Playwright/browser-use)")
+        print("[Router] -> Step 4: Routing to Render Pipeline")
     else:
         print("[Router] → Routing to: TTS → Whisper → Render Pipeline")
 

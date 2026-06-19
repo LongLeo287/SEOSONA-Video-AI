@@ -67,7 +67,7 @@ Every enabled engine must expose the same return shape:
 5. Never install or import heavyweight engines directly inside the main video runtime. Use isolated adapters and explicit health checks.
 6. Use native word timestamps when an engine provides them.
 7. If no native timestamps exist, use script-derived fallback for generated TTS; use ASR only when audio content is not generated from the known script.
-8. Store only rights-cleared voice references under `5_ASSETS/voice_profiles/`.
+8. Store only rights-cleared voice references under `7_ASSETS/voice_profiles/`.
 9. Never clone a voice from third-party media without explicit permission.
 
 ## Recommended Next Work

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920, initial-scale=1.0">
+    <title>SEOSONA Thumbnail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#1A2DB5',
+                        brandBlue: '#1565C0',
+                        lightBlue: '#BBDEFB',
+                        panelBg: '#F3F6FA',
+                        ink: '#0E1633',
+                        brandGray: '#5A6588',
+                        borderGray: '#E2E8F2',
+                        brandYellow: '#FFD54F',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1080px;
+            height: 1920px;
+            background-color: #1A2DB5;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 2px, transparent 2px);
+            background-size: 30px 30px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 400px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.04);
+            line-height: 1;
+            z-index: 0;
+            pointer-events: none;
+            text-align: center;
+            width: 200%;
+            white-space: nowrap;
+        }
+
+        .content-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1080px;
+            height: 1920px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            padding: 80px 60px;
+        }
+
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 10px;
+            z-index: 15;
+        }
+
+        .logo-container {
+            background-color: white;
+            padding: 10px 30px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .top-label {
+            background-color: #1565C0;
+            color: white;
+            font-weight: 800;
+            font-size: 36px;
+            padding: 16px 45px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            font-weight: 900;
+            font-size: 135px;
+            line-height: 1.1;
+            letter-spacing: -3px;
+            margin-top: 5px;
+            max-width: 1000px;
+            z-index: 15; /* Behind character */
+            text-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .title-keyword {
+            color: #BBDEFB;
+            border-bottom: 12px solid #BBDEFB;
+            padding-bottom: 0px;
+            display: inline-block;
+        }
+
+        .middle-section {
+            position: absolute;
+            top: 40%;
+            left: -5%;
+            width: 110%;
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 25; /* In front of title */
+        }
+
+        .portrait-img {
+            max-width: 130%;
+            max-height: 120%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 60px rgba(187, 222, 251, 0.4));
+            z-index: 30;
+        }
+
+        /* Floating UI Accents (Flowcharts) */
+        .accent-icon {
+            position: absolute;
+            z-index: 10;
+            opacity: 0.6;
+        }
+        
+        .accent-left {
+            left: 40px;
+            top: 40%;
+            width: 250px;
+        }
+        
+        .accent-right {
+            right: 40px;
+            top: 55%;
+            width: 200px;
+        }
+
+        .hook-section {
+            position: absolute;
+            top: 80%;
+            left: 0;
+            width: 100%;
+            display: none; /* Hide hook as requested */
+            justify-content: center;
+            z-index: 40;
+        }
+
+        .hook-text {
+            display: none;
+        }
+
+        .bottom-section {
+            position: absolute;
+            bottom: 40px;
+            left: 50px;
+            right: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            z-index: 40;
+        }
+
+        .cta-text {
+            font-size: 65px;
+            font-weight: 900;
+            text-align: center;
+            line-height: 1;
+            text-transform: uppercase;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            letter-spacing: -1px;
+            background: #1A2DB5;
+            padding: 15px 45px;
+            border-radius: 9999px;
+            border: 4px solid #1565C0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            white-space: nowrap;
+        }
+
+        .cta-highlight {
+            color: #FFD54F;
+        }
+
+        .footer {
+            width: 100%;
+            border-top: 2px solid rgba(226, 232, 242, 0.2);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark">{{WATERMARK}}</div>
+
+    <!-- Floating UI Accents (Complex Nodes) -->
+    <svg class="accent-icon accent-left" fill="none" viewBox="0 0 200 200" stroke="#1565C0" stroke-width="3">
+        <rect x="20" y="20" width="60" height="40" rx="8" />
+        <rect x="120" y="100" width="60" height="40" rx="8" />
+        <path d="M50 60 v40 h70" />
+        <circle cx="50" cy="100" r="5" fill="#1A2DB5" />
+        <path d="M120 120 h-40 v60" stroke-dasharray="5,5" />
+    </svg>
+    <svg class="accent-icon accent-right" fill="none" viewBox="0 0 200 200" stroke="#1565C0" stroke-width="3">
+        <circle cx="100" cy="50" r="30" />
+        <rect x="70" y="120" width="60" height="30" rx="15" />
+        <path d="M100 80 v40" />
+        <path d="M40 135 h30" stroke-dasharray="5,5" />
+        <path d="M130 135 h30" stroke-dasharray="5,5" />
+        <text x="100" y="180" font-family="sans-serif" font-size="16" fill="#1565C0" text-anchor="middle" stroke="none">mio tag</text>
+    </svg>
+
+    <div class="content-container">
+        <!-- TOP: 0-36% -->
+        <div class="top-section">
+            <div class="logo-container">
+                <img src="{{LOGO_PATH}}" alt="SEOSONA" class="logo">
+            </div>
+            <div class="top-label">{{TOP_LABEL}}</div>
+            <h1 class="main-title">
+                {{MAIN_TITLE_1}} <span class="title-keyword">{{MAIN_TITLE_KW}}</span> <br>{{MAIN_TITLE_2}}
+            </h1>
+        </div>
+
+        <!-- MIDDLE: 34-76% -->
+        <div class="middle-section">
+            <img src="{{PORTRAIT_PATH}}" alt="Character" class="portrait-img">
+        </div>
+
+        <!-- HOOK: 72-81% -->
+        <div class="hook-section">
+            <p class="hook-text">{{HOOK}}</p>
+        </div>
+
+        <!-- BOTTOM: 82-100% -->
+        <div class="bottom-section">
+            <h2 class="cta-text">
+                {{CTA_1}} <span class="cta-highlight">{{CTA_KW}}</span> {{CTA_2}}
+            </h2>
+            <div class="footer">
+                SEOSONA · Share to be shared more
+            </div>
+        </div>
+    </div>
+</body>
+</html>

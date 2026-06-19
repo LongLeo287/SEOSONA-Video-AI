@@ -8,12 +8,14 @@ This SOP maps external video repositories into SEOSONA Video without duplicate e
 
 | Layer | Canonical SEOSONA Video component | External repos allowed to influence it | Rule |
 |---|---|---|---|
-| Rendering | `5_FRAMEWORK/hf_core/` and `5_FRAMEWORK/hf_cards/` | heygen-com/hyperframes, nexu-io/html-video | HyperFrames remains primary. html-video is template/reference material only. |
-| Media ingest | `2_SKILLS/yt_downloader/yt_dlp_engine.py` | yt-dlp/yt-dlp, alexta69/metube, imputnet/cobalt, averygan/reclip, HoangTran0410/douyin-dowload-all-video | yt-dlp wrapper remains primary. UI/downloader apps are not copied into the project. |
+| Web Scraping & Data | `1_AGENTS/scraper_agent/` (NEW) | unclecode/crawl4ai, firecrawl/firecrawl, ScrapeGraphAI/Scrapegraph-ai, DIYgod/RSSHub | crawl4ai is primary for HTML to Markdown. RSSHub for scheduled news. |
+| Browser Automation & Screen Record | `2_SKILLS/visual_fetcher/` (NEW) | browser-use/browser-use, microsoft/playwright, browserbase/stagehand | browser-use for dynamic AI interaction. playwright for exact screenshots/scrolls. |
+| Rendering | `5_FRAMEWORK/hf_core/` and `5_FRAMEWORK/hf_cards/` | heygen-com/hyperframes, nexu-io/html-video, midrender/revideo | HyperFrames remains primary. revideo acts as programmable screen composition if needed. |
+| Media ingest | `2_SKILLS/yt_downloader/yt_dlp_engine.py` | yt-dlp/yt-dlp, alexta69/metube, imputnet/cobalt, averygan/reclip | yt-dlp wrapper is primary. UI/downloader apps are NOT copied. |
 | Transcription and captions | `2_SKILLS/srt_maker/whisper_engine.py` | Huanshere/VideoLingo, WEIFENG2333/VideoCaptioner, chubbyguan/chubbyskills | Improve segmentation, correction, alignment, translation, and subtitle-first routing. |
-| Clipping and repurposing | `2_SKILLS/video_clipper/clipper.py` | browser-use/video-use, zhouxiaoka/autoclip, Augani/openreel-video | Add highlight logic and edit-plan validation around the existing clipper. |
-| Long-form short-video generation | `4_BRAIN/pipeline_manager.py` | harry0703/MoneyPrinterTurbo, xuanyustudio/LocalMiniDrama, chatfire-AI/huobao-drama, waooAI/waoowaoo | Distill pipeline patterns only. Do not import full app stacks. |
-| Design system and scene planning | `5_FRAMEWORK/hf_core/.skills/`, `5_FRAMEWORK/hf_cards/` | nexu-io/open-design, safishamsi/graphify, dexhunter/seedance2-skill | Use as planning, prompt, and graph references for HyperFrames scene generation. |
+| Clipping and repurposing | `2_SKILLS/video_clipper/clipper.py` | browser-use/video-use, zhouxiaoka/autoclip, Augani/openreel-video | Add highlight logic and edit-plan validation around the existing clipper. video-use is canonical for screen-based clipping. |
+| Long-form short-video generation | `4_BRAIN/pipeline_manager.py` | harry0703/MoneyPrinterTurbo, xuanyustudio/LocalMiniDrama | Distill pipeline patterns only. |
+| Design system and scene planning | `5_FRAMEWORK/hf_core/.skills/` | nexu-io/open-design, safishamsi/graphify, dexhunter/seedance2-skill | Use as planning, prompt, and graph references. |
 | Multimedia runtime | runtime toolchain | FFmpeg/FFmpeg | Use FFmpeg as external binary/CLI dependency only. |
 | Restricted asset cleanup | none | GargantuaX/gemini-watermark-remover | Do not add as an operational skill for third-party watermark removal. |
 
