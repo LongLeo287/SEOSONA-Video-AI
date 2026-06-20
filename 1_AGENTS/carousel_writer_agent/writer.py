@@ -127,17 +127,20 @@ AVAILABLE SLIDE TYPES:
      "closing_icon": "star"
    }
 
-7. "image_split" — 50/50 split layout. One side text, one side image.
+7. "image_split" — 50/50 split layout. One side text, one side image/chart.
    {
      "type": "image_split",
      "label": "GIAO DIỆN",
      "heading": "Thiết kế trực quan",
      "heading_highlight": "trực quan",
-     "desc": "Hiển thị ảnh minh hoạ sinh động thay vì chỉ có text.",
-     "body": ["Biểu đồ", "Ảnh chụp màn hình", "Mô hình quy trình"],
-     "image": ""
+     "desc": "Hiển thị biểu đồ so sánh rõ ràng.",
+     "body": ["Dữ liệu cập nhật liên tục"],
+     "image_request": {
+       "action": "draw_chart",
+       "chart_type": "bar",
+       "data": {"Truyền thống": 20, "AI": 85}
+     }
    }
-   - "image" is the file path or URL. Leave it empty "" if no specific image is available (a placeholder will be drawn).
 
 8. "mockup_showcase" — A large UI mockup (macOS window) holding an image.
    {
@@ -145,10 +148,18 @@ AVAILABLE SLIDE TYPES:
      "label": "KẾT QUẢ",
      "heading": "Báo cáo Tự động",
      "heading_highlight": "Báo cáo",
-     "desc": "Giao diện dashboard SEO thực tế.",
-     "image": ""
+     "desc": "Ảnh chụp màn hình trang web.",
+     "image_request": {
+       "action": "capture_web",
+       "url": "https://seosona.com"
+     }
    }
-   - "image" is the file path or URL. Leave it empty "" for a placeholder.
+
+DYNAMIC IMAGES:
+For "image_split" and "mockup_showcase", you can request the system to auto-generate the image using the "image_request" field:
+- To capture a website screenshot: "image_request": {"action": "capture_web", "url": "<target_url>"}
+- To draw a bar chart: "image_request": {"action": "draw_chart", "chart_type": "bar", "data": {"Label A": 10, "Label B": 90}}
+- If you don't need a dynamic image, just provide "image": "" and a placeholder will be drawn.
 
 RULES:
 - Generate 5 to 8 slides total.
