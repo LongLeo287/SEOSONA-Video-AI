@@ -3,6 +3,25 @@ import re
 import urllib.parse
 from playwright.sync_api import sync_playwright
 
+BRAND_PALETTES = {
+    "seosona": {
+        "navy": "#1A2DB5",
+        "blue": "#1565C0",
+        "light_blue": "#BBDEFB",
+        "yellow": "#FFD54F",
+        "logo_path": "7_ASSETS/logos/Seosona_Logo.png",
+        "watermark": "SEO"
+    },
+    "cqa": {
+        "navy": "#1B3A8A",
+        "blue": "#2B5EA7",
+        "light_blue": "#BBDEFB",
+        "yellow": "#FFD54F",
+        "logo_path": "7_ASSETS/logos/CQA_Logo.png",
+        "watermark": "CQA"
+    }
+}
+
 def extract_keyword(text):
     """
     Simulate basic NLP to extract the most important keyword from a string.
@@ -12,12 +31,9 @@ def extract_keyword(text):
     if not words:
         return "", "", ""
         
-    # Just take the last 1-2 words as the keyword for simplicity, 
-    # or the longest word. Let's just highlight the longest word if no explicit marker.
     if len(words) <= 2:
         return "", " ".join(words), ""
         
-    # Find longest word to be the keyword
     longest_word = max(words, key=len)
     idx = words.index(longest_word)
     
@@ -27,12 +43,14 @@ def extract_keyword(text):
     
     return prefix, keyword, suffix
 
-def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portrait_path=None, watermark="SEO", manual_title=None, manual_cta=None, aspect_ratio="16:9"):
+def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portrait_path=None, manual_title=None, manual_cta=None, aspect_ratio="16:9", brand="seosona"):
     """
     Generates a thumbnail by rendering the HTML template using Playwright.
     Supports 16:9 (1920x1080) and 9:16 (1080x1920) aspect ratios.
     """
-    print(f"Generating HTML-based Thumbnail ({aspect_ratio})...")
+    print(f"Generating HTML-based Thumbnail ({aspect_ratio} | {brand})...")
+    
+    palette = BRAND_PALETTES.get(brand.lower(), BRAND_PALETTES["seosona"])
     
     if aspect_ratio == "16:9":
         template_name = 'seosona_thumbnail_16x9.html'
@@ -42,7 +60,7 @@ def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portr
         width, height = 1080, 1920
         
     template_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '5_FRAMEWORK', 'html_renderer', 'templates', template_name))
-    logo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '7_ASSETS', 'logos', 'Seosona_Logo.png'))
+    logo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', palette["logo_path"]))
     
     if not os.path.exists(template_path):
         raise FileNotFoundError(f"Template not found at {template_path}")
@@ -64,16 +82,28 @@ def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portr
     # Format portrait path
     if portrait_path and os.path.exists(portrait_path):
         portrait_uri = "file:///" + os.path.abspath(portrait_path).replace("\\", "/")
+        text_align_class = ""
+        portrait_style = ""
     else:
         portrait_uri = ""
+        text_align_class = "center-align"
+        portrait_style = "display: none;"
 
     with open(template_path, 'r', encoding='utf-8') as f:
         html_content = f.read()
 
     # Replace variables
+    html_content = html_content.replace('{{COLOR_NAVY}}', palette["navy"])
+    html_content = html_content.replace('{{COLOR_BLUE}}', palette["blue"])
+    html_content = html_content.replace('{{COLOR_LIGHT_BLUE}}', palette["light_blue"])
+    html_content = html_content.replace('{{COLOR_YELLOW}}', palette["yellow"])
+    
+    html_content = html_content.replace('{{TEXT_ALIGN_CLASS}}', text_align_class)
+    html_content = html_content.replace('{{PORTRAIT_STYLE}}', portrait_style)
+    
     html_content = html_content.replace('{{LOGO_PATH}}', logo_uri)
     html_content = html_content.replace('{{PORTRAIT_PATH}}', portrait_uri)
-    html_content = html_content.replace('{{WATERMARK}}', watermark)
+    html_content = html_content.replace('{{WATERMARK}}', palette["watermark"])
     html_content = html_content.replace('{{TOP_LABEL}}', top_label)
     html_content = html_content.replace('{{MAIN_TITLE_1}}', title_1)
     html_content = html_content.replace('{{MAIN_TITLE_KW}}', title_kw)
@@ -115,30 +145,30 @@ def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portr
     return output_path
 
 if __name__ == "__main__":
-    # Quick Test 9:16
+    # Quick Test SEOSONA 9:16 (With Portrait)
     generate_html_thumbnail(
-        "Thumbnail_Test_9x16.png",
+        "Thumbnail_Test_SEOSONA_9x16.png",
         top_label="BÍ MẬT TRAFFIC 2026",
         main_title="CÚ ĐẢO NGƯỢC THUẬT TOÁN GOOGLE",
         hook="", # Hidden in HTML anyway
         cta="GIẢI MÃ BÍ MẬT NGAY",
         portrait_path=r"D:\SEOSONA Video\PTP_8811_nobg.png",
-        watermark="AI 2026",
         manual_title=("CÚ ĐẢO NGƯỢC", "THUẬT TOÁN", "GOOGLE"),
         manual_cta=("GIẢI MÃ", "BÍ MẬT", "NGAY"),
-        aspect_ratio="9:16"
+        aspect_ratio="9:16",
+        brand="seosona"
     )
     
-    # Quick Test 16:9
+    # Quick Test CQA 16:9 (Text Only - No Portrait)
     generate_html_thumbnail(
-        "Thumbnail_Test_16x9.png",
-        top_label="BÍ MẬT TRAFFIC 2026",
-        main_title="CÚ ĐẢO NGƯỢC THUẬT TOÁN GOOGLE",
+        "Thumbnail_Test_CQA_16x9_NoPortrait.png",
+        top_label="HƯỚNG DẪN CHI TIẾT",
+        main_title="XÂY DỰNG HỆ THỐNG MARKETING TỰ ĐỘNG",
         hook="", 
-        cta="GIẢI MÃ BÍ MẬT NGAY",
-        portrait_path=r"D:\SEOSONA Video\PTP_8811_nobg.png",
-        watermark="AI 2026",
-        manual_title=("CÚ ĐẢO NGƯỢC", "THUẬT TOÁN", "GOOGLE"),
-        manual_cta=("GIẢI MÃ", "BÍ MẬT", "NGAY"),
-        aspect_ratio="16:9"
+        cta="XEM NGAY BÍ KÍP",
+        portrait_path=None,
+        manual_title=("XÂY DỰNG HỆ THỐNG", "MARKETING", "TỰ ĐỘNG"),
+        manual_cta=("XEM NGAY", "BÍ KÍP", ""),
+        aspect_ratio="16:9",
+        brand="cqa"
     )

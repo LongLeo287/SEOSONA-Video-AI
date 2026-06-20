@@ -14,14 +14,14 @@
                         sans: ['"Be Vietnam Pro"', 'sans-serif'],
                     },
                     colors: {
-                        navy: '#1A2DB5',
-                        brandBlue: '#1565C0',
-                        lightBlue: '#BBDEFB',
+                        navy: '{{COLOR_NAVY}}',
+                        brandBlue: '{{COLOR_BLUE}}',
+                        lightBlue: '{{COLOR_LIGHT_BLUE}}',
                         panelBg: '#F3F6FA',
                         ink: '#0E1633',
                         brandGray: '#5A6588',
                         borderGray: '#E2E8F2',
-                        brandYellow: '#FFD54F',
+                        brandYellow: '{{COLOR_YELLOW}}',
                     }
                 }
             }
@@ -33,7 +33,7 @@
             padding: 0;
             width: 1920px;
             height: 1080px;
-            background-color: #1A2DB5;
+            background-color: {{COLOR_NAVY}};
             background-image: radial-gradient(rgba(255, 255, 255, 0.15) 2px, transparent 2px);
             background-size: 30px 30px;
             color: white;
@@ -77,6 +77,15 @@
             z-index: 20;
         }
 
+        .left-section.center-align {
+            flex: 1;
+            align-items: center;
+            text-align: center;
+        }
+        .left-section.center-align .main-title {
+            text-align: center;
+        }
+
         .logo-container {
             background-color: white;
             padding: 12px 35px;
@@ -94,7 +103,7 @@
         }
 
         .top-label {
-            background-color: #1565C0;
+            background-color: {{COLOR_BLUE}};
             color: white;
             font-weight: 800;
             font-size: 40px;
@@ -118,8 +127,8 @@
         }
 
         .title-keyword {
-            color: #BBDEFB;
-            border-bottom: 15px solid #BBDEFB;
+            color: {{COLOR_LIGHT_BLUE}};
+            border-bottom: 15px solid {{COLOR_LIGHT_BLUE}};
             padding-bottom: 0px;
             display: inline-block;
         }
@@ -136,7 +145,7 @@
             text-transform: uppercase;
             text-shadow: 0 10px 20px rgba(0,0,0,0.5);
             letter-spacing: -1px;
-            background: #FFD54F;
+            background: {{COLOR_YELLOW}};
             color: #0E1633;
             padding: 25px 60px;
             border-radius: 9999px;
@@ -145,7 +154,7 @@
         }
 
         .cta-highlight {
-            color: #1565C0;
+            color: {{COLOR_BLUE}};
         }
 
         /* RIGHT SIDE (PORTRAIT) */
@@ -193,14 +202,14 @@
     <div class="watermark">{{WATERMARK}}</div>
 
     <!-- Floating UI Accents -->
-    <svg class="accent-icon accent-top" fill="none" viewBox="0 0 200 200" stroke="#1565C0" stroke-width="3">
+    <svg class="accent-icon accent-top" fill="none" viewBox="0 0 200 200" stroke="{{COLOR_BLUE}}" stroke-width="3">
         <rect x="20" y="20" width="60" height="40" rx="8" />
         <rect x="120" y="100" width="60" height="40" rx="8" />
         <path d="M50 60 v40 h70" />
-        <circle cx="50" cy="100" r="5" fill="#1A2DB5" />
+        <circle cx="50" cy="100" r="5" fill="{{COLOR_NAVY}}" />
         <path d="M120 120 h-40 v60" stroke-dasharray="5,5" />
     </svg>
-    <svg class="accent-icon accent-bottom" fill="none" viewBox="0 0 200 200" stroke="#1565C0" stroke-width="3">
+    <svg class="accent-icon accent-bottom" fill="none" viewBox="0 0 200 200" stroke="{{COLOR_BLUE}}" stroke-width="3">
         <circle cx="100" cy="50" r="30" />
         <rect x="70" y="120" width="60" height="30" rx="15" />
         <path d="M100 80 v40" />
@@ -210,7 +219,7 @@
 
     <div class="content-container">
         <!-- LEFT: TEXT -->
-        <div class="left-section">
+        <div class="left-section {{TEXT_ALIGN_CLASS}}">
             <div class="logo-container">
                 <img src="{{LOGO_PATH}}" alt="SEOSONA" class="logo">
             </div>
@@ -226,7 +235,7 @@
         </div>
 
         <!-- RIGHT: PORTRAIT -->
-        <div class="right-section">
+        <div class="right-section" style="{{PORTRAIT_STYLE}}">
             <img src="{{PORTRAIT_PATH}}" alt="Character" class="portrait-img">
         </div>
     </div>
