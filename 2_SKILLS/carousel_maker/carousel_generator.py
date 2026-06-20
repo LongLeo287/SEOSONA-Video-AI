@@ -300,6 +300,69 @@ def _build_css(p: dict) -> str:
         display:flex; align-items:center; padding:0 16px; gap:8px;
     }}
     .mac-dot {{ width:12px; height:12px; border-radius:50%; }}
+
+    /* ── Process Row Cards ────── */
+    .row-card {{
+        display:flex; align-items:center; gap:16px;
+        background:{p['card_bg']}; border-radius:16px;
+        border:2px solid {p['card_border']};
+        padding:16px 20px; margin-bottom:12px;
+        box-shadow:0 4px 16px rgba(0,0,0,0.04);
+    }}
+    .icon-wrap {{
+        width:44px; height:44px; border-radius:12px;
+        background:{p['number_bg']}; color:{p['blue']};
+        display:flex; align-items:center; justify-content:center;
+        flex-shrink:0;
+    }}
+    .rc-title {{
+        font-size:22px; font-weight:700; color:{p['text']};
+        line-height:1.3;
+    }}
+    .rc-desc {{
+        font-size:18px; color:{p['text_sub']}; margin-top:4px;
+        line-height:1.4;
+    }}
+    .rc-tag {{
+        display:inline-flex; padding:6px 16px;
+        background:{p['tag_ok_bg']}; border-radius:50px;
+        font-size:14px; font-weight:700; color:{p['tag_ok_text']};
+        letter-spacing:1px; text-transform:uppercase; flex-shrink:0;
+    }}
+
+    /* ── Feature Cards ────── */
+    .feat-card {{
+        display:flex; align-items:flex-start; gap:20px;
+        background:{p['card_bg']}; border-radius:18px;
+        border:2px solid {p['card_border']};
+        padding:24px 28px; margin-bottom:16px;
+        box-shadow:0 6px 20px rgba(0,0,0,0.04);
+    }}
+    .fc-title {{
+        font-size:26px; font-weight:700; color:{p['text']};
+        line-height:1.3; margin-bottom:8px;
+    }}
+    .fc-desc {{
+        font-size:20px; color:{p['text_sub']}; line-height:1.5;
+    }}
+
+    /* ── Grid 2-column ────── */
+    .grid-2col {{
+        display:grid; grid-template-columns:1fr 1fr;
+        gap:16px;
+    }}
+    .grid-item {{
+        display:flex; align-items:center; gap:12px;
+        background:{p['card_bg']}; border-radius:14px;
+        border:2px solid {p['card_border']};
+        padding:18px 20px;
+        font-size:22px; font-weight:600; color:{p['text']};
+        box-shadow:0 4px 12px rgba(0,0,0,0.04);
+    }}
+    .grid-item .dot {{
+        width:10px; height:10px; border-radius:50%;
+        background:{p['blue']}; flex-shrink:0;
+    }}
     """
 
 # ─── Renderers (Text-Heavy Archetypes) ────────────────────────────
