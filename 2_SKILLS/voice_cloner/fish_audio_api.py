@@ -24,7 +24,16 @@ def _probe_engines():
     # Edge-TTS is always available (pure Python, no GPU)
     _AVAILABLE_ENGINES.append("edge-tts")
 
-def clone_voice(script_text, audio_out, brand="cqa", engine="vieneu"):
+def clone_voice(
+    script_text,
+    audio_out,
+    brand="cqa",
+    engine="vieneu",
+    fallback_voice="vi-VN-NamMinhNeural",
+    preset_voice=None,
+    reference_audio=None,
+    require_male_southern=False,
+):
     """
     Unified voice generation entry point.
     Attempts requested engine first, then falls through priority list.
@@ -32,11 +41,21 @@ def clone_voice(script_text, audio_out, brand="cqa", engine="vieneu"):
     _probe_engines()
     
     if engine in _AVAILABLE_ENGINES and engine == "vieneu":
-        print(f"[Voice Engine] Using VieNeu TTS...")
-        # TODO: implement vieneu adapter when package is installed
-        # vieneu_engine = import_module('2_SKILLS.voice_cloner.vieneu_engine')
-        # return vieneu_engine.synthesize(script_text, audio_out)
-    
+        if require_male_southern and not reference_audio and not preset_voice:
+            print("[Voice Engine] VieNeu is available, but no approved male Southern preset/reference was configured.")
+            print("[Voice Engine] Falling back to the configured male Vietnamese Edge-TTS voice.")
+        else:
+            print(f"[Voice Engine] Using VieNeu TTS...")
+            vieneu_engine = import_module('2_SKILLS.voice_cloner.vieneu_engine')
+            vieneu_result = vieneu_engine.synthesize(
+                script_text,
+                audio_out,
+                voice=preset_voice,
+                reference_audio=reference_audio,
+            )
+            if vieneu_result:
+                return vieneu_result
+
     if "fish_audio" in _AVAILABLE_ENGINES and engine in ["fish_audio", "f5tts"]:
         print(f"[Voice Engine] Using Fish Audio API...")
         # TODO: implement fish audio adapter
@@ -51,5 +70,4 @@ def clone_voice(script_text, audio_out, brand="cqa", engine="vieneu"):
         print(f"[Voice Engine] Using Edge-TTS.")
     
     tts_engine = import_module('2_SKILLS.tts_generator.tts_engine')
-    fallback_voice = 'vi-VN-NamMinhNeural' if brand == 'cqa' else 'vi-VN-HoaiMyNeural'
     return tts_engine.generate_voice_with_subtitles(script_text, audio_out, voice=fallback_voice)

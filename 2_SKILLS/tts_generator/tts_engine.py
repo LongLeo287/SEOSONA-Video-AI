@@ -5,7 +5,7 @@ Used as default engine for SEOSONA and fallback for CQA.
 import asyncio
 import os
 
-def generate_voice(text, output_path, voice="vi-VN-HoaiMyNeural"):
+def generate_voice(text, output_path, voice="vi-VN-NamMinhNeural"):
     """
     Generate voice using edge-tts Python API.
     Returns output file path on success, None on failure.
@@ -32,7 +32,7 @@ def generate_voice(text, output_path, voice="vi-VN-HoaiMyNeural"):
         print(f"[TTS Engine] Error: {e}")
         return None
 
-def generate_voice_with_subtitles(text, output_path, voice="vi-VN-HoaiMyNeural"):
+def generate_voice_with_subtitles(text, output_path, voice="vi-VN-NamMinhNeural"):
     """
     Generate voice AND extract word-level timestamps for subtitle sync.
     Returns: (audio_path, subtitle_data)
@@ -76,8 +76,8 @@ def generate_voice_with_subtitles(text, output_path, voice="vi-VN-HoaiMyNeural")
 
 # Available Vietnamese voices
 VOICES = {
-    "seosona_female": "vi-VN-HoaiMyNeural",   # Professional female
-    "cqa_male": "vi-VN-NamMinhNeural",         # Energetic male (CQA fallback)
+    "seosona_male": "vi-VN-NamMinhNeural",    # Required male Vietnamese fallback
+    "cqa_male": "vi-VN-NamMinhNeural",        # Energetic male fallback
 }
 
 if __name__ == "__main__":

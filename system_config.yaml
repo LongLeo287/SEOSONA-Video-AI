@@ -36,12 +36,15 @@ profiles:
     voice:
       engine: "vieneu"
       model: "default"
+      required_gender: "male"
+      required_accent: "southern"
+      reference_audio: "7_ASSETS/voice_profiles/seosona_male_southern.wav"
       fallback_engine: "edge-tts"
-      fallback_voice: "vi-VN-HoaiMyNeural"
+      fallback_voice: "vi-VN-NamMinhNeural"
     logo: "Seosona_Logo.png"
     animation: "slide_up"
-    brand_tone: "Chuyên nghiệp, uy tín, dẫn đầu thị trường, insight sắc bén"
-    target_audience: "Doanh nhân, Marketer, SEO Specialist"
+    brand_tone: "Professional, reputable, market-leading, sharp insights"
+    target_audience: "Entrepreneurs, Marketers, SEO Specialists"
 
   cqa:
     description: "Fun, creator-focused, dynamic, 100% Light Mode"
@@ -57,16 +60,18 @@ profiles:
     voice:
       engine: "vieneu"
       model: "chiquyet_clone_v1"
+      required_gender: "male"
+      required_accent: "southern"
       reference_audio: "7_ASSETS/voice_profiles/chiquyet_sample_4s.wav"
       fallback_engine: "edge-tts"
       fallback_voice: "vi-VN-NamMinhNeural"
     logo: "Chi Quyet Academy Mascot Logo.png"
     animation: "elastic_pop"
-    brand_tone: "Vui vẻ, gần gũi, truyền cảm hứng, dễ hiểu"
-    target_audience: "Người mới học SEO, Creator, Freelancer"
+    brand_tone: "Fun, approachable, inspiring, easy to understand"
+    target_audience: "SEO beginners, Creators, Freelancers"
 
 api_keys:
-  # LƯU Ý: Không điền Key thật vào đây. Hệ thống sẽ tự động đọc từ file .env
+  # NOTE: Do not put real Keys here. The system will automatically read from the .env file
   pexels: "${PEXELS_API_KEY}"
   openai: "${OPENAI_API_KEY}"
   fish_audio: "${FISH_AUDIO_API_KEY}"

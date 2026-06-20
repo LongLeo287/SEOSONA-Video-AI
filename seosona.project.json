@@ -1,4 +1,5 @@
 {
+  "$schema": "~/.seosona/1_CONFIG/schemas/seosona.project.schema.json",
   "schema": "seosona.project.v1",
   "name": "seosona-video",
   "displayName": "SEOSONA Video Factory",
@@ -9,7 +10,7 @@
     "whisper",
     "gpt-sovits"
   ],
-  "osRoot": "D:/SEOSONA OS",
+  "osRoot": "~/.seosona",
   "memoryNamespace": "seosona-video",
   "autonomy": {
     "defaultLevel": "project_edit",
@@ -20,7 +21,11 @@
     ]
   },
   "commands": {
-    "intake": "node \"D:/SEOSONA OS/1_CORE/scripts/seosona_capability_bridge.js\" route",
+    "intake": "npm run seosona:route --",
+    "doctor": "npm run seosona:doctor",
+    "manifest": "npm run seosona:manifest",
+    "audit": "npm run seosona:audit",
+    "run": "npm run video:run --",
     "lint": "python -m flake8 ."
   },
   "workflows": [

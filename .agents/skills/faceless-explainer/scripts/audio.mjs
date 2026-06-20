@@ -404,7 +404,7 @@ function inferBgmPrompt() {
 // ---------- Step 6: per-scene chained TTS → transcribe (parallel across scenes) ----------
 function spawnP(cmd, args, opts) {
   return new Promise((resolve) => {
-    const p = spawn(cmd, args, { stdio: "ignore", ...opts });
+    const p = spawn(cmd, args, { stdio: "ignore", ...opts, shell: true });
     p.on("exit", (code) => resolve({ status: code ?? -1 }));
     p.on("error", () => resolve({ status: -1 }));
   });

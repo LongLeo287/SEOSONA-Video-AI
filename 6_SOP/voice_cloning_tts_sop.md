@@ -9,8 +9,8 @@ VieNeu-TTS is the primary engine — designed specifically for Vietnamese with n
 
 | Brand | Engine (Primary) | Fallback | Voice Character |
 |:------|:----------------|:---------|:----------------|
-| SEOSONA | VieNeu-TTS (built-in voice) | Edge-TTS (`vi-VN-HoaiMyNeural`) | Female, professional, authoritative |
-| CQA | VieNeu-TTS (clone from sample) | Edge-TTS (`vi-VN-NamMinhNeural`) | Male (Chi Quyet), energetic, approachable |
+| SEOSONA | VieNeu-TTS approved male Southern reference/preset | Edge-TTS (`vi-VN-NamMinhNeural`) | Male, Southern Vietnamese target, professional, authoritative |
+| CQA | VieNeu-TTS approved male Southern reference/preset | Edge-TTS (`vi-VN-NamMinhNeural`) | Male, Southern Vietnamese target, energetic, approachable |
 
 ## Engine Priority
 
@@ -29,7 +29,7 @@ Script Text
 [1] Brand Detection -> system_config.yaml -> select engine
   |
 [2] VieNeu-TTS available?
-      YES -> Clone mode (CQA: ref_audio) or Default voice (SEOSONA)
+      YES -> Clone/reference mode only when an approved male Southern reference or preset is configured
       NO  -> Try OmniVoice -> CosyVoice -> Edge-TTS
   |
 [3] Output: voice.mp3 (48kHz mono)
@@ -50,8 +50,8 @@ Insert directly into script text:
 - `[hang giong]` — Clearing throat
 
 ### Code-Switching (En-Vi)
-VieNeu-TTS handles English words in Vietnamese text natively via `sea-g2p` phonemizer.
-No special markup needed — "SEO", "Google", "Content Marketing" are pronounced correctly.
+News-video code-switching is handled before TTS by `4_BRAIN/news_video_standards.py`.
+The visible script and subtitles keep correct spelling such as `AI`, `SEO`, `GitHub`, and `Obscura`; the TTS input receives a separate Vietnamese pronunciation string.
 
 ### SDK Usage
 ```python
@@ -91,9 +91,11 @@ audio = tts.infer("[cuoi] Noi dung vui ve [hang giong] tiep tuc...")
    voice:
      engine: "vieneu"
      model: "{name}_clone_v1"
+     required_gender: "male"
+     required_accent: "southern"
      reference_audio: "7_ASSETS/voice_profiles/{name}_sample_30s.wav"
      fallback_engine: "edge-tts"
-     fallback_voice: "vi-VN-HoaiMyNeural"
+     fallback_voice: "vi-VN-NamMinhNeural"
    ```
 
 3. Test:
@@ -104,8 +106,9 @@ audio = tts.infer("[cuoi] Noi dung vui ve [hang giong] tiep tuc...")
 ## Quality Checklist
 
 - [ ] Voice sounds natural with proper Vietnamese tone/intonation
+- [ ] Voice is male and matches the approved Southern Vietnamese target profile
 - [ ] Emotion cues render correctly (if used)
-- [ ] English words (SEO, Google, etc.) are pronounced correctly
+- [ ] English/technical terms are spelled correctly on screen and pronounced via the lexicon
 - [ ] No robotic artifacts or glitches
 - [ ] Pacing matches video timing (not too fast/slow)
 - [ ] BGM volume does not overpower voice

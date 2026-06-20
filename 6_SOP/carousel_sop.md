@@ -29,7 +29,7 @@
 
 ### Cover Slide
 - **Background**: Solid Navy (#1A2DB5) with subtle white dots.
-- **Label**: Rounded pill label (e.g., "MẸO DÙNG AI...").
+- **Label**: Rounded pill label (e.g., "TIPS FOR USING...").
 - **Title**: Massive size, White color. 1 keyword changed to Light Blue.
 - **Accents**: Accent underline, short description, pagination dots at the bottom.
 

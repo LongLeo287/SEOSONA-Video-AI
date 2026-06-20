@@ -3,6 +3,19 @@ Workflow Router — Smart entry point that decides which pipeline to run.
 """
 import os
 import sys
+
+# --- SEOSONA AUTO-BOOTSTRAP ---
+try:
+    from importlib import import_module
+    brain_dir = os.path.dirname(os.path.abspath(__file__))
+    if brain_dir not in sys.path:
+        sys.path.insert(0, brain_dir)
+    bootstrap = import_module('seosona_bootstrap')
+    bootstrap.bootstrap()
+except Exception as e:
+    print(f"[Router] Bootstrap check failed: {e}")
+# ------------------------------
+
 from importlib import import_module
 
 # Monkey-patch cho MoviePy 1.0.3 tương thích với Pillow >= 10.0.0

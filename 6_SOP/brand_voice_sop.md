@@ -8,22 +8,22 @@
 - Consultative, strategic advisory voice
 
 ### Vocabulary Examples (Vietnamese — for content generation)
-- "Chiến lược", "Tối ưu", "Phân tích", "Dữ liệu cho thấy..."
-- "Theo nghiên cứu...", "Case study thực tế..."
-- "Doanh nghiệp cần...", "Giải pháp tối ưu..."
+- "Strategy", "Optimization", "Analysis", "Data shows..."
+- "According to research...", "Actual case study..."
+- "Businesses need...", "Optimal solution..."
 
 ### Vocabulary to Avoid
 - Slang, excessive emojis, Gen Z language
 - Overly casual tone
 
 ### Hook Templates (Vietnamese)
-- "94% marketer nói rằng [X] là quan trọng, nhưng chỉ 12% làm đúng."
-- "Dữ liệu từ 1000 website cho thấy [insight bất ngờ]."
-- "Chiến lược này đã giúp khách hàng của chúng tôi tăng [metric] lên [số]%."
+- "94% of marketers say [X] is important, but only 12% get it right."
+- "Data from 1000 websites reveals [unexpected insight]."
+- "This strategy has helped our customers increase [metric] by [number]%."
 
 ---
 
-## Chí Quyết Academy (Creator)
+## Chi Quyet Academy (Creator)
 
 ### Tone
 - Fun, approachable, high-energy, inspirational
@@ -31,18 +31,18 @@
 - Encouraging, motivational
 
 ### Vocabulary Examples (Vietnamese — for content generation)
-- "Bạn có biết...", "Mọi người hay sai ở chỗ..."
-- "Cực kỳ đơn giản!", "Chỉ cần 3 bước..."
-- "Thử ngay đi!", "Comment cho mình biết..."
+- "Did you know...", "People often get it wrong..."
+- "Extremely simple!", "Just 3 steps..."
+- "Try it now!", "Comment to let me know..."
 
 ### Vocabulary to Avoid
 - Overly academic, dry language
 - Unexplained English jargon
 
 ### Hook Templates (Vietnamese)
-- "Bạn có biết 90% người mới làm SEO đều mắc sai lầm này?"
-- "Mình đã thử cách này và kết quả khiến mình bất ngờ!"
-- "Stop! Đừng làm [X] nữa. Đây mới là cách đúng."
+- "Did you know that 90% of SEO beginners make this mistake?"
+- "I tried this method and the results surprised me!"
+- "Stop! Don't do [X] anymore. This is the right way."
 
 ---
 

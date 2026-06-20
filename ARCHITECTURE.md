@@ -1,18 +1,18 @@
-# SEOSONA Video Factory — System Architecture
+# SEOSONA Video Factory - System Architecture
 
 ## Overview
 
-SEOSONA Video Factory is a multi-brand automated video production system connected to SEOSONA OS (`~/.seosona`). It supports 2 brands: **SEOSONA** (Business) and **Chí Quyết Academy** (Creator).
+SEOSONA Video Factory is a multi-brand automated video production system connected to SEOSONA OS through `~/.seosona`. It supports scripted video creation, URL-based research, YouTube download/repurpose flows, subtitle generation, thumbnail generation, and HyperFrames rendering.
 
 ## Architecture Diagram
 
 ```mermaid
 graph TD
-    subgraph INPUT["INPUT"]
-        A1["Text Script"]
-        A2["YouTube URL"]
-        A3["SRT File"]
-        A4["MP4 File"]
+    subgraph INPUT["Input"]
+        A1["Text script"]
+        A2["Website URL"]
+        A3["YouTube URL"]
+        A4["SRT or MP4 file"]
     end
 
     subgraph BRAIN["4_BRAIN"]
@@ -22,46 +22,49 @@ graph TD
     end
 
     subgraph AGENTS["1_AGENTS"]
-        C1["editor_agent"]
-        C2["repurposer_agent"]
-        C3["researcher_agent"]
-        C4["scraper_agent"]
-        C5["writer_agent"]
-        C6["quality_reviewer"]
-        C7["seo_optimizer"]
+        C1["researcher_agent"]
+        C2["scraper_agent"]
+        C3["writer_agent"]
+        C4["editor_agent"]
+        C5["repurposer_agent"]
+        C6["seo_optimizer"]
+        C7["quality_reviewer"]
         C8["publisher_agent"]
     end
 
     subgraph SKILLS["2_SKILLS"]
-        D1["tts_generator"]
-        D2["voice_cloner"]
-        D3["srt_maker"]
-        D4["srt_parser"]
-        D5["visual_fetcher"]
-        D6["thumbnail_maker"]
-        D7["video_clipper"]
-        D8["yt_downloader"]
-        D9["script_writer"]
+        D1["script_writer"]
+        D2["tts_generator"]
+        D3["voice_cloner"]
+        D4["srt_maker"]
+        D5["srt_parser"]
+        D6["yt_downloader"]
+        D7["visual_fetcher"]
+        D8["video_clipper"]
+        D9["thumbnail_maker"]
         D10["metadata_extractor"]
     end
 
     subgraph FRAMEWORK["5_FRAMEWORK"]
-        E1["moviepy_wrapper"]
+        E1["hf_core"]
+        E2["hf_cards"]
+        E3["html_renderer"]
+        E4["moviepy_wrapper legacy helpers"]
     end
 
     subgraph ASSETS["7_ASSETS"]
-        F1["sfx/ (pops + transitions)"]
-        F2["icons/"]
-        F3["fonts/"]
-        F4["logos/"]
-        F5["mockups/"]
-        F6["brand_guideline/"]
+        F1["logos"]
+        F2["fonts"]
+        F3["sfx"]
+        F4["bgm"]
+        F5["brand assets"]
     end
 
     subgraph OUTPUT["8_WORKSPACE"]
-        G1["{ProjectName}.mp4"]
-        G2["SRT/{ProjectName}.srt"]
-        G3["Thumbnail/{ProjectName}_Thumbnail.jpg"]
+        G1["Project MP4"]
+        G2["SRT file"]
+        G3["Thumbnail PNG"]
+        G4["publish_ready JSON"]
     end
 
     INPUT --> B1
@@ -69,51 +72,79 @@ graph TD
     B2 --> AGENTS
     B2 --> SKILLS
     SKILLS --> FRAMEWORK
-    FRAMEWORK --> ASSETS
+    FRAMEWORK --> F1
+    FRAMEWORK --> F2
+    FRAMEWORK --> F3
     FRAMEWORK --> G1
     SKILLS --> G2
     SKILLS --> G3
+    C8 --> G4
     B3 --> G1
 ```
 
 ## Workflow Pipelines
 
-### Mode 1: Create (New Video)
-```
-Text → TTS/Voice Clone → Whisper (SRT) → Visual Fetcher → MoviePy Render → Quality Check → Output
+### Create
+
+```text
+Text -> TTS or voice clone -> word timing/SRT -> scene planning -> HyperFrames render -> thumbnail -> QA
 ```
 
-### Mode 2: Repurpose (Long → Short)
-```
-MP4/SRT → SRT Parser → SRT Analyzer Agent → Video Clipper → MoviePy Render → Thumbnail → Output
+### Scrape
+
+```text
+Website URL -> scraper/research extraction -> script generation -> visual capture or B-roll -> HyperFrames render -> thumbnail -> QA
 ```
 
-### Mode 3: Download (YouTube → Short)
-```
-URL → yt-dlp → Audio Extract → Whisper → SRT Analyzer → Clipper → Output
+### Download
+
+```text
+YouTube URL -> yt-dlp wrapper -> downloaded media -> repurpose flow
 ```
 
-## Directory Structure
+### Repurpose
 
+```text
+MP4/SRT -> subtitle parsing -> highlight or edit-plan analysis -> clipper -> HyperFrames render -> thumbnail -> QA
 ```
-D:\SEOSONA Video\
-├── 1_AGENTS/          → AI Agents (Analysis, Review, SEO, Publishing)
-├── 2_SKILLS/          → Technical Skills (TTS, Whisper, Clipper, yt-dlp)
-├── 3_MEMORY/          → Project Memory (Logs, Errors, Knowledge, Brand)
-├── 4_BRAIN/           → Orchestration (Router, Pipeline, Scorer)
-├── 5_FRAMEWORK/       → Render Engine (MoviePy, Effects, Typography, Audio)
-├── 6_SOP/             → Standard Operating Procedures
-├── 7_ASSETS/          → Asset Library (SFX, Icons, Fonts, Logos, Mockups)
-├── 8_WORKSPACE/       → Production Output
-├── system_config.yaml → Multi-brand Configuration
-├── requirements.txt   → Python Dependencies
-└── ARCHITECTURE.md    → This file
+
+### Publish
+
+```text
+Rendered package -> publisher_agent metadata package -> yutu candidate adapter -> YouTube channel operation
+```
+
+## SEOSONA OS Capability Links
+
+- YouTube channel operations: `~/.seosona/2_KNOWLEDGE/frameworks/multimedia_production/youtube_channel_operations_mcp/SKILL.md`
+- Obscura browser automation: `~/.seosona/2_KNOWLEDGE/frameworks/browser_automation/obscura_headless_browser/SKILL.md`
+- Project memory namespace: `~/.seosona/3_MEMORY/projects/seosona-video/`
+
+## Directory Contract
+
+```text
+1_AGENTS/       AI role modules for research, editing, SEO, QA, and publishing
+2_KNOWLEDGE/    Project-level capability cards and external repository notes
+2_SKILLS/       Technical implementation modules
+3_MEMORY/       Local runtime memory and ignored operational traces
+4_BRAIN/        Workflow routing, orchestration, and scoring
+5_FRAMEWORK/    HyperFrames, HTML renderer, and legacy media helpers
+6_SOP/          Standard operating procedures
+7_ASSETS/       Logos, fonts, SFX, BGM, and brand assets
+8_WORKSPACE/    Generated production outputs
+scripts/        Project bridge, runtime, and audit tooling
 ```
 
 ## Iron Rules
 
-1. **Tech-Editorial Minimalism** — Maximum white space, professional layout. Minimal text, massive size, Be Vietnam Pro font. NO 3D/colorful icons.
-2. **Multi-Brand** — SEOSONA (Dark Navy #1A2DB5 / Tech Minimalism) vs CQA (Royal Blue/Pop).
-3. **File Name = Project Name** — All outputs must carry the project/video name.
-4. **Standard SRT Format** — No JSON for subtitles. SubRip (.srt) only.
-5. **Randomized Effects** — SFX and transitions must vary, never repeat the same one.
+1. **HyperFrames & Open Design (Nexu-io) are the CORE** of the Render and dynamic UI system. All frame processing workflows (html_renderer) must be based on their open design standards.
+2. The package `seosona-frame-showcase-landscape-16-9-frame-pack` is designated as the **Standard Master Template** (at `5_FRAMEWORK/hf_cards/master_template`).
+3. Based on that, the system generated a dedicated **Master Template 9:16** (at `5_FRAMEWORK/hf_cards/master_template_9_16`). This is the default design prioritized when users request Tiktok/Shorts videos. Whenever a new format or Frame Pack is initialized, the system must clone from these `master_template` directories to ensure design standards.
+4. FFmpeg is the underlying media processing library (audio overlay/concat).
+5. yt-dlp is the primary media ingestion dependency for YouTube downloads.
+5. Playwright remains primary for exact screenshots (headless rendering of HyperFrames DOM).
+6. yutu is the preferred future YouTube channel operations adapter.
+7. Secrets stay in `.env` or external credential stores, never in Git or memory logs.
+8. Generated media and production workspaces remain ignored unless explicitly promoted as samples.
+
+TASK COMPLETED

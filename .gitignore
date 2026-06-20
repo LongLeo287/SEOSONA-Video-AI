@@ -1,52 +1,68 @@
-# Python Cache & Env
+# ==============================================================================
+# SEOSONA Video - STANDARD .GITIGNORE
+# ==============================================================================
+
+# 1. Hệ sinh thái Python (Tự động tải qua pip / uv)
+.venv/
+venv/
+env/
 __pycache__/
 *.py[cod]
 *$py.class
-.env
-venv/
-env/
-.venv/
+*.so
+.pytest_cache/
+.coverage
 
-# Node modules
+# 2. Hệ sinh thái Node.js (Tự động tải qua npm install)
 node_modules/
-npm-debug.log*
+dist/
+build/
+.npm/
 
-# Mac OS
+# 3. Môi trường hệ điều hành & IDE
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.antigravity/
+.gemini/
+.codex/
+.env
 
-# SEOSONA Temp & Output
+# 4. Trí nhớ & Database cục bộ (Tự động tạo mới/Index lại)
+3_MEMORY/
+!3_MEMORY/.gitkeep
+video_os.db
+chroma_db/
+*.sqlite3
+
+# 5. Model AI & Weights cục bộ (Tự động tải khi code chạy)
+# Models nằm trong thư mục kỹ năng hoặc thư mục assets
+*.pt
+*.pth
+*.safetensors
+*.onnx
+*.bin
+huggingface/
+checkpoints/
+models/
+
+# 6. Không gian làm việc & File Render (Rác / Kết quả sinh ra)
+8_WORKSPACE/
+!8_WORKSPACE/.gitkeep
 .temp/
-output/
-*._Archived_Duplicates/
-
-# Ignore Workspace completely (except README)
-8_WORKSPACE/*
-!8_WORKSPACE/README.md
-
-# Ignore Memory completely (except README)
-3_MEMORY/*
-!3_MEMORY/README.md
-
-# Ignore all media files globally to prevent accidental leaks
+SRT_temp/
 *.mp4
-*.mp3
-*.wav
+*.webm
 *.mov
-*.avi
-*.mkv
+*.wav
+*.mp3
 
-# UN-IGNORE media in 7_ASSETS because they are required system resources
-!7_ASSETS/**/*.mp3
-!7_ASSETS/**/*.mp4
-!7_ASSETS/**/*.wav
-!7_ASSETS/**/*.mov
-!7_ASSETS/**/*.avi
+# 7. Knowledge Base (Kho cào dữ liệu lớn)
+# Chỉ giữ lại script, bỏ qua các dữ liệu raw đã cào
+2_KNOWLEDGE/repos/
+!2_KNOWLEDGE/repos/.gitkeep
 
-# Ignore personal and reference data in ASSETS locally
-7_ASSETS/tham_khao/*
-7_ASSETS/srt_raw/*
-7_ASSETS/SEOSONA/*.pdf
-
-
-# Ignore big logs
-*.log
+# 8. Framework & Tooling (Trình duyệt headless, app build)
+# Ví dụ playwright browsers tự động tải
+.playwright/
