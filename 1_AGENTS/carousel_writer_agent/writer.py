@@ -127,6 +127,29 @@ AVAILABLE SLIDE TYPES:
      "closing_icon": "star"
    }
 
+7. "image_split" — 50/50 split layout. One side text, one side image.
+   {
+     "type": "image_split",
+     "label": "GIAO DIỆN",
+     "heading": "Thiết kế trực quan",
+     "heading_highlight": "trực quan",
+     "desc": "Hiển thị ảnh minh hoạ sinh động thay vì chỉ có text.",
+     "body": ["Biểu đồ", "Ảnh chụp màn hình", "Mô hình quy trình"],
+     "image": ""
+   }
+   - "image" is the file path or URL. Leave it empty "" if no specific image is available (a placeholder will be drawn).
+
+8. "mockup_showcase" — A large UI mockup (macOS window) holding an image.
+   {
+     "type": "mockup_showcase",
+     "label": "KẾT QUẢ",
+     "heading": "Báo cáo Tự động",
+     "heading_highlight": "Báo cáo",
+     "desc": "Giao diện dashboard SEO thực tế.",
+     "image": ""
+   }
+   - "image" is the file path or URL. Leave it empty "" for a placeholder.
+
 RULES:
 - Generate 5 to 8 slides total.
 - The FIRST slide MUST be type "cover".
