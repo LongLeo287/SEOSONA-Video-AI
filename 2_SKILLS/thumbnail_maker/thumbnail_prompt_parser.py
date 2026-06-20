@@ -33,9 +33,12 @@ def extract_thumbnail_data_from_script(script_content: str) -> dict:
         "TITLE_HIGHLIGHT_KEYWORD": "...",
         "SHORT_HOOK": "...",
         "CTA_TEXT": "...",
-        "CTA_HIGHLIGHT_KEYWORD": "..."
+        "CTA_HIGHLIGHT_KEYWORD": "...",
+        "SUBTEXT_ITALIC": "A short philosophical or inspiring italic subtext (1 line). Example: 'Dùng AI để tăng hiệu suất, không phải để rảnh hơn'. Leave empty if not appropriate.",
+        "LAYOUT_TYPE": "portrait or text_only. Use 'portrait' if the content references a person/speaker. Use 'text_only' for pure topic/data thumbnails."
     }
     """
+
     system_prompt += json_instructions
     
     user_prompt = f"Analyze the following [RAW_VIDEO_CONTENT] and extract the thumbnail variables:\n\n{script_content}"

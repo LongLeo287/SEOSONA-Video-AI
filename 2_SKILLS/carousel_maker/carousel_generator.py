@@ -22,11 +22,15 @@ def _html_escape(text: str) -> str:
 
 def _highlight(text: str, highlight: str, color: str) -> str:
     if not highlight or not text:
-        return _html_escape(text)
-    escaped = _html_escape(text)
-    hl = _html_escape(highlight)
-    if hl in escaped:
-        return escaped.replace(hl, f'<span style="color:{color}">{hl}</span>')
+        escaped = _html_escape(text)
+    else:
+        escaped = _html_escape(text)
+        hl = _html_escape(highlight)
+        if hl in escaped:
+            escaped = escaped.replace(hl, f'<span style="color:{color}">{hl}</span>')
+    # Support strikethrough: ~~text~~ → <s>text</s>
+    import re
+    escaped = re.sub(r'~~(.+?)~~', r'<s>\1</s>', escaped)
     return escaped
 
 
@@ -539,17 +543,29 @@ def _render_mockup_showcase(slide: dict, p: dict, logo_html: str, idx: int, tota
 # ─── Simple Fallbacks for other archetypes ────────────────────────
 
 def _render_process(slide: dict, p: dict, logo_html: str, idx: int, total: int) -> str:
-    # Existing process implementation...
     heading_html = _highlight(slide.get("heading", ""), slide.get("heading_highlight", ""), p["accent"])
     
     rows_list = []
     for i, step in enumerate(slide.get("steps", [])):
         desc_html = f'<div class="rc-desc">{_html_escape(step.get("desc", ""))}</div>' if step.get("desc") else ""
         tag_html = f'<span class="rc-tag">{_html_escape(step["tag"])}</span>' if step.get("tag") else ""
-        rows_list.append(f'<div class="row-card"><div class="num-box-dark">{i+1}</div><div class="icon-wrap">{_get_icon_svg(step.get("icon", "check"))}</div><div style="flex:1;"><div class="rc-title">{_html_escape(step.get("title", ""))}</div>{desc_html}</div>{tag_html}</div>')
+        # Inline badge (e.g., RAG, MCP) next to title
+        badge_html = f'<span style="display:inline-flex;padding:4px 14px;background:{p["number_bg"]};color:{p["blue"]};border-radius:6px;font-size:16px;font-weight:800;letter-spacing:1px;margin-left:10px;vertical-align:middle;">{_html_escape(step["badge"])}</span>' if step.get("badge") else ""
+        # Right-side tag (e.g., VAI TRÒ, SỰ THẬT) as pill
+        right_tag_html = f'<span style="display:inline-flex;padding:6px 18px;border:1.5px solid {p["card_border"]};border-radius:50px;font-size:16px;font-weight:700;color:{p["text_sub"]};letter-spacing:1px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;">{_html_escape(step["right_tag"])}</span>' if step.get("right_tag") else ""
+        rows_list.append(f'<div class="row-card"><div class="num-box-dark">{i+1}</div><div class="icon-wrap">{_get_icon_svg(step.get("icon", "check"))}</div><div style="flex:1;"><div class="rc-title">{_html_escape(step.get("title", ""))}{badge_html}</div>{desc_html}</div>{right_tag_html}{tag_html}</div>')
     
+    # Stats row at bottom
+    stats = slide.get("stats", [])
+    stats_html = ""
+    if stats:
+        stats_items = "".join(f'<div style="flex:1;background:white;border-radius:18px;border:2px solid {p["card_border"]};padding:20px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,0.04);"><div style="font-size:48px;font-weight:900;color:{p["navy"]};line-height:1;">{_html_escape(s.get("value",""))}</div><div style="font-size:16px;font-weight:700;color:{p["text_sub"]};margin-top:8px;text-transform:uppercase;letter-spacing:1px;">{_html_escape(s.get("label",""))}</div></div>' for s in stats)
+        stats_html = f'<div style="display:flex;gap:14px;margin-top:20px;">{stats_items}</div>'
+
     rows_html = "".join(rows_list)
-    return f"""<div style="width:1080px;height:1080px;background:{p['bg']};position:relative;overflow:hidden;"><div class="dot-grid"></div>{logo_html}<div style="position:relative;z-index:5;padding:140px 70px 120px 70px;"><div class="label">{_html_escape(slide.get('label', ''))}</div><h2 style="font-size:55px;font-weight:800;color:{p['text']};line-height:1.15;margin-bottom:20px;">{heading_html}</h2>{rows_html}</div><div class="footer-bar"><span class="brand">{p['brand_name']}</span></div></div>"""
+    dots_html = "".join(f'<div class="dot{"" if j != idx else " active"}"></div>' for j in range(total))
+    return f"""<div style="width:1080px;height:1080px;background:{p['bg']};position:relative;overflow:hidden;"><div class="dot-grid"></div>{logo_html}<div style="position:relative;z-index:5;padding:140px 70px 120px 70px;"><div class="label">{_html_escape(slide.get('label', ''))}</div><h2 style="font-size:55px;font-weight:800;color:{p['text']};line-height:1.15;margin-bottom:20px;">{heading_html}</h2>{rows_html}{stats_html}</div><div class="pagination">{dots_html}</div><div class="footer-bar"><span class="brand">{p['brand_name']} · <span style="font-weight:400;color:{p['footer_text']};">{p['brand_tagline']}</span></span></div></div>"""
+
 
 def _render_feature_cards(slide: dict, p: dict, logo_html: str, idx: int, total: int) -> str:
     # Existing feature_cards implementation...
