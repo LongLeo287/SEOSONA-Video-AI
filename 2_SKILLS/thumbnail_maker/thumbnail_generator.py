@@ -27,13 +27,21 @@ def extract_keyword(text):
     
     return prefix, keyword, suffix
 
-def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portrait_path=None, watermark="SEO", manual_title=None, manual_cta=None):
+def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portrait_path=None, watermark="SEO", manual_title=None, manual_cta=None, aspect_ratio="16:9"):
     """
-    Generates a 1080x1920 thumbnail by rendering the HTML template using Playwright.
+    Generates a thumbnail by rendering the HTML template using Playwright.
+    Supports 16:9 (1920x1080) and 9:16 (1080x1920) aspect ratios.
     """
-    print("Generating HTML-based Thumbnail...")
+    print(f"Generating HTML-based Thumbnail ({aspect_ratio})...")
     
-    template_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '5_FRAMEWORK', 'html_renderer', 'templates', 'seosona_thumbnail_v1.html'))
+    if aspect_ratio == "16:9":
+        template_name = 'seosona_thumbnail_16x9.html'
+        width, height = 1920, 1080
+    else:
+        template_name = 'seosona_thumbnail_v1.html'
+        width, height = 1080, 1920
+        
+    template_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '5_FRAMEWORK', 'html_renderer', 'templates', template_name))
     logo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '7_ASSETS', 'logos', 'Seosona_Logo.png'))
     
     if not os.path.exists(template_path):
@@ -83,17 +91,16 @@ def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portr
     # Render with playwright
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        page = browser.new_page(viewport={"width": 1080, "height": 1920})
+        page = browser.new_page(viewport={"width": width, "height": height})
         
-        file_uri = "file:///" + os.path.abspath(temp_html_path).replace("\\", "/")
         file_uri = "file:///" + os.path.abspath(temp_html_path).replace("\\", "/")
         page.goto(file_uri)
         page.wait_for_load_state("networkidle")
         
-        # Take screenshot of exact 1080x1920 area
+        # Take screenshot of exact area
         page.screenshot(
             path=output_path,
-            clip={'x': 0, 'y': 0, 'width': 1080, 'height': 1920}
+            clip={'x': 0, 'y': 0, 'width': width, 'height': height}
         )
         
         browser.close()
@@ -108,9 +115,9 @@ def generate_html_thumbnail(output_path, top_label, main_title, hook, cta, portr
     return output_path
 
 if __name__ == "__main__":
-    # Quick Test
+    # Quick Test 9:16
     generate_html_thumbnail(
-        "Thumbnail_Test.png",
+        "Thumbnail_Test_9x16.png",
         top_label="BÍ MẬT TRAFFIC 2026",
         main_title="CÚ ĐẢO NGƯỢC THUẬT TOÁN GOOGLE",
         hook="", # Hidden in HTML anyway
@@ -118,5 +125,20 @@ if __name__ == "__main__":
         portrait_path=r"D:\SEOSONA Video\PTP_8811_nobg.png",
         watermark="AI 2026",
         manual_title=("CÚ ĐẢO NGƯỢC", "THUẬT TOÁN", "GOOGLE"),
-        manual_cta=("GIẢI MÃ", "BÍ MẬT", "NGAY")
+        manual_cta=("GIẢI MÃ", "BÍ MẬT", "NGAY"),
+        aspect_ratio="9:16"
+    )
+    
+    # Quick Test 16:9
+    generate_html_thumbnail(
+        "Thumbnail_Test_16x9.png",
+        top_label="BÍ MẬT TRAFFIC 2026",
+        main_title="CÚ ĐẢO NGƯỢC THUẬT TOÁN GOOGLE",
+        hook="", 
+        cta="GIẢI MÃ BÍ MẬT NGAY",
+        portrait_path=r"D:\SEOSONA Video\PTP_8811_nobg.png",
+        watermark="AI 2026",
+        manual_title=("CÚ ĐẢO NGƯỢC", "THUẬT TOÁN", "GOOGLE"),
+        manual_cta=("GIẢI MÃ", "BÍ MẬT", "NGAY"),
+        aspect_ratio="16:9"
     )
