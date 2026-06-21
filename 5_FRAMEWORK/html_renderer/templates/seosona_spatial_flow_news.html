@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>SEOSONA News — Spatial Flow</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:        #1A2DB5;
+  --blue:        #1565C0;
+  --light-blue:  #BBDEFB;
+  --deep-purple: #7C4DFF;
+  --teal:        #00BFA5;
+  --bg-start:    #EDE7F6;
+  --bg-mid:      #F5F3FF;
+  --bg-end:      #E8EAF6;
+  --card-bg:     rgba(255,255,255,0.72);
+  --card-border: rgba(26,45,181,0.10);
+  --text:        #1A2DB5;
+  --text-sub:    #546E7A;
+  --text-muted:  rgba(26,45,181,0.4);
+  --dot-color:   rgba(26,45,181,0.04);
+  --path-color:  rgba(26,45,181,0.18);
+  --glow:        rgba(26,45,181,0.15);
+}
+
+html, body {
+  margin: 0; padding: 0;
+  width: 1080px; height: 1920px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-mid) 40%, var(--bg-end) 100%);
+}
+
+#root {
+  position: relative;
+  width: 1080px; height: 1920px;
+  overflow: hidden;
+}
+
+/* ═══════════════ PERSISTENT LAYERS ═══════════════ */
+
+/* Dots Grid — like the reference video's star field */
+.dots-grid {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(var(--dot-color) 1.5px, transparent 1.5px);
+  background-size: 50px 50px;
+  z-index: 0;
+}
+
+/* Watermark */
+.watermark {
+  position: absolute;
+  top: -60px; right: -80px;
+  font-size: 600px; font-weight: 900;
+  color: rgba(26,45,181,0.025);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* HUD Top Bar — "SPATIAL FLOW" left + "XX ĐIỂM NỘI DUNG" right */
+.hud-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 80px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  border-bottom: 1px solid rgba(26,45,181,0.08);
+  z-index: 100;
+}
+.hud-label {
+  font-size: 13px; font-weight: 800; letter-spacing: 4px;
+  color: var(--text-muted); text-transform: uppercase;
+}
+.hud-counter {
+  font-size: 13px; font-weight: 800; letter-spacing: 2px;
+  color: var(--text-muted); text-transform: uppercase;
+}
+
+/* Logo — center top */
+.logo-center {
+  position: absolute; top: 90px; left: 50%; transform: translateX(-50%);
+  z-index: 100;
+}
+.logo-center img { height: 40px; }
+
+/* Scan Line — sweeping subtle light */
+.scan-line {
+  position: absolute; left: 0; right: 0; top: -120px;
+  height: 200px; z-index: 1;
+  background: linear-gradient(180deg, transparent, rgba(26,45,181,0.04), transparent);
+  pointer-events: none;
+}
+
+/* Transition Wipe */
+.transition-wipe {
+  position: absolute; top: 0; bottom: 0; left: -20%; width: 40%;
+  z-index: 30;
+  transform: translateX(-140%) skewX(-15deg);
+  background: linear-gradient(90deg, transparent, rgba(26,45,181,0.06), transparent);
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+}
+
+/* Progress Bar bottom */
+.progress-track {
+  position: absolute; bottom: 100px; left: 72px; right: 72px;
+  height: 4px; border-radius: 2px;
+  background: rgba(26,45,181,0.08);
+  z-index: 100;
+}
+.progress-fill {
+  height: 100%; border-radius: 2px;
+  background: linear-gradient(90deg, var(--navy), var(--blue));
+  width: 0%;
+}
+
+/* Bottom Footer */
+.footer {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(90deg, var(--navy), var(--blue));
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100;
+}
+.footer span {
+  color: rgba(255,255,255,0.8);
+  font-size: 18px; font-weight: 600; letter-spacing: 1px;
+}
+
+/* ═══════════════ NODE SYSTEM ═══════════════ */
+
+.node {
+  position: absolute;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 900; color: #fff;
+  z-index: 10;
+  box-shadow: 0 0 20px var(--glow);
+}
+.node.navy     { background: var(--navy); }
+.node.blue     { background: var(--blue); }
+.node.purple   { background: var(--deep-purple); }
+.node.teal     { background: var(--teal); }
+/* Outer ring — orbit */
+.node::after {
+  content: ''; position: absolute;
+  width: 90px; height: 90px; border-radius: 50%;
+  border: 1px solid currentColor; opacity: 0.2;
+}
+
+/* ═══════════════ CONTENT CARDS (Glassmorphism) ═══════════════ */
+
+.glass-card {
+  position: absolute;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(26,45,181,0.06);
+  z-index: 10;
+}
+
+.card-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  padding: 5px 14px; border-radius: 6px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.card-tag.navy   { background: rgba(26,45,181,0.08); color: var(--navy); }
+.card-tag.blue   { background: rgba(21,101,192,0.08); color: var(--blue); }
+.card-tag.purple { background: rgba(124,77,255,0.08); color: var(--deep-purple); }
+.card-tag.teal   { background: rgba(0,191,165,0.08); color: var(--teal); }
+
+.card-heading {
+  font-size: 36px; font-weight: 900; line-height: 1.15;
+  color: var(--text); margin-bottom: 8px;
+}
+.card-heading .hl { color: var(--blue); }
+
+.card-sub {
+  font-size: 16px; font-weight: 500; line-height: 1.6;
+  color: var(--text-sub);
+}
+
+/* ═══════════════ ORBIT RING ═══════════════ */
+
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(26,45,181,0.12);
+  z-index: 5;
+}
+.orbit-ring .orbit-dot {
+  position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--navy);
+}
+
+/* ═══════════════ PATH LINES (SVG) ═══════════════ */
+
+.path-svg {
+  position: absolute; inset: 0;
+  width: 1080px; height: 1920px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ═══════════════ SUBTITLE / KARAOKE ═══════════════ */
+
+.subtitle-area {
+  position: absolute; bottom: 140px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; text-align: center;
+  z-index: 50;
+}
+.subtitle-text {
+  font-size: 32px; font-weight: 700; line-height: 1.3;
+  color: var(--text);
+}
+.subtitle-text .kw {
+  color: var(--blue); font-weight: 800;
+}
+
+/* ═══════════════ SCENE CONTAINERS ═══════════════ */
+
+.scene {
+  position: absolute; inset: 0;
+  z-index: 5; opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Scene 1: Headline/Hook ── */
+#scene-1 .orbit-ring {
+  width: 320px; height: 320px;
+  top: 420px; left: 200px;
+}
+#scene-1 .node {
+  top: 400px; left: 60px;
+}
+#scene-1 .glass-card {
+  top: 460px; left: 60px; right: 72px;
+}
+
+/* ── Scene 2: Data/Stats Card ── */
+#scene-2 .node {
+  top: 370px; left: 60px;
+}
+#scene-2 .glass-card {
+  top: 410px; left: 60px; right: 72px;
+}
+.stat-row {
+  display: flex; gap: 16px; margin-top: 16px;
+}
+.stat-box {
+  flex: 1;
+  background: rgba(26,45,181,0.04);
+  border: 1px solid rgba(26,45,181,0.08);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+}
+.stat-value {
+  font-size: 28px; font-weight: 900; color: var(--navy);
+}
+.stat-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--text-muted); text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── Scene 3: Target/Conclusion ── */
+#scene-3 .node {
+  top: 370px; left: 60px;
+}
+#scene-3 .conclusion-circle {
+  position: absolute;
+  width: 340px; height: 220px;
+  top: 440px; left: 50%; transform: translateX(-50%);
+  border: 2px solid var(--teal);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,191,165,0.1);
+  z-index: 10;
+}
+.conclusion-icon {
+  font-size: 36px; color: var(--teal); margin-bottom: 8px;
+}
+.conclusion-tag {
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  color: var(--teal); text-transform: uppercase; margin-bottom: 6px;
+}
+.conclusion-title {
+  font-size: 32px; font-weight: 900; color: var(--text);
+  line-height: 1.2;
+}
+.conclusion-sub {
+  font-size: 14px; font-weight: 500; color: var(--text-sub);
+  margin-top: 6px;
+}
+
+/* ── Scene 4: Feature Grid (like frame 11) ── */
+#scene-4 .node {
+  top: 340px; left: 60px;
+}
+#scene-4 .glass-card {
+  top: 380px; left: 60px; right: 72px;
+}
+.feat-mini-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-top: 16px;
+}
+.feat-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(26,45,181,0.1);
+  border-radius: 10px;
+  font-size: 14px; font-weight: 700; color: var(--text);
+  background: rgba(255,255,255,0.5);
+}
+.feat-pill .pill-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(26,45,181,0.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; flex-shrink: 0;
+}
+.feat-pill.active {
+  border-color: var(--teal);
+  background: rgba(0,191,165,0.06);
+}
+.feat-pill.active .pill-icon {
+  background: var(--teal); color: #fff;
+}
+
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="{{DURATION}}" data-width="1080" data-height="1920">
+
+  <!-- ═══════ PERSISTENT LAYERS ═══════ -->
+  <div class="dots-grid"></div>
+  <div class="watermark">{{WATERMARK}}</div>
+  <div class="scan-line"></div>
+  <div class="transition-wipe"></div>
+
+  <div class="hud-top">
+    <div class="hud-label">SPATIAL FLOW</div>
+    <div class="hud-counter">{{TOTAL_POINTS}} ĐIỂM NỘI DUNG</div>
+  </div>
+
+  <div class="logo-center"><img src="{{LOGO_PATH}}" alt="SEOSONA"></div>
+
+  <!-- SVG Path Lines (connecting nodes) -->
+  <svg class="path-svg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="pathGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#1A2DB5" stop-opacity="0.2"/>
+        <stop offset="50%" stop-color="#1565C0" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="#1A2DB5" stop-opacity="0.1"/>
+      </linearGradient>
+    </defs>
+    <!-- Vertical main path -->
+    <path d="M 90 430 C 90 600, 540 700, 540 800 C 540 900, 90 950, 90 1100"
+          fill="none" stroke="url(#pathGrad)" stroke-width="2" stroke-dasharray="8 6"/>
+    <!-- Waypoint diamonds -->
+    <rect x="533" y="747" width="14" height="14" transform="rotate(45 540 754)"
+          fill="none" stroke="rgba(26,45,181,0.15)" stroke-width="1.5"/>
+    <rect x="83" y="1043" width="14" height="14" transform="rotate(45 90 1050)"
+          fill="none" stroke="rgba(26,45,181,0.15)" stroke-width="1.5"/>
+  </svg>
+
+  <!-- ═══════ SCENE 1: HEADLINE ═══════ -->
+  <section id="scene-1" class="scene">
+    <div class="node navy" style="top:400px; left:56px">01</div>
+    <div class="orbit-ring" style="width:280px; height:280px; top:360px; left:180px;">
+      <div class="orbit-dot"></div>
+    </div>
+    <div class="glass-card" style="top:480px; left:56px; right:60px;">
+      <div class="card-tag navy">{{S1_TAG}}</div>
+      <div class="card-heading">{{S1_HEADING}} <span class="hl">{{S1_HL}}</span></div>
+      <div class="card-sub">{{S1_SUB}}</div>
+    </div>
+  </section>
+
+  <!-- ═══════ SCENE 2: STATS ═══════ -->
+  <section id="scene-2" class="scene">
+    <div class="node blue" style="top:370px; left:56px">02</div>
+    <div class="glass-card" style="top:420px; left:56px; right:60px;">
+      <div class="card-tag blue">{{S2_TAG}}</div>
+      <div class="card-heading">{{S2_HEADING}} <span class="hl">{{S2_HL}}</span></div>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-value">{{S2_STAT1_VAL}}</div>
+          <div class="stat-label">{{S2_STAT1_LBL}}</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">{{S2_STAT2_VAL}}</div>
+          <div class="stat-label">{{S2_STAT2_LBL}}</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">{{S2_STAT3_VAL}}</div>
+          <div class="stat-label">{{S2_STAT3_LBL}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SCENE 3: CONCLUSION ═══════ -->
+  <section id="scene-3" class="scene">
+    <div class="node teal" style="top:370px; left:56px">03</div>
+    <div class="conclusion-circle">
+      <div class="conclusion-icon">✓</div>
+      <div class="conclusion-tag">{{S3_TAG}}</div>
+      <div class="conclusion-title">{{S3_HEADING}}</div>
+      <div class="conclusion-sub">{{S3_SUB}}</div>
+    </div>
+  </section>
+
+  <!-- ═══════ SCENE 4: FEATURE GRID ═══════ -->
+  <section id="scene-4" class="scene">
+    <div class="node purple" style="top:340px; left:56px">04</div>
+    <div class="glass-card" style="top:390px; left:56px; right:60px;">
+      <div class="card-tag purple">{{S4_TAG}}</div>
+      <div class="card-heading">{{S4_HEADING}} <span class="hl">{{S4_HL}}</span></div>
+      <div class="feat-mini-grid">
+        <div class="feat-pill"><div class="pill-icon">✦</div> {{S4_F1}}</div>
+        <div class="feat-pill"><div class="pill-icon">🏗</div> {{S4_F2}}</div>
+        <div class="feat-pill"><div class="pill-icon">✓</div> {{S4_F3}}</div>
+        <div class="feat-pill active"><div class="pill-icon">✓</div> {{S4_F4}}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SUBTITLE ═══════ -->
+  <div class="subtitle-area">
+    <div class="subtitle-text">{{SUBTITLE}}</div>
+  </div>
+
+  <!-- ═══════ PROGRESS BAR ═══════ -->
+  <div class="progress-track">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <div class="footer">
+    <span>SEOSONA · Share to be shared more</span>
+  </div>
+
+  <!-- ═══════ ANIMATION ═══════ -->
+  <script>
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+
+    // Scan line continuous
+    gsap.fromTo(".scan-line",
+      { y: -200, opacity: 0.05 },
+      { y: 2200, opacity: 0.12, duration: 10, ease: "none", repeat: -1 }
+    );
+
+    // Progress bar
+    gsap.to("#progress", { width: "100%", duration: 16, ease: "none", repeat: -1 });
+
+    // ── Scene 1 ──
+    const s1 = "#scene-1";
+    tl.set(s1, { opacity: 1 }, 0);
+    tl.from(`${s1} .node`, { scale: 0, opacity: 0, duration: 0.5, ease: "back.out(1.7)" }, 0.2);
+    tl.from(`${s1} .orbit-ring`, { scale: 0.5, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.3);
+    tl.from(`${s1} .glass-card`, { y: 40, opacity: 0, duration: 0.6, ease: "power3.out" }, 0.5);
+    tl.from(`${s1} .card-tag`, { x: -20, opacity: 0, duration: 0.4 }, 0.7);
+    tl.from(`${s1} .card-heading`, { y: 20, opacity: 0, duration: 0.5 }, 0.8);
+    tl.from(`${s1} .card-sub`, { y: 15, opacity: 0, duration: 0.4 }, 1.0);
+
+    // Wipe
+    tl.fromTo(".transition-wipe",
+      { x: "-150%", opacity: 0 },
+      { x: "360%", opacity: 1, duration: 0.7, ease: "power4.inOut" }, 3.5);
+    tl.to(s1, { opacity: 0, duration: 0.35 }, 3.6);
+
+    // ── Scene 2 ──
+    const s2 = "#scene-2";
+    tl.set(s2, { opacity: 1 }, 3.8);
+    tl.from(`${s2} .node`, { scale: 0, opacity: 0, duration: 0.5, ease: "back.out(1.7)" }, 4.0);
+    tl.from(`${s2} .glass-card`, { y: 40, opacity: 0, duration: 0.6, ease: "power3.out" }, 4.2);
+    tl.from(`${s2} .card-tag`, { x: -20, opacity: 0, duration: 0.4 }, 4.4);
+    tl.from(`${s2} .card-heading`, { y: 20, opacity: 0, duration: 0.5 }, 4.5);
+    tl.from(`${s2} .stat-box`, { y: 30, scale: 0.9, opacity: 0, duration: 0.5, ease: "back.out(1.4)", stagger: 0.1 }, 4.8);
+
+    tl.fromTo(".transition-wipe",
+      { x: "-150%", opacity: 0 },
+      { x: "360%", opacity: 1, duration: 0.7, ease: "power4.inOut" }, 7.5);
+    tl.to(s2, { opacity: 0, duration: 0.35 }, 7.6);
+
+    // ── Scene 3 ──
+    const s3 = "#scene-3";
+    tl.set(s3, { opacity: 1 }, 7.8);
+    tl.from(`${s3} .node`, { scale: 0, opacity: 0, duration: 0.5, ease: "back.out(1.7)" }, 8.0);
+    tl.from(`${s3} .conclusion-circle`, { scale: 0.6, opacity: 0, duration: 0.8, ease: "power3.out" }, 8.2);
+    tl.from(`${s3} .conclusion-icon`, { y: -20, opacity: 0, duration: 0.4 }, 8.6);
+    tl.from(`${s3} .conclusion-title`, { y: 20, opacity: 0, duration: 0.5 }, 8.8);
+
+    tl.fromTo(".transition-wipe",
+      { x: "-150%", opacity: 0 },
+      { x: "360%", opacity: 1, duration: 0.7, ease: "power4.inOut" }, 11.5);
+    tl.to(s3, { opacity: 0, duration: 0.35 }, 11.6);
+
+    // ── Scene 4 ──
+    const s4 = "#scene-4";
+    tl.set(s4, { opacity: 1 }, 11.8);
+    tl.from(`${s4} .node`, { scale: 0, opacity: 0, duration: 0.5, ease: "back.out(1.7)" }, 12.0);
+    tl.from(`${s4} .glass-card`, { y: 40, opacity: 0, duration: 0.6, ease: "power3.out" }, 12.2);
+    tl.from(`${s4} .card-heading`, { y: 20, opacity: 0, duration: 0.5 }, 12.4);
+    tl.from(`${s4} .feat-pill`, { x: -20, opacity: 0, duration: 0.4, stagger: 0.08 }, 12.6);
+  </script>
+</div>
+</body>
+</html>

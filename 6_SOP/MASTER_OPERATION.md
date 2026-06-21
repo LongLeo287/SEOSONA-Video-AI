@@ -3,10 +3,23 @@
 
 The system operates in a **Linear Pipeline** going from Router (`4_BRAIN/workflow_router.py`) to Workspace (`8_WORKSPACE/`).
 
+Workflow boundaries are defined in `6_SOP/SEOSONA_WORKFLOW_BOUNDARY_MAP.md`.
+Image workflows and video workflows are separate operating lanes.
+
 ## ENTRY POINT
 
 ```
 python 4_BRAIN/workflow_router.py "<input>" [brand] [ratio] [project_name]
+```
+
+Canonical production commands:
+
+```bash
+npm run template:clone -- <video_path> <template_name>
+npm run post:image -- <text_or_file>
+npm run thumbnail:create -- <title_or_hook>
+npm run video:news -- <script_or_file_or_url> [project_name] [aspect_ratio]
+npm run video:course -- <script_or_file> [project_name] [aspect_ratio]
 ```
 
 The router automatically detects the input:

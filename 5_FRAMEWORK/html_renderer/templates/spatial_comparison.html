@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1080">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1080px; height: 1080px;
+  background: linear-gradient(180deg, #EDE7F6 0%, #F5F3FF 40%, #E8EAF6 100%);
+  font-family: 'Inter', sans-serif;
+  color: #1A2DB5;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Grid nền ── */
+.grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(26,45,181,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,45,181,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Glow orbs ── */
+.orb {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.12;
+}
+.orb-1 { width: 400px; height: 400px; background: #1A2DB5; top: -100px; left: -80px; }
+.orb-2 { width: 300px; height: 300px; background: #1565C0; bottom: -60px; right: -40px; opacity: 0.08; }
+
+/* ── HUD Top Bar ── */
+.hud-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  border-bottom: 1px solid rgba(26,45,181,0.12);
+  z-index: 10;
+}
+.hud-logo img { height: 36px; }
+.hud-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  color: #1565C0; text-transform: uppercase;
+}
+.hud-counter {
+  font-size: 12px; font-weight: 600; color: rgba(26,45,181,0.4);
+  letter-spacing: 1px;
+}
+.hud-counter span { color: #1A2DB5; font-weight: 800; font-size: 20px; margin-right: 4px; }
+
+/* ── Section Label ── */
+.section-label {
+  position: absolute; top: 100px; left: 48px;
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  color: #1565C0; text-transform: uppercase;
+}
+.section-label::before {
+  content: ''; display: inline-block;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #1A2DB5; margin-right: 10px;
+  box-shadow: 0 0 8px rgba(26,45,181,0.4);
+}
+
+/* ── Heading ── */
+.heading {
+  position: absolute; top: 140px; left: 48px; right: 48px;
+  font-size: 36px; font-weight: 900; line-height: 1.2;
+  color: #1A2DB5;
+}
+.heading .hl { color: #1565C0; }
+
+/* ── Comparison Cards ── */
+.cards-row {
+  position: absolute; top: 240px; left: 48px; right: 48px;
+  display: flex; gap: 24px;
+}
+.card {
+  flex: 1;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(26,45,181,0.1);
+  border-radius: 16px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+.card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.card.old::before { background: linear-gradient(90deg, #D32F2F, #D32F2F66); }
+.card.new::before { background: linear-gradient(90deg, #1A2DB5, #1A2DB566); }
+
+.card-badge {
+  display: inline-block;
+  font-size: 10px; font-weight: 800; letter-spacing: 2px;
+  padding: 4px 12px; border-radius: 4px;
+  margin-bottom: 16px; text-transform: uppercase;
+}
+.card.old .card-badge { background: rgba(211,47,47,0.1); color: #D32F2F; }
+.card.new .card-badge { background: rgba(26,45,181,0.1); color: #1A2DB5; }
+
+.card-title {
+  font-size: 20px; font-weight: 800; margin-bottom: 20px; line-height: 1.3;
+}
+.card.old .card-title { color: #546E7A; }
+.card.new .card-title { color: #1A2DB5; }
+
+.card-items { list-style: none; }
+.card-items li {
+  font-size: 14px; line-height: 1.6; padding: 10px 0;
+  border-bottom: 1px solid rgba(26,45,181,0.06);
+  display: flex; align-items: flex-start; gap: 10px;
+  color: #455A64;
+}
+.card-items li:last-child { border-bottom: none; }
+
+.icon-x, .icon-check {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 900; flex-shrink: 0; margin-top: 2px;
+}
+.icon-x { background: rgba(211,47,47,0.1); color: #D32F2F; }
+.icon-check { background: rgba(26,45,181,0.1); color: #1A2DB5; }
+
+/* ── Progress bar comparison ── */
+.progress-row {
+  margin-top: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.progress-bar {
+  flex: 1; height: 6px; border-radius: 3px;
+  background: rgba(26,45,181,0.06);
+  overflow: hidden;
+}
+.progress-bar .fill { height: 100%; border-radius: 3px; }
+.card.old .fill { width: 30%; background: #D32F2F; }
+.card.new .fill { width: 85%; background: linear-gradient(90deg, #1A2DB5, #1565C0); }
+.progress-label {
+  font-size: 20px; font-weight: 900;
+}
+.card.old .progress-label { color: #D32F2F; }
+.card.new .progress-label { color: #1A2DB5; }
+
+/* ── Bottom Band ── */
+.bottom-band {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(90deg, #1A2DB5, #1565C0);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.bottom-text {
+  font-size: 15px; font-weight: 700; color: #fff;
+}
+.bottom-text .hl { color: #BBDEFB; }
+.bottom-cta {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 800; color: #BBDEFB;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.bottom-cta .arrow {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+
+/* ── Watermark ── */
+.watermark {
+  position: absolute; right: -20px; top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-size: 120px; font-weight: 900;
+  color: rgba(26,45,181,0.04);
+  letter-spacing: 20px;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="watermark">SEO</div>
+
+  <!-- HUD Top Bar -->
+  <div class="hud-top">
+    <div class="hud-logo"><img src="{{LOGO_PATH}}" alt="SEOSONA"></div>
+    <div class="hud-label">{{SECTION_LABEL}}</div>
+    <div class="hud-counter"><span>{{SLIDE_NUMBER}}</span> / {{TOTAL_SLIDES}}</div>
+  </div>
+
+  <!-- Section Label -->
+  <div class="section-label">{{TAG}}</div>
+
+  <!-- Heading -->
+  <div class="heading">{{HEADING_1}} <span class="hl">{{HEADING_HL}}</span> {{HEADING_2}}</div>
+
+  <!-- Comparison Cards -->
+  <div class="cards-row">
+    <!-- Card OLD -->
+    <div class="card old">
+      <div class="card-badge">{{LEFT_BADGE}}</div>
+      <div class="card-title">{{LEFT_TITLE}}</div>
+      <ul class="card-items">
+        <li><span class="icon-x">✕</span> {{LEFT_ITEM_1}}</li>
+        <li><span class="icon-x">✕</span> {{LEFT_ITEM_2}}</li>
+        <li><span class="icon-x">✕</span> {{LEFT_ITEM_3}}</li>
+      </ul>
+      <div class="progress-row">
+        <div class="progress-bar"><div class="fill"></div></div>
+        <div class="progress-label">{{LEFT_STAT}}</div>
+      </div>
+    </div>
+
+    <!-- Card NEW -->
+    <div class="card new">
+      <div class="card-badge">{{RIGHT_BADGE}}</div>
+      <div class="card-title">{{RIGHT_TITLE}}</div>
+      <ul class="card-items">
+        <li><span class="icon-check">✓</span> {{RIGHT_ITEM_1}}</li>
+        <li><span class="icon-check">✓</span> {{RIGHT_ITEM_2}}</li>
+        <li><span class="icon-check">✓</span> {{RIGHT_ITEM_3}}</li>
+      </ul>
+      <div class="progress-row">
+        <div class="progress-bar"><div class="fill"></div></div>
+        <div class="progress-label">{{RIGHT_STAT}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Band -->
+  <div class="bottom-band">
+    <div class="bottom-text">{{BOTTOM_TEXT}} <span class="hl">{{BOTTOM_HL}}</span></div>
+    <div class="bottom-cta">{{CTA_TEXT}} <span class="arrow">→</span></div>
+  </div>
+</body>
+</html>

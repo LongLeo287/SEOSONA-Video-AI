@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1080">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1080px; height: 1080px;
+  background: linear-gradient(180deg, #EDE7F6 0%, #F5F3FF 40%, #E8EAF6 100%);
+  font-family: 'Inter', sans-serif;
+  color: #1A2DB5;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Grid nền ── */
+.grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(26,45,181,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,45,181,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); }
+.orb-1 { width: 300px; height: 300px; background: #1A2DB5; top: -80px; right: -60px; opacity: 0.08; }
+.orb-2 { width: 250px; height: 250px; background: #1565C0; bottom: 100px; left: -40px; opacity: 0.06; }
+
+/* ── HUD Top Bar ── */
+.hud-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  border-bottom: 1px solid rgba(26,45,181,0.12);
+  z-index: 10;
+}
+.hud-logo img { height: 36px; }
+.hud-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  color: #1565C0; text-transform: uppercase;
+}
+.hud-counter {
+  font-size: 12px; font-weight: 600; color: rgba(26,45,181,0.4);
+}
+.hud-counter span { color: #1A2DB5; font-weight: 800; font-size: 20px; margin-right: 4px; }
+
+/* ── Section Label ── */
+.section-label {
+  position: absolute; top: 100px; left: 48px;
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  color: #1565C0; text-transform: uppercase;
+}
+.section-label::before {
+  content: ''; display: inline-block;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #1A2DB5; margin-right: 10px;
+  box-shadow: 0 0 8px rgba(26,45,181,0.4);
+}
+
+/* ── Heading ── */
+.heading {
+  position: absolute; top: 140px; left: 48px; right: 48px;
+  font-size: 34px; font-weight: 900; line-height: 1.2;
+  color: #1A2DB5;
+}
+.heading .hl { color: #1565C0; }
+
+/* ── Feature Grid ── */
+.feat-grid {
+  position: absolute; top: 240px; left: 48px; right: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.feat-card {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(26,45,181,0.08);
+  border-radius: 16px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+.feat-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, #1A2DB5, transparent);
+}
+
+.feat-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(26,45,181,0.08);
+  border: 1px solid rgba(26,45,181,0.12);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px; font-weight: 700;
+  color: #1A2DB5;
+}
+
+.feat-title {
+  font-size: 17px; font-weight: 800; margin-bottom: 8px;
+  color: #1A2DB5;
+}
+.feat-desc {
+  font-size: 13px; font-weight: 500; line-height: 1.6;
+  color: rgba(26,45,181,0.5);
+}
+
+.feat-tag {
+  display: inline-block; margin-top: 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  padding: 3px 10px; border-radius: 4px;
+  background: rgba(26,45,181,0.08); color: #1A2DB5;
+  text-transform: uppercase;
+}
+
+/* ── Bottom Band ── */
+.bottom-band {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(90deg, #1A2DB5, #1565C0);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.bottom-text { font-size: 15px; font-weight: 700; color: #fff; }
+.bottom-text .hl { color: #BBDEFB; }
+.bottom-cta {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 800; color: #BBDEFB;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.bottom-cta .arrow {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+
+.watermark {
+  position: absolute; right: -20px; top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-size: 120px; font-weight: 900;
+  color: rgba(26,45,181,0.04);
+  letter-spacing: 20px;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="watermark">SEO</div>
+
+  <!-- HUD -->
+  <div class="hud-top">
+    <div class="hud-logo"><img src="{{LOGO_PATH}}" alt="SEOSONA"></div>
+    <div class="hud-label">{{SECTION_LABEL}}</div>
+    <div class="hud-counter"><span>{{SLIDE_NUMBER}}</span> / {{TOTAL_SLIDES}}</div>
+  </div>
+
+  <div class="section-label">{{TAG}}</div>
+  <div class="heading">{{HEADING_1}} <span class="hl">{{HEADING_HL}}</span> {{HEADING_2}}</div>
+
+  <!-- Feature Grid (4 cards) -->
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">{{FEAT_1_ICON}}</div>
+      <div class="feat-title">{{FEAT_1_TITLE}}</div>
+      <div class="feat-desc">{{FEAT_1_DESC}}</div>
+      <div class="feat-tag">{{FEAT_1_TAG}}</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">{{FEAT_2_ICON}}</div>
+      <div class="feat-title">{{FEAT_2_TITLE}}</div>
+      <div class="feat-desc">{{FEAT_2_DESC}}</div>
+      <div class="feat-tag">{{FEAT_2_TAG}}</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">{{FEAT_3_ICON}}</div>
+      <div class="feat-title">{{FEAT_3_TITLE}}</div>
+      <div class="feat-desc">{{FEAT_3_DESC}}</div>
+      <div class="feat-tag">{{FEAT_3_TAG}}</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">{{FEAT_4_ICON}}</div>
+      <div class="feat-title">{{FEAT_4_TITLE}}</div>
+      <div class="feat-desc">{{FEAT_4_DESC}}</div>
+      <div class="feat-tag">{{FEAT_4_TAG}}</div>
+    </div>
+  </div>
+
+  <!-- Bottom Band -->
+  <div class="bottom-band">
+    <div class="bottom-text">{{BOTTOM_TEXT}} <span class="hl">{{BOTTOM_HL}}</span></div>
+    <div class="bottom-cta">{{CTA_TEXT}} <span class="arrow">→</span></div>
+  </div>
+</body>
+</html>

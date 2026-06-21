@@ -25,6 +25,7 @@ Use the vendor skills as follows:
 - `faceless-explainer`: long-form text-to-video workflow patterns.
 - `embedded-captions` and `graphic-overlays`: existing footage enhancement.
 - `motion-graphics`: short kinetic stat cards, lower thirds, chart reveals, and logo stings.
+- `seosona-video-operator`: project-level audit, Vietnamese news delivery gates, template export, and clone-safe reuse.
 
 ## SEOSONA Video Rules
 
@@ -34,6 +35,22 @@ Use the vendor skills as follows:
 4. Put vendor knowledge in `5_FRAMEWORK/hf_core/.skills/`; put SEOSONA-specific decisions in this SOP or project memory.
 5. Use `8_WORKSPACE/<ProjectName>/` for production outputs. Do not revive legacy `4_WORKSPACE/output` paths.
 6. Prefer HyperFrames for template and motion work; keep MoviePy only for clipping or fallback processing.
+
+## Template Export
+
+Verified render outputs can be exported into reusable templates with `4_BRAIN/video_template_factory.py`.
+
+```python
+from video_template_factory import export_template_from_project
+
+export_template_from_project(
+    "8_WORKSPACE/PROJECT_NAME",
+    "PROJECT_NAME Template",
+    out_root="7_ASSETS/video_templates",
+)
+```
+
+Run `npm run video:audit:integration` before major template or clone work. The audit intentionally reports `SV-INT-VOICE-REFERENCE` until the approved male Southern voice sample exists.
 
 ## Ingestion Notes
 

@@ -1,64 +1,61 @@
 # SEOSONA Video Project Audit Issues
 
-Generated: 2026-06-20
-Scope: SEOSONA Video repository, SEOSONA OS connector, video pipeline runtime, agent/skill imports, dependency/security smoke checks.
+Generated: 2026-06-21
+Scope: Full SEOSONA Video operational audit, workflow boundaries, voice/subtitle standards, reproducible production assets, integration gates, image workflows, and local publish safety.
 
 ## Executive Status
 
+- Operational open issues: none after the current remediation pass.
 - SEOSONA OS connector: pass.
-- Project audit: pass.
-- Node dependency audit: pass with 0 vulnerabilities.
-- Runtime video output: pass, verified with the Obscura news video at `8_WORKSPACE/NEWS_OBSCURA_20260620/NEWS_OBSCURA_20260620.mp4`.
-- Deep exhaustive security scan: deferred because the formal Codex security workflow requires explicit subagent authorization.
+- Project audit: pass with production asset, portability, upload-safety, and voice-adapter gates.
+- Integration audit: pass.
+- Unit tests: pass, 12 tests.
+- Node dependency audit: pass with 0 vulnerabilities across 52 production dependencies.
+- HyperFrames LOOP clone template validation: pass.
+- Post image workflow: pass, generated carousel PNGs and PAS caption.
+- Thumbnail workflow: pass, generated 9:16 and 16:9 thumbnails.
 
-## Fixed During This Audit
+## Fixed During This Remediation
 
 | ID | Severity | Area | Issue | Action |
 |---|---|---|---|---|
-| SV-AUD-007 | P1 | Publisher agent | `1_AGENTS/publisher_agent/youtube_uploader.py` had invalid Python syntax in a broken string literal. | Rewrote the uploader with clean English logging and preserved yutu CLI behavior. |
-| SV-AUD-008 | P1 | SEO metadata | `1_AGENTS/seo_optimizer/youtube_seo.py` had invalid Python syntax and placeholder-only metadata logic. | Replaced it with working title, description, tags, hashtags, and JSON-LD generation. |
-| SV-AUD-009 | P1 | Package exports | `publisher_agent.__init__`, `seo_optimizer.__init__`, and `audio_cleaner.__init__` exported symbols that did not exist. | Updated exports and compatibility aliases. |
-| SV-AUD-010 | P1 | Autonomy connector | `npm run autonomy:intake` pointed to local `1_CORE/scripts/autonomous_activation_gate.py`, but the project does not contain local `1_CORE`. | Added `~` expansion to `scripts/seosona-python.cjs` and repointed package scripts to `~/.seosona/1_CORE/scripts/autonomous_activation_gate.py`. |
-| SV-AUD-011 | P2 | Security hardening | `2_SKILLS/metadata_extractor/extractor.py` used `eval()` to parse ffprobe frame rates. | Replaced with `fractions.Fraction`. |
-| SV-AUD-012 | P2 | Security hardening | `2_SKILLS/audio_cleaner/demucs_engine.py` used `shell=True` with interpolated paths. | Replaced with list-form subprocess arguments. |
-| SV-AUD-013 | P2 | Render runtime | HyperFrames render needed portable ffmpeg/ffprobe and UTF-8 environment handling. | `scripts/seosona-python.cjs` now injects `ffmpeg-static`, `ffprobe-static`, and UTF-8 env vars. |
-| SV-AUD-014 | P2 | Render timeline | Caption and SFX tracks collided during HyperFrames lint. | SFX tracks now start from a separate track range; caption timing is bounded. |
-| SV-AUD-020 | P1 | Video runtime | Current `video:run` failed on `.venv` due broken `voice_cloner.__init__`, VieNeu voice fallback, and MoviePy import compatibility. | Restored `fish_audio_api` export, added VieNeu-to-Edge fallback, and added MoviePy 1.x/2.x `AudioFileClip` compatibility. |
-| SV-AUD-021 | P2 | Project audit | `4_BRAIN/pipeline_manager.py` contained duplicate `_estimate_word_level_data_from_script` definitions. | Removed the shadowed duplicate implementation. |
-| SV-AUD-022 | P2 | Bootstrapper | `scripts/seosona_doctor.py` used shell-style command strings that broke on Windows paths with spaces. | Switched to list-form subprocess commands with `shutil.which()` executable resolution. |
+| SV-AUD-021 | P2 | Project audit | `4_BRAIN/pipeline_manager.py` contained duplicate `_estimate_word_level_data_from_script` definitions. | Kept one active implementation and renamed the legacy version. |
+| SV-AUD-027 | P1 | Video/image boundary | `run_pipeline(..., mode="carousel")` could still hit a legacy image branch inside the video pipeline. | Added a hard runtime guard and removed the unreachable carousel branch. |
+| SV-AUD-028 | P1 | Post image workflow | Offline LLM routing could return carousel slide JSON where caption code expected a dict. | Prioritized PAS/social routing and added caption recovery for unexpected provider output. |
+| SV-AUD-029 | P1 | Voice standard | Runtime fallback still had female `vi-VN-HoaiMyNeural` paths. | Standardized fallback to `vi-VN-NamMinhNeural`. |
+| SV-AUD-030 | P2 | Regression coverage | No test covered social-caption recovery from slide-list output. | Added `tests/test_social_post_workflow.py`. |
+| SV-AUD-031 | P2 | Pronunciation lexicon | `lexicon.json` could override the core AI/Search/GitHub/SEO pronunciation standards. | Added a non-removable core pronunciation lexicon in `news_video_standards.py` and merge external lexicon entries on top. |
+| SV-AUD-032 | P1 | Reproducible assets | Required voice/BGM/SFX/template audio could be ignored by global media ignore rules. | Added `.gitignore` exceptions for stable production input assets and added audit checks. |
+| SV-AUD-033 | P2 | Portability | Utility/runtime scripts used absolute local paths. | Converted path handling to project-relative `Path(__file__).resolve()` discovery. |
+| SV-AUD-034 | P2 | Integration defaults | Integration audit hardcoded local download paths. | Replaced hardcoded defaults with env/project-drive/home Downloads discovery. |
+| SV-AUD-035 | P2 | Voice adapter completeness | Fish/VieNeu path had an unfinished TODO and unclear fallback semantics. | Rewrote the adapter contract: use approved engines when available, otherwise explicitly fall back to the male Vietnamese voice. |
+| SV-AUD-036 | P2 | Audit noise | Broad scans mixed runtime code with vendor/reference trees. | Added scoped runtime portability and asset checks to `npm run seosona:audit`. |
+| SV-AUD-037 | P3 | Local publish safety | `auto_upload_gdrive` was enabled by default. | Disabled it by default and added an audit gate to prevent silent publish behavior. |
+| SV-AUD-038 | P1 | Template registry | LOOP clone registry template referenced missing `../template_core.js`. | Removed the stale dependency; HyperFrames validation now passes with no console errors. |
+| SV-INT-VOICE-REFERENCE | P1 | Voice standard | Prior audit listed the male Southern reference sample as missing. | Current integration audit confirms `7_ASSETS/voice_profiles/seosona_male_southern.wav` exists and passes. |
 
-## Open Issues
+## Release Bookkeeping
 
-| ID | Severity | Area | Issue | Evidence | Recommended Next Action |
-|---|---|---|---|---|---|
-| SV-AUD-015 | P1 | Autonomy gate | `npm run autonomy:intake -- --task "audit SEOSONA Video pipeline"` resolves the OS script after the fix but produces no output for more than 90 seconds. | Process had to be stopped manually after `autonomous_activation_gate.py` stayed silent. | Add timeout/progress logging to the OS gate or create a project-local fast intake wrapper. |
-| SV-AUD-016 | P2 | Placeholder content | Multiple agent/skill files still contain placeholder text `System log`. | `rg "System log" 1_AGENTS 2_SKILLS 4_BRAIN scripts -g '*.py'` still returns hits. | Replace placeholders in writer, researcher, script writer, repo analyzer, audio mixer, voice wrappers, and related templates. |
-| SV-AUD-017 | P2 | Python package design | `4_BRAIN/workflow_router.py` imports `knowledge_indexer` as a script-local module, so package-style import fails unless `4_BRAIN` is manually added to `sys.path`. | Plain `importlib.import_module("4_BRAIN.workflow_router")` fails; script-mode runtime works. | Convert `4_BRAIN` imports to package-safe fallback imports. |
-| SV-AUD-018 | P3 | Optional vector index | `workflow_router` logs `ChromaDB not installed. Skipping vector index.` | Import smoke shows the warning. | Decide whether ChromaDB is required; if yes, add it to requirements and doctor checks. |
-| SV-AUD-019 | P3 | Large reference tree | Whole-repo Python compile over `5_FRAMEWORK` and `8_WORKSPACE` is too slow for routine CI. | `compileall` across runtime plus framework/workspace had to be stopped. | Add a scoped test command that excludes generated workspace, vendor, and reference trees. |
-| SV-AUD-023 | P3 | Bootstrapper | The `.venv` Python runtime used by `video:run` does not have the `playwright` Python package, so the bootstrapper prints a Playwright browser install failure before rendering. | Smoke render still succeeds through HyperFrames browser cache. | Either install Python Playwright into `.venv` or make the bootstrapper skip Python Playwright when HyperFrames/node browser is authoritative. |
+The active runtime and asset gates are clean. Git still contains pending modified/untracked/deleted files because this remediation intentionally updates project code, SOPs, generated skills, and template assets. The deleted legacy image/logo files are not referenced by current runtime gates; the active brand assets are now protected by `npm run seosona:audit`.
 
 ## Verification Commands
 
 ```bash
-npm test
-npm run seosona:resolve
-npm run seosona:doctor
-npm run seosona:validate
-npm run seosona:audit-portability
+node scripts/seosona-python.cjs -m unittest discover tests
+node scripts/seosona-python.cjs -m py_compile scripts/convert_to_9_16.py scripts/extract_frames.py scripts/preview_news_spatial.py scripts/inject_os_capabilities.py 4_BRAIN/run_demo.py 2_SKILLS/thumbnail_maker/thumbnail_generator.py 2_SKILLS/voice_cloner/fish_audio_api.py 4_BRAIN/news_video_standards.py 4_BRAIN/video_integration_audit.py
 npm run seosona:audit
+npm run video:audit:integration
 npm audit --omit=dev --json
-python -m pip check
-node --check scripts/seosona-python.cjs
-python -m py_compile 1_AGENTS/publisher_agent/youtube_uploader.py 1_AGENTS/seo_optimizer/youtube_seo.py 2_SKILLS/audio_cleaner/demucs_engine.py 2_SKILLS/metadata_extractor/extractor.py 4_BRAIN/pipeline_manager.py 4_BRAIN/workflow_router.py
-npm run video:run -- 8_WORKSPACE/NEWS_OBSCURA_20260620_SCRIPT.txt seosona 9:16 AUDIT_SMOKE_VIDEO
+npx --yes hyperframes@0.6.112 validate 7_ASSETS/video_templates/loop-source-seosona-clone
+npm run post:image -- "AI Search đang thay đổi cách người dùng tìm thông tin. Doanh nghiệp cần chuẩn hóa nội dung, dữ liệu nguồn và quy trình xuất bản để được AI trích dẫn đúng."
+npm run thumbnail:create -- "SEOSONA kiểm tra pipeline video và hình ảnh"
 ```
 
-## Current Verified Output
+## Current Verified Outputs
 
-- `8_WORKSPACE/NEWS_OBSCURA_20260620/NEWS_OBSCURA_20260620.mp4`
-- ffprobe: 1080x1920, 30 fps, H.264 video, AAC audio, duration 75.855 seconds.
-- `8_WORKSPACE/AUDIT_SMOKE_VIDEO/AUDIT_SMOKE_VIDEO.mp4`
-- ffprobe: 1080x1920, 30 fps, H.264 video, AAC audio, duration 75.855 seconds.
+- `8_WORKSPACE/Social_Campaigns/Campaign_SEOSONA_1782018875/`: carousel plan, Facebook caption, and 6 rendered PNG slides.
+- `8_WORKSPACE/Video_Thumbnails/SEOSONA_SEOSONA_kiểm_tra_1782018875/`: 9:16 and 16:9 thumbnail PNGs.
+- `8_WORKSPACE/LOOP_CLONE_SEOSONA_TEMPLATE/LOOP_CLONE_SEOSONA_TEMPLATE.mp4`: LOOP clone template video.
+- `7_ASSETS/video_templates/loop-source-seosona-clone/`: HyperFrames template validated with no console errors and 150 text elements passing WCAG AA.
 
 TASK COMPLETED

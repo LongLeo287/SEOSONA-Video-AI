@@ -207,7 +207,7 @@ if __name__ == "__main__":
         main_title="ĐẶT CƯỢC VÀO AI AGENT",
         hook="",
         cta="XEM 6 BƯỚC NÂNG CẤP MODEL",
-        portrait_path=r"D:\SEOSONA Video\PTP_8811_nobg.png",
+        portrait_path=None,
         manual_title=("ĐẶT CƯỢC VÀO", "AI AGENT", ""),
         manual_cta=("XEM", "6 BƯỚC", "NÂNG CẤP MODEL"),
         aspect_ratio="9:16",

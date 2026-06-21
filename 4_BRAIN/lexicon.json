@@ -1,0 +1,8 @@
+{
+    "\\bvideo\\b": "video",
+    "\\bFramework\\b": "Framework",
+    "\\bReact\\b": "React",
+    "\\bSvelteKit\\b": "SvelteKit",
+    "\\bTailwindCSS\\b": "TailwindCSS",
+    "\\bAnthropic\\b": "Anthropic"
+}

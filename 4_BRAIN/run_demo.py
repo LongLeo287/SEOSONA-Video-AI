@@ -1,7 +1,7 @@
 import os
 import sys
 
-sys.path.append(os.path.abspath(r"D:\SEOSONA Video\4_BRAIN"))
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from pipeline_manager import run_pipeline
 
 script = """

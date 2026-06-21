@@ -13,6 +13,13 @@
     "seosona:audit": "node scripts/seosona-project-audit.cjs",
     "python:which": "node scripts/seosona-python.cjs --which",
     "video:run": "node scripts/seosona-python.cjs 4_BRAIN/workflow_router.py",
+    "template:clone": "node scripts/seosona-python.cjs scripts/export-video-template.py",
+    "post:image": "node scripts/seosona-python.cjs scripts/workflow_social_post.py",
+    "thumbnail:create": "node scripts/seosona-python.cjs scripts/workflow_thumbnail.py",
+    "video:news": "node scripts/seosona-python.cjs scripts/workflow_video_news.py",
+    "video:course": "node scripts/seosona-python.cjs scripts/workflow_video_course.py",
+    "video:audit:integration": "node scripts/seosona-python.cjs scripts/seosona-video-integration-audit.py",
+    "video:template:export": "node scripts/seosona-python.cjs scripts/export-video-template.py",
     "autonomy:intake": "node scripts/seosona-python.cjs ~/.seosona/1_CORE/scripts/autonomous_activation_gate.py",
     "autonomy:intake:json": "node scripts/seosona-python.cjs ~/.seosona/1_CORE/scripts/autonomous_activation_gate.py --json",
     "test": "npm run seosona:doctor"

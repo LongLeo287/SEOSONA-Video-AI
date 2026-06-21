@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>SEOSONA News — Stats Layout</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1A2DB5; --blue: #1565C0;
+  --bg-start: #EDE7F6; --bg-mid: #F5F3FF; --bg-end: #E8EAF6;
+  --card-bg: rgba(255,255,255,0.72); --card-border: rgba(26,45,181,0.10);
+  --text: #1A2DB5; --text-muted: rgba(26,45,181,0.4);
+  --dot-color: rgba(26,45,181,0.04);
+}
+html, body { margin: 0; padding: 0; width: 1080px; height: 1920px; overflow: hidden; font-family: 'Inter', sans-serif; background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-mid) 40%, var(--bg-end) 100%); }
+#root { position: relative; width: 1080px; height: 1920px; }
+.dots-grid { position: absolute; inset: 0; background-image: radial-gradient(var(--dot-color) 1.5px, transparent 1.5px); background-size: 50px 50px; z-index: 0; }
+.watermark { position: absolute; top: -60px; right: -80px; font-size: 600px; font-weight: 900; color: rgba(26,45,181,0.025); line-height: 1; z-index: 0; }
+.hud-top { position: absolute; top: 0; left: 0; right: 0; height: 80px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; border-bottom: 1px solid rgba(26,45,181,0.08); z-index: 100; }
+.hud-label, .hud-counter { font-size: 13px; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; }
+.logo-center { position: absolute; top: 90px; left: 50%; transform: translateX(-50%); z-index: 100; }
+.logo-center img { height: 40px; }
+.subtitle-area { position: absolute; bottom: 140px; left: 50%; transform: translateX(-50%); width: 900px; text-align: center; z-index: 50; font-size: 32px; font-weight: 700; color: var(--text); }
+.footer { position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(90deg, var(--navy), var(--blue)); display: flex; align-items: center; justify-content: center; z-index: 100; color: rgba(255,255,255,0.8); font-size: 18px; font-weight: 600; }
+
+.node { position: absolute; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; color: #fff; z-index: 10; box-shadow: 0 0 20px rgba(21,101,192,0.2); background: var(--blue); top: 370px; left: 56px; }
+.glass-card { position: absolute; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 32px; backdrop-filter: blur(12px); box-shadow: 0 8px 32px rgba(26,45,181,0.06); z-index: 10; top: 420px; left: 56px; right: 60px; }
+.card-tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 2px; padding: 5px 14px; border-radius: 6px; text-transform: uppercase; margin-bottom: 12px; background: rgba(21,101,192,0.08); color: var(--blue); }
+.card-heading { font-size: 36px; font-weight: 900; color: var(--text); margin-bottom: 16px; }
+.card-heading .hl { color: var(--blue); }
+
+.stat-row { display: flex; gap: 16px; }
+.stat-box { flex: 1; background: rgba(26,45,181,0.04); border: 1px solid rgba(26,45,181,0.08); border-radius: 14px; padding: 16px; text-align: center; }
+.stat-value { font-size: 32px; font-weight: 900; color: var(--navy); }
+.stat-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+.path-svg { position: absolute; inset: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="dots-grid"></div><div class="watermark">{{WATERMARK}}</div>
+  <div class="hud-top"><div class="hud-label">SPATIAL FLOW</div><div class="hud-counter">{{CURRENT_INDEX}}/{{TOTAL_POINTS}} ĐIỂM NỘI DUNG</div></div>
+  <div class="logo-center"><img src="{{LOGO_PATH}}" alt="SEOSONA"></div>
+
+  <svg class="path-svg" viewBox="0 0 1080 1920"><path d="M 540 0 C 540 200, 90 200, 90 400" fill="none" stroke="rgba(26,45,181,0.18)" stroke-width="2" stroke-dasharray="8 6"/></svg>
+
+  <div class="node">{{WATERMARK}}</div>
+  <div class="glass-card">
+    <div class="card-tag">{{TAG}}</div>
+    <div class="card-heading">{{HEADING}} <span class="hl">{{HIGHLIGHT}}</span></div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-value">{{STAT1_VAL}}</div><div class="stat-label">{{STAT1_LBL}}</div></div>
+      <div class="stat-box"><div class="stat-value">{{STAT2_VAL}}</div><div class="stat-label">{{STAT2_LBL}}</div></div>
+      <div class="stat-box"><div class="stat-value">{{STAT3_VAL}}</div><div class="stat-label">{{STAT3_LBL}}</div></div>
+    </div>
+  </div>
+
+  <div class="subtitle-area">{{SUBTITLE}}</div>
+  <div class="footer"><span>SEOSONA · Share to be shared more</span></div>
+</div>
+<script>
+  gsap.from(".node", { scale: 0, opacity: 0, duration: 0.5, ease: "back.out(1.7)", delay: 0.2 });
+  gsap.from(".glass-card", { y: 40, opacity: 0, duration: 0.6, ease: "power3.out", delay: 0.4 });
+  gsap.from(".card-tag", { x: -20, opacity: 0, duration: 0.4, delay: 0.6 });
+  gsap.from(".card-heading", { y: 20, opacity: 0, duration: 0.5, delay: 0.7 });
+  gsap.from(".stat-box", { y: 30, scale: 0.9, opacity: 0, duration: 0.5, ease: "back.out(1.4)", stagger: 0.1, delay: 0.9 });
+</script>
+</body>
+</html>

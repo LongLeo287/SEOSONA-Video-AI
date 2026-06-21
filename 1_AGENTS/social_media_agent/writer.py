@@ -24,7 +24,7 @@ FRAMEWORK PAS:
 1. PROBLEM (Hook đầu): 2-3 dòng đầu PHẢI gây sốc, đánh đúng nỗi đau
 2. AGITATE: Khoét sâu vấn đề — giải thích tại sao nó đang làm tổn hại họ
 3. SOLUTION: Trình bày 3-5 insight/giải pháp cốt lõi từ nội dung đầu vào
-4. CTA: Hành động cụ thể (lưu, chia sẻ, bình luận, vuốt xem carousel)
+4. CTA: Hành động cụ thể (lưu, chia sẻ, bình luận, vuốt xem ảnh)
 
 NGUYÊN TẮC:
 - Viết hoàn toàn bằng tiếng Việt tự nhiên, chuyên nghiệp
@@ -77,12 +77,48 @@ class SocialMediaAgent:
             model_name=self.model_name
         )
 
+    def _caption_from_unexpected_result(self, raw_content: str, result) -> str:
+        """
+        Keep the image workflow alive if a provider returns slide JSON instead of
+        the expected PAS caption object.
+        """
+        offline_social_generator = getattr(llm_engine, "_generate_social_post_offline", None)
+        if callable(offline_social_generator):
+            fallback_prompt = (
+                "Analyze this data and write a PAS framework Social Media Post.\n\n"
+                f"Raw Data:\n{raw_content}"
+            )
+            fallback = offline_social_generator(fallback_prompt)
+            if isinstance(fallback, dict) and fallback.get("caption"):
+                return fallback["caption"]
+
+        if isinstance(result, list):
+            slide_titles = []
+            for slide in result:
+                if not isinstance(slide, dict):
+                    continue
+                title = slide.get("title") or slide.get("heading") or slide.get("label")
+                if title:
+                    slide_titles.append(str(title).strip())
+            if slide_titles:
+                return "\n".join([
+                    "SEOSONA ghi lại những điểm quan trọng:",
+                    *[f"- {title}" for title in slide_titles[:5]],
+                    "",
+                    "#SEOSONA #AI #Marketing #Vietnam",
+                ])
+
+        return raw_content[:600].strip()
+
     def write_facebook_caption(self, raw_content: str, brand: str = "seosona") -> str:
         """
         Convenience method: returns the full caption string directly.
         Used in pipeline and test scripts.
         """
         result = self.generate_post(raw_content)
+        if not isinstance(result, dict):
+            return self._caption_from_unexpected_result(raw_content, result)
+
         caption = result.get("caption", "")
         if not caption:
             caption = result.get("hook", raw_content[:200])
@@ -106,7 +142,10 @@ class SocialMediaAgent:
             modifier = platform_modifiers.get(platform, "")
             modified_prompt = f"{raw_content}\n\n[PLATFORM: {platform.upper()}]\n{modifier}"
             result = self.generate_post(modified_prompt)
-            results[platform] = result.get("caption", "")
+            if isinstance(result, dict):
+                results[platform] = result.get("caption", "")
+            else:
+                results[platform] = self._caption_from_unexpected_result(modified_prompt, result)
 
         return results
 

@@ -58,6 +58,19 @@ SRT_temp/
 *.wav
 *.mp3
 
+# Required production media contracts. Render outputs stay ignored, but these
+# stable input assets must survive a fresh checkout.
+!7_ASSETS/voice_profiles/
+!7_ASSETS/voice_profiles/*.wav
+!7_ASSETS/bgm/
+!7_ASSETS/bgm/**/*.mp3
+!7_ASSETS/sfx/
+!7_ASSETS/sfx/**/*.wav
+!7_ASSETS/video_templates/
+!7_ASSETS/video_templates/**/
+!7_ASSETS/video_templates/**/assets/*.mp3
+!7_ASSETS/video_templates/**/assets/*.wav
+
 # 7. Knowledge Base (Kho cào dữ liệu lớn)
 # Chỉ giữ lại script, bỏ qua các dữ liệu raw đã cào
 2_KNOWLEDGE/repos/

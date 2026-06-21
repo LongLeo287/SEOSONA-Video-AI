@@ -33,29 +33,35 @@ VI_STOPWORDS = set([
     "theo", "sau", "trước", "qua", "lại", "lên", "xuống",
     "vẫn", "đều", "chỉ", "mỗi", "tất", "cả", "nhiều", "ít",
     "tại", "đến", "bằng", "giữa", "trên", "dưới", "ngoài",
+    "cái", "anh", "mình", "không", "viết", "người", "những",
+    "nếu", "có", "không", "những", "một", "bạn", "của", "và",
+    "thì", "mà", "là", "rồi", "được", "cho", "các", "với", "như",
+    "khi", "có", "thể", "cũng", "đã", "để", "trong", "đó", "về",
+    "làm", "ra", "lại", "này", "chỉ", "từ", "còn", "sẽ", "nó", "những",
+    "nữa", "phải", "đến", "đang", "thấy", "đi", "đâu", "đây", "nhé", "nha", "ạ"
 ])
 
 def _tokenize(text: str) -> list:
     """Tokenize Vietnamese text into words."""
     text = text.lower()
     text = re.sub(r'[^\w\s]', ' ', text)
-    return [w for w in text.split() if len(w) > 1]
+    return [w for w in text.split() if len(w) > 1 and not w.isdigit()]
 
 def _tfidf_keywords(text: str, top_n: int = 10) -> list:
     """Extract top keywords using TF frequency weighted by sentence position."""
     sentences = [s.strip() for s in re.split(r'[.!?\n]', text) if len(s.strip()) > 10]
     words = _tokenize(text)
-    
+
     # Term frequency
     freq = {}
     for w in words:
-        if w not in VI_STOPWORDS and not w.isdigit() and len(w) > 2:
+        if w not in VI_STOPWORDS and len(w) > 2:
             freq[w] = freq.get(w, 0) + 1
-    
+
     # Boost words appearing in first 20% of text (position bias)
     early_words = set(_tokenize(" ".join(sentences[:max(1, len(sentences)//5)])))
     scored = {w: f * (1.5 if w in early_words else 1.0) for w, f in freq.items()}
-    
+
     sorted_words = sorted(scored.items(), key=lambda x: x[1], reverse=True)
     return [w for w, _ in sorted_words[:top_n]]
 
@@ -64,7 +70,7 @@ def _extract_sentences(text: str, n: int = 3, position_weight: bool = True) -> l
     sentences = [s.strip() for s in re.split(r'[.!\n]', text) if len(s.strip()) > 15]
     if not sentences:
         return []
-    
+
     keywords = set(_tfidf_keywords(text, top_n=15))
     scored = []
     for i, sent in enumerate(sentences):
@@ -73,7 +79,7 @@ def _extract_sentences(text: str, n: int = 3, position_weight: bool = True) -> l
         pos_score = 1.0 - (i / max(len(sentences), 1)) * 0.3 if position_weight else 1.0
         score = (kw_count / max(len(words), 1)) * pos_score
         scored.append((score, i, sent))
-    
+
     scored.sort(key=lambda x: (-x[0], x[1]))
     # Return in original order
     top = sorted(scored[:n], key=lambda x: x[1])
@@ -99,7 +105,7 @@ def _classify_intent(text: str) -> str:
     scores = {}
     for topic, keywords in topics.items():
         scores[topic] = sum(1 for kw in keywords if kw in text_lower)
-    
+
     best = max(scores.items(), key=lambda x: x[1])
     return best[0] if best[1] > 0 else "GENERAL"
 
@@ -172,27 +178,44 @@ def _generate_carousel_offline(user_prompt: str) -> list:
     intent = _classify_intent(text)
     title = _make_title(keywords, intent)
     hook = _make_hook(text, intent)
-    
+
     # Build highlight: second keyword or first keyword variation
     highlight = keywords[1] if len(keywords) > 1 else keywords[0] if keywords else ""
-    
+
+    # Clean sentences for presentation
+    cleaned_sents = []
+    for s in sentences:
+        s = s.strip().rstrip(".")
+        if len(s.split()) > 4:
+            cleaned_sents.append(s[0].upper() + s[1:])
+
     # Split sentences into groups
-    s = sentences  # shorthand
-    body_items = [sent.strip().rstrip(".") for sent in s[:3] if sent]
-    step_items  = [sent.strip().rstrip(".") for sent in s[3:7] if sent]
-    
+    s = cleaned_sents
+    body_items = [sent for sent in s[:3]] if len(s) >= 3 else [
+        "Xác định đúng mục tiêu cốt lõi ngay từ đầu",
+        "Triển khai chiến lược với lộ trình rõ ràng",
+        "Đo lường và điều chỉnh liên tục"
+    ]
+    step_items  = [sent for sent in s[3:7]] if len(s) >= 4 else [
+        "Nghiên cứu dữ liệu",
+        "Phân tích đối thủ",
+        "Lập kế hoạch triển khai",
+        "Tối ưu hóa điểm chạm"
+    ]
+
     # Build stats from numbers found in text
     stats = []
     stat_labels = ["KẾT QUẢ", "TĂNG TRƯỞNG", "TIẾT KIỆM", "HIỆU QUẢ"]
-    for i, num in enumerate(numbers[:3]):
+    cleaned_numbers = [n for n in numbers if len(n) <= 10]
+    for i, num in enumerate(cleaned_numbers[:3]):
         stats.append({"value": num.strip(), "label": stat_labels[i % len(stat_labels)]})
-    
+
     # Cover items from keywords
     icons = ["document", "chart", "trend", "database", "refresh", "zap", "shield", "clock", "globe", "lock"]
     cover_items = [{"text": kw.title(), "icon": icons[i % len(icons)]} for i, kw in enumerate(keywords[:3])]
-    
+
     slides = []
-    
+
     # Slide 1: Cover
     slides.append({
         "type": "cover",
@@ -203,10 +226,10 @@ def _generate_carousel_offline(user_prompt: str) -> list:
         "desc": hook,
         "items": cover_items
     })
-    
+
     # Slide 2: Comparison (problem vs solution)
-    problem_bullets = [b for b in body_items[:2]] or ["Thiếu hệ thống rõ ràng", "Làm theo thói quen cũ"]
-    solution_bullets = [b for b in body_items[2:4]] or ["Có framework chuẩn hóa", "Áp dụng công nghệ mới"]
+    problem_bullets = [b for b in body_items[:2]]
+    solution_bullets = [b for b in body_items[1:3]]
     slides.append({
         "type": "comparison",
         "slide_number": "01",
@@ -220,11 +243,11 @@ def _generate_carousel_offline(user_prompt: str) -> list:
         },
         "right": {
             "label": "CÁCH MỚI",
-            "title": f"AI-powered & tự động hóa",
+            "title": f"Tối ưu & Tự động hóa",
             "items": solution_bullets
         }
     })
-    
+
     # Slide 3: Process
     step_icons = ["database", "globe", "chart", "trend", "zap", "check"]
     steps = []
@@ -234,13 +257,7 @@ def _generate_carousel_offline(user_prompt: str) -> list:
             "icon": step_icons[i % len(step_icons)],
             "badge": keywords[i % len(keywords)].upper() if keywords else f"BƯỚC {i+1}"
         })
-    if not steps:
-        steps = [
-            {"title": "Phân tích dữ liệu đầu vào", "icon": "database", "badge": "INPUT"},
-            {"title": "Xử lý và tối ưu hóa", "icon": "zap", "badge": "PROCESS"},
-            {"title": "Xuất kết quả chất lượng cao", "icon": "chart", "badge": "OUTPUT"},
-        ]
-    
+
     slides.append({
         "type": "process",
         "label": "QUY TRÌNH VẬN HÀNH",
@@ -253,26 +270,22 @@ def _generate_carousel_offline(user_prompt: str) -> list:
             {"value": "24/7", "label": "VẬN HÀNH"},
         ]
     })
-    
+
     # Slide 4: Numbered content with closing band
     closing_kw = keywords[2] if len(keywords) > 2 else highlight
     slides.append({
         "type": "numbered_content",
         "slide_number": "01",
-        "label": "NGUYÊN TẮC CỐTLÕI",
+        "label": "NGUYÊN TẮC CỐT LÕI",
         "heading": f"3 điều bạn phải hiểu rõ về {keywords[0].title() if keywords else 'chủ đề này'}",
         "heading_highlight": keywords[0].title() if keywords else "",
         "desc": f"Đây là nền tảng — không có nền tảng này, mọi chiến thuật đều vô nghĩa.",
-        "body": body_items[:3] if body_items else [
-            "Hiểu rõ bối cảnh và mục tiêu", 
-            "Xây dựng hệ thống đo lường",
-            "Tối ưu liên tục dựa trên dữ liệu"
-        ],
+        "body": body_items[:3],
         "closing": f"Áp dụng đúng {closing_kw} — kết quả sẽ đến trong 30 ngày.",
         "closing_highlight": closing_kw,
         "closing_icon": "zap"
     })
-    
+
     # Slide 5: Feature cards
     feat_keywords = keywords[3:6] if len(keywords) > 3 else keywords
     feat_icons = ["zap", "target", "clock", "shield", "trend", "lock"]
@@ -290,7 +303,7 @@ def _generate_carousel_offline(user_prompt: str) -> list:
             {"icon": "target", "title": "Chính xác hơn", "desc": "Dữ liệu thực tế, không phỏng đoán."},
             {"icon": "clock", "title": "24/7", "desc": "Hệ thống vận hành liên tục."},
         ]
-    
+
     slides.append({
         "type": "feature_cards",
         "label": "LỢI ÍCH THỰC TẾ",
@@ -298,14 +311,14 @@ def _generate_carousel_offline(user_prompt: str) -> list:
         "heading_highlight": "hiệu quả",
         "features": features
     })
-    
+
     # Slide 6: Grid (results/data)
     grid_items = []
-    if numbers:
+    if cleaned_numbers:
         stat_descs = ["tăng trưởng", "tiết kiệm", "nhanh hơn", "hiệu quả", "kết quả", "cải thiện"]
-        for i, num in enumerate(numbers[:6]):
+        for i, num in enumerate(cleaned_numbers[:6]):
             grid_items.append(f"{num} — {stat_descs[i % len(stat_descs)]}")
-    
+
     if not grid_items:
         grid_items = [
             f"Kết quả từ {keywords[0].title() if keywords else 'hệ thống'}",
@@ -315,7 +328,7 @@ def _generate_carousel_offline(user_prompt: str) -> list:
             "Dữ liệu realtime",
             "Scale không giới hạn"
         ]
-    
+
     slides.append({
         "type": "grid",
         "label": "KẾT QUẢ ĐO ĐƯỢC",
@@ -323,7 +336,7 @@ def _generate_carousel_offline(user_prompt: str) -> list:
         "heading_highlight": "Con số",
         "grid_items": grid_items[:6]
     })
-    
+
     return slides
 
 
@@ -333,76 +346,85 @@ def _generate_social_post_offline(user_prompt: str) -> dict:
     Uses template + real NLP extraction.
     """
     text = user_prompt.replace("Analyze this data and write a PAS framework Social Media Post.\n\nRaw Data:\n", "")
-    
+
     keywords = _tfidf_keywords(text, top_n=8)
     numbers  = _extract_numbers(text)
     intent   = _classify_intent(text)
     hook     = _make_hook(text, intent)
     sentences = _extract_sentences(text, n=5)
-    
+
     # PROBLEM
     problem = hook
-    
+
     # AGITATE
     agitate_templates = {
-        "SEO": "Hầu hết doanh nghiệp vẫn đang dùng phương pháp cũ — tốn tiền mà không ra kết quả.\nVà mỗi ngày trôi qua, đối thủ đang bỏ xa bạn.",
-        "AI_AGENT": "Trong khi bạn xử lý thủ công từng tác vụ, đối thủ đã để AI Agent làm toàn bộ.\nKhoảng cách này ngày càng rộng ra.",
-        "CONTENT": "Content không có chiến lược = đốt tiền vào marketing mà không có ROI.\nMọi bài viết, mọi video — đều phải phục vụ mục tiêu kinh doanh rõ ràng.",
-        "BUSINESS": "Doanh nghiệp không tăng trưởng không phải vì thiếu khách hàng.\nMà vì thiếu hệ thống vận hành đúng.",
-        "GENERAL": "Vấn đề không phải là thiếu thông tin.\nMà là không biết thông tin nào quan trọng và phải làm gì với nó.",
+        "SEO": "Hầu hết mọi người vẫn đang làm SEO theo phương pháp cũ — tốn nguồn lực mà không đem lại kết quả thực tế.\nMỗi ngày trôi qua, đối thủ lại chiếm thêm thị phần của bạn.",
+        "AI_AGENT": "Trong khi bạn đang tốn thời gian xử lý thủ công từng tác vụ, đối thủ đã để AI Agent làm toàn bộ.\nKhoảng cách năng lực này đang ngày càng rộng ra.",
+        "CONTENT": "Content không có chiến lược đồng nghĩa với việc đốt tiền vào marketing mà không có ROI.\nMọi bài viết, mọi video đều phải phục vụ mục tiêu kinh doanh rõ ràng.",
+        "BUSINESS": "Doanh nghiệp không tăng trưởng không phải vì thiếu khách hàng.\nMà vì hệ thống vận hành và chiến lược chưa được chuẩn hóa.",
+        "GENERAL": "Vấn đề lớn nhất không phải là thiếu thông tin hay công cụ.\nMà là bạn chưa biết cách sắp xếp và thực thi nó một cách tối ưu nhất.",
     }
     agitate = agitate_templates.get(intent, agitate_templates["GENERAL"])
-    
-    # SOLUTION: Extract 3 key points from text
-    solution_points = [s.strip().rstrip(".") for s in sentences[:3] if len(s.strip()) > 20]
-    if not solution_points:
+
+    # SOLUTION: Use the extracted sentences but capitalize and ensure they look good
+    solution_points = []
+    for s in sentences[:3]:
+        s = s.strip().rstrip(".")
+        if len(s.split()) > 4: # Only keep meaningful sentences
+            s = s[0].upper() + s[1:]
+            solution_points.append(s)
+
+    if len(solution_points) < 2:
         solution_points = [
-            f"Xây dựng hệ thống {keywords[0] if keywords else 'tự động'} chuẩn hóa",
-            "Đo lường kết quả bằng dữ liệu thực tế",
-            "Tối ưu liên tục dựa trên phản hồi",
+            f"Xây dựng hệ thống {keywords[0].title() if keywords else 'tự động'} chuẩn hóa từ A-Z",
+            "Đo lường kết quả bằng số liệu thực tế thay vì cảm tính",
+            "Tối ưu liên tục các điểm chạm dựa trên phản hồi của thị trường",
         ]
-    
-    solution_text = "\n".join([f"→ {p}" for p in solution_points])
-    
+
+    solution_text = "\n".join([f"👉 {p}" for p in solution_points])
+
     # Numbers callout
     num_callout = ""
     if numbers:
-        num_callout = f"\n📊 Con số thực tế: " + " | ".join(numbers[:3])
-    
+        cleaned_numbers = [n for n in numbers if len(n) <= 10] # ignore weird large SRT numbers
+        if cleaned_numbers:
+            num_callout = f"\n📊 Dữ liệu thực tế: " + " | ".join(cleaned_numbers[:3])
+
     # CTA
     cta_templates = {
-        "SEO": "💾 Lưu lại bài này để xem lại khi cần.\n👇 Bình luận bên dưới nếu bạn đang gặp vấn đề này.",
-        "AI_AGENT": "🔖 Lưu lại + chia sẻ cho đồng nghiệp.\n👇 Bạn đang dùng AI Agent nào? Để lại comment bên dưới.",
-        "CONTENT": "📌 Save lại để đọc khi bắt đầu dự án content tiếp theo.\n👇 Tag người bạn cần thấy điều này.",
-        "GENERAL": "💡 Vuốt xem ảnh bên dưới để xem chi tiết.\n👇 Comment câu hỏi của bạn — mình sẽ trả lời.",
+        "SEO": "💾 Lưu lại bài viết này để áp dụng cho dự án SEO tiếp theo.\n👇 Comment 'SEO' nếu bạn cần tư vấn thêm.",
+        "AI_AGENT": "🔖 Lưu lại và chia sẻ cho team của bạn.\n👇 Bạn đang ứng dụng AI thế nào? Để lại comment nhé.",
+        "CONTENT": "📌 Save lại để làm checklist khi viết content.\n👇 Tag ngay người cần đọc bài viết này.",
+        "GENERAL": "💡 Vuốt xem Carousel bên dưới để nắm bắt trọn vẹn quy trình.\n👇 Comment thắc mắc của bạn — SEOSONA sẽ giải đáp.",
     }
     cta = cta_templates.get(intent, cta_templates["GENERAL"])
-    
+
     # Hashtags
     hashtag_map = {
-        "SEO": "#SEO #SEO2026 #DigitalMarketing #SEOSONA #ContentMarketing",
-        "AI_AGENT": "#AIAgent #AI2026 #AutomationAI #SEOSONA #TechVietnam",
-        "CONTENT": "#ContentMarketing #ContentStrategy #SEOSONA #Marketing #SocialMedia",
-        "BUSINESS": "#BusinessGrowth #StartupVietnam #SEOSONA #Entrepreneur #Strategy",
-        "GENERAL": "#SEOSONA #Marketing #Business #AI #Vietnam",
+        "SEO": "#SEO #SEOMastery #DigitalMarketing #SEOSONA #ContentMarketing #GoogleSEO",
+        "AI_AGENT": "#AIAgent #AI2026 #AutomationAI #SEOSONA #TechTrends",
+        "CONTENT": "#ContentMarketing #Copywriting #SEOSONA #MarketingStrategy #SocialMedia",
+        "BUSINESS": "#BusinessGrowth #StartupVietnam #SEOSONA #Entrepreneur #GrowthHacking",
+        "GENERAL": "#SEOSONA #Marketing #Business #AI #Vietnam #KnowledgeSharing",
     }
     hashtags = hashtag_map.get(intent, hashtag_map["GENERAL"])
-    
+
     full_caption = f"""{problem}
 
 {agitate}
 
-Đây là những gì thực sự hoạt động:{num_callout}
+Đây là cách chúng tôi giải quyết bài toán này:{num_callout}
 {solution_text}
 
 {cta}
 
 {hashtags}"""
-    
+
     return {
         "hook": problem,
         "caption": full_caption.strip()
     }
+
 
 
 def _generate_thumbnail_offline(user_prompt: str) -> dict:
@@ -410,10 +432,10 @@ def _generate_thumbnail_offline(user_prompt: str) -> dict:
     keywords = _tfidf_keywords(user_prompt, top_n=6)
     intent   = _classify_intent(user_prompt)
     numbers  = _extract_numbers(user_prompt)
-    
+
     title_kw = keywords[0].upper() if keywords else "AI AGENT"
     hook_kw  = keywords[1].upper() if len(keywords) > 1 else "THỰC CHIẾN"
-    
+
     return {
         "PILL_LABEL": intent.replace("_", " "),
         "MAIN_TITLE": _make_title(keywords, intent).upper(),
@@ -433,25 +455,25 @@ def _generate_script_offline(user_prompt: str) -> dict:
     sentences = _extract_sentences(text, n=6)
     numbers  = _extract_numbers(text)
     intent   = _classify_intent(text)
-    
+
     # Build narrator text
     intro = f"Chào mừng đến với bản tin SEOSONA! "
     body_text = " ".join(sentences[:4])
     outro = "Đừng quên theo dõi SEOSONA để cập nhật những thông tin mới nhất mỗi ngày!"
     narrator = intro + body_text + " " + outro
-    
+
     # Build scenes
     scenes = []
     kicker_labels = ["TIN TỨC", "PHÂN TÍCH", "KẾT QUẢ", "GIẢI PHÁP", "KẾT LUẬN"]
     icons = ["document", "chart", "trend", "zap", "shield"]
-    
+
     for i in range(min(5, len(sentences))):
         sent = sentences[i]
         words = sent.split()
         h1 = " ".join(words[:3]).upper() if words else keywords[i % len(keywords)].upper()
         body = " ".join(words[3:12]) if len(words) > 3 else sent
         h1_hl = keywords[i % len(keywords)].upper() if keywords else h1.split()[0]
-        
+
         scene = {
             "id": f"scene_{i+1:02d}",
             "kicker": kicker_labels[i % len(kicker_labels)],
@@ -460,20 +482,20 @@ def _generate_script_offline(user_prompt: str) -> dict:
             "body": body.rstrip("."),
             "body_highlight": keywords[(i+1) % len(keywords)] if keywords else "",
         }
-        
+
         if numbers and i < len(numbers):
             scene["stat_number"] = numbers[i]
             scene["stat_label"] = ["TĂNG TRƯỞNG", "TIẾT KIỆM", "KẾT QUẢ"][i % 3]
-        
+
         # First 3 scenes get bullets
         if i < 3:
             kws = keywords[i*2: i*2+3] if len(keywords) > i*2+2 else keywords[:3]
             scene["bullet_1"] = kws[0].title() if kws else ""
             scene["bullet_2"] = kws[1].title() if len(kws) > 1 else ""
             scene["bullet_3"] = kws[2].title() if len(kws) > 2 else ""
-        
+
         scenes.append(scene)
-    
+
     return {
         "title": _make_title(keywords, intent),
         "narrator_text": narrator,
@@ -487,18 +509,17 @@ def _generate_script_offline(user_prompt: str) -> dict:
 def _smart_offline_router(system_prompt: str, user_prompt: str, model_name: str) -> dict:
     """Route to the right offline generator based on prompt content."""
     prompt_combined = (system_prompt + user_prompt).lower()
-    
+
     # Order matters: check most specific first
-    # Social/PAS must be checked BEFORE carousel (social prompts may mention carousel)
-    if any(k in prompt_combined for k in ["pas", "caption", "social media", "facebook post", "hook\""]):
-        print(f"[LLM Offline] Routing to: SOCIAL POST NLP Generator (PAS Framework)")
-        return _generate_social_post_offline(user_prompt)
-    
     if any(k in prompt_combined for k in ["thumbnail", "pill_label", "main_title", "layout_type"]):
         print(f"[LLM Offline] Routing to: THUMBNAIL NLP Generator")
         return _generate_thumbnail_offline(user_prompt)
-    
-    if any(k in prompt_combined for k in ["carousel", "slide", "\"type\":"]):
+
+    if any(k in prompt_combined for k in ["pas", "caption", "facebook post", "hook\""]):
+        print(f"[LLM Offline] Routing to: SOCIAL POST NLP Generator (PAS Framework)")
+        return _generate_social_post_offline(user_prompt)
+
+    if any(k in prompt_combined for k in ["carousel", "slide", "carousel_plan"]):
         print(f"[LLM Offline] Routing to: CAROUSEL NLP Generator")
         result = _generate_carousel_offline(user_prompt)
         return result  # returns list
@@ -506,7 +527,7 @@ def _smart_offline_router(system_prompt: str, user_prompt: str, model_name: str)
     if any(k in prompt_combined for k in ["narrator", "scenes", "kicker", "script"]):
         print(f"[LLM Offline] Routing to: SCRIPT NLP Generator")
         return _generate_script_offline(user_prompt)
-    
+
     # Default
     print(f"[LLM Offline] Routing to: DEFAULT SCRIPT NLP Generator")
     return _generate_script_offline(user_prompt)
@@ -520,7 +541,7 @@ def generate_json_from_prompt(system_prompt: str, user_prompt: str, model_name: 
     """
     gemini_key = os.getenv("GEMINI_API_KEY")
     openai_key = os.getenv("OPENAI_API_KEY")
-    
+
     json_instructions = "\n\nCRITICAL: You MUST output ONLY valid JSON format. Do not use markdown blocks like ```json. Start directly with { or [."
     full_system_prompt = system_prompt + json_instructions
 
@@ -586,7 +607,7 @@ def generate_text_from_prompt(system_prompt: str, user_prompt: str, model_name: 
     """
     gemini_key = os.getenv("GEMINI_API_KEY")
     openai_key = os.getenv("OPENAI_API_KEY")
-    
+
     if gemini_key and "gemini" in model_name.lower():
         try:
             import google.generativeai as genai
@@ -599,7 +620,7 @@ def generate_text_from_prompt(system_prompt: str, user_prompt: str, model_name: 
             return response.text.strip()
         except Exception as e:
             print(f"[LLM Engine] Gemini text error: {e}")
-    
+
     elif openai_key and "gpt" in model_name.lower():
         try:
             import openai
@@ -614,7 +635,7 @@ def generate_text_from_prompt(system_prompt: str, user_prompt: str, model_name: 
             return response.choices[0].message.content.strip()
         except Exception as e:
             print(f"[LLM Engine] OpenAI text error: {e}")
-    
+
     # Offline fallback: return summarized text
     result = _generate_script_offline(user_prompt)
     return result.get("narrator_text", "")
@@ -622,41 +643,41 @@ def generate_text_from_prompt(system_prompt: str, user_prompt: str, model_name: 
 
 if __name__ == "__main__":
     print("=== LLM Engine v2.0 Self-Test ===\n")
-    
+
     test_content = """
     AI Agent trong SEO 2026: Tai sao 80% doanh nghiep dang lam SAI?
     Phan lon doanh nghiep hien nay dang dung AI nhu mot cong cu tra cuu.
     Nhung AI Agent khac hoan toan. No tu lap ke hoach, tu thuc thi.
-    
+
     3 loi pho bien nhat:
     1. Dung ChatGPT de viet content ma khong co du lieu thuc te
-    2. Toi uu tu khoa ma khong phan tich search intent  
+    2. Toi uu tu khoa ma khong phan tich search intent
     3. Tao content hang loat ma khong co he thong kiem duyet
-    
+
     Ket qua thuc te: 335 tu khoa duoc phan loai trong 20 phut.
     Ty le len top Google tang 47% sau 2 thang.
     Chi phi content giam 60%.
     """
-    
+
     print("--- TEST 1: Carousel ---")
     carousel = generate_json_from_prompt(
         "You are a carousel writer. Generate Facebook Carousel slides.",
         f"Analyze this content and generate Facebook Carousel slides:\n\n{test_content}"
     )
     print(f"Generated {len(carousel)} slides: {[s.get('type') for s in carousel]}")
-    
+
     print("\n--- TEST 2: Social Post ---")
     post = generate_json_from_prompt(
         "You are SEOSONA Social Media Strategist. Apply PAS framework.",
         f"Analyze this data and write a PAS framework Social Media Post.\n\nRaw Data:\n{test_content}"
     )
     print(f"Hook: {post.get('hook', '')[:80]}...")
-    
+
     print("\n--- TEST 3: Thumbnail ---")
     thumb = generate_json_from_prompt(
         "You are a thumbnail designer. Extract thumbnail variables.",
         f"Extract thumbnail variables from this content:\n\n{test_content}"
     )
     print(f"Title: {thumb.get('MAIN_TITLE', '')}")
-    
+
     print("\n=== ALL TESTS PASSED ===")

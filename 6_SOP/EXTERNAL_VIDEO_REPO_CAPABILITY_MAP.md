@@ -17,6 +17,7 @@ This SOP maps external video repositories into SEOSONA Video without duplicate e
 | Clipping and repurposing | `2_SKILLS/video_clipper/clipper.py` | browser-use/video-use, zhouxiaoka/autoclip, Augani/openreel-video | Add highlight logic and edit-plan validation around the existing clipper. video-use is canonical for screen-based clipping. |
 | Long-form short-video generation | `4_BRAIN/pipeline_manager.py` | harry0703/MoneyPrinterTurbo, xuanyustudio/LocalMiniDrama | Distill pipeline patterns only. |
 | Design system and scene planning | `5_FRAMEWORK/hf_core/.skills/` | nexu-io/open-design, safishamsi/graphify, dexhunter/seedance2-skill | Use as planning, prompt, and graph references. |
+| Agent self-operation | `.agents/skills/seosona-video-operator/`, `4_BRAIN/video_integration_audit.py`, `4_BRAIN/video_template_factory.py` | nousresearch/hermes-agent | Distill self-improving skills, memory, subagents, scheduled work, and operating-loop patterns without importing the full desktop app stack. |
 | Multimedia runtime | runtime toolchain | FFmpeg/FFmpeg | Use FFmpeg as external binary/CLI dependency only. |
 | Restricted asset cleanup | none | GargantuaX/gemini-watermark-remover | Do not add as an operational skill for third-party watermark removal. |
 | YouTube Channel Operations | `1_AGENTS/publisher_agent/`, future YouTube adapter | eat-pray-ai/yutu | yutu is the preferred external runtime candidate for YouTube upload, metadata, captions, comments, playlists, thumbnails, and MCP channel operations. |
@@ -30,6 +31,7 @@ This SOP maps external video repositories into SEOSONA Video without duplicate e
 - FFmpeg/FFmpeg: already part of the expected runtime layer.
 - eat-pray-ai/yutu: ingested into SEOSONA OS as `youtube-channel-operations-mcp`; connect as an external publishing runtime only after OAuth is configured.
 - h4ckf0r0day/obscura: ingested into SEOSONA OS as `obscura-headless-browser`; benchmark before promoting over Playwright.
+- nousresearch/hermes-agent: reference for autonomous agent operation, persistent skill/memory loops, subagents, and scheduled jobs. Use as method extraction only; do not import the full desktop/messaging stack.
 
 ### P1 - High-value method extraction
 
@@ -81,6 +83,8 @@ This SOP maps external video repositories into SEOSONA Video without duplicate e
 | `caption_quality_pass` | VideoLingo, VideoCaptioner | `2_SKILLS/srt_maker/` | Segment readability, punctuation repair, translation review, and alignment checks. |
 | `highlight_ranker` | autoclip, video-use | `2_SKILLS/video_clipper/` | Score long-video moments before cutting shorts. |
 | `scene_graph_manifest` | graphify, open-design | `5_FRAMEWORK/hf_core/` | Store render scenes, assets, text, timings, and dependencies as a queryable graph. |
+| `video_template_factory` | HyperFrames, LoHa video-maker | `4_BRAIN/video_template_factory.py` | Export verified HyperFrames render outputs into clone-safe reusable templates. |
+| `video_integration_audit` | Hermes-style operating checks, HyperFrames, LoHa | `4_BRAIN/video_integration_audit.py` | Audit local source snapshots, skills, SOPs, assets, voice policy, and template readiness. |
 
 ## Validation Checklist
 

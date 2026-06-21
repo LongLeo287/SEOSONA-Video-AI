@@ -1,6 +1,8 @@
 import re
 from dataclasses import dataclass
 from typing import Dict, Iterable, List, Sequence
+import json
+import os
 
 
 WORD_PATTERN = re.compile(
@@ -8,110 +10,40 @@ WORD_PATTERN = re.compile(
     re.UNICODE,
 )
 
-PRONUNCIATION_LEXICON: Dict[str, str] = {
+CORE_PRONUNCIATION_LEXICON: Dict[str, str] = {
     "AI": "ây ai",
-    "API": "ây pi ai",
+    "A.I.": "ây ai",
     "SEO": "séo",
     "SEOSONA": "séo sô na",
-    "CQA": "si kiu ây",
+    "Search": "sớt",
+    "GitHub": "gít hắp",
     "Google": "gu gồ",
     "YouTube": "diu túp",
     "TikTok": "tích tóc",
     "Facebook": "phây búc",
-    "GitHub": "gít hắp",
-    "Obscura": "ốp-xkiu-ra",
-    "Yutu": "iu-tu",
-    "Search": "sớt",
-    "Browser": "brao-dờ",
-    "Agent": "ây-dần",
-    "Repo": "ri-pô",
-    "Repository": "ri-pô-zi-to-ri",
-    "Workflow": "quớc-phờ-lâu",
-    "Pipeline": "pai-lai",
-    "Automation": "ô-tô-mây-sần",
-    "Open-source": "âu-pần sôrs",
-    "Headless": "hét-lét",
-    "Render": "ren-đờ",
-    "Video": "vi-đi-ô",
-    "Screenshot": "sờ-cờ-rin-sót",
-    "OpenAI": "âu-pần ây-ai",
-    "Claude": "clót",
-    "ChatGPT": "chát gi-pi-ti",
-    "GPT": "gi-pi-ti",
+    "OpenAI": "âu pần ây ai",
+    "ChatGPT": "chát gi pi ti",
     "LLM": "eo eo em",
-    "SOP": "ét ô pi",
     "MCP": "em si pi",
-    "URL": "iu a eo",
-    "CLI": "si eo ai",
-    "UI": "iu ai",
-    "UX": "iu ích",
-    "HTML": "hát ti em eo",
-    "CSS": "si ét ét",
-    "JavaScript": "gia-va-sờ-cờ-ríp",
-    "Python": "pai-thần",
-    "React": "ri-áct",
-    "Next.js": "nếch chấm dê-ét",
+    "API": "ây pi ai",
+    "RAG": "rác",
+    "Next.js": "next chấm giây ét",
     "24/7": "hai mươi tư trên bảy",
     "24h": "hai mươi tư giờ",
-    "codebase": "cốt bây",
-    "memory": "me mo ri",
-    "DeusData": "đêu-x đa ta",
-    "Hermes": "hơ-mét",
-    "App": "áp",
-    # Mới bổ sung cho Tech/Coding/Web:
-    "Playwright": "pờ-lây-rai",
-    "Framework": "phờ-rêm-uốc",
-    "Context": "con-tếch",
-    "TypeScript": "tai-sờ-cờ-ríp",
-    "Server": "sơ-vờ",
-    "Node.js": "nốt chấm dê-ét",
-    "Node": "nốt",
-    "Model": "mô-đồ",
-    "Code": "cốt",
-    "Frontend": "phrôn-en",
-    "Backend": "bách-en",
-    "Database": "đa-ta-bây",
-    "Client": "cờ-lai-ừn",
-    "Developer": "đê-ve-lốp-pờ",
-    "Data": "đa-ta",
-    "User": "diu-zờ",
-    "Traffic": "tờ-ra-phích",
-    "Marketing": "ma-két-tinh",
-    "Campaign": "cam-pên",
-    "Web": "quép",
-    "Website": "quép-sai",
-    "Download": "đao-lót",
-    "Upload": "ắp-lót",
-    "Update": "ắp-đết",
-    "Version": "vơ-sần",
-    "Feature": "phí-chờ",
-    "System": "sít-tầm",
-    "Config": "con-phích",
-    "Setup": "sét-úp",
-    "Install": "in-sờ-tôn",
-    "Extension": "ếch-ten-sần",
-    "Plugin": "pờ-lắc-in",
-    "Source": "suộc",
-    "Cloud": "cờ-lao",
-    "Host": "hót",
-    "Hosting": "hót-tinh",
-    "Domain": "đô-mên",
-    "Account": "a-cao",
-    "Profile": "pờ-rô-phai",
-    "Dashboard": "đát-bo",
-    "Review": "rì-viu",
-    "Feedback": "phít-bách",
-    "Support": "súp-pọt",
-    "Community": "com-miu-ni-ti",
-    "Trending": "tren-đinh",
-    "Viral": "vai-rồ",
-    "Views": "viu",
-    "Follower": "phô-lâu-ờ",
-    "Share": "se",
-    "Comment": "com-mèn",
-    "Project": "pờ-rô-dếch",
-    "Tutorial": "tu-tô-ri-ồ",
 }
+
+_lexicon_path = os.path.join(os.path.dirname(__file__), 'lexicon.json')
+try:
+    with open(_lexicon_path, 'r', encoding='utf-8') as _f:
+        _raw_lexicon = json.load(_f)
+        PRONUNCIATION_LEXICON: Dict[str, str] = dict(CORE_PRONUNCIATION_LEXICON)
+        for key, value in _raw_lexicon.items():
+            clean_key = key.replace(r'\b', '')
+            if clean_key:
+                PRONUNCIATION_LEXICON[clean_key] = value
+except Exception as e:
+    print(f"[Warning] Could not load lexicon.json in news_video_standards: {e}")
+    PRONUNCIATION_LEXICON: Dict[str, str] = dict(CORE_PRONUNCIATION_LEXICON)
 
 VIETNAMESE_ASCII_ALLOWLIST = {
     "ai",

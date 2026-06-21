@@ -2,6 +2,10 @@ os:
   name: "SEOSONA Video Factory"
   version: "3.0.0"
   workspace_path: "8_WORKSPACE"
+  features:
+    auto_upload_gdrive: false
+    use_humanizer: true
+    use_hermes_validation: true
 
 render:
   resolution: [1080, 1920]
