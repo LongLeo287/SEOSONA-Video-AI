@@ -1,0 +1,800 @@
+1
+00:00:00,000 --> 00:00:02,966
+nếu mà anh em làm sale cho chính cái website của anh em á
+
+2
+00:00:03,000 --> 00:00:04,966
+là cái website mà anh em được sở hữu á
+
+3
+00:00:05,266 --> 00:00:06,900
+thì nó rất là đơn giản à
+
+4
+00:00:06,900 --> 00:00:09,700
+tuy nhiên á không phải lúc nào chúng ta cũng có cái cơ hội
+
+5
+00:00:09,800 --> 00:00:10,700
+cũng có cái điều kiện
+
+6
+00:00:11,366 --> 00:00:12,266
+để làm cho chính mình
+
+7
+00:00:12,500 --> 00:00:15,600
+trong một số cái trường hợp nếu mà anh em đi làm ở công ty
+
+8
+00:00:16,000 --> 00:00:18,700
+hay là anh em nhận cái dự án sale cho khách hàng
+
+9
+00:00:18,900 --> 00:00:20,666
+thì không phải lúc nào anh em cũng có cái
+
+10
+00:00:20,766 --> 00:00:22,700
+quyền quyết định cái bộ từ khóa mình muốn sale
+
+11
+00:00:22,933 --> 00:00:23,800
+cái gì là sale đâu
+
+12
+00:00:24,066 --> 00:00:26,266
+trong một số cái trường hợp á thì cấp trên của chúng ta
+
+13
+00:00:26,766 --> 00:00:28,100
+hay là khách hàng của chúng ta á
+
+14
+00:00:28,500 --> 00:00:31,600
+họ đã có sẵn một cái bộ từ khóa rồi và họ gởi cho mình à à
+
+15
+00:00:31,800 --> 00:00:34,766
+yêu cầu mình làm sale cho họ cái bộ từ khóa này à
+
+16
+00:00:34,766 --> 00:00:37,466
+thì từ đây á vấn đề nó sẽ phát sinh rất là nhiều
+
+17
+00:00:37,866 --> 00:00:39,666
+nếu mà anh em không có cái kinh nghiệm
+
+18
+00:00:39,966 --> 00:00:41,333
+cũng như là không có cái kiến thức
+
+19
+00:00:41,666 --> 00:00:43,566
+à để mà xử lý cái vấn đề này ha
+
+20
+00:00:43,933 --> 00:00:46,566
+tại vì không phải cái từ khóa nào chúng ta cũng có thể sale
+
+21
+00:00:46,766 --> 00:00:49,800
+được thì trong cái video này á mình sẽ thị phạm cho anh em
+
+22
+00:00:49,866 --> 00:00:51,066
+trong cái trường hợp này thì mình
+
+23
+00:00:51,200 --> 00:00:52,666
+mình sẽ xử lý như thế nào ha
+
+24
+00:00:53,066 --> 00:00:55,666
+à ô kê bắt đầu nhá rồi thì ở đây á mình à
+
+25
+00:00:55,933 --> 00:00:59,133
+à nhận được một cái yêu cầu à của một khách hàng ha à
+
+26
+00:00:59,166 --> 00:00:59,966
+họ gởi cho mình
+
+27
+00:01:00,166 --> 00:01:02,966
+một cái bộ từ khóa và họ yêu cầu mình làm seo
+
+28
+00:01:03,100 --> 00:01:03,900
+cái bộ từ khóa này
+
+29
+00:01:04,300 --> 00:01:05,566
+à thì anh em thấy ha
+
+30
+00:01:05,666 --> 00:01:08,400
+ở đây họ chia cho mình à cũng rất là chi tiết này à
+
+31
+00:01:08,500 --> 00:01:10,200
+bộ từ khóa chung à là về quà tặng
+
+32
+00:01:10,533 --> 00:01:12,133
+quà tặng doanh nghiệp ha à
+
+33
+00:01:12,166 --> 00:01:14,933
+dưới này thì bộ từ khóa mà họ nhắm tới những cái
+
+34
+00:01:15,466 --> 00:01:17,200
+a nhà cung cấp mua sỉ ha
+
+35
+00:01:17,666 --> 00:01:21,066
+à rồi tiếp tục họ hướng tới cái công ty quà tặng à
+
+36
+00:01:21,133 --> 00:01:22,166
+rồi tiếp tục họ
+
+37
+00:01:22,500 --> 00:01:25,166
+hướng tới những cái từ khóa mà về sức khỏe à
+
+38
+00:01:25,300 --> 00:01:26,700
+quà tặng sức khỏe à
+
+39
+00:01:26,733 --> 00:01:27,533
+bên này thì à
+
+40
+00:01:27,600 --> 00:01:30,600
+bộ từ khóa về các cái ngày lễ gia đình việt nam nè à
+
+41
+00:01:30,700 --> 00:01:33,333
+và cái từ khóa về các cái kỷ niệm thành lập công ty
+
+42
+00:01:33,800 --> 00:01:36,000
+thì đây là những cái từ khóa mà họ yêu cầu mình làm
+
+43
+00:01:36,133 --> 00:01:38,100
+và họ đã chia cho mình theo nhóm như này
+
+44
+00:01:38,266 --> 00:01:39,700
+cũng rất là chi tiết ha à
+
+45
+00:01:39,733 --> 00:01:44,000
+và cái a website của họ á là cái website happy nuts à à
+
+46
+00:01:44,133 --> 00:01:47,133
+mình sẽ vào cái website xem à cái website này là cái gì ha
+
+47
+00:01:47,566 --> 00:01:50,266
+rồi à ô kê mình à sẽ bấm vào cái website
+
+48
+00:01:52,166 --> 00:01:53,466
+thì đây là một cái website
+
+49
+00:01:53,533 --> 00:01:55,266
+mình thấy họ thiết kế cũng khá là đẹp
+
+50
+00:01:55,566 --> 00:01:59,666
+nó có cái phần banner ở đây sau đó là những cái a
+
+51
+00:02:00,333 --> 00:02:03,600
+lợi thế cạnh tranh à rồi à họ có bán hạt này
+
+52
+00:02:04,066 --> 00:02:06,566
+họ có bán các cái hạt à dinh dưỡng này
+
+53
+00:02:07,400 --> 00:02:10,766
+đó à họ có giấy chứng nhận cũng rất là uy tín ha anh em ha
+
+54
+00:02:11,066 --> 00:02:12,366
+rồi mình review sơ qua
+
+55
+00:02:12,866 --> 00:02:14,666
+sau đó thì mình sẽ muốn kiểm tra cái
+
+56
+00:02:14,900 --> 00:02:16,933
+a bộ từ khóa mà họ gởi cho mình nhá
+
+57
+00:02:17,066 --> 00:02:19,300
+xem cái volume tìm kiếm của nó có nhiều hông ha
+
+58
+00:02:19,533 --> 00:02:20,933
+à mình sẽ copy cái này
+
+59
+00:02:22,366 --> 00:02:25,366
+ô kê mình bỏ vào à cái công cụ sonatune ha
+
+60
+00:02:25,366 --> 00:02:28,266
+anh em vào sonatune và anh em bấm vào keyword magic nè à
+
+61
+00:02:28,333 --> 00:02:29,133
+bấm vào
+
+62
+00:02:30,133 --> 00:02:32,800
+rồi tiếp tục mình sẽ copy cái từ khóa này ha
+
+63
+00:02:33,866 --> 00:02:37,333
+rồi ô kê nó khoảng một trăm a năm mươi hai cái từ khóa ha
+
+64
+00:02:37,366 --> 00:02:38,300
+mình bấm vào tìm kiếm
+
+65
+00:02:41,000 --> 00:02:43,800
+thì à nó sẽ trả về cho mình những cái volume tìm kiếm này
+
+66
+00:02:44,000 --> 00:02:46,100
+những cái từ khóa này có tìm kiếm khá là tốt ha
+
+67
+00:02:46,466 --> 00:02:49,900
+à hộp quà dinh dưỡng thì nó ít xét quà tết thì ô kê này
+
+68
+00:02:50,466 --> 00:02:51,266
+ô kê
+
+69
+00:02:52,066 --> 00:02:54,866
+thì à đâu đó nó khoảng a
+
+70
+00:02:55,666 --> 00:02:57,333
+nó có khoảng chừng mấy chục cái từ khóa
+
+71
+00:02:57,366 --> 00:02:58,500
+có vô lâm tìm kiếm thôi
+
+72
+00:02:58,500 --> 00:02:59,600
+còn lại là không có ha
+
+73
+00:03:00,100 --> 00:03:01,500
+thì cái bộ từ khóa này á
+
+74
+00:03:01,533 --> 00:03:03,400
+mình nghĩ là do khách hàng của mình á
+
+75
+00:03:03,900 --> 00:03:05,400
+họ không có cái
+
+76
+00:03:06,000 --> 00:03:07,466
+à công cụ nghiên cứu từ khóa
+
+77
+00:03:07,700 --> 00:03:10,000
+và họ liệt kê ra những cái từ khóa mà họ nghĩ
+
+78
+00:03:10,100 --> 00:03:10,800
+ra thôi chứ
+
+79
+00:03:10,800 --> 00:03:12,533
+còn nếu mà các công cụ nghiên cứu từ khóa
+
+80
+00:03:12,600 --> 00:03:14,266
+thì nó sẽ không trả về những cái từ khóa
+
+81
+00:03:14,366 --> 00:03:15,600
+mà nó dài như thế này ha
+
+82
+00:03:16,000 --> 00:03:17,066
+rồi ô kê thì à
+
+83
+00:03:17,100 --> 00:03:20,266
+sau khi mà research cái từ volume của từ khóa thì à
+
+84
+00:03:20,366 --> 00:03:23,166
+mình thấy các cái dữ liệu này nó cũng không thật sự tốt ha
+
+85
+00:03:23,466 --> 00:03:24,733
+à thì mình quay ngược trở lại
+
+86
+00:03:24,900 --> 00:03:26,566
+mình xem cái website của họ để mình
+
+87
+00:03:27,000 --> 00:03:30,000
+à tìm hiểu sơ sơ về website của họ để mình xác định à
+
+88
+00:03:30,266 --> 00:03:32,500
+cái ngữ cảnh nguồn của họ là cái gì đã
+
+89
+00:03:33,066 --> 00:03:35,066
+à họ xem họ bán cái sản phẩm gì ha
+
+90
+00:03:35,200 --> 00:03:38,700
+thì ở đây họ bán hạt dinh dưỡng nè à hũ thủy tinh à
+
+91
+00:03:38,933 --> 00:03:39,933
+snack healthy
+
+92
+00:03:40,533 --> 00:03:43,266
+à họ bán quà tết quà tặng cao cấp à
+
+93
+00:03:43,400 --> 00:03:45,300
+mình xem cái quà tặng cao cấp này là gì ha
+
+94
+00:03:46,566 --> 00:03:49,700
+à à cái quà tặng cao cấp này thì nó cũng là hộp quà ha
+
+95
+00:03:50,200 --> 00:03:51,266
+à các bạn ha
+
+96
+00:03:52,366 --> 00:03:54,500
+rồi à cái quà trung thu thì mình biết rồi
+
+97
+00:03:54,566 --> 00:03:56,333
+quà tết thì mình biết rồi thì à
+
+98
+00:03:56,400 --> 00:03:58,300
+bản chất á là cái website này á
+
+99
+00:03:58,400 --> 00:04:00,866
+họ bán à hai cái một là cái
+
+100
+00:04:01,500 --> 00:04:05,900
+à hạt dinh dưỡng hai là cái à quà tặng tết ha à
+
+101
+00:04:06,166 --> 00:04:07,133
+thế thì bây giờ ha
+
+102
+00:04:07,300 --> 00:04:08,266
+mình sẽ đi kiểm tra
+
+103
+00:04:08,400 --> 00:04:11,666
+xem những cái từ khóa mà nó có volume tìm kiếm này á à
+
+104
+00:04:11,733 --> 00:04:14,766
+nó có a phù hợp không ha à ví dụ như cái từ
+
+105
+00:04:14,800 --> 00:04:16,300
+khóa quà tặng doanh nghiệp này à
+
+106
+00:04:16,300 --> 00:04:17,800
+mình sẽ đi mình research trên google
+
+107
+00:04:17,966 --> 00:04:18,766
+mình xem
+
+108
+00:04:19,400 --> 00:04:21,266
+rồi mình sẽ vào những website này ha
+
+109
+00:04:22,900 --> 00:04:25,300
+rồi à thì ở đây á à anh em thấy à
+
+110
+00:04:25,366 --> 00:04:27,366
+cái website này là một cái website mà nó đang
+
+111
+00:04:27,566 --> 00:04:28,366
+top một cái ki
+
+112
+00:04:28,533 --> 00:04:29,700
+quà tặng doanh nghiệp à
+
+113
+00:04:29,733 --> 00:04:32,166
+và nó bán những cái set quà tặng như thế này à
+
+114
+00:04:32,333 --> 00:04:35,166
+ô dù à bình giữ nhiệt ấm trà này nọ các kiểu
+
+115
+00:04:35,600 --> 00:04:37,700
+thì đây là những cái mặt hàng mà à
+
+116
+00:04:37,800 --> 00:04:40,500
+nó là những cái quà lưu niệm ha à
+
+117
+00:04:40,533 --> 00:04:42,666
+chứ không phải là cái hộp quà tết này ha
+
+118
+00:04:42,900 --> 00:04:44,533
+mình sẽ xem tiếp một web nữa ha
+
+119
+00:04:44,600 --> 00:04:46,366
+à thì nó cũng tương tự như cái thằng kia
+
+120
+00:04:46,733 --> 00:04:48,933
+thế thì cái từ khóa quà tặng doanh nghiệp này á à
+
+121
+00:04:49,000 --> 00:04:51,333
+cái search intent của nó khi mà người ta tìm kiếm
+
+122
+00:04:51,533 --> 00:04:54,133
+á là người ta muốn tìm những cái sản phẩm này à
+
+123
+00:04:54,166 --> 00:04:55,666
+chứ không phải là người ta muốn tìm
+
+124
+00:04:55,800 --> 00:04:57,133
+những cái sản phẩm là hộp quà này
+
+125
+00:04:57,666 --> 00:04:58,900
+và cái website này á
+
+126
+00:04:58,966 --> 00:04:59,866
+nó không có phù hợp
+
+127
+00:05:00,000 --> 00:05:02,666
+để sale cái từ khóa quà tặng doanh nghiệp anh em à
+
+128
+00:05:02,733 --> 00:05:05,133
+nó không phù hợp tại vì cái a search intent
+
+129
+00:05:05,300 --> 00:05:07,800
+cái ý định tìm kiếm của từ quà tặng doanh nghiệp này á
+
+130
+00:05:08,366 --> 00:05:10,700
+à thì nó muốn tìm những cái sản phẩm khác
+
+131
+00:05:11,133 --> 00:05:12,600
+chứ không phải là nó muốn tìm hộp quà
+
+132
+00:05:13,133 --> 00:05:14,766
+cho nên á cái từ khóa này á mình sẽ không
+
+133
+00:05:14,766 --> 00:05:16,466
+có sale được trên website này à
+
+134
+00:05:16,466 --> 00:05:18,166
+thế thì mình research một vài cái
+
+135
+00:05:18,333 --> 00:05:20,966
+ở đây có cái quà tặng cao cấp đi mình research tiếp đây
+
+136
+00:05:24,700 --> 00:05:25,933
+mình sẽ xem tiếp ha
+
+137
+00:05:27,600 --> 00:05:29,333
+rồi thì anh em thấy ở đây ha
+
+138
+00:05:29,500 --> 00:05:32,200
+nó cũng là những cái vật phẩm mà nó lưu niệm thôi
+
+139
+00:05:32,466 --> 00:05:35,300
+a là những vật phẩm lưu niệm nó có thể mạ vàng ha
+
+140
+00:05:35,866 --> 00:05:39,366
+ở đây thì nó ra cái a hộp quà
+
+141
+00:05:40,500 --> 00:05:43,933
+rồi ở đây thì nó ra cái hộp quà thì nó khá là tương đồng
+
+142
+00:05:44,100 --> 00:05:44,900
+với lại cái
+
+143
+00:05:45,166 --> 00:05:47,766
+a website của mình thì có khả năng là mình cũng sẽ sale
+
+144
+00:05:47,966 --> 00:05:49,300
+được cái từ khóa này a
+
+145
+00:05:49,500 --> 00:05:51,700
+mình sẽ resort thêm một vài cái nữa ha
+
+146
+00:05:51,966 --> 00:05:52,866
+ví dụ như thằng này
+
+147
+00:05:55,933 --> 00:05:57,400
+đó thằng này thì nó cũng
+
+148
+00:05:58,066 --> 00:06:00,200
+a bán các cái set hộp quà thôi
+
+149
+00:06:00,500 --> 00:06:02,966
+thì có khả năng là cái quà tặng cao cấp này mình có thể sale
+
+150
+00:06:03,200 --> 00:06:03,966
+được à
+
+151
+00:06:03,966 --> 00:06:04,566
+còn cái từ
+
+152
+00:06:04,566 --> 00:06:06,900
+khóa quà tặng doanh nghiệp thì mình cũng sẽ không sale được
+
+153
+00:06:07,000 --> 00:06:08,066
+và à cái quan trọng
+
+154
+00:06:08,133 --> 00:06:09,700
+á là cái bộ từ khóa này nó vô
+
+155
+00:06:09,766 --> 00:06:11,266
+lâm tìm kiếm của nó khá là thấp
+
+156
+00:06:11,600 --> 00:06:14,266
+nó có rất là nhiều cái từ khóa không có vô lâm tìm kiếm
+
+157
+00:06:14,900 --> 00:06:16,300
+thì khi mà phân tích như thế này á
+
+158
+00:06:16,600 --> 00:06:19,600
+anh em à biết được cái bộ từ khóa này là cái bộ từ khóa
+
+159
+00:06:19,800 --> 00:06:20,900
+nó không phù hợp ha
+
+160
+00:06:21,500 --> 00:06:22,600
+và anh em cần phải
+
+161
+00:06:23,266 --> 00:06:24,866
+à giải thích cho khách hàng
+
+162
+00:06:25,066 --> 00:06:26,900
+anh em cần phải giải thích cho cấp trên
+
+163
+00:06:27,200 --> 00:06:29,000
+biết được cái bộ từ khóa này
+
+164
+00:06:29,100 --> 00:06:31,066
+là cái bộ từ khóa nó không phù hợp
+
+165
+00:06:31,533 --> 00:06:33,466
+để làm sale trên cái website này
+
+166
+00:06:34,100 --> 00:06:36,166
+sau đó á thì anh em cần phải đề xuất
+
+167
+00:06:36,533 --> 00:06:39,866
+à để mình có thể research một cái bộ từ khóa khác cho họ ha
+
+168
+00:06:40,100 --> 00:06:41,566
+rồi thì đó là cái cách mà chúng ta
+
+169
+00:06:42,000 --> 00:06:42,933
+có thể kiểm tra à
+
+170
+00:06:43,000 --> 00:06:45,800
+lướt sơ qua xem cái từ khóa đó nó có phù hợp
+
+171
+00:06:46,066 --> 00:06:47,066
+hay là không phù hợp ha
+
+172
+00:06:47,266 --> 00:06:49,866
+chứ hông phải là cấp trên hay là khách hàng của chúng ta cứ
+
+173
+00:06:50,300 --> 00:06:51,800
+gọi cho chúng ta một cái bộ từ khóa
+
+174
+00:06:52,133 --> 00:06:53,800
+bắt chúng ta làm hay là nhờ chúng ta làm
+
+175
+00:06:54,400 --> 00:06:56,300
+à thì chúng ta cứ gật đầu làm đại
+
+176
+00:06:56,800 --> 00:06:58,000
+à thì cái hậu quả
+
+177
+00:06:58,300 --> 00:06:59,666
+mình không có tạo được cái content
+
+178
+00:06:59,900 --> 00:07:02,266
+đó và chắc chắn là mình không sale được cái từ khóa đó
+
+179
+00:07:02,700 --> 00:07:05,000
+ngoài ra thì đối với những từ khóa kiểu như này á
+
+180
+00:07:05,000 --> 00:07:05,900
+mình có sale lên top
+
+181
+00:07:06,066 --> 00:07:08,000
+thì mình cũng sẽ không có bán được hàng à
+
+182
+00:07:08,000 --> 00:07:10,366
+và từ đó cái chiến dịch sale của mình nó cũng à đi
+
+183
+00:07:10,466 --> 00:07:13,000
+và thất bại thì gặp những cái trường hợp như này á
+
+184
+00:07:13,066 --> 00:07:14,566
+thì anh em có thể giải thích cho khách hàng
+
+185
+00:07:14,766 --> 00:07:15,766
+giải thích cho cấp trên
+
+186
+00:07:16,266 --> 00:07:17,066
+để họ có thể hiểu
+
+187
+00:07:17,466 --> 00:07:19,200
+và sau đó mình đề xuất cho họ
+
+188
+00:07:19,366 --> 00:07:22,766
+và mình sẽ research cho họ cái bộ từ khóa nó phù hợp hơn
+
+189
+00:07:23,266 --> 00:07:24,066
+à với cái
+
+190
+00:07:24,066 --> 00:07:27,066
+ngữ cảnh nguồn của họ ha thì cái cách resort á mình cũng đã
+
+191
+00:07:27,400 --> 00:07:28,200
+hướng dẫn cho các bạn
+
+192
+00:07:28,400 --> 00:07:30,133
+ở những cái video trước rồi ha à
+
+193
+00:07:30,300 --> 00:07:32,266
+các bạn cần phải xác định cái ngữ cảnh nguồn
+
+194
+00:07:32,500 --> 00:07:34,500
+sau đó các bạn xác định được cái city work
+
+195
+00:07:34,800 --> 00:07:36,133
+và các bạn bỏ vào sonatun
+
+196
+00:07:36,266 --> 00:07:38,700
+các bạn xuất dữ liệu về sau đó các bạn gom nhóm từ khóa
+
+197
+00:07:38,933 --> 00:07:41,066
+và các bạn lọc đi những cái từ khóa mà nó không phù hợp
+
+198
+00:07:41,166 --> 00:07:43,766
+và thì chúng ta sẽ được một cái bộ từ khóa nó phù hợp
+
+199
+00:07:44,400 --> 00:07:46,666
+rồi cảm ơn anh em đã theo dõi hết cái video này
+
+200
+00:07:46,800 --> 00:07:48,666
+hẹn gặp lại anh em ở những cái video sau
+

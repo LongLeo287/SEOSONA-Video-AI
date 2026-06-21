@@ -1,0 +1,7156 @@
+1
+00:00:00,066 --> 00:00:03,366
+chuyên gia thường à có những cái ca khó nó xử lý ha
+
+2
+00:00:03,500 --> 00:00:04,400
+lưu lại mỗi ca
+
+3
+00:00:04,700 --> 00:00:06,500
+tại sao đầu vào là gì đầu ra là gì
+
+4
+00:00:07,166 --> 00:00:09,133
+tại sao mà nó lại ngoại lệ à
+
+5
+00:00:09,166 --> 00:00:11,533
+và mình đã xử lý nó bằng cách nào à
+
+6
+00:00:11,566 --> 00:00:13,800
+ví dụ như ở cesona đi thì cái hồi
+
+7
+00:00:14,700 --> 00:00:17,300
+thôi cái hồi mà à google nó
+
+8
+00:00:17,766 --> 00:00:20,500
+nó đưa cái chuột contact website vào đi à
+
+9
+00:00:20,500 --> 00:00:22,500
+mình viết cái từ sco là gì
+
+10
+00:00:22,866 --> 00:00:24,100
+thế thì có những cái thằng mà
+
+11
+00:00:24,800 --> 00:00:25,600
+quét việc làm
+
+12
+00:00:25,966 --> 00:00:28,933
+nó lên top và cái website của mình là cái ngữ cảnh của nó
+
+13
+00:00:29,066 --> 00:00:29,933
+không phải làm việc làm
+
+14
+00:00:30,100 --> 00:00:31,566
+mà cái ngữ cảnh của mình đang là làm
+
+15
+00:00:31,966 --> 00:00:32,766
+dịch vụ sale
+
+16
+00:00:32,866 --> 00:00:35,200
+thì nó hoàn toàn nó khác cái ngữ cảnh đó mà anh em lại
+
+17
+00:00:35,733 --> 00:00:37,800
+lấy cái cái cái cái cái cái à
+
+18
+00:00:37,933 --> 00:00:38,733
+tham khảo cái
+
+19
+00:00:38,733 --> 00:00:40,766
+cái outline của cái thằng web việc làm á
+
+20
+00:00:40,766 --> 00:00:42,866
+thì có những cái ý nó không cần phải lấy ha
+
+21
+00:00:42,933 --> 00:00:45,866
+có những ý nó không phù hợp với sục contact thì mình đều có
+
+22
+00:00:46,200 --> 00:00:48,466
+à cái lý do của nó đây là cái trường hợp ngoại lệ
+
+23
+00:00:48,600 --> 00:00:49,933
+tại vì cái sục contact abc
+
+24
+00:00:49,966 --> 00:00:52,533
+xyz thì mình à xử lý là mình không lấy này nọ
+
+25
+00:00:52,600 --> 00:00:53,533
+các kiểu đó thì
+
+26
+00:00:54,133 --> 00:00:56,366
+à anh em gặp một cái ca khó thì anh em nên hợp
+
+27
+00:00:56,933 --> 00:01:00,300
+thảo luận đó anh đi lại thì hồi nãy mình đã nói rồi ha
+
+28
+00:01:00,466 --> 00:01:01,800
+lưu lại các cái trường hợp đặc biệt
+
+29
+00:01:02,933 --> 00:01:05,533
+cái thứ tư là anh em lưu lại cái à
+
+30
+00:01:06,000 --> 00:01:07,266
+quy trình chuẩn ha
+
+31
+00:01:07,466 --> 00:01:10,600
+nó giống như là một cái văn mẫu này đó lưu à
+
+32
+00:01:10,766 --> 00:01:13,533
+cái chuyên gia nào mà nắm được cái quy trình chuẩn á
+
+33
+00:01:13,700 --> 00:01:15,666
+thì những cái quy trình này là rất là mượt
+
+34
+00:01:15,733 --> 00:01:17,000
+rất là nuột rồi á thì
+
+35
+00:01:17,533 --> 00:01:18,766
+anh em hãy biến nó thành
+
+36
+00:01:19,333 --> 00:01:22,733
+những cái văn mẫu để cho ai nó có thể noi theo ha
+
+37
+00:01:22,900 --> 00:01:24,100
+để ai nó có thể noi theo
+
+38
+00:01:24,500 --> 00:01:26,766
+anh em ghi lại cái ca này mười điểm ha ca này
+
+39
+00:01:27,200 --> 00:01:28,533
+làm cực mượt lưu rõ ràng
+
+40
+00:01:28,666 --> 00:01:31,133
+đầu vào này thì làm như thế này và kết quả nó như thế này
+
+41
+00:01:31,266 --> 00:01:32,900
+nó cực mượt theo tiêu chuẩn của tôi
+
+42
+00:01:32,966 --> 00:01:35,300
+tiêu chuẩn này tiêu chuẩn kia là nó chấm nó mười điểm
+
+43
+00:01:35,800 --> 00:01:37,066
+và à
+
+44
+00:01:37,333 --> 00:01:38,200
+theo cái tiêu chuẩn
+
+45
+00:01:38,500 --> 00:01:40,466
+chuẩn của cái ông mà ổng làm giỏi nhất á
+
+46
+00:01:40,566 --> 00:01:44,100
+ổng làm giỏi nhất về cái việc đó đó thì cái người mà à
+
+47
+00:01:44,866 --> 00:01:45,733
+hỏi người ta à
+
+48
+00:01:45,900 --> 00:01:47,933
+người ta làm cái bước gì và người ta đánh giá như thế nào
+
+49
+00:01:48,166 --> 00:01:49,366
+và mình có thể hỏi á
+
+50
+00:01:49,766 --> 00:01:51,766
+mình có thể hỏi ví dụ như anh thọ thì có thể hỏi
+
+51
+00:01:52,400 --> 00:01:54,966
+các cái nhân sự của mình như chẳng hạn đi đúng hông à
+
+52
+00:01:55,366 --> 00:01:58,366
+học như là học văn mẫu thôi anh em thì cái hồi đi học á à
+
+53
+00:01:58,500 --> 00:01:59,400
+thì anh em cũng
+
+54
+00:02:00,333 --> 00:02:02,266
+mấy mấy thằng khứa mà mà ghen z thì chắc
+
+55
+00:02:02,366 --> 00:02:03,400
+là cũng học văn mẫu
+
+56
+00:02:03,500 --> 00:02:06,066
+đúng hông đó thì học văn mẫu thì à
+
+57
+00:02:06,133 --> 00:02:08,566
+bây giờ thì thì hai thằng nhóc nhà mình cũng học văn mẫu và
+
+58
+00:02:09,133 --> 00:02:10,533
+ờ tại sao mà phải học văn mẫu
+
+59
+00:02:10,666 --> 00:02:12,866
+bản chất là các cô các thầy làm không sai đâu
+
+60
+00:02:12,900 --> 00:02:14,266
+tại vì trong đầu nó làm gì có nhiều chữ
+
+61
+00:02:14,333 --> 00:02:15,400
+thì bây giờ phải đưa chữ vào
+
+62
+00:02:15,800 --> 00:02:16,600
+đưa chữ vào thì
+
+63
+00:02:16,933 --> 00:02:18,800
+đó là một cái chuẩn để mà nó bám theo
+
+64
+00:02:18,900 --> 00:02:19,800
+để mà nó làm ha
+
+65
+00:02:19,900 --> 00:02:20,700
+để mà nó làm
+
+66
+00:02:20,766 --> 00:02:23,300
+đó thì mình có cái văn mẫu giống như là em bé e
+
+67
+00:02:23,333 --> 00:02:25,500
+giống như là chúng ta học văn ngày xưa thôi đó
+
+68
+00:02:26,700 --> 00:02:27,666
+rồi cái thứ năm
+
+69
+00:02:28,166 --> 00:02:30,600
+đó là khung năm cái câu hỏi để anh em
+
+70
+00:02:31,100 --> 00:02:33,300
+moi ra các cái chất xám ha
+
+71
+00:02:33,500 --> 00:02:35,666
+các cái chất xám của trong đầu của chúng ta
+
+72
+00:02:35,933 --> 00:02:36,733
+hay là trong đầu của
+
+73
+00:02:37,333 --> 00:02:39,400
+nhân sự hay trong đầu của đội nhóm ha
+
+74
+00:02:40,000 --> 00:02:43,266
+trong mọi cái cuộc thảo luận những cái ca khó đi thì anh em
+
+75
+00:02:44,100 --> 00:02:46,400
+hỏi những cái câu này à đầu vào là cái gì
+
+76
+00:02:46,700 --> 00:02:48,933
+đầu ra là gì cách xử lý là gì
+
+77
+00:02:49,566 --> 00:02:52,266
+đánh giá như thế nào là đạt như thế nào là không đạt
+
+78
+00:02:52,733 --> 00:02:54,300
+và tại sao mình lại đánh giá đó
+
+79
+00:02:54,466 --> 00:02:56,266
+mình lưu ý cái câu số bốn tại sao ha
+
+80
+00:02:56,400 --> 00:02:58,700
+và kết luận đúc kết lại biến nó thành
+
+81
+00:02:59,200 --> 00:03:02,333
+cái tri thức của được để có thể đưa lên được ai
+
+82
+00:03:02,733 --> 00:03:04,866
+ha đây là năm cái khung câu hỏi để moi ra
+
+83
+00:03:05,366 --> 00:03:08,066
+à mọi cái chất xám ha ví dụ như à
+
+84
+00:03:08,400 --> 00:03:10,966
+hỏi ông nhật đi ừ tại sao em làm như vậy đúng hông
+
+85
+00:03:11,066 --> 00:03:13,666
+đầu vào ừ thì đầu vào của em á là một cái bộ từ khóa
+
+86
+00:03:13,766 --> 00:03:15,600
+một cái dự án đó nó như thế này
+
+87
+00:03:16,000 --> 00:03:19,500
+đúng hông thì à bây giờ á cái kpi của em như này rồi em a
+
+88
+00:03:19,866 --> 00:03:22,266
+đánh giá cái content của em như này là nó đạt rồi
+
+89
+00:03:22,466 --> 00:03:23,266
+và tại sao mà nó đạt
+
+90
+00:03:23,466 --> 00:03:24,700
+là ừ dựa trên tiêu chí này
+
+91
+00:03:24,766 --> 00:03:27,266
+dựa trên tiêu chí kia này nọ các kiểu rồi đúc kết lại
+
+92
+00:03:27,300 --> 00:03:28,166
+em sẽ có cái công thức
+
+93
+00:03:28,166 --> 00:03:30,866
+em làm như này làm cái kia đó thì à
+
+94
+00:03:31,000 --> 00:03:34,400
+nó sẽ có một cái kho tri thức của anh em à hôm nay thì mình
+
+95
+00:03:35,200 --> 00:03:37,800
+cái thác để mà anh em về anh em bào nhân sự ha
+
+96
+00:03:37,933 --> 00:03:39,366
+và bào chính bản thân mình
+
+97
+00:03:40,700 --> 00:03:42,400
+rồi công ty anh em có những cái buổi
+
+98
+00:03:42,766 --> 00:03:44,766
+thảo luận ca khó nào chưa à
+
+99
+00:03:44,900 --> 00:03:45,733
+sắp tới thì à
+
+100
+00:03:45,800 --> 00:03:48,000
+bên a phía a công ty em á a
+
+101
+00:03:48,100 --> 00:03:51,000
+công ty a cesona cũng sẽ có những cái buổi thảo luận này ha
+
+102
+00:03:51,200 --> 00:03:53,966
+để mà à tìm ra được những cái chất xám
+
+103
+00:03:54,300 --> 00:03:56,666
+à ở trong đầu anh em đội nhóm
+
+104
+00:03:56,900 --> 00:03:58,966
+để chúng ta có thể xây dựng được một cái quy trình
+
+105
+00:03:59,533 --> 00:04:01,766
+à những cái kiến thức những cái dữ liệu mà
+
+106
+00:04:02,400 --> 00:04:04,266
+không có cái công ty nào nó có ha
+
+107
+00:04:05,966 --> 00:04:10,366
+rồi à fan quốc nãy giờ nói về nguyên lý rồi ha thì
+
+108
+00:04:10,466 --> 00:04:11,766
+ở đây fan quốc à
+
+109
+00:04:12,500 --> 00:04:14,800
+bảy bước để mà anh em đánh giá và cải tiến
+
+110
+00:04:15,066 --> 00:04:17,600
+và à cái bí kíp này thì anh em có thể về
+
+111
+00:04:17,666 --> 00:04:18,933
+anh em làm được luôn luôn ha
+
+112
+00:04:19,066 --> 00:04:21,066
+và anh em làm tuần tự bảy bước à
+
+113
+00:04:21,100 --> 00:04:22,700
+tuần tự tuần tự không phải là à
+
+114
+00:04:22,900 --> 00:04:24,966
+phải làm full bảy bước đâu nha anh em nha à
+
+115
+00:04:25,100 --> 00:04:27,666
+anh em a làm bước một xong cái bắt đầu ngon ngon rồi
+
+116
+00:04:27,700 --> 00:04:30,166
+anh em có thể làm cả làm bước bảy trước cũng được đó
+
+117
+00:04:30,700 --> 00:04:32,300
+chứ không cần phải phải phải tuần tự
+
+118
+00:04:32,333 --> 00:04:34,333
+vừa làm bước một xong với bước thứ hai đâu ha
+
+119
+00:04:34,666 --> 00:04:37,733
+rồi cái bước này thứ nhất là anh em phải xây dựng à được à
+
+120
+00:04:38,300 --> 00:04:42,200
+một cái a luồng mà nó chạy được hết rồi thì tất nhiên rồi
+
+121
+00:04:42,800 --> 00:04:44,266
+à cái thứ hai là anh em
+
+122
+00:04:44,900 --> 00:04:46,533
+đánh giá cái kết quả đầu ra
+
+123
+00:04:46,766 --> 00:04:48,200
+khi mà nó chạy được rồi thì đánh giá
+
+124
+00:04:48,966 --> 00:04:51,733
+cái thứ ba anh em ghi lại cái kết quả
+
+125
+00:04:52,133 --> 00:04:54,300
+ha nó đạt nó không đạt như thế nào
+
+126
+00:04:54,566 --> 00:04:56,800
+chất lượng nó lởm như thế nào đúng hông
+
+127
+00:04:57,300 --> 00:05:01,566
+sau đó anh em tìm ra cái điểm chung của các cái lỗi này
+
+128
+00:05:01,666 --> 00:05:05,200
+ví dụ như anh em chạy nó mười lần thì ừ nó bị lỗi như này
+
+129
+00:05:05,333 --> 00:05:06,700
+anh em tìm ra cái điểm chung ha
+
+130
+00:05:06,800 --> 00:05:07,600
+điểm chung này á
+
+131
+00:05:07,733 --> 00:05:09,966
+thì ai nó cũng tìm ra cho anh em được luôn
+
+132
+00:05:10,066 --> 00:05:11,100
+chứ không cần phải anh em ngồi
+
+133
+00:05:11,200 --> 00:05:12,600
+anh em làm tay nữa đúng hông
+
+134
+00:05:13,100 --> 00:05:16,266
+rồi khi mà à tiếp tục anh em có
+
+135
+00:05:16,866 --> 00:05:21,266
+ghi lại các cái cái ca mà nó trả lời xuất sắc ha là mỹ mãn
+
+136
+00:05:21,366 --> 00:05:22,700
+lưu lại cái mẫu này cho mình
+
+137
+00:05:23,200 --> 00:05:26,933
+rồi anh em cập nhật cái kiến thức theo cái à
+
+138
+00:05:27,966 --> 00:05:29,700
+tỷ lệ mà hai mươi tám mươi
+
+139
+00:05:29,800 --> 00:05:31,200
+nguyên lý hai mươi tám mươi ha
+
+140
+00:05:31,366 --> 00:05:32,900
+à anh em có những cái mà nó
+
+141
+00:05:33,266 --> 00:05:35,400
+à lỗi nghiêm trọng á thì anh em ưu tiên
+
+142
+00:05:35,733 --> 00:05:37,000
+mà anh em sửa nó trước
+
+143
+00:05:37,566 --> 00:05:38,366
+anh em ưu tiên
+
+144
+00:05:38,733 --> 00:05:40,300
+à để xử lý những cái lỗi này trước
+
+145
+00:05:40,400 --> 00:05:43,366
+còn lại á thì từ từ mình sẽ sửa từ từ nó sẽ ngon hơn
+
+146
+00:05:43,966 --> 00:05:45,500
+và à một cái cuối cùng
+
+147
+00:05:46,166 --> 00:05:48,533
+đó là nhật ký thay đổi
+
+148
+00:05:48,933 --> 00:05:49,966
+ví dụ như hôm nay
+
+149
+00:05:50,500 --> 00:05:51,900
+anh em chạy cái luồng này
+
+150
+00:05:52,066 --> 00:05:54,100
+ngày mai anh em sửa thì anh em ghi lại ha
+
+151
+00:05:54,333 --> 00:05:56,533
+anh em ghi lại mọi lần sửa cho mình
+
+152
+00:05:56,966 --> 00:05:58,400
+sửa cái gì ghi lại cho mình
+
+153
+00:05:59,000 --> 00:06:00,000
+để mà sau này á
+
+154
+00:06:00,166 --> 00:06:03,466
+anh em có thể có bảo trì được và bảo trì này á
+
+155
+00:06:03,600 --> 00:06:04,400
+sau này
+
+156
+00:06:04,966 --> 00:06:07,400
+anh em có thể đưa cái file đó cho asian
+
+157
+00:06:07,466 --> 00:06:08,500
+nó bảo trì cho anh em luôn
+
+158
+00:06:08,533 --> 00:06:10,000
+chứ anh em cũng không cần phải bảo trì
+
+159
+00:06:10,700 --> 00:06:12,266
+anh em cần phải có những cái mà
+
+160
+00:06:12,666 --> 00:06:15,400
+à kiểu mà bước chân như thế này để mà đi ha
+
+161
+00:06:15,533 --> 00:06:18,800
+nhập ký như thế này để mà đi chứ hôm nay sửa cái à
+
+162
+00:06:19,466 --> 00:06:21,933
+ngày mai nó sửa cái ngày mốt sửa cái
+
+163
+00:06:22,300 --> 00:06:25,666
+rồi ba cái rồi tới cuối cùng á quên mất là là sửa cái gì
+
+164
+00:06:26,133 --> 00:06:28,500
+quên mất là cái luồng của mình nó đang vận hành như thế nào
+
+165
+00:06:28,933 --> 00:06:31,466
+quên mất tiêu rồi thì anh em sẽ không thể nào mà
+
+166
+00:06:32,066 --> 00:06:35,700
+có thể làm được một cái hệ thống mà nó ổn định được đâu ha
+
+167
+00:06:35,866 --> 00:06:37,100
+nó không ổn định được đâu à
+
+168
+00:06:37,166 --> 00:06:39,266
+nếu mà không lưu lại những cái này thì nó không bao giờ nó
+
+169
+00:06:39,333 --> 00:06:40,133
+ổn định được
+
+170
+00:06:40,566 --> 00:06:42,666
+ô kê mình sẽ đi à từng bước ha
+
+171
+00:06:43,900 --> 00:06:47,266
+à chạy luôn rồi đánh giá đầu vào à thì hôm nay à có
+
+172
+00:06:47,766 --> 00:06:49,766
+về là anh em làm được luôn cái buổi này á
+
+173
+00:06:49,933 --> 00:06:52,533
+đừng có lý do lý chấu gì hết lên nha nữa nha mấy ông
+
+174
+00:06:52,700 --> 00:06:54,566
+tí nữa tôi chỉ cho anh em cái cách mà làm
+
+175
+00:06:54,800 --> 00:06:57,866
+mà nó tự động thì đừng có lý do lý chấu gì nữa nha ờ
+
+176
+00:06:58,300 --> 00:06:59,100
+khó quá
+
+177
+00:06:59,100 --> 00:07:02,000
+em không hiểu cái này nọ các kiểu thì tôi tôi chịu nha
+
+178
+00:07:03,100 --> 00:07:05,333
+rồi đầu tiên anh em xây dựng và chạy toàn bộ luồng
+
+179
+00:07:05,533 --> 00:07:07,066
+xây dựng cái quạt follow ha
+
+180
+00:07:08,066 --> 00:07:09,933
+trên cái bảng thiết kế của anh em á à
+
+181
+00:07:10,866 --> 00:07:14,100
+thì cái này á mình đang bị nhầm ở cái này ha
+
+182
+00:07:15,266 --> 00:07:17,333
+cái này là là là con a
+
+183
+00:07:18,300 --> 00:07:20,100
+con a sabia longso chứ hông
+
+184
+00:07:20,100 --> 00:07:21,766
+phải alex ferguson nha anh em nha
+
+185
+00:07:21,933 --> 00:07:24,866
+rồi sử dụng cái con sabia longso và alex ferguson à
+
+186
+00:07:24,966 --> 00:07:26,400
+làm cái con này đúng hông rồi
+
+187
+00:07:26,466 --> 00:07:29,400
+anh em đánh giá cái kết quả đầu ra cho nó rồi à
+
+188
+00:07:30,000 --> 00:07:32,266
+nếu mà cái a khối lượng nó lớn á thì anh em
+
+189
+00:07:32,400 --> 00:07:35,000
+hít cái tiêu chí ra cho máy nó đánh giá luôn á
+
+190
+00:07:35,133 --> 00:07:36,933
+anh em cần phải có tiêu chí ô kê kết quả
+
+191
+00:07:37,100 --> 00:07:39,533
+đưa vào xong cái lại đưa ra cho một cái con asian
+
+192
+00:07:39,766 --> 00:07:40,766
+nó đánh giá được chưa
+
+193
+00:07:40,966 --> 00:07:42,166
+hiểu cái này hông anh em
+
+194
+00:07:44,300 --> 00:07:46,533
+hiểu hiểu cái cái cái cái bước một bước hai này hông
+
+195
+00:07:47,533 --> 00:07:48,600
+comment đi anh em ơi
+
+196
+00:07:52,600 --> 00:07:55,133
+đúng hông anh em xây dựng một con sau đó
+
+197
+00:07:55,566 --> 00:07:58,666
+à anh em ngồi anh em đánh giá bằng tay cũng được
+
+198
+00:07:58,800 --> 00:08:01,133
+bằng bằng bằng bằng bằng bằng cơm cũng được
+
+199
+00:08:01,733 --> 00:08:02,533
+còn nếu mà anh em
+
+200
+00:08:02,933 --> 00:08:04,300
+không muốn đánh giá bằng cơm á
+
+201
+00:08:04,333 --> 00:08:06,733
+thì anh em cần phải xây dựng cái bộ tiêu chí trước luôn
+
+202
+00:08:07,566 --> 00:08:08,733
+được chưa để
+
+203
+00:08:09,333 --> 00:08:11,733
+tạo ra một cái con asian nó tự nó đánh giá
+
+204
+00:08:11,866 --> 00:08:13,766
+anh em chỉ gởi cho nó kết quả và tự nó đánh giá
+
+205
+00:08:14,466 --> 00:08:17,000
+được hông được hông sao mỗi có bạn kiên hiểu vậy
+
+206
+00:08:17,200 --> 00:08:18,366
+các bạn khác không hiểu hả
+
+207
+00:08:23,933 --> 00:08:25,066
+đánh giá đó là đánh giá
+
+208
+00:08:25,133 --> 00:08:27,066
+ý là nó chạy xong rồi mình đánh giá cho nó
+
+209
+00:08:27,300 --> 00:08:30,200
+mình nói cho nó đánh giá cái kết quả đầu ra đó em
+
+210
+00:08:30,500 --> 00:08:34,200
+nó có đúng với lại cái chất lượng của em không ờ
+
+211
+00:08:34,266 --> 00:08:36,066
+ví dụ mình đúng thì mình note lại cho nó biết ờ
+
+212
+00:08:36,100 --> 00:08:38,100
+cái này mục tiêu của em không đúng hông
+
+213
+00:08:41,100 --> 00:08:43,333
+rõ ràng là em sẽ bắt đầu từ cái mục tiêu rõ ràng
+
+214
+00:08:43,466 --> 00:08:45,966
+mà đúng hông mục tiêu rồi em mới đưa cái bản bê đê
+
+215
+00:08:46,533 --> 00:08:48,266
+thiết kế a à
+
+216
+00:08:49,200 --> 00:08:52,100
+workflow sau đó khi có bản thiết kế workflow rồi á
+
+217
+00:08:52,133 --> 00:08:54,066
+sẽ viết a system in jackson
+
+218
+00:08:54,166 --> 00:08:55,966
+viết system in jackson rồi á thì
+
+219
+00:08:56,566 --> 00:08:59,900
+à đưa cho tí nữa anh chỉ cho rồi mới tạo cái quạt follow đó
+
+220
+00:08:59,933 --> 00:09:01,933
+tạo cái quạt follow đó thì à chạy thử
+
+221
+00:09:02,166 --> 00:09:04,766
+chạy thử nó ra kết quả ra kết quả là mình đánh giá
+
+222
+00:09:05,000 --> 00:09:05,866
+được chưa hiểu chưa
+
+223
+00:09:07,533 --> 00:09:09,533
+em hiểu rồi ý là mình đánh giá là mình
+
+224
+00:09:10,600 --> 00:09:12,266
+mình viết giấy hay là mình
+
+225
+00:09:12,500 --> 00:09:15,466
+ghi vô hay mình phản hồi lại con ai này là kết quả đúng rồi
+
+226
+00:09:15,500 --> 00:09:16,300
+cho nó biết
+
+227
+00:09:16,700 --> 00:09:18,100
+như thế nào á anh em phải
+
+228
+00:09:18,966 --> 00:09:20,333
+copy ra một cái file
+
+229
+00:09:21,333 --> 00:09:22,133
+ờ
+
+230
+00:09:22,466 --> 00:09:25,533
+em viết như thế đi thì nó làm gì có bộ nhớ mà nó nhớ
+
+231
+00:09:27,333 --> 00:09:29,100
+thằng này không hiểu bài gì hết trơn
+
+232
+00:09:30,766 --> 00:09:31,933
+đúng em phản hồi như vậy
+
+233
+00:09:31,966 --> 00:09:33,733
+lần sau nó làm sao mà nó nhớ được mà
+
+234
+00:09:36,000 --> 00:09:38,566
+dạ ô kê mình note ra ngoài file đúng hông
+
+235
+00:09:39,400 --> 00:09:40,900
+đúng hông note ra ngoài file rồi mình
+
+236
+00:09:41,100 --> 00:09:43,466
+lấy cái dữ liệu đó để mình trending nó lại mà
+
+237
+00:09:44,800 --> 00:09:48,966
+dạ ô kê ô kê anh lý hỏi đang ăn cái gì kìa
+
+238
+00:09:51,133 --> 00:09:52,500
+ăn gì đâu ăn trái cây
+
+239
+00:09:55,500 --> 00:09:57,766
+ô kê hông anh em ơi sao không thấy anh em tương tác gì
+
+240
+00:09:57,966 --> 00:09:59,300
+anh em ô kê cho tôi số một coi
+
+241
+00:09:59,966 --> 00:10:01,500
+rồi để tôi tương tác tí cho
+
+242
+00:10:01,566 --> 00:10:02,533
+ví dụ hết buổi ngày hôm nay
+
+243
+00:10:02,600 --> 00:10:04,866
+tôi sẽ phân công cho bạn như ở bên team của trà lộc tân
+
+244
+00:10:04,966 --> 00:10:07,100
+cương xây một con tư vấn và chốt đơn khách
+
+245
+00:10:07,266 --> 00:10:08,266
+thì tôi sẽ ghi
+
+246
+00:10:08,666 --> 00:10:10,333
+một cái tiêu chí là ở đây
+
+247
+00:10:10,366 --> 00:10:12,700
+bạn trả lời như thế này là hơi xấc xược với khách
+
+248
+00:10:13,566 --> 00:10:16,533
+đây bạn trả lời câu trả lời này là chưa ân cần với khách
+
+249
+00:10:16,900 --> 00:10:18,366
+câu trả lời như thế này nè wow
+
+250
+00:10:18,466 --> 00:10:20,266
+bạn rất ân cần và trả lời câu hỏi mở
+
+251
+00:10:20,466 --> 00:10:22,566
+để khách tiếp tục tương tác với mình và chat với mình
+
+252
+00:10:23,100 --> 00:10:23,900
+rồi tiếp theo là à
+
+253
+00:10:23,933 --> 00:10:25,166
+bạn trả lời như này có nghĩa là
+
+254
+00:10:25,366 --> 00:10:27,566
+khả năng chốt đơn rất cao và am hiểu khách hàng
+
+255
+00:10:27,866 --> 00:10:28,366
+xong ví dụ
+
+256
+00:10:28,366 --> 00:10:30,466
+nó trả lời một cái câu hỏi mà nó chật lất với kiến thức
+
+257
+00:10:30,500 --> 00:10:31,133
+để bảo đã
+
+258
+00:10:31,133 --> 00:10:32,333
+bạn đã trả lời sai kiến thức
+
+259
+00:10:33,100 --> 00:10:33,700
+chuẩn
+
+260
+00:10:33,700 --> 00:10:35,766
+chuẩn các tiêu chí như vậy ghi ra thành một file excel
+
+261
+00:10:36,066 --> 00:10:37,500
+mỗi một cái tiêu chí trên một dòng
+
+262
+00:10:37,700 --> 00:10:38,733
+thế là được nó sẽ hiểu
+
+263
+00:10:39,266 --> 00:10:41,266
+chuẩn chuẩn chuẩn chuẩn không cần chỉnh đó
+
+264
+00:10:41,966 --> 00:10:42,866
+còn mấy ông nội khác
+
+265
+00:10:43,266 --> 00:10:44,133
+cũng không tương tác luôn
+
+266
+00:10:44,200 --> 00:10:46,166
+không biết là tui không biết là các ông có hiểu hay không
+
+267
+00:10:46,266 --> 00:10:47,066
+hiểu rồi
+
+268
+00:10:48,366 --> 00:10:51,366
+mỗi cái tương tác thôi mà tôi nói khán giả cổ mà các ông
+
+269
+00:10:51,466 --> 00:10:52,966
+các ông bấm mỗi cái số một còn tiếc
+
+270
+00:10:55,933 --> 00:10:57,300
+thế mới chán chứ nhỉ
+
+271
+00:11:03,700 --> 00:11:04,533
+rồi mình đi tiếp
+
+272
+00:11:04,566 --> 00:11:07,466
+ha nhanh thôi tới cái cái phần lý thuyết này mình
+
+273
+00:11:07,733 --> 00:11:09,133
+mình sẽ đi nhanh một tí
+
+274
+00:11:09,600 --> 00:11:11,066
+để tới phần thực hành đi
+
+275
+00:11:13,300 --> 00:11:14,933
+ô kê đây
+
+276
+00:11:18,000 --> 00:11:18,400
+rồi
+
+277
+00:11:18,400 --> 00:11:22,133
+bây giờ anh em à ghi các cái ca đạt và không đạt ra ca nào
+
+278
+00:11:22,366 --> 00:11:23,166
+xịt ha
+
+279
+00:11:23,200 --> 00:11:24,533
+à sai thì phải à
+
+280
+00:11:24,700 --> 00:11:26,133
+ví dụ như cái quy trình đó nó chạy
+
+281
+00:11:26,466 --> 00:11:28,266
+nó sai luôn thì anh em phải check lại cái luồng
+
+282
+00:11:28,333 --> 00:11:30,900
+ha ây giờ nào mà nó ờ sai
+
+283
+00:11:31,366 --> 00:11:32,900
+inbox outbox gì hay không đúng hông
+
+284
+00:11:33,066 --> 00:11:34,666
+ờ mình có bảng thiết kế rồi thì mình check
+
+285
+00:11:34,800 --> 00:11:35,733
+nó dễ mà đúng hông
+
+286
+00:11:35,866 --> 00:11:36,666
+còn ờ không sai
+
+287
+00:11:36,766 --> 00:11:38,100
+nhưng mà cái chất lượng nó lởm á
+
+288
+00:11:38,100 --> 00:11:39,666
+thì cái kết quả chưa ưng thì anh em ghi lại
+
+289
+00:11:40,200 --> 00:11:42,366
+còn cái nó sai luôn từ đầu á thì anh em
+
+290
+00:11:43,066 --> 00:11:45,133
+cần phải xem lại cái luồng của mình đúng hông
+
+291
+00:11:45,533 --> 00:11:46,066
+rồi
+
+292
+00:11:46,066 --> 00:11:48,566
+anh em cái bước số bốn là anh em tìm ra các cái điểm chung
+
+293
+00:11:48,966 --> 00:11:49,766
+các cái lỗi chung
+
+294
+00:11:49,800 --> 00:11:50,866
+ví dụ như anh em
+
+295
+00:11:51,133 --> 00:11:52,966
+gom lại những cái nào mà nó cứ lặp lại
+
+296
+00:11:53,100 --> 00:11:54,766
+những cái mà mà mà nó sai như vậy
+
+297
+00:11:54,866 --> 00:11:57,133
+cái lỗi sai như vậy á thì à
+
+298
+00:11:57,566 --> 00:11:59,733
+anh em sẽ tìm ra cái mẫu số nó lặp lại
+
+299
+00:11:59,800 --> 00:12:02,200
+và cái việc này thì anh em hồi nãy quyết đã nói hả
+
+300
+00:12:02,566 --> 00:12:04,766
+bỏ vào con ai tạo ra một cái con ai
+
+301
+00:12:05,266 --> 00:12:06,933
+đưa cái tiêu chí vào thì à
+
+302
+00:12:07,866 --> 00:12:10,266
+ấy cái cái cái cái tìm ra cái mẫu số chung này á
+
+303
+00:12:10,366 --> 00:12:12,733
+đưa đưa cái kết quả đó vào đưa cái file đó vào
+
+304
+00:12:14,000 --> 00:12:16,566
+thì nó vào notebook lm thôi cũng được ha
+
+305
+00:12:16,666 --> 00:12:20,266
+nói nó à tìm ra những cái mẫu mà sai lặp lại gọi là
+
+306
+00:12:22,333 --> 00:12:23,966
+ở những cái kết quả này thì ai
+
+307
+00:12:24,300 --> 00:12:25,300
+nó sẽ phân tích cho anh em
+
+308
+00:12:25,366 --> 00:12:27,733
+và nó sẽ so sánh cho anh em thì anh em sẽ à
+
+309
+00:12:28,133 --> 00:12:31,900
+đỡ tốn rất là nhiều công ha rồi bước bốn à
+
+310
+00:12:32,100 --> 00:12:34,333
+kết quả à của cái bước bốn này á
+
+311
+00:12:34,333 --> 00:12:36,200
+là anh em sẽ cập nhật lại cái tiêu chí đánh giá
+
+312
+00:12:36,366 --> 00:12:38,266
+đúng hông anh em đã có một cái tiêu chí đánh giá
+
+313
+00:12:38,400 --> 00:12:41,133
+nhưng mà nó có những cái mà nó nằm ngoài cái tiêu chí đó
+
+314
+00:12:41,500 --> 00:12:43,400
+có những cái mà nó nằm ngoài các cái tiêu chí đó
+
+315
+00:12:43,666 --> 00:12:45,466
+cái tiêu chí của anh em lần đầu không thể nào
+
+316
+00:12:46,200 --> 00:12:49,366
+mà nó đúng ngay được à có có ai mở loa thì
+
+317
+00:12:50,300 --> 00:12:51,266
+tắt hộ mình cái
+
+318
+00:12:52,566 --> 00:12:54,466
+đúng hông anh em phải cập nhật lại cái tiêu chí
+
+319
+00:12:54,600 --> 00:12:57,400
+thì từ từ anh em sẽ có những cái bộ tiêu chí đúng hông
+
+320
+00:12:57,600 --> 00:12:58,400
+mà nó
+
+321
+00:12:58,500 --> 00:13:02,200
+dày lên nó dày lên và sau đó nó bao quát từng cái lỗi à
+
+322
+00:13:02,200 --> 00:13:04,166
+nó sẽ giống như một cái màng lưới vậy á
+
+323
+00:13:04,266 --> 00:13:07,400
+nó sẽ lọc đúng hông đó vì sao mà chạy à
+
+324
+00:13:08,100 --> 00:13:11,166
+mà mà nó càng khôn lên là nó càng như vậy đó anh em ạ đó
+
+325
+00:13:11,400 --> 00:13:13,066
+rồi tới bước thứ năm
+
+326
+00:13:13,933 --> 00:13:17,733
+anh em đừng chỉ ghi cái lỗi à mà ghi cả cái a các cái
+
+327
+00:13:18,300 --> 00:13:19,366
+các cái kết quả tốt ha
+
+328
+00:13:19,566 --> 00:13:22,300
+các cái kết quả tốt và cái kết quả xuất sắc ha à
+
+329
+00:13:22,366 --> 00:13:24,300
+cái trường hợp nào anh em anh em ưng ý
+
+330
+00:13:25,066 --> 00:13:27,300
+và cái trường hợp nào là tuyệt vời đối với anh em
+
+331
+00:13:27,400 --> 00:13:28,200
+anh em ghi lại
+
+332
+00:13:28,566 --> 00:13:32,333
+đây là cái nguyên liệu vàng để cho cho ai nó nó làm đúng á
+
+333
+00:13:32,666 --> 00:13:35,866
+đó thì anh em a à nên ghi lại như thế này đó
+
+334
+00:13:36,100 --> 00:13:39,166
+có ba cái loại mà anh em nên thu thập nè từng xuất sắc nè
+
+335
+00:13:39,533 --> 00:13:42,100
+cái a từng cái con asian á có nghĩa là
+
+336
+00:13:42,500 --> 00:13:43,300
+trong một cái quạt
+
+337
+00:13:43,500 --> 00:13:45,700
+lâu của mình nó sẽ có nhiều cái con asian
+
+338
+00:13:46,266 --> 00:13:47,366
+thì anh em sẽ phải kiểm tra
+
+339
+00:13:48,000 --> 00:13:51,266
+từng cái con asian đó chứ hông phải là kiểm tra mỗi một
+
+340
+00:13:51,666 --> 00:13:53,200
+cái kết quả đầu ra đâu anh em
+
+341
+00:13:53,466 --> 00:13:54,866
+đó rồi à
+
+342
+00:13:55,766 --> 00:13:58,166
+từng cái cái cái cái bước như vậy ha
+
+343
+00:13:58,600 --> 00:14:02,100
+rồi tiếp tục nó sẽ có cuộc lâu nào là mỹ mãn đó
+
+344
+00:14:02,133 --> 00:14:04,333
+chạy toàn bộ cái luồng nó ra cái kết quả hoàn hảo
+
+345
+00:14:04,533 --> 00:14:05,933
+cái loại nào thì à
+
+346
+00:14:07,300 --> 00:14:09,966
+anh em thấy cái cái kết quả nó đáng để học theo ha
+
+347
+00:14:10,366 --> 00:14:12,466
+và cái k nào mà nó hiếm
+
+348
+00:14:12,733 --> 00:14:15,933
+đó thì anh em note lại để mà trending nó lại
+
+349
+00:14:16,133 --> 00:14:16,966
+trending trending nó lại
+
+350
+00:14:17,500 --> 00:14:20,666
+từ từ từ từ đó anh em mà sẽ có những cái
+
+351
+00:14:21,366 --> 00:14:24,933
+à dữ liệu cực kỳ là ngon à sang xịn mịn luôn
+
+352
+00:14:25,133 --> 00:14:28,100
+đó tư tưởng của mình á là ghi hết lại à
+
+353
+00:14:28,266 --> 00:14:30,100
+ngon cũng được không ngon cũng được à
+
+354
+00:14:30,300 --> 00:14:33,266
+ghi lại từng con và từng cái cuộc follow á
+
+355
+00:14:33,366 --> 00:14:34,700
+từng con và từng cái cuộc follow
+
+356
+00:14:34,966 --> 00:14:36,800
+cái ca nào nó hiếm cũng ghi lại luôn
+
+357
+00:14:36,866 --> 00:14:38,166
+ví dụ như à bây giờ thì
+
+358
+00:14:38,866 --> 00:14:40,766
+mình triển khai cái dự án sco đi thì
+
+359
+00:14:40,933 --> 00:14:42,100
+chưa có cái ca nào hiếm hết
+
+360
+00:14:42,100 --> 00:14:43,866
+nhưng mà trong tương lai mình lại có những cái ca hiếm
+
+361
+00:14:44,100 --> 00:14:45,266
+thì mình cũng sẽ ghi lại đó
+
+362
+00:14:45,333 --> 00:14:46,133
+kiểu như vậy ha
+
+363
+00:14:47,466 --> 00:14:49,133
+rồi bước số a
+
+364
+00:14:49,566 --> 00:14:49,900
+sáu
+
+365
+00:14:49,900 --> 00:14:52,800
+và bước số bảy là cập nhật cái kiến thức cho cái hệ thống ha
+
+366
+00:14:52,933 --> 00:14:53,866
+à ưu tiên mà
+
+367
+00:14:54,466 --> 00:14:55,266
+xử lý cái
+
+368
+00:14:55,400 --> 00:14:57,366
+lỗi nghiêm trọng trước này quy tắc hai mươi tám mươi
+
+369
+00:14:57,766 --> 00:14:59,733
+rồi à nhật ký thay đổi thì à
+
+370
+00:14:59,800 --> 00:15:00,600
+bảy cái bước này á
+
+371
+00:15:00,700 --> 00:15:03,666
+tuần tự làm và anh em lặp đi lặp lại thì cái cái
+
+372
+00:15:04,066 --> 00:15:06,500
+asian của anh em nó càng ngày nó càng ngon thôi à
+
+373
+00:15:06,533 --> 00:15:08,066
+miễn sao là anh em bắt tay làm thôi
+
+374
+00:15:08,466 --> 00:15:09,266
+mình
+
+375
+00:15:10,100 --> 00:15:12,600
+tin chắc là anh em làm là nó sẽ được ha
+
+376
+00:15:12,766 --> 00:15:14,133
+miễn sao có tay làm thôi
+
+377
+00:15:14,300 --> 00:15:17,333
+quy trình quy chuẩn này nọ các kiểu nó có hết mẹ rồi
+
+378
+00:15:17,700 --> 00:15:19,700
+bây giờ tí nữa mình hướng dẫn cho anh em gọi là là
+
+379
+00:15:20,466 --> 00:15:22,066
+cách mà làm ô tô luôn đúng hông
+
+380
+00:15:22,100 --> 00:15:24,366
+anh em chỉ cái việc ghi lại rồi bắt đầu tiền
+
+381
+00:15:25,066 --> 00:15:27,733
+training ngược lại cho nó thôi thì nó nó nó nó
+
+382
+00:15:27,800 --> 00:15:28,666
+cực kỳ cực kỳ là
+
+383
+00:15:29,400 --> 00:15:32,266
+dễ làm nó cực kỳ là đơn giản không có khó cái gì cả
+
+384
+00:15:32,900 --> 00:15:36,166
+rồi bây giờ mình sẽ đi vào demo tí anh em nhảy
+
+385
+00:15:37,533 --> 00:15:39,266
+à còn à đây quên
+
+386
+00:15:39,800 --> 00:15:42,133
+nói cho anh em à anh em có thắc mắc là à
+
+387
+00:15:42,400 --> 00:15:43,566
+cái cách quên xíu nữa
+
+388
+00:15:43,766 --> 00:15:46,066
+quên rồi trending lại cho nó bằng cách nào hả
+
+389
+00:15:46,533 --> 00:15:48,300
+đúng hông đúng hông
+
+390
+00:15:48,500 --> 00:15:50,500
+trending lại cho nó thì có hai cách ha
+
+391
+00:15:50,600 --> 00:15:52,533
+một là anh em sẽ có một cái kho ví dụ
+
+392
+00:15:52,966 --> 00:15:55,366
+cộng với lại cái system injection của anh em đó
+
+393
+00:15:55,566 --> 00:15:57,366
+đó kho ví dụ là cái nào là tốt
+
+394
+00:15:57,400 --> 00:15:59,500
+cái nào là sệt cộng với system injection
+
+395
+00:15:59,700 --> 00:16:01,666
+để mà asian nó đọc mỗi lần nó chạy
+
+396
+00:16:01,900 --> 00:16:04,133
+đúng hông thì đây là cái à
+
+397
+00:16:05,533 --> 00:16:07,666
+trường hợp mà mình khuyên anh em nên dùng
+
+398
+00:16:07,966 --> 00:16:09,133
+có một cái cách thứ hai nữa
+
+399
+00:16:09,266 --> 00:16:12,166
+là anh em đóng gói lại thành một cái bộ não à
+
+400
+00:16:13,200 --> 00:16:14,133
+nó gọi là cái
+
+401
+00:16:14,800 --> 00:16:17,966
+à file tuning file tuning đóng gói lại có nghĩa là
+
+402
+00:16:18,400 --> 00:16:22,766
+à các cái hãng lớn à để mình vào cho anh em a xem luôn à
+
+403
+00:16:23,000 --> 00:16:23,800
+vào à
+
+404
+00:16:25,866 --> 00:16:27,866
+đây file tuning đó
+
+405
+00:16:27,933 --> 00:16:29,933
+nó có cái gọi là file tuning ở đây
+
+406
+00:16:30,133 --> 00:16:32,466
+để mình kiếm cái bảng giá file tuning ha
+
+407
+00:16:41,000 --> 00:16:41,966
+anh em chờ tí
+
+408
+00:16:43,900 --> 00:16:46,866
+à anh em a ví dụ giàu giàu như anh toại nè
+
+409
+00:16:46,966 --> 00:16:48,700
+có thể sử dụng cái cách này cho nó đơn giản
+
+410
+00:16:59,133 --> 00:16:59,933
+open
+
+411
+00:17:34,066 --> 00:17:36,166
+bình thường nó sẽ hiện ra cái file tuning
+
+412
+00:17:36,300 --> 00:17:40,300
+là cái nó hiện dưới cái chỗ này mà mình tìm xem
+
+413
+00:17:42,600 --> 00:17:45,000
+sao mà bây giờ nó không hiện cái file tuning nữa ta
+
+414
+00:17:50,566 --> 00:17:54,600
+với tuning open ai
+
+415
+00:17:57,400 --> 00:17:58,200
+giá
+
+416
+00:18:22,400 --> 00:18:24,533
+ờ thằng này như nó mới bỏ hay gì
+
+417
+00:18:26,066 --> 00:18:28,266
+không thấy nó có cái file tuning nữa
+
+418
+00:18:53,000 --> 00:18:54,566
+đây face tuning đây
+
+419
+00:18:56,566 --> 00:19:00,700
+đó thì à nó sẽ cho cái a các hãng nó sẽ cho
+
+420
+00:19:01,900 --> 00:19:05,133
+thế cho phép là các cái công ty doanh nghiệp cá nhân
+
+421
+00:19:05,666 --> 00:19:08,500
+có thể training các cái dữ liệu của mình vào ha
+
+422
+00:19:08,900 --> 00:19:12,366
+à trending các cái dữ liệu của mình vào thì à à
+
+423
+00:19:12,600 --> 00:19:15,333
+thay vì chúng ta phải lưu cái dữ liệu đó rồi bắt đầu
+
+424
+00:19:15,666 --> 00:19:18,466
+đưa nó vào system injection đưa nó vào à
+
+425
+00:19:18,600 --> 00:19:21,133
+tài liệu à ở một chỗ nào đó trên cái data
+
+426
+00:19:21,466 --> 00:19:23,066
+của chúng ta thì chúng ta trending cho nó luôn
+
+427
+00:19:23,600 --> 00:19:25,666
+thì nó sẽ tính tiền nó sẽ đắt hơn
+
+428
+00:19:26,266 --> 00:19:27,300
+nó có hai cách ha
+
+429
+00:19:27,466 --> 00:19:29,600
+một là ví dụ như anh em có một tập dữ liệu đó
+
+430
+00:19:29,666 --> 00:19:30,666
+anh em a trending
+
+431
+00:19:31,300 --> 00:19:32,700
+thì nó sẽ tính tiền theo cái giờ
+
+432
+00:19:33,066 --> 00:19:35,000
+ví dụ như anh em trending mười giờ xong thì
+
+433
+00:19:35,500 --> 00:19:37,000
+nó sẽ tính a tiền mười giờ
+
+434
+00:19:37,566 --> 00:19:39,866
+à mười giờ training là mười giờ học tập á
+
+435
+00:19:40,066 --> 00:19:42,366
+rồi sau đó anh em sử dụng anh em gọi abi ra
+
+436
+00:19:42,600 --> 00:19:44,166
+thì nó ví dụ như thay vì mình có
+
+437
+00:19:44,733 --> 00:19:48,000
+năm đô một à triệu túc cần đi thì nó sẽ tính anh em mười đô
+
+438
+00:19:48,300 --> 00:19:49,566
+đó đắt hơn gấp đôi thôi
+
+439
+00:19:49,766 --> 00:19:50,400
+à giàu giàu
+
+440
+00:19:50,400 --> 00:19:52,666
+như anh toại thì có thể tham khảo cách này nha anh toại nhá
+
+441
+00:19:55,066 --> 00:19:57,866
+rồi anh toại ơi ơi ơi nghe là nghe rồi
+
+442
+00:19:58,300 --> 00:20:01,900
+giàu giàu thì có thể tham khảo cái file tuning này nha ừ ừ ừ
+
+443
+00:20:02,100 --> 00:20:04,666
+cảm ơn ô kê căng quá nhỉ
+
+444
+00:20:05,566 --> 00:20:06,800
+đó thì còn không
+
+445
+00:20:07,066 --> 00:20:08,966
+không giàu thì có thể tham khảo cách của em
+
+446
+00:20:12,333 --> 00:20:16,366
+rồi ô kê bây giờ mình sẽ qua mình sẽ hướng dẫn cho anh em
+
+447
+00:20:17,566 --> 00:20:20,966
+cái cách mà có thể tạo ra được một cái con
+
+448
+00:20:21,733 --> 00:20:25,266
+à ai dần một cái luồng ai dần ha
+
+449
+00:20:25,933 --> 00:20:26,733
+thì ô kê
+
+450
+00:20:27,266 --> 00:20:30,766
+à anh em có thể sử dụng à cái công cụ gọi là clot này
+
+451
+00:20:36,466 --> 00:20:40,366
+hoặc là anh em có thể sử dụng google anti graffiti ha
+
+452
+00:20:46,933 --> 00:20:47,733
+đâu rồi ta
+
+453
+00:20:49,100 --> 00:20:49,900
+đây
+
+454
+00:20:51,000 --> 00:20:53,333
+hoặc là anh em có thể sử dụng codex
+
+455
+00:20:54,466 --> 00:20:57,200
+codex là của thằng chat cbt anh em
+
+456
+00:20:58,900 --> 00:20:59,700
+codex
+
+457
+00:21:02,566 --> 00:21:04,966
+đây kodex là thằng này nè đó
+
+458
+00:21:06,566 --> 00:21:07,566
+kodex là thằng này
+
+459
+00:21:08,466 --> 00:21:10,400
+ba thằng anh em có thể sử dụng ha
+
+460
+00:21:10,966 --> 00:21:13,666
+thì bản chất á thằng kodex thằng à
+
+461
+00:21:16,000 --> 00:21:22,266
+anti graffiti và thằng à cloud code này thì ba thằng nó là
+
+462
+00:21:22,933 --> 00:21:25,166
+đều là cho cho code
+
+463
+00:21:25,800 --> 00:21:26,766
+nhưng mà chúng ta có thể
+
+464
+00:21:27,533 --> 00:21:30,533
+à xem nó như là một cái con asian
+
+465
+00:21:30,966 --> 00:21:32,600
+xem nó như là một cái con asian
+
+466
+00:21:34,133 --> 00:21:38,666
+không cần phải n tám n hay là cái gì cả ha à bản chất à
+
+467
+00:21:38,733 --> 00:21:40,266
+còn nếu mà anh em muốn tạo
+
+468
+00:21:40,700 --> 00:21:42,400
+một cái n tám n đúng hông anh
+
+469
+00:21:42,400 --> 00:21:44,000
+em muốn tạo một cái n tám n đi
+
+470
+00:21:44,566 --> 00:21:47,466
+thì anh em cũng bảo các cái con này nó tạo được cho anh em
+
+471
+00:21:47,700 --> 00:21:48,466
+ha à
+
+472
+00:21:48,466 --> 00:21:49,266
+ví dụ ha
+
+473
+00:21:49,500 --> 00:21:52,900
+à trước tiên mà tạo á thì anh em a vào à n tám n đi
+
+474
+00:21:53,866 --> 00:21:54,933
+n tám n này
+
+475
+00:21:57,133 --> 00:21:58,800
+ô kê vào n tám n
+
+476
+00:22:01,000 --> 00:22:04,733
+ờ đốc của n tám n ha đốc là những cái mà nó hướng dẫn anh em
+
+477
+00:22:05,400 --> 00:22:10,166
+ô kê anh em bảo nó mày à chú nghiên cứu hộ anh cái này
+
+478
+00:22:20,166 --> 00:22:26,133
+ô kê tại sao mà mình phải phải cho nó cái cái này tại sao
+
+479
+00:22:27,500 --> 00:22:28,966
+tại vì nó không có biết đâu anh em
+
+480
+00:22:29,533 --> 00:22:32,800
+đúng hông nhiều khi á cái cái cái cái n tám n này nó
+
+481
+00:22:33,266 --> 00:22:35,200
+update một cái tính năng nào mới mà cái con ai
+
+482
+00:22:35,533 --> 00:22:36,466
+này nó không biết thì sao
+
+483
+00:22:37,000 --> 00:22:38,966
+dữ liệu nó chưa trending kịp thì sao đúng hông
+
+484
+00:22:42,533 --> 00:22:43,766
+e cho nó nghiên cứu
+
+485
+00:23:00,166 --> 00:23:03,466
+được chưa rồi con clôt này á cũng vậy ha
+
+486
+00:23:03,566 --> 00:23:06,733
+ví dụ như a mình demo cho anh em trong cái lúc mà chờ à
+
+487
+00:23:06,800 --> 00:23:08,900
+thằng khứa kia nó nghiên cứu đi à
+
+488
+00:23:09,000 --> 00:23:11,733
+mình à tạo một cái con clôt này đi
+
+489
+00:23:12,500 --> 00:23:15,466
+ô kê con clôt này nó cũng tương tự nhưng mà nó khôn hơn ha
+
+490
+00:23:15,533 --> 00:23:17,333
+bản chất và anh em a
+
+491
+00:23:18,466 --> 00:23:22,700
+nên sử dụng cái con clôt ha nên sử dụng con clôt mình à
+
+492
+00:23:22,766 --> 00:23:24,066
+sử dụng con clôt xong mình
+
+493
+00:23:24,333 --> 00:23:25,766
+à không muốn sử dụng mấy con khác
+
+494
+00:23:25,800 --> 00:23:28,300
+tại vì con này nó khôn hơn rất là nhiều à
+
+495
+00:23:28,800 --> 00:23:30,300
+anh em có nghe nói tới
+
+496
+00:23:31,066 --> 00:23:34,666
+open clôt hông có ai nghe open clôt chưa
+
+497
+00:23:37,866 --> 00:23:38,900
+đâu rồi anh em ơi
+
+498
+00:23:42,400 --> 00:23:43,800
+có nghe anh nói rồi anh ơi
+
+499
+00:23:44,566 --> 00:23:46,566
+open cro đúng hông open cro
+
+500
+00:23:47,066 --> 00:23:51,000
+thì bản chất nó cũng là một cái con asian
+
+501
+00:23:51,666 --> 00:23:53,900
+à con trợ lý nó có thể
+
+502
+00:23:55,266 --> 00:23:59,566
+nó có thể làm việc trên máy tính của mình đúng hông thì à
+
+503
+00:24:00,166 --> 00:24:01,300
+nó cũng rất là nổi tiếng
+
+504
+00:24:02,166 --> 00:24:07,566
+và cái con a thằng anthrobic này nó cấm luôn open claw luôn
+
+505
+00:24:07,700 --> 00:24:10,733
+nó cấm luôn thì à nó làm một cái tính năng
+
+506
+00:24:12,500 --> 00:24:15,533
+tương tự ha nó cũng điều khiển được chuột của mình luôn nó
+
+507
+00:24:16,533 --> 00:24:19,966
+nó cấm thằng thằng thằng open crawl lấy a gọi là cắm abi
+
+508
+00:24:20,400 --> 00:24:21,200
+vào thằng open crawl
+
+509
+00:24:21,300 --> 00:24:23,466
+đó có nghĩa là nó cấm luôn nó không cho thằng đó phát triển
+
+510
+00:24:23,800 --> 00:24:27,733
+và à nó nó nó nó phát triển cái tính năng
+
+511
+00:24:28,133 --> 00:24:29,366
+claw code này
+
+512
+00:24:29,600 --> 00:24:32,200
+ở cái cái cái này ngày xưa thì nó chạy trên techno
+
+513
+00:24:33,000 --> 00:24:34,166
+techno gì đó
+
+514
+00:24:34,466 --> 00:24:36,600
+à thì nó giống giống như code màn hình nó đen thui
+
+515
+00:24:36,733 --> 00:24:38,666
+và mình à không biết code mình rất là khó xài
+
+516
+00:24:38,733 --> 00:24:41,133
+và bây giờ thì nó phát triển ra cho mình cái giao diện
+
+517
+00:24:41,466 --> 00:24:42,800
+này cực kỳ cực kỳ là
+
+518
+00:24:44,600 --> 00:24:48,400
+dễ sử dụng luôn đó là chat luôn ha ví dụ như mình hỏi nó ha
+
+519
+00:24:48,866 --> 00:24:49,666
+à
+
+520
+00:24:51,400 --> 00:24:52,200
+liệt kê
+
+521
+00:25:05,900 --> 00:25:08,800
+ô kê mình hỏi mình cũng không nhớ cái cái cái cái nó
+
+522
+00:25:08,800 --> 00:25:10,800
+có cái skill nghiên cứu từ khóa
+
+523
+00:25:10,900 --> 00:25:11,700
+không biết là mình cài
+
+524
+00:25:11,733 --> 00:25:13,866
+ở cái con này hay là cái con ở trên công ty nữa
+
+525
+00:25:29,900 --> 00:25:32,966
+skill từ khóa sát với nhu cầu
+
+526
+00:25:35,933 --> 00:25:39,866
+à chắc là mình cài nó ở cái con ở công ty hay gì ấy
+
+527
+00:25:50,400 --> 00:25:53,700
+tại vì mình à hai cái máy bàn á anh em chờ một xíu ha
+
+528
+00:25:53,966 --> 00:25:57,066
+mình à xài hai cái máy bàn nên nó không có đồng bộ với nhau
+
+529
+00:25:57,166 --> 00:25:57,966
+á
+
+530
+00:25:58,800 --> 00:25:59,733
+biết là mình à
+
+531
+00:26:03,066 --> 00:26:04,900
+ô kê đi cạn đó đi
+
+532
+00:26:05,866 --> 00:26:06,666
+ô kê
+
+533
+00:26:07,100 --> 00:26:11,766
+à bạn à muốn tách riêng skill work research a cái cái
+
+534
+00:26:12,600 --> 00:26:15,700
+tôi nhớ là tôi nhớ có skill
+
+535
+00:26:17,600 --> 00:26:19,200
+cái quất thì sệt rồi mà ta
+
+536
+00:26:22,766 --> 00:26:23,566
+ờ mình
+
+537
+00:26:26,366 --> 00:26:27,166
+ô kê
+
+538
+00:26:29,366 --> 00:26:33,133
+rồi nó đã học xong rồi á anh em nha rồi rồi bây giờ thì mình
+
+539
+00:26:33,600 --> 00:26:36,333
+à nếu mà có cái bảng a thiết kế á
+
+540
+00:26:37,333 --> 00:26:40,133
+bản thiết kế thì mình đưa nó vào đây bắt nó tạo trên n tám
+
+541
+00:26:40,300 --> 00:26:41,700
+n là xong còn nếu mà không có
+
+542
+00:26:41,766 --> 00:26:44,766
+thì ví dụ mình không có thì tôi tạo cho tôi một luồng đi ha
+
+543
+00:26:45,466 --> 00:26:47,766
+tất nhiên là mình demo để mà
+
+544
+00:26:48,533 --> 00:26:49,400
+anh em sử dụng nó
+
+545
+00:26:49,733 --> 00:26:50,800
+anh em vứt cái bản
+
+546
+00:26:51,200 --> 00:26:55,133
+thiết kế pdf vào á thì nó sẽ tạo cho anh em thôi đúng hông
+
+547
+00:26:56,266 --> 00:26:57,066
+một à
+
+548
+00:26:59,100 --> 00:26:59,933
+work follow
+
+549
+00:27:04,566 --> 00:27:05,366
+nhé
+
+550
+00:27:08,666 --> 00:27:09,533
+n tám n
+
+551
+00:27:11,733 --> 00:27:16,600
+để viết a còn tên facebook đi
+
+552
+00:27:19,000 --> 00:27:20,133
+trên máy tính của tôi
+
+553
+00:27:21,500 --> 00:27:24,133
+thì thông thường anh em có thể sử dụng vbs ha
+
+554
+00:27:24,166 --> 00:27:26,000
+còn đây mình đang sử dụng trên máy tính nha
+
+555
+00:27:29,733 --> 00:27:30,533
+đơn giản thôi
+
+556
+00:27:32,666 --> 00:27:35,000
+con này thì nó mới update lên hai chấm không
+
+557
+00:27:36,333 --> 00:27:37,533
+rồi mình quay lại con này
+
+558
+00:27:38,333 --> 00:27:40,300
+à đây nó có skill này ông ơi
+
+559
+00:27:40,900 --> 00:27:43,933
+có skill này skill research ô kê thế
+
+560
+00:27:43,933 --> 00:27:45,966
+bây giờ mình thử test cho anh em một cái a
+
+561
+00:27:46,366 --> 00:27:47,800
+một cái này nha skill
+
+562
+00:27:48,100 --> 00:27:49,700
+mình sẽ hướng dẫn cho anh em cái skill
+
+563
+00:27:52,666 --> 00:27:56,100
+ô kê à bây giờ mình sẽ vào à thằng à
+
+564
+00:27:58,100 --> 00:27:59,166
+sonatun đi
+
+565
+00:28:00,466 --> 00:28:01,266
+sonatun
+
+566
+00:28:04,800 --> 00:28:06,933
+để mình lấy cái bộ từ khóa cái anh em
+
+567
+00:28:12,866 --> 00:28:15,000
+cái cái skill này mình mình mình tạo
+
+568
+00:28:16,100 --> 00:28:18,166
+mà mình à chưa có dùng nhiều chưa
+
+569
+00:28:18,300 --> 00:28:19,900
+chưa chưa cải tiến nha anh em nha
+
+570
+00:28:20,300 --> 00:28:21,866
+chưa dùng nhiều và chưa có cải tiến
+
+571
+00:28:27,666 --> 00:28:28,766
+mình lấy cái này đi
+
+572
+00:28:32,133 --> 00:28:33,333
+істіп оқыңыз әні
+
+573
+00:28:37,100 --> 00:28:41,466
+ô kê rồi bây giờ mình giúp a cái file từ khóa lên
+
+574
+00:28:49,466 --> 00:28:50,866
+rồi mình nói nó thôi
+
+575
+00:28:55,733 --> 00:28:57,866
+skill a keyboard
+
+576
+00:29:13,900 --> 00:29:15,900
+tại vì à tại sao mà mình à
+
+577
+00:29:16,800 --> 00:29:18,066
+thấy trên này tại vì à
+
+578
+00:29:18,466 --> 00:29:19,566
+cái đầu vào của mình
+
+579
+00:29:19,900 --> 00:29:21,400
+out inbox của mình á
+
+580
+00:29:21,600 --> 00:29:24,166
+là cái dữ liệu mà đã được gom nhóm ha anh em ha
+
+581
+00:29:24,366 --> 00:29:26,733
+còn nếu mà để nó gom nhóm á thì nó không có dữ liệu
+
+582
+00:29:27,000 --> 00:29:27,800
+nó không có dữ liệu
+
+583
+00:29:27,866 --> 00:29:30,500
+hoặc là nó xử lý thì nó rất là tốn cái tốc cần
+
+584
+00:29:30,700 --> 00:29:31,733
+cho nên mình có cái tool
+
+585
+00:29:32,266 --> 00:29:35,500
+kia thì nó đã có cái dữ liệu rồi thì mình lấy cái này thôi
+
+586
+00:29:36,566 --> 00:29:37,466
+rồi inter
+
+587
+00:29:37,800 --> 00:29:40,333
+mình quay qua thằng khứa này xem nó tạo tới đâu rồi ha
+
+588
+00:29:41,133 --> 00:29:42,266
+nó vẫn đang buộc này
+
+589
+00:29:42,600 --> 00:29:44,666
+buộc kinh này là có nghĩa là nó đang làm á
+
+590
+00:29:45,700 --> 00:29:47,966
+thì ở đây á tại vì mình không có bảng thiết kế
+
+591
+00:29:48,133 --> 00:29:49,500
+cho nên nó phải suy nghĩ cho
+
+592
+00:29:49,900 --> 00:29:50,733
+cho mình cái bảng thiết kế
+
+593
+00:29:50,866 --> 00:29:53,200
+anh em mình hiểu hông thì nó làm có thể là nó lâu
+
+594
+00:29:53,533 --> 00:29:56,200
+còn anh em có cái bảng thiết kế rồi á thì anh em làm nó nó
+
+595
+00:29:56,733 --> 00:29:58,666
+nó đưa vào thì nó rất là nhanh được chưa
+
+596
+00:30:00,566 --> 00:30:03,933
+và cái này á nó có cái bản free cho anh em được chưa
+
+597
+00:30:04,800 --> 00:30:07,300
+anh em nào có trải nghiệm thì sử dụng cái bản free
+
+598
+00:30:07,866 --> 00:30:10,700
+còn anh em có thể mua gọi là mua chung cũng được ha
+
+599
+00:30:10,866 --> 00:30:13,000
+nó rẻ còn có mỗi cái thằng claw
+
+600
+00:30:13,566 --> 00:30:15,200
+claw này nó nó đắt thôi
+
+601
+00:30:19,733 --> 00:30:21,100
+đây nó đang xử lý ha
+
+602
+00:30:23,733 --> 00:30:26,300
+nó bảo là em đang đọc từng sheet à
+
+603
+00:30:26,866 --> 00:30:29,100
+tí nữa để xem nó kết quả nó là gì ha
+
+604
+00:30:32,200 --> 00:30:34,866
+thì bản chất á anh em biết skill nó khác nhau
+
+605
+00:30:35,333 --> 00:30:37,866
+với lại asian gọi là chỗ nào hông
+
+606
+00:30:38,200 --> 00:30:39,600
+bây giờ mình thảo luận tí đi
+
+607
+00:30:40,533 --> 00:30:41,900
+anh em có nghe skill chưa
+
+608
+00:30:44,900 --> 00:30:46,500
+đâu rồi đâu rồi đâu rồi ủa mình
+
+609
+00:30:46,866 --> 00:30:48,700
+bấm vào đâu để xem anh em chat được nhở
+
+610
+00:30:56,400 --> 00:30:59,866
+anh em có nghe skill và hiểu cái skill là gì chưa
+
+611
+00:31:04,166 --> 00:31:05,400
+tương tác đi anh em ơi
+
+612
+00:31:09,533 --> 00:31:11,000
+tình hình là thế này thầy quyết ơi
+
+613
+00:31:11,133 --> 00:31:11,733
+nếu mà
+
+614
+00:31:11,733 --> 00:31:14,466
+chơi cái chơi cái bộ môn này là nó sẽ bị rối công cụ đấy
+
+615
+00:31:14,533 --> 00:31:17,366
+tại vì như team của mình á là sử dụng gemini
+
+616
+00:31:17,566 --> 00:31:20,600
+và ở trên cái a chất gbt là chính khay
+
+617
+00:31:20,700 --> 00:31:21,533
+khả năng là thầy chơi
+
+618
+00:31:21,766 --> 00:31:23,966
+giới thiệu một cái công cụ duy nhất thôi cho nó ấy
+
+619
+00:31:24,133 --> 00:31:26,866
+thầy chơi một phát ba cái công cụ vậy xong thì tái màu luôn
+
+620
+00:31:27,766 --> 00:31:29,066
+bản chất là nó giống nhau
+
+621
+00:31:29,566 --> 00:31:30,333
+nó không có gì khác nhau
+
+622
+00:31:30,333 --> 00:31:32,166
+anh chỉ chat thôi mà bản chất là chat thôi
+
+623
+00:31:32,966 --> 00:31:34,166
+có nghĩa là em muốn gọi là
+
+624
+00:31:34,733 --> 00:31:36,400
+anh em không bị giới hạn về công cụ
+
+625
+00:31:39,733 --> 00:31:41,466
+anh em chỉ đưa yêu cầu vào thôi mà
+
+626
+00:31:45,966 --> 00:31:48,600
+skill thì cái công cụ nào nó có skill mà
+
+627
+00:31:51,400 --> 00:31:54,533
+và cái skill này á nó khác với lại cái kia như thế nào
+
+628
+00:31:54,666 --> 00:31:55,900
+bản chất là cái skill á
+
+629
+00:31:56,733 --> 00:31:58,166
+là một cái kỹ năng của nó
+
+630
+00:31:58,400 --> 00:32:00,933
+ví dụ như ông có một cái kỹ năng nghiên cứu từ khóa
+
+631
+00:32:01,200 --> 00:32:03,933
+thì cái skill nó cũng giống như là một cái work flow
+
+632
+00:32:04,166 --> 00:32:06,166
+chạy về về à
+
+633
+00:32:06,266 --> 00:32:07,666
+giống như là asian vậy đó
+
+634
+00:32:07,700 --> 00:32:09,600
+không khác không hơn gọi khác gì cả
+
+635
+00:32:09,866 --> 00:32:10,933
+nhưng mà nó dành cho những cái
+
+636
+00:32:11,500 --> 00:32:13,766
+nhỏ nhỏ những cái quy trình nhỏ nhỏ của anh em thôi
+
+637
+00:32:13,966 --> 00:32:15,666
+tại vì sao tại vì cái skill á
+
+638
+00:32:16,066 --> 00:32:18,166
+thì anh em chọn được cái một cái model thôi
+
+639
+00:32:18,366 --> 00:32:19,333
+chọn được một model thôi
+
+640
+00:32:19,766 --> 00:32:22,733
+tại vì trong cái cuộc flow của anh em á có những cái
+
+641
+00:32:23,333 --> 00:32:24,566
+gọi là tác vụ
+
+642
+00:32:24,766 --> 00:32:27,700
+nó rất là đơn giản thì anh em chọn cái model nó
+
+643
+00:32:27,700 --> 00:32:29,766
+thấp thôi đúng hông thì nó sẽ bớt tốn tiền
+
+644
+00:32:29,900 --> 00:32:31,066
+ít tốn tiền của anh em đi
+
+645
+00:32:31,700 --> 00:32:32,733
+còn nếu mà anh em
+
+646
+00:32:33,066 --> 00:32:35,100
+cái nào anh em cũng tạo skill thì nó làm được á
+
+647
+00:32:35,266 --> 00:32:35,900
+nó làm được á
+
+648
+00:32:35,900 --> 00:32:38,200
+nhưng mà nó không có tối ưu về cái mặt mà chi phí
+
+649
+00:32:38,466 --> 00:32:40,333
+đúng hông nó không tối ưu về cái mặt chi phí
+
+650
+00:32:41,466 --> 00:32:42,500
+và nó làm cũng lâu
+
+651
+00:32:43,000 --> 00:32:45,266
+nó nếu mà cái luồng nó dài quá nó làm cũng lâu
+
+652
+00:32:45,333 --> 00:32:47,500
+tại vì bản chất cái cái khối lượng công việc của mình á
+
+653
+00:32:47,933 --> 00:32:49,266
+thì nói tới đây mới nhớ
+
+654
+00:32:49,333 --> 00:32:51,700
+anh toại có dạy là ừ khi mà mày nấu cơm
+
+655
+00:32:52,300 --> 00:32:54,933
+thì mày ờ phải bắt cái nồi cơm trước rồi mày đi
+
+656
+00:32:54,933 --> 00:32:56,700
+mày nhặt rau rồi mày bắt cái nồi nước thôi
+
+657
+00:32:56,766 --> 00:32:58,600
+chứ bây giờ mày nấu xong nồi cơm mày mới bắt đầu
+
+658
+00:32:58,666 --> 00:32:59,400
+mày đi nhặt rau
+
+659
+00:32:59,400 --> 00:33:01,100
+nhặt rau xong mày mới bắt đầu mày mày mày
+
+660
+00:33:01,266 --> 00:33:02,966
+mày đi đi bắt cái nồi nước thì là không đúng
+
+661
+00:33:03,333 --> 00:33:05,666
+và cái tư duy đó nó đẩy lên làm việc với
+
+662
+00:33:06,166 --> 00:33:07,666
+a y dần nó cũng tương tự
+
+663
+00:33:08,100 --> 00:33:10,400
+tại vì có những cái cuộc flow của mình
+
+664
+00:33:10,466 --> 00:33:12,266
+có những cái bước mà nó có thể làm song song
+
+665
+00:33:12,400 --> 00:33:13,766
+và có cái bước mà nó có cái
+
+666
+00:33:14,100 --> 00:33:16,000
+ưm nó có một cái gọi là tịnh tiến
+
+667
+00:33:16,266 --> 00:33:18,300
+mày phải xong cái này thì mới làm cái kia đó
+
+668
+00:33:18,400 --> 00:33:19,200
+kiểu kiểu như vậy
+
+669
+00:33:19,300 --> 00:33:21,466
+thì nó sẽ thứ nhất là nó tiết kiệm chi phí cái
+
+670
+00:33:21,466 --> 00:33:22,800
+thứ hai là nó chạy nhanh hơn
+
+671
+00:33:23,800 --> 00:33:25,133
+anh em hình dung chỗ này hông
+
+672
+00:33:30,600 --> 00:33:33,700
+anh em có bạn bdb bạn thiết kế
+
+673
+00:33:34,733 --> 00:33:35,700
+gởi cho em
+
+674
+00:33:35,700 --> 00:33:38,100
+có cái bạn thiết kế em gởi lên đây anh làm luôn cho em luôn
+
+675
+00:33:38,666 --> 00:33:40,100
+demo cho em luôn kiên ơi
+
+676
+00:33:41,133 --> 00:33:43,500
+thì để anh demo cái này đã ô kê chưa
+
+677
+00:33:43,866 --> 00:33:45,700
+rồi bây giờ nó hỏi nè website bán
+
+678
+00:33:46,466 --> 00:33:48,900
+đang làm sale bán phân phối những brand nào
+
+679
+00:33:49,766 --> 00:33:52,133
+em dùng để quyết định đó nó hỏi nè
+
+680
+00:33:52,900 --> 00:33:56,466
+nếu mà mình thấy nó hỏi như này á thì à
+
+681
+00:33:57,733 --> 00:33:58,666
+mình có thể đưa
+
+682
+00:33:58,933 --> 00:34:02,066
+cái này vào cái system instruction cho nó luôn được chưa
+
+683
+00:34:02,366 --> 00:34:05,166
+ô kê mình sẽ à bán những cái brand này
+
+684
+00:34:08,366 --> 00:34:09,166
+ô kê
+
+685
+00:34:10,200 --> 00:34:11,133
+rồi edit
+
+686
+00:34:13,733 --> 00:34:15,166
+bảng kép loại b
+
+687
+00:34:16,166 --> 00:34:18,500
+hai mươi tám mươi đối thủ không phải aov
+
+688
+00:34:19,500 --> 00:34:21,200
+à báo dự toán cho khách
+
+689
+00:34:25,000 --> 00:34:26,866
+à mình à thiếu cái bạn a
+
+690
+00:34:29,800 --> 00:34:31,333
+à verify category
+
+691
+00:34:31,500 --> 00:34:33,366
+verify site map thì à
+
+692
+00:34:33,400 --> 00:34:36,933
+bản chất là nó nó mình nhập thiếu cái dữ liệu đầu vào này à
+
+693
+00:34:37,000 --> 00:34:38,900
+dữ liệu đầu vào mình chỉ có mỗi cái này thôi
+
+694
+00:34:39,366 --> 00:34:40,166
+mỗi cái này thôi
+
+695
+00:34:44,266 --> 00:34:47,133
+bây giờ nó hỏi lại nè khi mà mình thiếu á nó hỏi lại nè
+
+696
+00:34:47,466 --> 00:34:49,200
+thì ở đây mình à trả lời nó ha
+
+697
+00:34:51,400 --> 00:34:55,133
+website là kim https đi
+
+698
+00:34:56,000 --> 00:34:59,700
+https này hai chấm xẹt xẹt à kim quốc tiến
+
+699
+00:35:01,933 --> 00:35:03,366
+chấm cos đây
+
+700
+00:35:08,900 --> 00:35:12,766
+mình gởi cho nó để nó vào cái size mác nó kiểm tra ô kê để
+
+701
+00:35:13,666 --> 00:35:15,933
+em mở mở mở cho anh đi kiên ơi
+
+702
+00:35:28,266 --> 00:35:30,133
+rồi nó có cái a size map này
+
+703
+00:35:30,266 --> 00:35:31,800
+nó vào cái size map này anh em thấy hông
+
+704
+00:35:32,466 --> 00:35:35,366
+nó vào size map để nó kiểm tra xem cái từ khóa nào mà
+
+705
+00:35:35,966 --> 00:35:37,666
+à không có đúng hông
+
+706
+00:35:37,900 --> 00:35:40,600
+cái từ khóa nào mà cái website này nó không có bán á
+
+707
+00:35:40,933 --> 00:35:41,933
+thì nó loại ra
+
+708
+00:35:56,566 --> 00:35:57,766
+kiên mở cho anh chưa
+
+709
+00:36:00,733 --> 00:36:01,733
+chưa chưa được này
+
+710
+00:36:05,900 --> 00:36:08,533
+cái đó của anh anh ngọt bỏ gì đó thầy
+
+711
+00:36:08,966 --> 00:36:10,600
+bỏ ngọt ngọt bỏ chưa ngọt
+
+712
+00:36:17,900 --> 00:36:19,600
+xíu mở thầy ơi chờ xíu chờ xíu
+
+713
+00:36:26,800 --> 00:36:28,066
+đó nó đang tạo này
+
+714
+00:36:32,766 --> 00:36:35,166
+anh em đừng bị giới hạn bởi một cái công cụ nào
+
+715
+00:36:35,366 --> 00:36:36,466
+nhưng mà nếu mà nói
+
+716
+00:36:37,533 --> 00:36:39,566
+cho mình khuyên anh em xài cái công cụ nào
+
+717
+00:36:39,666 --> 00:36:42,733
+thì mình khuyên anh em nên xài cái công cụ à
+
+718
+00:36:43,466 --> 00:36:44,400
+cloud này ha
+
+719
+00:36:44,700 --> 00:36:47,700
+nên xài cái thằng cloud này rồi mở đi thầy quý ơi
+
+720
+00:36:56,900 --> 00:36:58,166
+mình tải xuống ha
+
+721
+00:36:59,900 --> 00:37:00,700
+ô kê nè
+
+722
+00:37:04,166 --> 00:37:08,266
+ô kê mình sẽ tải nó lên này tạo xích phần này
+
+723
+00:37:16,266 --> 00:37:19,166
+đây là bản thiết kế
+
+724
+00:37:20,966 --> 00:37:21,766
+ia
+
+725
+00:37:35,266 --> 00:37:37,766
+bạn hãy giúp tôi
+
+726
+00:37:39,566 --> 00:37:43,733
+kết thúc đúng luồng này đúng luồng này ha
+
+727
+00:37:45,366 --> 00:37:47,866
+nó bé quá hông để mình mở to ra cho anh em thấy
+
+728
+00:37:49,600 --> 00:37:50,400
+rồi
+
+729
+00:37:51,333 --> 00:37:52,133
+đơn giản
+
+730
+00:37:52,200 --> 00:37:55,266
+và khi mà nó hỏi cái gì á thì anh em cung cấp thêm thôi
+
+731
+00:37:55,800 --> 00:37:57,366
+tất cả nó phân tích cho anh em được chưa
+
+732
+00:38:00,466 --> 00:38:03,766
+đó nó bảo là tôi đọc cái bảng thiết kế của bạn trước
+
+733
+00:38:09,000 --> 00:38:10,100
+thì nó đọc thôi
+
+734
+00:38:15,066 --> 00:38:16,800
+ấy con này vẫn đang phân tích ha
+
+735
+00:38:18,200 --> 00:38:23,100
+nếu mà cái con này mình làm thành cái đội ấy dần thì à nó sẽ
+
+736
+00:38:23,566 --> 00:38:25,400
+nhanh hơn anh em hiểu là cái skill
+
+737
+00:38:25,800 --> 00:38:27,766
+à mình quay ngược trở lại một chút xíu
+
+738
+00:38:27,966 --> 00:38:28,766
+mình hướng dẫn
+
+739
+00:38:28,966 --> 00:38:32,066
+giải thích cho anh em cái skill thì à là một cái kỹ năng
+
+740
+00:38:32,666 --> 00:38:35,000
+nếu mà cái quy trình của anh em nó có nhiều bước
+
+741
+00:38:35,533 --> 00:38:36,933
+thì anh em không nên tạo skill
+
+742
+00:38:38,266 --> 00:38:40,366
+mà anh em cần phải tạo à
+
+743
+00:38:41,266 --> 00:38:43,200
+những cái workflow để mà nó làm
+
+744
+00:38:43,500 --> 00:38:46,700
+và cái con này á là anh em có thể kết nối với telegram
+
+745
+00:38:47,000 --> 00:38:49,533
+anh em có muốn mình hướng dẫn cho anh em kết nối telegram
+
+746
+00:38:49,733 --> 00:38:50,533
+hông
+
+747
+00:38:53,466 --> 00:38:56,733
+anh em có thể kết nối với telegram để mà điều khiển nó
+
+748
+00:38:57,066 --> 00:38:59,333
+ở trên telegram anh em treo cái máy thôi
+
+749
+00:38:59,533 --> 00:39:02,300
+anh em có thể mua con vbs hoặc là treo cái máy bàn ở nhà
+
+750
+00:39:02,766 --> 00:39:04,533
+anh em đi đâu anh em cũng điều khiển nó được hết
+
+751
+00:39:09,100 --> 00:39:09,900
+có
+
+752
+00:39:10,933 --> 00:39:12,766
+có à có à thế thì à
+
+753
+00:39:13,266 --> 00:39:15,333
+mình sẽ có tài liệu gởi cho anh em trong nhóm à
+
+754
+00:39:15,500 --> 00:39:17,533
+anh em vứt cái tài liệu đó vào cái con này
+
+755
+00:39:17,666 --> 00:39:18,866
+nó tự nó kết nối cho anh em
+
+756
+00:39:19,266 --> 00:39:20,600
+anh em không phải làm nữa nói chung là
+
+757
+00:39:21,100 --> 00:39:22,666
+cái việc trên máy tính của anh em á
+
+758
+00:39:22,700 --> 00:39:24,500
+anh em làm được cái gì là nó làm được cái đó
+
+759
+00:39:24,800 --> 00:39:26,000
+và anh em không làm được cái gì
+
+760
+00:39:26,133 --> 00:39:27,966
+thì nó cũng làm được cái đó cho anh em luôn
+
+761
+00:39:41,333 --> 00:39:44,900
+á trước đó thì chúng ta bị một cái rào cản công nghệ á
+
+762
+00:39:45,000 --> 00:39:48,100
+set up những cái luồng n tám n hay là những cái quạt lâu á
+
+763
+00:39:48,133 --> 00:39:50,266
+nó cực kỳ là phức tạp đó
+
+764
+00:39:50,366 --> 00:39:52,266
+mình xem hoài mình hông biết nhưng mà bây giờ thì
+
+765
+00:39:52,600 --> 00:39:54,100
+cái thời buổi này thì nó khác rồi ha
+
+766
+00:39:54,100 --> 00:39:55,600
+mình không bị cái rào cản đó nữa
+
+767
+00:39:56,000 --> 00:39:56,900
+anh em à
+
+768
+00:39:57,000 --> 00:39:57,800
+cái con này thì cái
+
+769
+00:39:58,133 --> 00:40:01,300
+anh em có thể mua hai mươi đô một tháng ha đó rồi ô kê
+
+770
+00:40:02,066 --> 00:40:04,366
+à nó xong rồi nè à xuất
+
+771
+00:40:05,466 --> 00:40:06,800
+cái này qua excel ha
+
+772
+00:40:06,800 --> 00:40:09,266
+anh nó bảo là anh có muốn em xuất qua excel hông
+
+773
+00:40:09,733 --> 00:40:10,533
+ô kê em
+
+774
+00:40:11,266 --> 00:40:12,333
+ô kê em xuất
+
+775
+00:40:13,466 --> 00:40:14,600
+giúp anh ha
+
+776
+00:40:17,933 --> 00:40:21,266
+tại vì nó xuất ra cái bảng md thôi md là mắt đao thôi
+
+777
+00:40:23,966 --> 00:40:25,266
+đó báo cáo nè
+
+778
+00:40:34,100 --> 00:40:36,866
+quyên ơi cái con gloss này giống như trường hợp hôm nay a
+
+779
+00:40:36,966 --> 00:40:38,100
+thằng long đang làm à
+
+780
+00:40:38,200 --> 00:40:40,166
+cho anh một cái mini app ở trên zalo á
+
+781
+00:40:40,333 --> 00:40:42,366
+để bán hàng cả sơ bộ thôi nhưng mà
+
+782
+00:40:42,933 --> 00:40:44,600
+nó làm trong cái phần review a
+
+783
+00:40:44,733 --> 00:40:46,900
+vượt quá lắm rồi nhưng mà cái đoạn kết nối kết thúc cần
+
+784
+00:40:47,200 --> 00:40:49,966
+à với zalo á nó làm hông được và đọc tài liệu không hiểu
+
+785
+00:40:50,066 --> 00:40:52,566
+thế là mình kêu thằng này nó làm nó làm giúp cho mình luôn
+
+786
+00:40:52,900 --> 00:40:54,700
+chắc chắn là được rồi anh ờ
+
+787
+00:40:55,733 --> 00:40:57,966
+anh quăng tài liệu vào cho nó ờ
+
+788
+00:40:58,400 --> 00:41:00,300
+anh muốn kết nối cái này chú làm đi
+
+789
+00:41:03,300 --> 00:41:04,533
+chắc chắn là ngon luôn
+
+790
+00:41:06,166 --> 00:41:08,400
+có thằng em cốt nó ngồi trước máy nó làm cho mình hả
+
+791
+00:41:08,866 --> 00:41:09,800
+đúng rồi trời ơi
+
+792
+00:41:09,933 --> 00:41:12,300
+thằng này nó còn khôn hơn cả mấy thằng cốt đấy anh ạ
+
+793
+00:41:13,000 --> 00:41:14,166
+ờ đây nó đang bị lỗi
+
+794
+00:41:15,300 --> 00:41:18,066
+có thể mạng của mình nó chậm á tiếp tục đi em trai
+
+795
+00:41:23,900 --> 00:41:25,700
+ủa anh quý ơi ví dụ như
+
+796
+00:41:26,966 --> 00:41:30,066
+hồi hồi hồi sáng em có làm thử cái luồng á
+
+797
+00:41:30,666 --> 00:41:32,666
+cái a nó có cái có cái bước em
+
+798
+00:41:33,066 --> 00:41:35,466
+cái con đó em kêu nó truy cập vô cái a
+
+799
+00:41:36,300 --> 00:41:39,100
+a cuộc trò chuyện trên messenger á để nó phân tích á
+
+800
+00:41:39,100 --> 00:41:39,500
+mà nó
+
+801
+00:41:39,500 --> 00:41:42,533
+nó cần phải có cái ibm gì đó anh thì cái cái này nó có
+
+802
+00:41:42,966 --> 00:41:45,766
+nó kết nối được hông anh được em em a kêu nó
+
+803
+00:41:46,733 --> 00:41:49,866
+lấy kbi nó mà không làm được thì nó chỉ em chi tiết luôn
+
+804
+00:41:49,866 --> 00:41:52,733
+em cứ chụp màn hình gởi nó nó bắt nó chỉ em bấm vào đâu
+
+805
+00:41:53,133 --> 00:41:54,600
+được chưa à
+
+806
+00:41:56,566 --> 00:41:57,500
+thông minh dữ vậy đây
+
+807
+00:41:57,500 --> 00:41:59,166
+ví dụ như anh lỗi như này anh hông biết nha
+
+808
+00:41:59,733 --> 00:42:00,866
+anh chụp được chưa
+
+809
+00:42:15,133 --> 00:42:17,700
+tại vì buổi tối á nó hơi bị lag anh em ạ
+
+810
+00:42:17,866 --> 00:42:19,700
+buổi tối thì con này nó đó
+
+811
+00:42:21,366 --> 00:42:22,166
+câu này
+
+812
+00:42:22,500 --> 00:42:26,366
+suy nghĩ lâu gọi tun đọc file ra lệnh các khối suy nghĩ
+
+813
+00:42:27,500 --> 00:42:30,900
+bị thay đổi cắt xén khi gởi abi
+
+814
+00:42:32,300 --> 00:42:33,600
+nguyên nhân này giữa chừng
+
+815
+00:42:40,666 --> 00:42:44,800
+đơn giản gõ clear nè đó nó bảo mình gõ clear
+
+816
+00:42:45,933 --> 00:42:49,800
+rồi làm lại được chưa bây giờ mình gõ thử nè
+
+817
+00:42:51,800 --> 00:42:54,166
+rồi bây giờ mình làm lại nó bảo mình làm lại
+
+818
+00:43:13,266 --> 00:43:14,800
+rồi bây giờ nó xong rồi nè
+
+819
+00:43:15,166 --> 00:43:18,133
+để anh cho anh em xem cái kết quả nó như nào ha
+
+820
+00:43:20,466 --> 00:43:21,933
+mình tải về như nào ta
+
+821
+00:43:25,333 --> 00:43:26,133
+xem file
+
+822
+00:43:27,000 --> 00:43:28,066
+file này để ở đâu
+
+823
+00:43:28,266 --> 00:43:29,366
+mình ví dụ như này ha
+
+824
+00:43:29,533 --> 00:43:31,933
+mình không biết nó không cho bấm vào đây để tải
+
+825
+00:43:32,366 --> 00:43:33,533
+file này nó nằm ở đâu
+
+826
+00:43:40,566 --> 00:43:41,600
+chỉ mình cái folder
+
+827
+00:43:52,566 --> 00:43:53,366
+đó
+
+828
+00:43:53,900 --> 00:43:56,933
+các bạn file này nằm ở ổ d này bây giờ mình à vào đây
+
+829
+00:43:57,566 --> 00:43:58,566
+mình mở lên thôi
+
+830
+00:44:02,366 --> 00:44:05,066
+đó nó mở lên luôn nè anh em thấy chưa
+
+831
+00:44:06,366 --> 00:44:08,300
+thì đây á nó phân tích cho mình nè
+
+832
+00:44:08,500 --> 00:44:10,200
+dự đoán nè cái này á mình có thể
+
+833
+00:44:10,900 --> 00:44:12,366
+design lại nha anh em nha
+
+834
+00:44:12,566 --> 00:44:15,600
+mình có thể design lại ha đó dự đoán cho mình nè
+
+835
+00:44:16,700 --> 00:44:20,566
+ô kê traffic nè giá trị à hàng tháng đơn hàng nè
+
+836
+00:44:22,133 --> 00:44:24,000
+hai mươi ul trên a
+
+837
+00:44:25,133 --> 00:44:28,200
+bốn trăm a có nghĩa là nó bảo mình á ưu tiên các ul
+
+838
+00:44:28,500 --> 00:44:29,933
+có hai mươi ul trên a
+
+839
+00:44:31,000 --> 00:44:32,966
+là lên được bốn trăm mười chín từ khóa
+
+840
+00:44:33,166 --> 00:44:35,366
+đúng hông các cái hãng này nhóm brand này
+
+841
+00:44:36,200 --> 00:44:40,366
+milacera thì nó như này volume nó như này gmv nó như này đó
+
+842
+00:44:40,933 --> 00:44:43,300
+lộ trình hàng tháng này nọ các kiểu thì tất nhiên là mình
+
+843
+00:44:43,300 --> 00:44:45,000
+cái này là mình phải phải trending cho nó
+
+844
+00:44:45,400 --> 00:44:46,066
+một cái luồng
+
+845
+00:44:46,066 --> 00:44:48,366
+nó chạy thì nó cái kết quả đầu cuối của mình là cái này
+
+846
+00:44:48,700 --> 00:44:49,733
+anh em hình dung hông
+
+847
+00:44:50,166 --> 00:44:52,166
+rồi top list à top một trăm này
+
+848
+00:44:53,300 --> 00:44:55,133
+những cái một trăm ul mà
+
+849
+00:44:55,933 --> 00:44:59,366
+ưu tiên ha sản xuất content này đó nó phân ra cho mình
+
+850
+00:44:59,866 --> 00:45:00,666
+danh mục sản phẩm
+
+851
+00:45:00,933 --> 00:45:02,100
+nó đúng y chết luôn
+
+852
+00:45:02,500 --> 00:45:04,700
+cái nào là danh mục sản phẩm đúng hông
+
+853
+00:45:05,000 --> 00:45:07,333
+cái nào là bài viết là y chết luôn đó
+
+854
+00:45:08,300 --> 00:45:09,100
+đấy kích thước
+
+855
+00:45:09,866 --> 00:45:14,100
+gọi là là là xí xổm này à boss e four đấy đúng không
+
+856
+00:45:14,500 --> 00:45:16,266
+để mình mở to lên cho anh em thấy
+
+857
+00:45:19,366 --> 00:45:20,266
+ô kê hông anh em
+
+858
+00:45:20,600 --> 00:45:21,600
+mức độ ưu tiên nè
+
+859
+00:45:21,700 --> 00:45:23,800
+cái nào mà cao thì nó còn cao nè đó
+
+860
+00:45:23,900 --> 00:45:25,066
+ưu tiên nè cái này cao nè
+
+861
+00:45:25,400 --> 00:45:29,000
+tại vì cái này lên top được cái ki này thì à nó là
+
+862
+00:45:30,000 --> 00:45:33,166
+à gọi là là lên top được tới a bốn mươi ki đó
+
+863
+00:45:34,066 --> 00:45:37,600
+rồi tiếp tục đối thủ này nó phân tích ra đối thủ à
+
+864
+00:45:37,866 --> 00:45:39,533
+đối thủ thì top bao nhiêu này đó
+
+865
+00:45:40,366 --> 00:45:44,133
+sale rất chặt mẹ mạnh thằng này trung bình thôi đó
+
+866
+00:45:44,300 --> 00:45:45,800
+còn kim cúc tiến của mình ở đây
+
+867
+00:45:46,000 --> 00:45:47,866
+thấy hông mình hiện tại ở đây nó nhận ra nè
+
+868
+00:45:48,000 --> 00:45:49,166
+thấy hông thấy chưa
+
+869
+00:45:49,733 --> 00:45:50,533
+phân loại
+
+870
+00:45:51,100 --> 00:45:53,800
+à nó nó phân loại và cần xác định nè
+
+871
+00:45:53,933 --> 00:45:55,133
+ví dụ như cái từ mà vi
+
+872
+00:45:55,533 --> 00:45:58,133
+tám tám này nó đang nghi ngờ là best này cờ bạc này
+
+873
+00:45:58,666 --> 00:46:00,566
+không phải là thiết bị vệ sinh này đúng hông
+
+874
+00:46:01,100 --> 00:46:02,566
+rồi thiết bị vệ sinh a
+
+875
+00:46:02,800 --> 00:46:04,200
+villa cella hải linh này
+
+876
+00:46:04,366 --> 00:46:07,066
+cái này là nó là chứa tên của đối thủ này
+
+877
+00:46:07,366 --> 00:46:08,800
+đúng hông này nó đang bị lỗi
+
+878
+00:46:08,900 --> 00:46:10,766
+về cái ấy thì mình fix lại nó thôi
+
+879
+00:46:10,900 --> 00:46:13,466
+đúng hông rồi cái này à năm cũ nè
+
+880
+00:46:13,733 --> 00:46:18,666
+cũ nè cũ nè cũ nè đó cũ thì nó không có ấy còn à đây à
+
+881
+00:46:18,766 --> 00:46:21,200
+xác nhận các cái hãng này nó không có trong size
+
+882
+00:46:21,400 --> 00:46:23,733
+map là nó bỏ ra luôn nè anh em thấy hông
+
+883
+00:46:25,000 --> 00:46:26,200
+ô kê hông anh em ơi
+
+884
+00:46:27,966 --> 00:46:30,566
+đây giả định đây nó giả định ở đây gmp
+
+885
+00:46:30,900 --> 00:46:32,066
+một đơn hàng là ba triệu đi
+
+886
+00:46:32,333 --> 00:46:33,133
+chẳng hạn đi
+
+887
+00:46:33,266 --> 00:46:36,166
+conversion là một phẩy năm phần trăm thì ctr trung bình
+
+888
+00:46:36,466 --> 00:46:39,166
+những cái này đó ở việt nam ở mỹ này nọ các kiểu như này
+
+889
+00:46:40,100 --> 00:46:41,666
+thì nó mới ra cái giả định này
+
+890
+00:46:41,666 --> 00:46:43,266
+nó mới ra được cái con số này nè anh em
+
+891
+00:46:43,400 --> 00:46:45,133
+nó ra được con số giá trị hàng tháng nè
+
+892
+00:46:46,000 --> 00:46:47,466
+ô kê ông cái này thì cho
+
+893
+00:46:47,966 --> 00:46:50,333
+cho cho cho cho thầy nhật làm thầy nhật làm được không
+
+894
+00:46:53,066 --> 00:46:53,966
+được anh ơi
+
+895
+00:46:55,266 --> 00:46:57,533
+hổng được cũng phải được á hả
+
+896
+00:46:59,533 --> 00:47:01,400
+có nghĩa là trước
+
+897
+00:47:02,333 --> 00:47:06,133
+đó mình phải ngồi từng cái ki một để mình loại đúng không
+
+898
+00:47:06,533 --> 00:47:09,166
+mình còn phải phải search mẹ mình search thấy mẹ luôn
+
+899
+00:47:09,366 --> 00:47:12,366
+mình search những cái từ này mà đưa vào kb hai là chết
+
+900
+00:47:12,566 --> 00:47:13,366
+đúng không
+
+901
+00:47:14,000 --> 00:47:15,666
+có đâu mà sale đúng không
+
+902
+00:47:19,933 --> 00:47:20,733
+đây
+
+903
+00:47:23,000 --> 00:47:24,666
+đối thủ này nọ các kiểu cái này
+
+904
+00:47:25,500 --> 00:47:28,400
+follow cái giá vào là gởi cho khách được rồi chứ còn gì nữa
+
+905
+00:47:28,900 --> 00:47:30,366
+đúng hông đúng hông anh em
+
+906
+00:47:32,966 --> 00:47:35,366
+quay ngược trở lại bài toán của bạn ngọt xem sao
+
+907
+00:47:36,733 --> 00:47:39,200
+đây nó hỏi nè nó hỏi nè
+
+908
+00:47:40,000 --> 00:47:42,533
+à mình à ứng dụng chăm sóc khách hàng tư vấn
+
+909
+00:47:44,266 --> 00:47:48,766
+rồi mình bảo nó là làm trên này luôn nha khỏi cần tấm nha
+
+910
+00:47:48,966 --> 00:47:51,933
+làm trên này ô kê ô kê trên cloud
+
+911
+00:47:52,500 --> 00:47:53,500
+trên cloud luôn đi
+
+912
+00:47:58,300 --> 00:47:59,966
+ô kê chăm sóc khách hàng đúng hông
+
+913
+00:48:00,366 --> 00:48:01,933
+cái này của bạn là chăm sóc khách hàng đúng hông
+
+914
+00:48:02,200 --> 00:48:03,400
+rồi đúng rồi chăm sóc khách hàng
+
+915
+00:48:04,300 --> 00:48:06,366
+chăm sóc khách hàng à
+
+916
+00:48:07,100 --> 00:48:10,133
+à cho ai cho cho cho cho cấp cứu dữ liệu đúng hông
+
+917
+00:48:10,466 --> 00:48:13,266
+đúng rồi cho dịch vụ cứu dữ liệu khu vực dữ liệu
+
+918
+00:48:24,400 --> 00:48:25,200
+ô kê
+
+919
+00:48:27,200 --> 00:48:28,733
+ngon chết không anh em ơi
+
+920
+00:48:30,966 --> 00:48:32,166
+ngon quá còn gì nữa
+
+921
+00:48:33,966 --> 00:48:38,100
+hay là đây mình đang làm này à một cái con a lên outline ha
+
+922
+00:48:38,500 --> 00:48:40,000
+một con lên outline đó
+
+923
+00:48:41,300 --> 00:48:43,933
+nó phân tích này nọ các kiểu đúng hông
+
+924
+00:48:45,266 --> 00:48:46,866
+rồi ở đây anh em muốn tiết kiệm tóc
+
+925
+00:48:46,933 --> 00:48:48,533
+cần chỗ nào thì nó tư vấn cho anh em
+
+926
+00:48:48,566 --> 00:48:49,666
+tiết kiệm tóc cần chỗ đấy
+
+927
+00:48:49,966 --> 00:48:51,400
+nhưng mà anh em phải hiểu để hỏi
+
+928
+00:48:51,700 --> 00:48:53,466
+anh em phải nắm được kiến thức cốt lõi
+
+929
+00:48:54,366 --> 00:48:56,200
+anh em không nắm được nó trả về kết quả sai
+
+930
+00:48:56,266 --> 00:48:57,400
+anh em không biết đường nào mò
+
+931
+00:49:03,933 --> 00:49:07,000
+đó mình bảo so sánh theo theo check list nó như nào này
+
+932
+00:49:08,566 --> 00:49:10,300
+tất nhiên đây là cái con mà mình chat
+
+933
+00:49:10,500 --> 00:49:11,700
+còn cái asian nó lại là
+
+934
+00:49:11,733 --> 00:49:14,333
+khác nha asian nó lại nằm ở ở ở chỗ khác ha
+
+935
+00:49:14,700 --> 00:49:18,400
+nó vẫn nằm ở trong cái a cái cái cái cái cái a a
+
+936
+00:49:20,200 --> 00:49:21,000
+máy của mình thôi
+
+937
+00:49:21,000 --> 00:49:23,300
+nhưng mà cái luồng này là cái luồng mình đang chat với nó
+
+938
+00:49:23,600 --> 00:49:26,066
+và nó cũng là cái thằng mà mình điều khiển nó
+
+939
+00:49:26,300 --> 00:49:28,733
+nó mình nói nó mày hãy điều khiển con asian này
+
+940
+00:49:29,166 --> 00:49:30,133
+anh em hình dung hông
+
+941
+00:49:31,766 --> 00:49:34,666
+có nghĩa khi mà mình chỉ anh em kết nối vào
+
+942
+00:49:35,200 --> 00:49:37,933
+cái telegram ví dụ như anh em cầm telegram nhắn cho nó ừ
+
+943
+00:49:38,000 --> 00:49:40,600
+mày tạo cho tao cái này thì nó sẽ gọi cái con asian
+
+944
+00:49:40,866 --> 00:49:45,700
+mà anh em đã đã cài đặt sẵn anh em đã set up sẵn hiểu hông
+
+945
+00:49:47,300 --> 00:49:48,666
+hình như chỗ này hông trời
+
+946
+00:49:52,966 --> 00:49:53,933
+a lô anh em ơi
+
+947
+00:49:54,733 --> 00:49:55,700
+hiểu hiểu anh ơi
+
+948
+00:49:55,933 --> 00:49:59,333
+sao mình không có thấy anh em chat chít gì trời
+
+949
+00:49:59,733 --> 00:50:02,333
+chỗ này là anh thấy lag rồi đó hơi hơi hơi
+
+950
+00:50:03,566 --> 00:50:05,100
+anh thấy lag rồi đó sao sao
+
+951
+00:50:09,266 --> 00:50:13,800
+thằng telegram nó sẽ nhận cái lệnh thì nó sẽ
+
+952
+00:50:14,400 --> 00:50:15,900
+đúng rồi nó sẽ gọi thằng này
+
+953
+00:50:16,466 --> 00:50:20,466
+đúng rồi nó sẽ gọi cái thằng này thằng này nó sẽ bắt đầu là
+
+954
+00:50:21,100 --> 00:50:23,366
+đúng rồi nó sẽ kêu mấy con asian làm việc cho nó
+
+955
+00:50:23,966 --> 00:50:25,500
+thằng này này giống như nó là trung tâm
+
+956
+00:50:26,700 --> 00:50:29,366
+đúng rồi nó là một anh em cho thằng này là ceo
+
+957
+00:50:29,600 --> 00:50:32,333
+ở dưới thằng ceo thì nó sẽ có cái cái cái thằng asian
+
+958
+00:50:32,933 --> 00:50:35,500
+đúng hông ấy thằng asian thì nó sẽ có cái
+
+959
+00:50:35,800 --> 00:50:37,500
+có thể là có skill đi chẳng hạn đi
+
+960
+00:50:37,533 --> 00:50:38,966
+hoặc là thằng asian đó nó chỉ chạy
+
+961
+00:50:39,333 --> 00:50:40,900
+một cái quật lâu đó mỗi một cái
+
+962
+00:50:41,266 --> 00:50:44,933
+mỗi một cái bước làm đó là là một con asian nó xử lý rồi
+
+963
+00:50:44,966 --> 00:50:47,100
+nó xử lý xong cái này thì nó chuyển qua con khác
+
+964
+00:50:47,166 --> 00:50:49,366
+và cuối cùng nó ra cái kết quả đầu cuối cho anh em thôi
+
+965
+00:50:52,200 --> 00:50:54,000
+hình dung anh em có dễ làm hông
+
+966
+00:50:55,100 --> 00:50:56,733
+quá đơn giản đây nó nó nó
+
+967
+00:50:56,966 --> 00:50:59,200
+nó kiểu mà nó vẫn bị lỗi ấy ngọt ơi
+
+968
+00:51:00,000 --> 00:51:01,100
+và do buổi tối
+
+969
+00:51:01,200 --> 00:51:03,533
+thì mình nghĩ buổi tối thì nó hơi lắc lắc cái chỗ này ha
+
+970
+00:51:03,866 --> 00:51:07,466
+rồi buổi tối thì ở bên mỹ nó là ban ban ngày á thì à
+
+971
+00:51:07,866 --> 00:51:10,733
+à nhiều người xài quá mà thằng này nó đang bị quá tải á
+
+972
+00:51:11,133 --> 00:51:14,900
+ô kê ô kê để để sau cũng được thiệt quý ơi không sao đâu ờ
+
+973
+00:51:15,166 --> 00:51:15,966
+ô kê rồi rồi
+
+974
+00:51:16,200 --> 00:51:18,533
+thôi để bữa sau mình sẽ test cho bạn con này ha
+
+975
+00:51:18,666 --> 00:51:21,200
+bây giờ test hoài cũng được rồi rồi rồi rồi rồi
+
+976
+00:51:22,866 --> 00:51:25,466
+được chưa có có nghĩa là nó làm bây giờ á
+
+977
+00:51:25,666 --> 00:51:27,166
+mình chứng minh cho anh em thấy là nó làm
+
+978
+00:51:27,266 --> 00:51:28,933
+nó còn tốt hơn là cả người làm nữa
+
+979
+00:51:28,933 --> 00:51:32,366
+rồi nó còn phân ra cái này u l loại u l gì nữa mà
+
+980
+00:51:32,800 --> 00:51:35,300
+và phân đúng chứ hông phải phân tào lao đâu nha anh em nha
+
+981
+00:51:35,366 --> 00:51:36,966
+tại vì nó lên trên google nó search
+
+982
+00:51:38,133 --> 00:51:39,266
+chứ hông phải là nó đoán
+
+983
+00:51:39,533 --> 00:51:41,600
+nó lên google nó search giống như mình vậy đó
+
+984
+00:51:43,533 --> 00:51:45,133
+chứ không phải là nó đoán đâu nha
+
+985
+00:51:48,533 --> 00:51:50,000
+thầy quyết cho em hỏi xíu
+
+986
+00:51:50,700 --> 00:51:53,866
+là mấy bữa trước mình làm mấy con a action
+
+987
+00:51:54,066 --> 00:51:56,533
+trên cái game tùy chỉnh với lại notebook của em á
+
+988
+00:51:56,533 --> 00:51:59,166
+thì bây giờ qua cái khúc này thì nó kết nối như thế nào thầy
+
+989
+00:51:59,800 --> 00:52:00,800
+cái con đấy á
+
+990
+00:52:00,933 --> 00:52:04,100
+là cái con mà nó đơn giản là một tác vụ thôi em hiểu hông
+
+991
+00:52:04,733 --> 00:52:09,066
+em chỉ có đưa nó vào và trả về được một cái tác vụ thôi
+
+992
+00:52:09,933 --> 00:52:12,400
+còn nếu mà em muốn á thì em sẽ phải
+
+993
+00:52:12,800 --> 00:52:14,100
+muốn xài cái con đấy á
+
+994
+00:52:14,100 --> 00:52:16,133
+thì em sẽ phải vào cái cái thằng oban
+
+995
+00:52:16,900 --> 00:52:17,866
+oban ha
+
+996
+00:52:19,100 --> 00:52:22,166
+oban nè à oban của google ha
+
+997
+00:52:27,866 --> 00:52:28,066
+đấy
+
+998
+00:52:28,066 --> 00:52:30,933
+mình còn không biết viết tên nó đúng đấy phải thằng oban
+
+999
+00:52:31,066 --> 00:52:33,666
+hôm trước anh có chỉ rồi mà em mò cái thằng này ha
+
+1000
+00:52:47,966 --> 00:52:50,333
+đó một thằng này vì ai nữa nè
+
+1001
+00:52:50,800 --> 00:52:53,366
+thì cái thằng oban này á là một cái thằng miễn phí
+
+1002
+00:52:54,100 --> 00:52:57,466
+nhưng mà nó chạy á à cái kết quả của nó thì
+
+1003
+00:52:57,866 --> 00:52:58,666
+à cũng được
+
+1004
+00:52:58,733 --> 00:53:01,600
+nhưng mà nó lâu lắm anh em nó lâu lắm tại vì nó miễn phí mà
+
+1005
+00:53:02,100 --> 00:53:03,866
+nó nhiều người xài nó nó lâu lắm
+
+1006
+00:53:04,866 --> 00:53:07,133
+anh em cũng kéo thả icon vào đây đó
+
+1007
+00:53:12,066 --> 00:53:14,966
+inbox là gì đây nó cho mình đây nhập vào inbox đây
+
+1008
+00:53:16,100 --> 00:53:18,100
+rồi sau đó kéo qua bên này đó
+
+1009
+00:53:18,300 --> 00:53:21,300
+ví dụ như cái này anh em sửa nó nè à
+
+1010
+00:53:22,300 --> 00:53:23,466
+inbox chẳng hạn đi
+
+1011
+00:53:25,200 --> 00:53:28,933
+rồi nó sẽ cho anh em viết system injection chỗ này được chưa
+
+1012
+00:53:29,966 --> 00:53:30,766
+kiên
+
+1013
+00:53:31,466 --> 00:53:32,266
+đúng hông
+
+1014
+00:53:32,300 --> 00:53:35,700
+đằng này thì đầu ra á đầu ra nó sẽ truyền cho con này
+
+1015
+00:53:36,100 --> 00:53:39,800
+đúng hông con này xử lý cái đầu ra thì à out nó là cái gì
+
+1016
+00:53:40,800 --> 00:53:41,700
+em hiểu không
+
+1017
+00:53:41,900 --> 00:53:44,766
+dạ em cũng viết system instruction cho từng con em nối lại
+
+1018
+00:53:45,466 --> 00:53:47,733
+nhưng mà bữa thầy nói là con này nó lại không có kết nối
+
+1019
+00:53:47,900 --> 00:53:49,700
+với thằng ờ notebook em nữa
+
+1020
+00:53:49,900 --> 00:53:50,700
+nó hết kết nối rồi
+
+1021
+00:53:54,200 --> 00:53:57,100
+đây nó không còn kết nối notebook lm nữa thì
+
+1022
+00:53:57,566 --> 00:53:58,800
+nó cho up file thôi
+
+1023
+00:54:00,600 --> 00:54:01,933
+nó cho up thành nó cho
+
+1024
+00:54:01,966 --> 00:54:04,600
+bây giờ thì nó cho up file rồi up driver thôi
+
+1025
+00:54:04,700 --> 00:54:06,333
+nó không thấy anh không thấy nó cho up
+
+1026
+00:54:07,666 --> 00:54:08,566
+notebook lm nữa
+
+1027
+00:54:10,366 --> 00:54:11,666
+vậy thì em thấy là mình đang
+
+1028
+00:54:11,800 --> 00:54:14,200
+lưu những cái thông tin trên facebook lm á
+
+1029
+00:54:14,200 --> 00:54:15,100
+thành ra bây giờ cuối cùng
+
+1030
+00:54:15,466 --> 00:54:16,166
+qua cái con
+
+1031
+00:54:16,166 --> 00:54:18,666
+cloud kia thì nó lại không có liên quan gì với nhau
+
+1032
+00:54:18,766 --> 00:54:20,666
+thì ví dụ như một cái
+
+1033
+00:54:21,900 --> 00:54:23,600
+em có tài liệu đó là ô kê
+
+1034
+00:54:23,766 --> 00:54:25,766
+có nghĩa là cái tài liệu đó em sử dụng được rất là nhiều
+
+1035
+00:54:26,466 --> 00:54:29,733
+đây bữa sau đây anh sẽ hướng dẫn cho anh em làm cái này
+
+1036
+00:54:31,133 --> 00:54:32,500
+lưu lên đây được chưa
+
+1037
+00:54:33,366 --> 00:54:36,333
+đó thì nó sẽ trở thành một cái gọi là bộ não thứ hai
+
+1038
+00:54:38,333 --> 00:54:40,300
+cái con a lót của anh á
+
+1039
+00:54:40,333 --> 00:54:42,300
+nó sẽ kết nối được với cái bộ não thứ hai này
+
+1040
+00:54:43,066 --> 00:54:45,500
+để nó truy xuất cái dữ liệu ra em hiểu hông
+
+1041
+00:54:46,866 --> 00:54:49,733
+ấy ví dụ như bây giờ anh sẽ bảo là viết một cái kịch bản đây
+
+1042
+00:54:54,366 --> 00:54:56,700
+youtube à kịch bản à
+
+1043
+00:54:58,200 --> 00:54:59,000
+quảng cáo
+
+1044
+00:55:01,166 --> 00:55:02,333
+khóa học sale
+
+1045
+00:55:07,500 --> 00:55:09,666
+lấy data từ
+
+1046
+00:55:11,000 --> 00:55:12,100
+bộ não thứ hai
+
+1047
+00:55:15,066 --> 00:55:18,333
+ô kê tên này là anh anh mới chat thôi nha chứ chưa có skill
+
+1048
+00:55:18,533 --> 00:55:20,533
+skill chưa có asian asian chưa có
+
+1049
+00:55:20,800 --> 00:55:23,266
+x system jackson con mẹ gì nha
+
+1050
+00:55:33,100 --> 00:55:39,666
+đó nó đang lấy nè thấy chưa thế thì à nó lấy nó sẽ query
+
+1051
+00:55:41,066 --> 00:55:47,100
+nó query vào cái à à gọi là là cái này đây đây đây
+
+1052
+00:55:53,466 --> 00:55:54,466
+à ạ
+
+1053
+00:56:07,966 --> 00:56:10,766
+anh em chờ tí để mình mình mở cái
+
+1054
+00:56:13,866 --> 00:56:14,666
+mở cái
+
+1055
+00:56:26,733 --> 00:56:28,333
+chờ xíu chờ xíu để mình mở cái
+
+1056
+00:56:45,666 --> 00:56:46,466
+đây
+
+1057
+00:57:00,566 --> 00:57:02,500
+đây anh em thấy rõ hông
+
+1058
+00:57:03,966 --> 00:57:09,933
+cái này à cái này là à cái vector database
+
+1059
+00:57:11,100 --> 00:57:12,200
+cái anh em
+
+1060
+00:57:12,600 --> 00:57:13,866
+trước giờ á thì nó
+
+1061
+00:57:14,166 --> 00:57:16,900
+mình truy xuất cái dữ liệu bằng cái việc mà mình
+
+1062
+00:57:17,366 --> 00:57:18,900
+so khớp từ khóa đúng hông
+
+1063
+00:57:18,933 --> 00:57:19,766
+giống như mình còn cho
+
+1064
+00:57:20,066 --> 00:57:22,766
+ép xong cái bắt đầu mình à nhét cái từ khóa vào để mình tìm
+
+1065
+00:57:23,500 --> 00:57:26,266
+thế thì à nếu mà chỉ có mỗi cái này
+
+1066
+00:57:27,100 --> 00:57:31,566
+thì khi mà cái con à cái con a clot này á nó vào
+
+1067
+00:57:32,500 --> 00:57:33,733
+cái con clot này nó vào
+
+1068
+00:57:35,933 --> 00:57:38,333
+thì à nó vào cái thằng à
+
+1069
+00:57:38,900 --> 00:57:42,666
+này thì nó phải đọc hết tất cả các file trong thằng này
+
+1070
+00:57:43,466 --> 00:57:44,533
+thì nó mới mới mới mới
+
+1071
+00:57:44,866 --> 00:57:45,766
+mới mới hiểu đúng hông
+
+1072
+00:57:45,800 --> 00:57:48,100
+mình truy vấn có một cái từ khóa thôi nó phải đọc hết
+
+1073
+00:57:48,666 --> 00:57:51,566
+thì nó theo anh em thì cái điều gì sẽ xảy ra
+
+1074
+00:57:53,133 --> 00:57:54,733
+ê bản chất những cái này những
+
+1075
+00:57:54,800 --> 00:57:57,800
+cái file này là toàn là những cái file text không
+
+1076
+00:57:57,866 --> 00:57:58,733
+nó phải đọc hết text
+
+1077
+00:57:59,333 --> 00:58:01,066
+thì theo anh em điều gì sẽ xảy ra
+
+1078
+00:58:03,100 --> 00:58:08,100
+tốn tô cần hả anh đúng tốn tô cần và cái giữ cái ngữ cảnh
+
+1079
+00:58:08,933 --> 00:58:11,733
+contact của nó nó sẽ bị nó sẽ bị chán
+
+1080
+00:58:12,566 --> 00:58:13,366
+đúng hông
+
+1081
+00:58:14,600 --> 00:58:15,400
+có đúng hông
+
+1082
+00:58:17,133 --> 00:58:18,400
+đó thì nó sẽ không hiệu quả
+
+1083
+00:58:18,766 --> 00:58:21,733
+thế thì nó cái mình làm tiếp cái này để chi
+
+1084
+00:58:22,100 --> 00:58:25,700
+để mà một cái bộ lọc khi mà nó lọc qua cái này đúng hông à
+
+1085
+00:58:25,733 --> 00:58:28,200
+những cái a vector này nó gần nhau
+
+1086
+00:58:28,533 --> 00:58:30,333
+nó gọi là cái cái vector nó
+
+1087
+00:58:31,066 --> 00:58:32,666
+có nghĩa là cái cái cái cái cái
+
+1088
+00:58:33,166 --> 00:58:34,700
+anh em hiểu như này cho dễ
+
+1089
+00:58:35,333 --> 00:58:36,300
+đỡ phải khùng khùng
+
+1090
+00:58:36,533 --> 00:58:39,766
+nghĩa là cái chữ nó sẽ băm ra nó băm ra và nó sẽ gắn số vào
+
+1091
+00:58:40,266 --> 00:58:42,366
+thì cứ cái số nào nó gần với cái số nào á
+
+1092
+00:58:42,466 --> 00:58:43,800
+thì nó sẽ là liên quan tới nhau
+
+1093
+00:58:44,066 --> 00:58:46,366
+nó liên quan tới nhau thì thằng này nó làm tương tự như vậy
+
+1094
+00:58:46,466 --> 00:58:47,466
+nó sẽ gắn vào đó
+
+1095
+00:58:47,566 --> 00:58:49,400
+những cái mà nó ở gần thì nó liên quan với nhau
+
+1096
+00:58:49,466 --> 00:58:50,766
+anh em thấy tài liệu ra đó
+
+1097
+00:58:50,900 --> 00:58:51,766
+tài liệu ra đó
+
+1098
+00:58:52,066 --> 00:58:54,400
+tiếng ơ gọi là là là là là là ừ
+
+1099
+00:58:54,933 --> 00:58:56,600
+hindi này nọ các kiểu á
+
+1100
+00:58:56,933 --> 00:58:57,366
+rồi
+
+1101
+00:58:57,366 --> 00:58:59,533
+có những cái mà tiếng việt với tiếng anh thì nó gần nhau
+
+1102
+00:58:59,566 --> 00:59:01,666
+tại vì nó à liên quan tới nhau
+
+1103
+00:59:02,200 --> 00:59:04,400
+thì thằng clout này á nó sẽ vào
+
+1104
+00:59:05,100 --> 00:59:07,366
+nó sẽ vào cái thằng này để nó truy xuất
+
+1105
+00:59:07,600 --> 00:59:09,933
+nó truy xuất ví dụ nó truy xuất được tám cộng
+
+1106
+00:59:10,400 --> 00:59:12,600
+tám cái cộng đúng hông tám cái cộng liên quan
+
+1107
+00:59:13,066 --> 00:59:15,000
+khi mà nó xác định được tám cộng liên quan rồi á
+
+1108
+00:59:15,100 --> 00:59:17,466
+nó mới vào thằng này và nó chỉ lấy tám cái cộng đó thôi
+
+1109
+00:59:17,700 --> 00:59:18,766
+anh em hiểu đúng hông
+
+1110
+00:59:20,700 --> 00:59:22,066
+thì nó đỡ tốn tốc cần
+
+1111
+00:59:22,266 --> 00:59:24,200
+và ngữ cảnh của nó không bao giờ bị tràn
+
+1112
+00:59:24,866 --> 00:59:26,766
+ô kê nè đó nó húc nè
+
+1113
+00:59:27,500 --> 00:59:28,333
+cận mặt quyết
+
+1114
+00:59:28,800 --> 00:59:30,266
+đó đúng văn phong chưa
+
+1115
+00:59:30,366 --> 00:59:32,933
+anh em định tự học sale miễn phí trên mạng đúng không
+
+1116
+00:59:33,266 --> 00:59:35,366
+tôi nói thật một câu cảm giác
+
+1117
+00:59:36,966 --> 00:59:38,866
+cái cảm giác tệ nhất của người mới
+
+1118
+00:59:39,533 --> 00:59:41,766
+không phải là không biết sale mà làm hoài này nọ
+
+1119
+00:59:41,866 --> 00:59:42,666
+các kiểu gì đây
+
+1120
+00:59:43,533 --> 00:59:46,366
+phần lớn anh em mất một hai năm mò mẫm đó
+
+1121
+00:59:47,700 --> 00:59:50,166
+à trí quyết academy tôi không dạy lý thuyết này nọ
+
+1122
+00:59:50,366 --> 00:59:52,466
+kiểu đó thì cái này thì chưa có gọi là
+
+1123
+00:59:52,733 --> 00:59:54,400
+skill skill cái gì cả đó
+
+1124
+00:59:54,500 --> 00:59:55,500
+nó tự nó làm thôi
+
+1125
+00:59:56,000 --> 00:59:58,700
+thì nó truy xuất cái dữ liệu cái dữ liệu này làm gì nó có
+
+1126
+01:00:00,266 --> 01:00:01,600
+kiên hiểu hiểu hông kiên
+
+1127
+01:00:06,366 --> 01:00:08,100
+nhưng mà nhìn cái bộ não thứ hai
+
+1128
+01:00:08,133 --> 01:00:09,600
+xong cái thấy cái notebook lm
+
+1129
+01:00:09,900 --> 01:00:12,933
+tự nhiên cái bữa giờ đang xây cái notebook lm
+
+1130
+01:00:13,000 --> 01:00:14,100
+cái tự nhiên thấy nó bị rối
+
+1131
+01:00:14,666 --> 01:00:16,700
+hổng biết mấy anh em khác có giống em hông
+
+1132
+01:00:17,066 --> 01:00:20,533
+em a muốn xài notebook lm em có thể kết nối mcb
+
+1133
+01:00:21,733 --> 01:00:23,000
+ví dụ như ở đây ha
+
+1134
+01:00:24,600 --> 01:00:25,400
+kết nối
+
+1135
+01:00:39,100 --> 01:00:42,466
+nó có rất là nhiều cách em hình dung không kia kiên
+
+1136
+01:00:43,200 --> 01:00:44,066
+dạ tại vì em
+
+1137
+01:00:45,066 --> 01:00:45,866
+là cái
+
+1138
+01:00:46,766 --> 01:00:48,266
+cái notebook lm
+
+1139
+01:00:48,966 --> 01:00:52,366
+là một cái chỗ mà nó chỉ truy xuất dữ liệu ra thôi
+
+1140
+01:00:52,733 --> 01:00:53,800
+và cái buổi tiếp theo đi
+
+1141
+01:00:53,866 --> 01:00:55,933
+anh sẽ hướng dẫn cho anh em cả cái notebook lm
+
+1142
+01:00:56,133 --> 01:00:57,400
+và cái a
+
+1143
+01:00:58,000 --> 01:01:01,866
+cái cái cái a bộ não thứ hai này à tùy anh em lựa chọn thôi
+
+1144
+01:01:02,066 --> 01:01:02,866
+tùy anh em lựa chọn thôi
+
+1145
+01:01:02,866 --> 01:01:05,500
+nhưng mà cái notebook lm mà kết nối với lại cái con
+
+1146
+01:01:05,800 --> 01:01:08,100
+club này á thì nó thuộc cái dạng mà không chính thống
+
+1147
+01:01:08,333 --> 01:01:09,933
+có nghĩa là hãng nó nó không cho
+
+1148
+01:01:10,666 --> 01:01:14,100
+nhưng mà mình à có cách mà mình làm đấy biết hông
+
+1149
+01:01:22,900 --> 01:01:24,466
+đó nó chạy nó log in nè
+
+1150
+01:01:38,166 --> 01:01:39,733
+đó nó bảo nó sẽ bật
+
+1151
+01:01:40,200 --> 01:01:42,700
+cửa sổ chrome này để cho mình đăng nhập này
+
+1152
+01:01:44,000 --> 01:01:44,866
+đã khởi chạy
+
+1153
+01:01:49,600 --> 01:01:50,400
+thì cái a
+
+1154
+01:01:50,533 --> 01:01:53,466
+notebook lm này anh em có thể kết nối với thằng club ha
+
+1155
+01:01:56,666 --> 01:01:59,300
+thì khi mà kết nối với thằng clout á
+
+1156
+01:02:00,333 --> 01:02:02,966
+thì à anh em biết cái chuyện gì xảy ra không
+
+1157
+01:02:04,100 --> 01:02:04,900
+khi mà anh em
+
+1158
+01:02:05,666 --> 01:02:08,400
+kết nối với cái thằng clout ở cái notebook lm
+
+1159
+01:02:08,533 --> 01:02:10,666
+thì cái notebook lm nó đóng vai trò
+
+1160
+01:02:10,966 --> 01:02:13,133
+là một cái con asian
+
+1161
+01:02:14,733 --> 01:02:17,700
+có nghĩa là khi mà tới cái bước cần phải lấy dữ liệu
+
+1162
+01:02:18,100 --> 01:02:19,666
+thì nó gọi thằng notebook lm
+
+1163
+01:02:19,766 --> 01:02:23,066
+thì notebook lm á nó không thể nào mà nó trả về hết cái tài
+
+1164
+01:02:23,166 --> 01:02:24,066
+liệu ở trong đó được
+
+1165
+01:02:24,366 --> 01:02:25,266
+mà nó sẽ phải trả lời
+
+1166
+01:02:25,766 --> 01:02:27,366
+cái cái cái con club này
+
+1167
+01:02:27,733 --> 01:02:30,000
+bằng cái dữ liệu mà nó truy xuất luôn
+
+1168
+01:02:30,500 --> 01:02:31,566
+anh em hình dung hông
+
+1169
+01:02:34,933 --> 01:02:35,733
+đâu rồi
+
+1170
+01:02:37,600 --> 01:02:40,266
+sao mà mình bấm vào chat chỗ nào trời
+
+1171
+01:02:41,700 --> 01:02:44,800
+thấy cái chỗ mà bấm vào chat khi mà show màn hình nhỉ
+
+1172
+01:02:45,566 --> 01:02:46,366
+chán nhỉ
+
+1173
+01:02:48,300 --> 01:02:51,466
+có nút ba chấm ở dưới thầy cái nút ba chấm ở dưới á
+
+1174
+01:02:52,066 --> 01:02:55,133
+à đây bên phải kìa bên phải ở dưới ở dưới chỗ ba chấm
+
+1175
+01:02:55,500 --> 01:02:57,333
+đây đây đây đây đây đây
+
+1176
+01:03:03,100 --> 01:03:05,066
+ô kê không anh em ơi chỗ này ô kê không
+
+1177
+01:03:13,133 --> 01:03:17,400
+đó giờ ha ví dụ như ở đây anh a truy xuất nè khóa học à
+
+1178
+01:03:18,066 --> 01:03:21,766
+dựa vào ha dựa vào đúng hông khóa học
+
+1179
+01:03:24,000 --> 01:03:24,800
+đây
+
+1180
+01:03:27,533 --> 01:03:34,900
+hãy lên outline cho modul modul thì chẳng hạn đi à ai
+
+1181
+01:03:36,666 --> 01:03:39,766
+search ở trí quyết
+
+1182
+01:03:41,766 --> 01:03:43,000
+ak đm
+
+1183
+01:03:44,000 --> 01:03:47,500
+có nghĩa là anh đi thu thập về để anh làm cho nó
+
+1184
+01:03:47,966 --> 01:03:51,166
+tham khảo á làm cái dựa vào những cái nội dung này mày hãy
+
+1185
+01:03:55,700 --> 01:03:57,966
+thầy hãy a dựa vào những cái nội dung này
+
+1186
+01:03:58,533 --> 01:03:59,900
+của acred này nọ
+
+1187
+01:03:59,933 --> 01:04:01,666
+các kiểu anh tham khảo rất là nhiều cái nội dung đây
+
+1188
+01:04:01,666 --> 01:04:03,966
+có hai mươi bảy cái nguồn nội dung này à
+
+1189
+01:04:04,066 --> 01:04:07,966
+nội dung a ở đây là video hết ha thì nó đọc được ha
+
+1190
+01:04:08,066 --> 01:04:10,000
+bắt đầu nó query tới cái thằng notebook lm
+
+1191
+01:04:10,100 --> 01:04:13,133
+ha thì notebook lm nó sẽ trả về cái dữ liệu sạch
+
+1192
+01:04:14,100 --> 01:04:15,700
+chứ không phải là full cái
+
+1193
+01:04:15,733 --> 01:04:18,100
+dữ liệu mà hai mươi bảy cái video này à
+
+1194
+01:04:18,266 --> 01:04:19,100
+anh em hiểu hông
+
+1195
+01:04:27,733 --> 01:04:31,500
+notebook em là cái thằng mà cực mạnh ha anh em ha cực mạnh
+
+1196
+01:04:31,766 --> 01:04:32,700
+anh em nên khai thác
+
+1197
+01:04:33,333 --> 01:04:34,966
+nó có miễn phí anh em nên khai thác
+
+1198
+01:04:36,933 --> 01:04:41,600
+miễn phí nó được à như xài được năm mươi cái cái cái ô đã đó
+
+1199
+01:04:42,600 --> 01:04:45,200
+năm mươi cái a cái ô của nó
+
+1200
+01:04:55,900 --> 01:04:59,166
+ơ trước đó anh cũng xây bộ não thứ hai ở notebook của em mà
+
+1201
+01:04:59,700 --> 01:05:01,200
+đây nè có bộ não thứ hai này
+
+1202
+01:05:05,866 --> 01:05:07,366
+nó đọc nó hơi lâu một tí ha
+
+1203
+01:05:07,566 --> 01:05:09,966
+tại vì notebook lm nó chả dữ liệu nó
+
+1204
+01:05:10,166 --> 01:05:12,966
+nó phải chờ dữ liệu từ notebook lm thì anh em muốn xem
+
+1205
+01:05:13,000 --> 01:05:14,200
+nó đang chạy ngầm ở đây nè
+
+1206
+01:05:14,333 --> 01:05:15,133
+nó đang chạy nè
+
+1207
+01:05:15,866 --> 01:05:18,866
+đó thì cái query của nó tới notebook lm ha
+
+1208
+01:05:19,100 --> 01:05:21,500
+đây là cái query của cái thằng à
+
+1209
+01:05:21,533 --> 01:05:23,366
+nó chat với lại cái notebook lm á
+
+1210
+01:05:23,400 --> 01:05:25,900
+tổng hợp tất cả chủ đề giữa nguồn liệt kê
+
+1211
+01:05:26,166 --> 01:05:27,866
+search hoạt động như thế nào này nọ các kiểu à
+
+1212
+01:05:28,366 --> 01:05:29,166
+khác gì
+
+1213
+01:05:29,800 --> 01:05:31,533
+sale truyền thống này nọ các kiểu đó
+
+1214
+01:05:34,266 --> 01:05:36,133
+nó trả dữ liệu về thằng clout
+
+1215
+01:05:36,266 --> 01:05:38,500
+và thằng clout sẽ xử lý cái dữ liệu đó
+
+1216
+01:05:38,766 --> 01:05:41,333
+sau đó thằng clout nó sẽ trả về cái dữ liệu cho mình
+
+1217
+01:05:42,866 --> 01:05:44,000
+đó đây nó chạy đây
+
+1218
+01:05:47,300 --> 01:05:49,366
+thằng này khứa này nó làm tới đâu rồi
+
+1219
+01:05:49,866 --> 01:05:52,400
+nó lên cho mình gắp lén ô kê làm đi em ơi
+
+1220
+01:06:00,733 --> 01:06:04,000
+anh em cần sửa cái gì cứ bảo nó sửa ha
+
+1221
+01:06:05,000 --> 01:06:07,666
+như mình mấy cái này thì mình nhìn mình cũng chịu thôi
+
+1222
+01:06:07,700 --> 01:06:08,566
+anh em mình như này
+
+1223
+01:06:08,700 --> 01:06:09,500
+mình chịu
+
+1224
+01:06:10,166 --> 01:06:11,166
+rồi chịu luôn
+
+1225
+01:06:11,800 --> 01:06:12,700
+không biết làm đâu
+
+1226
+01:06:12,933 --> 01:06:15,866
+mẹ bảo cho mình làm tay chắc là mò mẹ tới tết tây
+
+1227
+01:06:16,100 --> 01:06:17,666
+nhưng mà thằng đệ này nó làm hết
+
+1228
+01:06:17,733 --> 01:06:18,966
+anh em hiểu nguyên lý là ô kê
+
+1229
+01:06:20,733 --> 01:06:23,133
+thấy chưa đây à modul a search này
+
+1230
+01:06:24,266 --> 01:06:28,366
+trí quyết academy bài một là nó như này tiểu sân chơi mới
+
+1231
+01:06:29,166 --> 01:06:32,066
+và bỏ sợ hãi a giết chết sco
+
+1232
+01:06:33,733 --> 01:06:37,466
+nó ra luôn cả cái gọi là những cái ấy cho mình luôn này
+
+1233
+01:06:39,200 --> 01:06:40,066
+bài hai nè
+
+1234
+01:06:40,200 --> 01:06:41,066
+bài hai nè
+
+1235
+01:06:42,566 --> 01:06:44,966
+bên trong cỗ máy ar xuất hoạt động như thế nào
+
+1236
+01:06:45,333 --> 01:06:46,733
+khẩu vị của từng ar
+
+1237
+01:06:48,533 --> 01:06:49,866
+engine đó
+
+1238
+01:06:51,466 --> 01:06:52,900
+trích content chuẩn ai
+
+1239
+01:06:53,666 --> 01:06:58,066
+o redmension tín hiệu mạnh nhất của ai
+
+1240
+01:06:58,766 --> 01:07:00,400
+chiến lược nâng cao
+
+1241
+01:07:02,300 --> 01:07:04,166
+bốn r và săn ảo giác
+
+1242
+01:07:05,733 --> 01:07:07,400
+bốn r là bốn cái này nè anh em
+
+1243
+01:07:08,900 --> 01:07:12,333
+alu ai săn ảo giác ai technical
+
+1244
+01:07:14,100 --> 01:07:18,133
+đo lường cây đi ngon thế nhỉ
+
+1245
+01:07:19,466 --> 01:07:21,966
+đó rồi ô kê nó mà làm xong rồi nó nó
+
+1246
+01:07:22,266 --> 01:07:23,566
+nó hỏi mình có lưu vào không
+
+1247
+01:07:24,066 --> 01:07:26,800
+lưu vào cái bộ não thứ hai hay không này em thấy hông
+
+1248
+01:07:27,200 --> 01:07:28,200
+ô kê lưu đi em
+
+1249
+01:07:42,766 --> 01:07:45,600
+những cái nào mà ngon thì mình bảo nó lưu vào được chưa
+
+1250
+01:07:55,400 --> 01:07:58,200
+mình chat với nó vậy nó có phải tốn tốc cần hông thầy
+
+1251
+01:07:58,600 --> 01:07:59,666
+à tốn chứ em
+
+1252
+01:08:01,266 --> 01:08:02,933
+đây nè tốc cần nó đang chạy nè
+
+1253
+01:08:05,066 --> 01:08:06,800
+nhưng mà anh em ơi à anh em
+
+1254
+01:08:08,266 --> 01:08:12,100
+à cái chi phí mình thấy nó bỏ ra là nó xứng đáng
+
+1255
+01:08:14,533 --> 01:08:17,000
+chi phí bỏ ra hoàn toàn là xứng đáng ha anh em
+
+1256
+01:08:17,566 --> 01:08:20,700
+không ấy thì có thể mua chung mua chung và xài
+
+1257
+01:08:22,766 --> 01:08:27,566
+như cái con này thì mình mua chung và nó đây nó nó
+
+1258
+01:08:32,000 --> 01:08:33,766
+mở đi bảo mình mở
+
+1259
+01:08:36,000 --> 01:08:37,000
+bắt đầu thử chạy
+
+1260
+01:08:42,066 --> 01:08:43,600
+luồng n tấm n của tao đâu
+
+1261
+01:08:55,700 --> 01:08:59,133
+vào thư mục này để mình thử vào thư mục này coi
+
+1262
+01:09:08,700 --> 01:09:09,600
+thấy đâu ba
+
+1263
+01:09:13,133 --> 01:09:15,266
+tập thể dục
+
+1264
+01:09:21,500 --> 01:09:24,400
+ví dụ như bảo cài đặt phần mềm phần miết gì hay là
+
+1265
+01:09:24,866 --> 01:09:28,133
+à sắp xếp máy tính này nọ các kiểu nó làm ngon chết luôn
+
+1266
+01:09:28,866 --> 01:09:30,666
+không cần anh em không cần phải đụng gì hết
+
+1267
+01:09:30,700 --> 01:09:32,400
+có thằng đệ này nó làm hết rồi đó
+
+1268
+01:09:32,600 --> 01:09:33,866
+nó lưu này á
+
+1269
+01:09:34,066 --> 01:09:35,400
+nó gởi cho mình cái file này
+
+1270
+01:09:36,366 --> 01:09:38,733
+đó nó lưu xong rồi nó ô kê
+
+1271
+01:09:40,100 --> 01:09:41,466
+thằng đệ này ngon thế
+
+1272
+01:09:43,133 --> 01:09:46,800
+ô kê hông anh toại ơi còn nhức đầu hông anh ơi
+
+1273
+01:09:49,500 --> 01:09:52,166
+ê thằng đệ clot này thông minh phết nhỉ
+
+1274
+01:09:54,000 --> 01:09:54,800
+ngon
+
+1275
+01:09:55,600 --> 01:09:57,066
+ngon luôn đấy chứ còn gì nữa
+
+1276
+01:09:57,366 --> 01:09:58,733
+long ơi long có ở đây không
+
+1277
+01:09:58,866 --> 01:10:01,333
+sáng ngày mai kêu thằng đệ này làm việc long nhá
+
+1278
+01:10:03,466 --> 01:10:04,566
+à tí nữa
+
+1279
+01:10:05,000 --> 01:10:07,733
+em sẽ gởi cho anh em một cái tài liệu
+
+1280
+01:10:08,133 --> 01:10:10,166
+để mà anh em có thể kết nối cái
+
+1281
+01:10:11,333 --> 01:10:15,366
+cái cái a a clốt này với lại mcb
+
+1282
+01:10:15,533 --> 01:10:17,333
+tại vì cái này nó không chính thống được chưa
+
+1283
+01:10:17,866 --> 01:10:22,133
+kết nối mcb thì anh em vứt vào là nó tự cài cho anh em luôn
+
+1284
+01:10:22,500 --> 01:10:25,300
+mcb của thằng à notebook lm á
+
+1285
+01:10:27,866 --> 01:10:29,600
+được không hay là
+
+1286
+01:10:31,366 --> 01:10:32,200
+anh em có thể
+
+1287
+01:10:34,000 --> 01:10:37,500
+tạo cái cái cái bản đồ như này nè
+
+1288
+01:10:38,200 --> 01:10:41,600
+đó thì có tài liệu anh em quăng vào bảo là đây bây giờ
+
+1289
+01:10:42,366 --> 01:10:44,300
+có một cái bộ não thứ hai này rồi được chưa
+
+1290
+01:10:44,800 --> 01:10:48,533
+bây giờ tao cần phải làm một cái này để mà database vector
+
+1291
+01:10:48,866 --> 01:10:49,666
+để mà truy xuất
+
+1292
+01:10:50,000 --> 01:10:53,100
+thì ô kê nó đẩy hết lên cho anh em khi nào xong rồi nó báo
+
+1293
+01:10:53,733 --> 01:10:54,533
+được chưa
+
+1294
+01:10:54,933 --> 01:10:57,800
+anh em tắt máy đi ngủ thôi thì cái này em mới làm đêm qua
+
+1295
+01:10:59,600 --> 01:11:02,566
+đi ngủ dậy nó báo cho như này nhìn cũng hay phết
+
+1296
+01:11:13,366 --> 01:11:16,166
+cái con claw code này chi phí nó như nào anh
+
+1297
+01:11:17,100 --> 01:11:19,866
+chi phí hai mươi đô một trăm đô và hai trăm đô
+
+1298
+01:11:21,000 --> 01:11:24,166
+mua chung có sợ bị khóa hông hả
+
+1299
+01:11:25,366 --> 01:11:27,533
+thì mình xác định mình xài hàng lậu thì phải
+
+1300
+01:11:27,933 --> 01:11:28,866
+chấp nhận thôi em
+
+1301
+01:11:29,333 --> 01:11:31,066
+ví dụ như mình mua khoảng một triệu
+
+1302
+01:11:31,866 --> 01:11:34,933
+xài hai triệu đi xài khoảng là mấy tháng đi
+
+1303
+01:11:35,166 --> 01:11:36,766
+mình xài một tháng được là ngon rồi
+
+1304
+01:11:38,366 --> 01:11:41,866
+hông nếu mà mua kiểu một người mua chính thống á
+
+1305
+01:11:41,933 --> 01:11:44,566
+sau đó thì người đó chia sẻ thì có bị khóa hông
+
+1306
+01:11:45,333 --> 01:11:46,800
+à không em không em
+
+1307
+01:11:48,300 --> 01:11:49,100
+không bị khóa
+
+1308
+01:11:52,333 --> 01:11:53,500
+không bị khóa nha
+
+1309
+01:11:55,500 --> 01:11:56,366
+anh thì anh mua
+
+1310
+01:11:56,966 --> 01:11:58,966
+anh chưa thấy bị khóa thì anh nói chưa bị khóa
+
+1311
+01:11:59,900 --> 01:12:03,800
+còn à em mua bị khóa thì cứ bảo là đừng có đổi cho anh nhá
+
+1312
+01:12:03,933 --> 01:12:04,733
+cái này chịu
+
+1313
+01:12:07,700 --> 01:12:08,000
+ủa mà
+
+1314
+01:12:08,000 --> 01:12:10,166
+nếu mà như lỡ mình bị khóa rồi mình mấy cái
+
+1315
+01:12:10,300 --> 01:12:12,566
+skill cũ của mình nó bị có bị mất hông thầy
+
+1316
+01:12:12,766 --> 01:12:15,966
+mấy skill à em lưu ra à skill thì em lưu ra bộ não thứ hai
+
+1317
+01:12:16,600 --> 01:12:19,333
+à hiểu hông á lưu ra ngoài được
+
+1318
+01:12:19,766 --> 01:12:22,466
+hiểu hông cái bộ não thứ hai này nó là phần mềm gì thầy
+
+1319
+01:12:22,533 --> 01:12:24,100
+em cũng chưa biết luôn à
+
+1320
+01:12:24,500 --> 01:12:26,333
+bữa sau anh chỉ nha dạ
+
+1321
+01:12:27,466 --> 01:12:30,066
+nó có rất là nhiều cái để làm chứ không phải mỗi cái này
+
+1322
+01:12:30,200 --> 01:12:31,000
+có nghĩa là
+
+1323
+01:12:31,700 --> 01:12:32,466
+rất là nhiều cái
+
+1324
+01:12:32,466 --> 01:12:34,700
+và cái này á cũng a cái này á bản chất á
+
+1325
+01:12:34,766 --> 01:12:37,900
+là em quăng vào phát là nó tự làm cho em luôn được chưa
+
+1326
+01:12:38,900 --> 01:12:39,700
+đơn giản
+
+1327
+01:12:41,200 --> 01:12:43,166
+nay có thằng đệ nó làm ngon lắm
+
+1328
+01:12:45,466 --> 01:12:48,500
+ô kê anh thọ ơi thọ đâu rồi
+
+1329
+01:12:52,466 --> 01:12:59,766
+cái đoạn này là cái đoạn mà nó dễ nhất mà anh
+
+1330
+01:13:00,333 --> 01:13:02,266
+thế là anh em anh em muốn ạ
+
+1331
+01:13:02,733 --> 01:13:05,700
+cái bản chất là em muốn anh em nắm được cái bản chất
+
+1332
+01:13:06,300 --> 01:13:08,166
+của tất cả à về ai
+
+1333
+01:13:08,800 --> 01:13:12,900
+sau đó cái người thực thi á là cái con club hoặc là con à
+
+1334
+01:13:13,133 --> 01:13:13,966
+ai nó làm
+
+1335
+01:13:14,366 --> 01:13:18,200
+anh em mình chỉ tập trung vào cái bảng à bdr và cái bảng
+
+1336
+01:13:18,766 --> 01:13:20,166
+à system injection
+
+1337
+01:13:20,400 --> 01:13:23,800
+và cái quy trình mà dạy cho nó khôn và lọc cái dữ liệu
+
+1338
+01:13:24,133 --> 01:13:24,933
+đưa vào thôi
+
+1339
+01:13:25,500 --> 01:13:27,966
+không có cần anh em phải đụng tay vào những cái khác nữa
+
+1340
+01:13:28,666 --> 01:13:31,200
+và lọc dữ liệu á qua tuần sau em cũng
+
+1341
+01:13:31,900 --> 01:13:34,266
+chia sẻ cho anh em cái cách mà à
+
+1342
+01:13:34,466 --> 01:13:34,966
+ai
+
+1343
+01:13:34,966 --> 01:13:37,133
+nó có thể tìm cho anh em được những cái dữ liệu ngon luôn
+
+1344
+01:13:37,533 --> 01:13:38,400
+anh em có muốn hông
+
+1345
+01:13:39,600 --> 01:13:42,766
+hay là chạy cái này chạy bằng cơm chứ không phải rảnh quá
+
+1346
+01:13:45,200 --> 01:13:46,800
+không phải rảnh quá cũng ngại
+
+1347
+01:13:47,366 --> 01:13:49,933
+đề nghị thầy quyết không được yếu úp mờ mờ như vậy
+
+1348
+01:13:50,100 --> 01:13:51,300
+rất là nguy hiểm và khó chịu
+
+1349
+01:13:51,666 --> 01:13:52,466
+sao vậy
+
+1350
+01:13:53,466 --> 01:13:54,266
+sao vậy
+
+1351
+01:13:56,266 --> 01:13:58,966
+thầy ơi em em hỏi xíu nhiều khi
+
+1352
+01:13:59,966 --> 01:14:01,800
+em cũng chưa có làm cái này bao giờ
+
+1353
+01:14:02,133 --> 01:14:03,700
+không có kinh nghiệm á nếu mà được
+
+1354
+01:14:04,266 --> 01:14:06,333
+thầy có thời gian thầy quay một cái clip
+
+1355
+01:14:06,500 --> 01:14:08,466
+thầy làm một cái con asian
+
+1356
+01:14:08,600 --> 01:14:09,933
+nó hoàn chỉnh từ đầu đến cuối
+
+1357
+01:14:10,100 --> 01:14:11,266
+cho anh em coi tham khảo được hông
+
+1358
+01:14:11,300 --> 01:14:14,000
+thầy coi luôn cả cách nó vận hành sau khi mình làm xong á
+
+1359
+01:14:15,200 --> 01:14:16,766
+à ô kê ô kê gì đâu
+
+1360
+01:14:17,700 --> 01:14:22,300
+đơn giản mẹ nãy giờ đang demo con này thì tổ cụ nó
+
+1361
+01:14:24,733 --> 01:14:30,266
+thử lại coi nó thế nào cay thế mẹ nó lại bị lỗi đây chứ lại
+
+1362
+01:14:32,200 --> 01:14:35,000
+có nghĩa là anh em làm cho nó chạy ở trên đây đi rồi
+
+1363
+01:14:35,066 --> 01:14:36,000
+anh em muốn kết nối ở đâu
+
+1364
+01:14:36,133 --> 01:14:37,266
+kêu nó kết nối được chưa
+
+1365
+01:14:37,333 --> 01:14:39,500
+muốn trả kết quả về telegram thì anh em kêu nó trả
+
+1366
+01:14:39,733 --> 01:14:42,266
+kết quả về telegram ờ muốn trả về mail thì kêu nó
+
+1367
+01:14:42,766 --> 01:14:44,733
+trả về mail thế thôi được chưa
+
+1368
+01:14:46,700 --> 01:14:48,366
+inbox của anh em muốn inbox ở đâu
+
+1369
+01:14:48,533 --> 01:14:50,900
+ví dụ bảo tao muốn kết nối vào telegram
+
+1370
+01:14:51,166 --> 01:14:53,266
+thì ô kê em sẽ hướng dẫn cho anh em cái tài liệu
+
+1371
+01:14:53,333 --> 01:14:54,300
+anh em kết nối vào telegram
+
+1372
+01:14:59,366 --> 01:15:00,733
+ô kê không anh em ơi
+
+1373
+01:15:01,933 --> 01:15:04,400
+có vẻ anh em hôm nay ngáo phết nhỉ
+
+1374
+01:15:05,766 --> 01:15:07,133
+có vẻ không hiểu lắm nhỉ
+
+1375
+01:15:12,133 --> 01:15:14,500
+có hỏi đáp gì không các thầy ơi
+
+1376
+01:15:17,566 --> 01:15:18,600
+bị ngơ hết rồi
+
+1377
+01:15:20,333 --> 01:15:22,500
+ôi trời ơi thấy nó đơn giản mà trời
+
+1378
+01:15:23,466 --> 01:15:26,966
+quá đơn giản có thằng đệ này bảo muốn cái gì cứ bảo với nó
+
+1379
+01:15:30,666 --> 01:15:31,733
+đúng hông còn tôi muốn
+
+1380
+01:15:32,200 --> 01:15:34,466
+cái skill á bản chất là là là
+
+1381
+01:15:34,566 --> 01:15:35,333
+là anh em
+
+1382
+01:15:35,333 --> 01:15:36,933
+cũng không cần phải chọn đúng cái skill
+
+1383
+01:15:37,000 --> 01:15:39,133
+mà anh em chỉ cần nói đúng cái ngữ cảnh thôi nó hiểu
+
+1384
+01:15:39,266 --> 01:15:40,966
+ví dụ như bảo tao muốn nghiên cứu từ khóa
+
+1385
+01:15:42,100 --> 01:15:45,300
+thì là nó gọi cái cái skill nghiên cứu từ khóa được chưa
+
+1386
+01:15:45,466 --> 01:15:47,933
+còn cái guồng lâu á ví dụ như ở đây
+
+1387
+01:15:49,333 --> 01:15:51,166
+ô kê à hãy
+
+1388
+01:15:52,066 --> 01:15:54,133
+à bây giờ á nó đang như này nha
+
+1389
+01:15:54,166 --> 01:15:55,500
+nó đang như này được được chưa
+
+1390
+01:15:55,900 --> 01:15:58,266
+bây giờ mình sẽ bảo nó hãy lên
+
+1391
+01:15:59,300 --> 01:16:00,100
+outline
+
+1392
+01:16:00,933 --> 01:16:01,733
+content
+
+1393
+01:16:03,500 --> 01:16:09,200
+theo cho từ khóa khóa theo là gì được chưa
+
+1394
+01:16:10,866 --> 01:16:11,733
+volume à
+
+1395
+01:16:12,733 --> 01:16:17,366
+bằng à chín ngàn chín đi đây mình test thử ha cho web
+
+1396
+01:16:20,400 --> 01:16:21,200
+h
+
+1397
+01:16:21,700 --> 01:16:22,500
+h
+
+1398
+01:16:23,000 --> 01:16:30,866
+t v t b f hai chấm xẹt xẹt trí quyết chấm a k đ mi ô kê
+
+1399
+01:16:31,866 --> 01:16:33,333
+thôi đợi cho nó làm thôi
+
+1400
+01:16:39,866 --> 01:16:43,600
+rồi đó anh em thấy nó lên online phát là nó gọi cái
+
+1401
+01:16:44,100 --> 01:16:47,100
+ơ gọi là gọi cái con agent này luôn thấy chưa
+
+1402
+01:16:50,966 --> 01:16:53,200
+nghĩa là cái ngữ cảnh mình chat với nó là nó hiểu
+
+1403
+01:16:57,066 --> 01:16:58,600
+đó bắt đầu nó phân tích nè
+
+1404
+01:17:00,166 --> 01:17:02,366
+đó nó check ra cái tiêu chuẩn này
+
+1405
+01:17:02,533 --> 01:17:04,533
+tiêu chuẩn chất lượng content này thấy chưa
+
+1406
+01:17:09,200 --> 01:17:10,133
+ủa anh quý ơi
+
+1407
+01:17:10,200 --> 01:17:12,266
+nãy giờ em coi a kiểu anh em thắc mắc á
+
+1408
+01:17:12,266 --> 01:17:14,000
+ý là cái con anh đang chat với cái con này
+
+1409
+01:17:14,066 --> 01:17:17,400
+nó là con leader của cái team a a action á hả anh
+
+1410
+01:17:18,300 --> 01:17:19,566
+không leader là sao em
+
+1411
+01:17:20,066 --> 01:17:23,500
+chị ý là anh anh chỉ có chat là anh chat với lại
+
+1412
+01:17:24,000 --> 01:17:25,400
+cái cloud code thôi
+
+1413
+01:17:26,133 --> 01:17:27,700
+cái locos á nó sẽ
+
+1414
+01:17:28,366 --> 01:17:31,666
+kết nối với lại các cái con asian của anh nó điều khiển
+
+1415
+01:17:31,966 --> 01:17:34,600
+có nghĩa là giống như locos này là một cái con co
+
+1416
+01:17:35,100 --> 01:17:38,766
+và thằng co này á nó sẽ có các con khác nó là sub asian
+
+1417
+01:17:39,000 --> 01:17:39,900
+nó là asian con
+
+1418
+01:17:40,500 --> 01:17:41,400
+em hình dung hông
+
+1419
+01:17:41,500 --> 01:17:44,933
+và trong sub asian đó nó sẽ có những cái sub asian con nữa
+
+1420
+01:17:45,166 --> 01:17:45,766
+để mà
+
+1421
+01:17:45,766 --> 01:17:48,800
+và mỗi một cái sub asian đó nó có một cái cửa sổ ngữ cảnh
+
+1422
+01:17:48,933 --> 01:17:49,733
+khác nhau
+
+1423
+01:17:50,566 --> 01:17:51,566
+anh em hình dung hông
+
+1424
+01:17:51,866 --> 01:17:54,366
+có nghĩa là anh em không bị chạm cái cửa sổ ngữ cảnh
+
+1425
+01:17:55,133 --> 01:17:57,266
+được chưa ví dụ như cái con này nó là
+
+1426
+01:17:57,500 --> 01:17:59,533
+resort thì nó có cái cửa sổ ngữ cảnh của resort
+
+1427
+01:18:01,600 --> 01:18:02,600
+ý là mấy cái con kia
+
+1428
+01:18:02,866 --> 01:18:04,866
+anh a ở đâu mà gọi ra á anh ý
+
+1429
+01:18:04,866 --> 01:18:06,600
+là anh anh bill trước rồi phải hông
+
+1430
+01:18:07,133 --> 01:18:09,166
+bill gì nó ở trong club hết đó mà
+
+1431
+01:18:09,266 --> 01:18:10,566
+nhưng mà nó chia ra cho mình
+
+1432
+01:18:11,266 --> 01:18:14,000
+ý là khúc chưa biết khúc tạo ra từng con vậy đó anh
+
+1433
+01:18:14,700 --> 01:18:15,866
+tạo từng con thì đây
+
+1434
+01:18:16,533 --> 01:18:18,766
+ốp lên cái bảng thiết kế là nó tự tạo cho em
+
+1435
+01:18:19,266 --> 01:18:20,300
+dây nó lỗi thôi
+
+1436
+01:18:21,800 --> 01:18:22,600
+thôi ý là
+
+1437
+01:18:23,333 --> 01:18:24,100
+ý là thấy anh
+
+1438
+01:18:24,100 --> 01:18:26,200
+chat với con này không mà hổng biết cái cách để hình dung
+
+1439
+01:18:26,300 --> 01:18:27,500
+sao làm mấy con kia á
+
+1440
+01:18:28,666 --> 01:18:30,600
+trời ơi anh chat ở đâu nó cũng sẽ ra
+
+1441
+01:18:31,100 --> 01:18:32,733
+ở trong cái miễn sao em vào cái clip
+
+1442
+01:18:33,133 --> 01:18:35,366
+em chat với clip anh chat ở đâu nó cũng ra
+
+1443
+01:18:35,533 --> 01:18:37,700
+bây giờ anh chọn một cái cửa sổ mới nó vẫn sẽ ra
+
+1444
+01:18:37,766 --> 01:18:38,666
+em hình dung hông
+
+1445
+01:18:39,900 --> 01:18:40,933
+có nghĩa là á
+
+1446
+01:18:41,300 --> 01:18:42,800
+ý của hạo hỏi là á
+
+1447
+01:18:43,133 --> 01:18:46,366
+có phải là mỗi lần mà thầy quyết up một cái brd
+
+1448
+01:18:46,566 --> 01:18:48,333
+vô lên một cái cái photo
+
+1449
+01:18:48,566 --> 01:18:49,900
+chat riêng rồi sau này
+
+1450
+01:18:50,100 --> 01:18:51,766
+mình cứ chat một cửa sổ chat mới
+
+1451
+01:18:51,933 --> 01:18:52,600
+thì nó sẽ tự
+
+1452
+01:18:52,600 --> 01:18:55,400
+truy cập cái brd đó để nó nó ra cái luồng cho mình
+
+1453
+01:18:55,400 --> 01:18:56,200
+đúng hông thầy
+
+1454
+01:18:56,366 --> 01:18:57,200
+phải hông phải hông hạo
+
+1455
+01:19:00,266 --> 01:19:05,466
+có nghĩa là nó sẽ lưu vào và em đặt tên cho cái con đó là gì
+
+1456
+01:19:05,800 --> 01:19:08,766
+khi mà em gọi thì nó sẽ ra em hình dung hông
+
+1457
+01:19:09,600 --> 01:19:10,400
+nào
+
+1458
+01:19:12,366 --> 01:19:13,166
+dạ
+
+1459
+01:19:13,866 --> 01:19:17,366
+ví dụ ha đây là một cái công ty đúng hông
+
+1460
+01:19:17,933 --> 01:19:21,733
+cái con club này là một cái ô tô
+
+1461
+01:19:22,200 --> 01:19:25,166
+và trong cái công ty này á nó sẽ có phòng marketing
+
+1462
+01:19:25,766 --> 01:19:28,800
+phòng marketing nó sẽ có các nhân sự của phòng marketing
+
+1463
+01:19:29,133 --> 01:19:31,566
+đúng hông thì nó là mỗi một cái luồng như vậy
+
+1464
+01:19:31,600 --> 01:19:33,766
+mỗi một cái con asian như vậy nó là một nhân sự
+
+1465
+01:19:33,966 --> 01:19:36,533
+nó sẽ đảm nhiệm cái trách nhiệm nó sẽ có cái jd
+
+1466
+01:19:37,166 --> 01:19:39,066
+đúng hông là cái system injection
+
+1467
+01:19:39,300 --> 01:19:40,966
+nó sẽ có cái công cụ đúng hông
+
+1468
+01:19:41,533 --> 01:19:44,133
+và nó sẽ có cái tiêu chuẩn đo lường chất lượng của nó
+
+1469
+01:19:44,500 --> 01:19:45,300
+đúng hông
+
+1470
+01:19:46,466 --> 01:19:47,866
+thì nó làm cái tác vụ đó
+
+1471
+01:19:48,066 --> 01:19:49,766
+và nó truyền cho cái con khác làm tiếp
+
+1472
+01:19:50,166 --> 01:19:51,266
+em hình dung hông
+
+1473
+01:19:55,066 --> 01:19:56,000
+hình như hông hào
+
+1474
+01:19:57,200 --> 01:20:01,000
+hả ý là như như em em ví dụ nha như con trinh hôm qua
+
+1475
+01:20:01,066 --> 01:20:02,800
+cái cái file bài tập đi anh cho là cái
+
+1476
+01:20:03,133 --> 01:20:05,966
+trinh làm trên platform open open ai á
+
+1477
+01:20:06,000 --> 01:20:07,300
+là nó tạo từng con rồi thêm
+
+1478
+01:20:12,133 --> 01:20:15,200
+gì gì system in jackson cho từng con đó rồi các thứ á
+
+1479
+01:20:15,200 --> 01:20:17,466
+rồi ý là bên con này thì nó là sao á anh
+
+1480
+01:20:18,300 --> 01:20:20,766
+cái này thì em em em em quăng nó vào em bảo đây
+
+1481
+01:20:20,800 --> 01:20:22,566
+con này là system in jackson của tao
+
+1482
+01:20:25,866 --> 01:20:30,400
+có nghĩa là em không có cần phải điền như bên kia nữa
+
+1483
+01:20:30,966 --> 01:20:32,933
+mà là con này á nó sẽ tự điền
+
+1484
+01:20:33,900 --> 01:20:36,766
+em chỉ cần nói đây là cái con này chuyên là cái gì
+
+1485
+01:20:43,100 --> 01:20:44,466
+chứ em không cần phải ngồi em
+
+1486
+01:20:44,533 --> 01:20:46,466
+em em kiếm cái trường để em điền vào nữa
+
+1487
+01:20:47,166 --> 01:20:50,300
+ý là tạo một cái đoạn chat mới rồi bắt đầu là tạo là
+
+1488
+01:20:50,533 --> 01:20:53,733
+giống như tạo yêu cầu mô tả vô là tạo ra rành luôn đó anh
+
+1489
+01:20:55,500 --> 01:20:56,300
+trời ơi
+
+1490
+01:20:57,166 --> 01:21:00,166
+bây giờ đây đây đây đây ha đây là nó nó nó nó nó lên
+
+1491
+01:21:00,533 --> 01:21:02,933
+bây giờ em có tạo đoạn chat mới hay đoạn chat cũ
+
+1492
+01:21:03,266 --> 01:21:04,366
+gì cũng được được chưa
+
+1493
+01:21:05,566 --> 01:21:06,466
+em hiểu đúng hông
+
+1494
+01:21:06,466 --> 01:21:08,466
+em không cần phải tạo nhiều cái new section hay này nọ
+
+1495
+01:21:08,533 --> 01:21:10,266
+em chat ở đây cũng được được chưa
+
+1496
+01:21:11,800 --> 01:21:12,600
+ờ
+
+1497
+01:21:14,166 --> 01:21:15,866
+bây giờ anh sẽ tạo một cái con này
+
+1498
+01:21:17,733 --> 01:21:20,100
+tạo một con gì nhỏ nhỏ đi nhỉ
+
+1499
+01:21:21,066 --> 01:21:21,866
+tạo một con
+
+1500
+01:21:24,100 --> 01:21:24,900
+hãy
+
+1501
+01:21:27,966 --> 01:21:40,966
+dùng kiến thức trong bộ não thứ hai và tạo một con asian
+
+1502
+01:21:42,900 --> 01:21:47,900
+chuyên viết kịch bản video đúng hông
+
+1503
+01:21:48,900 --> 01:21:52,566
+theo phong cách của tôi
+
+1504
+01:21:54,000 --> 01:21:54,800
+mục tiêu
+
+1505
+01:21:56,100 --> 01:22:02,466
+là tôi muốn có kịch bản video giọng
+
+1506
+01:22:03,600 --> 01:22:12,333
+đọc để quay khóa học trí quyết akdm ô kê chưa
+
+1507
+01:22:18,566 --> 01:22:20,533
+thì có phải á là
+
+1508
+01:22:21,200 --> 01:22:25,900
+anh đã có cái kiến thức về tạo viết kịch bản ở trong
+
+1509
+01:22:26,700 --> 01:22:29,933
+à cái bộ não thứ hai rồi hào hiểu hông
+
+1510
+01:22:30,566 --> 01:22:33,733
+thế thì nó sẽ lấy cái kiến thức đó và nó sẽ
+
+1511
+01:22:34,500 --> 01:22:37,333
+tư vấn cho anh hoặc là nó tạo cho anh một cái
+
+1512
+01:22:37,733 --> 01:22:40,333
+con asian chuyên viết kịch bản được chưa
+
+1513
+01:22:41,200 --> 01:22:42,000
+dạ
+
+1514
+01:22:42,466 --> 01:22:46,333
+và cái nó cũng đã có cái kịch bản mẫu của anh
+
+1515
+01:22:46,666 --> 01:22:48,866
+ở cái khóa học xí quyết academy
+
+1516
+01:22:49,166 --> 01:22:49,966
+trong cái
+
+1517
+01:22:50,333 --> 01:22:55,266
+cái khóa học trong cái bộ não thứ hai rồi em hiểu hông dạ
+
+1518
+01:22:56,800 --> 01:22:59,466
+thì đây tôi sẽ nghiên cứu trước nè đó
+
+1519
+01:22:59,566 --> 01:23:02,300
+cấu trúc asian hiện tại bạn chưa đúng chuẩn nè
+
+1520
+01:23:02,766 --> 01:23:03,933
+kiến trúc giao lưu và
+
+1521
+01:23:04,600 --> 01:23:06,733
+về kịch bản giọng văn của bạn nè
+
+1522
+01:23:06,866 --> 01:23:10,166
+làm song song thì nó đang triển khai đây nè nhá
+
+1523
+01:23:12,366 --> 01:23:14,600
+đó video script nè đó
+
+1524
+01:23:14,766 --> 01:23:16,166
+nó sẽ truy vấn vào cái
+
+1525
+01:23:16,533 --> 01:23:19,300
+ờ vào cái cái cái bộ não thứ hai đây này thấy chưa
+
+1526
+01:23:20,333 --> 01:23:25,866
+để nó gọi để nó gọi dữ liệu ờ đúng hông thế thì nó làm thôi
+
+1527
+01:23:31,133 --> 01:23:33,266
+ủa là nói vậy là nó tạo luôn đó hả anh
+
+1528
+01:23:33,600 --> 01:23:37,200
+còn à bên kia là phải điền vô từng cái từng cái đó hả gì đấy
+
+1529
+01:23:39,666 --> 01:23:40,866
+ủa vậy luôn hả
+
+1530
+01:23:42,666 --> 01:23:43,466
+đơn giản hông
+
+1531
+01:23:43,866 --> 01:23:44,966
+đơn giản tôi bất ngờ
+
+1532
+01:23:45,566 --> 01:23:48,700
+đây nó có nè nó đọc cái voice video a
+
+1533
+01:23:49,000 --> 01:23:51,266
+để nó cái cái cái phân tích voice của anh nè
+
+1534
+01:23:52,200 --> 01:23:53,000
+vô hông
+
+1535
+01:23:55,366 --> 01:23:56,666
+nó đọc cái voice của anh
+
+1536
+01:23:56,733 --> 01:23:59,100
+để mà nó biết được cái phong cách của anh nó như thế nào
+
+1537
+01:24:00,400 --> 01:24:01,200
+được chưa
+
+1538
+01:24:01,900 --> 01:24:04,666
+đó nắm phân phong authority này nọ kiểu này
+
+1539
+01:24:05,300 --> 01:24:07,066
+đọc for mac asian hiện tại
+
+1540
+01:24:07,366 --> 01:24:10,133
+template trip kiểm tra mẫu trip mẫu
+
+1541
+01:24:12,800 --> 01:24:14,333
+tạo là nó sẽ biết có bao nhiêu
+
+1542
+01:24:14,533 --> 01:24:17,666
+nó ở trỏng nó có nó tự chạy với nhau luôn nội ơi là
+
+1543
+01:24:18,766 --> 01:24:19,566
+ừ
+
+1544
+01:24:21,466 --> 01:24:22,966
+có nghĩa là ví dụ như anh
+
+1545
+01:24:23,000 --> 01:24:25,700
+anh treo máy đi anh sẽ điều khiển nó qua bên telegram
+
+1546
+01:24:25,800 --> 01:24:26,600
+đúng hông
+
+1547
+01:24:28,300 --> 01:24:29,100
+dạ dạ
+
+1548
+01:24:32,866 --> 01:24:33,766
+anh anh bảo là
+
+1549
+01:24:34,733 --> 01:24:35,800
+ví dụ như bây giờ khách
+
+1550
+01:24:36,166 --> 01:24:39,066
+anh tạo ra một cái skill báo giá đi chẳng hạn đi đúng hông
+
+1551
+01:24:39,900 --> 01:24:41,100
+thế thì anh đang đi ngoài đường
+
+1552
+01:24:41,366 --> 01:24:42,533
+khách nó gởi cho anh một cái bộ
+
+1553
+01:24:42,600 --> 01:24:45,766
+từ khóa thì anh bảo nó phân tích đi chẳng hạn đi ô kê hông
+
+1554
+01:24:46,000 --> 01:24:47,300
+anh gởi cho nó qua telegram
+
+1555
+01:24:47,366 --> 01:24:49,266
+và nó trả về kết quả cho anh qua telegram
+
+1556
+01:24:51,800 --> 01:24:53,166
+dạ dạ hình dung hông
+
+1557
+01:24:53,666 --> 01:24:56,000
+ờ em hình dung hơi hơi hiểu hơi hơi rồi đó
+
+1558
+01:24:57,566 --> 01:24:59,166
+ý là hiểu hơn hồi nãy rồi anh ơi
+
+1559
+01:24:59,166 --> 01:25:01,900
+ý là hiểu cái cái còn em muốn nó kết nối
+
+1560
+01:25:02,533 --> 01:25:04,533
+với lại ví dụ như anh toại muốn nó kết nối
+
+1561
+01:25:04,766 --> 01:25:06,666
+với lại cái database của anh toại
+
+1562
+01:25:06,933 --> 01:25:08,666
+ở crm đi chẳng hạn đi
+
+1563
+01:25:08,933 --> 01:25:10,800
+thì anh toại phải kết nối qua cái
+
+1564
+01:25:11,200 --> 01:25:13,300
+cái cái abi hoặc là qua cái
+
+1565
+01:25:14,133 --> 01:25:16,933
+ờm mcb anh anh toại hỏi bên
+
+1566
+01:25:17,533 --> 01:25:20,333
+cung cấp cái phần mềm á ờ bán cho anh toại á
+
+1567
+01:25:20,466 --> 01:25:22,400
+hỏi nó xem có kết nối được hay không
+
+1568
+01:25:27,333 --> 01:25:30,066
+ô kê hông anh em ơi sao tôi thấy im ru vậy có hỏi đáp gì
+
+1569
+01:25:30,166 --> 01:25:30,966
+hỏi đáp đi
+
+1570
+01:25:31,466 --> 01:25:32,166
+hỏi bên phần mềm
+
+1571
+01:25:32,166 --> 01:25:34,733
+nếu nó có mở cổng api thì nó sẽ có tài liệu hướng dẫn api
+
+1572
+01:25:34,800 --> 01:25:35,666
+xong mình ném cho nó
+
+1573
+01:25:35,800 --> 01:25:38,266
+ê đệ hãy nghiên cứu cái api này và kết nối cho anh
+
+1574
+01:25:38,900 --> 01:25:41,066
+thế xong rồi nó sẽ thực hiện nó làm các bước cho mình
+
+1575
+01:25:41,466 --> 01:25:43,766
+rồi nó mắc đâu nó hỏi tiếp ô kê
+
+1576
+01:25:44,266 --> 01:25:45,666
+anh anh thọ hỏi gì anh thọ ơi
+
+1577
+01:25:46,966 --> 01:25:49,766
+cho anh hỏi xíu là anh chưa chưa chưa hình dung được là
+
+1578
+01:25:50,500 --> 01:25:53,200
+à nãy nãy em chat trên cái con cloud đúng hông
+
+1579
+01:25:53,333 --> 01:25:56,200
+dạ thì thì mình nói mình nói mình gọi cái a
+
+1580
+01:25:56,533 --> 01:25:58,366
+mình gọi nó là bộ não thứ hai ra
+
+1581
+01:25:59,733 --> 01:26:02,333
+vậy thì cái cái cái bộ não thứ hai nó nằm ở đâu
+
+1582
+01:26:02,466 --> 01:26:05,600
+nó nằm nó liên kết với con cờ lâu như thế nào vậy đấy
+
+1583
+01:26:06,333 --> 01:26:08,200
+anh bảo nó kết nối với bộ não thứ hai của anh
+
+1584
+01:26:08,266 --> 01:26:10,000
+ở cái folder nào trên máy tính của anh
+
+1585
+01:26:10,133 --> 01:26:10,966
+thì cái này nó là
+
+1586
+01:26:11,266 --> 01:26:12,700
+cái hiện ra cho anh thôi chứ
+
+1587
+01:26:12,733 --> 01:26:14,300
+bản chất nó là một cái folder thôi anh
+
+1588
+01:26:15,100 --> 01:26:16,100
+anh nhìn vô hông
+
+1589
+01:26:16,200 --> 01:26:17,966
+nó là cái folder trên máy tính của anh thôi
+
+1590
+01:26:18,866 --> 01:26:21,000
+thì nó lấy dữ liệu từ cái folder đó
+
+1591
+01:26:21,000 --> 01:26:23,000
+và cái folder này nó được trình bày như thế này thôi
+
+1592
+01:26:24,300 --> 01:26:25,533
+hình tướng nó như thế này thôi
+
+1593
+01:26:30,100 --> 01:26:33,400
+obcn gì đó
+
+1594
+01:26:35,866 --> 01:26:39,133
+xíu mai em hướng dẫn nha anh ô kê
+
+1595
+01:26:41,066 --> 01:26:42,200
+hướng dẫn phải biết đường làm
+
+1596
+01:26:42,366 --> 01:26:44,100
+chứ giờ có cái đó quan trọng là cái đó
+
+1597
+01:26:44,700 --> 01:26:46,800
+bộ não thứ hai nằm ở local cũng được
+
+1598
+01:26:46,900 --> 01:26:48,366
+mà anh em đẩy nó lên trên online
+
+1599
+01:26:48,600 --> 01:26:49,566
+cũng được đó đúng rồi
+
+1600
+01:26:49,700 --> 01:26:50,966
+bùi dung kiên nói đúng rồi đó
+
+1601
+01:26:52,133 --> 01:26:54,000
+quan trọng á là là là
+
+1602
+01:26:54,533 --> 01:26:55,333
+ở đâu cũng được
+
+1603
+01:26:55,366 --> 01:26:56,733
+nói chung là bởi vì mình mình
+
+1604
+01:26:56,866 --> 01:26:59,400
+mình bảo là anh em đừng có bị giới hạn cái gì cả được chưa
+
+1605
+01:26:59,500 --> 01:27:01,066
+đừng giới hạn gì cả mà cái
+
+1606
+01:27:01,500 --> 01:27:02,800
+cái kiến thức mà anh em học ở
+
+1607
+01:27:02,966 --> 01:27:04,933
+khóa này là những cái mà cốt lõi nhất rồi
+
+1608
+01:27:05,666 --> 01:27:07,566
+anh em cứ thế mà làm thôi được chưa
+
+1609
+01:27:07,766 --> 01:27:08,600
+tại sao mà mình bảo
+
+1610
+01:27:08,600 --> 01:27:10,866
+là ừ mình mình cái bộ não nó lưu ở đâu cũng được
+
+1611
+01:27:10,900 --> 01:27:12,533
+miễn nó kết nối được là được luôn đúng hông
+
+1612
+01:27:12,700 --> 01:27:13,533
+đúng rồi ờ
+
+1613
+01:27:13,800 --> 01:27:16,566
+nó book theo em cũng được rồi em hiểu rồi em hiểu rồi
+
+1614
+01:27:17,466 --> 01:27:19,266
+rồi cái đó là giống như nó
+
+1615
+01:27:19,300 --> 01:27:21,666
+nó ở local giống như mình lưu a cái a
+
+1616
+01:27:21,866 --> 01:27:24,866
+cái cái đó là cái dữ liệu trên máy mình mình mình gọi ra
+
+1617
+01:27:24,900 --> 01:27:26,000
+đúng hông đúng rồi
+
+1618
+01:27:26,733 --> 01:27:28,400
+vậy như vậy thì cái cái agent
+
+1619
+01:27:28,600 --> 01:27:30,200
+cái agent nó liên kết như thế nào
+
+1620
+01:27:30,466 --> 01:27:32,066
+để nó lấy cái cái nguyên liệu đấy
+
+1621
+01:27:33,100 --> 01:27:34,500
+liên kết như anh hỏi em sao
+
+1622
+01:27:34,500 --> 01:27:36,200
+em biết được thì anh phải hỏi con này chứ
+
+1623
+01:27:37,500 --> 01:27:39,400
+miễn sao nó liên kết được là được rồi đúng hông
+
+1624
+01:27:39,766 --> 01:27:41,000
+anh bảo nó anh bảo nó
+
+1625
+01:27:41,666 --> 01:27:42,733
+bây giờ bữa
+
+1626
+01:27:43,566 --> 01:27:47,166
+bữa nào ấy à bữa sau đi em chỉ cho là
+
+1627
+01:27:48,133 --> 01:27:49,666
+anh quăng cái hướng dẫn vào
+
+1628
+01:27:49,733 --> 01:27:51,766
+cái là bắt đầu là anh tải cái phần mềm này về
+
+1629
+01:27:51,866 --> 01:27:52,766
+đúng hông là ô kê
+
+1630
+01:27:52,966 --> 01:27:53,800
+tự nó làm luôn
+
+1631
+01:27:54,133 --> 01:27:55,966
+anh cần gì phải hỏi mấy cái đấy làm gì
+
+1632
+01:27:56,600 --> 01:27:58,466
+ví dụ nha em muốn thêm vào á
+
+1633
+01:27:58,600 --> 01:28:00,300
+nãy giờ không thấy ai hỏi thêm vào
+
+1634
+01:28:00,566 --> 01:28:01,900
+thêm kiến thức vào thì như thế nào
+
+1635
+01:28:01,966 --> 01:28:03,600
+mà không hỏi cái quan trọng thì không hỏi
+
+1636
+01:28:08,266 --> 01:28:10,666
+vô minh lắm đấy thấy chưa
+
+1637
+01:28:22,766 --> 01:28:25,100
+nha ví dụ như em đọc cái bài này em thấy a
+
+1638
+01:28:26,800 --> 01:28:27,866
+em đọc cái bài này đi
+
+1639
+01:28:27,900 --> 01:28:29,933
+chẳng hạn đi đây là thêm bằng bằng bằng bằng bằng
+
+1640
+01:28:30,000 --> 01:28:30,933
+cơm nha anh em nha
+
+1641
+01:28:31,200 --> 01:28:34,700
+còn có cách mà anh em có thể tìm những cái tài liệu à
+
+1642
+01:28:34,800 --> 01:28:37,200
+chuyên ngành của anh em bằng à y khoa
+
+1643
+01:28:37,600 --> 01:28:38,533
+nó tìm khá là ngon
+
+1644
+01:28:38,700 --> 01:28:40,766
+thì anh em thấy bài này ô kê thì anh em bấm vào đây
+
+1645
+01:28:41,100 --> 01:28:41,900
+được chưa
+
+1646
+01:28:43,700 --> 01:28:46,933
+bấm vào đây nó sẽ load về cái bộ não thứ hai của anh em
+
+1647
+01:28:49,500 --> 01:28:51,400
+máy em hơi lag nó đang load này
+
+1648
+01:29:01,300 --> 01:29:03,600
+đang load lag quá không thấy hình luôn
+
+1649
+01:29:06,766 --> 01:29:10,300
+tại vì đang chạy á đang chạy nhiều cái cái cái phần mềm quá
+
+1650
+01:29:11,866 --> 01:29:14,333
+đây cái này nó hỏi mình có demo hay không
+
+1651
+01:29:18,533 --> 01:29:20,666
+vi đê ô đầu tiên trong online này ha
+
+1652
+01:29:21,500 --> 01:29:23,800
+ô kê mình hãy viết kịch bản vi đê ô này ha
+
+1653
+01:29:24,533 --> 01:29:26,533
+nó tạo xong rồi nè phải hông
+
+1654
+01:29:28,466 --> 01:29:29,966
+tất nhiên là nó tạo như thế này
+
+1655
+01:29:30,300 --> 01:29:31,566
+nhưng mà mình cần phải chỉnh sửa
+
+1656
+01:29:31,600 --> 01:29:33,133
+ở đây là anh demo cho em thôi
+
+1657
+01:29:33,200 --> 01:29:35,166
+hiểu hông dạ dạ đây
+
+1658
+01:29:50,866 --> 01:29:51,666
+ok
+
+1659
+01:29:52,466 --> 01:29:55,366
+để cho nó viết đi rồi ô kê nó load này đó
+
+1660
+01:29:55,466 --> 01:29:56,566
+nó load này rồi đúng hông
+
+1661
+01:29:56,600 --> 01:29:57,466
+bài này ngon đúng hông
+
+1662
+01:29:57,933 --> 01:30:00,366
+bài này ô kê đọc ngon thì anh em bấm vào cái nó
+
+1663
+01:30:00,566 --> 01:30:02,066
+nó sẽ có một cái add on ở trên này
+
+1664
+01:30:02,100 --> 01:30:04,600
+anh em bấm vào anh em bấm add vào rồi ô kê
+
+1665
+01:30:05,000 --> 01:30:06,866
+đó thì nó sẽ ra bài này được chưa
+
+1666
+01:30:06,900 --> 01:30:09,400
+nó gắn nhãn này nọ các kiểu anh em không cần phải làm gì
+
+1667
+01:30:09,800 --> 01:30:10,600
+được chưa
+
+1668
+01:30:13,133 --> 01:30:15,166
+ờ ô kê đây ủa con
+
+1669
+01:30:15,166 --> 01:30:16,400
+này có đọc hình ảnh được hông anh
+
+1670
+01:30:16,500 --> 01:30:17,366
+vụ em muốn đọc hình ảnh
+
+1671
+01:30:17,533 --> 01:30:19,400
+kêu phân tích hình ảnh đồ các thứ được hông anh
+
+1672
+01:30:20,100 --> 01:30:21,966
+tốt nhất là em sẽ
+
+1673
+01:30:23,466 --> 01:30:27,166
+là take nó đọc take là ngon nhất ở video thì nó sẽ lấy
+
+1674
+01:30:27,900 --> 01:30:28,866
+ví dụ như video thì
+
+1675
+01:30:30,100 --> 01:30:33,700
+ở youtube thì nó sẽ lấy phụ đề được chưa dạ
+
+1676
+01:30:47,300 --> 01:30:50,066
+ô kê em hiểu rồi ý ý em tính hỏi thử có
+
+1677
+01:30:50,400 --> 01:30:51,266
+con con này nó có
+
+1678
+01:30:51,466 --> 01:30:53,066
+đọc được hình ảnh phân tích hình ảnh được hông
+
+1679
+01:30:53,100 --> 01:30:54,966
+để kiểu em em coi sản phẩm
+
+1680
+01:30:55,266 --> 01:30:56,500
+mấy cái ảnh sản phẩm mà bán chạy
+
+1681
+01:30:56,733 --> 01:30:58,800
+để em kêu nó gợi ý mẫu tương tự á
+
+1682
+01:31:01,600 --> 01:31:03,700
+nó đọc được hình ảnh nhưng mà nó không có
+
+1683
+01:31:04,300 --> 01:31:07,266
+em lấy vào để em lưu trữ thì nó sẽ không tốt
+
+1684
+01:31:08,500 --> 01:31:11,366
+em phân tích thì nếu mà chỉ một bước thôi thì em chat
+
+1685
+01:31:11,600 --> 01:31:12,900
+với con này được chưa
+
+1686
+01:31:13,400 --> 01:31:15,266
+nhưng mà nhiều bước thì mình mới làm chứ
+
+1687
+01:31:16,733 --> 01:31:17,533
+hiểu hông
+
+1688
+01:31:24,966 --> 01:31:29,333
+ờ nó bảo là vừa tạo nên activate cần reset nè đó
+
+1689
+01:31:29,933 --> 01:31:33,933
+tôi chạy qua cái này đúng file
+
+1690
+01:31:36,133 --> 01:31:38,766
+nó mình chưa reset nó lại chọn cái cách khác luôn cho mình
+
+1691
+01:31:38,866 --> 01:31:39,666
+này
+
+1692
+01:31:41,100 --> 01:31:42,200
+khứa này thiệt chứ
+
+1693
+01:31:43,133 --> 01:31:46,166
+thằng khứa này của google thì nó hơi ngu ngu hơn thằng kia
+
+1694
+01:31:47,533 --> 01:31:48,666
+cũng xài được rẻ
+
+1695
+01:32:02,000 --> 01:32:03,200
+ô kê anh em cứ hỏi đi
+
+1696
+01:32:03,200 --> 01:32:05,400
+trong cái quá trình mà nó chạy thì anh em cứ hỏi đi
+
+1697
+01:32:06,100 --> 01:32:08,533
+thắc mắc thì cứ hỏi nhá đừng ngại nhá
+
+1698
+01:32:11,866 --> 01:32:13,966
+kê các bạn à xem sona đâu rồi
+
+1699
+01:32:15,166 --> 01:32:17,100
+mấy khứa xem sona hỏi đáp gì hông
+
+1700
+01:32:21,533 --> 01:32:24,900
+thắng đâu rồi thắng đỗ đâu rồi hỏi đáp gì hông em
+
+1701
+01:32:26,966 --> 01:32:27,766
+vui đâu rồi
+
+1702
+01:32:30,133 --> 01:32:31,200
+thầy doanh nữa nè
+
+1703
+01:32:32,366 --> 01:32:34,100
+cái này à thầy phải cho em a
+
+1704
+01:32:34,800 --> 01:32:37,666
+mấy ngày em a sử dụng hết tất cả công cụ này cái đã
+
+1705
+01:32:38,366 --> 01:32:41,100
+thực hiện lại mấy cái này cái đã rồi em mới ngẫm nghĩ được
+
+1706
+01:32:42,200 --> 01:32:44,933
+nhưng mà ý là là em có hình dung ra được cái cách làm không
+
+1707
+01:32:45,166 --> 01:32:47,066
+chứ ô kê ô kê anh nói chung là
+
+1708
+01:32:47,600 --> 01:32:49,866
+nãy giờ anh em hỏi những cái cái cũng
+
+1709
+01:32:51,000 --> 01:32:54,966
+đang nhức đầu á mà thông suốt rồi à ô kê
+
+1710
+01:32:56,333 --> 01:33:00,466
+đó anh em a hiểu cái a từng cái quan trọng ha
+
+1711
+01:33:01,066 --> 01:33:02,666
+và anh em hiểu cái
+
+1712
+01:33:03,300 --> 01:33:07,266
+cách làm anh em hiểu cái cách mà cải thiện nó à thì
+
+1713
+01:33:08,333 --> 01:33:11,066
+anh em có cái công cụ này nó hỗ trợ cho anh em làm
+
+1714
+01:33:11,700 --> 01:33:13,400
+thì nó quá ngon luôn đúng hông
+
+1715
+01:33:14,266 --> 01:33:15,066
+quá ngon luôn
+
+1716
+01:33:17,533 --> 01:33:20,600
+anh anh demo cái mà ví dụ như hồi nãy anh nói đánh cái
+
+1717
+01:33:21,600 --> 01:33:24,133
+đánh giá anh ví dụ đánh giá là tốt á thì mình
+
+1718
+01:33:24,666 --> 01:33:27,866
+ghi lại rồi mình bỏ vô cái bộ não thứ hai hay sao anh
+
+1719
+01:33:28,400 --> 01:33:29,200
+đúng rồi em
+
+1720
+01:33:31,133 --> 01:33:32,800
+với lại bỏ lại bộ não thứ hai
+
+1721
+01:33:33,100 --> 01:33:33,700
+và khi
+
+1722
+01:33:33,700 --> 01:33:37,000
+mà tới cái bước đánh giá đó thì em viết sỹ tâm instruction
+
+1723
+01:33:37,266 --> 01:33:37,966
+mày phải
+
+1724
+01:33:37,966 --> 01:33:40,733
+vào đây để lấy cái check list này để mà mày đánh giá
+
+1725
+01:33:41,666 --> 01:33:42,466
+hiểu hông
+
+1726
+01:33:43,066 --> 01:33:47,066
+trong cái đánh giá đó nó sẽ có cái ví dụ đó em hiểu hông à
+
+1727
+01:33:47,066 --> 01:33:48,366
+ý là bỏ vô một một cái
+
+1728
+01:33:48,700 --> 01:33:50,133
+ý là mình đánh giá bỏ vô một
+
+1729
+01:33:50,133 --> 01:33:51,533
+cái file tiêu chí đánh giá đó không
+
+1730
+01:33:51,533 --> 01:33:53,400
+rồi mỗi lần kêu nó vô đó nó nó
+
+1731
+01:33:54,966 --> 01:33:55,766
+đúng rồi
+
+1732
+01:33:57,933 --> 01:33:59,066
+nãy em có hỏi đó anh
+
+1733
+01:33:59,100 --> 01:34:01,533
+cái phần mà cái a vision mà nó đánh giá
+
+1734
+01:34:01,700 --> 01:34:02,766
+là nó đánh giá từng cái
+
+1735
+01:34:02,966 --> 01:34:03,866
+từng cái giai đoạn luôn
+
+1736
+01:34:03,900 --> 01:34:05,333
+hay là nó ra một sản phẩm rồi
+
+1737
+01:34:05,700 --> 01:34:07,366
+online rồi mới mới đánh giá anh
+
+1738
+01:34:08,200 --> 01:34:11,066
+à em đánh giá khi mà em muốn con á
+
+1739
+01:34:11,300 --> 01:34:14,066
+thì ví dụ như cái luồng của em nó có mười con đi chạy
+
+1740
+01:34:14,100 --> 01:34:15,000
+để ra kết quả đi
+
+1741
+01:34:15,066 --> 01:34:15,866
+đúng hông
+
+1742
+01:34:16,000 --> 01:34:19,366
+đúng rồi thì em sẽ phải đánh giá từng con đúng hông đúng
+
+1743
+01:34:19,866 --> 01:34:23,500
+em inbox đó nó ô kê outbox nó ra ô kê hay chưa
+
+1744
+01:34:23,933 --> 01:34:24,766
+em đánh giá từng con
+
+1745
+01:34:25,266 --> 01:34:27,700
+ờ đầu tiên là em xét cho nó chạy đã được chưa
+
+1746
+01:34:27,933 --> 01:34:28,733
+em xét cho nó chạy
+
+1747
+01:34:28,866 --> 01:34:30,933
+sau đó nó ra kết quả không tốt rồi em sẽ ngồi
+
+1748
+01:34:31,000 --> 01:34:31,800
+em đánh giá từng con
+
+1749
+01:34:32,300 --> 01:34:33,766
+đúng hông ờ em chỉnh sửa từng con
+
+1750
+01:34:33,766 --> 01:34:35,366
+em note lại cái em chỉnh sửa cái gì
+
+1751
+01:34:35,400 --> 01:34:37,366
+em note lại em hiểu hông
+
+1752
+01:34:39,200 --> 01:34:40,533
+dạ dạ rồi sau đó
+
+1753
+01:34:40,933 --> 01:34:43,500
+ờ ô kê từng con nó ngon hết rồi á
+
+1754
+01:34:43,533 --> 01:34:44,700
+nó ra kết quả vẫn chưa ngon
+
+1755
+01:34:44,966 --> 01:34:47,400
+thì ô kê em sẽ tinh chỉnh lại à
+
+1756
+01:34:47,500 --> 01:34:50,666
+ví dụ như tại sao cái lý do đó anh anh à
+
+1757
+01:34:51,600 --> 01:34:53,533
+có chia sẻ cho em á cái lý do em
+
+1758
+01:34:53,700 --> 01:34:55,300
+em có cái không tốt rồi đúng hông
+
+1759
+01:34:55,366 --> 01:34:57,266
+thì em sẽ phải note lại để em đánh giá tiếp
+
+1760
+01:34:57,700 --> 01:35:00,666
+em tinh chỉnh tiếp em hiểu hông có nghĩa là không phải
+
+1761
+01:35:01,766 --> 01:35:04,733
+là em làm một phát nó chạy phát là nó ngon ngay
+
+1762
+01:35:05,266 --> 01:35:07,166
+mà em sẽ cần phải cái quá trình đó
+
+1763
+01:35:07,200 --> 01:35:08,400
+giống như con người mình học tập
+
+1764
+01:35:08,500 --> 01:35:09,866
+giống như em có một nhân sự ấy
+
+1765
+01:35:10,000 --> 01:35:11,200
+không phải là em tuyển nó về
+
+1766
+01:35:11,300 --> 01:35:12,700
+phát là nó làm được việc ngay đâu
+
+1767
+01:35:13,600 --> 01:35:14,400
+đúng hông
+
+1768
+01:35:14,933 --> 01:35:17,066
+nó có giỏi thế mấy thì nó cũng cần phải có thời gian
+
+1769
+01:35:17,133 --> 01:35:18,600
+để thích nghi đúng hông
+
+1770
+01:35:21,400 --> 01:35:24,533
+con này nó viết kịch bản youtube thì ngon chét luôn anh em
+
+1771
+01:35:29,133 --> 01:35:31,866
+nói chung á hồi nãy á thì à nó ra mấy cái biểu đồ
+
+1772
+01:35:32,133 --> 01:35:34,800
+bị mấy cái mạng nhện á nó hơi rối rối tí xíu
+
+1773
+01:35:34,933 --> 01:35:36,000
+anh em hỏi á thì à
+
+1774
+01:35:36,600 --> 01:35:37,500
+thầy mới giải đáp
+
+1775
+01:35:37,700 --> 01:35:40,133
+vấn đề là bộ nhớ thứ hai này kia kiểu
+
+1776
+01:35:40,266 --> 01:35:42,700
+quan trọng là vấn đề là mình lưu trữ ở đâu để cho nó chi
+
+1777
+01:35:42,866 --> 01:35:47,166
+xuất lên thì sáng sáng sáng suốt hơn tí xíu rồi đấy
+
+1778
+01:35:55,266 --> 01:35:59,333
+ô kê đó đây cách mình cách mình xử lý video này vậy
+
+1779
+01:36:03,666 --> 01:36:04,566
+bấm đúng voi
+
+1780
+01:36:06,466 --> 01:36:10,266
+ví dụ thuần việt hai điểm
+
+1781
+01:36:13,200 --> 01:36:14,000
+đâu
+
+1782
+01:36:14,133 --> 01:36:19,533
+video đâu à trả về file đốc cho tao thế ví dụ nó trả về
+
+1783
+01:36:20,533 --> 01:36:24,166
+file đốc thì ô kê nó sẽ làm cho mình cái file đốc thôi
+
+1784
+01:36:24,700 --> 01:36:25,500
+thấy chưa
+
+1785
+01:36:27,066 --> 01:36:27,900
+đơn giản mà
+
+1786
+01:36:35,533 --> 01:36:36,966
+xem nó viết thế nào ha
+
+1787
+01:36:43,266 --> 01:36:45,933
+đó anh em có cái a a
+
+1788
+01:36:47,500 --> 01:36:52,533
+đây à nó lưu về cái a nó lưu về cái cái cái a này ha
+
+1789
+01:36:53,533 --> 01:36:54,933
+thì mình vào cái này mình tìm
+

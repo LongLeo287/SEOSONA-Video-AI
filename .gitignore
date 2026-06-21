@@ -79,3 +79,7 @@ SRT_temp/
 # 8. Framework & Tooling (Trình duyệt headless, app build)
 # Ví dụ playwright browsers tự động tải
 .playwright/
+
+# Extra ignores for clean repo
+ffmpeg/
+*.pdf

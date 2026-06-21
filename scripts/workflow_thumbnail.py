@@ -84,17 +84,39 @@ def main():
     except Exception as e:
         print(f"Lỗi Render 9:16: {e}")
 
-    # 3. Render Thumbnail 16:9
-    print("\n[3/3] Đang thiết kế Thumbnail Ngang (16:9) cho YouTube/Facebook...")
-    try:
-        path_16x9 = os.path.join(out_dir, f"Thumbnail_{brand.upper()}_16x9.png")
-        thumb_mod.generate_html_thumbnail(
-            output_path=path_16x9,
-            top_label=top_label, main_title=main_title, hook=hook_str, cta=cta,
-            aspect_ratio="16:9", brand=brand, layout_type="auto"
-        )
-    except Exception as e:
-        print(f"Lỗi Render 16:9: {e}")
+    # 3. Render Thumbnail 16:9 (A/B Testing 3 variations)
+    print("\n[3/3] Đang thiết kế Thumbnail Ngang (16:9) & A/B Testing 3 biến thể...")
+    variations = []
+    layouts = ["auto", "split", "center"]
+    
+    for i, layout in enumerate(layouts):
+        path_var = os.path.join(out_dir, f"Thumbnail_var{i+1}.png")
+        try:
+            thumb_mod.generate_html_thumbnail(
+                output_path=path_var,
+                top_label=top_label, main_title=main_title, hook=hook_str, cta=cta,
+                aspect_ratio="16:9", brand=brand, layout_type=layout
+            )
+            variations.append(path_var)
+        except Exception as e:
+            print(f"Lỗi Render biến thể {i+1}: {e}")
+            
+    # Gọi AI để chọn Thumbnail tốt nhất
+    if variations:
+        try:
+            import sys
+            sys.path.append(os.path.join(ROOT, "1_AGENTS"))
+            from thumbnail_tester_agent.ab_tester import score_thumbnails
+            import shutil
+            
+            winner_idx = score_thumbnails(variations, brand=brand)
+            winner_path = variations[winner_idx]
+            
+            final_path = os.path.join(out_dir, f"Thumbnail_{brand.upper()}_16x9.png")
+            shutil.copy(winner_path, final_path)
+            print(f"[A/B Tester] Đã chọn xong! Lưu bản xịn nhất tại: {final_path}")
+        except Exception as e:
+            print(f"Lỗi A/B Testing: {e}")
 
     sep("HOÀN TẤT QUY TRÌNH VIDEO PACKAGING")
     print(f"Hình ảnh đã được lưu tại thư mục: {out_dir}")

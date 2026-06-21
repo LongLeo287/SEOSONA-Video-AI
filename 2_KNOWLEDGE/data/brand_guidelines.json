@@ -1,0 +1,19 @@
+{
+    "brand_name": "SEOSONA Video",
+    "colors": {
+        "primary": "#007BFF",
+        "secondary": "#FFD700",
+        "background_dark": "#1E1E1E",
+        "text_light": "#FFFFFF"
+    },
+    "typography": {
+        "heading": "Lora",
+        "body": "Inter",
+        "subtitles": "Poppins"
+    },
+    "animation": {
+        "default_easing": "ease-in-out",
+        "title_duration_ms": 1500,
+        "karaoke_highlight_color": "#FFD700"
+    }
+}

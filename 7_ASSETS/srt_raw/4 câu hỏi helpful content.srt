@@ -1,0 +1,816 @@
+1
+00:00:00,133 --> 00:00:01,133
+rồi xin chào anh em nhá
+
+2
+00:00:01,200 --> 00:00:03,933
+chào mừng anh em quay trở lại cái khóa học trí quyết chấm
+
+3
+00:00:04,133 --> 00:00:06,366
+academy trong cái video này á
+
+4
+00:00:06,466 --> 00:00:08,200
+chúng ta sẽ cùng nhau đi tìm hiểu thêm
+
+5
+00:00:08,666 --> 00:00:10,966
+bốn cái câu hỏi của google help full content
+
+6
+00:00:11,500 --> 00:00:12,466
+bốn cái câu hỏi này á
+
+7
+00:00:12,600 --> 00:00:14,133
+nó sẽ giúp cho anh em đánh giá
+
+8
+00:00:14,300 --> 00:00:16,800
+xem cái website và cả cái bài viết của mình á
+
+9
+00:00:17,066 --> 00:00:18,800
+có chuyên môn hay không à
+
+10
+00:00:18,866 --> 00:00:21,133
+cái này cũng là một cái chữ e trong cái
+
+11
+00:00:21,333 --> 00:00:23,133
+e e a t luôn ha anh em ha
+
+12
+00:00:23,366 --> 00:00:25,500
+nếu mà cái nội dung của anh em đáp ứng được các
+
+13
+00:00:25,600 --> 00:00:26,400
+cái câu hỏi này á
+
+14
+00:00:26,466 --> 00:00:27,533
+thì quá tốt rồi ha
+
+15
+00:00:27,766 --> 00:00:29,566
+à ô kê mình sẽ bắt đầu luôn ha
+
+16
+00:00:37,066 --> 00:00:39,666
+ô kê mình bắt đầu bằng câu hỏi số mười ba ha
+
+17
+00:00:39,866 --> 00:00:41,666
+à thì cái câu hỏi này nó cũng khá dài
+
+18
+00:00:42,133 --> 00:00:43,700
+à nó hỏi như sau à
+
+19
+00:00:43,800 --> 00:00:45,900
+cách trình bày thông tin trong nội dung này
+
+20
+00:00:46,366 --> 00:00:49,100
+có tạo cảm giác đáng tin cậy không à
+
+21
+00:00:49,166 --> 00:00:51,766
+chẳng hạn nội dung có dẫn chiếu nguồn rõ ràng
+
+22
+00:00:52,000 --> 00:00:54,366
+bằng chứng cho thấy chuyên gia tham gia à
+
+23
+00:00:54,666 --> 00:00:57,600
+thông tin giới thiệu về tác giả hoặc trang web xuất bản
+
+24
+00:00:57,766 --> 00:00:58,933
+nội dung này ví dụ
+
+25
+00:00:59,100 --> 00:01:01,200
+thông qua đường liên kết đến trang tác giả
+
+26
+00:01:01,466 --> 00:01:02,966
+hoặc trang giới thiệu của trang web
+
+27
+00:01:03,200 --> 00:01:04,200
+thì cái câu này google
+
+28
+00:01:04,400 --> 00:01:06,700
+nó muốn biết bài viết của mình có chứng minh được
+
+29
+00:01:06,800 --> 00:01:07,800
+là đến từ một người
+
+30
+00:01:08,400 --> 00:01:10,666
+hay là tổ chức uy tín thật sự à
+
+31
+00:01:10,733 --> 00:01:12,366
+nếu mà cái bài viết của anh em á
+
+32
+00:01:12,466 --> 00:01:13,900
+nó là một cái bài viết vô danh
+
+33
+00:01:14,400 --> 00:01:17,200
+không có ai chịu trách nhiệm cho cái bài viết đó thì google
+
+34
+00:01:17,466 --> 00:01:18,533
+nó sẽ không tin tưởng ha
+
+35
+00:01:18,900 --> 00:01:22,466
+và đặc biệt cái đáng tin cậy ở đây mà google nó nhắc tới á
+
+36
+00:01:22,666 --> 00:01:25,300
+nó không phải là mấy cái câu từ xáo rỗng ở trong
+
+37
+00:01:25,600 --> 00:01:27,166
+à bài viết của anh em đâu à
+
+38
+00:01:27,200 --> 00:01:28,366
+ví dụ như trong bài viết của anh em
+
+39
+00:01:28,500 --> 00:01:30,300
+anh em tự xưng anh em là chuyên gia này
+
+40
+00:01:30,333 --> 00:01:31,766
+chuyên gia nọ thì không ăn thua ha
+
+41
+00:01:31,966 --> 00:01:33,500
+mà các cái yếu tố của google
+
+42
+00:01:33,733 --> 00:01:35,500
+nó đánh giá rất là rõ ràng và cụ thể
+
+43
+00:01:35,900 --> 00:01:39,166
+thứ nhất là cái bài viết này phải được trích nguồn rõ ràng à
+
+44
+00:01:39,200 --> 00:01:40,766
+nếu mà anh em check cái số liệu
+
+45
+00:01:40,933 --> 00:01:42,700
+hay là nêu một cái quan điểm gì đó
+
+46
+00:01:43,133 --> 00:01:44,933
+thì anh em cần phải có cái nguồn uy tín
+
+47
+00:01:45,300 --> 00:01:46,066
+để chứng minh
+
+48
+00:01:46,066 --> 00:01:48,666
+cho cái số liệu hay là cái quan điểm đó của anh em ha
+
+49
+00:01:48,800 --> 00:01:49,800
+và anh em nhớ ưu tiên
+
+50
+00:01:50,000 --> 00:01:52,300
+cái nguồn uy tín như là các cái trang báo lớn
+
+51
+00:01:52,666 --> 00:01:54,800
+hay là các cái tổ chức uy tín thật sự ha
+
+52
+00:01:54,966 --> 00:01:57,500
+vì nếu mà anh em dẫn nguồn từ một cái blog nhỏ
+
+53
+00:01:57,600 --> 00:01:58,400
+hay là vô danh
+
+54
+00:01:58,566 --> 00:02:00,166
+thì nó không có ý nghĩa gì nhiều ha
+
+55
+00:02:00,466 --> 00:02:03,500
+ví dụ như trong cái bài viết của mình mình có một cái ý à
+
+56
+00:02:03,533 --> 00:02:07,066
+mình nói là backlink sẽ giúp cho cái website lên top dễ hơn
+
+57
+00:02:07,533 --> 00:02:09,000
+thì mình phải tìm được cái bằng chứng
+
+58
+00:02:09,166 --> 00:02:11,166
+để chứng minh cho cái lập luận này của mình ha
+
+59
+00:02:11,366 --> 00:02:11,733
+bằng chứng
+
+60
+00:02:11,733 --> 00:02:14,566
+ở đây á là các cái nghiên cứu của các cái tổ chức uy tín
+
+61
+00:02:14,900 --> 00:02:17,100
+để để chứng minh cho cái tuyên bố của mình ở trên
+
+62
+00:02:17,566 --> 00:02:18,966
+ví dụ như thằng bách linh cô
+
+63
+00:02:19,133 --> 00:02:20,933
+nó có một cái nghiên cứu gì đó đi à
+
+64
+00:02:20,933 --> 00:02:22,400
+mình sẽ dẫn nguồn từ bách linh cô
+
+65
+00:02:22,600 --> 00:02:24,733
+thì thằng bách linh cô này là một cái tổ chức à
+
+66
+00:02:24,766 --> 00:02:26,133
+rất là uy tín ở nước ngoài ha
+
+67
+00:02:26,566 --> 00:02:28,766
+và tất nhiên là mình sẽ out linh ra cho cái
+
+68
+00:02:28,966 --> 00:02:30,300
+ùa l nghiên cứu đó luôn
+
+69
+00:02:30,566 --> 00:02:31,366
+để cho google
+
+70
+00:02:31,466 --> 00:02:33,266
+hay là người dùng họ có thể kiểm chứng
+
+71
+00:02:33,566 --> 00:02:35,733
+hay là họ có thể biết được thêm cái thông tin đó
+
+72
+00:02:36,333 --> 00:02:39,166
+và cái này á ở trong cái video e e a t á
+
+73
+00:02:39,200 --> 00:02:41,933
+mình cũng đã có demo cái trang hello bác sĩ rồi ha
+
+74
+00:02:42,366 --> 00:02:44,566
+thứ hai là cái thông tin về tác giả ha
+
+75
+00:02:44,700 --> 00:02:48,166
+anh em đừng có để cái bài viết mà nó không có ai đứng tên à
+
+76
+00:02:48,200 --> 00:02:50,900
+ít nhất phải có cái khung tác giả ở cuối cái bài viết ha
+
+77
+00:02:51,200 --> 00:02:54,066
+à ghi rõ cái thông tin tác giả à tác giả là ai
+
+78
+00:02:54,166 --> 00:02:54,966
+chuyên môn là gì
+
+79
+00:02:55,466 --> 00:02:58,400
+vì sao mà người đọc nên tin vào cái tác giả này à
+
+80
+00:02:58,466 --> 00:02:59,700
+ví dụ như anh em vào cái website
+
+81
+00:02:59,900 --> 00:03:01,700
+cellona chấm com của mình đi và
+
+82
+00:03:01,700 --> 00:03:03,800
+anh em đọc những cái bài viết trên website của mình á
+
+83
+00:03:03,933 --> 00:03:05,533
+thì luôn thấy mình là tác giả ha
+
+84
+00:03:05,866 --> 00:03:08,466
+thứ ba là cái trang giới thiệu về website ha à
+
+85
+00:03:08,500 --> 00:03:11,666
+tuy cái trang giới thiệu này á mình không có sco gì cả
+
+86
+00:03:12,166 --> 00:03:14,966
+nhưng mà nó rất là cần thiết cho cả google và người dùng
+
+87
+00:03:15,466 --> 00:03:18,133
+và cái trang này á giúp cho cái website của mình nó trông
+
+88
+00:03:18,200 --> 00:03:18,933
+uy tín và
+
+89
+00:03:18,933 --> 00:03:20,333
+minh bạch hơn rất là nhiều ha
+
+90
+00:03:20,666 --> 00:03:23,766
+cái thứ tư đó là cái bằng chứng chuyên gia thì cái này á
+
+91
+00:03:23,866 --> 00:03:25,333
+theo như mình á có thì tốt
+
+92
+00:03:25,466 --> 00:03:26,866
+còn không có thì cũng không sao cả
+
+93
+00:03:27,400 --> 00:03:29,400
+nếu mà có cái sự tham gia của chuyên gia á
+
+94
+00:03:29,533 --> 00:03:32,466
+người có chuyên môn thì anh em nên show ra các cái hình ảnh
+
+95
+00:03:32,866 --> 00:03:34,766
+à hay là các cái dẫn chứng của họ à
+
+96
+00:03:34,900 --> 00:03:36,333
+cũng như là giới thiệu một chút về họ
+
+97
+00:03:36,900 --> 00:03:39,166
+hoặc là ở cái video về eart á
+
+98
+00:03:39,200 --> 00:03:41,166
+mình có demo cái trang hello bác sĩ á
+
+99
+00:03:41,300 --> 00:03:42,533
+họ cũng thể hiện trên bài viết
+
+100
+00:03:42,666 --> 00:03:44,400
+được kiểm duyệt bởi người có chuyên môn
+
+101
+00:03:44,600 --> 00:03:45,966
+thì quá là tuyệt vời rồi đúng hông
+
+102
+00:03:46,333 --> 00:03:47,166
+tóm lại thì google
+
+103
+00:03:47,400 --> 00:03:49,466
+nó muốn thấy anh em minh bạch và uy tín thật
+
+104
+00:03:49,900 --> 00:03:51,166
+chứ không phải là các cái bài viết
+
+105
+00:03:51,300 --> 00:03:52,900
+copy paste từ nhiều nguồn ha
+
+106
+00:03:53,166 --> 00:03:56,800
+à đặc biệt với các cái chủ đề về e e a t á à
+
+107
+00:03:56,933 --> 00:03:59,800
+y tế và tài chính hay là pháp luật á thì đây không
+
+108
+00:03:59,800 --> 00:04:01,733
+chỉ là cái chuyện co đâu anh em
+
+109
+00:04:01,800 --> 00:04:03,333
+mà nó còn là cái chuyện về niềm tin
+
+110
+00:04:03,900 --> 00:04:04,900
+cái thứ mà người đọc
+
+111
+00:04:05,066 --> 00:04:06,933
+có quyết định ở lại với chúng ta không đó
+
+112
+00:04:07,200 --> 00:04:09,000
+rồi câu số mười bốn ha à
+
+113
+00:04:09,100 --> 00:04:12,766
+nếu có người tìm hiểu về trang web cung cấp nội dung này à
+
+114
+00:04:12,900 --> 00:04:15,966
+liệu họ có ấn tượng rằng đây là trang web đáng tin cậy
+
+115
+00:04:16,400 --> 00:04:18,566
+hay được công nhận rộng rãi là nguồn thông tin
+
+116
+00:04:18,700 --> 00:04:19,700
+có căn cứ hay không
+
+117
+00:04:19,933 --> 00:04:20,533
+thì google
+
+118
+00:04:20,533 --> 00:04:23,300
+á nó muốn biết cái danh tiếng cái website của chúng ta ha
+
+119
+00:04:23,466 --> 00:04:24,600
+nếu mà người dùng tìm kiếm
+
+120
+00:04:24,766 --> 00:04:26,733
+về cái website của chúng ta trên mạng á
+
+121
+00:04:26,800 --> 00:04:28,400
+họ thấy những cái đánh giá tích cực
+
+122
+00:04:28,766 --> 00:04:30,600
+và những cái lời khen thì quá là ngon luôn
+
+123
+00:04:31,000 --> 00:04:31,700
+còn ngược lại
+
+124
+00:04:31,700 --> 00:04:34,566
+cái website của chúng ta á bị đánh giá là lừa đảo
+
+125
+00:04:34,700 --> 00:04:35,500
+hay là tiêu cực
+
+126
+00:04:35,566 --> 00:04:36,700
+thì rất là bất ổn ha
+
+127
+00:04:36,900 --> 00:04:37,700
+anh em nên lưu ý
+
+128
+00:04:38,066 --> 00:04:41,366
+là cái này mình cần phải làm cả onpage lẫn offpage ha
+
+129
+00:04:41,500 --> 00:04:42,400
+trên website thì content
+
+130
+00:04:42,766 --> 00:04:44,733
+của mình phải hữu ích giúp đỡ cho người dùng
+
+131
+00:04:45,133 --> 00:04:46,533
+và giao diện website của mình đẹp
+
+132
+00:04:46,733 --> 00:04:47,866
+tối ưu user x
+
+133
+00:04:47,966 --> 00:04:50,733
+còn offpage á thì mình nên xây dựng cộng đồng à
+
+134
+00:04:50,766 --> 00:04:52,966
+tìm kiếm những cái backlink chất lượng và uy tín
+
+135
+00:04:53,300 --> 00:04:54,466
+từ những cái website lớn ha
+
+136
+00:04:54,900 --> 00:04:55,800
+còn làm như thế nào á
+
+137
+00:04:56,066 --> 00:04:57,533
+thì mình sẽ hướng dẫn cho anh em chi tiết
+
+138
+00:04:57,666 --> 00:04:58,733
+ở các cái video sau
+
+139
+00:04:59,000 --> 00:05:00,300
+tóm lại á thì cái website
+
+140
+00:05:00,366 --> 00:05:02,966
+của anh em càng nổi tiếng thì càng dễ seo ha
+
+141
+00:05:03,100 --> 00:05:04,733
+rồi câu số mười lăm ha à
+
+142
+00:05:04,800 --> 00:05:07,166
+có phải nội dung này được viết hoặc đánh giá
+
+143
+00:05:07,366 --> 00:05:08,266
+bởi một chuyên gia
+
+144
+00:05:08,866 --> 00:05:09,900
+hoặc người có đam mê
+
+145
+00:05:10,333 --> 00:05:13,366
+và người này hiểu rõ về cái chủ đề này không à
+
+146
+00:05:13,366 --> 00:05:14,333
+thì cái câu này á
+
+147
+00:05:14,400 --> 00:05:17,100
+nó cũng tương tự với lại cái câu số mười ba ha à
+
+148
+00:05:17,166 --> 00:05:17,566
+google
+
+149
+00:05:17,566 --> 00:05:20,466
+nó cũng nhấn mạnh về cái chuyên môn của ta tác giả bài viết
+
+150
+00:05:20,733 --> 00:05:24,133
+nên anh em hãy thể hiện cái profile của tác giả thật là tốt
+
+151
+00:05:24,266 --> 00:05:25,066
+trên website
+
+152
+00:05:25,333 --> 00:05:27,366
+anh em có thể tham khảo thêm cách làm của thằng hello
+
+153
+00:05:27,733 --> 00:05:31,100
+bác sĩ mà mình đã nói ở cái video e e a t rồi ha
+
+154
+00:05:31,266 --> 00:05:33,766
+đặc biệt là anh em nên lưu ý cái chuyên môn này á
+
+155
+00:05:33,866 --> 00:05:36,166
+nó thể hiện qua từng cái câu chữ à
+
+156
+00:05:36,166 --> 00:05:38,333
+và nội dung chi tiết của bài viết luôn chứ
+
+157
+00:05:38,400 --> 00:05:40,266
+hông phải là anh em cứ chém gió giới thiệu
+
+158
+00:05:40,400 --> 00:05:40,966
+tác giả
+
+159
+00:05:40,966 --> 00:05:43,966
+là chuyên gia này chuyên gia nọ để qua mặt google được ha
+
+160
+00:05:44,133 --> 00:05:46,900
+rồi ô kê tiếp tục tới câu số mười sáu ha à
+
+161
+00:05:46,966 --> 00:05:48,400
+nội dung này có lỗi sai
+
+162
+00:05:48,533 --> 00:05:51,166
+sự thật nào dễ dàng kiểm chứng không à
+
+163
+00:05:51,166 --> 00:05:52,466
+đây là cái điểm mà google
+
+164
+00:05:52,766 --> 00:05:55,066
+cực kỳ cực kỳ là quan tâm nha anh em à
+
+165
+00:05:55,100 --> 00:05:56,666
+vì chỉ cần một cái con số sai
+
+166
+00:05:56,966 --> 00:05:58,200
+một cái thông tin sai lệch
+
+167
+00:05:58,466 --> 00:06:00,666
+là có thể gây ảnh hưởng nghiêm trọng tới người
+
+168
+00:06:00,666 --> 00:06:01,466
+dùng rồi
+
+169
+00:06:01,566 --> 00:06:04,166
+nhất là trong những cái lĩnh vực nhạy cảm như là do money
+
+170
+00:06:04,533 --> 00:06:06,666
+online sức khỏe và tài chính á à
+
+171
+00:06:06,733 --> 00:06:08,366
+mình khuyên anh em nên cẩn thận ha
+
+172
+00:06:08,600 --> 00:06:09,966
+luôn kiểm tra lại cái số liệu
+
+173
+00:06:10,133 --> 00:06:12,566
+cũng như là cái ngày tháng mà mình cung cấp cho người dùng
+
+174
+00:06:13,000 --> 00:06:14,800
+cái con số thống kê trước khi đăng á
+
+175
+00:06:15,000 --> 00:06:17,700
+vì nhiều khi trên website của anh em á có một vài bài
+
+176
+00:06:17,866 --> 00:06:19,700
+mà nó chứa thông tin sai lệch thôi á
+
+177
+00:06:19,766 --> 00:06:21,066
+thì có thể bay cả web
+
+178
+00:06:21,266 --> 00:06:23,166
+lúc này á thì mò không ra nổi ha
+
+179
+00:06:23,300 --> 00:06:25,466
+chỉ có vứt cái website đó đi mà làm lại thôi
+
+180
+00:06:25,933 --> 00:06:28,100
+đặc biệt là đối với cái chủ đề về chuyên môn
+
+181
+00:06:28,200 --> 00:06:29,466
+như tài chính hay là y tế
+
+182
+00:06:29,966 --> 00:06:30,766
+mình tuyệt đối
+
+183
+00:06:30,766 --> 00:06:33,333
+không tự chế ra cái lời khuyên cho người dùng ha
+
+184
+00:06:33,400 --> 00:06:34,333
+nếu không phải là chuyên gia
+
+185
+00:06:34,566 --> 00:06:35,533
+thì hãy cứ trích dẫn
+
+186
+00:06:35,666 --> 00:06:37,533
+nguồn chính thống từ các cái tổ chức uy tín
+
+187
+00:06:37,933 --> 00:06:41,066
+để chứng minh cho cái lập luận của mình là được rồi rồi ô kê
+
+188
+00:06:41,100 --> 00:06:42,533
+vậy là trong cái video này á
+
+189
+00:06:42,566 --> 00:06:44,866
+mình đã cùng anh em đi qua thêm bốn cái câu hỏi
+
+190
+00:06:44,933 --> 00:06:45,733
+về chuyên môn
+
+191
+00:06:46,166 --> 00:06:48,366
+trong cái bộ ba mươi hai câu hỏi của google
+
+192
+00:06:48,666 --> 00:06:50,200
+về nội dung hữu ích à
+
+193
+00:06:50,266 --> 00:06:52,500
+bốn cái câu hỏi này á sẽ giúp cho anh em đánh giá
+
+194
+00:06:52,766 --> 00:06:55,000
+xem cái website và cả cái bài viết của mình á
+
+195
+00:06:55,166 --> 00:06:56,733
+có chuyên môn thật sự hay không từ
+
+196
+00:06:57,000 --> 00:06:57,933
+uy tín chuyên môn
+
+197
+00:06:57,966 --> 00:06:59,333
+của người viết và trang web
+
+198
+00:06:59,500 --> 00:07:00,400
+đến cái độ chính xác
+
+199
+00:07:00,600 --> 00:07:03,333
+cũng như là khách quan của thông tin trong bài viết ha à
+
+200
+00:07:03,333 --> 00:07:05,933
+nếu anh em áp dụng tốt á thì cái website của anh em á
+
+201
+00:07:06,000 --> 00:07:07,300
+nó sẽ trở nên uy tín hơn
+
+202
+00:07:07,900 --> 00:07:10,900
+và sẽ sớm cải thiện được cái thứ hạng của website à
+
+203
+00:07:10,966 --> 00:07:12,900
+cảm ơn anh em đã theo dõi cái video này
+
+204
+00:07:13,133 --> 00:07:15,000
+hẹn gặp lại anh em ở những cái video sau
+

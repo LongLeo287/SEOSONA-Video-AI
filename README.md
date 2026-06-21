@@ -1,58 +1,74 @@
-# 🎬 SEOSONA Video Factory
+# 🎬 SEOSONA Video Factory (v2.0 Autonomous Edition)
 
-SEOSONA Video Factory is an advanced, fully-automated multi-brand video production pipeline. Built deeply into the SEOSONA OS ecosystem, it handles everything from researching topics, writing SEO-optimized scripts, generating voiceovers, extracting perfectly-synced subtitles, dynamically recording headless browser B-Roll, to composing high-end cinematic visuals using **HyperFrames**.
-
-## 🌟 Core Features
-
-- **End-to-End Automation**: Input a raw text script or a simple URL, and receive a fully rendered MP4, SRT subtitle file, and 9:16/16:9 Thumbnail.
-- **Smart Web Scraping & B-Roll**: Uses `crawl4ai` and `Playwright` to extract content from websites and automatically capture authentic scrolling footage or dashboard UI screenshots to use as B-Roll.
-- **Cinematic Rendering**: Driven by **HyperFrames** HTML-based composition. Features fluid GSAP spring animations, glassmorphism UI cards, code diff mockups, and dynamic theme switching.
-- **Perfect A/V Sync**: Features *Character-Threshold Matching* to align visual scene cuts perfectly with the AI TTS voice word boundaries. 
-- **Flawless Pronunciation**: Employs an extensive internal `PRONUNCIATION_LEXICON` to allow the Vietnamese TTS engine to flawlessly pronounce complex English tech terms (like *Playwright*, *Next.js*, *Framework*) while keeping the on-screen text in professional English.
-
-## 🏗️ Architecture
-
-SEOSONA Video Factory operates on a highly modular architecture divided into several subsystems:
-
-* `1_AGENTS/`: AI Roles (Scraper, Writer, Repurposer, Publisher).
-* `2_SKILLS/`: Technical tools (TTS Generator, Voice Cloner, Visual Fetcher, Thumbnail Maker).
-* `4_BRAIN/`: The Core Orchestrator (`workflow_router.py`, `pipeline_manager.py`).
-* `5_FRAMEWORK/`: HyperFrames HTML renderer and legacy media tools.
-* `6_SOP/`: Operational Guidelines and Brand Rules.
-* `7_ASSETS/`: Media assets, SFX, BGM, Fonts, and Logos.
-
-### Workflow Modes
-
-1. **Create Mode**: `Text -> TTS -> Sync SRT -> Scene Planning -> HyperFrames Render -> Output`
-2. **Scrape Mode**: `URL -> Scraper -> LLM Script Writer -> Playwright B-Roll -> HyperFrames Render -> Output`
-3. **Repurpose Mode**: `Raw Video/SRT -> LLM Highlights -> Clipper -> HyperFrames Overlay -> Output`
-
-## 🚀 Quick Start
-
-Ensure that the Python environment is set up and `npx` (Node.js) is available on the PATH for HyperFrames.
-
-```bash
-# Activate Virtual Environment
-.venv\Scripts\Activate.ps1
-
-# Run the Workflow Router (Example: Create a video from a GitHub Repo URL)
-python 4_BRAIN\workflow_router.py "https://github.com/DeusData/codebase-memory-mcp" seosona 9:16 "DeusData_News_Sync" create
-```
-
-## 🛠️ Requirements & Dependencies
-
-- **Python 3.10+**
-- **Node.js 18+** (for `npx` and HyperFrames)
-- **FFmpeg 8.1+** (Must be in System PATH)
-- **Playwright** (for Headless Browser B-Roll)
-- **Edge-TTS / VieNeu / Fish Audio** (Voice Generation)
-- **Gemini / OpenAI API Keys** (for Script Generation)
-
-## 📌 Development Guidelines
-
-- **HyperFrames Master Templates**: The system relies on templates stored in `5_FRAMEWORK/hf_cards/master_template_9_16`. All new UI designs must strictly extend from these standardized HTML/Tailwind components.
-- **Animation Rules**: All animations MUST be done via GSAP Timelines (`window.__timelines["main"]`) for deterministic rendering. No CSS transitions or `setTimeout` should be used.
-- **Pronunciation Engine**: Never write phonetic Vietnamese directly onto the video text. Update `4_BRAIN/news_video_standards.py` (`PRONUNCIATION_LEXICON`) to fix TTS mispronunciations.
+Chào mừng đến với **SEOSONA Video Factory**, hệ thống sản xuất video truyền thông mạng xã hội tự động hóa 100% dựa trên trí tuệ nhân tạo (AI). 
+Đây là lõi trung tâm giúp SEOSONA thống trị các nền tảng YouTube Shorts, TikTok, Facebook Reels thông qua tốc độ, số lượng, và chất lượng hình ảnh vượt trội.
 
 ---
-*Powered by SEOSONA OS.*
+
+## 🚀 Tính Năng Cốt Lõi (Core Features)
+
+Hệ thống vừa trải qua đợt Audit và Nâng cấp toàn diện (Giai đoạn v2.0), hiện tại sở hữu các năng lực tự hành (Autonomous) cực kỳ mạnh mẽ:
+
+1. **Hệ sinh thái 19 Dynamic Templates**: 
+   - Lõi `template_core.js` xử lý linh hoạt mọi độ dài kịch bản, tự động co giãn Subtitles, bọc Timeline Animation theo điệu nhảy GSAP. Không bao giờ còn hiện tượng lệch tiếng, đứt Sub hay mất hình.
+2. **Gen-AI B-Roll Generator (Đạo Diễn Hình Ảnh)**: 
+   - Tích hợp cổng kết nối `Luma Dream Machine` / `Runway Gen-3`.
+   - Dùng cờ `--generate-broll` để hệ thống tự động vẽ các đoạn phim siêu thực dựa trên kịch bản thay vì dùng ảnh Stock (Có cơ chế Fallback tự động tải video Pexels nếu API lỗi mạng).
+3. **Smart Cleanup Manager**: 
+   - Module `clean_temp_data.py` tích hợp sâu vào ống xả hệ thống (`pipeline_manager.py`), tự động dọn rác (audio nháp, frame nháp) ngay khi render xong, chống tràn ổ cứng (Storage Overflow).
+4. **Offline NLP Fallback**: 
+   - Sử dụng thuật toán IF-IDF cục bộ (`llm_engine.py`) để tự trích xuất tiêu đề (Hook, Main Title, CTA) nếu các API GenAI (OpenAI/Gemini) bị lỗi. Đảm bảo dây chuyền sản xuất video không bao giờ chết.
+
+---
+
+## 🤖 3 Siêu Đặc Vụ Tự Hành (Autonomous Agents)
+
+### 1. Trend-Jacking Agent ⚡
+- **Vị trí**: `1_AGENTS/trend_jacking_agent/trend_tracker.py`
+- **Năng lực**: Quét RSS tự động từ *SearchEngineLand*. Khi phát hiện bài viết có độ Hot cao (Trend), nó sẽ tự động đánh thức hệ thống và chạy thẳng `workflow_video_news.py`. Kênh của bạn sẽ luôn là người đưa tin đầu tiên về các biến động của Google!
+
+### 2. Thumbnail A/B Tester Agent 👁️
+- **Vị trí**: `1_AGENTS/thumbnail_tester_agent/ab_tester.py`
+- **Năng lực**: Sửa đổi cơ chế sinh ảnh. Thay vì 1 ảnh mù mờ, hệ thống sinh ra **3 biến thể** (Auto, Split, Center layout). Sau đó, mang ảnh đi hỏi OpenAI Vision (GPT-4o) chấm điểm tỷ lệ click (CTR), và chỉ chọn ảnh tốt nhất để gắn vào video.
+
+### 3. Analytics Feedback & Social Auto-Pilot Agent 🧠🚀
+- **Vị trí**: `1_AGENTS/analytics_feedback_agent/` và `1_AGENTS/publisher_agent/social_autopilot.py`
+- **Năng lực**: 
+  - **Học từ quá khứ (Feedback)**: Đọc điểm rơi Retention Rate của khán giả (VD: Giây 30) và phản hồi lại hệ thống để Pipeline tự động chèn thêm SFX Pop/Whoosh vào giây thứ 30 ở video tiếp theo nhằm giữ chân người xem.
+  - **Tự động xuất bản (Autopilot)**: Gắn cờ `--autopilot`, hệ thống tự viết mô tả chuẩn SEO có gắn Link và tự động hẹn lịch (Schedule) trên YouTube v3, TikTok API vào đúng khung giờ vàng.
+
+---
+
+## ⚙️ Hướng Dẫn Sử Dụng Nhanh (Quick Start)
+
+Mở Terminal và điều hướng vào thư mục dự án:
+
+**1. Tạo một Video News Cơ bản (Fallback Stock):**
+```bash
+python scripts/workflow_video_news.py "Đường dẫn bài viết hoặc nội dung văn bản"
+```
+
+**2. Tạo Video với Trí Tuệ Nhân Tạo Vẽ Hình (Gen-AI B-Roll):**
+```bash
+python scripts/workflow_video_news.py "Kịch bản của bạn" --generate-broll
+```
+
+**3. Tạo Video và Tự Động Ném Thẳng Lên Mạng Xã Hội (Auto-Pilot):**
+```bash
+python scripts/workflow_video_news.py "Kịch bản của bạn" --autopilot
+```
+
+---
+
+## 📂 Cấu Trúc Hệ Thống (Directory Structure)
+
+- `1_AGENTS/`: Nơi chứa bộ não của các Siêu Đặc Vụ (Trend-Jacking, Thumbnail Tester, Publisher).
+- `2_SKILLS/`: Các module chức năng đơn lẻ (Lấy B-Roll, Quản lý ổ đĩa, Kịch bản...).
+- `4_BRAIN/`: Lõi ghép nối (Pipeline Manager, Workflow Router, LLM Engine).
+- `7_ASSETS/`: Quản lý kho hình ảnh, nhạc, hiệu ứng (BGM, SFX, 19 Dynamic HTML Templates).
+- `8_WORKSPACE/`: Nhà máy làm việc tạm thời. (Hệ thống tự động xóa rác tại đây nhờ module Cleanup).
+- `scripts/`: Nơi chứa các lệnh Trigger đầu vào của bạn (`workflow_*.py`).
+
+---
+
+*Hệ thống được phát triển và tối ưu độc quyền cho đội ngũ SEOSONA. Đã Audit thành công vào Tháng 06/2026. Mọi thao tác push mã nguồn đã được thông qua giao thức kiểm định bảo mật.*

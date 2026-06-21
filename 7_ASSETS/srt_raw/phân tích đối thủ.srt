@@ -1,0 +1,904 @@
+1
+00:00:00,166 --> 00:00:01,166
+rồi xin chào anh em nhá
+
+2
+00:00:01,266 --> 00:00:02,066
+thì trong cái video
+
+3
+00:00:02,166 --> 00:00:05,966
+này á mình sẽ tiếp tục nói về cái chủ đề mà từ khóa bổ trợ
+
+4
+00:00:06,400 --> 00:00:08,500
+và cái video này á mình sẽ đi thị phạm
+
+5
+00:00:08,600 --> 00:00:09,766
+là hướng dẫn cho anh em
+
+6
+00:00:09,933 --> 00:00:12,166
+cái cách mà chúng ta có thể đi phân tích đối thủ
+
+7
+00:00:12,766 --> 00:00:15,266
+tìm ra những cái bài viết bổ trợ của đối thủ
+
+8
+00:00:15,766 --> 00:00:18,266
+và tìm ra được những cái từ khóa của đối thủ
+
+9
+00:00:18,766 --> 00:00:20,966
+à thì cũng rất là đơn giản thôi anh em à
+
+10
+00:00:21,066 --> 00:00:23,400
+đầu tiên thì anh em cần phải xác định đối thủ nè
+
+11
+00:00:23,766 --> 00:00:25,333
+à qua tới cái bước thứ hai
+
+12
+00:00:25,666 --> 00:00:27,933
+thì từ cái việc mà xác định đối thủ rồi á
+
+13
+00:00:28,133 --> 00:00:29,766
+thì anh em có thể sử dụng cái công cụ
+
+14
+00:00:29,966 --> 00:00:31,533
+xem rớt để thu thập dữ liệu
+
+15
+00:00:31,900 --> 00:00:33,733
+sau khi đi thu thập dữ liệu về rồi á
+
+16
+00:00:33,766 --> 00:00:35,366
+thì anh em sẽ lọc cái dữ liệu đó
+
+17
+00:00:35,933 --> 00:00:38,133
+và mình chọn được những cái từ khóa nó phù hợp
+
+18
+00:00:38,400 --> 00:00:40,300
+à rồi à mình sẽ bắt đầu luôn ha
+
+19
+00:00:48,766 --> 00:00:51,666
+ô kê để mà biết được đối thủ của mình là ai á
+
+20
+00:00:51,700 --> 00:00:54,066
+thì anh em vào cái công cụ sonatun ha à
+
+21
+00:00:54,066 --> 00:00:57,166
+và anh em vào cái tính năng mà keyword grouping v hai nè
+
+22
+00:00:57,400 --> 00:01:00,366
+thì hôm trước á mình đã đi nghiên cứu từ khóa cho cái
+
+23
+00:01:00,700 --> 00:01:01,900
+a website mà sale
+
+24
+00:01:02,166 --> 00:01:03,666
+cái từ khóa về thiết bị vệ sinh
+
+25
+00:01:03,800 --> 00:01:06,200
+inox ha à thì hôm nay mình sẽ tiếp tục thị phạm
+
+26
+00:01:06,666 --> 00:01:08,533
+à mình sẽ mở cái dự án này lên ha
+
+27
+00:01:09,566 --> 00:01:11,400
+thì sau khi mà anh em mở lên á
+
+28
+00:01:11,466 --> 00:01:13,866
+anh em bấm vào cái máy kịch analytic ha
+
+29
+00:01:14,533 --> 00:01:16,966
+rồi à thì à anh em kéo xuống dưới này
+
+30
+00:01:17,400 --> 00:01:20,333
+à thì ở dưới này á nó sẽ trả về cho anh em những cái
+
+31
+00:01:20,866 --> 00:01:22,600
+a đối thủ ở đây ha à
+
+32
+00:01:22,666 --> 00:01:26,100
+mình có thể bấm vào cái cột mách kịch xe à để mình à
+
+33
+00:01:26,333 --> 00:01:28,900
+biết được các cái đối thủ lớn của mình là ai ha
+
+34
+00:01:29,133 --> 00:01:30,400
+à trong cái trường hợp này á
+
+35
+00:01:30,733 --> 00:01:32,700
+thì cái đối thủ của mình lớn nhất á là thằng
+
+36
+00:01:32,866 --> 00:01:34,533
+inact chấm com chấm vn à
+
+37
+00:01:34,533 --> 00:01:35,766
+là thằng web của hãng ha
+
+38
+00:01:36,066 --> 00:01:37,566
+cái thằng thứ hai là thằng tdm
+
+39
+00:01:37,733 --> 00:01:39,933
+và cái thằng thứ ba là cái thằng inact chấm vn
+
+40
+00:01:40,333 --> 00:01:41,666
+thì mình sẽ lần lượt lần lượt
+
+41
+00:01:41,900 --> 00:01:43,100
+có thể là mình sẽ nghiên cứu
+
+42
+00:01:43,700 --> 00:01:44,500
+một hai đối thủ
+
+43
+00:01:44,500 --> 00:01:46,800
+hoặc có thể là mình sẽ nghiên cứu khoảng năm cái đối thủ
+
+44
+00:01:47,100 --> 00:01:48,800
+tùy vào cái lĩnh vực mà mình cần
+
+45
+00:01:49,000 --> 00:01:50,733
+nó có cái độ chi tiết ha à
+
+46
+00:01:50,733 --> 00:01:53,000
+với những cái lĩnh vực mà nó có ít từ khóa quá
+
+47
+00:01:53,333 --> 00:01:55,300
+thì mình sẽ có thể chọn năm đối thủ
+
+48
+00:01:55,500 --> 00:01:57,666
+còn với những cái lĩnh vực mà nó có nhiều từ khóa
+
+49
+00:01:57,766 --> 00:01:58,566
+thì mình có thể chọn
+
+50
+00:01:58,766 --> 00:02:01,000
+à khoảng hai tới ba cái đối thủ thôi à
+
+51
+00:02:01,066 --> 00:02:04,266
+là ô kê rồi ha à thì ở đây á à thằng inox này à
+
+52
+00:02:04,400 --> 00:02:06,100
+máy kịch xe của nó là một trăm ba mươi
+
+53
+00:02:06,100 --> 00:02:07,166
+tám phẩy mười lăm phần trăm
+
+54
+00:02:07,400 --> 00:02:09,133
+có nghĩa là thằng này á nó lên top
+
+55
+00:02:09,300 --> 00:02:10,700
+được đâu đó khoảng chừng hai ngàn
+
+56
+00:02:10,766 --> 00:02:12,166
+tám trăm năm mươi bảy từ khóa
+
+57
+00:02:12,766 --> 00:02:14,600
+trên hai ngàn không trăm ba mươi lăm cái từ khóa
+
+58
+00:02:15,133 --> 00:02:17,933
+thì à cái điều này á cũng hết sức là đơn giản ha à
+
+59
+00:02:17,966 --> 00:02:19,666
+do là thằng inox này á nó
+
+60
+00:02:20,066 --> 00:02:23,700
+có những cái từ khóa mà nó lên top được hai tới ba cái url
+
+61
+00:02:23,933 --> 00:02:26,100
+cho nên cái chỉ số này nó cao hơn một trăm là rất
+
+62
+00:02:26,166 --> 00:02:27,400
+rất là bình thường à
+
+63
+00:02:27,466 --> 00:02:29,900
+cái thằng thứ hai là thằng tdm ha à
+
+64
+00:02:29,933 --> 00:02:31,866
+nó chín mươi bảy phẩy tám mươi hai phần trăm
+
+65
+00:02:32,300 --> 00:02:35,500
+do á là mình chỉ thị phạm demo và cái mục đích của mình á
+
+66
+00:02:35,666 --> 00:02:37,466
+để cho anh em hiểu và biết cái cách làm
+
+67
+00:02:37,966 --> 00:02:40,933
+cho nên á mình chỉ có nghiên cứu một thằng này thôi ha à
+
+68
+00:02:40,933 --> 00:02:42,666
+thì mình sẽ bấm vào thằng inox này
+
+69
+00:02:43,800 --> 00:02:47,966
+rồi à sau đó mình copy cái tên miền của nó vào ha à
+
+70
+00:02:48,000 --> 00:02:50,700
+tên miền của nó là https hai chấm xẹt xẹt à
+
+71
+00:02:50,800 --> 00:02:53,200
+vkp vkp chấm inact chấm com chấm vn
+
+72
+00:02:53,466 --> 00:02:55,866
+ha mình sẽ bỏ cái vi này đi ha à
+
+73
+00:02:56,533 --> 00:02:58,733
+mình sẽ lấy cái này rồi ô kê
+
+74
+00:02:59,200 --> 00:03:02,100
+sau đó anh em có thể mở cái công cụ xem rớt lên ha
+
+75
+00:03:02,200 --> 00:03:05,400
+anh em bỏ cái domain đó vào trong cái ô search này ha à
+
+76
+00:03:05,500 --> 00:03:07,800
+rồi à lúc này anh em bấm vào cái chữ search này
+
+77
+00:03:09,500 --> 00:03:11,066
+thì à đợi một lúc thì à
+
+78
+00:03:11,133 --> 00:03:12,566
+cái công cụ xem rớt á
+
+79
+00:03:12,666 --> 00:03:15,266
+nó sẽ trả về dữ liệu cho chúng ta như thế này à
+
+80
+00:03:15,300 --> 00:03:18,500
+và cái việc tiếp theo anh em bấm vào cái cột keyword này ha
+
+81
+00:03:19,166 --> 00:03:20,100
+rồi thì ở đây á
+
+82
+00:03:20,133 --> 00:03:22,166
+anh em chọn giùm mình cái quốc gia là việt nam
+
+83
+00:03:22,400 --> 00:03:23,200
+do là mình đang
+
+84
+00:03:23,400 --> 00:03:25,200
+seo cái website này ở việt nam
+
+85
+00:03:25,366 --> 00:03:27,700
+cho nên mình phải lấy cái dữ liệu là việt nam ha à
+
+86
+00:03:27,733 --> 00:03:28,533
+mình bấm vào việt nam
+
+87
+00:03:32,000 --> 00:03:34,733
+sau khi mà anh em chọn việt nam rồi á thì à
+
+88
+00:03:34,800 --> 00:03:36,100
+nó sẽ ra cho anh em à
+
+89
+00:03:36,133 --> 00:03:38,200
+rất là nhiều cái dữ liệu như thế này à
+
+90
+00:03:38,200 --> 00:03:40,333
+và cái việc còn lại của chúng ta là bấm xbox
+
+91
+00:03:40,600 --> 00:03:42,133
+xuất cái dữ liệu về máy ha
+
+92
+00:03:42,400 --> 00:03:45,466
+à mình xbox à bấm vào à excel
+
+93
+00:03:47,333 --> 00:03:50,200
+sau đó mình bấm vào lưu ha sale à
+
+94
+00:03:50,200 --> 00:03:54,200
+lúc này mình sẽ mở cái file excel mà mới vừa download về ha
+
+95
+00:03:58,466 --> 00:04:02,166
+rồi thì à ở đây á nó có rất là nhiều cái dữ liệu thô ha
+
+96
+00:04:02,400 --> 00:04:05,900
+à mình sẽ à lọc những cái dữ liệu thô này nó đi ha
+
+97
+00:04:06,100 --> 00:04:10,066
+mình sẽ giữ lại cái cột à từ khóa này cái cột thứ hạng này à
+
+98
+00:04:10,500 --> 00:04:11,866
+cái cột này thì mình sẽ xóa đi
+
+99
+00:04:11,966 --> 00:04:13,533
+cái cột volume thì mình muốn giữ lại
+
+100
+00:04:13,733 --> 00:04:15,966
+cái còn lại mình sẽ xóa những cái cột này đi ha
+
+101
+00:04:16,566 --> 00:04:19,500
+mình sẽ làm nhanh cho anh em à chợ đỡ mất thời gian
+
+102
+00:04:19,933 --> 00:04:20,800
+rồi sau khi mà anh em
+
+103
+00:04:20,933 --> 00:04:23,766
+lọc dữ liệu đi á thì anh em tạo giùm mình cái bộ lọc ha
+
+104
+00:04:26,466 --> 00:04:28,166
+filter này rồi ô kê
+
+105
+00:04:28,366 --> 00:04:30,700
+thế thì ở cái video trước á mình đã nói
+
+106
+00:04:30,933 --> 00:04:33,400
+là cái từ khóa bổ trợ là những cái từ khóa
+
+107
+00:04:33,700 --> 00:04:35,366
+mà nó được sale ở trên bài viết
+
+108
+00:04:35,533 --> 00:04:37,566
+chứ không phải là ở sản phẩm hay là danh mục sản phẩm
+
+109
+00:04:38,066 --> 00:04:40,533
+à thì anh em thấy ở đây nó có những cái sản phẩm nè
+
+110
+00:04:40,700 --> 00:04:42,500
+nó có những cái danh mục sản phẩm thì mình sẽ xóa
+
+111
+00:04:42,666 --> 00:04:43,466
+nó đi ha à
+
+112
+00:04:43,466 --> 00:04:46,000
+nếu mà anh em không chắc á thì anh em có thể copy nó
+
+113
+00:04:46,466 --> 00:04:48,566
+và ra cái trình duyệt web của mình để kiểm tra
+
+114
+00:04:48,733 --> 00:04:49,766
+xem nó là cái gì ha
+
+115
+00:04:50,000 --> 00:04:52,166
+nếu mà nó là danh mục sản phẩm thì à
+
+116
+00:04:52,200 --> 00:04:53,766
+hoặc là sản phẩm thì mình sẽ xóa đi
+
+117
+00:04:53,866 --> 00:04:56,800
+thì trong trường hợp này á nó là cái danh mục sản phẩm ha à
+
+118
+00:04:56,900 --> 00:04:58,733
+thì mình sẽ muốn xóa nó đi á
+
+119
+00:04:59,000 --> 00:04:59,600
+thì à
+
+120
+00:04:59,600 --> 00:05:03,000
+mình sẽ kiểm tra tiếp ha à xem những cái kia nó là gì à
+
+121
+00:05:03,500 --> 00:05:05,800
+đây rồi ha à new nè à
+
+122
+00:05:05,866 --> 00:05:09,333
+mình à nghĩ là cái new này nó sẽ là cái bài viết ha
+
+123
+00:05:11,566 --> 00:05:14,466
+rồi ô kê à thế thì nó là bài viết và mình sẽ muốn
+
+124
+00:05:14,733 --> 00:05:15,933
+à chỉ giữ lại bài viết
+
+125
+00:05:16,166 --> 00:05:17,166
+cho nên mình sẽ lọc
+
+126
+00:05:17,266 --> 00:05:20,200
+đi tất cả những cái dữ liệu mà không phải bài viết đi ha à
+
+127
+00:05:20,266 --> 00:05:23,200
+mình sẽ vào cái cột u l mình nhập cái chữ new vào
+
+128
+00:05:24,400 --> 00:05:25,766
+thì khi mà mình nhập như thế này á
+
+129
+00:05:25,900 --> 00:05:28,333
+excel nó sẽ trả về cho mình tất cả những cái url
+
+130
+00:05:28,466 --> 00:05:29,866
+mà nó có chữ new ha à
+
+131
+00:05:29,866 --> 00:05:32,600
+mình sẽ muốn copy nó qua một cái sheet khác để cho
+
+132
+00:05:33,000 --> 00:05:34,133
+à dễ thao tác
+
+133
+00:05:36,533 --> 00:05:39,366
+à mình vẫn tiếp tục mình tạo cho nó một cái bộ lọc ha
+
+134
+00:05:39,700 --> 00:05:41,366
+rồi thì cái bối cảnh của mình á
+
+135
+00:05:41,466 --> 00:05:43,700
+là mình đang đi research cái từ khóa bổ trợ
+
+136
+00:05:43,900 --> 00:05:45,000
+cho cái topic
+
+137
+00:05:45,366 --> 00:05:47,166
+à là bồn cầu inax
+
+138
+00:05:47,366 --> 00:05:50,466
+cho nên những cái mà nó không có liên quan tới bồn cầu à
+
+139
+00:05:50,666 --> 00:05:53,066
+inax thì mình sẽ xóa đi ha à
+
+140
+00:05:53,166 --> 00:05:56,366
+bồn tắm nè lababo nè thì mình có thể mình sẽ xóa nó đi
+
+141
+00:05:56,666 --> 00:05:58,900
+bằng cái cách mà mình tiếp tục sử dụng cái bộ lọc
+
+142
+00:05:58,933 --> 00:06:00,766
+và mình lọc để mình xóa nó đi ha
+
+143
+00:06:01,966 --> 00:06:04,133
+rồi thì cái bước này á thì mình sẽ
+
+144
+00:06:04,566 --> 00:06:06,766
+lọc đi tất cả những cái từ khóa mà nó
+
+145
+00:06:07,300 --> 00:06:09,066
+không có liên quan tới cái bồn cầu
+
+146
+00:06:09,166 --> 00:06:10,700
+lắm thì mình sẽ lọc nó đi à
+
+147
+00:06:10,700 --> 00:06:11,766
+và có thể là mình sẽ tua
+
+148
+00:06:11,900 --> 00:06:13,866
+nhanh cái bước này để tránh mất thời gian của anh em
+
+149
+00:06:13,900 --> 00:06:18,900
+ha rồi à ô kê sau khi mà mình sử dụng à bộ lọc của excel á
+
+150
+00:06:18,933 --> 00:06:21,100
+mình lọc đi tất cả những cái từ khóa mà nó
+
+151
+00:06:21,600 --> 00:06:24,566
+không có liên quan mật thiết tới cái chủ đề bồn cầu á thì
+
+152
+00:06:24,566 --> 00:06:27,166
+mình còn lại khoảng hơn tám trăm cái từ khóa thì à
+
+153
+00:06:27,266 --> 00:06:28,166
+tới cái bước này á
+
+154
+00:06:28,200 --> 00:06:30,733
+thì anh em hãy nhớ lại hai cái nguyên tắc ha à
+
+155
+00:06:30,800 --> 00:06:34,066
+một là cái à từ khóa đó nó phải
+
+156
+00:06:34,600 --> 00:06:37,533
+phù hợp với lại cái ngữ cảnh nguồn cái website của mình
+
+157
+00:06:38,166 --> 00:06:39,500
+hai là cái từ khóa đó
+
+158
+00:06:39,566 --> 00:06:41,600
+là mình chưa có triển khai trên website của mình
+
+159
+00:06:41,700 --> 00:06:42,600
+thì mình mới lấy ha
+
+160
+00:06:42,800 --> 00:06:45,666
+rồi dựa trên hai cái nguyên tắc đó thì anh em sẽ đi
+
+161
+00:06:45,933 --> 00:06:47,300
+anh em lọc tiếp ha à
+
+162
+00:06:47,333 --> 00:06:48,766
+cái bước đầu tiên
+
+163
+00:06:48,866 --> 00:06:51,333
+là anh em lọc đi những cái từ khóa mà nó không liên quan tới
+
+164
+00:06:51,400 --> 00:06:52,066
+lĩnh vực
+
+165
+00:06:52,066 --> 00:06:55,000
+cái bước thứ hai là chúng ta sẽ lọc đi những cái từ khóa
+
+166
+00:06:55,533 --> 00:06:58,566
+à mà nó không phù hợp với lại cái ngữ cảnh nguồn
+
+167
+00:06:58,866 --> 00:07:01,266
+cái bước thứ ba mà chúng ta cần phải lọc á
+
+168
+00:07:01,566 --> 00:07:03,600
+thì chúng ta sẽ phải lọc đi những cái từ khóa
+
+169
+00:07:03,733 --> 00:07:04,700
+mà chúng ta đã triển khai
+
+170
+00:07:04,800 --> 00:07:06,266
+viết bài trên website của chúng ta rồi
+
+171
+00:07:06,700 --> 00:07:07,966
+để tránh cái vấn đề trùng lập
+
+172
+00:07:08,300 --> 00:07:09,966
+à thì để làm cái bước thứ hai
+
+173
+00:07:10,100 --> 00:07:11,133
+và cái bước thứ ba á
+
+174
+00:07:11,400 --> 00:07:14,266
+à thì anh em a à lấy cái bộ từ khóa này à
+
+175
+00:07:14,333 --> 00:07:15,933
+tiếp tục đi gom nhóm từ khóa
+
+176
+00:07:16,133 --> 00:07:17,766
+sau đó thì anh em research lại
+
+177
+00:07:18,100 --> 00:07:21,133
+à xem nó cái ngữ cảnh nguồn của nó nó có phù hợp hay không
+
+178
+00:07:21,700 --> 00:07:24,600
+rồi sau đó khi mà nó hợp rồi á thì kiểm tra lại cái
+
+179
+00:07:24,666 --> 00:07:25,933
+bộ từ khóa mà mình đã có
+
+180
+00:07:26,400 --> 00:07:28,000
+xem nó có bị trùng lập hay không
+
+181
+00:07:28,166 --> 00:07:30,300
+thì chúng ta sẽ có một cái bộ từ khóa bổ trợ
+
+182
+00:07:30,700 --> 00:07:32,100
+à để viết bài tiếp ha
+
+183
+00:07:32,333 --> 00:07:35,766
+rồi thì đó là cái cách mà chúng ta đi phân tích cái đối thủ
+
+184
+00:07:35,966 --> 00:07:38,700
+để tìm ra được những cái từ khóa bổ trợ à
+
+185
+00:07:38,733 --> 00:07:41,866
+thì mình sẽ tóm gọn lại một xíu cho anh em dễ hình dung ha
+
+186
+00:07:42,100 --> 00:07:43,366
+cái bước đầu tiên là anh em
+
+187
+00:07:43,666 --> 00:07:45,533
+sẽ phải xác định được cái đối thủ của mình
+
+188
+00:07:46,200 --> 00:07:48,066
+sau khi anh em xác định được đối thủ rồi á
+
+189
+00:07:48,133 --> 00:07:50,766
+thì anh em hãy bỏ nó vào cái công cụ xem rớt à
+
+190
+00:07:50,800 --> 00:07:53,766
+và anh em lọc lấy cái dữ liệu từ khóa của nó xuất về
+
+191
+00:07:54,133 --> 00:07:55,600
+sau khi mà xuất dữ liệu về á
+
+192
+00:07:55,933 --> 00:07:57,666
+thì anh em sẽ phải lọc đi những cái dữ liệu
+
+193
+00:07:57,866 --> 00:07:58,700
+mà nó không liên quan
+
+194
+00:07:58,900 --> 00:08:00,900
+tới cái chủ đề mà mình đang muốn lấy ha
+
+195
+00:08:01,266 --> 00:08:02,266
+trong cái video này á
+
+196
+00:08:02,333 --> 00:08:04,800
+cái chủ đề mà mình muốn lấy á là những cái từ khóa
+
+197
+00:08:04,933 --> 00:08:06,300
+mà nó liên quan tới cái bồn cầu
+
+198
+00:08:06,966 --> 00:08:09,600
+sau khi mà anh em lọc đi những cái dữ liệu thừa kia đi á
+
+199
+00:08:09,733 --> 00:08:11,700
+à thì anh em sẽ còn một cái bộ từ khóa
+
+200
+00:08:11,900 --> 00:08:14,400
+mà nó liên quan mật thiết tới cái chủ đề chính mà mình muốn
+
+201
+00:08:14,566 --> 00:08:17,966
+resort à thì mình sẽ tiếp tục đi gom nhóm từ khóa và
+
+202
+00:08:18,566 --> 00:08:20,333
+à mình sẽ tiến hành mình lọc tiếp
+
+203
+00:08:20,366 --> 00:08:21,200
+tới cái bước thứ hai
+
+204
+00:08:21,533 --> 00:08:23,333
+à và anh em nhớ giùm mình cái nguyên tắc
+
+205
+00:08:23,466 --> 00:08:25,300
+cái thứ nhất á là cái từ khóa đó
+
+206
+00:08:25,300 --> 00:08:27,866
+nó phải phù hợp với lại cái ngữ cảnh nguồn của website
+
+207
+00:08:28,300 --> 00:08:30,000
+cái thứ hai á là cái từ khóa đó
+
+208
+00:08:30,500 --> 00:08:32,333
+là cái từ khóa mà mình chưa có triển khai
+
+209
+00:08:32,466 --> 00:08:33,266
+trên website của mình
+
+210
+00:08:33,733 --> 00:08:36,066
+và cái cuối cùng á là cái từ khóa đó
+
+211
+00:08:36,500 --> 00:08:38,666
+là phải là bài viết thì chúng ta mới viết ha
+
+212
+00:08:38,766 --> 00:08:40,300
+chứ còn nếu mà anh em lên
+
+213
+00:08:40,466 --> 00:08:42,300
+anh em research cái từ khóa đó mà google
+
+214
+00:08:42,466 --> 00:08:43,933
+nó trả về toàn danh mục sản phẩm
+
+215
+00:08:44,066 --> 00:08:45,566
+thì chúng ta sẽ không có lấy cái từ khóa đó
+
+216
+00:08:46,000 --> 00:08:48,866
+à đó là cái cách mà chúng ta đi nghiên cứu từ khóa ha
+
+217
+00:08:49,066 --> 00:08:50,533
+nếu mà anh em chưa xem cái video
+
+218
+00:08:50,700 --> 00:08:53,566
+phân tích eav để đi research từ khóa bổ trợ á
+
+219
+00:08:53,600 --> 00:08:54,866
+thì anh em nên xem cái video đó
+
+220
+00:08:55,466 --> 00:08:57,933
+để anh em biết cái cách mà chúng ta lọc dữ liệu ha
+
+221
+00:08:58,166 --> 00:09:00,466
+trong cái video này á mình sẽ lấy dữ thiệu từ
+
+222
+00:09:00,766 --> 00:09:01,600
+đối thủ cạnh tranh
+
+223
+00:09:02,066 --> 00:09:05,333
+và khi mà tiến hành lọc á thì nó tương tự như cái video mà
+
+224
+00:09:05,600 --> 00:09:07,566
+phân tích eav thôi à
+
+225
+00:09:07,600 --> 00:09:10,366
+rồi cảm ơn anh em đã theo dõi cái video này à
+
+226
+00:09:10,466 --> 00:09:12,566
+hẹn gặp lại anh em ở những cái video sau ha
+

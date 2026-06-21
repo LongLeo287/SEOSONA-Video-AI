@@ -44,6 +44,7 @@ profiles:
       required_accent: "southern"
       reference_audio: "7_ASSETS/voice_profiles/seosona_male_southern.wav"
       fallback_engine: "edge-tts"
+      # WARNING: Azure vi-VN-NamMinhNeural is a Northern accent. This will cause an accent shift if VieNeu (Southern) fails.
       fallback_voice: "vi-VN-NamMinhNeural"
     logo: "Seosona_Logo.png"
     animation: "slide_up"

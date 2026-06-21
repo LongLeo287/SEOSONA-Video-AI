@@ -14,6 +14,25 @@ API_KEYS = {
     "pixabay": os.environ.get("PIXABAY_API_KEY", "")
 }
 
+
+def generate_ai_broll(prompt: str, duration: int = 5) -> str:
+    """
+    Placeholder for Gen-AI Video Integration (Luma Dream Machine / Runway Gen-3).
+    """
+    luma_key = os.environ.get("LUMA_API_KEY", "")
+    runway_key = os.environ.get("RUNWAY_API_KEY", "")
+    
+    if not luma_key and not runway_key:
+        print(f"[Gen-AI] Missing API keys for Luma/Runway. Falling back to Stock Video for prompt: '{prompt}'")
+        return ""
+        
+    print(f"[Gen-AI] Generating {duration}s video for prompt: '{prompt}'")
+    # In production, you would call the respective API here using requests.
+    # e.g., requests.post("https://api.lumalabs.ai/dream-machine/v1/generations", headers=...)
+    # For now, we simulate a failure to trigger fallback
+    print("[Gen-AI] API call simulated. Returning empty to trigger fallback.")
+    return ""
+
 def search_videos_pexels(search_term: str, min_duration: int = 5, orientation: str = "portrait") -> list:
     api_key = API_KEYS.get("pexels")
     if not api_key:
@@ -83,16 +102,24 @@ def fetch_b_rolls(search_terms: list, total_duration_needed: float, save_dir: st
     Giúp video có hình ảnh sát nghĩa với nội dung từng đoạn.
     """
     print(f"Fetching B-rolls for terms: {search_terms}")
-    search_func = search_videos_pexels if source == "pexels" else None # Add pixabay later
-    if not search_func:
-        return []
-        
     candidate_groups = []
     valid_video_urls = set()
     found_duration = 0.0
     
     for term in search_terms:
-        items = search_func(term)
+        if source == "ai":
+            # Attempt AI generation first
+            ai_video_path = generate_ai_broll(term)
+            if ai_video_path and os.path.exists(ai_video_path):
+                # If AI succeeds, we mock an item
+                items = [{"url": ai_video_path, "duration": 5.0, "is_local": True}]
+            else:
+                # Fallback to pexels
+                print(f"[Fallback] Falling back to Pexels for term: {term}")
+                items = search_videos_pexels(term)
+        else:
+            search_func = search_videos_pexels
+            items = search_func(term)
         term_items = []
         for item in items:
             if item["url"] not in valid_video_urls:
@@ -113,8 +140,12 @@ def fetch_b_rolls(search_terms: list, total_duration_needed: float, save_dir: st
                 continue
             has_candidate = True
             item = items[candidate_index]
-            print(f"Downloading B-roll for '{term}'...")
-            path = save_video(item["url"], save_dir)
+            if item.get("is_local"):
+                path = item["url"]
+                print(f"Using Generated B-roll for '{term}': {path}")
+            else:
+                print(f"Downloading B-roll for '{term}'...")
+                path = save_video(item["url"], save_dir)
             if path:
                 video_paths.append(path)
                 current_duration += min(5.0, item["duration"]) # Assume max clip usage is 5s

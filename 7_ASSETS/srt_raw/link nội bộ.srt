@@ -1,0 +1,948 @@
+1
+00:00:00,300 --> 00:00:02,866
+linh nội bộ hay còn gọi là internal
+
+2
+00:00:03,166 --> 00:00:04,733
+là một phần quan trọng bậc nhất
+
+3
+00:00:05,133 --> 00:00:07,533
+khi mà anh em triển khai sco on page
+
+4
+00:00:07,800 --> 00:00:09,066
+nó giúp điều hướng người dùng
+
+5
+00:00:09,700 --> 00:00:12,466
+ngoài ra thì nó cũng giúp cho cái việc truyền sức mạnh
+
+6
+00:00:12,700 --> 00:00:15,366
+từ cái url này qua cái url khác
+
+7
+00:00:15,866 --> 00:00:17,366
+ở cái video bên trên á
+
+8
+00:00:17,400 --> 00:00:19,966
+mình cũng đã chia sẻ cho anh em cái link nội bộ
+
+9
+00:00:20,300 --> 00:00:21,900
+là một trong những cái phần quan trọng
+
+10
+00:00:22,133 --> 00:00:23,533
+trong cái cấu trúc website
+
+11
+00:00:23,966 --> 00:00:24,933
+vì nó giúp cho google
+
+12
+00:00:25,200 --> 00:00:27,866
+hiểu rõ hơn về cái chủ đề trên website của anh em
+
+13
+00:00:28,200 --> 00:00:29,200
+từ đó nó dễ dàng
+
+14
+00:00:29,366 --> 00:00:31,800
+xếp hạng và tin tưởng cái website của anh em hơn
+
+15
+00:00:32,366 --> 00:00:33,366
+rồi xin chào anh em nhá
+
+16
+00:00:33,500 --> 00:00:36,100
+chào mừng anh em quay trở lại cái khóa học trí quyết chấm
+
+17
+00:00:36,200 --> 00:00:39,400
+academy trong cái video này á mình sẽ chia sẻ cho anh em
+
+18
+00:00:39,600 --> 00:00:41,500
+tất tần tật về linh đội bộ
+
+19
+00:00:41,766 --> 00:00:44,066
+à rồi ô kê mình sẽ bắt đầu luôn ha
+
+20
+00:00:51,700 --> 00:00:54,733
+ô kê đầu tiên thì anh em cần phải hiểu linh nội bộ
+
+21
+00:00:54,933 --> 00:00:57,000
+thì nó sẽ có hai loại ha à
+
+22
+00:00:57,100 --> 00:00:59,333
+một loại đó là linh nội bộ có ngữ cảnh
+
+23
+00:00:59,866 --> 00:01:02,333
+và một loại đó là cái linh nội bộ điều hướng
+
+24
+00:01:02,566 --> 00:01:04,766
+thế thì cái linh nội bộ có ngữ cảnh này á
+
+25
+00:01:04,866 --> 00:01:06,800
+nó sẽ nằm ở trong bài viết ha à
+
+26
+00:01:06,933 --> 00:01:07,966
+và trong cái bài viết
+
+27
+00:01:08,266 --> 00:01:10,733
+nội dung của mình ở trên website đó anh em à
+
+28
+00:01:10,766 --> 00:01:12,333
+ví dụ như mình có cái hình bên phía
+
+29
+00:01:12,333 --> 00:01:14,766
+tay trái này à cái từ bồn cầu nè à
+
+30
+00:01:14,800 --> 00:01:15,733
+thiết bị vệ sinh nè
+
+31
+00:01:15,866 --> 00:01:16,933
+nắp bồn cầu nè à
+
+32
+00:01:17,066 --> 00:01:19,766
+vòi xịt bồn cầu nè hay là bồn cầu một khối bồn cầu hai khối
+
+33
+00:01:20,366 --> 00:01:23,400
+à đây là những cái link nội bộ mà là có ngữ cảnh
+
+34
+00:01:23,933 --> 00:01:26,800
+khi mà anh em tối ưu onpage cho cái bài viết á
+
+35
+00:01:27,100 --> 00:01:27,966
+hay là cho cái content
+
+36
+00:01:28,300 --> 00:01:29,566
+trên website của anh em á
+
+37
+00:01:29,700 --> 00:01:32,166
+thì anh em cần phải đi cái loại link nội bộ này
+
+38
+00:01:32,700 --> 00:01:36,000
+và ở trong cái co á thì cái linh nội bộ này
+
+39
+00:01:36,533 --> 00:01:38,366
+nó mới truyền sức mạnh ha anh em ha
+
+40
+00:01:38,800 --> 00:01:40,766
+còn đối với lại cái linh nội bộ này
+
+41
+00:01:41,166 --> 00:01:42,766
+à là cái linh nội bộ điều hướng
+
+42
+00:01:43,066 --> 00:01:43,533
+thì à
+
+43
+00:01:43,533 --> 00:01:45,966
+trong cái việc mà anh em research cái cấu trúc website
+
+44
+00:01:46,133 --> 00:01:49,266
+thì anh em à cần phải làm cái loại link nội bộ này trước
+
+45
+00:01:49,733 --> 00:01:54,066
+đó thì ví dụ như là menu này hay là ở cái record ở đây này
+
+46
+00:01:54,400 --> 00:01:56,566
+hay là những cái link nội bộ như thế này ha
+
+47
+00:01:56,700 --> 00:01:57,400
+à thì à
+
+48
+00:01:57,400 --> 00:01:59,700
+trong cái quá trình mà anh em research cấu trúc website
+
+49
+00:01:59,866 --> 00:02:02,933
+cũng như là à mình triển khai cái giao diện website
+
+50
+00:02:03,366 --> 00:02:06,266
+thì mình cần phải research à những cái này à
+
+51
+00:02:06,300 --> 00:02:08,100
+để mà mình có các cái link nội bộ
+
+52
+00:02:08,166 --> 00:02:09,466
+điều hướng tốt nhất cho người dùng
+
+53
+00:02:09,733 --> 00:02:10,533
+ở các cái page
+
+54
+00:02:10,733 --> 00:02:11,900
+ở các cái ủa là
+
+55
+00:02:12,166 --> 00:02:13,733
+thích mà mình muốn sco
+
+56
+00:02:13,900 --> 00:02:15,933
+và mình à thống nhất luôn với anh em ha
+
+57
+00:02:16,166 --> 00:02:18,333
+à khi mà mình nói tới cái linh nội bộ
+
+58
+00:02:18,500 --> 00:02:19,666
+ở trong cái khóa học này á
+
+59
+00:02:20,100 --> 00:02:22,100
+thì thông thường mình sẽ nói tới cái loại linh nội bộ
+
+60
+00:02:22,166 --> 00:02:23,566
+có ngữ cảnh ha à
+
+61
+00:02:23,566 --> 00:02:26,600
+chứ mình sẽ không có nói tới cái linh nội bộ mà điều hướng
+
+62
+00:02:26,866 --> 00:02:29,400
+tại vì à cái linh nội bộ điều hướng này á nó
+
+63
+00:02:29,866 --> 00:02:33,100
+à bản chất nó chỉ là điều hướng cho người dùng thôi chứ
+
+64
+00:02:33,100 --> 00:02:34,600
+còn nếu mà nói về seo
+
+65
+00:02:34,733 --> 00:02:38,100
+thì chúng ta sẽ phải ngầm hiểu với nhau là cái link nội bộ à
+
+66
+00:02:38,133 --> 00:02:39,733
+cái dạng có ngữ cảnh này ha
+
+67
+00:02:39,866 --> 00:02:40,933
+để à chúng ta
+
+68
+00:02:41,166 --> 00:02:42,733
+tối ưu onpage cho bài viết
+
+69
+00:02:42,900 --> 00:02:44,533
+để chúng ta có thể rankking cho cái
+
+70
+00:02:45,066 --> 00:02:45,866
+bài viết của mình
+
+71
+00:02:45,900 --> 00:02:48,200
+hay là rankking cho cái từ khóa của mình nó tốt hơn
+
+72
+00:02:48,700 --> 00:02:50,133
+à rồi à một cái nữa
+
+73
+00:02:50,666 --> 00:02:54,700
+thì à đó là cái mô hình linh nội bộ thì trên lý thuyết á à
+
+74
+00:02:54,733 --> 00:02:55,533
+mình thường thấy
+
+75
+00:02:55,766 --> 00:02:58,266
+có ba cái loại linh nội bộ như này ha à
+
+76
+00:02:58,333 --> 00:03:00,133
+ví dụ như cái loại mà cấu trúc silo
+
+77
+00:03:00,300 --> 00:03:01,800
+thì anh em để ý như thế này ha
+
+78
+00:03:01,966 --> 00:03:03,300
+rồi ở đây là cái trang chủ
+
+79
+00:03:03,600 --> 00:03:06,333
+thế thì à nó sẽ chọn linh về cái chuyên mục
+
+80
+00:03:06,666 --> 00:03:08,366
+hoặc là cái danh mục sản phẩm ở đây
+
+81
+00:03:08,466 --> 00:03:10,933
+và trong đây thì nó có các cái baycon nữa à
+
+82
+00:03:11,000 --> 00:03:11,800
+thì nó sẽ
+
+83
+00:03:12,166 --> 00:03:15,700
+liên kết với nhau dựa trên các cái silo như thế này ha à
+
+84
+00:03:15,733 --> 00:03:16,866
+ví dụ như cái cục này
+
+85
+00:03:16,866 --> 00:03:19,133
+là một silo cái cục này là một silo
+
+86
+00:03:19,733 --> 00:03:21,166
+cái cục này à là một silo
+
+87
+00:03:21,766 --> 00:03:23,900
+và đây gọi là cái cấu trúc linh nội bộ
+
+88
+00:03:24,000 --> 00:03:25,966
+theo cái mô hình silo ha à
+
+89
+00:03:26,100 --> 00:03:27,200
+ngoài ra thì ở bên này
+
+90
+00:03:27,366 --> 00:03:29,800
+thì anh em thấy cái linh nội bộ theo cái mô hình
+
+91
+00:03:30,100 --> 00:03:31,300
+à gọi là kim tự tháp
+
+92
+00:03:31,533 --> 00:03:32,900
+thì nó cũng tương tự như silo
+
+93
+00:03:33,100 --> 00:03:35,966
+nhưng mà nó được phân ra chi tiết hơn à nó được à
+
+94
+00:03:36,500 --> 00:03:37,300
+và nhiều cái
+
+95
+00:03:37,700 --> 00:03:41,133
+à tầng bậc nhỏ ở trong này hơn nữa à và cuối cùng
+
+96
+00:03:41,566 --> 00:03:44,100
+đó là cái loại linh nội bộ bánh xe ha à
+
+97
+00:03:44,200 --> 00:03:47,700
+hay còn gọi là wheeling đó à thì anh em thấy cái url
+
+98
+00:03:48,000 --> 00:03:49,133
+seo của mình ở đây
+
+99
+00:03:49,400 --> 00:03:51,400
+và nó được à các cái bài súp bọt trỏ
+
+100
+00:03:51,600 --> 00:03:54,100
+chéo lẫn nhau như thế này theo một cái vòng hình à
+
+101
+00:03:54,200 --> 00:03:54,666
+bánh xe
+
+102
+00:03:54,666 --> 00:03:57,600
+như thế này thì người ta gọi là cái link nội bộ bánh xe à
+
+103
+00:03:57,666 --> 00:03:59,000
+tuy nhiên á đây chỉ là
+
+104
+00:03:59,566 --> 00:04:01,900
+à trên lý thuyết thôi ha anh em ha à
+
+105
+00:04:02,366 --> 00:04:04,400
+thực tế thì mình chưa thấy có một cái
+
+106
+00:04:04,933 --> 00:04:08,733
+website nào mà nó đi cái link nội bộ được như là à
+
+107
+00:04:08,866 --> 00:04:11,566
+cái mô hình này như là ba cái mô hình này à
+
+108
+00:04:11,566 --> 00:04:14,066
+và thực tế á thì anh em sẽ thấy cái link nội bộ
+
+109
+00:04:14,266 --> 00:04:15,800
+nó sẽ như thế này ha à
+
+110
+00:04:15,900 --> 00:04:18,066
+nó sẽ rối tung rối mù lên như thế này
+
+111
+00:04:18,400 --> 00:04:19,866
+thế thì để mà anh em dễ hình dung
+
+112
+00:04:19,900 --> 00:04:22,333
+hơn á thì mình sẽ vào trực tiếp cái website để
+
+113
+00:04:22,766 --> 00:04:23,700
+cho anh em dễ hình dung
+
+114
+00:04:24,000 --> 00:04:25,966
+và anh em nhìn thấy được cái link nội bộ
+
+115
+00:04:26,100 --> 00:04:29,566
+tại sao mà mình lại à nói nó thực tế nó như thế này ha à
+
+116
+00:04:29,566 --> 00:04:30,400
+rồi ô kê mình sẽ
+
+117
+00:04:30,933 --> 00:04:33,266
+à mở một cái website lên để mình demo
+
+118
+00:04:33,366 --> 00:04:34,266
+để mình chỉ cho anh em
+
+119
+00:04:34,533 --> 00:04:35,400
+cái cách mà à
+
+120
+00:04:35,533 --> 00:04:37,300
+người ta đi cái linh nội bộ nó như thế nào
+
+121
+00:04:37,333 --> 00:04:38,533
+nó sẽ rối như thế này ha
+
+122
+00:04:38,700 --> 00:04:40,300
+thế thì thực tế á thì mình thấy
+
+123
+00:04:40,800 --> 00:04:42,166
+à trên thị trường à
+
+124
+00:04:42,333 --> 00:04:43,966
+những cái người mà làm ceo
+
+125
+00:04:44,133 --> 00:04:46,866
+hay là không làm ceo á thì à cũng đi linh rối tung
+
+126
+00:04:47,000 --> 00:04:47,800
+rối mù lên
+
+127
+00:04:47,866 --> 00:04:50,500
+không có ông nội nào mà làm tốt ở một cái mô hình nào cả
+
+128
+00:04:51,066 --> 00:04:54,700
+và cái hình ảnh này nó đại diện cho cái chuyện mà rối tung
+
+129
+00:04:54,800 --> 00:04:56,333
+rối mù đó ra như vậy ha
+
+130
+00:04:56,700 --> 00:04:58,366
+à còn với cá nhân của mình á
+
+131
+00:04:58,700 --> 00:05:00,666
+thì mình sẽ đề xuất cho anh em sử dụng
+
+132
+00:05:00,933 --> 00:05:03,733
+cái mô hình gọi là topic cluster ha
+
+133
+00:05:03,800 --> 00:05:04,900
+à thì anh em thấy ở đây
+
+134
+00:05:05,333 --> 00:05:07,366
+à ví dụ như đây là một cái chủ đề cha
+
+135
+00:05:07,600 --> 00:05:09,966
+trong cái chủ đề cha này nó có cái chủ đề một nè
+
+136
+00:05:10,133 --> 00:05:12,800
+trong cái chủ đề một này nó có bài một bài hai bài ba
+
+137
+00:05:13,266 --> 00:05:15,600
+à thì ở đây lại chủ đề hai ở đây chủ đề ba
+
+138
+00:05:16,166 --> 00:05:17,166
+và có thể là cái
+
+139
+00:05:17,766 --> 00:05:19,066
+cục này à bài hai
+
+140
+00:05:19,100 --> 00:05:21,300
+của cái chủ đề ba nó có thể liên kết với bài năm
+
+141
+00:05:21,800 --> 00:05:25,900
+hay là cái bài bốn của cái chủ đề à ba
+
+142
+00:05:26,266 --> 00:05:29,300
+nó có thể liên kết với lại bài một của cái chủ đề à
+
+143
+00:05:29,500 --> 00:05:29,900
+một này
+
+144
+00:05:29,900 --> 00:05:32,333
+ha ừm thì nó sẽ liên kết lòng và lòng vòng như thế này
+
+145
+00:05:32,566 --> 00:05:36,000
+và bây giờ á thì mình sẽ demo cho anh em ở trên cái website
+
+146
+00:05:36,266 --> 00:05:37,066
+mình sẽ chỉ cho anh em
+
+147
+00:05:37,166 --> 00:05:38,500
+ở trên cái website thì anh em sẽ
+
+148
+00:05:38,700 --> 00:05:41,600
+dễ hình dung hơn là những cái hình ảnh như thế này ha à
+
+149
+00:05:41,666 --> 00:05:42,466
+rồi ô kê mình sẽ
+
+150
+00:05:43,000 --> 00:05:45,400
+mở một cái website lên để mình chỉ cho anh em thấy ha
+
+151
+00:05:45,533 --> 00:05:47,200
+rồi ô kê à anh em thấy ha
+
+152
+00:05:47,366 --> 00:05:50,200
+mình có vào cái website gọi là kim quốc tiến chấm com
+
+153
+00:05:50,466 --> 00:05:51,866
+đây à thì anh em xem nè
+
+154
+00:05:52,266 --> 00:05:54,100
+à thì đây là những cái link nội bộ
+
+155
+00:05:54,466 --> 00:05:56,766
+à mà gọi là điều hướng này ha à
+
+156
+00:05:56,800 --> 00:05:59,200
+ví dụ như đây gọi là linh nội bộ điều hướng này à
+
+157
+00:05:59,266 --> 00:06:01,100
+thế thì ở đây á anh em xem ha à
+
+158
+00:06:01,166 --> 00:06:02,133
+mình bấm vào cái hình này
+
+159
+00:06:02,666 --> 00:06:05,200
+đó thì nó sẽ ra một cái a danh mục sản phẩm
+
+160
+00:06:05,600 --> 00:06:07,166
+và khi mà cái danh mục sản phẩm này
+
+161
+00:06:07,200 --> 00:06:08,533
+chỗ này gọi là điều hướng này à
+
+162
+00:06:08,666 --> 00:06:11,066
+đây là cái blackcomb nó cũng là điều hướng ha à
+
+163
+00:06:11,100 --> 00:06:13,266
+và ở đây là những cái link này nó điều hướng này
+
+164
+00:06:13,666 --> 00:06:15,766
+còn cái link nội bộ mà nó có ngữ
+
+165
+00:06:15,800 --> 00:06:18,066
+cảnh là những cái ở dưới này như thế này ha anh em ha
+
+166
+00:06:18,266 --> 00:06:21,066
+đó thì ô kê à thế thì anh em xem
+
+167
+00:06:21,733 --> 00:06:24,166
+à ở đây mình sẽ quay ngược trở lại trang chủ
+
+168
+00:06:24,466 --> 00:06:25,566
+và từ thằng trang chủ này
+
+169
+00:06:26,100 --> 00:06:29,466
+nó liên kết với lại thằng à con của nó là thằng bồn cầu
+
+170
+00:06:29,866 --> 00:06:32,266
+và từ thằng bồn cầu này nó liên kết tới
+
+171
+00:06:32,733 --> 00:06:33,966
+à cái con của nó nữa
+
+172
+00:06:34,300 --> 00:06:36,766
+và từ cái bồn cầu một khối này nó lại liên kết
+
+173
+00:06:36,900 --> 00:06:39,066
+tới một cái bồn cầu một khối con của nó nữa
+
+174
+00:06:39,700 --> 00:06:41,600
+và từ cái con của nó thì nó lại liên kết
+
+175
+00:06:42,166 --> 00:06:44,966
+đó thì đó là những cái à về silo
+
+176
+00:06:45,133 --> 00:06:47,966
+như hồi nãy cái tấm hình hồi nãy mình đã nói rồi ha à
+
+177
+00:06:48,000 --> 00:06:49,566
+thế thì trong cái trường hợp này á
+
+178
+00:06:49,900 --> 00:06:50,700
+anh em xem
+
+179
+00:06:50,733 --> 00:06:53,700
+bây giờ mình sẽ vào một cái mục tư vấn này anh em xem ha à
+
+180
+00:06:53,733 --> 00:06:56,700
+thế thì anh em xem ở đây là cái mục mà tin tức như thế này
+
+181
+00:06:56,933 --> 00:06:58,066
+đúng hông tin tức như này
+
+182
+00:06:58,400 --> 00:07:00,766
+và ở đây nó có một cái bài viết là so sánh đi
+
+183
+00:07:01,133 --> 00:07:03,100
+thì cái này á không cùng một cái silo
+
+184
+00:07:03,266 --> 00:07:04,766
+ha không cùng một cái silo là
+
+185
+00:07:05,266 --> 00:07:06,900
+à bồn cầu à nữa
+
+186
+00:07:07,200 --> 00:07:09,566
+mà nó đã là một cái chuyên mục tin tức rồi
+
+187
+00:07:09,666 --> 00:07:11,066
+nó không hề nằm trên cái
+
+188
+00:07:11,466 --> 00:07:12,966
+à danh mục sản phẩm là bồn cầu
+
+189
+00:07:13,166 --> 00:07:16,300
+tại vì cái định dạng content của nó là khác nhau à tuy nhiên
+
+190
+00:07:16,333 --> 00:07:18,166
+á à anh em xem cái bài này ha
+
+191
+00:07:18,666 --> 00:07:21,933
+và nó sẽ chọn link về này à bồn cầu thông minh inax này đó
+
+192
+00:07:21,966 --> 00:07:24,000
+nó chọn link về cái bồn cầu thông minh inax
+
+193
+00:07:24,366 --> 00:07:26,500
+có nghĩa là từ cái tin tức nó chọn về cái
+
+194
+00:07:26,966 --> 00:07:29,666
+danh mục sản phẩm hoặc là nó chọn về cái sản phẩm
+
+195
+00:07:30,166 --> 00:07:31,200
+hoặc là nó chọn về
+
+196
+00:07:31,800 --> 00:07:33,766
+à cái à bài viết liên quan
+
+197
+00:07:34,200 --> 00:07:35,566
+hoặc là nó chọn về cả hai
+
+198
+00:07:35,800 --> 00:07:38,133
+đó mình là rất rất là bình thường ha à
+
+199
+00:07:38,200 --> 00:07:39,466
+và cái à
+
+200
+00:07:40,733 --> 00:07:42,300
+và cái mà mình khuyên anh em á
+
+201
+00:07:42,366 --> 00:07:45,666
+thì hãy đi cái linh nội bộ theo cái ngữ cảnh liên quan ha
+
+202
+00:07:45,733 --> 00:07:46,900
+cái ngữ cảnh liên quan là sao
+
+203
+00:07:47,200 --> 00:07:49,966
+ví dụ như ở đây nó có một cái ý là nên chọn
+
+204
+00:07:50,500 --> 00:07:53,766
+à thiết bị vệ sinh inax hay là cát sa gì nè à
+
+205
+00:07:53,800 --> 00:07:57,300
+thế thì ở đây nó có nhắc tới cái bồn cầu à thông minh inax
+
+206
+00:07:57,866 --> 00:07:59,700
+thì mình chắc chắn là mình muốn đi linh nội bộ
+
+207
+00:07:59,800 --> 00:08:01,066
+về cái này để bổ nghĩa
+
+208
+00:08:01,133 --> 00:08:01,900
+để rõ nghĩa
+
+209
+00:08:01,900 --> 00:08:04,133
+và để truyền sức mạnh cho cái linh này mà đúng hông
+
+210
+00:08:04,200 --> 00:08:05,600
+à thì để mình exciter
+
+211
+00:08:05,900 --> 00:08:06,700
+đó là cái
+
+212
+00:08:07,066 --> 00:08:10,600
+à cách mà chúng ta đi cái linh nội bộ nó như thế nào ha
+
+213
+00:08:10,800 --> 00:08:12,066
+anh em đừng có cứng nhắc quá
+
+214
+00:08:12,466 --> 00:08:13,700
+cứ liên quan là mình đi ha
+
+215
+00:08:13,966 --> 00:08:16,566
+cứ liên quan và tốt cho người dùng là mình đi à
+
+216
+00:08:16,600 --> 00:08:18,466
+thông thường là mình sẽ đi theo cái kiểu như
+
+217
+00:08:18,500 --> 00:08:19,400
+vậy và ở cái video
+
+218
+00:08:19,533 --> 00:08:21,766
+sau á thì mình cũng sẽ đi thị phạm một cái
+
+219
+00:08:22,333 --> 00:08:25,133
+à bài viết mình tối ưu on page nó như thế nào đi
+
+220
+00:08:25,266 --> 00:08:27,466
+link nội bộ nó như thế nào và tối ưu on page như thế nào
+
+221
+00:08:27,600 --> 00:08:29,133
+để anh em còn dễ hình dung ra hơn
+
+222
+00:08:29,566 --> 00:08:31,500
+và ở trong cái video này á thì mình muốn anh em
+
+223
+00:08:31,800 --> 00:08:35,766
+à đừng có bị bó buộc bởi một cái mô hình linh nội bộ nào cả
+
+224
+00:08:36,333 --> 00:08:38,766
+và nó cứ có ngữ cảnh liên quan thì anh em chọn
+
+225
+00:08:39,066 --> 00:08:40,766
+linh cho mình không sao cả à
+
+226
+00:08:40,800 --> 00:08:44,200
+tất cả các cái dự án mà mình triển khai ai à thành công tới
+
+227
+00:08:44,600 --> 00:08:45,666
+thời điểm hiện tại á
+
+228
+00:08:46,166 --> 00:08:48,266
+thì mình đều chọn link theo cái cách này hết
+
+229
+00:08:48,766 --> 00:08:49,700
+anh em cứ yên tâm ha
+
+230
+00:08:50,000 --> 00:08:52,533
+và ở cái video sau á mình sẽ hướng dẫn cho anh em
+
+231
+00:08:53,066 --> 00:08:55,266
+và thị phạm cho anh em một cái bài viết
+
+232
+00:08:55,533 --> 00:08:56,900
+thì mình chọn link nó như thế nào
+
+233
+00:08:56,933 --> 00:08:57,933
+mình tối ưu on page
+
+234
+00:08:58,066 --> 00:08:59,900
+như thế nào thì anh em còn dễ hình dung ra hơn
+
+235
+00:08:59,933 --> 00:09:00,733
+rất rất là nhiều nữa
+
+236
+00:09:01,333 --> 00:09:03,666
+rồi cảm ơn anh em đã theo dõi hết cái video này
+
+237
+00:09:03,866 --> 00:09:05,566
+hẹn gặp lại anh em ở những cái video sau
+

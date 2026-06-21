@@ -1,0 +1,644 @@
+1
+00:00:00,000 --> 00:00:01,333
+hai ngàn không trăm hai mươi lăm rồi
+
+2
+00:00:01,533 --> 00:00:02,733
+mà mình vẫn thấy nhiều anh em
+
+3
+00:00:02,966 --> 00:00:05,900
+làm sco cứ chăm chăm vào nhồi nhét từ khóa
+
+4
+00:00:06,100 --> 00:00:09,133
+tối ưu mật độ chèn từ khóa khắp nơi trong cái bài viết
+
+5
+00:00:09,566 --> 00:00:12,133
+thậm chí là mỗi một cái từ khóa lại viết thành một bài
+
+6
+00:00:12,666 --> 00:00:14,266
+hay tệ hơn là một từ khóa
+
+7
+00:00:14,400 --> 00:00:17,100
+mà anh em lại viết thành tùm lum cái bài viết khác nhau
+
+8
+00:00:17,566 --> 00:00:19,533
+chỉ vì anh em không hiểu cái thuật toán
+
+9
+00:00:19,700 --> 00:00:21,300
+và nghĩ rằng càng viết nhiều bài
+
+10
+00:00:21,566 --> 00:00:22,600
+thì càng dễ lên top
+
+11
+00:00:22,933 --> 00:00:24,266
+nếu mà anh em muốn cái website
+
+12
+00:00:24,333 --> 00:00:25,700
+của mình nó phát triển bền vững
+
+13
+00:00:25,800 --> 00:00:27,700
+á thì hãy bỏ ngay cái cách làm này đi
+
+14
+00:00:28,066 --> 00:00:31,166
+vì google bây giờ á đã hiểu được những cái gì mà người dùng
+
+15
+00:00:31,333 --> 00:00:32,266
+thực sự muốn tìm kiếm
+
+16
+00:00:32,766 --> 00:00:33,766
+nó không còn quan tâm
+
+17
+00:00:34,133 --> 00:00:37,166
+hay là đếm từng cái từ khóa trong cái bài viết để xếp hạng
+
+18
+00:00:37,366 --> 00:00:39,366
+nữa để chứng minh cho cái điều này á
+
+19
+00:00:39,533 --> 00:00:42,100
+mình sẽ kể cho anh em nghe một cái câu chuyện cá nhân
+
+20
+00:00:42,466 --> 00:00:44,266
+à nó hơi buồn cười một tí ha
+
+21
+00:00:44,400 --> 00:00:47,166
+hồi bé thì mình có xem một cái bộ phim rất là hay
+
+22
+00:00:47,766 --> 00:00:49,200
+và bây giờ á muốn xem lại
+
+23
+00:00:49,400 --> 00:00:51,933
+nhưng mà mình không nhớ nổi cái tên bộ phim đó là gì
+
+24
+00:00:52,366 --> 00:00:55,266
+chỉ nhớ mang máng á là có một cái con chim tên là
+
+25
+00:00:55,400 --> 00:00:57,733
+đớ mệt gì đó mình thì không biết tiếng anh
+
+26
+00:00:57,966 --> 00:01:00,200
+cho nên mình cũng không biết search tên con chim
+
+27
+00:01:00,300 --> 00:01:01,100
+này ra làm sao cả
+
+28
+00:01:01,666 --> 00:01:04,500
+và mình nhớ lúc nhỏ cái đám bạn của mình hay gọi đùa
+
+29
+00:01:04,800 --> 00:01:07,300
+à là cái con chim này là cái con chim đéo mệt
+
+30
+00:01:07,666 --> 00:01:10,666
+thế là mình lên trên google và mình gõ vào cái từ khóa
+
+31
+00:01:10,933 --> 00:01:12,966
+phim gì có con chim đéo mệt
+
+32
+00:01:13,533 --> 00:01:14,333
+và không thể tin được
+
+33
+00:01:14,800 --> 00:01:17,066
+kết quả trả ra chính xác là cái bộ phim
+
+34
+00:01:17,266 --> 00:01:19,300
+những cuộc phiêu lưu của simbad
+
+35
+00:01:19,500 --> 00:01:22,566
+và điều đặc biệt là những cái website mà nó được xếp hạng á
+
+36
+00:01:22,666 --> 00:01:25,100
+nó không hề chứa cái từ khóa mà mình search
+
+37
+00:01:25,300 --> 00:01:26,266
+câu chuyện vừa rồi á
+
+38
+00:01:26,333 --> 00:01:28,200
+chứng minh một cái điều cực kỳ là quan trọng
+
+39
+00:01:28,566 --> 00:01:29,366
+google bây giờ
+
+40
+00:01:29,800 --> 00:01:33,600
+không xếp hạng chỉ vì bài viết của anh em có chứa từ khóa à
+
+41
+00:01:33,666 --> 00:01:35,400
+mà nó hiểu được cái ý định tìm kiếm
+
+42
+00:01:35,600 --> 00:01:37,400
+đằng sau mỗi cái câu hỏi của người dùng
+
+43
+00:01:37,900 --> 00:01:39,600
+dù mình diễn đạt có ngây ngô
+
+44
+00:01:39,766 --> 00:01:41,566
+hay là buồn cười đến mức nào đi chăng nữa
+
+45
+00:01:41,966 --> 00:01:44,133
+thì google nó vẫn trả về cái kết quả phù hợp
+
+46
+00:01:44,666 --> 00:01:46,133
+và cái khả năng phi thường này á
+
+47
+00:01:46,166 --> 00:01:49,800
+nó đến từ một cái thuật toán có tên là google hummingbird
+
+48
+00:01:50,000 --> 00:01:51,933
+bước ngoặt lớn nhất trong cách mà google
+
+49
+00:01:52,200 --> 00:01:53,900
+nhìn nhận một cái truy vấn tìm kiếm
+
+50
+00:01:54,400 --> 00:01:55,500
+trong cái video này á
+
+51
+00:01:55,533 --> 00:01:58,366
+chúng ta sẽ đi tìm hiểu về google hummingbird
+
+52
+00:02:05,566 --> 00:02:06,333
+à ô kê
+
+53
+00:02:06,333 --> 00:02:08,166
+bây giờ thì mình sẽ đi sâu vào xem
+
+54
+00:02:08,366 --> 00:02:10,066
+hummingbird chính xác nó là cái gì
+
+55
+00:02:10,500 --> 00:02:12,066
+và tại sao nó được ví như
+
+56
+00:02:12,066 --> 00:02:13,200
+là một cái cuộc cách mạng
+
+57
+00:02:13,400 --> 00:02:15,533
+thay đổi toàn bộ cái cuộc chơi sco
+
+58
+00:02:15,800 --> 00:02:17,100
+thì để dễ hình dung á
+
+59
+00:02:17,200 --> 00:02:18,900
+mình có một cái ví dụ như thế này ha
+
+60
+00:02:19,300 --> 00:02:21,400
+nếu mà coi cái cỗ máy tìm kiếm của google
+
+61
+00:02:21,733 --> 00:02:23,100
+như là một cái chiếc xe hơi
+
+62
+00:02:23,500 --> 00:02:25,766
+thì các cái bạn cập nhật trước đó như là google
+
+63
+00:02:26,000 --> 00:02:27,933
+panda hay là google penguin
+
+64
+00:02:28,300 --> 00:02:29,733
+thì nó chỉ giống như là google
+
+65
+00:02:29,933 --> 00:02:31,200
+nó thay một cái lốp xe
+
+66
+00:02:31,400 --> 00:02:33,733
+hay là nó chỉnh sửa một cái phanh gì đó thôi
+
+67
+00:02:33,800 --> 00:02:35,900
+còn home button thì nó khác hoàn toàn
+
+68
+00:02:36,166 --> 00:02:38,000
+google vứt luôn cái động cơ cũ đi
+
+69
+00:02:38,200 --> 00:02:40,166
+và thay vào một cái động cơ hoàn toàn mới
+
+70
+00:02:40,766 --> 00:02:42,200
+nó mạnh mẽ hơn nó thông minh hơn
+
+71
+00:02:42,700 --> 00:02:43,866
+điều này có nghĩa là google
+
+72
+00:02:44,066 --> 00:02:44,933
+không còn xếp hạng
+
+73
+00:02:45,066 --> 00:02:47,333
+như là một cái cỗ máy tìm kiếm từ khóa nữa
+
+74
+00:02:47,766 --> 00:02:50,266
+anh em không thể nào mà viết bài rồi nhồi nhét dăm
+
+75
+00:02:50,400 --> 00:02:51,366
+ba cái từ khóa vào
+
+76
+00:02:51,666 --> 00:02:53,533
+và mong cầu được xếp hạng như trước nữa
+
+77
+00:02:53,766 --> 00:02:56,200
+mà anh em cần phải viết bài theo cái ý định tìm kiếm
+
+78
+00:02:56,500 --> 00:02:58,133
+thì mới có cái cơ hội được xếp hạng
+
+79
+00:02:58,466 --> 00:03:00,666
+nhìn lại dòng thời gian phát triển của google một chút
+
+80
+00:03:01,066 --> 00:03:02,733
+thì trước năm hai ngàn không trăm mười ba á
+
+81
+00:03:02,800 --> 00:03:05,866
+google chủ yếu tập trung vào các cái bộ lọc spam à
+
+82
+00:03:06,000 --> 00:03:08,566
+và như là google panda để xử lý nội dung rác
+
+83
+00:03:08,800 --> 00:03:11,000
+như là google penguin để xử lý linh bẩn
+
+84
+00:03:11,600 --> 00:03:13,200
+và google á nó xếp hạng dựa
+
+85
+00:03:13,300 --> 00:03:15,533
+vào các cái bài viết mà nó có chứa từ khóa
+
+86
+00:03:15,933 --> 00:03:17,766
+google nó sẽ vào nó đếm cái từ khóa à
+
+87
+00:03:17,900 --> 00:03:20,000
+cái bài viết này là có từ khóa à
+
+88
+00:03:20,100 --> 00:03:21,333
+do nó không có hiểu được
+
+89
+00:03:21,500 --> 00:03:23,400
+và không có phân tích được cái ý định tìm kiếm
+
+90
+00:03:24,066 --> 00:03:26,266
+nhưng mà google home button nó ra đời á
+
+91
+00:03:26,300 --> 00:03:28,800
+nó thay đổi hoàn toàn cái cách mà google nó hoạt động luôn
+
+92
+00:03:29,000 --> 00:03:30,166
+nó hiểu được cái ý định tìm kiếm
+
+93
+00:03:30,533 --> 00:03:31,300
+khi mà người dùng
+
+94
+00:03:31,300 --> 00:03:33,466
+search thì nó đoán trước được cái ý định tìm kiếm rồi
+
+95
+00:03:33,733 --> 00:03:35,266
+và nó trả về cái kết quả tốt hơn
+
+96
+00:03:35,700 --> 00:03:37,000
+và đây cũng là một cái bước ngoặt
+
+97
+00:03:37,200 --> 00:03:40,000
+mở đường cho cái kỷ nguyên tìm kiếm bằng ai sau này
+
+98
+00:03:40,300 --> 00:03:41,766
+ô kê vậy thì khi mà google
+
+99
+00:03:42,066 --> 00:03:44,166
+đã thay đổi cái động cơ mới rồi á thì
+
+100
+00:03:44,333 --> 00:03:46,533
+rõ ràng là cái luật chơi này cũng phải thay đổi
+
+101
+00:03:46,733 --> 00:03:48,800
+đúng hông hãy nhìn vào cái bảng so sánh này
+
+102
+00:03:49,200 --> 00:03:51,466
+để thấy được cái sự thay đổi một cách rõ ràng hơn
+
+103
+00:03:51,733 --> 00:03:52,900
+nhìn vào cái cột bên trái
+
+104
+00:03:52,966 --> 00:03:55,600
+cách làm seo cũ là nhồi nhét từ khóa
+
+105
+00:03:55,900 --> 00:03:57,700
+là cứ một cái từ khóa là viết một bài
+
+106
+00:03:58,200 --> 00:03:59,566
+là nội dung mỏng và rời rạc
+
+107
+00:03:59,900 --> 00:04:01,600
+cách cách làm này bây giờ nó hoàn toàn
+
+108
+00:04:02,066 --> 00:04:05,133
+không mang lại cái hiệu quả nữa à nhìn qua cái cột bên phải
+
+109
+00:04:05,400 --> 00:04:07,700
+trọng tâm bây giờ á phải là cái ý định tìm kiếm
+
+110
+00:04:08,133 --> 00:04:10,766
+phải là xây dựng nội dung theo cộng chủ đề phải
+
+111
+00:04:10,766 --> 00:04:12,266
+là tạo dựng cái nội dung chất lượng
+
+112
+00:04:12,533 --> 00:04:14,866
+và đáp ứng được cái ý định tìm kiếm của người dùng
+
+113
+00:04:15,166 --> 00:04:17,200
+chính vì vậy á cái quy trình để làm content
+
+114
+00:04:17,666 --> 00:04:20,100
+cũng cần phải thay đổi để seo hiệu quả hơn
+
+115
+00:04:20,466 --> 00:04:23,266
+trước đó cứ mỗi một từ khóa thì chúng ta viết một bài viết
+
+116
+00:04:23,666 --> 00:04:25,333
+viết theo công thức năm v kép một h
+
+117
+00:04:25,666 --> 00:04:28,333
+và viết theo cái số chữ là ba trăm chữ hoặc là năm trăm chữ
+
+118
+00:04:28,866 --> 00:04:30,566
+còn bây giờ á thì anh em cần phải hiểu
+
+119
+00:04:30,666 --> 00:04:31,666
+được cái ý định tìm kiếm
+
+120
+00:04:32,100 --> 00:04:33,566
+hiểu được cái người dùng họ muốn cái gì
+
+121
+00:04:33,966 --> 00:04:36,400
+từ đó mình nghiên cứu và gom nhóm cái từ khóa
+
+122
+00:04:36,500 --> 00:04:38,000
+có chung cái ý định tìm kiếm lại
+
+123
+00:04:38,100 --> 00:04:38,966
+để triển khai content
+
+124
+00:04:39,666 --> 00:04:42,200
+không phải là mỗi một cái từ khóa là viết một bài nữa
+
+125
+00:04:42,566 --> 00:04:45,066
+và từ cái bộ từ khóa mình đã nghiên cứu và gom nhóm
+
+126
+00:04:45,066 --> 00:04:45,966
+ở cái bước một á
+
+127
+00:04:46,133 --> 00:04:48,966
+anh em phải xây dựng cái nội dung làm sao cho nó phù hợp
+
+128
+00:04:49,300 --> 00:04:50,933
+nó đáp ứng được cái ý định tìm kiếm
+
+129
+00:04:51,266 --> 00:04:52,400
+xoay quanh các cái chủ đề
+
+130
+00:04:52,566 --> 00:04:53,966
+để cung cấp giá trị cho người dùng
+
+131
+00:04:54,366 --> 00:04:55,733
+giúp cho cái người dùng á
+
+132
+00:04:55,800 --> 00:04:57,866
+họ giải quyết được cái vấn đề của họ đang gặp phải
+
+133
+00:04:58,333 --> 00:05:00,533
+một cái lưu ý quan trọng cho anh em á là google
+
+134
+00:05:00,900 --> 00:05:02,733
+nó không bỏ các cái thuật toán cũ như là
+
+135
+00:05:02,900 --> 00:05:04,666
+panda thì nó vẫn lọc nội dung à
+
+136
+00:05:04,800 --> 00:05:07,200
+penguin thì nó vẫn kiểm tra backlink và
+
+137
+00:05:07,266 --> 00:05:08,533
+chất lượng nội dung và backlink
+
+138
+00:05:08,700 --> 00:05:10,066
+vẫn là một cái yếu tố cực kỳ
+
+139
+00:05:10,166 --> 00:05:11,166
+cực kỳ thì là quan trọng
+
+140
+00:05:11,300 --> 00:05:12,066
+nếu anh em hiểu được
+
+141
+00:05:12,066 --> 00:05:15,066
+hummingbird á thì anh em sẽ thay đổi cái mindset à
+
+142
+00:05:15,066 --> 00:05:17,866
+từ chăm chăm vào cái từ khóa sang tập trung vào người dùng
+
+143
+00:05:18,166 --> 00:05:20,733
+từ nhồi nhét từ khóa thành đáp ứng ý định tìm kiếm
+
+144
+00:05:21,066 --> 00:05:22,300
+từ viết bài theo số chữ
+
+145
+00:05:22,466 --> 00:05:24,133
+thành viết bài giúp ích cho người dùng
+
+146
+00:05:24,466 --> 00:05:25,566
+ô kê à vậy là chúng ta
+
+147
+00:05:26,100 --> 00:05:29,133
+đã hiểu rõ cái nguyên lý đằng sau của hummingbird rồi à
+
+148
+00:05:29,200 --> 00:05:31,600
+sau cái video này á anh em cần phải nắm được google
+
+149
+00:05:31,866 --> 00:05:33,700
+bây giờ nó đã hiểu được cái ý định tìm kiếm
+
+150
+00:05:34,200 --> 00:05:35,166
+chứ không còn xếp hạng
+
+151
+00:05:35,300 --> 00:05:37,300
+dựa vào cái việc mà nó đếm từ khóa
+
+152
+00:05:37,400 --> 00:05:38,866
+có trong cái bài viết của chúng ta nữa
+
+153
+00:05:39,266 --> 00:05:41,200
+còn làm như thế nào để chúng ta có thể phân tích
+
+154
+00:05:41,533 --> 00:05:43,100
+chính xác được cái ý định tìm kiếm
+
+155
+00:05:43,500 --> 00:05:45,366
+và xây dựng được các cái bài viết chất lượng
+
+156
+00:05:45,566 --> 00:05:47,533
+thì mình sẽ nói ở những cái video sau
+
+157
+00:05:47,800 --> 00:05:49,333
+anh em cứ yên tâm mình sẽ chia sẻ
+
+158
+00:05:49,766 --> 00:05:51,133
+và hướng dẫn chi tiết cho anh em
+
+159
+00:05:51,300 --> 00:05:53,333
+việc của anh em là học tiếp ha rồi
+
+160
+00:05:53,366 --> 00:05:55,700
+ô kê cảm ơn anh em đã xem hết cái video này
+
+161
+00:05:55,933 --> 00:05:57,700
+hẹn gặp lại anh em ở những cái video sau
+

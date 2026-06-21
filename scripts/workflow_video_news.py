@@ -23,7 +23,19 @@ def main():
         print("Usage: python scripts/workflow_video_news.py <script_or_file_or_url> [project_name] [aspect_ratio]")
         sys.exit(1)
 
+
+    if "--generate-broll" in sys.argv:
+        os.environ["SEOSONA_AUTO_BROLL"] = "1"
+        sys.argv.remove("--generate-broll")
+        print("[System] B-Roll AI Generation ENABLED.")
+        
+    if "--autopilot" in sys.argv:
+        os.environ["SEOSONA_AUTOPILOT"] = "1"
+        sys.argv.remove("--autopilot")
+        print("[System] Social Media Auto-Pilot ENABLED.")
+        
     input_value = sys.argv[1]
+
     project_name = sys.argv[2] if len(sys.argv) > 2 else None
     aspect_ratio = sys.argv[3] if len(sys.argv) > 3 else "9:16"
 
