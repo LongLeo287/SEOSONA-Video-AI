@@ -11,7 +11,7 @@ except ImportError:  # pragma: no cover - runtime fallback for minimal environme
 
 
 DEFAULT_HYPERFRAMES_SOURCE = None
-DEFAULT_LOHA_SKILL = None
+DEFAULT_seosona_SKILL = None
 
 
 def _exists(root: str, relative_path: str) -> bool:
@@ -23,6 +23,16 @@ def _read_text(path: str) -> str:
         return ""
     with open(path, "r", encoding="utf-8", errors="replace") as handle:
         return handle.read()
+
+
+def _hyperframes_readme_candidates(source_root: str) -> List[str]:
+    candidates = [
+        os.path.join(source_root, "README.md"),
+        os.path.join(source_root, "packages", "cli", "README.md"),
+        os.path.join(source_root, "packages", "core", "README.md"),
+        os.path.join(source_root, "packages", "engine", "README.md"),
+    ]
+    return [path for path in candidates if os.path.exists(path)]
 
 
 def _load_config(project_root: str) -> Dict[str, Any]:
@@ -50,33 +60,37 @@ def _default_external_sources(project_root: str) -> Dict[str, str]:
         Path(os.environ["SEOSONA_HYPERFRAMES_SOURCE"]).expanduser()
     ] if os.environ.get("SEOSONA_HYPERFRAMES_SOURCE") else []
     hyperframes_candidates.extend([
+        project_path / "5_FRAMEWORK" / "hf_engine",
+        project_path / "5_FRAMEWORK" / "hf_engine" / "hyperframes-main",
+        project_path / "5_FRAMEWORK" / "hf_core",
         drive_downloads / "hyperframes-main",
         home_downloads / "hyperframes-main",
     ])
 
-    loha_candidates = [
-        Path(os.environ["SEOSONA_LOHA_SKILL"]).expanduser()
-    ] if os.environ.get("SEOSONA_LOHA_SKILL") else []
-    loha_candidates.extend([
-        drive_downloads / "loha-video-maker_SKILL.md",
-        home_downloads / "loha-video-maker_SKILL.md",
+    seosona_candidates = [
+        Path(os.environ["SEOSONA_seosona_SKILL"]).expanduser()
+    ] if os.environ.get("SEOSONA_seosona_SKILL") else []
+    seosona_candidates.extend([
+        project_path / ".agents" / "skills" / "seosona-news-maker" / "SKILL.md",
+        drive_downloads / "seosona-news-maker_SKILL.md",
+        home_downloads / "seosona-news-maker_SKILL.md",
     ])
 
     return {
         "hyperframes_source": _first_existing_path(hyperframes_candidates),
-        "loha_skill_path": _first_existing_path(loha_candidates),
+        "seosona_skill_path": _first_existing_path(seosona_candidates),
     }
 
 
 def run_integration_audit(
     project_root: str,
     hyperframes_source: str = DEFAULT_HYPERFRAMES_SOURCE,
-    loha_skill_path: str = DEFAULT_LOHA_SKILL,
+    seosona_skill_path: str = DEFAULT_seosona_SKILL,
 ) -> Dict[str, Any]:
     project_root = os.path.abspath(project_root)
     defaults = _default_external_sources(project_root)
     hyperframes_source = hyperframes_source or defaults["hyperframes_source"]
-    loha_skill_path = loha_skill_path or defaults["loha_skill_path"]
+    seosona_skill_path = seosona_skill_path or defaults["seosona_skill_path"]
     checks: List[Dict[str, Any]] = []
     issues: List[Dict[str, Any]] = []
 
@@ -86,28 +100,28 @@ def run_integration_audit(
             issues.append({"id": issue_id, "severity": severity, "area": name, "detail": detail})
 
     hyperframes_source = os.path.abspath(hyperframes_source)
-    loha_skill_path = os.path.abspath(loha_skill_path)
+    seosona_skill_path = os.path.abspath(seosona_skill_path)
 
     check(
         "HyperFrames local source",
         os.path.isdir(hyperframes_source)
         and os.path.exists(os.path.join(hyperframes_source, "package.json"))
-        and os.path.exists(os.path.join(hyperframes_source, "README.md")),
+        and bool(_hyperframes_readme_candidates(hyperframes_source)),
         hyperframes_source,
         "SV-INT-HYPERFRAMES-SOURCE",
         "P1",
     )
     check(
-        "LoHa source skill",
-        os.path.isfile(loha_skill_path),
-        loha_skill_path,
-        "SV-INT-LOHA-SOURCE",
+        "SEOSONA source skill",
+        os.path.isfile(seosona_skill_path),
+        seosona_skill_path,
+        "SV-INT-seosona-SOURCE",
         "P1",
     )
 
     required_project_files = [
         (".agents/skills/hyperframes/SKILL.md", "SV-INT-HYPERFRAMES-SKILL"),
-        (".agents/skills/loha-video-maker/SKILL.md", "SV-INT-LOHA-SKILL"),
+        (".agents/skills/seosona-news-maker/SKILL.md", "SV-INT-seosona-SKILL"),
         ("6_SOP/HYPERFRAMES_INTEGRATION.md", "SV-INT-HYPERFRAMES-SOP"),
         ("6_SOP/tech_news_faceless_sop.md", "SV-INT-NEWS-SOP"),
         ("4_BRAIN/news_video_standards.py", "SV-INT-NEWS-STANDARDS"),
@@ -176,20 +190,25 @@ def run_integration_audit(
         "P1",
     )
 
-    loha_text = _read_text(loha_skill_path)
+    seosona_text = _read_text(seosona_skill_path)
     check(
-        "LoHa rules assimilated: text separate from pronunciation",
-        "TEXT" in loha_text.upper() and ("PHIEN" in loha_text.upper() or "PHI" in loha_text.upper()),
-        loha_skill_path,
-        "SV-INT-LOHA-RULES",
+        "SEOSONA rules assimilated: text separate from pronunciation",
+        "TEXT" in seosona_text.upper() and ("PHIEN" in seosona_text.upper() or "PHI" in seosona_text.upper()),
+        seosona_skill_path,
+        "SV-INT-seosona-RULES",
         "P2",
     )
 
-    hyperframes_readme = _read_text(os.path.join(hyperframes_source, "README.md"))
+    hyperframes_readme = "\n".join(_read_text(path) for path in _hyperframes_readme_candidates(hyperframes_source))
     check(
         "HyperFrames source capability: HTML render video",
-        "Render video" in hyperframes_readme or "render video" in hyperframes_readme,
-        os.path.join(hyperframes_source, "README.md"),
+        (
+            "Render video" in hyperframes_readme
+            or "render video" in hyperframes_readme
+            or "rendering HTML video" in hyperframes_readme
+            or "web-page-to-video" in hyperframes_readme
+        ),
+        _hyperframes_readme_candidates(hyperframes_source),
         "SV-INT-HYPERFRAMES-CAPABILITY",
         "P2",
     )
@@ -201,7 +220,7 @@ def run_integration_audit(
         "project_root": project_root,
         "sources": {
             "hyperframes_local": hyperframes_source,
-            "loha_skill": loha_skill_path,
+            "seosona_skill": seosona_skill_path,
             "hermes_agent": "https://github.com/NousResearch/hermes-agent",
             "hyperframes_upstream": "https://github.com/heygen-com/hyperframes",
         },
@@ -216,10 +235,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Audit SEOSONA Video external integration readiness.")
     parser.add_argument("--project-root", default=os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
     parser.add_argument("--hyperframes-source", default=DEFAULT_HYPERFRAMES_SOURCE)
-    parser.add_argument("--loha-skill", default=DEFAULT_LOHA_SKILL)
+    parser.add_argument("--seosona-skill", default=DEFAULT_seosona_SKILL)
     args = parser.parse_args()
 
-    result = run_integration_audit(args.project_root, args.hyperframes_source, args.loha_skill)
+    result = run_integration_audit(args.project_root, args.hyperframes_source, args.seosona_skill)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if result["ok"] else 1
 

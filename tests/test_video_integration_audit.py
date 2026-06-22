@@ -22,7 +22,7 @@ class VideoIntegrationAuditTests(unittest.TestCase):
             required_files = [
                 "system_config.yaml",
                 ".agents/skills/hyperframes/SKILL.md",
-                ".agents/skills/loha-video-maker/SKILL.md",
+                ".agents/skills/seosona-news-maker/SKILL.md",
                 "6_SOP/HYPERFRAMES_INTEGRATION.md",
                 "6_SOP/tech_news_faceless_sop.md",
                 "5_FRAMEWORK/news_spatial_hyperframes/index.html",
@@ -48,20 +48,20 @@ profiles:
             )
 
             hyperframes_source = os.path.join(tmp, "downloads", "hyperframes-main")
-            loha_skill = os.path.join(tmp, "downloads", "loha-video-maker_SKILL.md")
+            seosona_skill = os.path.join(tmp, "downloads", "seosona-news-maker_SKILL.md")
             touch("downloads/hyperframes-main/README.md", "Write HTML. Render video.")
             touch("downloads/hyperframes-main/package.json", "{\"name\":\"hyperframes-monorepo\"}")
-            touch("downloads/loha-video-maker_SKILL.md", "TEXT/PHU DE != PHIEN AM\nSFX\n")
+            touch("downloads/seosona-news-maker_SKILL.md", "TEXT/PHU DE != PHIEN AM\nSFX\n")
 
             result = run_integration_audit(
                 project_root=tmp,
                 hyperframes_source=hyperframes_source,
-                loha_skill_path=loha_skill,
+                seosona_skill_path=seosona_skill,
             )
 
             self.assertFalse(result["ok"])
             self.assertTrue(any(check["name"] == "HyperFrames local source" and check["ok"] for check in result["checks"]))
-            self.assertTrue(any(check["name"] == "LoHa source skill" and check["ok"] for check in result["checks"]))
+            self.assertTrue(any(check["name"] == "SEOSONA source skill" and check["ok"] for check in result["checks"]))
             self.assertTrue(any(issue["id"] == "SV-INT-VOICE-REFERENCE" for issue in result["issues"]))
 
 

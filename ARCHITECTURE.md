@@ -120,6 +120,10 @@ Rendered package -> publisher_agent metadata package -> yutu candidate adapter -
 - Obscura browser automation: `~/.seosona/2_KNOWLEDGE/frameworks/browser_automation/obscura_headless_browser/SKILL.md`
 - Project memory namespace: `~/.seosona/3_MEMORY/projects/seosona-video/`
 
+Project scripts resolve these anchors through `scripts/seosona-project-bridge.cjs`.
+Do not bypass the project bridge for autonomy intake, doctor, route, manifest, or
+validation commands.
+
 ## Directory Contract
 
 ```text
@@ -134,6 +138,16 @@ Rendered package -> publisher_agent metadata package -> yutu candidate adapter -
 8_WORKSPACE/    Generated production outputs
 scripts/        Project bridge, runtime, and audit tooling
 ```
+
+## Reconnection Contract
+
+The current anti-drift map is `6_SOP/SEOSONA_VIDEO_RECONNECTION_MAP.md`.
+
+- `npm run seosona:doctor` is a lightweight project binding check.
+- `npm run seosona:doctor -- --strict` additionally fails on global OS graph findings.
+- `scripts/seosona-python.cjs` runs only the requested Python command by default.
+- Set `SEOSONA_PYTHON_BOOTSTRAP=1` only when the local machine intentionally needs bootstrap/install behavior.
+- `npm run autonomy:intake` must go through the project bridge so it can survive a stale `~/.seosona` junction.
 
 ## Iron Rules
 

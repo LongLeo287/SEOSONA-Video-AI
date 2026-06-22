@@ -19,10 +19,12 @@ function run(command, args) {
     cwd: root,
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: Number(process.env.SEOSONA_AUDIT_COMMAND_TIMEOUT_MS || 90000),
   });
   return {
     ok: result.status === 0,
     exitCode: result.status,
+    timedOut: Boolean(result.error && result.error.code === 'ETIMEDOUT'),
     stdout: (result.stdout || '').trim(),
     stderr: (result.stderr || result.error?.message || '').trim(),
   };
@@ -40,6 +42,20 @@ function isGitIgnored(relativePath) {
     stdio: ['ignore', 'pipe', 'pipe'],
   });
   return result.status === 0;
+}
+
+function parseJsonSafe(value) {
+  if (!value) return null;
+  try {
+    return JSON.parse(value);
+  } catch {
+    return null;
+  }
+}
+
+function projectStatus() {
+  const result = run(process.execPath, ['scripts/seosona-project-bridge.cjs', 'resolve']);
+  return result.ok ? parseJsonSafe(result.stdout) : null;
 }
 
 function findPython() {
@@ -76,10 +92,16 @@ function audit() {
   const manifest = readJson('seosona.project.json');
   const issues = [];
   const checks = [];
+  const warnings = [];
 
   function check(name, ok, detail, severity = 'P2') {
     checks.push({ name, ok, detail });
     if (!ok) issues.push({ severity, name, detail });
+  }
+
+  function warn(name, ok, detail) {
+    checks.push({ name, ok, detail, warning: true });
+    if (!ok) warnings.push({ name, detail });
   }
 
   const requiredDirs = [
@@ -107,6 +129,10 @@ function audit() {
     '6_SOP/MASTER_OPERATION.md',
     '6_SOP/SEOSONA_WORKFLOW_BOUNDARY_MAP.md',
     '6_SOP/EXTERNAL_VIDEO_REPO_CAPABILITY_MAP.md',
+    '6_SOP/HYPERFRAMES_INTEGRATION.md',
+    '6_SOP/SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY.md',
+    '6_SOP/SEOSONA_VIDEO_RECONNECTION_MAP.md',
+    '.agents/skills/seosona-video-operator/SKILL.md',
     '2_KNOWLEDGE/repos/yutu.md',
     '2_KNOWLEDGE/repos/obscura.md',
   ];
@@ -130,6 +156,21 @@ function audit() {
   check('manifest uses portable OS root', manifest.osRoot === '~/.seosona', `osRoot=${manifest.osRoot}`);
   check('manifest memory namespace', manifest.memoryNamespace === 'seosona-video', `memoryNamespace=${manifest.memoryNamespace}`);
 
+  check(
+    'autonomy intake uses project bridge resolver',
+    packageJson.scripts?.['autonomy:intake'] === 'node scripts/seosona-project-bridge.cjs intake',
+    packageJson.scripts?.['autonomy:intake'],
+    'P1',
+  );
+
+  const pythonWrapper = readText('scripts/seosona-python.cjs');
+  check(
+    'python wrapper bootstrap is opt-in',
+    pythonWrapper.includes("SEOSONA_PYTHON_BOOTSTRAP === '1'") && !pythonWrapper.includes('AUTO BOOTSTRAPPER HOOK'),
+    'Python commands must not install/update dependencies unless SEOSONA_PYTHON_BOOTSTRAP=1 is set',
+    'P1',
+  );
+
   const python = findPython();
   check('python runtime available', Boolean(python), python || 'No python/python3/py launcher found', 'P1');
 
@@ -139,8 +180,9 @@ function audit() {
   ];
   for (const logo of logoFiles) check(`brand asset: ${logo}`, exists(logo), logo, 'P1');
 
-  const osHome = process.env.USERPROFILE || process.env.HOME || '';
-  const osRoot = path.join(osHome, '.seosona');
+  const status = projectStatus();
+  check('project bridge resolves SEOSONA OS', Boolean(status && status.ok && status.osRoot), status, 'P1');
+  const osRoot = status && status.osRoot ? status.osRoot : path.join(process.env.USERPROFILE || process.env.HOME || '', '.seosona');
   const osArtifacts = [
     {
       name: 'yutu ingestion artifact',
@@ -165,7 +207,7 @@ function audit() {
   ];
   for (const artifact of osArtifacts) {
     const found = artifact.alternatives.find((relativePath) => fs.existsSync(path.join(osRoot, relativePath)));
-    check(`OS artifact: ${artifact.name}`, Boolean(found), found || artifact.alternatives);
+    warn(`optional OS artifact: ${artifact.name}`, Boolean(found), found || artifact.alternatives);
   }
 
   const secretFindings = [
@@ -278,6 +320,7 @@ function audit() {
     generatedAt: new Date().toISOString(),
     project: manifest.name,
     checks,
+    warnings,
     issues,
   };
 

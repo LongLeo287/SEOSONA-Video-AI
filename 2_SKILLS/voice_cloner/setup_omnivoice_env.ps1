@@ -1,14 +1,14 @@
 <#
 .SYNOPSIS
-Setup script to isolate F5-TTS into its own virtual environment (.venv-f5)
+Setup script to isolate OmniVoice into its own virtual environment (.venv-omnivoice)
 following the SEOSONA AI video pipeline architecture.
 #>
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$VenvDir = Join-Path $ScriptDir ".venv-f5"
+$VenvDir = Join-Path $ScriptDir ".venv-omnivoice"
 
 Write-Host "==============================================" -ForegroundColor Cyan
-Write-Host " F5-TTS LOCAL ENVIRONMENT SETUP (.venv-f5)" -ForegroundColor Cyan
+Write-Host " OmniVoice LOCAL ENVIRONMENT SETUP (.venv-omnivoice)" -ForegroundColor Cyan
 Write-Host "==============================================" -ForegroundColor Cyan
 
 # 1. Create Virtual Environment
@@ -23,15 +23,15 @@ if (-not (Test-Path $VenvDir)) {
     Write-Host "[1/4] Virtual environment already exists at $VenvDir." -ForegroundColor Green
 }
 
-# 3. Install PyTorch with CUDA 12.4
-Write-Host "[2/4] Installing PyTorch with CUDA 12.4 (NVIDIA GPU Support)..." -ForegroundColor Yellow
+# 2. Install PyTorch with CUDA
+Write-Host "[2/4] Installing PyTorch with CUDA (NVIDIA GPU Support)..." -ForegroundColor Yellow
 uv pip install --python $VenvDir torch==2.4.0+cu124 torchaudio==2.4.0+cu124 --extra-index-url https://download.pytorch.org/whl/cu124
 
-# 4. Install F5-TTS from Source
-Write-Host "[3/4] Installing F5-TTS and its dependencies..." -ForegroundColor Yellow
-uv pip install --python $VenvDir git+https://github.com/SWivid/F5-TTS.git
+# 3. Install OmniVoice from Source
+Write-Host "[3/4] Installing OmniVoice and its dependencies..." -ForegroundColor Yellow
+uv pip install --python $VenvDir git+https://github.com/k2-fsa/OmniVoice.git
 
-# 5. Setup reference audio directory
+# 4. Setup reference audio directory
 $WorkspaceDir = Join-Path (Split-Path (Split-Path $ScriptDir -Parent) -Parent) "7_ASSETS\refvoice"
 if (-not (Test-Path $WorkspaceDir)) {
     Write-Host "[4/4] Creating reference voice directory at $WorkspaceDir..." -ForegroundColor Yellow
@@ -42,6 +42,6 @@ if (-not (Test-Path $WorkspaceDir)) {
 }
 
 Write-Host "==============================================" -ForegroundColor Cyan
-Write-Host "✅ F5-TTS Setup Complete!" -ForegroundColor Green
+Write-Host "✅ OmniVoice Setup Complete!" -ForegroundColor Green
 Write-Host "The SEOSONA Video pipeline will automatically use this isolated environment." -ForegroundColor Green
 Write-Host "==============================================" -ForegroundColor Cyan

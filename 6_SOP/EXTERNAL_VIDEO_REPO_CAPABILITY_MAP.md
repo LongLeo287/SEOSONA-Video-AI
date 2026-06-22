@@ -83,8 +83,8 @@ This SOP maps external video repositories into SEOSONA Video without duplicate e
 | `caption_quality_pass` | VideoLingo, VideoCaptioner | `2_SKILLS/srt_maker/` | Segment readability, punctuation repair, translation review, and alignment checks. |
 | `highlight_ranker` | autoclip, video-use | `2_SKILLS/video_clipper/` | Score long-video moments before cutting shorts. |
 | `scene_graph_manifest` | graphify, open-design | `5_FRAMEWORK/hf_core/` | Store render scenes, assets, text, timings, and dependencies as a queryable graph. |
-| `video_template_factory` | HyperFrames, LoHa video-maker | `4_BRAIN/video_template_factory.py` | Export verified HyperFrames render outputs into clone-safe reusable templates. |
-| `video_integration_audit` | Hermes-style operating checks, HyperFrames, LoHa | `4_BRAIN/video_integration_audit.py` | Audit local source snapshots, skills, SOPs, assets, voice policy, and template readiness. |
+| `video_template_factory` | HyperFrames, SEOSONA video-maker | `4_BRAIN/video_template_factory.py` | Export verified HyperFrames render outputs into clone-safe reusable templates. |
+| `video_integration_audit` | Hermes-style operating checks, HyperFrames, SEOSONA | `4_BRAIN/video_integration_audit.py` | Audit local source snapshots, skills, SOPs, assets, voice policy, and template readiness. |
 
 ## Validation Checklist
 

@@ -11,6 +11,9 @@ SEOSONA Video uses HyperFrames as the primary HTML-to-video renderer for templat
 - Active render project: `5_FRAMEWORK/hf_core/`
 - Reusable stat-card render project: `5_FRAMEWORK/hf_cards/`
 
+For the full workspace connection map, read
+`6_SOP/SEOSONA_VIDEO_RECONNECTION_MAP.md`.
+
 Do not create another HyperFrames vendor tree. The local `registry/` is already synchronized with the external HyperFrames repo, so new ingestion work should update the single `.skills/` snapshot or create SEOSONA-native adapters around it.
 
 ## Routing

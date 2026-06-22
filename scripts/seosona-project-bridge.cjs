@@ -5,6 +5,7 @@ const { spawnSync } = require('child_process');
 
 const repoRoot = path.resolve(__dirname, '..');
 const manifestPath = path.join(repoRoot, 'seosona.project.json');
+const DEFAULT_BRIDGE_TIMEOUT_MS = Number(process.env.SEOSONA_BRIDGE_TIMEOUT_MS || 60000);
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -91,7 +92,16 @@ function projectStatus() {
   };
 }
 
-function runBridge(command, args) {
+function parseJsonSafe(value) {
+  if (!value) return null;
+  try {
+    return JSON.parse(value);
+  } catch {
+    return value;
+  }
+}
+
+function runBridge(command, args, options = {}) {
   const status = projectStatus();
   if (!status.ok) {
     process.stdout.write(`${JSON.stringify(status, null, 2)}\n`);
@@ -103,15 +113,22 @@ function runBridge(command, args) {
     cwd: repoRoot,
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: options.timeoutMs || DEFAULT_BRIDGE_TIMEOUT_MS,
   });
 
   if (result.stdout) process.stdout.write(result.stdout);
   if (result.stderr) process.stderr.write(result.stderr);
+  if (result.error && result.error.code === 'ETIMEDOUT') {
+    process.stderr.write(`SEOSONA bridge command timed out after ${options.timeoutMs || DEFAULT_BRIDGE_TIMEOUT_MS}ms\n`);
+    process.exitCode = 1;
+    return;
+  }
   process.exitCode = result.status || 0;
 }
 
-function doctor() {
+function doctor(args = []) {
   const status = projectStatus();
+  const strict = args.includes('--strict');
   const checks = [];
 
   checks.push({ name: 'project manifest', ok: fs.existsSync(manifestPath), path: manifestPath });
@@ -129,23 +146,71 @@ function doctor() {
       cwd: repoRoot,
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
+      timeout: DEFAULT_BRIDGE_TIMEOUT_MS,
     });
     bridgeValidation = {
-      ok: result.status === 0,
+      ok: result.status === 0 && !(result.error && result.error.code === 'ETIMEDOUT'),
       exitCode: result.status,
-      stdout: result.stdout ? JSON.parse(result.stdout) : null,
-      stderr: result.stderr,
+      timedOut: Boolean(result.error && result.error.code === 'ETIMEDOUT'),
+      stdout: parseJsonSafe(result.stdout),
+      stderr: result.stderr || (result.error ? result.error.message : ''),
     };
   }
 
+  const warnings = [];
+  if (bridgeValidation && !bridgeValidation.ok) {
+    warnings.push({
+      name: 'SEOSONA OS strict validation',
+      detail: 'Project anchors resolve, but the global OS bridge strict validate returned findings. Run npm run seosona:doctor -- --strict to fail on them.',
+      bridgeValidation,
+    });
+  }
+
+  const projectOk = checks.every((check) => check.ok);
   const output = {
-    ok: checks.every((check) => check.ok) && (!bridgeValidation || bridgeValidation.ok),
+    ok: projectOk && (!strict || !bridgeValidation || bridgeValidation.ok),
+    projectOk,
+    strict,
     status,
     checks,
     bridgeValidation,
+    warnings,
   };
   process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
   if (!output.ok) process.exitCode = 1;
+}
+
+function intake(args) {
+  const status = projectStatus();
+  if (!status.ok) {
+    process.stdout.write(`${JSON.stringify(status, null, 2)}\n`);
+    process.exitCode = 1;
+    return;
+  }
+
+  const scriptPath = path.join(status.osRoot, '1_CORE', 'scripts', 'autonomous_activation_gate.py');
+  if (!fs.existsSync(scriptPath)) {
+    process.stdout.write(`${JSON.stringify({
+      ok: false,
+      error: 'Missing autonomous activation gate',
+      script: '~/.seosona/1_CORE/scripts/autonomous_activation_gate.py',
+    }, null, 2)}\n`);
+    process.exitCode = 1;
+    return;
+  }
+
+  const result = spawnSync(process.execPath, ['scripts/seosona-python.cjs', scriptPath, ...args], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+    stdio: 'inherit',
+    timeout: Number(process.env.SEOSONA_INTAKE_TIMEOUT_MS || 120000),
+  });
+  if (result.error && result.error.code === 'ETIMEDOUT') {
+    process.stderr.write('SEOSONA autonomy intake timed out.\n');
+    process.exitCode = 1;
+    return;
+  }
+  process.exitCode = result.status || 0;
 }
 
 function main() {
@@ -153,7 +218,9 @@ function main() {
   if (command === 'resolve') {
     process.stdout.write(`${JSON.stringify(projectStatus(), null, 2)}\n`);
   } else if (command === 'doctor') {
-    doctor();
+    doctor(args);
+  } else if (command === 'intake') {
+    intake(args);
   } else if (['manifest', 'route', 'validate', 'audit-portability'].includes(command)) {
     runBridge(command, args);
   } else {

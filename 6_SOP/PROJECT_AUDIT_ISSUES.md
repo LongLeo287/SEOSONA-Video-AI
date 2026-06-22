@@ -19,6 +19,12 @@ Scope: Full SEOSONA Video operational audit, workflow boundaries, voice/subtitle
 
 | ID | Severity | Area | Issue | Action |
 |---|---|---|---|---|
+| SV-AUD-039 | P1 | Project bridge | `npm run seosona:doctor` could fail the project health gate on unrelated global OS strict-validation findings. | Split default project binding health from strict OS graph validation; strict mode remains available with `npm run seosona:doctor -- --strict`. |
+| SV-AUD-040 | P1 | Autonomy intake | `autonomy:intake` expanded `~/.seosona` through a stale user-home junction and could not find the OS script. | Routed intake through `scripts/seosona-project-bridge.cjs intake`, which resolves OS root through the project manifest and fallback anchors. |
+| SV-AUD-041 | P1 | Python wrapper | `scripts/seosona-python.cjs` ran the heavy bootstrapper before every Python command, causing install/update/download side effects during audit and intake. | Made bootstrap opt-in with `SEOSONA_PYTHON_BOOTSTRAP=1`; normal commands now execute only the requested script. |
+| SV-AUD-042 | P2 | Audit scope | Project audit treated optional yutu/obscura OS artifacts as core HyperFrames blockers. | Reclassified optional upstream OS artifacts as warnings and kept production-blocking checks focused on SEOSONA Video core contracts. |
+| SV-AUD-043 | P2 | Workspace topology | HyperFrames runtime, vendor snapshots, project skills, SOPs, and workspace outputs lacked a single reconnection map. | Added `6_SOP/SEOSONA_VIDEO_RECONNECTION_MAP.md` and linked it from the HyperFrames SOP. |
+| SV-AUD-044 | P1 | Integration audit | `npm run video:audit:integration` failed when external Downloads copies of HyperFrames and SEOSONA were absent, even though project-local snapshots existed. | Added project-local fallback sources: `5_FRAMEWORK/hf_engine` for HyperFrames and `.agents/skills/seosona-news-maker/SKILL.md` for SEOSONA. |
 | SV-AUD-021 | P2 | Project audit | `4_BRAIN/pipeline_manager.py` contained duplicate `_estimate_word_level_data_from_script` definitions. | Kept one active implementation and renamed the legacy version. |
 | SV-AUD-027 | P1 | Video/image boundary | `run_pipeline(..., mode="carousel")` could still hit a legacy image branch inside the video pipeline. | Added a hard runtime guard and removed the unreachable carousel branch. |
 | SV-AUD-028 | P1 | Post image workflow | Offline LLM routing could return carousel slide JSON where caption code expected a dict. | Prioritized PAS/social routing and added caption recovery for unexpected provider output. |

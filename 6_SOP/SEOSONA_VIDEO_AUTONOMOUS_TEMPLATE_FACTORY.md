@@ -4,7 +4,7 @@ Created: 2026-06-21
 
 ## Purpose
 
-This SOP connects HyperFrames, LoHa video-maker rules, Hermes Agent operating patterns, and SEOSONA Video into one repeatable workflow for Vietnamese tech-news videos, reusable templates, and clone-style visual production.
+This SOP connects HyperFrames, SEOSONA video-maker rules, Hermes Agent operating patterns, and SEOSONA Video into one repeatable workflow for Vietnamese tech-news videos, reusable templates, and clone-style visual production.
 
 ## Canonical Sources
 
@@ -12,13 +12,13 @@ This SOP connects HyperFrames, LoHa video-maker rules, Hermes Agent operating pa
 |---|---|---|
 | `SEOSONA_HYPERFRAMES_SOURCE`, project-drive Downloads, or user Downloads | Local source snapshot for HyperFrames CLI, packages, catalog, skills, docs, and registry patterns. | Reference and sync source. Do not create a second runtime tree. |
 | `https://github.com/heygen-com/hyperframes` | Upstream source for HTML-native deterministic rendering, CLI, core/engine/producer, catalog, skills, Studio, and cloud rendering patterns. | Canonical renderer and template model. |
-| `SEOSONA_LOHA_SKILL`, project-drive Downloads, or user Downloads | Production rules for scene slides, voice/text separation, karaoke captions, SFX, thumbnail, and verification. | Assimilated as SEOSONA quality gates. |
+| `SEOSONA_seosona_SKILL`, project-drive Downloads, or user Downloads | Production rules for scene slides, voice/text separation, karaoke captions, SFX, thumbnail, and verification. | Assimilated as SEOSONA quality gates. |
 | `https://github.com/NousResearch/hermes-agent` | Operating model for self-improving agents, skills, memory, subagents, scheduled work, terminal/browser control, and persistent learning. | Reference for project-local agent behavior, not imported as an app stack. |
 
 ## Routing
 
 1. Use `.agents/skills/hyperframes/SKILL.md` as the entrypoint for video composition work.
-2. Use `.agents/skills/loha-video-maker/SKILL.md` when the work needs production-quality vertical video rules.
+2. Use `.agents/skills/seosona-news-maker/SKILL.md` when the work needs production-quality vertical video rules.
 3. Use `.agents/skills/seosona-video-operator/SKILL.md` for project-specific automation, audit, template export, and delivery gates.
 4. Store reusable templates under `7_ASSETS/video_templates/<template-id>/`.
 5. Store generated productions under `8_WORKSPACE/<ProjectName>/`.
@@ -36,8 +36,8 @@ npm run video:audit:integration
 The audit checks:
 
 - Local HyperFrames source snapshot.
-- Local LoHa skill source.
-- Project HyperFrames and LoHa skills.
+- Local SEOSONA skill source.
+- Project HyperFrames and SEOSONA skills.
 - HyperFrames templates.
 - BGM, SFX, and font asset libraries.
 - Vietnamese male Southern voice policy.

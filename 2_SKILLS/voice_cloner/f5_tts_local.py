@@ -42,7 +42,7 @@ def synthesize(script_text, output_path, ref_audio_path=None, ref_text="", lexic
             pass
         return output_path
 
-    # Route to isolated .venv-f5 environment following LoHa architecture
+    # Route to isolated .venv-f5 environment following SEOSONA architecture
     script_dir = os.path.dirname(__file__)
     venv_f5_cli_windows = os.path.join(script_dir, ".venv-f5", "Scripts", "f5-tts_infer-cli.exe")
     venv_f5_cli_linux = os.path.join(script_dir, ".venv-f5", "bin", "f5-tts_infer-cli")

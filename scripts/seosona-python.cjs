@@ -1,16 +1,82 @@
 #!/usr/bin/env node
 const { spawnSync } = require('child_process');
 const path = require('path');
+const fs = require('fs');
+
+const repoRoot = process.cwd();
+
+function expandHome(value) {
+  if (!value || typeof value !== 'string') return value;
+  const home = process.env.USERPROFILE || process.env.HOME;
+  if (value === '~') return home || value;
+  if (value.startsWith('~/') || value.startsWith('~\\')) {
+    return home ? path.join(home, value.slice(2)) : value;
+  }
+  return value;
+}
+
+function expandVariables(value) {
+  if (!value || typeof value !== 'string') return value;
+  return value.replace(/\$\{([^}]+)\}/g, (_, name) => process.env[name] || '');
+}
+
+function hasOsAnchors(osRoot) {
+  if (!osRoot) return false;
+  return [
+    '1_CORE/SOUL.md',
+    '2_KNOWLEDGE/MASTER_INDEX.md',
+    '1_CORE/scripts/seosona_capability_bridge.js',
+  ].every((relativePath) => fs.existsSync(path.join(osRoot, relativePath)));
+}
+
+function readManifestOsRoot() {
+  const manifestPath = path.join(repoRoot, 'seosona.project.json');
+  if (!fs.existsSync(manifestPath)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(manifestPath, 'utf8')).osRoot || null;
+  } catch {
+    return null;
+  }
+}
+
+function resolveCandidate(value) {
+  if (!value || typeof value !== 'string') return null;
+  const expanded = expandHome(expandVariables(value));
+  if (!expanded || !expanded.trim()) return null;
+  return path.resolve(repoRoot, expanded);
+}
+
+function resolveOsRoot() {
+  const candidates = [
+    process.env.SEOSONA_ROOT,
+    readManifestOsRoot(),
+    '~/.seosona',
+    '../SEOSONA OS',
+    '../../SEOSONA OS',
+  ].map(resolveCandidate).filter(Boolean);
+
+  const seen = new Set();
+  for (const candidate of candidates) {
+    const normalized = path.resolve(candidate);
+    if (seen.has(normalized)) continue;
+    seen.add(normalized);
+    if (hasOsAnchors(normalized)) return normalized;
+  }
+  return null;
+}
 
 function expandPortablePath(value) {
   if (!value || typeof value !== 'string') return value;
-  const home = process.env.USERPROFILE || process.env.HOME;
-  if (!home) return value;
-  if (value === '~') return home;
-  if (value.startsWith('~/') || value.startsWith('~\\')) {
-    return path.join(home, value.slice(2));
+  if (value === '~/.seosona' || value.startsWith('~/.seosona/') || value.startsWith('~\\.seosona\\')) {
+    const osRoot = resolveOsRoot();
+    if (osRoot) {
+      const suffix = value
+        .replace(/^~[/\\]\.seosona[/\\]?/, '')
+        .replace(/^~[/\\]\.seosona$/, '');
+      return suffix ? path.join(osRoot, suffix) : osRoot;
+    }
   }
-  return value;
+  return expandHome(expandVariables(value));
 }
 
 function runtimeEnv() {
@@ -89,11 +155,9 @@ function main() {
     return;
   }
 
-  // >>> AUTO BOOTSTRAPPER HOOK <<<
-  // Transparently run the doctor before executing the user's intended python script
-  const doctorScript = path.join(process.cwd(), 'scripts', 'seosona_doctor.py');
-  const fs = require('fs');
-  if (fs.existsSync(doctorScript)) {
+  if (process.env.SEOSONA_PYTHON_BOOTSTRAP === '1') {
+    const doctorScript = path.join(process.cwd(), 'scripts', 'seosona_doctor.py');
+    if (fs.existsSync(doctorScript)) {
       const doctorEnv = runtimeEnv();
       doctorEnv.SEOSONA_BOOTSTRAP_SILENT = '1';
       const docRes = spawnSync(python.command, [...python.prefixArgs, doctorScript], {
@@ -102,8 +166,9 @@ function main() {
         stdio: 'inherit',
       });
       if (docRes.error || (docRes.status !== 0 && docRes.status !== null)) {
-         process.stderr.write(`Bootstrapper failed. Please check the logs.\n`);
+        process.stderr.write('Bootstrapper failed. Please check the logs.\n');
       }
+    }
   }
 
   const result = spawnSync(python.command, [...python.prefixArgs, ...args], {
