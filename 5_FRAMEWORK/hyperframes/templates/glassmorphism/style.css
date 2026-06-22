@@ -1,0 +1,30 @@
+/* Glassmorphism Style System from UAP Wave 4 */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(12px);
+  --glass-radius: 24px;
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --text-light: #ffffff;
+}
+
+body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: var(--text-light);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-shadow);
+  padding: 2.5rem;
+  margin: 1.5rem;
+}
+
+.glass-text-glow {
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}

@@ -22,6 +22,7 @@
     "video:template:export": "node scripts/seosona-python.cjs scripts/export-video-template.py",
     "autonomy:intake": "node scripts/seosona-project-bridge.cjs intake",
     "autonomy:intake:json": "node scripts/seosona-project-bridge.cjs intake --json",
+    "build:desktop": "node scripts/build_desktop_app.cjs",
     "test": "npm run seosona:doctor"
   },
   "keywords": [],
