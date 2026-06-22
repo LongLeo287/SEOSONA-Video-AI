@@ -54,12 +54,12 @@ Tạo các video phô diễn tính năng (Feature Reveal) hào nhoáng cho một
 </details>
 
 <details>
-<summary><b>💻 QUY TRÌNH 4: PR-to-Video (Chuyển Đổi Mã Code Github Thành Video)</b></summary>
+<summary><b>💻 QUY TRÌNH 4: PR-to-Video (Minh họa Tính năng từ Code Diff)</b></summary>
 <br>
 
-Biến một đoạn code khô khan thành một video giải thích trực quan.
+Biến một đoạn code khô khan (Diff Text) thành một video giải thích trực quan. *(Lưu ý: Đây chỉ là thao tác đọc Text từ URL Pull Request, tuyệt đối không phải là "Phân tích Repo").*
 
-1. **Quét PR:** `scraper_agent` bóc tách Github Pull Request (Title, Body, Code Diff +/-).
+1. **Quét URL PR:** `scraper_agent` bóc tách Text từ một Github Pull Request cụ thể (Title, Body, Code Diff +/-).
 2. **Dịch thuật:** `llm_processor` giải thích dòng code đó bằng ngôn ngữ con người.
 3. **Mô phỏng Code:** `hf_cards` tạo thẻ "Terminal". Mã code được tự động đánh màu Syntax Highlighting và chạy hiệu ứng gõ phím máy chữ.
 4. **Phân tích:** Chuyển sang thẻ Đồ thị (Chart Component) mô tả tính năng mới giúp hệ thống chạy nhanh ra sao. Render MP4.

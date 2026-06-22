@@ -94,7 +94,6 @@ Các đoạn mã Python nguyên thủy (Native) để xử lý trực tiếp tí
 <br>
 
 - 🧠 **`llm_processor`**: Cầu nối gọi API của ChatGPT / Claude.
-- 📂 **`repo_analyzer`**: Đọc và phân tích cây thư mục của một Github Repository.
 - 📄 **`script_writer`**: Công cụ ép chuẩn format kịch bản (JSON/XML).
 - 🏷️ **`metadata_extractor`**: Trích xuất siêu dữ liệu (EXIF, codec) từ các file phương tiện.
 - 🌐 **`movierecaptool_landing`**: Sinh mã nguồn HTML cho trang Landing Page của mảng review phim.

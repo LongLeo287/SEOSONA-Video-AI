@@ -16,6 +16,12 @@ Nằm trong thư mục `scripts/`, đây là những "Sợi cáp" liên lạc gi
 
 </details>
 
+> [!CAUTION]
+> **ĐỘC QUYỀN UAP (Universal Autonomous Process)**
+> 
+> Toàn bộ quy trình *Review Repo -> Clone Repo -> Phân tích, học hỏi -> Nạp, tạo, nâng cấp -> Clear Repo* là đặc quyền tối thượng của hệ điều hành SEOSONA OS dùng để tự tiến hóa. 
+> Dự án SEOSONA Video **bị cấm tuyệt đối** việc sở hữu, thực thi, hoặc mô phỏng quy trình này (như đặt tên thư mục `repo_analyzer`) nhằm tránh đụng độ và chồng chéo chức năng ở mức OS.
+
 ---
 
 ## 📜 2. Khế ước Khởi động (Startup Contracts)
