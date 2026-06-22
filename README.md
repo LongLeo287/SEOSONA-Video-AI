@@ -1,38 +1,58 @@
-# 🏭 Nhà Máy Sản Xuất Tự Động SEOSONA Video
+<div align="center">
+  <img src="7_ASSETS/SEOSONA/header1.png" alt="SEOSONA Video Autonomous Factory Banner" width="100%">
 
-Chào mừng bạn đến với **SEOSONA Video Autonomous Factory**. Đây không chỉ là một kho mã nguồn (repository), đây là một Nhà máy Sản xuất Truyền thông Đa phương tiện hoàn toàn tự động, được thiết kế và làm chủ 100% bởi **SEOSONA AI**. 
+  # 🏭 Nhà Máy Sản Xuất Tự Động SEOSONA Video
+  
+  *Hệ sinh thái sản xuất Truyền thông Đa phương tiện 100% tự động, vận hành bằng Trí tuệ Nhân tạo.*
+  <br>
 
-> ⚠️ Bách Khoa Toàn Thư của hệ thống này rất khổng lồ. Để dễ theo dõi, toàn bộ tài liệu đã được chuyển vào thư mục `docs/`.
+  [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)]()
+  [![AI](https://img.shields.io/badge/AI-Agents%20Driven-purple.svg)]()
+  [![Framework](https://img.shields.io/badge/Engine-HyperFrames-orange.svg)]()
+
+</div>
+
+---
+
+## 📚 BÁCH KHOA TOÀN THƯ (WIKI DASHBOARD)
+
+> 💡 **Mẹo:** Hãy bấm vào tiêu đề của từng ô dưới đây để đi sâu vào hệ thống tài liệu cực kỳ chi tiết của chúng tôi!
+
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h3><a href="docs/01_SYSTEM_OVERVIEW.md">🌍 1. Tổng quan & Workspace</a></h3>
+      Khái quát về kiến trúc phân tầng 4 lớp (Cognitive, Execution, Workflow, Rendering) và cấu trúc thư mục Workspace trung tâm.
+    </td>
+    <td width="50%" valign="top">
+      <h3><a href="docs/02_AGENTS_AND_SKILLS.md">🤖 2. Bộ Não & Tay Chân</a></h3>
+      Danh sách thả xuống (Dropdown) phân tích nhiệm vụ của <b>17 Đặc vụ AI (Agents)</b> và <b>24 Kỹ năng Python Native (Skills)</b>.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3><a href="docs/03_WORKFLOWS_AND_FRAMEWORKS.md">🔄 3. Luồng Điều Phối & Đồ Họa</a></h3>
+      Bảng điều khiển chứa <b>20 Luồng Công Việc tự động (Workflows)</b> và <b>10 Bộ kết xuất đồ họa (Frameworks)</b> (HyperFrames, HTML Renderer).
+    </td>
+    <td width="50%" valign="top">
+      <h3><a href="docs/04_SOP_INDEX.md">📖 4. Hiến pháp Vận hành (SOPs)</a></h3>
+      Được chia làm 3 nhóm (Luật thiết kế, Luật vận hành, Luật nội dung), bao quát toàn bộ <b>22 bộ luật thép</b> của nhà máy.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3><a href="docs/05_PIPELINE_SEQUENCES.md">🎥 5. Phân tích 7 Quy Trình Mẫu</a></h3>
+      Mổ xẻ đường đi nước bước cực kỳ chi tiết của 7 quy trình đúc Video nổi tiếng nhất (Tin tức, Không Mặt, Quảng cáo, v.v.).
+    </td>
+    <td width="50%" valign="top">
+      <h3><a href="docs/06_LIBRARIES_AND_MODELS.md">🧠 6. Thư Viện & AI Models</a></h3>
+      Bảng danh sách chi tiết các công cụ (Puppeteer, FFmpeg) và lõi AI cực mạnh (F5-TTS, Whisper, OmniVoice).
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 📚 MỤC LỤC TÀI LIỆU (Wiki Index)
-
-Hãy click vào các liên kết dưới đây để xem chi tiết từng thành phần đang vận hành trong hệ thống:
-
-### 1. Tổng quan & Không gian làm việc
-👉 **[01_SYSTEM_OVERVIEW.md](docs/01_SYSTEM_OVERVIEW.md)**
-Khái quát về kiến trúc phân tầng 4 lớp, cấu trúc thư mục Workspace và quy trình giao tiếp với SEOSONA OS.
-
-### 2. Bộ Não & Tay Chân (Agents & Skills)
-👉 **[02_AGENTS_AND_SKILLS.md](docs/02_AGENTS_AND_SKILLS.md)**
-Giải phẫu 100% không bỏ sót nhiệm vụ của **17 Đặc vụ AI (Agents)** và **24 Kỹ năng Python Native (Skills)**.
-
-### 3. Luồng Điều Phối & Khung Đồ Họa
-👉 **[03_WORKFLOWS_AND_FRAMEWORKS.md](docs/03_WORKFLOWS_AND_FRAMEWORKS.md)**
-Danh sách **20 Luồng Công Việc tự động (Workflows)** và **10 Bộ kết xuất đồ họa (Frameworks)** như HyperFrames, HTML Renderer...
-
-### 4. Hiến pháp Vận hành (SOPs)
-👉 **[04_SOP_INDEX.md](docs/04_SOP_INDEX.md)**
-Mục lục điểm danh và giải nghĩa toàn bộ **22 bộ luật thép (SOP)** đang chi phối toàn bộ nhà máy.
-
-### 5. Giải phẫu Đường đi của Dữ liệu (Step-by-step Sequences)
-👉 **[05_PIPELINE_SEQUENCES.md](docs/05_PIPELINE_SEQUENCES.md)**
-Chi tiết đường đi nước bước (Từ Nạp liệu -> Tạo Voice -> Kết xuất -> Đăng MXH) của **7 Quy trình Sản Xuất lớn nhất** (Bao gồm làm Video Tin tức, Video Không Mặt, Giải thích Code, Quảng cáo Sản phẩm...).
-
-### 6. Hệ sinh thái Thư Viện & AI Models
-👉 **[06_LIBRARIES_AND_MODELS.md](docs/06_LIBRARIES_AND_MODELS.md)**
-Các công cụ JavaScript, Python và lõi AI (F5-TTS, Whisper, OmniVoice, Puppeteer, FFmpeg) đằng sau hệ thống.
-
----
-*Tài liệu này là Tối Cao. Mọi sự can thiệp, nâng cấp hay tinh chỉnh hệ thống đều phải soi chiếu vào Bản Đồ Kiến Trúc trên.*
+<div align="center">
+  <i>Bản quyền thuộc về SEOSONA AI. Mọi mã nguồn và tài liệu đều là độc quyền.</i>
+</div>

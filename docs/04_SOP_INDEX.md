@@ -1,26 +1,52 @@
 # Hiến pháp Vận hành (SOP Index)
 
-Bất kỳ dòng code nào chạy trong hệ thống SEOSONA Video cũng không được vi phạm 22 bộ luật thép này. Tất cả các file SOP được lưu trữ trong thư mục `6_SOP/`.
+Bất kỳ dòng code nào chạy trong hệ thống SEOSONA Video cũng không được vi phạm 22 bộ luật thép này. Tất cả các file SOP được lưu trữ trong thư mục `6_SOP/`. Nhấn vào từng nhóm để xem chi tiết các đạo luật.
 
-1. **`EXTERNAL_VIDEO_REPO_CAPABILITY_MAP.md`**: Bản đồ năng lực gọi các kho lưu trữ (repo) bên ngoài.
-2. **`HYPERFRAMES_INTEGRATION.md`**: Quy trình tích hợp HyperFrames.
-3. **`INGESTION_RULES.md`**: Quy định nạp dữ liệu đầu vào.
-4. **`MASTER_OPERATION.md`**: Quy trình Vận hành Tối cao của hệ thống.
-5. **`OBSCURA_BROWSER_AUTOMATION.md`**: Quy tắc tự động hóa trình duyệt chống phát hiện (anti-detect).
-6. **`PROJECT_AUDIT_ISSUES.md`**: Hệ thống chấm điểm và bắt lỗi dự án.
-7. **`SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY.md`**: Nhà máy tự động đúc các mẫu template video.
-8. **`SEOSONA_VIDEO_RECONNECTION_MAP.md`**: Sơ đồ nối lại mạch hệ thống khi đứt gãy.
-9. **`SEOSONA_WORKFLOW_BOUNDARY_MAP.md`**: Bản đồ Ranh giới (Boundary) không được vượt qua của các luồng.
-10. **`SEO_CONTENT_STRATEGY.md`**: Chiến lược mồi câu và giữ chân người xem.
-11. **`UX_UI_DESIGN_GUIDELINES.md`**: Tiêu chuẩn thẩm mỹ (cấm màu chóe, font xấu).
-12. **`VOICE_TTS_ENGINE_ROUTING.md`**: Luật định tuyến giọng đọc: Lúc nào dùng F5, lúc nào dùng OmniVoice.
-13. **`YOUTUBE_CHANNEL_OPERATIONS_MCP.md`**: Cẩm nang quản trị tự động kênh Youtube.
-14. **`brand_voice_sop.md`**: Định vị tiếng nói thương hiệu SEOSONA.
-15. **`carousel_sop.md`**: Luật thiết kế 1 bài trượt Carousel.
-16. **`publishing_checklist.md`**: Danh sách 10 điểm phải check trước khi bấm nút Publish.
-17. **`repurposer_sop.md`**: Luật tái chế Video dài thành 5 video ngắn.
-18. **`tech_news_faceless_sop.md`**: Công thức luộc tin tức công nghệ (không lộ mặt).
-19. **`thumbnail_sop.md`**: Định luật về độ tương phản và mặt người trên Thumbnail.
-20. **`video_production_sop.md`**: Dây chuyền sản xuất cơ bản từ A-Z.
-21. **`voice_cloning_tts_sop.md`**: Nguyên tắc đạo đức: Chỉ clone giọng nội bộ, không giả mạo chính trị.
-22. **`youtube_seo_sop.md`**: Công thức nhồi nhét Keyword vào mô tả Youtube.
+<details>
+<summary><b>🛠️ Nhóm 1: Luật Vận Hành Hệ Thống (System Operations)</b></summary>
+<br>
+
+Quy định cách các Server, Agent và API nói chuyện với nhau.
+
+- ⚙️ **`MASTER_OPERATION.md`**: Quy trình Vận hành Tối cao của hệ thống.
+- 🚧 **`SEOSONA_WORKFLOW_BOUNDARY_MAP.md`**: Bản đồ Ranh giới (Boundary) không được vượt qua của các luồng.
+- 🔌 **`SEOSONA_VIDEO_RECONNECTION_MAP.md`**: Sơ đồ nối lại mạch hệ thống khi đứt gãy.
+- 🌐 **`EXTERNAL_VIDEO_REPO_CAPABILITY_MAP.md`**: Bản đồ năng lực gọi các kho lưu trữ (repo) bên ngoài.
+- 📥 **`INGESTION_RULES.md`**: Quy định nạp dữ liệu đầu vào.
+- 🕵️ **`OBSCURA_BROWSER_AUTOMATION.md`**: Quy tắc tự động hóa trình duyệt chống phát hiện (anti-detect).
+- 🧩 **`HYPERFRAMES_INTEGRATION.md`**: Quy trình tích hợp HyperFrames.
+- 🏭 **`SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY.md`**: Nhà máy tự động đúc các mẫu template video.
+
+</details>
+
+<details>
+<summary><b>🎨 Nhóm 2: Luật Thẩm Mỹ & Đạo Đức (Design & Ethics)</b></summary>
+<br>
+
+Quy định về màu sắc, tỷ lệ khung hình, và các ranh giới đạo đức của AI.
+
+- 💎 **`UX_UI_DESIGN_GUIDELINES.md`**: Tiêu chuẩn thẩm mỹ (cấm màu chóe, font xấu, quy định spacing).
+- 🎙️ **`brand_voice_sop.md`**: Định vị tiếng nói thương hiệu SEOSONA.
+- 🖼️ **`thumbnail_sop.md`**: Định luật về độ tương phản và diện tích khuôn mặt trên Thumbnail.
+- 🎠 **`carousel_sop.md`**: Luật thiết kế 1 bài trượt Carousel (LinkedIn/Insta).
+- ⚖️ **`voice_cloning_tts_sop.md`**: Nguyên tắc đạo đức: Chỉ clone giọng nội bộ, nghiêm cấm giả mạo chính trị.
+
+</details>
+
+<details>
+<summary><b>🎬 Nhóm 3: Luật Sản Xuất & Nội Dung (Production & Content)</b></summary>
+<br>
+
+Các bí kíp giữ chân người xem và chuẩn SEO đa nền tảng.
+
+- 🎥 **`video_production_sop.md`**: Dây chuyền sản xuất cơ bản từ A-Z.
+- 🧠 **`SEO_CONTENT_STRATEGY.md`**: Chiến lược mồi câu (Hook) và giữ chân người xem (Retention).
+- 🗣️ **`VOICE_TTS_ENGINE_ROUTING.md`**: Luật định tuyến giọng đọc: Lúc nào dùng F5-TTS, lúc nào dùng OmniVoice.
+- 🕵️‍♂️ **`tech_news_faceless_sop.md`**: Công thức luộc tin tức công nghệ (không lộ mặt).
+- ✂️ **`repurposer_sop.md`**: Luật tái chế Video dài thành 5 video ngắn.
+- 🏷️ **`youtube_seo_sop.md`**: Công thức nhồi nhét Keyword vào mô tả Youtube.
+- ▶️ **`YOUTUBE_CHANNEL_OPERATIONS_MCP.md`**: Cẩm nang quản trị tự động kênh Youtube.
+- ✅ **`publishing_checklist.md`**: Danh sách 10 điểm tử huyệt phải check trước khi bấm nút Publish.
+- 🚨 **`PROJECT_AUDIT_ISSUES.md`**: Hệ thống chấm điểm và bắt lỗi dự án.
+
+</details>
