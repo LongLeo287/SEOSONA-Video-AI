@@ -2,7 +2,7 @@
 # SEOSONA Video - STANDARD .GITIGNORE
 # ==============================================================================
 
-# 1. Hệ sinh thái Python (Tự động tải qua pip / uv)
+# 1. Hệ sinh thái Python
 .venv/
 venv/
 env/
@@ -13,7 +13,7 @@ __pycache__/
 .pytest_cache/
 .coverage
 
-# 2. Hệ sinh thái Node.js (Tự động tải qua npm install)
+# 2. Node.js
 node_modules/
 dist/
 build/
@@ -21,23 +21,26 @@ build/
 
 # 3. Môi trường hệ điều hành & IDE
 .DS_Store
+**/.DS_Store
 Thumbs.db
 .vscode/
 .idea/
 .antigravity/
 .gemini/
 .codex/
+.claude/
 .env
+.env.local
+.env.*
 
-# 4. Trí nhớ & Database cục bộ (Tự động tạo mới/Index lại)
+# 4. Trí nhớ & Database
 3_MEMORY/
 !3_MEMORY/.gitkeep
 video_os.db
 chroma_db/
 *.sqlite3
 
-# 5. Model AI & Weights cục bộ (Tự động tải khi code chạy)
-# Models nằm trong thư mục kỹ năng hoặc thư mục assets
+# 5. Model AI & Weights
 *.pt
 *.pth
 *.safetensors
@@ -47,19 +50,24 @@ huggingface/
 checkpoints/
 models/
 
-# 6. Không gian làm việc & File Render (Rác / Kết quả sinh ra)
+# 6. Không gian làm việc
 8_WORKSPACE/
 !8_WORKSPACE/.gitkeep
 .temp/
+temp_frames/
 SRT_temp/
+out/
+outputs/
 *.mp4
 *.webm
 *.mov
 *.wav
 *.mp3
+*.mkv
+*.avi
+*.gif
 
-# Required production media contracts. Render outputs stay ignored, but these
-# stable input assets must survive a fresh checkout.
+# Exceptions
 !7_ASSETS/voice_profiles/
 !7_ASSETS/voice_profiles/*.wav
 !7_ASSETS/bgm/
@@ -71,15 +79,26 @@ SRT_temp/
 !7_ASSETS/video_templates/**/assets/*.mp3
 !7_ASSETS/video_templates/**/assets/*.wav
 
-# 7. Knowledge Base (Kho cào dữ liệu lớn)
-# Chỉ giữ lại script, bỏ qua các dữ liệu raw đã cào
+# 7. Knowledge Base
 2_KNOWLEDGE/repos/
 !2_KNOWLEDGE/repos/.gitkeep
 
-# 8. Framework & Tooling (Trình duyệt headless, app build)
-# Ví dụ playwright browsers tự động tải
+# 8. Framework & Tooling
 .playwright/
-
-# Extra ignores for clean repo
 ffmpeg/
+
+# 9. Logs & Trash & Personal
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.bak
+*.tmp
+*.swp
 *.pdf
+credentials.json
+client_secret.json
+token.pickle
+*.pem
+*.key
