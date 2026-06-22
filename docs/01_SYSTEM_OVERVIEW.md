@@ -1,7 +1,7 @@
 # Tổng quan Hệ sinh thái SEOSONA Video
 
 <div align="center">
-  <img src="../7_ASSETS/logos/logo-new.png" alt="SEOSONA Logo" width="150">
+  <img src="../7_ASSETS/logos/Seosona_Logo.png" alt="SEOSONA Logo" width="300">
 </div>
 
 Chào mừng bạn đến với tài liệu cốt lõi của **SEOSONA Video Autonomous Factory**. Đây là một Nhà máy Sản xuất Truyền thông Đa phương tiện hoàn toàn tự động, được thiết kế và làm chủ 100% bởi **SEOSONA AI**. 

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="7_ASSETS/SEOSONA/header1.png" alt="SEOSONA Video Autonomous Factory Banner" width="100%">
+  <img src="7_ASSETS/logos/Seosona_Logo.png" alt="SEOSONA Video Autonomous Factory Banner" width="50%">
 
   # 🏭 Nhà Máy Sản Xuất Tự Động SEOSONA Video
   
