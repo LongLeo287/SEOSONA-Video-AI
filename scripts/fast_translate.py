@@ -3,7 +3,7 @@ from deep_translator import GoogleTranslator
 
 translator = GoogleTranslator(source='vi', target='en')
 
-root = r'D:\LongLeo\SEOSONA AI\SEOSONA Video'
+root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 pattern = re.compile(r'[àáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ]', re.IGNORECASE)
 
 # 1. Collect all lines with Vietnamese

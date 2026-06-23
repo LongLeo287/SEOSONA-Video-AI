@@ -23,6 +23,6 @@ def cleanup_temp_folders(root_dir):
     return cleaned_bytes
 
 if __name__ == '__main__':
-    root = r'D:\LongLeo\SEOSONA AI\SEOSONA Video'
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     freed = cleanup_temp_folders(root)
     print(f"Cleanup complete. Freed {freed / (1024*1024):.2f} MB of temp data.")

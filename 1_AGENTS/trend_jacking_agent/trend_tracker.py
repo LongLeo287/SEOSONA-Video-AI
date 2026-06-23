@@ -34,7 +34,7 @@ def trigger_pipeline(trend_topic):
     # To prevent spamming heavy renders in dev, we will just simulate if --dry-run is passed
     if '--dry-run' in sys.argv:
         print("[Dry Run] Would execute:")
-        print(f"python {router_script} \\"{trend_topic}\\"")
+        print(f'python {router_script} "{trend_topic}"')
     else:
         subprocess.run([sys.executable, router_script, trend_topic], cwd=root_dir)
 
