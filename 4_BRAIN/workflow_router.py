@@ -4,6 +4,8 @@ Workflow Router - Smart video entry point.
 import os
 import sys
 from importlib import import_module
+from skill_registry import get_skill
+from graph_executor import SuperGraph
 
 # --- SEOSONA AUTO-BOOTSTRAP ---
 try:
@@ -33,7 +35,14 @@ def detect_input_type(input_value):
     if input_value.startswith("http://") or input_value.startswith("https://"):
         if "youtube.com" in input_value or "youtu.be" in input_value:
             return "download", input_value
+        if "drive.google.com" in input_value:
+            return "download", input_value
+        if "docs.google.com" in input_value or "sheets.google.com" in input_value:
+            return "scrape", input_value
         return "scrape", input_value
+
+    if os.path.isdir(input_value):
+        return "repurpose", input_value
 
     if os.path.isfile(input_value):
         ext = os.path.splitext(input_value)[1].lower()
@@ -62,7 +71,7 @@ def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
 
     if mode == "download":
         print("[Router] -> Step 1: yt-dlp Download")
-        yt_engine = import_module("2_SKILLS.yt_downloader.yt_dlp_engine")
+        yt_engine = get_skill("yt_downloader")
         download_dir = os.path.join(project_root, "8_WORKSPACE", project_name or "yt_download", ".temp")
         yt_engine.download_video(processed_input, download_dir)
 
@@ -86,13 +95,99 @@ def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
         print("[Router] -> Routing to: TTS -> Subtitles -> HyperFrames Render")
 
     pipeline = import_module("4_BRAIN.pipeline_manager")
-    return pipeline.run_pipeline(
-        processed_input,
-        brand=brand,
-        mode=mode,
-        aspect_ratio=aspect_ratio,
-        project_name=project_name,
-    )
+    
+    # ---------------------------------------------------------
+    # SUPERGRAPH INTEGRATION (Phase 4 & 5)
+    # Wrap the legacy linear pipeline inside the new DAG Graph.
+    # Future sprints will split pipeline_manager into discrete Nodes.
+    # ---------------------------------------------------------
+    import datetime
+    
+    # Pre-calculate project name to ensure we know the exact output directory
+    final_project_name = project_name
+    if not final_project_name:
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        final_project_name = f"{brand.upper()}_{timestamp}"
+        
+    final_project_dir = os.path.join(project_root, "8_WORKSPACE", final_project_name)
+
+    def legacy_pipeline_node(state):
+        print("[Graph] Executing Legacy Pipeline Monolith...")
+        try:
+            result = pipeline.run_pipeline(
+                state["input_val"],
+                brand=state["brand"],
+                mode=state["mode"],
+                aspect_ratio=state["ratio"],
+                project_name=state["name"],
+            )
+            state["output"] = result
+        except Exception as e:
+            state["error"] = str(e)
+        return state
+
+    def check_result(state):
+        if "error" in state:
+            print("[Graph] Pipeline Failed. Executing fallback routing...")
+            return "EVALUATE"
+        return "EVALUATE"
+
+    def evaluate_node(state):
+        print("[Graph] Executing Evaluate Node (Quality Review & Feedback)...")
+        # Run the REAL quality gate on the rendered video (was a hardcoded 85).
+        video = None
+        if os.path.isdir(final_project_dir):
+            for root_d, _, files in os.walk(final_project_dir):
+                for fn in files:
+                    if fn.lower().endswith(".mp4"):
+                        video = os.path.join(root_d, fn)
+                        break
+                if video:
+                    break
+        if video:
+            try:
+                qs = import_module("4_BRAIN.quality_scorer")
+                report = qs.score_video(video, brand=state.get("brand", "seosona"))
+                state["quality_score"] = report.get("score", 0)
+                state["quality_report"] = report
+                print(f"[Graph] Quality gate: {state['quality_score']}/100 "
+                      f"({'PASS' if report.get('pass') else 'FAIL'})")
+            except Exception as e:
+                print(f"[Graph] quality_scorer failed: {e}")
+                state["quality_score"] = 0
+        else:
+            print("[Graph] No output video found — quality not scored.")
+            state["quality_score"] = 0
+            
+        # Hook into analytics feedback agent
+        try:
+            feedback_gen = import_module("1_AGENTS.analytics_feedback_agent.feedback_generator")
+            feedback_gen.generate_post_mortem(state)
+        except Exception as e:
+            print(f"[Graph] Warning: Feedback generation failed: {e}")
+        return state
+
+    workflow = SuperGraph()
+    workflow.add_node("MAIN_PIPELINE", legacy_pipeline_node)
+    workflow.add_node("EVALUATE", evaluate_node)
+    
+    workflow.set_entry_point("MAIN_PIPELINE")
+    workflow.add_conditional_edge("MAIN_PIPELINE", check_result)
+    workflow.add_edge("EVALUATE", "END")
+    
+    graph = workflow.compile()
+    
+    initial_state = {
+        "input_val": processed_input,
+        "brand": brand,
+        "mode": mode,
+        "ratio": aspect_ratio,
+        "name": final_project_name,
+        "project_dir": final_project_dir
+    }
+    
+    final_state = graph.invoke(initial_state)
+    return final_state.get("output")
 
 
 if __name__ == "__main__":
