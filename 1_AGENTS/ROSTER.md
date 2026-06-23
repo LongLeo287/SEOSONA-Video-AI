@@ -10,6 +10,7 @@
 | 6 | **Quality Reviewer** | `quality_reviewer/` | Pre-publish quality gate (score 0-100) | Both |
 | 7 | **SEO Optimizer** | `seo_optimizer/` | YouTube Title, Description, Tags, Hashtags generation | Both |
 | 8 | **Publisher Agent** | `publisher_agent/` | Multi-platform publish metadata packaging | Both |
+| 9 | **Analytics Feedback Agent** | `analytics_feedback_agent/` | Trạm kiểm định, đánh giá và đề xuất hệ thống (Machine Learning) | Both |
 
 ## Rules
 

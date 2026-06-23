@@ -17,30 +17,14 @@ class SeoWriterAgent:
     
     def __init__(self, model_name: str = "gemini-2.5-flash"):
         self.model_name = model_name
-        self.system_prompt = """
-        You are the SEOSONA Video Script Writer Agent.
-        Task: Convert raw article/data into a short (Shorts/Reels) or long (Youtube) video script.
-
-        SEO E-E-A-T & AI CITATION STANDARDS (Based on claude-seo):
-        1. Experience & Expertise: Must retain and emphasize stats, citations, expert names from the original article.
-        2. Strong Hook: The first 3 seconds must hit the viewer's insight ("Why does it exist?").
-        3. AI Citation Readiness: Logical script structure, providing "Answer-first formatting" to be easily cited by Google AI Overviews.
-        4. B-roll Keywords: For each dialog line, provide 1-2 concise English keywords for the Auto B-roll system to find background videos.
-
-        IMPORTANT: THE FINAL OUTPUT SCRIPT MUST BE IN VIETNAMESE.
-
-        OUTPUT FORMAT (Strict JSON):
-        {
-            "title": "Optimized Video Title",
-            "seo_score_estimate": 95,
-            "scenes": [
-                {
-                    "narrator_text": "Chào mừng các bạn đến với bản tin SEOSONA...",
-                    "search_terms": ["news anchor", "technology matrix"]
-                }
-            ]
-        }
-        """
+        prompt_path = os.path.abspath(os.path.join(
+            os.path.dirname(__file__), '..', '..', '9_PROMPTS', 'video_scripts', 'seo_writer_prompt.md'
+        ))
+        if os.path.exists(prompt_path):
+            with open(prompt_path, 'r', encoding='utf-8') as f:
+                self.system_prompt = f.read()
+        else:
+            self.system_prompt = "You are the SEOSONA Video Script Writer Agent."
         
     def generate_script(self, scraped_data: Dict) -> Dict:
         """

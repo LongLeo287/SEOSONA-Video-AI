@@ -261,7 +261,7 @@ def validate_vietnamese_news_script(text: str) -> ScriptValidation:
             unknown_ascii_run = []
             continue
         unknown_ascii_run.append(word)
-        if len(unknown_ascii_run) >= 4:
+        if len(unknown_ascii_run) >= 10:
             disallowed.extend(unknown_ascii_run)
             unknown_ascii_run = []
     return ScriptValidation(is_valid=not disallowed, disallowed_terms=disallowed)

@@ -9,7 +9,7 @@ generate_json_from_prompt = llm_engine.generate_json_from_prompt
 
 def get_repurpose_prompt():
     prompt_path = os.path.abspath(os.path.join(
-        os.path.dirname(__file__), '..', '..', '7_ASSETS', 'SEOSONA', 'SEOSONA Prompt', 'Prompt SRT.txt'
+        os.path.dirname(__file__), '..', '..', '9_PROMPTS', 'video_scripts', 'repurpose_analyzer_prompt.md'
     ))
     if os.path.exists(prompt_path):
         with open(prompt_path, 'r', encoding='utf-8') as f:

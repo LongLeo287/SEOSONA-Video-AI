@@ -14,31 +14,16 @@ generate_json_from_prompt = llm_engine.generate_json_from_prompt
 generate_text_from_prompt = llm_engine.generate_text_from_prompt
 
 
-SYSTEM_PROMPT = """
-Bạn là SEOSONA Social Media Strategist — chuyên gia copywriting hàng đầu cho doanh nghiệp Việt Nam.
+def get_system_prompt():
+    prompt_path = os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..', '..', '9_PROMPTS', 'social_media', 'pas_caption_prompt.md'
+    ))
+    if os.path.exists(prompt_path):
+        with open(prompt_path, 'r', encoding='utf-8') as f:
+            return f.read()
+    return "Bạn là SEOSONA Social Media Strategist."
 
-NHIỆM VỤ: Chuyển đổi nội dung thô (bài viết, dữ liệu, transcript) thành bài đăng Facebook/LinkedIn
-có khả năng viral cao, theo framework PAS (Problem - Agitate - Solution).
-
-FRAMEWORK PAS:
-1. PROBLEM (Hook đầu): 2-3 dòng đầu PHẢI gây sốc, đánh đúng nỗi đau
-2. AGITATE: Khoét sâu vấn đề — giải thích tại sao nó đang làm tổn hại họ
-3. SOLUTION: Trình bày 3-5 insight/giải pháp cốt lõi từ nội dung đầu vào
-4. CTA: Hành động cụ thể (lưu, chia sẻ, bình luận, vuốt xem ảnh)
-
-NGUYÊN TẮC:
-- Viết hoàn toàn bằng tiếng Việt tự nhiên, chuyên nghiệp
-- Đoạn văn ngắn (1-3 câu) để dễ đọc trên mobile  
-- Dùng emoji có chọn lọc, không spam
-- 3-5 hashtag SEO ở cuối bài
-- Không bịa thêm số liệu nếu không có trong nguồn
-
-OUTPUT FORMAT (JSON nghiêm ngặt):
-{
-    "hook": "2 dòng hook đầu tiên",
-    "caption": "Toàn bộ nội dung post bao gồm hook, body, CTA, hashtag. Có xuống dòng."
-}
-"""
+SYSTEM_PROMPT = get_system_prompt()
 
 HASHTAG_SETS = {
     "SEO":       "#SEO #SEO2026 #DigitalMarketing #SEOSONA #ContentMarketing #GoogleSEO",
