@@ -17,6 +17,7 @@ Use this skill when a task asks to audit, improve, clone, template, or produce v
 2. English technical terms stay visually correct in display text.
 3. Pronunciation is handled through the lexicon in `4_BRAIN/news_video_standards.py`, not by writing phonetics into display text.
 4. Default news voice target is male Southern Vietnamese. The fallback voice is `vi-VN-NamMinhNeural`; true approved-clone output requires `7_ASSETS/voice/profiles/seosona_male_southern.wav` or an approved VieNeu preset.
+   - **All voice goes through ONE path:** `2_SKILLS/voice_cloner/voice_router.py` (`synthesize_voice`) → **VieNeu (clone > preset)**, with an honest edge-tts fallback that logs loudly that it is the Northern non-brand voice. Engines are: SEOSONA → VieNeu clone of the Southern reference; CQA → VieNeu clone of the expert reference (config in `system_config.yaml`). VieNeu is the only engine — there is no fish_audio/F5/OmniVoice/Kokoro path (removed). Never add a dead `if engine==…` branch; add a real probe.
 5. Production outputs must include voice, background music, SFX/transitions, subtitles, thumbnail, and a production manifest.
 6. HyperFrames is the canonical renderer. MoviePy/FFmpeg are fallback or muxing tools, not the primary template authoring model.
 
