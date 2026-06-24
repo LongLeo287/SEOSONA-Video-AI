@@ -4,6 +4,15 @@ Created: 2026-06-19
 
 This SOP maps external voice cloning and TTS repositories into SEOSONA Video without creating duplicate voice pipelines. All engines must route through the existing `tts_generator` and `voice_cloner` interfaces.
 
+> **ASR (speech→subtitles) — switchable router, added 2026-06-24.**
+> `2_SKILLS/srt_maker/asr_router.py` mirrors the voice router: a primary ASR engine with
+> automatic backups. **PhoWhisper (VinAI, Vietnamese-specialised) is primary**, falling
+> back to faster-whisper → openai-whisper. Switch instantly with `SEOSONA_ASR=faster_whisper`.
+> Tunables: `SEOSONA_PHOWHISPER_MODEL` (CT2 repo, default `kiendt/PhoWhisper-large-ct2`),
+> `SEOSONA_WHISPER_SIZE`, `SEOSONA_ASR_DEVICE=cpu|cuda`. Same word-timestamp output shape for
+> every engine, so the pipeline (STEP 2 alignment + repurpose SRT) never changes. VideoLingo's
+> single-line semantic subtitle cutting = `group_words_to_segments`.
+>
 > **REBUILT 2026-06-24.** The voice subsystem was rebuilt: a single router
 > (`2_SKILLS/voice_cloner/voice_router.py`) routes **VieNeu (clone > preset) → honest
 > edge-tts fallback** with no dead branches. The old `fish_audio_api.py` router +
