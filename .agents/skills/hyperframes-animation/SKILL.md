@@ -13,6 +13,18 @@ For the composition contract (data attributes, sub-compositions, determinism) se
 
 Pick 2-4 rules from `rules-index.md`, glue them together with a single paused GSAP timeline, done. This is faster and produces less code than starting from a blueprint.
 
+## GSAP plugins available in every render (now free)
+
+The render loads `gsap.min.js` + **SplitText, ScrollTrigger, MorphSVGPlugin** (auto-registered) — all free as of GSAP 2025. Use them directly in composition HTML:
+
+- **SplitText** → per-word / karaoke caption reveals, kinetic typography:
+  `const s = new SplitText(".caption",{type:"words"}); gsap.from(s.words,{opacity:0,y:20,stagger:0.08});`
+- **MorphSVGPlugin** → morph logo/icon shapes. **ScrollTrigger** → scrub/pin (rare in video).
+
+Deeper GSAP authoring (8 skills: core/timeline/plugins/utils/performance/…) →
+`2_KNOWLEDGE/hyperframes/gsap-skills.md`. Install the full GSAP skill set:
+`npx skills add https://github.com/greensock/gsap-skills`.
+
 ## Load a blueprint when
 
 - The scene matches an existing pre-designed multi-phase template (brand-reveal, social-proof, demo-page-scroll-spotlight, etc.) and reusing its phase pipeline saves real authoring time
