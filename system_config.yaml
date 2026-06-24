@@ -39,13 +39,14 @@ profiles:
       size: 70
     voice:
       engine: "vieneu"
-      model: "Trọng Hữu"
+      # PRIMARY: clone the Southern male brand voice from this reference (keeps the
+      # exact brand voice across every video). Use a 10-30s clean clip for best stability.
+      reference_audio: "7_ASSETS/voice/profiles/seosona_male_southern.wav"
       required_gender: "male"
       required_accent: "southern"
-      # reference_audio: "7_ASSETS/voice/profiles/seosona_male_southern.wav"
-      # CRITICAL: VieNeu with reference_audio is the PRIMARY engine.
-      # Edge-TTS fallback uses Northern accent — only triggers if VieNeu completely fails.
-      # The pipeline MUST prefer VieNeu clone to maintain Southern male voice consistency.
+      # Preset used ONLY if the reference is missing (router prefers the clone).
+      model: "Trọng Hữu"
+      # Fallback runs only if VieNeu fails — NORTHERN, NOT the brand voice.
       fallback_voice: "vi-VN-NamMinhNeural"
     logo: "Seosona_Logo.png"
     animation: "slide_up"

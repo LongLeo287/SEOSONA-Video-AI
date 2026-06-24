@@ -1,3 +1,3 @@
-from .fish_audio_api import clone_voice
+from .voice_router import synthesize_voice, clone_voice
 
-__all__ = ["clone_voice"]
+__all__ = ["synthesize_voice", "clone_voice"]

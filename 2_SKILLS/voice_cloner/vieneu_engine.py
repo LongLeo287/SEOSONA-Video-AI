@@ -23,9 +23,9 @@ def synthesize(text, output_path, voice=None, reference_audio=None):
             # Validate reference audio file is not empty
             file_size = os.path.getsize(reference_audio)
             if file_size < 1000:
-                print(f"[VieNeu Engine] ⚠️ Reference audio too small ({file_size} bytes), likely corrupted.")
+                print(f"[VieNeu Engine] WARNING: Reference audio too small ({file_size} bytes), likely corrupted.")
                 return None
-            print(f"[VieNeu Engine] 🔒 ENFORCING male Southern voice from reference: {reference_audio}")
+            print(f"[VieNeu Engine] CLONE: male Southern voice from reference: {reference_audio}")
             print(f"[VieNeu Engine]    Reference file size: {file_size:,} bytes")
             infer_kwargs["ref_audio"] = reference_audio
         else:
@@ -61,7 +61,7 @@ def synthesize(text, output_path, voice=None, reference_audio=None):
                 temp_clips.append(AudioFileClip(chunk_path))
 
         if not temp_clips:
-            print("[VieNeu Engine] ⚠️ Failed to generate any valid audio chunks.")
+            print("[VieNeu Engine] WARNING: Failed to generate any valid audio chunks.")
             return None
 
         # Concatenate all chunks
@@ -80,13 +80,13 @@ def synthesize(text, output_path, voice=None, reference_audio=None):
                 except Exception:
                     pass
             
-        print(f"[VieNeu Engine] ✅ Saved combined audio: {output_path}")
+        print(f"[VieNeu Engine] OK: Saved combined audio: {output_path}")
         # Verify output file is valid
         out_size = os.path.getsize(output_path)
         if out_size < 5000:
-            print(f"[VieNeu Engine] ⚠️ Output audio suspiciously small ({out_size} bytes).")
+            print(f"[VieNeu Engine] WARNING: Output audio suspiciously small ({out_size} bytes).")
             return None
-        print(f"[VieNeu Engine]    Output size: {out_size:,} bytes — voice generation successful.")
+        print(f"[VieNeu Engine]    Output size: {out_size:,} bytes - voice generation successful.")
         return output_path
     except Exception as e:
         print(f"[VieNeu Engine] Error: {e}")
