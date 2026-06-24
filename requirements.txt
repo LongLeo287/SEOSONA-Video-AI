@@ -14,3 +14,4 @@ openai>=1.12.0
 # Voice Engines
 vieneu>=3.0.0
 f5-tts>=0.1.0
+deep-translator

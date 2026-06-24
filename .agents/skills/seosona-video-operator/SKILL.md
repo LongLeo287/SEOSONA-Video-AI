@@ -71,6 +71,21 @@ npm run video:run -- seosona create 9:16 PROJECT_NAME
 
 The pipeline routes through `4_BRAIN/workflow_router.py`, `4_BRAIN/pipeline_manager.py`, `4_BRAIN/news_video_standards.py`, and the HyperFrames templates under `5_FRAMEWORK/`.
 
+## Localize / Dub A Foreign Video
+
+Translate + dub a source video into the SEOSONA brand voice (e.g. English → Vietnamese):
+
+```python
+from repurposer_agent import localize_video
+localize_video("input_en.mp4", src_lang="en", tgt_lang="vi", brand="seosona")
+# -> { srt: translated .srt, audio: brand-voiced dubbed .wav, segments: N }
+```
+
+Chain (all switchable routers, graceful fallback): ASR (`SEOSONA_ASR`, PhoWhisper primary)
+→ translate (`SEOSONA_TRANSLATOR`, LLM primary / Google backup, keeps EN tech terms)
+→ VieNeu brand-voice dub, time-fit to the source timing. CLI:
+`python 1_AGENTS/repurposer_agent/localizer.py input.mp4 --src en --tgt vi`.
+
 ## Export A Reusable Template
 
 After a successful render, export the HyperFrames render project into the template registry:
