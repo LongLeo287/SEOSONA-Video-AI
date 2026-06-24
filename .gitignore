@@ -103,6 +103,10 @@ token.pickle
 *.pem
 *.key
 
+# 1_CONFIG real secrets — keep ONLY the *.example.json templates
+1_CONFIG/credentials/*.json
+!1_CONFIG/credentials/*.example.json
+
 # Template build junk (was UTF-16 corrupted -> rewritten clean)
 7_ASSETS/templates/**/node_modules/
 7_ASSETS/templates/**/*.cache/
