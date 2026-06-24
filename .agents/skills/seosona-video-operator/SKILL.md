@@ -20,6 +20,36 @@ Use this skill when a task asks to audit, improve, clone, template, or produce v
 5. Production outputs must include voice, background music, SFX/transitions, subtitles, thumbnail, and a production manifest.
 6. HyperFrames is the canonical renderer. MoviePy/FFmpeg are fallback or muxing tools, not the primary template authoring model.
 
+## HyperFrames — Resources & How To Use (READ THIS to build/render)
+
+HyperFrames is the core engine. Everything you need is already in this repo — use it, don't reinvent HTML by hand.
+
+**1. Agent skills (slash commands in `.agents/skills/`)** — invoke these to author compositions:
+- `/hyperframes` — entry router ("make me a video" → picks the workflow)
+- `/hyperframes-core` — HTML structure, clips, tracks, data attributes
+- `/hyperframes-animation` — GSAP/Lottie/Three/CSS timeline authoring
+- `/hyperframes-cli` — init/preview/render/lint/doctor
+- `/hyperframes-creative` — design direction, palettes, typography, beats
+- `/hyperframes-media` — TTS, transcription, background removal
+- `/hyperframes-registry` — install catalog blocks/components
+- Workflow skills: `/general-video`, `/faceless-explainer`, `/embedded-captions`, `/graphic-overlays`, `/motion-graphics`, `/product-launch-video`, `/website-to-video`, `/pr-to-video`
+
+**2. Knowledge base — `2_KNOWLEDGE/hyperframes/`** (read for API/rules/specs):
+- `guides/` — quickstart, GSAP contract, rendering/4K/HDR, the 7-step pipeline, prompting, common mistakes
+- `reference/` — HTML schema, package APIs (core/cli/engine, producer/player/sdk, shader-transitions), cloud scale
+- `catalog/CATALOG_INDEX.md` — all 122 blocks+components; `TRANSITIONS.md`; `CAPTIONS.md`
+- Start at `2_KNOWLEDGE/hyperframes/README.md`.
+
+**3. Catalog — pull ready-made blocks instead of hand-coding:**
+```bash
+npx hyperframes add <block-name>   # e.g. whip-pan, cinematic-zoom, caption-pill-karaoke, code-typing, us-map
+```
+Browse names + categories in `2_KNOWLEDGE/hyperframes/catalog/CATALOG_INDEX.md`. Transitions → `TRANSITIONS.md`; word-timed captions → `CAPTIONS.md`. Source HTML lives in `5_FRAMEWORK/hf_engine/registry/{blocks,components}/`.
+
+**4. Render** — the pipeline (`4_BRAIN/pipeline_manager.py` STEP 5) renders via the local `hyperframes` binary (no npx network). Tunables via env: `SEOSONA_HF_VERSION` (default 0.7.4), `SEOSONA_HF_QUALITY/FPS/RESOLUTION`, `SEOSONA_HF_TRANSITIONS=1`, `SEOSONA_HF_PRODUCER=1` (Producer API, streaming progress). Decisions + recipes: `6_SOP/RENDER_ENGINE_DECISION.md`.
+
+**Workflow:** intent → `/hyperframes` (or a workflow skill) → consult `2_KNOWLEDGE/hyperframes/` for the schema → pull catalog blocks/transitions/captions with `npx hyperframes add` → assemble composition → render. Don't hand-write what the catalog already provides.
+
 ## Intake
 
 Run the integration audit before major pipeline work:
