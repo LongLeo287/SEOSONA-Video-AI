@@ -1,7 +1,7 @@
 # SEOSONA Video — Repo Ingestion Index
 # This is the SINGLE SOURCE OF TRUTH for what has/hasn't been ingested.
 # RULE: Check this file BEFORE creating any new knowledge file.
-# Last updated: 2026-06-20
+# Last updated: 2026-06-24 (HyperFrames core engine fully ingested)
 
 ---
 
@@ -18,6 +18,7 @@
 
 | Repo | Tier | Domain | Status | Integrated Into |
 |------|------|--------|--------|----------------|
+| **hyperframes** | **CORE** | **render-engine** | **ingested** | **2_KNOWLEDGE/hyperframes/ (guides+reference+catalog, 20 files) · .agents/skills/ (18 skills) · 5_FRAMEWORK/hf_engine/ (source) · 4_BRAIN/pipeline_manager.py (render). See 2_KNOWLEDGE/hyperframes/README.md** |
 | F5-TTS | A | voice-clone | partial | 2_SKILLS/voice_cloner/ [needs full distillation] |
 | VieNeu-TTS | A | tts-vi | partial | 4_BRAIN/pipeline_manager.py [needs SOP update] |
 | VideoCaptioner | A | subtitle | partial | 2_SKILLS/srt_maker/ [needs full distillation] |
@@ -142,6 +143,9 @@
 | NexusRAG | B | rag | cleared | 2_KNOWLEDGE/repos/NexusRAG.md |
 | OmniClaw | A | system-core | cleared | 2_KNOWLEDGE/repos/OmniClaw.md |
 | Open-Higgsfield-AI | A | video-ai | cleared | 2_KNOWLEDGE/repos/Open-Higgsfield-AI.md |
+| nightingale | A | video-monitoring | cleared | 2_KNOWLEDGE/repos/nightingale.md |
+| loop-engineering | A | agent-workflow | cleared | 2_KNOWLEDGE/repos/loop-engineering.md |
+| supergraph | A | llm-router | cleared | 2_KNOWLEDGE/repos/supergraph.md |
 | OpenClaw-bot-review | B | agent-ui | cleared | 2_KNOWLEDGE/repos/OpenClaw-bot-review.md |
 | OpenSpace | B | agent-optimization | cleared | 2_KNOWLEDGE/repos/OpenSpace.md |
 ---
