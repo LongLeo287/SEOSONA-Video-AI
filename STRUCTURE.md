@@ -6,6 +6,8 @@ has its own map/README for detail — start here to find the right folder fast.
 ```
 SEOSONA Video/
 ├── 0_INPUT_INBOX/     ← inputs: production_queue.yaml (what to produce)
+├── 1_CONFIG/          ← credentials & secrets (API keys/tokens for publish + remote) → README.md
+│   └── credentials/     real secrets (gitignored) + *.example.json templates
 ├── 1_AGENTS/          ← 12 AI agents (scraper, seo_writer, editor, repurposer, ...) → ROSTER.md
 ├── 2_KNOWLEDGE/       ← knowledge base  → README + INGESTION_INDEX.md
 │   ├── hyperframes/      full HyperFrames docs (guides/reference/catalog) → README.md
@@ -45,8 +47,12 @@ SEOSONA Video/
 | Change a TTS engine / voice routing | `system_config.yaml` + `2_SKILLS/voice_cloner/` + `6_SOP/VOICE_TTS_ENGINE_ROUTING.md` |
 | Find an SOP | `6_SOP/README.md` |
 | Run a workflow / add a CLI tool | `scripts/README.md` + `package.json` |
+| Add an API key / token (YouTube, TikTok, FB, Drive, Telegram) | `1_CONFIG/` (see `README.md`) |
+| Publish a finished product | `SEOSONA_PUBLISH=google_drive,youtube` env, or publisher_agent.publish() |
+| Control the factory remotely | `python 1_AGENTS/hermes_agent/telegram_remote.py` |
 
 ## Folder maps (single source of truth per tier)
+- `1_CONFIG/README.md` — credentials & secrets (publish + remote)
 - `1_AGENTS/ROSTER.md` — agent roster (wired vs orphan)
 - `2_SKILLS/README.md` — skills index
 - `7_ASSETS/ASSETS_MAP.md` — assets
