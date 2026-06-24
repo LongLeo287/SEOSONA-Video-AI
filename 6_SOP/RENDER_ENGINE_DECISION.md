@@ -26,11 +26,25 @@ Migrating would mean **paying a license + a multi-week React rewrite for a rende
 1. **Killed the `npx --yes hyperframes@0.6.112` network dependency** — render now prefers the local `node_modules/.bin/hyperframes` binary (pinned in package.json); falls back to npx with a warning only if not installed. Run `npm install` to materialize it. *(Was: every render downloaded from npm mid-pipeline — an npm hiccup killed a run.)*
 2. **Untracked the vendored `5_FRAMEWORK/hf_engine/`** (54MB, never executed by the render path) — kept on disk as reference, gitignored.
 
-## Open recommendations (need an A/B render check before applying)
-- **Upgrade 0.6.112 → 0.7.4** — newer line fixes real render bugs (timed descendants staying visible after a parent clip ends; sub-composition duration). No breaking changes reported. Re-pin in package.json + pipeline_manager `_HF_VERSION` after one comparison render.
-- **Use the programmatic `@hyperframes/producer` API** (HTTP server / `createRenderJob`) instead of CLI subprocess — streaming progress, render queue, no per-video process spawn.
-- **Adopt `@hyperframes/shader-transitions`** (13 WebGL transitions) + quality flags (`--quality high`, `--fps 60`, `--resolution 4k`, `--workers 4`).
-- **For scale:** `--docker` (byte-identical reproducible renders → content-hash + skip-rebuild caching) and `@hyperframes/aws-lambda` / `gcp-cloud-run` to fan out many renders.
+## Validated by real render tests (2026-06-24)
+
+A minimal HyperFrames project was actually rendered with the local binary to verify each item:
+
+- ✅ **Local binary works** — `node_modules/.bin/hyperframes render` produced an MP4 with no network. Confirms the npx-removal hardening.
+- ✅ **0.7.4 ADOPTED** — rendered the same project on 0.6.112 (7.4s) and 0.7.4 (4.8s, **faster**); `--quality high`/`--fps`/`--resolution` all accepted. Default pinned to **0.7.4** in package.json + `pipeline_manager` (revert with `SEOSONA_HF_VERSION=0.6.112`). *Do one real-video render to confirm before high-volume use.*
+- ✅ **Shader transitions WORK** — a 3-scene project with `whip-pan` + `light-leak` rendered successfully. The IIFE is vendored at `.agents/skills/graphic-overlays/assets/vendor/shader-transitions.global.js`; a working reference is at `5_FRAMEWORK/hf_core/templates/shader_transitions_reference.html`.
+- ❌ **Producer API REJECTED** — `@hyperframes/producer` pulls full `puppeteer`, whose Chrome v148 download FAILS in this environment, while the CLI renders fine. For an autonomous factory the CLI (local binary) is **more reliable**; do not migrate to the Producer API.
+
+### Shader-transition integration recipe (for a real-render session)
+The 13 transitions are declared via a JS call, NOT attributes. To wire into `_write_hyperframes_render_project`:
+1. Copy the vendored `shader-transitions.global.js` into the render `assets/` (next to `gsap.min.js`).
+2. Emit each scene as `<div id="scene-N" class="scene">…</div>` (N+1 scenes).
+3. After gsap, add `<script src="assets/shader-transitions.global.js"></script>`.
+4. Emit: `const tl = HyperShader.init({ bgColor, accentColor, scenes:["scene-0",…], transitions:[{time, shader, duration}] }); window.__timelines["main"] = tl;` — with **exactly `scenes.length-1` transitions**, using the builder's existing `scene_edges` as the `time` values. (Gate behind `SEOSONA_HF_TRANSITIONS=1`; validate on a real video before defaulting on.)
+
+## Still open (need scale / a real session)
+- Quality flags are env-tunable now (`SEOSONA_HF_QUALITY/FPS/RESOLUTION`) — turn on `high`/`60`/`4k` per content.
+- For scale: `--docker` (byte-identical → content-hash skip-rebuild caching) + `@hyperframes/aws-lambda` / `gcp-cloud-run` to fan out renders.
 
 ## Sources
 - https://github.com/heygen-com/hyperframes (Apache-2.0, "Write HTML. Render video. Built for agents.")

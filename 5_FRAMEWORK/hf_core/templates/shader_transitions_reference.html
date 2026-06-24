@@ -1,0 +1,24 @@
+<!doctype html>
+<html data-resolution="landscape">
+<head><meta name="viewport" content="width=1920, height=1080"/><style>html,body{margin:0}.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:160px;color:#fff}</style></head>
+<body style="background:#0a0a0a">
+  <div id="root" data-composition-id="main" data-start="0" data-duration="6" data-width="1920" data-height="1080">
+    <div id="scene-1" class="scene" style="background:#1d3557">ONE</div>
+    <div id="scene-2" class="scene" style="background:#e63946">TWO</div>
+    <div id="scene-3" class="scene" style="background:#2a9d8f">THREE</div>
+  </div>
+  <script src="assets/gsap.min.js"></script>
+  <script src="assets/shader-transitions.global.js"></script>
+  <script>
+    const tl = HyperShader.init({
+      bgColor: "#0a0a0a", accentColor: "#ff6b2b",
+      scenes: ["scene-1","scene-2","scene-3"],
+      transitions: [
+        { time: 2, shader: "whip-pan", duration: 0.8 },
+        { time: 4, shader: "light-leak", duration: 0.7 }
+      ]
+    });
+    window.__timelines = { main: tl };
+  </script>
+</body>
+</html>
