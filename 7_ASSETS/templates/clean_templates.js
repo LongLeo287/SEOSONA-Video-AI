@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const basePath = 'D:/LongLeo/SEOSONA AI/SEOSONA Video/7_ASSETS/video_templates';
+const basePath = require('path').resolve(__dirname);  // portable: this templates dir
 
 // 1. github-repo-showcase
 let githubPath = path.join(basePath, 'github-repo-showcase', 'index.html');

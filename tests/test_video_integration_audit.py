@@ -27,9 +27,9 @@ class VideoIntegrationAuditTests(unittest.TestCase):
                 "6_SOP/tech_news_faceless_sop.md",
                 "5_FRAMEWORK/news_spatial_hyperframes/index.html",
                 "5_FRAMEWORK/news_loop_path_hyperframes/index.html",
-                "7_ASSETS/bgm/bgm_tech_ambient.mp3",
-                "7_ASSETS/sfx/pops/pop_01.wav",
-                "7_ASSETS/sfx/transitions/whoosh_01.wav",
+                "7_ASSETS/audio/bgm/bgm_tech_ambient.mp3",
+                "7_ASSETS/audio/sfx/pops/pop_01.wav",
+                "7_ASSETS/audio/sfx/transitions/whoosh_01.wav",
             ]
             for relative in required_files:
                 touch(relative)
@@ -42,7 +42,7 @@ profiles:
     voice:
       required_gender: male
       required_accent: southern
-      reference_audio: 7_ASSETS/voice_profiles/seosona_male_southern.wav
+      reference_audio: 7_ASSETS/voice/profiles/seosona_male_southern.wav
       fallback_voice: vi-VN-NamMinhNeural
 """.strip(),
             )
