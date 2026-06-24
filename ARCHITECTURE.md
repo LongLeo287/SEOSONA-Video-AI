@@ -52,6 +52,16 @@ graph TD
         E4["moviepy_wrapper legacy helpers"]
     end
 
+    subgraph PROMPTS["9_PROMPTS"]
+        Direction TB
+        aida(aida_writer)
+        seo(seo_writer)
+        pas(pas_caption)
+        carousel(carousel_schema)
+        thumbnail(thumbnail_prompts)
+        repurpose(repurpose_srt)
+    end
+
     subgraph ASSETS["7_ASSETS"]
         F1["logos"]
         F2["fonts"]
@@ -135,7 +145,8 @@ validation commands.
 5_FRAMEWORK/    HyperFrames, HTML renderer, and legacy media helpers
 6_SOP/          Standard operating procedures
 7_ASSETS/       Logos, fonts, SFX, BGM, and brand assets
-8_WORKSPACE/    Generated production outputs
+8_WORKSPACE/    Generated ephemeral outputs (MP4, SRT) and analytics logs
+9_PROMPTS/      Centralized LLM prompt templates (AIDA, PAS, Repurpose, Carousel)
 scripts/        Project bridge, runtime, and audit tooling
 ```
 

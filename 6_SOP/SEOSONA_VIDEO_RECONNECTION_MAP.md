@@ -14,13 +14,15 @@ workspace outputs.
 HyperFrames is the canonical renderer and composition model for SEOSONA Video.
 Everything else is an adapter around it:
 
-- `4_BRAIN/` owns workflow routing, orchestration, timing, and quality gates.
+- `4_BRAIN/` owns workflow routing, orchestration, timing, and quality gates (governed by Supergraph DAG and OODA Loop).
+- `1_AGENTS/` owns the intelligent workforce (Editor, Scraper, Writer, and Machine Learning Analytics).
 - `.agents/skills/` owns operator-facing video workflow instructions.
 - `5_FRAMEWORK/hf_core/` owns the active local HyperFrames framework snapshot.
 - `5_FRAMEWORK/hf_engine/` is an upstream/vendor reference and package source.
 - `5_FRAMEWORK/hf_cards/` owns reusable card and stat-card render projects.
 - `7_ASSETS/video_templates/` owns reusable, promoted production templates.
 - `8_WORKSPACE/` owns generated outputs and must stay disposable.
+- `9_PROMPTS/` owns all externalized LLM prompts (AIDA, PAS, Carousel, Repurpose).
 - `6_SOP/` owns SEOSONA-specific operating decisions.
 
 Do not create another active HyperFrames runtime tree. If an external source is
@@ -37,7 +39,7 @@ reference-only source.
 | Autonomy intake | `npm run autonomy:intake -- --task "<task>"` | project bridge resolved OS script |
 | Full project audit | `npm run seosona:audit` | `scripts/seosona-project-audit.cjs` |
 | Integration audit | `npm run video:audit:integration` | `4_BRAIN/video_integration_audit.py` |
-| Video production | `npm run video:news -- <script_or_url> [project] [ratio]` | `4_BRAIN/workflow_router.py` |
+| Video production | `npm run video:news -- <script_or_url> [project] [ratio]` | `4_BRAIN/workflow_router.py` (Supergraph Entrypoint) |
 | Template export | `npm run video:template:export -- <workspace_project> "<name>"` | `4_BRAIN/video_template_factory.py` |
 
 ## Resolver Contract

@@ -28,7 +28,9 @@ Script Text
   |
 [1] Brand Detection -> system_config.yaml -> select engine
   |
-[2] VieNeu-TTS available?
+[2] OODA Loop Check -> If script segment is too long, EditorAgent trims/rewrites before passing to TTS
+  |
+[3] VieNeu-TTS available?
       YES -> Clone/reference mode only when an approved male Southern reference or preset is configured
       NO  -> Try OmniVoice -> CosyVoice -> Edge-TTS
   |

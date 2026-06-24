@@ -29,6 +29,7 @@ Use the vendor skills as follows:
 - `embedded-captions` and `graphic-overlays`: existing footage enhancement.
 - `motion-graphics`: short kinetic stat cards, lower thirds, chart reveals, and logo stings.
 - `seosona-video-operator`: project-level audit, Vietnamese news delivery gates, template export, and clone-safe reuse.
+- `Supergraph DAG` (`4_BRAIN/workflow_router.py`): orchestrates HyperFrames rendering via `pipeline_manager.py` and auto-corrects using the `OODA Loop`.
 
 ## SEOSONA Video Rules
 

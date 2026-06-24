@@ -1,7 +1,7 @@
 # STANDARD OPERATION DOCUMENTS (MASTER OPERATION)
-*Updated: 2026-06-19 — Version v3.0 (HyperFrames Engine)*
+*Updated: 2026-06-23 — Version v4.0 (SEOSONA OS Supergraph & HyperFrames Engine)*
 
-The system operates in a **Linear Pipeline** going from Router (`4_BRAIN/workflow_router.py`) to Workspace (`8_WORKSPACE/`).
+The system operates on a **Supergraph DAG Architecture** going from Router (`4_BRAIN/workflow_router.py`) to `MAIN_PIPELINE`, running through the **OODA Loop** for auto-correction, and ending at `EVALUATE_NODE` for machine learning feedback.
 
 Workflow boundaries are defined in `6_SOP/SEOSONA_WORKFLOW_BOUNDARY_MAP.md`.
 Image workflows and video workflows are separate operating lanes.
@@ -20,6 +20,8 @@ npm run post:image -- <text_or_file>
 npm run thumbnail:create -- <title_or_hook>
 npm run video:news -- <script_or_file_or_url> [project_name] [aspect_ratio]
 npm run video:course -- <script_or_file> [project_name] [aspect_ratio]
+npm run start:queue      # Tự động xử lý hàng đợi từ 0_INPUT_INBOX/production_queue.yaml
+npm run start:dashboard  # Khởi chạy Nightingale Dashboard UI tại localhost:5050
 ```
 
 The router automatically detects the input:
@@ -69,6 +71,12 @@ The router automatically detects the input:
 - **Output:** `8_WORKSPACE/<ProjectName>/Thumbnail/<ProjectName>_Thumbnail.png`
 - Thumbnail generation is part of the production gate. Do not set `SEOSONA_SKIP_THUMBNAIL=1` for final delivery.
 
+### STEP 7: EVALUATE & MACHINE LEARNING (SUPERGRAPH)
+- `EVALUATE_NODE` catches the output from the main pipeline.
+- `1_AGENTS/analytics_feedback_agent/feedback_generator.py` analyzes quality score and OODA retries.
+- Output 1 (Human): `Báo_cáo_chất_lượng.md` bundled inside `8_WORKSPACE/<ProjectName>/`.
+- Output 2 (Machine): `post_mortem_<id>.json` sent to `3_MEMORY/reports/`.
+
 ---
 
 ## OUTPUT STRUCTURE
@@ -78,11 +86,14 @@ The router automatically detects the input:
 ├── <ProjectName>.mp4 → Main video
 ├── SRT/<ProjectName>.srt → Subtitles
 ├── Thumbnail/<ProjectName>_Thumbnail.png → Cover image
+├── Báo_cáo_chất_lượng.md → Quality score and ML feedback
 └── .temp/ → Temp file (voice, hf_render/)
 ```
+
+**Auto-Cleanup Rule:** If the pipeline fails and aborts before creating the core production files (`.mp4`, `.srt`), the system will automatically rollback and delete the `8_WORKSPACE/<ProjectName>/` directory to prevent empty zombie folders from cluttering the workspace.
 
 ## SECURITY MECHANISM
 
 - API Keys: Stored in `.env` (root), loaded by `python-dotenv`.
 - Config: `system_config.yaml` uses `${VAR}` placeholder.
-- `.gitignore`: Block `.env`, `8_WORKSPACE/*`, `3_MEMORY/*`, media files.
+- `.gitignore`: Block `.env`, `8_WORKSPACE/*`, `3_MEMORY/*`, media files, `node_modules`, `__pycache__`, and `renders/`.

@@ -52,3 +52,4 @@
 2. **No empty clickbait** — Hook must deliver actual value
 3. **One CTA per video** — Don't ask for Subscribe + Like + Comment + Share simultaneously
 4. **Data must have sources** — Never fabricate statistics
+5. **Quality Gate:** All scripts are evaluated by the `EVALUATE_NODE` (`quality_reviewer` agent). Scripts that violate Brand Tone or Vocabulary rules will trigger the `OODA Loop` to reject and auto-rewrite the content.

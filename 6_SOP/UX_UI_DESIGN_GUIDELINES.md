@@ -9,17 +9,14 @@ SEOSONA Video complies with B2B Premium standards:
 - Consistency: Do not use flashy "Neon", "Cyberpunk" colors. Focus on trust, data, engineering.
 
 ## 2. Color Token (Color System)
-When creating a Video with Light Theme:
+All SEOSONA Videos (News, Tutorials, Courses) MUST use the Light Theme to maintain a Premium B2B Business aesthetic:
 - **Background Base (Pure White):** `#FFFFFF`
 - **Background Surface:** `#F8FAFC`
 - **Text Headers (Bold Ink):** `#04091A` (Absolutely do not use `#000000`)
 - **Text Body:** `#64748B`
 - **Primary Accent (Xanh Signal):** `#1D4ED8`
 
-When creating a Video with Dark theme (Navy Theme - Inherited from Video Legacy):
-- **Background Base:** `#1A2DB5` (Navy Brand)
-- **Primary Accent:** `#FFD54F` (Yellow)
-- **Text:** `#FFFFFF`
+> **OODA Auto-Correction Rule:** The `EditorAgent` via the `OODA Loop` actively scans generated design colors. Dark Theme / Dark Mode / Dark Colors are STRICTLY PROHIBITED across all SEOSONA Videos. All videos must adhere to a bright, clean, B2B Expert/Business aesthetic. If a Dark Theme is used, the OODA Loop will instantly reject and auto-correct it to Light Mode.
 
 ## 3. Geometry & Layout
 - **Border Radius:** Soft, from `16px` to `40px` for card blocks (Cards/Mockups). Absolutely DO NOT use sharp corners.

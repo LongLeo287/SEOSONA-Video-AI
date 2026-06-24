@@ -30,17 +30,19 @@ template cloning, news videos, and course videos inside one ambiguous pipeline.
    `carousel` path is blocked at runtime and should not be used as an entrypoint.
 5. Generic HyperFrames skills are vendor capabilities. SEOSONA production
    workflows must go through the canonical entrypoints above.
+6. **Supergraph Architecture:** All video workflows (`video:news`, `video:course`) are now routed through the `Supergraph DAG`. The legacy `pipeline_manager.py` acts as a `MAIN_PIPELINE` node wrapped by the `OODA Loop` for auto-correction. All workflows MUST terminate at the `EVALUATE_NODE` for generating Machine Learning feedback reports.
 
 ## Ownership
 
 | Area | Owner Files |
 | --- | --- |
-| Routing | `4_BRAIN/workflow_router.py`, `package.json` |
+| Routing & Supergraph | `4_BRAIN/workflow_router.py`, `4_BRAIN/graph_executor.py`, `package.json` |
 | Video rendering | `4_BRAIN/pipeline_manager.py`, `4_BRAIN/news_video_standards.py`, HyperFrames templates |
+| Auto-Correction (OODA) | `4_BRAIN/ooda_loop.py`, `1_AGENTS/editor_agent/editor.py` |
+| Machine Learning / Audit | `1_AGENTS/analytics_feedback_agent/feedback_generator.py`, `scripts/seosona-project-audit.cjs` |
 | Template cloning | `4_BRAIN/video_template_factory.py`, `scripts/export-video-template.py` |
 | Post images | `scripts/workflow_social_post.py`, `1_AGENTS/carousel_writer_agent/`, `2_SKILLS/carousel_maker/` |
 | Thumbnails | `scripts/workflow_thumbnail.py`, `2_SKILLS/thumbnail_maker/` |
-| Audit | `scripts/seosona-project-audit.cjs`, `scripts/seosona-video-integration-audit.py` |
 
 ## Operating Notes
 

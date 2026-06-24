@@ -5,18 +5,23 @@
 ## 1. Pipeline Overview
 
 ```
-Long Video (Podcast/Course)
-  → Audio Extraction (yt-dlp or ffmpeg)
+Long Video (Podcast/Course/Webinar)
+  → Auto-Ingestion (YouTube URL / Google Drive URL / Local Folder Path)
+  → Download & Extraction (yt-dlp or ffmpeg)
   → Transcription (Whisper → .srt)
   → SRT Analysis (Agent + Splicing Matrix Prompt)
   → Video Clipping (MoviePy/ffmpeg)
-  → Re-render (Add subtitles, SFX, Thumbnail)
+  → Re-render & Re-frame (Strictly Default to 9:16 Aspect Ratio)
   → Multi-platform Publishing
 ```
 
+**Iron Rule for Repurposing:**
+- **Auto-Cut Sources:** The router can seamlessly ingest from `YouTube URLs`, `Google Drive URLs`, and `Local Folders`.
+- **Default Aspect Ratio:** All resulting cut clips MUST default to `9:16` vertical format. The engine will automatically center-crop or pad the 16:9 source to fit the vertical screen.
+
 ## 2. SRT Analysis Prompt
 
-Master prompt file: `1_AGENTS/repurposer_agent/srt_analyzer_prompt.md`
+Master prompt file: `9_PROMPTS/video_scripts/repurpose_analyzer_prompt.md`
 
 ### 5-Part Splicing Matrix
 

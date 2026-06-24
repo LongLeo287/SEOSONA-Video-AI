@@ -10,8 +10,9 @@ Mandatory standard operating procedure for all AI Agents and Human Editors produ
 
 ## 2. Format & Multi-Scene Standard
 
-- **Aspect Ratio:** 9:16 (1080×1920) vertical.
+- **Aspect Ratio:** Default is strictly 9:16 (1080×1920) vertical. No other aspect ratio should be used unless explicitly overridden.
 - **Multi-Scenes Required:** Video must NOT use a single background from start to finish. Minimum 3-5 different scenes stitched together. Each scene lasts ~5-10 seconds with Slide or Crossfade transitions.
+- **OODA Loop Constraint:** The system will aggressively reject and auto-rewrite any scene whose script exceeds 15 seconds (roughly ~30-40 words). Keep sentences short and punchy.
 - **Duration:** 30 to 60 seconds.
 - **Language:** Visible script, subtitles, scene copy, and thumbnail copy must be Vietnamese. Approved technical terms may remain in their correct original spelling.
 - **Pronunciation:** English/technical terms must be handled through the pronunciation lexicon, never by writing phonetics into the visible script.
@@ -26,7 +27,7 @@ Mandatory standard operating procedure for all AI Agents and Human Editors produ
 
 ## 3.1 Voice Standard
 
-- **Required Voice:** Male Southern Vietnamese target profile.
+- **Required Voice:** Default is Male Southern Vietnamese target profile.
 - **Primary:** VieNeu with an approved male Southern reference/preset.
 - **Fallback:** Edge-TTS `vi-VN-NamMinhNeural` only when no approved VieNeu reference/preset is available.
 - **No Female Fallback:** Do not use female presets for news videos.
