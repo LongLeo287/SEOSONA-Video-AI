@@ -31,6 +31,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hyperframes/producer": "^0.7.4",
     "@hyperframes/shader-transitions": "0.7.4",
     "axios": "^1.18.0",
     "cheerio": "^1.2.0",
