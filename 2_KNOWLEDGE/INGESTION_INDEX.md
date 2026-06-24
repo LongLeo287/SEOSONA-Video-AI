@@ -10,6 +10,19 @@
 
 ---
 
+## Batch triage — repo_inventory (1,434 repos, 2026-06-24)
+From the classified inventory: 162 video-relevant → 89 already in this system (dup) →
+73 new → strict filter (drop noise: photo-repair, netflix-kodi, firmware, UI widgets;
+drop TTS alternatives since VieNeu is chosen) → **2 ADOPT**:
+- **vinai/PhoWhisper-large** — Vietnamese ASR (BSD-3, local), drop-in upgrade over generic
+  faster-whisper in the SRT step (lower WER on Vietnamese). **shortlist: ADOPT**
+- **Huanshere/VideoLingo** — Apache-2.0 translate→dub + WhisperX subtitle-cut → adds the
+  translation/dubbing capability the repurposer lacks, rewired to PhoWhisper + VieNeu. **shortlist: ADOPT**
+- Reference only: KrillinAI (GPL-3.0 dub pipeline), VieNeu-v2-Turbo-GGUF (CPU quant — but v2),
+  dantech0xff/daily-news-broadcast (text aggregator, topic-feeder only).
+- Skip/duplicate: fish-speech, VibeVoice, F5/CosyVoice/OmniVoice (TTS — VieNeu already chosen),
+  ebook2audiobook.
+
 ## Status Legend
 - `pending` — Queued, not yet started
 - `ingested` — Knowledge extracted to 2_KNOWLEDGE/repos/, integration applied
