@@ -13,17 +13,16 @@ For the composition contract (data attributes, sub-compositions, determinism) se
 
 Pick 2-4 rules from `rules-index.md`, glue them together with a single paused GSAP timeline, done. This is faster and produces less code than starting from a blueprint.
 
-## GSAP plugins available in every render (now free)
+## GSAP plugins available in every render (all free, auto-registered)
 
-The render loads `gsap.min.js` + **SplitText, ScrollTrigger, MorphSVGPlugin** (auto-registered) — all free as of GSAP 2025. Use them directly in composition HTML:
+The render loads gsap 3.13.0 + **SplitText, MorphSVGPlugin, DrawSVGPlugin, MotionPathPlugin, ScrambleTextPlugin, CustomEase, EasePack, CustomBounce, CustomWiggle** and pre-registers `ease: "seosona"` (the brand ease). All free. Use directly in composition HTML:
 
-- **SplitText** → per-word / karaoke caption reveals, kinetic typography:
-  `const s = new SplitText(".caption",{type:"words"}); gsap.from(s.words,{opacity:0,y:20,stagger:0.08});`
-- **MorphSVGPlugin** → morph logo/icon shapes. **ScrollTrigger** → scrub/pin (rare in video).
+- **SplitText** → karaoke/kinetic captions · **MorphSVG** → logo/shape morphs · **DrawSVG** → line-draw underlines/routes · **MotionPath** → fly along a curve · **ScrambleText** → number/stat scramble · **CustomEase** → `ease: "seosona"` brand signature · **EasePack** → RoughEase/ExpoScaleEase · **CustomBounce/Wiggle** → bounce/shake.
 
-Deeper GSAP authoring (8 skills: core/timeline/plugins/utils/performance/…) →
-`2_KNOWLEDGE/hyperframes/gsap-skills.md`. Install the full GSAP skill set:
-`npx skills add https://github.com/greensock/gsap-skills`.
+**SEEK-RENDER RULES (break the render if ignored):** split text ONCE after `document.fonts.ready` (never `autoSplit:true`); no `quickTo`/`Observer`/`Draggable`/`Inertia`/`GSDevTools` (real-time only); animate transforms (`x/y/scale/xPercent`, `autoAlpha`) NEVER `width/top/margin`; prefer `stagger`/`distribute` (seek-safe) over per-frame `random()`.
+
+Full technique reference + snippets + gotchas → `2_KNOWLEDGE/hyperframes/gsap-skills.md`.
+Upstream skills: `npx skills add https://github.com/greensock/gsap-skills` (install gsap-plugins/core/timeline/utils only).
 
 ## Load a blueprint when
 
