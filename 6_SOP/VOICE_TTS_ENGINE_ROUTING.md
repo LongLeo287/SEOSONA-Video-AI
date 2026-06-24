@@ -4,12 +4,20 @@ Created: 2026-06-19
 
 This SOP maps external voice cloning and TTS repositories into SEOSONA Video without creating duplicate voice pipelines. All engines must route through the existing `tts_generator` and `voice_cloner` interfaces.
 
+> **REBUILT 2026-06-24.** The voice subsystem was rebuilt: a single router
+> (`2_SKILLS/voice_cloner/voice_router.py`) routes **VieNeu (clone > preset) → honest
+> edge-tts fallback** with no dead branches. The old `fish_audio_api.py` router +
+> duplicate/dead engines (2× VieNeu, 2× F5, OmniVoice-uninstalled, English Kokoro) are
+> quarantined under `_QUARANTINE/voice_legacy/`. VieNeu is THE engine (local, Apache-2.0,
+> Vi+En code-switch). Adding another engine = new file + a probe branch in `voice_router.py`
+> (never a dead `if engine == …` that silently falls through).
+
 ## Canonical Role Locks
 
 | Layer | Canonical SEOSONA Video component | External repos allowed to influence it | Rule |
 |---|---|---|---|
 | Standard TTS | `2_SKILLS/tts_generator/tts_engine.py` | Edge-TTS, VieNeu-TTS, LuxTTS | Keep a simple standard TTS path for SEOSONA brand videos. |
-| Voice cloning | `2_SKILLS/voice_cloner/fish_audio_api.py` | VieNeu-TTS, GPT-SoVITS, fish-speech, CosyVoice, OmniVoice | Add engines behind one adapter. Do not create engine-specific pipelines. |
+| Voice routing | `2_SKILLS/voice_cloner/voice_router.py` | VieNeu-TTS (active); others only if installed + given a real probe branch | Single router. VieNeu primary; edge-tts honest fallback. No dead branches. |
 | Subtitle timing | `4_BRAIN/pipeline_manager.py` | engines with word timestamps, forced alignment, script-derived fallback | Prefer native word timestamps; otherwise use verified script-derived fallback or ASR. |
 | Long-form narration | future chunker under `2_SKILLS/tts_generator/` | ebook2audiobook, Coqui TTS | Extract chunking/retry/concat patterns, not full audiobook stack. |
 | Voice cleanup | `2_SKILLS/audio_cleaner/` | voice-pro, Demucs patterns | Use only for owned or rights-cleared reference audio. |
