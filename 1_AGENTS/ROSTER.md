@@ -1,20 +1,33 @@
 # SEOSONA Video Factory — Agent Roster
 
-| # | Agent | Directory | Role | Brand |
-|:--|:------|:----------|:-----|:------|
-| 1 | **Editor Agent** | `editor_agent/` | Scene validation, color checks, light mode enforcement | Both |
-| 2 | **Repurposer Agent** | `repurposer_agent/` | SRT analysis, hook extraction, short-form matrix | Both |
-| 3 | **Researcher Agent** | `researcher_agent/` | Trending topics, keyword-to-video ideas, article scraping | Both |
-| 4 | **Scraper Agent** | `scraper_agent/` | Web content extraction, HTML parsing, multi-URL batch | Both |
-| 5 | **Writer Agent** | `writer_agent/` | Video script generation using 5-part structure | Both |
-| 6 | **Quality Reviewer** | `quality_reviewer/` | Pre-publish quality gate (score 0-100) | Both |
-| 7 | **SEO Optimizer** | `seo_optimizer/` | YouTube Title, Description, Tags, Hashtags generation | Both |
-| 8 | **Publisher Agent** | `publisher_agent/` | Multi-platform publish metadata packaging | Both |
-| 9 | **Analytics Feedback Agent** | `analytics_feedback_agent/` | Trạm kiểm định, đánh giá và đề xuất hệ thống (Machine Learning) | Both |
+12 agents (each in its own dir with a `.py` entry point, importable via `__init__.py`).
+Status reflects the actual pipeline as of 2026-06-24 — **WIRED** = dispatched by the
+pipeline/workflows; **orphan** = present but not yet dispatched.
+
+| Agent | Directory | Role | Status |
+|-------|-----------|------|:------:|
+| **Repurposer** | `repurposer_agent/` | SRT hook analysis, long-to-short matrix | ✅ WIRED (pipeline_manager) |
+| **Scraper** | `scraper_agent/` | Web content extraction, HTML parsing | ✅ WIRED (pipeline_manager) |
+| **SEO Writer** | `seo_writer_agent/` | Scraped-data → video script (5-part) | ✅ WIRED (pipeline_manager) |
+| **Carousel Writer** | `carousel_writer_agent/` | Social carousel copy | ✅ WIRED (workflow_social_post) |
+| **Social Media** | `social_media_agent/` | Platform captions (PAS) | ✅ WIRED (workflow_social_post) |
+| **Analytics Feedback** | `analytics_feedback_agent/` | Post-mortem analytics & system feedback | ✅ WIRED (workflow_router EVALUATE) |
+| **Thumbnail Tester** | `thumbnail_tester_agent/` | Thumbnail A/B testing | ✅ WIRED (workflow_thumbnail) |
+| **Editor** | `editor_agent/` | Scene validation + Light-Mode-Only enforcement | ✅ WIRED (pipeline_manager profile) |
+| **SEO Optimizer** | `seo_optimizer/` | YouTube title/description/tags/hashtags + JSON-LD | ⏳ orphan (wire post-render) |
+| **Publisher** | `publisher_agent/` | Multi-platform publish packaging + upload scheduling | ⏳ orphan (wire end-of-pipeline) |
+| **Trend Jacking** | `trend_jacking_agent/` | Live RSS trend → auto-trigger a news video | ⏳ orphan (autonomous cron entry) |
+| **Hermes** | `hermes_agent/` | Pre-render script QA (uses OpenAI — paid) | ⏳ orphan (optional) |
+
+`personas/` — persona definitions used by the agents.
+
+> **Quarantined** (moved to `_QUARANTINE/duplicate_agents/`, no longer in this tier):
+> `writer_agent` (superseded by seo_writer), `researcher_agent` (dup of scraper +
+> trend_jacking), `quality_reviewer` (now the wired `4_BRAIN/quality_scorer.py`).
 
 ## Rules
-
-- Each agent resides in its own directory with at least one `.py` entry point.
-- Agents must read `system_config.yaml` for brand profile before execution.
-- Agents must never use dark backgrounds in any output (Light Mode Only).
-- All agents are importable via `__init__.py` in each directory.
+- Each agent reads `system_config.yaml` for the brand profile before execution.
+- **Light Mode Only** — never use dark backgrounds in any output (enforced by Editor).
+- Source language is Vietnamese; English technical terms stay visually correct.
+- To wire an orphan agent: dispatch it from `4_BRAIN/workflow_router.py` /
+  `pipeline_manager.py` at the right pipeline stage, then update its row above.
