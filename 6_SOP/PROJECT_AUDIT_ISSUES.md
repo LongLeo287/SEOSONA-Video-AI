@@ -38,7 +38,7 @@ Scope: Full SEOSONA Video operational audit, workflow boundaries, voice/subtitle
 | SV-AUD-036 | P2 | Audit noise | Broad scans mixed runtime code with vendor/reference trees. | Added scoped runtime portability and asset checks to `npm run seosona:audit`. |
 | SV-AUD-037 | P3 | Local publish safety | `auto_upload_gdrive` was enabled by default. | Disabled it by default and added an audit gate to prevent silent publish behavior. |
 | SV-AUD-038 | P1 | Template registry | LOOP clone registry template referenced missing `../template_core.js`. | Removed the stale dependency; HyperFrames validation now passes with no console errors. |
-| SV-INT-VOICE-REFERENCE | P1 | Voice standard | Prior audit listed the male Southern reference sample as missing. | Current integration audit confirms `7_ASSETS/voice_profiles/seosona_male_southern.wav` exists and passes. |
+| SV-INT-VOICE-REFERENCE | P1 | Voice standard | Prior audit listed the male Southern reference sample as missing. | Current integration audit confirms `7_ASSETS/voice/profiles/seosona_male_southern.wav` exists and passes. |
 
 ## Release Bookkeeping
 
@@ -52,7 +52,7 @@ node scripts/seosona-python.cjs -m py_compile scripts/convert_to_9_16.py scripts
 npm run seosona:audit
 npm run video:audit:integration
 npm audit --omit=dev --json
-npx --yes hyperframes@0.6.112 validate 7_ASSETS/video_templates/loop-source-seosona-clone
+npx --yes hyperframes@0.6.112 validate 7_ASSETS/templates/loop-source-seosona-clone
 npm run post:image -- "AI Search đang thay đổi cách người dùng tìm thông tin. Doanh nghiệp cần chuẩn hóa nội dung, dữ liệu nguồn và quy trình xuất bản để được AI trích dẫn đúng."
 npm run thumbnail:create -- "SEOSONA kiểm tra pipeline video và hình ảnh"
 ```
@@ -62,6 +62,6 @@ npm run thumbnail:create -- "SEOSONA kiểm tra pipeline video và hình ảnh"
 - `8_WORKSPACE/Social_Campaigns/Campaign_SEOSONA_1782018875/`: carousel plan, Facebook caption, and 6 rendered PNG slides.
 - `8_WORKSPACE/Video_Thumbnails/SEOSONA_SEOSONA_kiểm_tra_1782018875/`: 9:16 and 16:9 thumbnail PNGs.
 - `8_WORKSPACE/LOOP_CLONE_SEOSONA_TEMPLATE/LOOP_CLONE_SEOSONA_TEMPLATE.mp4`: LOOP clone template video.
-- `7_ASSETS/video_templates/loop-source-seosona-clone/`: HyperFrames template validated with no console errors and 150 text elements passing WCAG AA.
+- `7_ASSETS/templates/loop-source-seosona-clone/`: HyperFrames template validated with no console errors and 150 text elements passing WCAG AA.
 
 TASK COMPLETED

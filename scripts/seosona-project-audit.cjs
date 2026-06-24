@@ -175,8 +175,8 @@ function audit() {
   check('python runtime available', Boolean(python), python || 'No python/python3/py launcher found', 'P1');
 
   const logoFiles = [
-    '7_ASSETS/logos/Seosona_Logo.png',
-    '7_ASSETS/logos/Chi Quyet Academy Mascot Logo.png',
+    '7_ASSETS/brand/logos/Seosona_Logo.png',
+    '7_ASSETS/brand/logos/Chi Quyet Academy Mascot Logo.png',
   ];
   for (const logo of logoFiles) check(`brand asset: ${logo}`, exists(logo), logo, 'P1');
 
@@ -266,21 +266,21 @@ function audit() {
   check('runtime scripts use portable paths', localPathFindings.length === 0, localPathFindings, 'P2');
 
   const requiredProductionAssets = [
-    '7_ASSETS/logos/Seosona_Logo.png',
-    '7_ASSETS/logos/Chi Quyet Academy Mascot Logo.png',
-    '7_ASSETS/voice_profiles/seosona_male_southern.wav',
-    '7_ASSETS/bgm/bgm_tech_ambient.mp3',
-    '7_ASSETS/sfx/pops/pop_01.wav',
-    '7_ASSETS/sfx/transitions/whoosh_01.wav',
-    '7_ASSETS/video_templates/loop-source-seosona-clone/template.json',
-    '7_ASSETS/video_templates/loop-source-seosona-clone/index.html',
-    '7_ASSETS/video_templates/loop-source-seosona-clone/hyperframes.json',
-    '7_ASSETS/video_templates/loop-source-seosona-clone/production_manifest.json',
-    '7_ASSETS/video_templates/loop-source-seosona-clone/sample.srt',
-    '7_ASSETS/video_templates/loop-source-seosona-clone/thumbnail.png',
-    '7_ASSETS/video_templates/loop-source-seosona-clone/assets/bgm_loop_96.mp3',
-    '7_ASSETS/video_templates/loop-source-seosona-clone/assets/pop_01.wav',
-    '7_ASSETS/video_templates/loop-source-seosona-clone/assets/whoosh_01.wav',
+    '7_ASSETS/brand/logos/Seosona_Logo.png',
+    '7_ASSETS/brand/logos/Chi Quyet Academy Mascot Logo.png',
+    '7_ASSETS/voice/profiles/seosona_male_southern.wav',
+    '7_ASSETS/audio/bgm/bgm_tech_ambient.mp3',
+    '7_ASSETS/audio/sfx/pops/pop_01.wav',
+    '7_ASSETS/audio/sfx/transitions/whoosh_01.wav',
+    '7_ASSETS/templates/loop-source-seosona-clone/template.json',
+    '7_ASSETS/templates/loop-source-seosona-clone/index.html',
+    '7_ASSETS/templates/loop-source-seosona-clone/hyperframes.json',
+    '7_ASSETS/templates/loop-source-seosona-clone/production_manifest.json',
+    '7_ASSETS/templates/loop-source-seosona-clone/sample.srt',
+    '7_ASSETS/templates/loop-source-seosona-clone/thumbnail.png',
+    '7_ASSETS/templates/loop-source-seosona-clone/assets/bgm_loop_96.mp3',
+    '7_ASSETS/templates/loop-source-seosona-clone/assets/pop_01.wav',
+    '7_ASSETS/templates/loop-source-seosona-clone/assets/whoosh_01.wav',
   ];
   const assetFindings = [];
   for (const asset of requiredProductionAssets) {
@@ -291,12 +291,12 @@ function audit() {
   }
   check('required production assets are restorable', assetFindings.length === 0, assetFindings, 'P1');
 
-  const templateManifestPath = '7_ASSETS/video_templates/loop-source-seosona-clone/template.json';
+  const templateManifestPath = '7_ASSETS/templates/loop-source-seosona-clone/template.json';
   const templateFileFindings = [];
   if (exists(templateManifestPath)) {
     const template = readJson(templateManifestPath);
     for (const file of template.files || []) {
-      const templateFile = path.posix.join('7_ASSETS/video_templates/loop-source-seosona-clone', file.replaceAll('\\', '/'));
+      const templateFile = path.posix.join('7_ASSETS/templates/loop-source-seosona-clone', file.replaceAll('\\', '/'));
       if (!exists(templateFile)) templateFileFindings.push(templateFile);
     }
   }

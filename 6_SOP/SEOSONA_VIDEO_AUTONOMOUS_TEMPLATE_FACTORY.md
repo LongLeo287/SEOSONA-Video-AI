@@ -20,7 +20,7 @@ This SOP connects HyperFrames, SEOSONA video-maker rules, Hermes Agent operating
 1. Use `.agents/skills/hyperframes/SKILL.md` as the entrypoint for video composition work.
 2. Use `.agents/skills/seosona-news-maker/SKILL.md` when the work needs production-quality vertical video rules.
 3. Use `.agents/skills/seosona-video-operator/SKILL.md` for project-specific automation, audit, template export, and delivery gates.
-4. Store reusable templates under `7_ASSETS/video_templates/<template-id>/`.
+4. Store reusable templates under `7_ASSETS/templates/<template-id>/`.
 5. Store generated productions under `8_WORKSPACE/<ProjectName>/`.
 
 ## Autonomous Workflow
@@ -70,7 +70,7 @@ from video_template_factory import export_template_from_project
 export_template_from_project(
     "8_WORKSPACE/PROJECT_NAME",
     "PROJECT_NAME Template",
-    out_root="7_ASSETS/video_templates",
+    out_root="7_ASSETS/templates",
 )
 ```
 
@@ -110,4 +110,4 @@ To clone a video style safely:
 
 ## Current Gate State
 
-`SV-INT-VOICE-REFERENCE` is closed in the current project state because `7_ASSETS/voice_profiles/seosona_male_southern.wav` exists. Edge-TTS `vi-VN-NamMinhNeural` remains the approved operational fallback when a clone-grade VieNeu/Fish preset is not available.
+`SV-INT-VOICE-REFERENCE` is closed in the current project state because `7_ASSETS/voice/profiles/seosona_male_southern.wav` exists. Edge-TTS `vi-VN-NamMinhNeural` remains the approved operational fallback when a clone-grade VieNeu/Fish preset is not available.

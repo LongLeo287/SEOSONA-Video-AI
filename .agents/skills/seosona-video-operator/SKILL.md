@@ -16,7 +16,7 @@ Use this skill when a task asks to audit, improve, clone, template, or produce v
 1. Source language in scripts, subtitles, scene copy, and thumbnails is Vietnamese.
 2. English technical terms stay visually correct in display text.
 3. Pronunciation is handled through the lexicon in `4_BRAIN/news_video_standards.py`, not by writing phonetics into display text.
-4. Default news voice target is male Southern Vietnamese. The fallback voice is `vi-VN-NamMinhNeural`; true approved-clone output requires `7_ASSETS/voice_profiles/seosona_male_southern.wav` or an approved VieNeu preset.
+4. Default news voice target is male Southern Vietnamese. The fallback voice is `vi-VN-NamMinhNeural`; true approved-clone output requires `7_ASSETS/voice/profiles/seosona_male_southern.wav` or an approved VieNeu preset.
 5. Production outputs must include voice, background music, SFX/transitions, subtitles, thumbnail, and a production manifest.
 6. HyperFrames is the canonical renderer. MoviePy/FFmpeg are fallback or muxing tools, not the primary template authoring model.
 
@@ -80,7 +80,7 @@ from video_template_factory import export_template_from_project
 export_template_from_project(
     "8_WORKSPACE/PROJECT_NAME",
     "Project Name Template",
-    out_root="7_ASSETS/video_templates",
+    out_root="7_ASSETS/templates",
 )
 ```
 

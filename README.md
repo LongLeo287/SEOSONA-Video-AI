@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="7_ASSETS/logos/Seosona_Logo.png" alt="SEOSONA Video Autonomous Factory Banner" width="50%">
+  <img src="7_ASSETS/brand/logos/Seosona_Logo.png" alt="SEOSONA Video Autonomous Factory Banner" width="50%">
 
   # 🏭 Nhà Máy Sản Xuất Tự Động SEOSONA Video
   
@@ -11,6 +11,10 @@
   [![Framework](https://img.shields.io/badge/Engine-HyperFrames-orange.svg)]()
 
 </div>
+
+---
+
+> 🗺️ **Tìm gì ở đâu?** Xem [`STRUCTURE.md`](STRUCTURE.md) — bản đồ toàn bộ cấu trúc thư mục (tier 0→9) + bảng "tôi muốn… thì vào đâu". Mỗi tier có map riêng: `7_ASSETS/ASSETS_MAP.md`, `5_FRAMEWORK/README.md`, `6_SOP/README.md`, `scripts/README.md`, `2_SKILLS/README.md`, `1_AGENTS/ROSTER.md`.
 
 ---
 

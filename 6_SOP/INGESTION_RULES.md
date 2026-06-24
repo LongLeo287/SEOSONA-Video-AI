@@ -104,7 +104,7 @@ After a repo reaches status `ingested`:
    [YYYY-MM-DD HH:MM] CLEARED <repo_name> | Tier: A/B/C | Integrated into: <file_path>
    ```
 
-**Exception**: Tier A repos with model weights, training data, or large binaries are cleared immediately regardless of ingestion status (weights stay if moved to `7_ASSETS/models/`).
+**Exception**: Tier A repos with model weights, training data, or large binaries are cleared immediately regardless of ingestion status (weights stay if moved to `7_ASSETS/voice/models/`).
 
 ---
 
