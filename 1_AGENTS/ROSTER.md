@@ -14,10 +14,10 @@ pipeline/workflows; **orphan** = present but not yet dispatched.
 | **Analytics Feedback** | `analytics_feedback_agent/` | Post-mortem analytics & system feedback | ✅ WIRED (workflow_router EVALUATE) |
 | **Thumbnail Tester** | `thumbnail_tester_agent/` | Thumbnail A/B testing | ✅ WIRED (workflow_thumbnail) |
 | **Editor** | `editor_agent/` | Scene validation + Light-Mode-Only enforcement | ✅ WIRED (pipeline_manager profile) |
-| **SEO Optimizer** | `seo_optimizer/` | YouTube title/description/tags/hashtags + JSON-LD | ⏳ orphan (wire post-render) |
-| **Publisher** | `publisher_agent/` | Multi-platform publish packaging + upload scheduling | ⏳ orphan (wire end-of-pipeline) |
+| **Publisher** | `publisher_agent/` | Upload finished products → YouTube/TikTok/Facebook/Google Drive (cred-gated) | ✅ WIRED (pipeline STEP 8 + telegram /publish) |
+| **Hermes** | `hermes_agent/` | Remote-control brain (Telegram) + pre-render script QA | ✅ WIRED (telegram_remote.py) |
+| **SEO Optimizer** | `seo_optimizer/` | YouTube title/description/tags/hashtags + JSON-LD | ✅ WIRED (pipeline STEP 8 metadata enrichment) |
 | **Trend Jacking** | `trend_jacking_agent/` | Live RSS trend → auto-trigger a news video | ⏳ orphan (autonomous cron entry) |
-| **Hermes** | `hermes_agent/` | Pre-render script QA (uses OpenAI — paid) | ⏳ orphan (optional) |
 
 `personas/` — persona definitions used by the agents.
 
