@@ -49,6 +49,9 @@ _ENV_MAP = {
     # remote control
     ("telegram", "bot_token"): "TELEGRAM_BOT_TOKEN",
     ("telegram", "chat_id"): "TELEGRAM_CHAT_ID",
+    # image-gen gateway (infographics/posters via Recraft/Flux/Ideogram)
+    ("9router", "api_key"): "NINE_ROUTER_API_KEY",
+    ("9router", "base_url"): "NINE_ROUTER_BASE_URL",
 }
 
 

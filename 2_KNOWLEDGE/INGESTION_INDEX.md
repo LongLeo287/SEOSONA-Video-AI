@@ -25,6 +25,7 @@
 |------|------|--------|--------|----------------|
 | **hyperframes** | **CORE** | **render-engine** | **ingested** | **2_KNOWLEDGE/hyperframes/ (guides+reference+catalog, 20 files) · .agents/skills/ (18 skills) · 5_FRAMEWORK/hf_engine/ (source) · 4_BRAIN/pipeline_manager.py (render). See 2_KNOWLEDGE/hyperframes/README.md** |
 | gsap-skills (greensock) | A | animation | **ingested + WIRED** | MIT. 2_KNOWLEDGE/hyperframes/gsap-skills.md + .agents/skills/hyperframes-animation. **GSAP free plugins (SplitText/ScrollTrigger/MorphSVG, gsap 3.13.0) vendored in 5_FRAMEWORK/hf_core/vendor/gsap/ + auto-loaded+registered in every render** (pipeline_manager). Unlocks karaoke captions. |
+| openclaw-skill-infographic (tuanminhhole) | B | design-vi | **ingested** | MIT. 9_PROMPTS/design_assets/infographic_vn_presets.md (VN-safe fonts + 3 design strategies + aspect presets) → referenced by carousel_master_prompt. 9router creds added to 1_CONFIG for the optional Recraft/Flux/Ideogram image-gen backend. |
 | F5-TTS | A | voice-clone | partial | 2_SKILLS/voice_cloner/ [needs full distillation] |
 | VieNeu-TTS | A | tts-vi | partial | 4_BRAIN/pipeline_manager.py [needs SOP update] |
 | VideoCaptioner | A | subtitle | partial | 2_SKILLS/srt_maker/ [needs full distillation] |
