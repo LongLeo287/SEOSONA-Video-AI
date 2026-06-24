@@ -1,6 +1,12 @@
-# Render Engine Decision — HyperFrames vs Remotion (2026-06-23)
+# Render Engine Decision — HyperFrames (2026-06-23)
 
-**Decision: KEEP HyperFrames. Do NOT migrate to Remotion. Harden HyperFrames usage.**
+**Decision: HyperFrames is the SOLE render engine. Remotion is ELIMINATED.**
+
+Remotion was evaluated for reference only. It is **source-available with a paid
+company license** ($100/mo minimum + $0.01/render for an autonomous commercial
+factory). Per the rule "if it charges a fee, drop it," **Remotion is ruled out** —
+no further Remotion work, no `@remotion/*` dependency anywhere in SEOSONA Video.
+HyperFrames (Apache-2.0, free) carries the entire render path.
 
 ## Why
 
