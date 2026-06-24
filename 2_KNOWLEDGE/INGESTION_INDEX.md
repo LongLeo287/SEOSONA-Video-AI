@@ -2,6 +2,11 @@
 # This is the SINGLE SOURCE OF TRUTH for what has/hasn't been ingested.
 # RULE: Check this file BEFORE creating any new knowledge file.
 # Last updated: 2026-06-24 (11-repo triage: OmniVoice wired, OpenMontage patterns ingested)
+#
+# NOTE (2026-06-24): 2_KNOWLEDGE/repos/ was decluttered — 63 video/TTS/audio/render
+# notes kept; 731 non-video research notes moved to _QUARANTINE/research_archive/
+# (gitignored, local-only). If a link below points to a repos/*.md that's no longer
+# there, the raw note is in the archive; the *integration* (code/skills) is unaffected.
 
 ---
 

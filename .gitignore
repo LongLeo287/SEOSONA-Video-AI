@@ -124,3 +124,6 @@ token.pickle
 # Vendored HyperFrames monorepo source (reference only; render uses the npm/local
 # hyperframes binary, not this checkout). Kept on disk, out of git.
 5_FRAMEWORK/hf_engine/
+
+# archived non-video research notes (kept local, not in git)
+_QUARANTINE/research_archive/
