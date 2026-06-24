@@ -22,6 +22,12 @@ def _probe_engines():
     except ImportError:
         pass
 
+    try:
+        import omnivoice  # noqa: F401
+        _AVAILABLE_ENGINES.append("omnivoice")
+    except ImportError:
+        pass
+
     if os.environ.get("FISH_AUDIO_API_KEY"):
         _AVAILABLE_ENGINES.append("fish_audio")
 
@@ -61,6 +67,22 @@ def clone_voice(
             )
             if vieneu_result:
                 return vieneu_result
+
+    if engine == "omnivoice" and "omnivoice" in _AVAILABLE_ENGINES:
+        try:
+            print("[Voice Engine] Using OmniVoice (k2-fsa) zero-shot TTS.")
+            ov_engine = import_module("2_SKILLS.voice_cloner.omnivoice_engine")
+            ov_result = ov_engine.synthesize(
+                script_text,
+                audio_out,
+                voice=preset_voice,
+                reference_audio=reference_audio,
+            )
+            if ov_result:
+                return ov_result
+            print("[Voice Engine] OmniVoice returned nothing; falling back.")
+        except Exception as e:  # noqa: BLE001
+            print(f"[Voice Engine] OmniVoice failed: {e}. Falling back to Edge-TTS.")
 
     if engine in ["fish_audio", "f5tts"] and "fish_audio" in _AVAILABLE_ENGINES:
         try:
