@@ -127,10 +127,23 @@ def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
         return state
 
     def check_result(state):
+        # Real conditional routing (was "EVALUATE" on both branches — a no-op):
+        # a failed pipeline goes to ABORT (post-mortem, no quality gate); a
+        # successful one goes to EVALUATE (run the real quality gate).
         if "error" in state:
-            print("[Graph] Pipeline Failed. Executing fallback routing...")
-            return "EVALUATE"
+            print(f"[Graph] Pipeline error: {state.get('error')} -> ABORT")
+            return "ABORT"
         return "EVALUATE"
+
+    def abort_node(state):
+        print("[Graph] ABORT: pipeline failed; recording post-mortem, skipping quality gate.")
+        try:
+            feedback_gen = import_module("1_AGENTS.analytics_feedback_agent.feedback_generator")
+            feedback_gen.generate_post_mortem(state)
+        except Exception as e:
+            print(f"[Graph] Warning: post-mortem failed: {e}")
+        state["quality_score"] = 0
+        return state
 
     def evaluate_node(state):
         print("[Graph] Executing Evaluate Node (Quality Review & Feedback)...")
@@ -170,10 +183,12 @@ def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
     workflow = SuperGraph()
     workflow.add_node("MAIN_PIPELINE", legacy_pipeline_node)
     workflow.add_node("EVALUATE", evaluate_node)
+    workflow.add_node("ABORT", abort_node)
     
     workflow.set_entry_point("MAIN_PIPELINE")
     workflow.add_conditional_edge("MAIN_PIPELINE", check_result)
     workflow.add_edge("EVALUATE", "END")
+    workflow.add_edge("ABORT", "END")
     
     graph = workflow.compile()
     
