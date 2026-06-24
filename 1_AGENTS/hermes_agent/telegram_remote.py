@@ -148,6 +148,7 @@ def _handle(token, chat_id, text):
         return _send(token, chat_id,
                      "SEOSONA Video — remote\n"
                      "/news <chủ đề> — sản xuất video tin tức\n"
+                     "/trend [make] — lấy trend mới nhất (RSS); 'make' để sản xuất luôn\n"
                      "/list — sản phẩm đã có\n"
                      "/status — trạng thái job\n"
                      "/publish <tên> <đích> — vd: /publish MyProj google_drive,youtube\n"
@@ -165,6 +166,16 @@ def _handle(token, chat_id, text):
         if len(parts) >= 3:
             return _publish_product(token, chat_id, parts[1], parts[2].split(","))
         return _send(token, chat_id, "Cú pháp: /publish <tên> <đích1,đích2>")
+    if text.startswith("/trend"):
+        try:
+            from trend_jacking_agent.trend_tracker import fetch_latest_trend
+            topic = fetch_latest_trend()
+            if "make" in text:
+                _produce_news(token, chat_id, topic)
+                return
+            return _send(token, chat_id, f"🔥 Trend mới nhất:\n{topic}\n\n→ /news {topic}\nhoặc /trend make để sản xuất ngay.")
+        except Exception as e:
+            return _send(token, chat_id, f"Trend lỗi: {e}")
     if text.startswith("/review"):
         snippet = text[len("/review"):].strip()
         try:

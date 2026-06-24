@@ -17,7 +17,7 @@ pipeline/workflows; **orphan** = present but not yet dispatched.
 | **Publisher** | `publisher_agent/` | Upload finished products → YouTube/TikTok/Facebook/Google Drive (cred-gated) | ✅ WIRED (pipeline STEP 8 + telegram /publish) |
 | **Hermes** | `hermes_agent/` | Remote-control brain (Telegram) + pre-render script QA | ✅ WIRED (telegram_remote.py) |
 | **SEO Optimizer** | `seo_optimizer/` | YouTube title/description/tags/hashtags + JSON-LD | ✅ WIRED (pipeline STEP 8 metadata enrichment) |
-| **Trend Jacking** | `trend_jacking_agent/` | Live RSS trend → auto-trigger a news video | ⏳ orphan (autonomous cron entry) |
+| **Trend Jacking** | `trend_jacking_agent/` | Live RSS trend → auto-trigger a news video | ✅ WIRED (telegram /trend + standalone/cron entry) |
 
 `personas/` — persona definitions used by the agents.
 
