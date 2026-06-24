@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEOSONA Nightingale Dashboard</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --panel-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --danger: #ef4444;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 1rem;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .status-badge {
+            margin-left: auto;
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent-green);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: var(--panel-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #334155;
+        }
+        .card h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .card .value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .val-green { color: var(--accent-green); }
+        .val-blue { color: var(--accent-blue); }
+        .val-purple { color: var(--accent-purple); }
+        
+        .queues-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .queues-container { grid-template-columns: 1fr; }
+        }
+        .list-box {
+            background: var(--panel-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+        }
+        .list-box h3 { margin-top: 0; color: var(--text-main); }
+        ul { list-style: none; padding: 0; margin: 0; }
+        li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #334155;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+        li:last-child { border-bottom: none; }
+        .cat-badge {
+            background: #334155;
+            color: var(--text-main);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Nightingale Monitor</h1>
+        <div class="status-badge">● System Online</div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Pending Tasks</h3>
+            <p class="value val-purple" id="val-pending">0</p>
+        </div>
+        <div class="card">
+            <h3>Active Temp Files</h3>
+            <p class="value val-blue" id="val-temp">0</p>
+        </div>
+        <div class="card">
+            <h3>Completed Assets</h3>
+            <p class="value val-green" id="val-done">0</p>
+        </div>
+    </div>
+
+    <div class="queues-container">
+        <div class="list-box">
+            <h3>⏳ Pending Queue</h3>
+            <ul id="queue-list">
+                <li>Loading...</li>
+            </ul>
+        </div>
+        <div class="list-box">
+            <h3>✅ Completed Inbox</h3>
+            <ul id="done-list">
+                <li>Loading...</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function fetchMetrics() {
+            try {
+                const res = await fetch('/api/metrics');
+                const data = await res.json();
+                
+                document.getElementById('val-pending').innerText = data.total_pending;
+                document.getElementById('val-temp').innerText = data.total_processing_temp;
+                document.getElementById('val-done').innerText = data.total_done;
+
+                // Render pending queue
+                const queueList = document.getElementById('queue-list');
+                queueList.innerHTML = '';
+                let hasPending = false;
+                for (const [category, items] of Object.entries(data.queue_details)) {
+                    if (items && items.length > 0) {
+                        hasPending = true;
+                        items.forEach(item => {
+                            queueList.innerHTML += `<li><span class="cat-badge">${category}</span> ${item}</li>`;
+                        });
+                    }
+                }
+                if (!hasPending) queueList.innerHTML = '<li>No pending tasks.</li>';
+
+                // Render done files
+                const doneList = document.getElementById('done-list');
+                doneList.innerHTML = '';
+                if (data.done_files.length === 0) {
+                    doneList.innerHTML = '<li>No completed files yet.</li>';
+                } else {
+                    data.done_files.forEach(f => {
+                        doneList.innerHTML += `<li>${f}</li>`;
+                    });
+                }
+            } catch (err) {
+                console.error('Failed to fetch metrics:', err);
+            }
+        }
+
+        // Poll every 3 seconds
+        fetchMetrics();
+        setInterval(fetchMetrics, 3000);
+    </script>
+</body>
+</html>
