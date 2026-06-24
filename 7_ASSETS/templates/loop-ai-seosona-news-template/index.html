@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html lang="vi" data-composition-variables='[
+  {"id":"DURATION","type":"number","label":"Duration","default":56},
+  {"id":"LOGO_PATH","type":"string","label":"Logo Path","default":"assets/Seosona_Logo.png"},
+  {"id":"KICKER","type":"string","label":"Kicker","default":"BAN TIN SEOSONA"},
+  {"id":"HEADLINE","type":"string","label":"Headline","default":"LOOP trong AI Agent dang thay doi cach lam viec"},
+  {"id":"SUBHEAD","type":"string","label":"Subhead","default":"Tu dong hoa khong chi la chay lenh. No la mot chu trinh quan sat, hanh dong, kiem tra va cai tien."},
+  {"id":"S1_TITLE","type":"string","label":"Scene 1 Title","default":"Loop la gi?"},
+  {"id":"S1_BODY","type":"string","label":"Scene 1 Body","default":"Mot tac vu duoc lap lai co muc tieu, co du lieu dau vao va co buoc tu danh gia ket qua."},
+  {"id":"S2_TITLE","type":"string","label":"Scene 2 Title","default":"AI Agent khac chatbot o dau?"},
+  {"id":"S2_BODY","type":"string","label":"Scene 2 Body","default":"Agent co the doc boi canh, goi cong cu, ghi nho ket qua va tiep tuc sua viec cho den khi dat chuan."},
+  {"id":"S3_TITLE","type":"string","label":"Scene 3 Title","default":"Rui ro nam o dau?"},
+  {"id":"S3_BODY","type":"string","label":"Scene 3 Body","default":"Neu thieu guardrail, loop co the lap sai, ton chi phi, hoac tao noi dung lech voi muc tieu."},
+  {"id":"S4_TITLE","type":"string","label":"Scene 4 Title","default":"Goc nhin SEOSONA"},
+  {"id":"S4_BODY","type":"string","label":"Scene 4 Body","default":"Hay thiet ke loop nhu mot quy trinh tin tuc: nguon ro rang, script tieng Viet, voice dung, sub khop va QA truoc khi xuat ban."}
+]'>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<title>SEOSONA Light Spatial Flow News Template</title>
+<script src="assets/gsap.min.js"></script>
+<style>
+@font-face {
+  font-family: "Be Vietnam Pro";
+  src: url("assets/fonts/BeVietnamPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Be Vietnam Pro";
+  src: url("assets/fonts/BeVietnamPro-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+}
+
+:root {
+  --bg: #f8fafc;
+  --paper: #ffffff;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #dbe3ef;
+  --blue: #1d4ed8;
+  --navy: #172554;
+  --orange: #f97316;
+  --accent-text: #c2410c;
+  --teal: #14b8a6;
+  --shadow: rgba(15, 23, 42, 0.12);
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+}
+
+#root {
+  position: relative;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(29,78,216,0.10), transparent 35%),
+    radial-gradient(circle at 80% 12%, rgba(249,115,22,0.16), transparent 28%),
+    radial-gradient(circle at 20% 68%, rgba(20,184,166,0.12), transparent 36%),
+    #f8fafc;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(23,37,84,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,37,84,0.055) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.18));
+}
+
+.header {
+  position: absolute;
+  top: 58px;
+  left: 62px;
+  right: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+}
+
+.logo {
+  height: 58px;
+  object-fit: contain;
+}
+
+.top-label {
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: var(--navy);
+  text-transform: uppercase;
+}
+
+.progress {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 99px;
+  background: var(--line);
+}
+
+.dot.active { background: var(--orange); }
+
+.scene {
+  position: absolute;
+  inset: 0;
+  padding: 158px 72px 252px;
+}
+
+.scene-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.orbit {
+  position: absolute;
+  top: 300px;
+  left: 172px;
+  width: 682px;
+  height: 682px;
+  border: 2px solid rgba(29,78,216,0.24);
+  border-radius: 50%;
+}
+
+.orbit::before,
+.orbit::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.orbit::before {
+  width: 30px;
+  height: 30px;
+  top: -16px;
+  left: 326px;
+  background: var(--orange);
+  box-shadow: 0 0 0 14px rgba(249,115,22,0.14);
+}
+
+.orbit::after {
+  width: 200px;
+  height: 200px;
+  left: 240px;
+  top: 240px;
+  border: 1px dashed rgba(23,37,84,0.26);
+}
+
+.path {
+  position: absolute;
+  top: 620px;
+  left: 40px;
+  width: 850px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(29,78,216,0.45), rgba(249,115,22,0.42), transparent);
+  transform: rotate(-10deg);
+}
+
+.node {
+  position: absolute;
+  top: 520px;
+  left: 60px;
+  width: 116px;
+  height: 116px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--blue);
+  font-size: 34px;
+  box-shadow: 0 18px 60px var(--shadow), 0 0 0 12px rgba(29,78,216,0.09);
+}
+
+.hero-card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1000px;
+  min-height: 420px;
+  padding: 48px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(219,227,239,0.95);
+  box-shadow: 0 22px 80px rgba(15,23,42,0.12);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(249,115,22,0.12);
+  color: #c2410c;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 99px;
+  background: var(--orange);
+}
+
+h1, h2 {
+  margin: 28px 0 0;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 76px;
+  color: var(--navy);
+}
+
+h2 {
+  font-size: 68px;
+  color: var(--navy);
+}
+
+.accent { color: var(--accent-text); }
+
+.body {
+  margin-top: 28px;
+  font-size: 34px;
+  line-height: 1.34;
+  color: #334155;
+}
+
+.metrics {
+  position: absolute;
+  top: 256px;
+  right: 0;
+  display: grid;
+  gap: 18px;
+  width: 294px;
+}
+
+.metric {
+  padding: 24px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.82);
+  border: 1px solid var(--line);
+}
+
+.metric strong {
+  display: block;
+  font-size: 46px;
+  color: var(--blue);
+}
+
+.metric span {
+  display: block;
+  margin-top: 8px;
+  font-size: 20px;
+  color: #334155;
+  text-transform: uppercase;
+}
+
+.caption {
+  position: absolute;
+  left: 82px;
+  right: 82px;
+  bottom: 128px;
+  z-index: 30;
+  padding: 28px 34px;
+  border-radius: 8px;
+  background: rgba(15,23,42,0.92);
+  color: #ffffff;
+  font-size: 33px;
+  line-height: 1.28;
+  text-align: center;
+  box-shadow: 0 18px 50px rgba(15,23,42,0.22);
+}
+
+.caption .hl { color: #fdba74; }
+
+.footer-line {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  bottom: 84px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--orange), var(--teal));
+  z-index: 25;
+}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="56" data-width="1080" data-height="1920">
+  <div class="grid"></div>
+  <div class="header">
+    <img class="logo" src="assets/Seosona_Logo.png" alt="SEOSONA">
+    <div class="top-label">Spatial Flow News</div>
+    <div class="progress"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+  </div>
+  <div class="footer-line"></div>
+
+  <section id="scene-1" class="clip scene scene-1" data-start="0" data-duration="13.9" data-track-index="1">
+    <div class="scene-shell">
+      <div class="path"></div>
+      <div class="orbit"></div>
+      <div class="node">01</div>
+      <div class="metrics">
+        <div class="metric"><strong>04</strong><span>nhịp tin</span></div>
+        <div class="metric"><strong>AI</strong><span>agent loop</span></div>
+      </div>
+      <article class="hero-card">
+        <div class="kicker">Bản tin SEOSONA</div>
+        <h1>LOOP trong <span class="accent">AI Agent</span> đang đổi cách làm việc</h1>
+        <p class="body" data-layout-allow-occlusion data-layout-allow-overlap>Một quy trình tự vận hành cần quan sát, hành động, kiểm tra và cải tiến liên tục.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="scene-2" class="clip scene scene-2" data-start="14" data-duration="13.9" data-track-index="1">
+    <div class="scene-shell">
+      <div class="path"></div>
+      <div class="orbit"></div>
+      <div class="node">02</div>
+      <div class="metrics">
+        <div class="metric"><strong>INPUT</strong><span>nguồn dữ liệu</span></div>
+        <div class="metric"><strong>CHECK</strong><span>tự đánh giá</span></div>
+      </div>
+      <article class="hero-card">
+        <div class="kicker">Khái niệm</div>
+        <h2>Loop là chu trình có <span class="accent">mục tiêu</span>, không phải lặp vô thức</h2>
+        <p class="body" data-layout-allow-occlusion data-layout-allow-overlap>Agent nhận dữ liệu, chọn công cụ, tạo kết quả rồi tự kiểm tra xem có cần chạy tiếp hay không.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="scene-3" class="clip scene scene-3" data-start="28" data-duration="13.9" data-track-index="1">
+    <div class="scene-shell">
+      <div class="path"></div>
+      <div class="orbit"></div>
+      <div class="node">03</div>
+      <div class="metrics">
+        <div class="metric"><strong>RISK</strong><span>lặp sai hướng</span></div>
+        <div class="metric"><strong>QA</strong><span>chặn lỗi</span></div>
+      </div>
+      <article class="hero-card">
+        <div class="kicker">Điểm cần kiểm soát</div>
+        <h2>Không có guardrail, loop có thể <span class="accent">tốn chi phí</span> và lệch mục tiêu</h2>
+        <p class="body" data-layout-allow-occlusion data-layout-allow-overlap>Tin tức, voice, subtitle và visual đều phải đi qua gate trước khi xuất bản.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="scene-4" class="clip scene scene-4" data-start="42" data-duration="13.9" data-track-index="1">
+    <div class="scene-shell">
+      <div class="path"></div>
+      <div class="orbit"></div>
+      <div class="node">04</div>
+      <div class="metrics">
+        <div class="metric"><strong>VI</strong><span>tiếng Việt</span></div>
+        <div class="metric"><strong>SYNC</strong><span>voice + sub</span></div>
+      </div>
+      <article class="hero-card">
+        <div class="kicker">Quy trình tin tức</div>
+        <h2>SEOSONA biến loop thành <span class="accent">template vận hành</span></h2>
+        <p class="body" data-layout-allow-occlusion data-layout-allow-overlap>Một template chuẩn phải có logo, màu thương hiệu, nhạc nền, SFX, transition và phụ đề khớp voice.</p>
+      </article>
+    </div>
+  </section>
+
+  <div id="caption-1" class="clip caption" data-layout-allow-occlusion data-layout-allow-overlap data-start="0" data-duration="6.9" data-track-index="10">Từ khóa <span class="hl">Loop</span> đang được nhắc nhiều trong giới AI Agent.</div>
+  <div id="caption-2" class="clip caption" data-layout-allow-occlusion data-layout-allow-overlap data-start="7" data-duration="6.9" data-track-index="10">Vì nó mô tả cách một hệ thống tự quan sát, hành động và cải tiến.</div>
+  <div id="caption-3" class="clip caption" data-layout-allow-occlusion data-layout-allow-overlap data-start="14" data-duration="6.9" data-track-index="10">Khác với chatbot, Agent có thể gọi công cụ và kiểm tra kết quả.</div>
+  <div id="caption-4" class="clip caption" data-layout-allow-occlusion data-layout-allow-overlap data-start="21" data-duration="6.9" data-track-index="10">Nhưng loop chỉ tốt khi có mục tiêu, giới hạn và chuẩn đánh giá rõ.</div>
+  <div id="caption-5" class="clip caption" data-layout-allow-occlusion data-layout-allow-overlap data-start="28" data-duration="6.9" data-track-index="10">Nếu thiếu guardrail, nó có thể lặp sai và làm tăng chi phí.</div>
+  <div id="caption-6" class="clip caption" data-layout-allow-occlusion data-layout-allow-overlap data-start="35" data-duration="6.9" data-track-index="10">Với video tin tức, từng lớp nội dung đều cần được đồng bộ.</div>
+  <div id="caption-7" class="clip caption" data-layout-allow-occlusion data-layout-allow-overlap data-start="42" data-duration="6.9" data-track-index="10">SEOSONA dùng template để giữ đúng logo, màu sắc và nhịp dựng.</div>
+  <div id="caption-8" class="clip caption" data-layout-allow-occlusion data-layout-allow-overlap data-start="49" data-duration="6.9" data-track-index="10">Đó là cách biến tin mới thành video hoàn chỉnh, nhất quán và dễ nhân bản.</div>
+
+  <audio id="bgm-template" src="assets/bgm_template_56.mp3" data-start="0" data-duration="56" data-track-index="20" data-volume="0.13" data-timeline-role="music"></audio>
+  
+  
+  
+  
+</div>
+
+<script>
+  document.querySelectorAll(".caption").forEach((item) => {
+    item.setAttribute("data-layout-allow-occlusion", "");
+    item.setAttribute("data-layout-allow-overlap", "");
+  });
+
+  const tl = gsap.timeline({ paused: true });
+  const scenes = [".scene-1", ".scene-2", ".scene-3", ".scene-4"];
+  scenes.forEach((selector, index) => {
+    const start = index * 14;
+    tl.fromTo(`${selector} .orbit`, { rotate: -12 }, { rotate: 22, duration: 13.5, ease: "none" }, start);
+    tl.fromTo(`${selector} .path`, { scaleX: 0.15, opacity: 0.25 }, { scaleX: 1, opacity: 1, duration: 2.2, ease: "power2.out" }, start + 0.2);
+    tl.fromTo(`${selector} .node`, { y: 18, scale: 0.92 }, { y: 0, scale: 1, duration: 0.65, ease: "back.out(1.6)" }, start + 0.1);
+    tl.fromTo(`${selector} .hero-card`, { y: 44, opacity: index === 0 ? 1 : 0 }, { y: 0, opacity: 1, duration: 0.75, ease: "power2.out" }, start + 0.35);
+    tl.fromTo(`${selector} .metric`, { x: 32, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: "power2.out" }, start + 0.6);
+  });
+
+  window.__timelines = window.__timelines || {};
+  window.__timelines["main"] = tl;
+</script>
+  <script src="../template_core.js"></script>
+</body>
+</html>

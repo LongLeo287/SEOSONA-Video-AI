@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-core: #090B14;
+  --bg-deep: #05060A;
+  
+  --c-cyan: #40E0D0;
+  --c-yellow: #FFDF00;
+  --c-magenta: #FF007A;
+  --c-purple: #8A2BE2;
+  --c-green: #00FF88;
+  
+  --text-main: #FFFFFF;
+  --text-dim: #8C92A6;
+  --text-label: #B0B8CC;
+  
+  --font: 'Be Vietnam Pro', sans-serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px; height: 1920px; overflow: hidden;
+  background: var(--bg-core); font-family: var(--font); color: var(--text-main);
+  display: flex; flex-direction: column; align-items: center;
+}
+
+/* Header */
+.top-title {
+  margin-top: 150px; font-size: 56px; font-weight: 900; color: var(--c-magenta);
+  text-transform: uppercase; letter-spacing: 4px; text-align: center;
+}
+
+/* Visualization Area */
+.viz-area {
+  position: relative; width: 800px; height: 1000px; margin-top: 100px;
+}
+
+.doc-block {
+  width: 600px; background: rgba(255,255,255,0.05); border: 2px solid var(--text-dim);
+  border-radius: 12px; margin: 0 auto 30px auto; padding: 30px; position: relative;
+  display: flex; flex-direction: column; gap: 12px; overflow: hidden;
+}
+.doc-block.active { border-color: var(--c-cyan); background: rgba(64,224,208,0.1); }
+.doc-block.error { border-color: var(--c-magenta); background: rgba(255,0,122,0.1); }
+
+.line { width: 100%; height: 12px; background: rgba(255,255,255,0.2); border-radius: 6px; }
+.line.short { width: 70%; }
+
+/* The Blade */
+.blade {
+  position: absolute; left: 0; width: 800px; height: 4px; background: var(--c-magenta);
+  box-shadow: 0 0 20px var(--c-magenta); z-index: 10; opacity: 0;
+}
+.blade-label {
+  position: absolute; right: 20px; top: -30px; color: var(--c-magenta); font-weight: 800; font-size: 24px;
+}
+.blade-icon {
+  position: absolute; left: 50px; top: -15px; width: 0; height: 0;
+  border-top: 15px solid transparent; border-bottom: 15px solid transparent;
+  border-left: 20px solid var(--c-magenta);
+}
+
+/* Captions */
+.caption-box {
+  position: absolute; bottom: 150px; width: 900px; text-align: center;
+}
+.caption {
+  font-size: 48px; font-weight: 700; color: var(--text-main); line-height: 1.4;
+}
+.caption .hl { color: var(--c-cyan); }
+.caption .hl-err { color: var(--c-magenta); }
+
+/* Extra Visuals */
+.cross {
+  position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+  width: 60px; height: 60px; border: 4px solid var(--c-magenta); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; opacity: 0;
+}
+.cross::before, .cross::after {
+  content: ''; position: absolute; width: 40px; height: 4px; background: var(--c-magenta);
+}
+.cross::before { transform: rotate(45deg); }
+.cross::after { transform: rotate(-45deg); }
+
+.check {
+  position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+  width: 60px; height: 60px; border: 4px solid var(--c-green); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; opacity: 0;
+}
+.check::before {
+  content: ''; position: absolute; width: 20px; height: 4px; background: var(--c-green);
+  transform: rotate(45deg) translate(-5px, 15px);
+}
+.check::after {
+  content: ''; position: absolute; width: 35px; height: 4px; background: var(--c-green);
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+</style>
+</head>
+<body data-composition-id="rag-chunking-explainer" data-width="1080" data-height="1920" data-duration="45" data-fps="30">
+
+<div class="top-title" id="mainTitle">LỖI HỆ THỐNG Ở ĐÂU?</div>
+
+<div class="viz-area" id="vizArea">
+  <div class="doc-block" id="block1">
+    <div class="line"></div><div class="line"></div><div class="line short"></div>
+  </div>
+  <div class="doc-block" id="block2">
+    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line short"></div>
+    <div class="cross" id="err1"></div>
+  </div>
+  <div class="doc-block" id="block3">
+    <div class="line"></div><div class="line short"></div>
+  </div>
+  <div class="doc-block" id="block4">
+    <div class="line"></div><div class="line"></div><div class="line short"></div>
+    <div class="check" id="chk1"></div>
+  </div>
+  
+  <div class="blade" id="blade">
+    <div class="blade-label">CẮT CHUẨN</div>
+    <div class="blade-icon"></div>
+  </div>
+</div>
+
+<div class="caption-box">
+  <div class="caption" id="capText">Tại sao kết quả <span class="hl-err">trả về sai?</span></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script>
+  const DURATION = 45;
+  window.__timelines = {};
+  const tl = gsap.timeline({ paused: true });
+  tl.totalDuration(DURATION);
+
+  // Setup initial state
+  gsap.set('.doc-block', { opacity: 0, y: 50 });
+  
+  // 1. Intro
+  tl.to('.doc-block', { opacity: 1, y: 0, stagger: 0.2, duration: 1, ease: "power2.out" }, 1);
+  
+  // 2. Bad chunking (Blade drops and cuts middle of block 2)
+  tl.set('#blade', { y: 0, opacity: 1 }, 3);
+  tl.to('#blade', { y: 280, duration: 1, ease: "power2.inOut" }, 3); // Position middle of block 2
+  tl.to('#block2', { className: '+=doc-block error', duration: 0.2 }, 4);
+  tl.to('#err1', { opacity: 1, scale: 1.2, duration: 0.3, yoyo: true, repeat: 1 }, 4.2);
+  tl.to('#err1', { opacity: 1, scale: 1, duration: 0.1 }, 4.8);
+  
+  const cap = document.getElementById('capText');
+  tl.call(() => { cap.innerHTML = 'Cắt tài liệu <span class="hl-err">giữa chừng</span>'; }, [], 4);
+  
+  // 3. Block separation (visualizing the break)
+  tl.to('#block2', { height: 180, duration: 0.5, ease: "power2.inOut" }, 5);
+  tl.to('#block3, #block4', { y: 40, duration: 0.5, ease: "power2.inOut" }, 5);
+  
+  tl.call(() => { cap.innerHTML = 'Làm mất <span class="hl-err">ngữ cảnh</span> của đoạn văn'; }, [], 8);
+
+  // 4. Good chunking (Blade resets and cuts between blocks)
+  tl.to('#blade', { opacity: 0, duration: 0.5 }, 12);
+  tl.to('.doc-block', { opacity: 0, y: 50, duration: 1 }, 12.5);
+  
+  tl.call(() => { 
+    cap.innerHTML = 'Cách xử lý <span class="hl">chuẩn xác</span>'; 
+    document.getElementById('mainTitle').innerHTML = 'PHÂN TÁCH NGỮ CẢNH';
+    document.getElementById('mainTitle').style.color = 'var(--c-cyan)';
+    document.querySelector('.blade').style.background = 'var(--c-cyan)';
+    document.querySelector('.blade-label').style.color = 'var(--c-cyan)';
+    document.querySelector('.blade-icon').style.borderLeftColor = 'var(--c-cyan)';
+  }, [], 14);
+
+  // Reset blocks
+  tl.set('.doc-block', { className: 'doc-block', height: 'auto', y: 50 }, 14);
+  tl.set('#err1', { opacity: 0 }, 14);
+  
+  tl.to('.doc-block', { opacity: 1, y: 0, stagger: 0.2, duration: 1 }, 15);
+  
+  // Blade cuts cleanly between block 1 and 2
+  tl.set('#blade', { y: 0, opacity: 1 }, 17);
+  tl.to('#blade', { y: 155, duration: 1, ease: "power2.inOut" }, 17); // Cut between 1 & 2
+  tl.to('#block1', { className: '+=doc-block active', duration: 0.2 }, 18);
+  
+  // Blade cuts cleanly between block 2 and 3
+  tl.to('#blade', { y: 350, duration: 1, ease: "power2.inOut" }, 20); // Cut between 2 & 3
+  tl.to('#block2', { className: '+=doc-block active', duration: 0.2 }, 21);
+  tl.to('#chk1', { opacity: 1, scale: 1.2, duration: 0.3, yoyo: true, repeat: 1 }, 21.2);
+  tl.to('#chk1', { opacity: 1, scale: 1, duration: 0.1 }, 21.8);
+
+  tl.call(() => { cap.innerHTML = 'Giữ nguyên <span class="hl">trọn vẹn</span> ý nghĩa'; }, [], 20);
+  tl.call(() => { cap.innerHTML = 'Tối ưu hóa <span class="hl">đầu ra</span>'; }, [], 26);
+
+  // Fade out
+  tl.to('#vizArea, .top-title, .caption-box', { opacity: 0, duration: 2 }, 40);
+
+  window.__timelines["rag-chunking-explainer"] = tl;
+</script>
+  <script src="../template_core.js"></script>
+</body>
+</html>

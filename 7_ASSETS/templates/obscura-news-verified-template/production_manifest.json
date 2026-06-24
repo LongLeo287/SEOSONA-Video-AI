@@ -1,0 +1,28 @@
+{
+  "language": "en",
+  "script_is_vietnamese": false,
+  "duration": 75.82,
+  "visual_scene_count": 8,
+  "caption_group_count": 56,
+  "video_track_count": 0,
+  "audio_tracks": {
+    "voice": true,
+    "bgm": true,
+    "sfx_count": 15
+  },
+  "screenshot_asset_count": 0,
+  "visual_modes": [
+    "screenshot",
+    "screenshot",
+    "screenshot",
+    "screenshot",
+    "screenshot",
+    "screenshot",
+    "dashboard",
+    "screenshot"
+  ],
+  "warnings": [
+    "no_real_video_tracks",
+    "missing_real_screenshots"
+  ]
+}

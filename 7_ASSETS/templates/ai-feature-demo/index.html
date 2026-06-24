@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-core: #090B14;
+  --bg-deep: #05060A;
+  
+  --c-cyan: #40E0D0;
+  --c-yellow: #FFDF00;
+  --c-magenta: #FF007A;
+  --c-purple: #8A2BE2;
+  --c-green: #00FF88;
+  
+  --text-main: #FFFFFF;
+  --text-dim: #8C92A6;
+  --text-label: #B0B8CC;
+  
+  --font: 'Be Vietnam Pro', sans-serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px; height: 1920px; overflow: hidden;
+  background: var(--bg-deep); font-family: var(--font); color: var(--text-main);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+
+/* Background gradient orb */
+.orb {
+  position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, var(--c-purple) 0%, transparent 70%);
+  opacity: 0.2; filter: blur(80px); z-index: 0;
+}
+
+/* Chat UI */
+.chat-container {
+  position: relative; width: 900px; z-index: 10;
+  display: flex; flex-direction: column; gap: 40px;
+}
+
+.bubble {
+  max-width: 80%; padding: 30px 40px; border-radius: 30px;
+  font-size: 32px; font-weight: 500; line-height: 1.5;
+  opacity: 0; transform: translateY(40px);
+}
+.bubble.user {
+  align-self: flex-end; background: rgba(255,255,255,0.1);
+  border-bottom-right-radius: 5px; color: var(--text-main);
+}
+.bubble.ai {
+  align-self: flex-start;
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(64, 224, 208, 0.2));
+  border: 1px solid rgba(64, 224, 208, 0.3);
+  border-bottom-left-radius: 5px; color: var(--text-main);
+}
+.typing-indicator {
+  display: inline-block; width: 20px; height: 20px; background: var(--c-cyan);
+  border-radius: 50%; animation: pulse 1s infinite alternate; margin-left: 10px;
+}
+@keyframes pulse { from { opacity: 0.3; } to { opacity: 1; } }
+
+/* Feature Reveal */
+.reveal-area {
+  position: absolute; top: 0; left: 0; width: 1080px; height: 1920px;
+  background: var(--bg-core); z-index: 20;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+}
+.r-icon {
+  width: 200px; height: 200px; background: linear-gradient(135deg, var(--c-cyan), var(--c-purple));
+  border-radius: 40px; margin-bottom: 60px; box-shadow: 0 20px 60px rgba(64,224,208,0.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.r-icon::after {
+  content: ''; width: 80px; height: 80px; border: 8px solid var(--bg-core); border-radius: 50%;
+}
+.r-title {
+  font-size: 80px; font-weight: 900; letter-spacing: -2px; margin-bottom: 20px; text-align: center;
+}
+.r-desc {
+  font-size: 36px; color: var(--text-dim); text-align: center; max-width: 800px; line-height: 1.5;
+}
+</style>
+</head>
+<body data-composition-id="ai-feature-demo" data-width="1080" data-height="1920" data-duration="40" data-fps="30">
+
+<div class="orb"></div>
+
+<div class="chat-container">
+  <div class="bubble user" id="b1">Phân tích cho tôi toàn bộ cấu trúc của hệ thống này, và đưa ra giải pháp tự động hóa.</div>
+  
+  <div class="bubble ai" id="b2" style="display: none;">
+    <span id="aiText"></span><span class="typing-indicator" id="cursor"></span>
+  </div>
+</div>
+
+<div class="reveal-area" id="reveal">
+  <div class="r-icon"></div>
+  <div class="r-title">SẢN PHẨM <span style="color:var(--c-magenta);">VƯỢT TRỘI</span></div>
+  <div class="r-desc">Giải pháp tích hợp AI hoàn chỉnh nhất, tự động hóa mọi quy trình phức tạp chỉ với một câu lệnh.</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/TextPlugin.min.js"></script>
+<script>
+  gsap.registerPlugin(TextPlugin);
+  const DURATION = 40;
+  window.__timelines = {};
+  const tl = gsap.timeline({ paused: true });
+  tl.totalDuration(DURATION);
+
+  // Chat sequence
+  tl.to('#b1', { y: 0, opacity: 1, duration: 1, ease: "back.out(1.5)" }, 1);
+  
+  tl.set('#b2', { display: 'block' }, 2.5);
+  tl.to('#b2', { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 2.5);
+  
+  const responseText = "Đang xử lý yêu cầu...\n- Hệ thống hiện tại có 3 điểm nghẽn.\n- Đề xuất: Kích hoạt module tự động hóa toàn diện.\n- Bạn có muốn triển khai ngay không?";
+  
+  tl.to('#aiText', { text: responseText, duration: 4, ease: "none" }, 3);
+  tl.set('#cursor', { display: 'none' }, 8);
+
+  // Reveal transition
+  tl.to('.chat-container, .orb', { scale: 0.8, opacity: 0, duration: 1, ease: "power2.in" }, 9);
+  
+  tl.set('#reveal', { opacity: 1 }, 10);
+  tl.from('#reveal', { scale: 1.2, opacity: 0, duration: 1.5, ease: "power3.out" }, 10);
+  
+  tl.from('.r-icon', { y: 100, rotation: -45, opacity: 0, duration: 1.5, ease: "back.out(2)" }, 10.5);
+  tl.from('.r-title', { y: 50, opacity: 0, duration: 1, ease: "power2.out" }, 11);
+  tl.from('.r-desc', { y: 50, opacity: 0, duration: 1, ease: "power2.out" }, 11.5);
+
+  // Hover float effect
+  tl.to('.r-icon', { y: "-=20", duration: 2, ease: "sine.inOut", yoyo: true, repeat: 10 }, 12);
+
+  // End
+  tl.to('body', { opacity: 0, duration: 2 }, 37);
+
+  window.__timelines["ai-feature-demo"] = tl;
+</script>
+  <script src="../template_core.js"></script>
+</body>
+</html>

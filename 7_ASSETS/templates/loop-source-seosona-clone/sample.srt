@@ -1,0 +1,63 @@
+1
+00:00:00,000 --> 00:00:06,000
+Đây là bản clone template LOOP theo màu và logo SEOSONA.
+
+2
+00:00:06,000 --> 00:00:12,000
+Cấu trúc chính là đường path phát sáng, node nội dung và card nổi.
+
+3
+00:00:12,000 --> 00:00:18,000
+Mỗi cụm cảnh bám theo nhịp chuyển trong video tham chiếu.
+
+4
+00:00:18,000 --> 00:00:24,000
+Phần logo, palette và typography đã chuyển sang hệ SEOSONA.
+
+5
+00:00:24,000 --> 00:00:30,000
+Nội dung sau này có thể thay bằng tin tức, bài học hoặc khóa học.
+
+6
+00:00:30,000 --> 00:00:36,000
+Template vẫn giữ nhịp tối, glow, card và subtitle ở đáy khung.
+
+7
+00:00:36,000 --> 00:00:42,000
+Các điểm nhấn chuyển màu theo từng node để giữ cảm giác loop.
+
+8
+00:00:42,000 --> 00:00:48,000
+Đây là nền để tạo video tin tức SEOSONA nhanh và nhất quán.
+
+9
+00:00:48,000 --> 00:00:54,000
+Khi cần video khóa học, chỉ đổi brand, nội dung và cấu trúc bài học.
+
+10
+00:00:54,000 --> 00:01:00,000
+BGM và SFX được giữ như một phần của production template.
+
+11
+00:01:00,000 --> 00:01:06,000
+Các caption nằm trong safe zone và không đè lên card chính.
+
+12
+00:01:06,000 --> 00:01:12,000
+Luồng camera dọc mô phỏng đúng cảm giác đi qua bản đồ vận hành.
+
+13
+00:01:12,000 --> 00:01:18,000
+Mục tiêu là tái sử dụng được, không chỉ render một video đơn lẻ.
+
+14
+00:01:18,000 --> 00:01:24,000
+Các scene, màu và text đều có thể thay trong template registry.
+
+15
+00:01:24,000 --> 00:01:30,000
+Bản clone này dùng SEOSONA làm chuẩn nhận diện mặc định.
+
+16
+00:01:30,000 --> 00:01:36,733
+Sau khi kiểm tra, template có thể đưa vào pipeline tạo video mới.

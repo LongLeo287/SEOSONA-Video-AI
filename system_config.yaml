@@ -17,12 +17,12 @@ platforms:
   youtube:
     video: {width: 1920, height: 1080, ratio: "16:9"}
     thumbnail: {width: 1280, height: 720}
-    shorts: {width: 1080, height: 1920, ratio: "9:16", max_duration: 60}
+    shorts: {width: 1080, height: 1920, ratio: "9:16"}
   tiktok:
-    video: {width: 1080, height: 1920, ratio: "9:16", max_duration: 60}
+    video: {width: 1080, height: 1920, ratio: "9:16"}
     thumbnail: {width: 1080, height: 1920}
   reels:
-    video: {width: 1080, height: 1920, ratio: "9:16", max_duration: 90}
+    video: {width: 1080, height: 1920, ratio: "9:16"}
     thumbnail: {width: 1080, height: 1920}
 
 profiles:
@@ -39,12 +39,13 @@ profiles:
       size: 70
     voice:
       engine: "vieneu"
-      model: "default"
+      model: "Trọng Hữu"
       required_gender: "male"
       required_accent: "southern"
-      reference_audio: "7_ASSETS/voice_profiles/seosona_male_southern.wav"
-      fallback_engine: "edge-tts"
-      # WARNING: Azure vi-VN-NamMinhNeural is a Northern accent. This will cause an accent shift if VieNeu (Southern) fails.
+      # reference_audio: "7_ASSETS/voice/profiles/seosona_male_southern.wav"
+      # CRITICAL: VieNeu with reference_audio is the PRIMARY engine.
+      # Edge-TTS fallback uses Northern accent — only triggers if VieNeu completely fails.
+      # The pipeline MUST prefer VieNeu clone to maintain Southern male voice consistency.
       fallback_voice: "vi-VN-NamMinhNeural"
     logo: "Seosona_Logo.png"
     animation: "slide_up"
@@ -67,7 +68,7 @@ profiles:
       model: "chiquyet_clone_v1"
       required_gender: "male"
       required_accent: "southern"
-      reference_audio: "7_ASSETS/voice_profiles/chiquyet_sample_4s.wav"
+      reference_audio: "7_ASSETS/voice/profiles/chiquyet_sample_4s.wav"
       fallback_engine: "edge-tts"
       fallback_voice: "vi-VN-NamMinhNeural"
     logo: "Chi Quyet Academy Mascot Logo.png"
@@ -88,13 +89,13 @@ whisper:
   hallucination_silence_threshold: 2
 
 sfx:
-  pop_dir: "7_ASSETS/sfx/pops"
-  transition_dir: "7_ASSETS/sfx/transitions"
+  pop_dir: "7_ASSETS/audio/sfx/pops"
+  transition_dir: "7_ASSETS/audio/sfx/transitions"
   pop_volume: 0.3
   transition_volume: 0.6
 
 bgm:
-  dir: "7_ASSETS/bgm"
+  dir: "7_ASSETS/audio/bgm"
   default_mood: "tech"
   volume:
     seosona: 0.08

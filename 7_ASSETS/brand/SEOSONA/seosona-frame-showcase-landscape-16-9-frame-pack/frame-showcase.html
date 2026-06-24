@@ -1,0 +1,1152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SEOSONA · Frame Showcase — Landscape 16:9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   :root — tokens mirror frame.md frontmatter colors
+   ============================================================ */
+:root{
+  /* canvas */
+  --canvas-base:#FFFFFF;
+  --canvas-surface:#F8FAFC;
+  --canvas-elevated:#F1F5F9;
+
+  /* ink */
+  --ink-header:#04091A;
+  --ink-body:#64748B;
+  --ink-muted:#94A3B8;
+
+  /* signal */
+  --signal-primary:#1D4ED8;
+  --signal-hover:#2B8FD4;
+  --signal-tint:rgba(29,78,216,0.08);
+
+  /* accent */
+  --accent-indigo:#6366F1;
+  --accent-amber:#F59E0B;
+
+  /* border */
+  --border-standard:#E2E8F0;
+  --border-soft:#F1F5F9;
+
+  /* radius */
+  --r-pill:9999px;
+  --r-card-sm:28px;
+  --r-card-lg:40px;
+  --r-hair:4px;
+
+  /* fonts */
+  --font-display:'Poppins', system-ui, sans-serif;
+  --font-sans:'Inter', system-ui, sans-serif;
+
+  /* shadow */
+  --shadow-whisper:0 1px 2px 0 rgba(4,9,26,0.04);
+  --shadow-card:0 1px 2px 0 rgba(4,9,26,0.04), 0 8px 32px -16px rgba(4,9,26,0.08);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{
+  background:var(--canvas-elevated);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body{
+  font-family:var(--font-sans);
+  color:var(--ink-header);
+  font-weight:500;
+}
+
+/* ============================================================
+   COVER — full-bleed 16:9, first in body, IS treatment #1
+   ============================================================ */
+.cover-frame{
+  width:100vw;
+  aspect-ratio:16/9;
+  container-type:size;
+  background:var(--canvas-base);
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--border-standard);
+}
+.cover-frame .safe{
+  position:absolute; inset:5cqw;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:2cqw;
+}
+.cover-eyebrow{
+  /* component: chip-eyebrow */
+  background:var(--canvas-surface);
+  color:var(--ink-header);
+  font-family:var(--font-sans);
+  font-weight:600;
+  font-size:1.1cqw;
+  line-height:1.3;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  border-radius:var(--r-pill);
+  padding:0.55cqw 1.1cqw;
+  border:1px solid var(--border-standard);
+  white-space:nowrap;
+}
+.cover-wordmark{
+  /* component: wordmark-lockup · display.wordmark-mega */
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:22cqw;
+  line-height:0.86;
+  letter-spacing:-0.05em;
+  color:var(--ink-header);
+  display:flex; align-items:center; gap:1.4cqw;
+}
+.dot-signal{
+  display:block;
+  width:1.6cqw; height:1.6cqw;
+  background:var(--signal-primary);
+  border-radius:var(--r-pill);
+  align-self:flex-end;
+  margin-bottom:1.6cqw;
+}
+
+/* ============================================================
+   DOC CHROME — brand wears the brand
+   ============================================================ */
+.doc{
+  max-width:1440px;
+  margin:0 auto;
+  padding:120px 56px 160px;
+}
+.section{
+  padding:80px 0;
+  border-top:1px solid var(--border-standard);
+}
+.section:first-of-type{ border-top:none; padding-top:96px; }
+.section-head{
+  display:flex; align-items:baseline; gap:24px;
+  margin-bottom:48px;
+  flex-wrap:wrap;
+}
+.section-index{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:24px;
+  color:var(--ink-muted);
+  letter-spacing:-0.01em;
+  font-variant-numeric:tabular-nums;
+}
+.section-title{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:48px;
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  color:var(--ink-header);
+  margin:0;
+}
+.section-rule{
+  flex:1; min-width:80px; height:1px;
+  background:var(--border-standard);
+  align-self:center;
+}
+.section-tag{
+  font-family:var(--font-sans);
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--ink-body);
+  background:var(--canvas-base);
+  border:1px solid var(--border-standard);
+  border-radius:var(--r-pill);
+  padding:8px 14px;
+  white-space:nowrap;
+}
+.section-lede{
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:17px;
+  line-height:1.65;
+  color:var(--ink-body);
+  max-width:62ch;
+  margin:0 0 48px;
+}
+
+/* ============================================================
+   PALETTE — ruled swatch grid
+   ============================================================ */
+.palette-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:0;
+  border-top:1px solid var(--border-standard);
+  border-left:1px solid var(--border-standard);
+  background:var(--canvas-base);
+  border-radius:var(--r-card-lg);
+  overflow:hidden;
+}
+.sw{
+  border-right:1px solid var(--border-standard);
+  border-bottom:1px solid var(--border-standard);
+  padding:0;
+  display:flex; flex-direction:column;
+}
+.sw-chip{
+  height:120px;
+  border-bottom:1px solid var(--border-standard);
+}
+.sw-meta{
+  padding:18px 22px 22px;
+  display:flex; flex-direction:column; gap:6px;
+}
+.sw-token{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:15px;
+  line-height:1.2;
+  letter-spacing:-0.01em;
+  color:var(--ink-header);
+}
+.sw-hex{
+  font-family:var(--font-sans);
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:0.06em;
+  color:var(--ink-body);
+  font-variant-numeric:tabular-nums;
+}
+.sw-role{
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:12px;
+  line-height:1.4;
+  color:var(--ink-muted);
+  margin-top:4px;
+}
+.sw-chip.is-light{ box-shadow:inset 0 0 0 1px var(--border-soft); }
+
+/* ============================================================
+   TYPOGRAPHY — branded ruled rows
+   ============================================================ */
+.type-row{
+  display:grid;
+  grid-template-columns:240px 1fr;
+  gap:32px;
+  align-items:start;
+  padding:32px 0;
+  border-top:1px solid var(--border-standard);
+}
+.type-row:last-child{ border-bottom:1px solid var(--border-standard); }
+.type-meta{
+  display:flex; flex-direction:column; gap:6px;
+  padding-top:6px;
+}
+.type-token{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:15px;
+  letter-spacing:-0.01em;
+  color:var(--ink-header);
+}
+.type-spec{
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:12px;
+  letter-spacing:0.04em;
+  color:var(--ink-body);
+  font-variant-numeric:tabular-nums;
+}
+.type-specimen{
+  color:var(--ink-header);
+  overflow:hidden;
+}
+.t-wordmark{ font-family:var(--font-display); font-weight:900; font-size:108px; line-height:0.86; letter-spacing:-0.05em; }
+.t-hero{     font-family:var(--font-display); font-weight:900; font-size:72px;  line-height:0.92; letter-spacing:-0.035em;}
+.t-claim{    font-family:var(--font-display); font-weight:900; font-size:54px;  line-height:0.96; letter-spacing:-0.03em; }
+.t-section{  font-family:var(--font-display); font-weight:900; font-size:36px;  line-height:1.05; letter-spacing:-0.02em; }
+.t-stat{     font-family:var(--font-display); font-weight:900; font-size:96px;  line-height:0.86; letter-spacing:-0.045em; font-variant-numeric:tabular-nums;}
+.t-title-md{ font-family:var(--font-display); font-weight:900; font-size:40px;  line-height:1.1;  letter-spacing:-0.02em; }
+.t-title-sm{ font-family:var(--font-display); font-weight:900; font-size:26px;  line-height:1.15; letter-spacing:-0.01em; }
+.t-body{     font-family:var(--font-sans);    font-weight:500; font-size:17px;  line-height:1.65; }
+.t-label{    font-family:var(--font-sans);    font-weight:600; font-size:14px;  line-height:1.3;  letter-spacing:0.08em; text-transform:uppercase; }
+.t-kicker{   font-family:var(--font-sans);    font-weight:600; font-size:13px;  line-height:1.3;  letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-body); }
+
+/* ============================================================
+   COMPONENTS gallery — captioned clusters
+   ============================================================ */
+.cmp-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+  gap:24px;
+}
+.cmp-card{
+  background:var(--canvas-base);
+  border:1px solid var(--border-standard);
+  border-radius:var(--r-card-lg);
+  padding:40px;
+  display:flex; flex-direction:column; gap:24px;
+  min-height:220px;
+}
+.cmp-stage{
+  flex:1;
+  display:flex; align-items:center; justify-content:center;
+  min-height:90px;
+}
+.cmp-caption{
+  display:flex; flex-direction:column; gap:4px;
+  padding-top:20px;
+  border-top:1px solid var(--border-soft);
+}
+.cmp-name{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:15px;
+  letter-spacing:-0.01em;
+  color:var(--ink-header);
+}
+.cmp-desc{
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:13px;
+  line-height:1.5;
+  color:var(--ink-body);
+}
+
+/* ---- live component classes (mirror frontmatter components) ---- */
+.c-btn-primary{
+  background:var(--ink-header); color:var(--canvas-base);
+  font-family:var(--font-sans); font-weight:500; font-size:17px; line-height:1;
+  border-radius:var(--r-pill); padding:14px 24px;
+  border:none; white-space:nowrap;
+}
+.c-btn-signal{
+  background:var(--signal-primary); color:var(--canvas-base);
+  font-family:var(--font-sans); font-weight:600; font-size:17px; line-height:1;
+  border-radius:var(--r-pill); padding:14px 26px;
+  border:none; white-space:nowrap;
+}
+.c-btn-secondary{
+  background:var(--canvas-surface); color:var(--ink-header);
+  font-family:var(--font-sans); font-weight:500; font-size:17px; line-height:1;
+  border-radius:var(--r-pill); padding:14px 24px;
+  border:1px solid var(--border-standard); white-space:nowrap;
+}
+.c-chip-eyebrow{
+  background:var(--canvas-surface); color:var(--ink-header);
+  font-family:var(--font-sans); font-weight:600; font-size:12px;
+  letter-spacing:0.18em; text-transform:uppercase; line-height:1.3;
+  border-radius:var(--r-pill); padding:8px 14px;
+  border:1px solid var(--border-standard); white-space:nowrap;
+}
+.c-chip-status{
+  background:var(--signal-tint); color:var(--signal-primary);
+  font-family:var(--font-sans); font-weight:600; font-size:12px;
+  letter-spacing:0.18em; text-transform:uppercase; line-height:1.3;
+  border-radius:var(--r-pill); padding:8px 14px; white-space:nowrap;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.c-chip-status::before{
+  content:""; display:block; width:7px; height:7px;
+  background:var(--signal-primary); border-radius:var(--r-pill);
+}
+.c-dot{
+  display:block; width:14px; height:14px;
+  background:var(--signal-primary); border-radius:var(--r-pill);
+}
+.c-rule{
+  display:block; height:1px; width:120px;
+  background:var(--border-standard);
+}
+.c-card-soft{
+  background:var(--canvas-base); border:1px solid var(--border-standard);
+  border-radius:var(--r-card-lg); padding:24px; box-shadow:var(--shadow-whisper);
+  width:240px;
+}
+.c-card-tint{
+  background:var(--canvas-surface); border:1px solid var(--border-soft);
+  border-radius:var(--r-card-lg); padding:24px; width:240px;
+}
+.c-ledger-cell{
+  background:var(--canvas-base); border:1px solid var(--border-standard);
+  border-radius:var(--r-card-sm); padding:18px 20px;
+  width:200px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.c-ledger-cell .ld-num{
+  font-family:var(--font-display); font-weight:900; font-size:36px;
+  line-height:1; letter-spacing:-0.02em; color:var(--ink-header);
+  font-variant-numeric:tabular-nums;
+}
+.c-ledger-cell .ld-lbl{
+  font-family:var(--font-sans); font-weight:600; font-size:11px;
+  letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted);
+}
+
+/* ============================================================
+   FRAME contact-sheet grid (Composition Examples)
+   ============================================================ */
+.frame-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(560px, 1fr));
+  gap:48px 32px;
+}
+.frame-cell{ display:flex; flex-direction:column; gap:14px; }
+.frame{
+  width:100%;
+  aspect-ratio:16/9;
+  container-type:size;
+  background:var(--canvas-base);
+  border:1px solid var(--border-standard);
+  border-radius:8px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:var(--shadow-card);
+}
+.frame .safe{
+  position:absolute; inset:5cqw;
+  display:flex; flex-direction:column;
+}
+.frame .ground-tint{ background:var(--canvas-surface); }
+
+.frame-rail{
+  display:flex; align-items:baseline; gap:14px;
+  padding:0 4px;
+  flex-wrap:wrap;
+}
+.fr-idx{
+  font-family:var(--font-display); font-weight:900;
+  font-size:13px; color:var(--ink-muted);
+  font-variant-numeric:tabular-nums; letter-spacing:0;
+}
+.fr-name{
+  font-family:var(--font-display); font-weight:900;
+  font-size:16px; line-height:1.15; letter-spacing:-0.01em;
+  color:var(--ink-header);
+}
+.fr-meta{
+  font-family:var(--font-sans); font-weight:500;
+  font-size:12px; color:var(--ink-body);
+  letter-spacing:0.04em;
+  display:flex; align-items:center; gap:10px; margin-left:auto;
+}
+.fr-meta .sep{ width:3px; height:3px; background:var(--ink-muted); border-radius:50%; display:inline-block; }
+.fr-density{
+  font-family:var(--font-sans); font-weight:600; font-size:11px;
+  letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--signal-primary);
+}
+
+/* ============================================================
+   FRAME-INTERNAL atoms — all in cqw
+   ============================================================ */
+.f-eyebrow{
+  background:var(--canvas-surface); color:var(--ink-header);
+  font-family:var(--font-sans); font-weight:600;
+  font-size:1.1cqw; line-height:1.3;
+  letter-spacing:0.18em; text-transform:uppercase;
+  border-radius:var(--r-pill);
+  padding:0.55cqw 1.1cqw;
+  border:1px solid var(--border-standard);
+  white-space:nowrap;
+  display:inline-block;
+}
+.f-status{
+  background:var(--signal-tint); color:var(--signal-primary);
+  font-family:var(--font-sans); font-weight:600;
+  font-size:1.1cqw; line-height:1.3;
+  letter-spacing:0.18em; text-transform:uppercase;
+  border-radius:var(--r-pill);
+  padding:0.55cqw 1.1cqw;
+  white-space:nowrap;
+  display:inline-flex; align-items:center; gap:0.6cqw;
+}
+.f-status::before{
+  content:""; display:block; width:0.6cqw; height:0.6cqw;
+  background:var(--signal-primary); border-radius:var(--r-pill);
+}
+.f-wordmark{
+  font-family:var(--font-display); font-weight:900;
+  font-size:22cqw; line-height:0.86; letter-spacing:-0.05em;
+  color:var(--ink-header);
+  display:flex; align-items:flex-end; gap:1.4cqw;
+}
+.f-wordmark .f-bigdot{
+  display:block; width:1.6cqw; height:1.6cqw;
+  background:var(--signal-primary); border-radius:var(--r-pill);
+  margin-bottom:1.6cqw;
+}
+.f-hero{
+  font-family:var(--font-display); font-weight:900;
+  font-size:9.5cqw; line-height:0.92; letter-spacing:-0.035em;
+  color:var(--ink-header);
+  text-align:center;
+  max-width:78cqw;
+}
+.f-section-head{
+  font-family:var(--font-display); font-weight:900;
+  font-size:4.4cqw; line-height:1.05; letter-spacing:-0.02em;
+  color:var(--ink-header); margin:0;
+}
+.f-title-md{
+  font-family:var(--font-display); font-weight:900;
+  font-size:2.1cqw; line-height:1.1; letter-spacing:-0.02em;
+  color:var(--ink-header); margin:0;
+}
+.f-title-sm{
+  font-family:var(--font-display); font-weight:900;
+  font-size:1.6cqw; line-height:1.15; letter-spacing:-0.01em;
+  color:var(--ink-header); margin:0;
+}
+.f-body{
+  font-family:var(--font-sans); font-weight:500;
+  font-size:1.1cqw; line-height:1.6; color:var(--ink-body);
+  margin:0;
+}
+.f-label{
+  font-family:var(--font-sans); font-weight:600;
+  font-size:0.85cqw; line-height:1.3;
+  letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--ink-muted); margin:0;
+}
+.f-caption{
+  font-family:var(--font-sans); font-weight:500;
+  font-size:1.4cqw; line-height:1.45;
+  color:var(--ink-body); margin:0;
+}
+.f-stat{
+  font-family:var(--font-display); font-weight:900;
+  font-size:18cqw; line-height:0.86; letter-spacing:-0.045em;
+  color:var(--ink-header);
+  font-variant-numeric:tabular-nums;
+  display:flex; align-items:flex-end; gap:1cqw;
+  justify-content:center;
+}
+.f-stat .f-bigdot{
+  display:block; width:1.4cqw; height:1.4cqw;
+  background:var(--signal-primary); border-radius:var(--r-pill);
+  margin-bottom:1.4cqw;
+}
+.f-rule{
+  display:block; height:1px;
+  background:var(--border-standard);
+}
+.f-dot{
+  display:inline-block; width:0.7cqw; height:0.7cqw;
+  background:var(--signal-primary); border-radius:var(--r-pill);
+  vertical-align:baseline;
+}
+.f-btn-signal{
+  background:var(--signal-primary); color:var(--canvas-base);
+  font-family:var(--font-sans); font-weight:600;
+  font-size:1.5cqw; line-height:1;
+  border-radius:var(--r-pill);
+  padding:1.4cqw 2.6cqw;
+  border:none; white-space:nowrap;
+  display:inline-block;
+}
+.f-btn-ink{
+  background:var(--ink-header); color:var(--canvas-base);
+  font-family:var(--font-sans); font-weight:600;
+  font-size:1.5cqw; line-height:1;
+  border-radius:var(--r-pill);
+  padding:1.4cqw 2.6cqw;
+  border:none; white-space:nowrap;
+  display:inline-block;
+}
+.f-card-soft{
+  background:var(--canvas-base);
+  border:1px solid var(--border-standard);
+  border-radius:var(--r-card-lg);
+  box-shadow:var(--shadow-whisper);
+  padding:2.6cqw 2.8cqw;
+  display:flex; flex-direction:column;
+  position:relative;
+}
+.f-ledger-cell{
+  background:var(--canvas-base);
+  border:1px solid var(--border-standard);
+  border-radius:var(--r-card-sm);
+  padding:1.6cqw 1.8cqw;
+  display:flex; flex-direction:column; gap:0.8cqw;
+  justify-content:space-between;
+  min-height:0;
+  position:relative;
+}
+.f-ledger-cell .f-num{
+  font-family:var(--font-display); font-weight:900;
+  font-size:3.6cqw; line-height:1; letter-spacing:-0.02em;
+  color:var(--ink-header);
+  font-variant-numeric:tabular-nums;
+}
+.f-ledger-cell .f-num .f-dot{ width:0.55cqw; height:0.55cqw; }
+.f-ledger-cell .f-icon{
+  position:absolute; top:1.4cqw; right:1.6cqw;
+  width:1.6cqw; height:1.6cqw;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* Sparkline (SVG sized via cqw) */
+.f-spark{
+  display:block;
+  width:100%;
+  height:3.2cqw;
+}
+.f-spark path{
+  fill:none; stroke:var(--signal-primary);
+  stroke-width:0.18cqw; stroke-linecap:round; stroke-linejoin:round;
+}
+
+/* ============================================================
+   PRINCIPLES — Do / Don't branded cards
+   ============================================================ */
+.principle-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(360px, 1fr));
+  gap:24px;
+}
+.pr-card{
+  background:var(--canvas-base);
+  border:1px solid var(--border-standard);
+  border-radius:var(--r-card-lg);
+  padding:32px 36px 36px;
+  display:flex; flex-direction:column; gap:16px;
+}
+.pr-tag{
+  align-self:flex-start;
+  font-family:var(--font-sans); font-weight:700;
+  font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+  border-radius:var(--r-pill);
+  padding:6px 12px;
+}
+.pr-tag.do{   background:var(--signal-tint); color:var(--signal-primary); }
+.pr-tag.dont{ background:var(--ink-header);   color:var(--canvas-base);    }
+.pr-title{
+  font-family:var(--font-display); font-weight:900;
+  font-size:24px; line-height:1.1; letter-spacing:-0.02em;
+  color:var(--ink-header); margin:0;
+}
+.pr-body{
+  font-family:var(--font-sans); font-weight:500;
+  font-size:15px; line-height:1.6; color:var(--ink-body); margin:0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  border-top:1px solid var(--border-standard);
+  padding:48px 0 12px;
+  margin-top:80px;
+  display:flex; justify-content:space-between; align-items:baseline;
+  flex-wrap:wrap; gap:16px;
+}
+.footer-mark{
+  font-family:var(--font-display); font-weight:900;
+  font-size:18px; letter-spacing:-0.02em; color:var(--ink-header);
+}
+.footer-meta{
+  font-family:var(--font-sans); font-weight:500;
+  font-size:12px; letter-spacing:0.06em; color:var(--ink-muted);
+}
+
+/* responsive — keep the contact sheet readable on narrow viewports */
+@media (max-width:760px){
+  .doc{ padding:80px 24px 100px; }
+  .section-title{ font-size:36px; }
+  .frame-grid{ grid-template-columns:1fr; gap:36px; }
+  .type-row{ grid-template-columns:1fr; gap:16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     COVER FRAME — full-bleed 16:9, IS Treatment 1 (cover)
+     No section label, no h1 — the cover IS the opening of the page.
+     ============================================================ -->
+<section class="cover-frame" aria-label="SEOSONA cover frame">
+  <div class="safe">
+    <span class="cover-eyebrow">Brand · Frame system · 2026</span>
+    <div class="cover-wordmark">
+      <span>SEOSONA</span>
+      <span class="dot-signal" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DOC CHROME
+     ============================================================ -->
+<div class="doc">
+
+  <!-- =================== 01 · PALETTE =================== -->
+  <section class="section">
+    <header class="section-head">
+      <span class="section-index">01</span>
+      <h2 class="section-title">Palette</h2>
+      <span class="section-rule"></span>
+      <span class="section-tag">tokens · verbatim from design.md</span>
+    </header>
+    <p class="section-lede">
+      White-family grounds, one ink, one signal blue. The blue fires once per frame; indigo and amber are
+      micro-icon glyphs only. Every border is a slate-200 hairline.
+    </p>
+    <div class="palette-grid">
+      <div class="sw">
+        <div class="sw-chip is-light" style="background:#FFFFFF"></div>
+        <div class="sw-meta"><span class="sw-token">canvas.base</span><span class="sw-hex">#FFFFFF</span><span class="sw-role">Primary frame ground</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip is-light" style="background:#F8FAFC"></div>
+        <div class="sw-meta"><span class="sw-token">canvas.surface</span><span class="sw-hex">#F8FAFC</span><span class="sw-role">+1 elevation tint</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip is-light" style="background:#F1F5F9"></div>
+        <div class="sw-meta"><span class="sw-token">canvas.elevated</span><span class="sw-hex">#F1F5F9</span><span class="sw-role">+2 elevation tint</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background:#04091A"></div>
+        <div class="sw-meta"><span class="sw-token">ink.header</span><span class="sw-hex">#04091A</span><span class="sw-role">Headers, ink CTA — never #000</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background:#64748B"></div>
+        <div class="sw-meta"><span class="sw-token">ink.body</span><span class="sw-hex">#64748B</span><span class="sw-role">Body copy</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background:#94A3B8"></div>
+        <div class="sw-meta"><span class="sw-token">ink.muted</span><span class="sw-hex">#94A3B8</span><span class="sw-role">Secondary metadata</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background:#1D4ED8"></div>
+        <div class="sw-meta"><span class="sw-token">signal.primary</span><span class="sw-hex">#1D4ED8</span><span class="sw-role">The one accent — fires once per frame</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background:#2B8FD4"></div>
+        <div class="sw-meta"><span class="sw-token">signal.hover</span><span class="sw-hex">#2B8FD4</span><span class="sw-role">Hover only</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background:#6366F1"></div>
+        <div class="sw-meta"><span class="sw-token">accent.indigo</span><span class="sw-hex">#6366F1</span><span class="sw-role">Micro-icon glyph only</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background:#F59E0B"></div>
+        <div class="sw-meta"><span class="sw-token">accent.amber</span><span class="sw-hex">#F59E0B</span><span class="sw-role">Micro-icon glyph only</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip is-light" style="background:#E2E8F0"></div>
+        <div class="sw-meta"><span class="sw-token">border.standard</span><span class="sw-hex">#E2E8F0</span><span class="sw-role">slate-200 hairline</span></div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip is-light" style="background:#F1F5F9"></div>
+        <div class="sw-meta"><span class="sw-token">border.soft</span><span class="sw-hex">#F1F5F9</span><span class="sw-role">slate-100 hairline</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 02 · TYPOGRAPHY =================== -->
+  <section class="section">
+    <header class="section-head">
+      <span class="section-index">02</span>
+      <h2 class="section-title">Typography</h2>
+      <span class="section-rule"></span>
+      <span class="section-tag">Poppins 900 · Inter 500</span>
+    </header>
+    <p class="section-lede">
+      Two ramps. The <strong>reading ramp</strong> carries the source's px hierarchy. The
+      <strong>display ramp</strong> is frame-native (cqw), built for the 1920×1080 frame. Legibility floor:
+      1.4cqw (~27px @1920).
+    </p>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">display.wordmark-mega</span>
+        <span class="type-spec">Poppins 900 · 22cqw · LH 0.86 · LS -0.05em</span>
+      </div>
+      <div class="type-specimen t-wordmark">SEOSONA<span style="display:inline-block;width:0.16em;height:0.16em;background:var(--signal-primary);border-radius:9999px;vertical-align:baseline;margin-left:0.06em;"></span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">display.display-hero</span>
+        <span class="type-spec">Poppins 900 · 11cqw · LH 0.92 · LS -0.035em</span>
+      </div>
+      <div class="type-specimen t-hero">The one claim, fitted to measure.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">display.display-claim</span>
+        <span class="type-spec">Poppins 900 · 7.2cqw · LH 0.96 · LS -0.03em</span>
+      </div>
+      <div class="type-specimen t-claim">Stepped down by word count.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">display.section-head</span>
+        <span class="type-spec">Poppins 900 · 4.4cqw · LH 1.05 · LS -0.02em</span>
+      </div>
+      <div class="type-specimen t-section">Section head — left-anchored on catalog/ledger.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">display.stat-mega</span>
+        <span class="type-spec">Poppins 900 · 18cqw · LH 0.86 · LS -0.045em</span>
+      </div>
+      <div class="type-specimen t-stat">87<span style="color:var(--signal-primary)">.</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">reading.title-md</span>
+        <span class="type-spec">Poppins 900 · 40px / 2.08cqw · LH 1.1 · LS -0.02em</span>
+      </div>
+      <div class="type-specimen t-title-md">Card titles &amp; mid-frame headlines</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">reading.title-sm</span>
+        <span class="type-spec">Poppins 900 · 26px / 1.35cqw · LH 1.15 · LS -0.01em</span>
+      </div>
+      <div class="type-specimen t-title-sm">Catalog card title</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">reading.body</span>
+        <span class="type-spec">Inter 500 · 17px / 0.88cqw · LH 1.65</span>
+      </div>
+      <div class="type-specimen t-body">Body copy reads at this register inside cards. Inter 500, generous line height, slate-500 ink, never below the legibility floor.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">reading.label</span>
+        <span class="type-spec">Inter 600 · 14px · LH 1.3 · LS 0.08em · UPPER</span>
+      </div>
+      <div class="type-specimen t-label">METRIC LABEL — ledger cell rail</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-token">display.kicker</span>
+        <span class="type-spec">Inter 600 · 1.1cqw · LS 0.18em · UPPER</span>
+      </div>
+      <div class="type-specimen t-kicker">EYEBROW · KICKER · RATIONED</div>
+    </div>
+  </section>
+
+  <!-- =================== 03 · COMPONENTS =================== -->
+  <section class="section">
+    <header class="section-head">
+      <span class="section-index">03</span>
+      <h2 class="section-title">Components</h2>
+      <span class="section-rule"></span>
+      <span class="section-tag">frontmatter tokens · CSS classes</span>
+    </header>
+    <p class="section-lede">
+      Every frame composes from this set. Frame-scale variants (giant pill, wordmark lockup, ledger cell)
+      are CSS classes mirroring the frontmatter <code>components:</code> block.
+    </p>
+
+    <div class="cmp-grid">
+      <div class="cmp-card">
+        <div class="cmp-stage"><button class="c-btn-primary">Get a free audit</button></div>
+        <div class="cmp-caption"><span class="cmp-name">button-primary</span><span class="cmp-desc">Ink pill · the brand CTA · hover → signal.primary</span></div>
+      </div>
+      <div class="cmp-card">
+        <div class="cmp-stage"><button class="c-btn-signal">See the playbook</button></div>
+        <div class="cmp-caption"><span class="cmp-name">button-signal</span><span class="cmp-desc">Blue pill · use when the blue IS the accent of the frame</span></div>
+      </div>
+      <div class="cmp-card">
+        <div class="cmp-stage"><button class="c-btn-secondary">Learn more</button></div>
+        <div class="cmp-caption"><span class="cmp-name">button-secondary</span><span class="cmp-desc">Surface pill · hairline · the quiet second action</span></div>
+      </div>
+      <div class="cmp-card">
+        <div class="cmp-stage"><span class="c-chip-eyebrow">Brand · 2026</span></div>
+        <div class="cmp-caption"><span class="cmp-name">chip-eyebrow</span><span class="cmp-desc">Top-left kicker · rationed · ≤40% of frames</span></div>
+      </div>
+      <div class="cmp-card">
+        <div class="cmp-stage"><span class="c-chip-status">Live</span></div>
+        <div class="cmp-caption"><span class="cmp-name">chip-status-signal</span><span class="cmp-desc">Blue-tint pill · this is the frame's signal firing</span></div>
+      </div>
+      <div class="cmp-card">
+        <div class="cmp-stage" style="flex-direction:column;gap:18px;"><span class="c-dot"></span><span class="c-rule"></span></div>
+        <div class="cmp-caption"><span class="cmp-name">dot-signal · rule-hair</span><span class="cmp-desc">The smallest voltage · the brand's primary divider</span></div>
+      </div>
+      <div class="cmp-card">
+        <div class="cmp-stage">
+          <div class="c-card-soft">
+            <p class="t-title-sm" style="font-size:18px;margin:0 0 8px;">Card title</p>
+            <p style="font-family:var(--font-sans);font-weight:500;font-size:13px;line-height:1.5;color:var(--ink-body);margin:0;">Hairline + whisper + 40px radius is the brand silhouette.</p>
+          </div>
+        </div>
+        <div class="cmp-caption"><span class="cmp-name">card-soft</span><span class="cmp-desc">Canvas · slate-200 hairline · 40px · whisper shadow</span></div>
+      </div>
+      <div class="cmp-card">
+        <div class="cmp-stage">
+          <div class="c-card-tint">
+            <p class="t-title-sm" style="font-size:18px;margin:0 0 8px;">Tint card</p>
+            <p style="font-family:var(--font-sans);font-weight:500;font-size:13px;line-height:1.5;color:var(--ink-body);margin:0;">For clustering on a canvas frame without earning a shadow.</p>
+          </div>
+        </div>
+        <div class="cmp-caption"><span class="cmp-name">card-tint</span><span class="cmp-desc">Surface ground · slate-100 hairline · 40px · no shadow</span></div>
+      </div>
+      <div class="cmp-card">
+        <div class="cmp-stage">
+          <div class="c-ledger-cell">
+            <div class="ld-num">87<span style="color:var(--signal-primary)">.</span>4</div>
+            <div class="ld-lbl">— metric label —</div>
+          </div>
+        </div>
+        <div class="cmp-caption"><span class="cmp-name">ledger-cell</span><span class="cmp-desc">28px hairline cell · the dense-exception atom</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 04 · COMPOSITION EXAMPLES =================== -->
+  <section class="section">
+    <header class="section-head">
+      <span class="section-index">04</span>
+      <h2 class="section-title">Frame Treatments</h2>
+      <span class="section-rule"></span>
+      <span class="section-tag">16:9 · 1920×1080 · contact sheet</span>
+    </header>
+    <p class="section-lede">
+      Each frame renders at true 1920×1080 proportions via <code>container-type:size</code> + internal sizing
+      in <code>cqw</code>. Calm contact-sheet scale — review several at once. Treatment 1 (Cover) is the
+      full-bleed plate at the top of this page.
+    </p>
+
+    <div class="frame-grid">
+
+      <!-- TREATMENT 2 · Oversized Claim -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="safe" style="justify-content:space-between;align-items:center;">
+            <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+              <h3 class="f-hero">Search that earns the click.</h3>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2.2cqw;">
+              <span class="f-rule" style="width:18cqw;"></span>
+              <button class="f-btn-signal">See the playbook</button>
+            </div>
+          </div>
+        </div>
+        <div class="frame-rail">
+          <span class="fr-idx">02</span>
+          <span class="fr-name">Oversized Claim</span>
+          <span class="fr-meta">editorial · oversized-claim <span class="sep"></span> <span class="fr-density">sparse</span></span>
+        </div>
+      </div>
+
+      <!-- TREATMENT 3 · Focal Artifact (card on tint) -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="safe ground-tint" style="position:absolute;inset:0;background:var(--canvas-surface);padding:5cqw;display:flex;align-items:center;justify-content:center;">
+            <div class="f-card-soft" style="width:62cqw;min-height:62cqw;justify-content:space-between;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:2cqw;">
+                <p class="f-label">— metric —</p>
+                <span class="f-status">Live</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:1.6cqw;">
+                <h3 class="f-title-md">Organic sessions, last 30 days.</h3>
+                <svg class="f-spark" viewBox="0 0 100 18" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M0 14 L8 12 L16 13 L24 9 L32 11 L40 7 L48 8 L56 5 L64 6 L72 3 L80 4 L88 2 L100 1" />
+                </svg>
+                <p class="f-body">A single-stroke trendline is the only blue on the frame.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="frame-rail">
+          <span class="fr-idx">03</span>
+          <span class="fr-name">Focal Artifact</span>
+          <span class="fr-meta">focal-artifact <span class="sep"></span> <span class="fr-density">sparse</span></span>
+        </div>
+      </div>
+
+      <!-- TREATMENT 4 · Stat Plate -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="safe" style="justify-content:center;align-items:center;gap:3cqw;">
+            <span class="f-eyebrow">— kicker —</span>
+            <div class="f-stat"><span>87</span><span class="f-bigdot" aria-hidden="true"></span><span>4%</span></div>
+            <span class="f-rule" style="width:22cqw;"></span>
+            <p class="f-caption" style="text-align:center;">— supporting line, ≤ 60cqw wide —</p>
+          </div>
+        </div>
+        <div class="frame-rail">
+          <span class="fr-idx">04</span>
+          <span class="fr-name">Stat Plate</span>
+          <span class="fr-meta">data · stat <span class="sep"></span> <span class="fr-density">sparse</span></span>
+        </div>
+      </div>
+
+      <!-- TREATMENT 5 · Ledger (dense exception) -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div style="position:absolute;inset:0;background:var(--canvas-surface);padding:5cqw;display:flex;flex-direction:column;gap:2cqw;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:2cqw;">
+              <h3 class="f-section-head" style="white-space:nowrap;">Performance ledger</h3>
+              <span class="f-eyebrow">Q4 · 2026</span>
+            </div>
+            <span class="f-rule"></span>
+            <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:2.2cqw;min-height:0;">
+              <div class="f-ledger-cell">
+                <div>
+                  <div class="f-num">87<span class="f-dot"></span>4</div>
+                  <svg class="f-spark" style="height:2.4cqw;margin-top:0.8cqw;" viewBox="0 0 100 18" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M0 14 L20 12 L40 9 L60 10 L80 5 L100 3" />
+                  </svg>
+                </div>
+                <p class="f-label">— sessions —</p>
+              </div>
+              <div class="f-ledger-cell">
+                <div class="f-icon"><svg viewBox="0 0 16 16" width="100%" height="100%"><circle cx="8" cy="8" r="6" fill="none" stroke="#6366F1" stroke-width="1.6"/></svg></div>
+                <div class="f-num">12<span style="color:var(--ink-muted);font-weight:900;">k</span></div>
+                <p class="f-label">— impressions —</p>
+              </div>
+              <div class="f-ledger-cell">
+                <div class="f-icon"><svg viewBox="0 0 16 16" width="100%" height="100%"><path d="M3 12 L8 4 L13 12 Z" fill="none" stroke="#F59E0B" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+                <div class="f-num">4<span style="color:var(--ink-muted);font-weight:900;">.</span>2s</div>
+                <p class="f-label">— dwell —</p>
+              </div>
+              <div class="f-ledger-cell">
+                <div class="f-num">$ — k</div>
+                <p class="f-label">— pipeline —</p>
+              </div>
+              <div class="f-ledger-cell">
+                <div class="f-icon"><svg viewBox="0 0 16 16" width="100%" height="100%"><rect x="3" y="3" width="10" height="10" fill="none" stroke="#6366F1" stroke-width="1.6"/></svg></div>
+                <div class="f-num">— %</div>
+                <p class="f-label">— ctr —</p>
+              </div>
+              <div class="f-ledger-cell">
+                <div class="f-num">— </div>
+                <p class="f-label">— keywords —</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="frame-rail">
+          <span class="fr-idx">05</span>
+          <span class="fr-name">Ledger — Dashboard</span>
+          <span class="fr-meta">data · ledger <span class="sep"></span> <span class="fr-density">dense-exception</span></span>
+        </div>
+      </div>
+
+      <!-- TREATMENT 6 · Closer -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="safe" style="justify-content:center;align-items:center;gap:3.2cqw;">
+            <button class="f-btn-ink">Book the audit →</button>
+            <div style="font-family:var(--font-display);font-weight:900;font-size:2.1cqw;line-height:1.1;letter-spacing:-0.02em;color:var(--ink-header);display:flex;align-items:center;gap:0.6cqw;">
+              <span>SEOSONA</span><span class="f-dot"></span>
+            </div>
+          </div>
+        </div>
+        <div class="frame-rail">
+          <span class="fr-idx">06</span>
+          <span class="fr-name">Closer · Pill + Wordmark</span>
+          <span class="fr-meta">closer · CTA <span class="sep"></span> <span class="fr-density">sparse</span></span>
+        </div>
+      </div>
+
+      <!-- TREATMENT 7 · Editorial Catalog -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="safe" style="gap:2cqw;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:2cqw;">
+              <h3 class="f-section-head" style="white-space:nowrap;">Three sibling cards.</h3>
+              <span class="f-eyebrow">— catalog —</span>
+            </div>
+            <span class="f-rule"></span>
+            <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:2.2cqw;min-height:0;">
+              <div class="f-card-soft" style="padding:2.4cqw 2.4cqw;justify-content:space-between;">
+                <span class="f-section-head" style="font-size:3.6cqw;color:var(--ink-muted);">01</span>
+                <div>
+                  <h4 class="f-title-sm" style="margin:0 0 0.6cqw;">— card title —</h4>
+                  <p class="f-body">Body copy reads at the floor. Two lines, generous tracking.</p>
+                </div>
+              </div>
+              <div class="f-card-soft" style="padding:2.4cqw 2.4cqw;justify-content:space-between;">
+                <span class="f-section-head" style="font-size:3.6cqw;color:var(--ink-header);display:flex;align-items:center;gap:0.5cqw;">02<span class="f-dot"></span></span>
+                <div>
+                  <h4 class="f-title-sm" style="margin:0 0 0.6cqw;">— card title —</h4>
+                  <p class="f-body">The middle card carries the one blue dot. The other two stay ink.</p>
+                </div>
+              </div>
+              <div class="f-card-soft" style="padding:2.4cqw 2.4cqw;justify-content:space-between;">
+                <span class="f-section-head" style="font-size:3.6cqw;color:var(--ink-muted);">03</span>
+                <div>
+                  <h4 class="f-title-sm" style="margin:0 0 0.6cqw;">— card title —</h4>
+                  <p class="f-body">Sibling rhythm — same radius, same hairline, same padding.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="frame-rail">
+          <span class="fr-idx">07</span>
+          <span class="fr-name">Editorial Catalog</span>
+          <span class="fr-meta">chrome · catalog <span class="sep"></span> <span class="fr-density">standard</span></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =================== 05 · PRINCIPLES =================== -->
+  <section class="section">
+    <header class="section-head">
+      <span class="section-index">05</span>
+      <h2 class="section-title">Principles</h2>
+      <span class="section-rule"></span>
+      <span class="section-tag">do · don't</span>
+    </header>
+    <p class="section-lede">
+      Atoms are sacred · composition is free · numbers come from the script. The three eyeball tests gate
+      every frame before any structural check.
+    </p>
+    <div class="principle-grid">
+      <div class="pr-card">
+        <span class="pr-tag do">Do</span>
+        <h3 class="pr-title">Lean centered.</h3>
+        <p class="pr-body">Cover, claim, stat, and closer all center their focal element. Left-anchor is reserved for catalog and ledger. No two consecutive frames share an anchor.</p>
+      </div>
+      <div class="pr-card">
+        <span class="pr-tag do">Do</span>
+        <h3 class="pr-title">One signal per frame.</h3>
+        <p class="pr-body">Blue fires once at full strength — a dot, a pill, a sparkline. The blue-tint status chip doesn't count as the signal firing.</p>
+      </div>
+      <div class="pr-card">
+        <span class="pr-tag do">Do</span>
+        <h3 class="pr-title">Hairline + whisper.</h3>
+        <p class="pr-body">Depth is one 1px slate-200 border plus a barely-there shadow. Two elevation steps maximum per frame. No glassmorphism.</p>
+      </div>
+      <div class="pr-card">
+        <span class="pr-tag dont">Don't</span>
+        <h3 class="pr-title">No dark grounds.</h3>
+        <p class="pr-body">Source rule. Ink is a chrome-scale surface — a pill, a stat token, a button — never a full-frame ground. No neon. No invented hex.</p>
+      </div>
+      <div class="pr-card">
+        <span class="pr-tag dont">Don't</span>
+        <h3 class="pr-title">No SaaS feature grid.</h3>
+        <p class="pr-body">Three icon+headline columns under a top-left kicker is the deck tell. Break it into a longer sequence of sparser frames. One idea per frame.</p>
+      </div>
+      <div class="pr-card">
+        <span class="pr-tag dont">Don't</span>
+        <h3 class="pr-title">No sharp corners.</h3>
+        <p class="pr-body">Every CTA is a pill. Every card is 28–40px radius. Every chip is full-radius. The brand silhouette is soft.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span class="footer-mark">SEOSONA<span style="display:inline-block;width:6px;height:6px;background:var(--signal-primary);border-radius:50%;margin-left:6px;vertical-align:baseline;"></span></span>
+    <span class="footer-meta">frame.md · 16:9 · 1920×1080 · v8.0 derived</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

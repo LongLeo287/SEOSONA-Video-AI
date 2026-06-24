@@ -1,0 +1,37 @@
+{
+  "schema": "seosona.video.template.v1",
+  "id": "obscura-news-verified-template",
+  "name": "Obscura News Verified Template",
+  "created_at": "2026-06-20T20:02:40.006549+00:00",
+  "source": {
+    "project_name": "NEWS_OBSCURA_20260620",
+    "relative_render_dir": ".temp/hf_render"
+  },
+  "render": {
+    "engine": "hyperframes",
+    "template": "",
+    "duration": 75.82
+  },
+  "clone_policy": {
+    "replace_script": true,
+    "replace_voice": true,
+    "preserve_layout": true,
+    "preserve_motion": true,
+    "preserve_audio_roles": [
+      "voice",
+      "bgm",
+      "sfx"
+    ]
+  },
+  "files": [
+    "assets/bgm_news.mp3",
+    "assets/fonts/Montserrat-Black.ttf",
+    "assets/logo.png",
+    "assets/sfx_pop.wav",
+    "assets/sfx_whoosh.wav",
+    "assets/voice.mp3",
+    "index.html",
+    "production_manifest.json",
+    "sample.srt"
+  ]
+}

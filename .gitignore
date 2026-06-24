@@ -68,16 +68,16 @@ outputs/
 *.gif
 
 # Exceptions
-!7_ASSETS/voice_profiles/
-!7_ASSETS/voice_profiles/*.wav
-!7_ASSETS/bgm/
-!7_ASSETS/bgm/**/*.mp3
-!7_ASSETS/sfx/
-!7_ASSETS/sfx/**/*.wav
-!7_ASSETS/video_templates/
-!7_ASSETS/video_templates/**/
-!7_ASSETS/video_templates/**/assets/*.mp3
-!7_ASSETS/video_templates/**/assets/*.wav
+!7_ASSETS/voice/profiles/
+!7_ASSETS/voice/profiles/*.wav
+!7_ASSETS/audio/bgm/
+!7_ASSETS/audio/bgm/**/*.mp3
+!7_ASSETS/audio/sfx/
+!7_ASSETS/audio/sfx/**/*.wav
+!7_ASSETS/templates/
+!7_ASSETS/templates/**/
+!7_ASSETS/templates/**/assets/*.mp3
+!7_ASSETS/templates/**/assets/*.wav
 
 # 7. Knowledge Base
 2_KNOWLEDGE/repos/
@@ -104,12 +104,12 @@ token.pickle
 *.key
 
 # Template build junk (was UTF-16 corrupted -> rewritten clean)
-7_ASSETS/video_templates/**/node_modules/
-7_ASSETS/video_templates/**/*.cache/
-7_ASSETS/video_templates/**/out/
-7_ASSETS/video_templates/**/renders/
-7_ASSETS/video_templates/**/snapshots/
-7_ASSETS/video_templates/**/compiled/
+7_ASSETS/templates/**/node_modules/
+7_ASSETS/templates/**/*.cache/
+7_ASSETS/templates/**/out/
+7_ASSETS/templates/**/renders/
+7_ASSETS/templates/**/snapshots/
+7_ASSETS/templates/**/compiled/
 
 # Runtime inbox + backup snapshots
 0_INPUT_INBOX/

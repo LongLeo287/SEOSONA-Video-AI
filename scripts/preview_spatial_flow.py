@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 TEMPLATES = os.path.join(ROOT, "5_FRAMEWORK", "html_renderer", "templates")
 OUT = os.path.join(ROOT, "8_WORKSPACE", "Spatial_Flow_Preview")
-LOGO = "file:///" + os.path.join(ROOT, "7_ASSETS", "logos", "Seosona_Logo.png").replace("\\", "/")
+LOGO = "file:///" + os.path.join(ROOT, "7_ASSETS", "brand", "logos", "Seosona_Logo.png").replace("\\", "/")
 os.makedirs(OUT, exist_ok=True)
 
 def render(template_name, replacements, output_name):

@@ -144,10 +144,10 @@ def run_integration_audit(
         )
 
     asset_dirs = [
-        ("7_ASSETS/bgm", (".mp3", ".wav")),
-        ("7_ASSETS/sfx/pops", (".wav", ".mp3")),
-        ("7_ASSETS/sfx/transitions", (".wav", ".mp3")),
-        ("7_ASSETS/fonts", (".ttf", ".otf")),
+        ("7_ASSETS/audio/bgm", (".mp3", ".wav")),
+        ("7_ASSETS/audio/sfx/pops", (".wav", ".mp3")),
+        ("7_ASSETS/audio/sfx/transitions", (".wav", ".mp3")),
+        ("7_ASSETS/brand/fonts", (".ttf", ".otf")),
     ]
     for relative_path, suffixes in asset_dirs:
         absolute = os.path.join(project_root, relative_path)

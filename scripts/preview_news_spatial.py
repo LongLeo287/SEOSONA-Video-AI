@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / "5_FRAMEWORK" / "html_renderer" / "templates" / "seosona_spatial_flow_news.html"
 OUT = ROOT / "8_WORKSPACE" / "Spatial_Flow_News_Preview"
-LOGO = (ROOT / "7_ASSETS" / "logos" / "Seosona_Logo.png").as_uri()
+LOGO = (ROOT / "7_ASSETS" / "brand" / "logos" / "Seosona_Logo.png").as_uri()
 os.makedirs(OUT, exist_ok=True)
 
 with open(TEMPLATE, "r", encoding="utf-8") as f:

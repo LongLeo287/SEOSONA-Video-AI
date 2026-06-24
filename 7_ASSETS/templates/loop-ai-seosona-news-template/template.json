@@ -1,0 +1,41 @@
+{
+  "schema": "seosona.video.template.v1",
+  "id": "loop-ai-seosona-news-template",
+  "name": "Loop AI SEOSONA News Template",
+  "created_at": "2026-06-20T20:31:12.033542+00:00",
+  "source": {
+    "project_name": "LOOP_AI_SEOSONA_TEMPLATE",
+    "relative_render_dir": ".temp/hf_render"
+  },
+  "render": {
+    "engine": "hyperframes",
+    "template": "news_loop_ai_seosona_template",
+    "duration": 56
+  },
+  "clone_policy": {
+    "replace_script": true,
+    "replace_voice": true,
+    "preserve_layout": true,
+    "preserve_motion": true,
+    "preserve_audio_roles": [
+      "voice",
+      "bgm",
+      "sfx"
+    ]
+  },
+  "files": [
+    "assets/Seosona_Logo.png",
+    "assets/bgm_tech_ambient.mp3",
+    "assets/bgm_template_56.mp3",
+    "assets/fonts/BeVietnamPro-Bold.ttf",
+    "assets/fonts/BeVietnamPro-ExtraBold.ttf",
+    "assets/gsap.min.js",
+    "assets/pop_01.wav",
+    "assets/whoosh_01.wav",
+    "hyperframes.json",
+    "index.html",
+    "production_manifest.json",
+    "sample.srt",
+    "thumbnail.png"
+  ]
+}

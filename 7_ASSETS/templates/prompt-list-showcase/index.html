@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-core: #090B14;
+  --bg-deep: #05060A;
+  
+  --c-cyan: #40E0D0;
+  --c-yellow: #FFDF00;
+  --c-magenta: #FF007A;
+  --c-purple: #8A2BE2;
+  --c-green: #00FF88;
+  
+  --text-main: #FFFFFF;
+  --text-dim: #8C92A6;
+  --text-label: #B0B8CC;
+  
+  --font: 'Be Vietnam Pro', sans-serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px; height: 1920px; overflow: hidden;
+  background: var(--bg-core); font-family: var(--font); color: var(--text-main);
+}
+
+.header {
+  position: absolute; top: 120px; left: 80px; z-index: 100;
+}
+.tag { font-size: 24px; font-weight: 800; color: var(--c-magenta); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
+.title { font-size: 64px; font-weight: 900; line-height: 1.2; }
+
+/* The List */
+.list-area {
+  position: absolute; top: 350px; left: 0; width: 1080px; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: 30px;
+}
+.card {
+  width: 920px; background: rgba(255,255,255,0.02); border: 2px solid rgba(255,255,255,0.05);
+  border-radius: 20px; padding: 40px; display: flex; gap: 40px;
+  opacity: 0; transform: translateY(100px);
+}
+.card.active { border-color: var(--c-magenta); background: rgba(255,0,122,0.05); box-shadow: 0 10px 40px rgba(255,0,122,0.1); }
+.card.active-cyan { border-color: var(--c-cyan); background: rgba(64,224,208,0.05); box-shadow: 0 10px 40px rgba(64,224,208,0.1); }
+.card.active-yellow { border-color: var(--c-yellow); background: rgba(255,223,0,0.05); box-shadow: 0 10px 40px rgba(255,223,0,0.1); }
+
+.c-num { font-size: 64px; font-weight: 900; color: rgba(255,255,255,0.1); line-height: 1; }
+.card.active .c-num { color: var(--c-magenta); }
+.card.active-cyan .c-num { color: var(--c-cyan); }
+.card.active-yellow .c-num { color: var(--c-yellow); }
+
+.c-body { flex: 1; }
+.c-title { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+.c-text { font-size: 24px; color: var(--text-label); line-height: 1.5; }
+
+</style>
+</head>
+<body data-composition-id="prompt-list-showcase" data-width="1080" data-height="1920" data-duration="45" data-fps="30">
+
+<div class="header">
+  <div class="tag">TOP 5 BÍ QUYẾT</div>
+  <div class="title">Bứt phá hiệu suất công việc<br>chỉ trong <span style="color:var(--c-cyan);">chớp mắt</span></div>
+</div>
+
+<div class="list-area" id="list">
+  <div class="card" id="c1">
+    <div class="c-num">01</div>
+    <div class="c-body">
+      <div class="c-title">Cấu trúc hóa yêu cầu</div>
+      <div class="c-text">Xác định rõ vai trò, mục tiêu và định dạng đầu ra trước khi thực hiện để đảm bảo kết quả chính xác 100%.</div>
+    </div>
+  </div>
+  
+  <div class="card" id="c2">
+    <div class="c-num">02</div>
+    <div class="c-body">
+      <div class="c-title">Kỹ thuật Chain-of-Thought</div>
+      <div class="c-text">Yêu cầu hệ thống suy nghĩ từng bước một (step-by-step) để xử lý các vấn đề logic phức tạp.</div>
+    </div>
+  </div>
+  
+  <div class="card" id="c3">
+    <div class="c-num">03</div>
+    <div class="c-body">
+      <div class="c-title">Cung cấp Few-Shot Examples</div>
+      <div class="c-text">Đưa ra 2-3 ví dụ mẫu chuẩn xác để định hướng văn phong và cách trình bày mong muốn.</div>
+    </div>
+  </div>
+
+  <div class="card" id="c4">
+    <div class="c-num">04</div>
+    <div class="c-body">
+      <div class="c-title">Giới hạn Context Window</div>
+      <div class="c-text">Chỉ cung cấp những dữ liệu thực sự cần thiết, loại bỏ thông tin nhiễu để tối ưu hóa hiệu suất.</div>
+    </div>
+  </div>
+
+  <div class="card" id="c5">
+    <div class="c-num">05</div>
+    <div class="c-body">
+      <div class="c-title">Kiểm tra & Tinh chỉnh (Refinement)</div>
+      <div class="c-text">Liên tục phản hồi và yêu cầu sửa đổi cho đến khi đạt được kết quả hoàn hảo nhất.</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script>
+  const DURATION = 45;
+  window.__timelines = {};
+  const tl = gsap.timeline({ paused: true });
+  tl.totalDuration(DURATION);
+
+  tl.from('.header', { y: -50, opacity: 0, duration: 1, ease: "power2.out" }, 1);
+
+  // Animate cards in
+  tl.to('.card', { y: 0, opacity: 1, stagger: 0.5, duration: 1, ease: "power3.out" }, 2);
+
+  // Scroll logic
+  const rowH = document.querySelector('.card').offsetHeight + 30;
+  
+  // Highlight 1
+  tl.to('#c1', { className: '+=card active', duration: 0.3 }, 3.5);
+  tl.to('#c1', { className: '-=card active', duration: 0.3 }, 8);
+
+  // Highlight 2
+  tl.to('#list', { y: -rowH, duration: 1, ease: "power2.inOut" }, 8);
+  tl.to('#c2', { className: '+=card active-cyan', duration: 0.3 }, 8.5);
+  tl.to('#c2', { className: '-=card active-cyan', duration: 0.3 }, 13);
+
+  // Highlight 3
+  tl.to('#list', { y: -rowH*2, duration: 1, ease: "power2.inOut" }, 13);
+  tl.to('#c3', { className: '+=card active-yellow', duration: 0.3 }, 13.5);
+  tl.to('#c3', { className: '-=card active-yellow', duration: 0.3 }, 18);
+
+  // Highlight 4
+  tl.to('#list', { y: -rowH*3, duration: 1, ease: "power2.inOut" }, 18);
+  tl.to('#c4', { className: '+=card active', duration: 0.3 }, 18.5);
+  tl.to('#c4', { className: '-=card active', duration: 0.3 }, 23);
+
+  // Highlight 5
+  tl.to('#list', { y: -rowH*4, duration: 1, ease: "power2.inOut" }, 23);
+  tl.to('#c5', { className: '+=card active-cyan', duration: 0.3 }, 23.5);
+
+  // End fade
+  tl.to('body', { opacity: 0, duration: 2 }, 40);
+
+  window.__timelines["prompt-list-showcase"] = tl;
+</script>
+  <script src="../template_core.js"></script>
+</body>
+</html>

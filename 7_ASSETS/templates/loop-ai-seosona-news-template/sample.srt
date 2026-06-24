@@ -1,0 +1,31 @@
+1
+00:00:00,000 --> 00:00:06,900
+Từ khóa Loop đang được nhắc nhiều trong giới AI Agent.
+
+2
+00:00:07,000 --> 00:00:13,900
+Vì nó mô tả cách một hệ thống tự quan sát, hành động và cải tiến.
+
+3
+00:00:14,000 --> 00:00:20,900
+Khác với chatbot, Agent có thể gọi công cụ và kiểm tra kết quả.
+
+4
+00:00:21,000 --> 00:00:27,900
+Nhưng loop chỉ tốt khi có mục tiêu, giới hạn và chuẩn đánh giá rõ.
+
+5
+00:00:28,000 --> 00:00:34,900
+Nếu thiếu guardrail, nó có thể lặp sai và làm tăng chi phí.
+
+6
+00:00:35,000 --> 00:00:41,900
+Với video tin tức, từng lớp nội dung đều cần được đồng bộ.
+
+7
+00:00:42,000 --> 00:00:48,900
+SEOSONA dùng template để giữ đúng logo, màu sắc và nhịp dựng.
+
+8
+00:00:49,000 --> 00:00:55,900
+Đó là cách biến tin mới thành video hoàn chỉnh, nhất quán và dễ nhân bản.

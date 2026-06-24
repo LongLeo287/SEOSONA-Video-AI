@@ -1,0 +1,29 @@
+{
+  "schema": "hyperframes.composition.v1",
+  "id": "news_loop_path_hyperframes",
+  "name": "SEOSONA Loop Path Flow",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "variables": {
+    "DURATION": "60",
+    "LOGO_PATH": "assets/Seosona_Logo.png",
+    "HUD_TITLE": "08 ĐIỂM NỘI DUNG",
+    "N1_SUB": "META MỚI CỦA AI",
+    "N1_TITLE": "LOOP<br>ENGINEERING",
+    "N1_DESC": "Tự vận hành · Tự kiểm tra · Tự sửa sai",
+    "N2_TITLE": "CHUYỂN ĐỔI",
+    "N3_CENTER": "MỤC<br>TIÊU",
+    "N3_SAT1": "Perceive",
+    "N3_SAT2": "Reason",
+    "N3_SAT3": "Plan",
+    "N3_WARN": "CHƯA ĐẠT? QUAY LẠI ↺",
+    "N4_TAG": "CẤP ĐỘ 1 + 2",
+    "N4_TITLE": "Execute ↔ Verify",
+    "N4_BTN1": "ĐỌC FILE",
+    "N4_BTN2": "VIẾT CODE",
+    "N4_BTN3": "CHẠY TEST",
+    "N4_GRADER": "GRADER: CHƯA ĐẠT",
+    "N4_FEEDBACK": "FEEDBACK ↩"
+  }
+}
