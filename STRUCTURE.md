@@ -6,11 +6,11 @@ has its own map/README for detail — start here to find the right folder fast.
 ```
 SEOSONA Video/
 ├── 0_INPUT_INBOX/     ← inputs: production_queue.yaml (what to produce)
-├── 1_AGENTS/          ← 14 AI agents (writer, scraper, editor, repurposer, ...)
+├── 1_AGENTS/          ← 12 AI agents (scraper, seo_writer, editor, repurposer, ...) → ROSTER.md
 ├── 2_KNOWLEDGE/       ← knowledge base  → README + INGESTION_INDEX.md
 │   ├── hyperframes/      full HyperFrames docs (guides/reference/catalog) → README.md
 │   └── repos/           distilled ingested repos (OmniVoice, OpenMontage, ...)
-├── 2_SKILLS/          ← 18 Python skills (tts, srt, clipper, thumbnail, voice_cloner, ...)
+├── 2_SKILLS/          ← 17 Python skills (tts, srt, clipper, thumbnail, voice_cloner, ...) → README.md
 ├── 3_MEMORY/          ← memory/state → README
 ├── 4_BRAIN/           ← the engine: pipeline_manager.py (render), workflow_router.py,
 │                         quality_scorer, news_video_standards (THE core)
@@ -47,6 +47,8 @@ SEOSONA Video/
 | Run a workflow / add a CLI tool | `scripts/README.md` + `package.json` |
 
 ## Folder maps (single source of truth per tier)
+- `1_AGENTS/ROSTER.md` — agent roster (wired vs orphan)
+- `2_SKILLS/README.md` — skills index
 - `7_ASSETS/ASSETS_MAP.md` — assets
 - `5_FRAMEWORK/README.md` — render engine & scaffolds
 - `6_SOP/README.md` — SOP index
