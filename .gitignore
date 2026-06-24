@@ -32,6 +32,7 @@ Thumbs.db
 .env
 .env.local
 .env.*
+!.env.example
 
 # 4. Trí nhớ & Database
 3_MEMORY/
