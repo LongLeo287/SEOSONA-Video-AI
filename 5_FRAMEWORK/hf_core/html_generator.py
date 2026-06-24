@@ -165,7 +165,7 @@ def write_hyperframes_render_project(render_dir, audio_path, duration, scenes_da
     shutil.copy2(audio_path, render_audio_path)
 
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-    font_source = os.path.join(project_root, "7_ASSETS", "fonts", "Montserrat-Black.ttf")
+    font_source = os.path.join(project_root, "7_ASSETS", "brand", "fonts", "Montserrat-Black.ttf")
     if os.path.exists(font_source):
         shutil.copy2(font_source, os.path.join(fonts_dir, "Montserrat-Black.ttf"))
 

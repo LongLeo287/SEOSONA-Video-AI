@@ -6,7 +6,7 @@ def generate_sfx_tags(assets_dir, transition_timings, scene_timings, start_track
     sfx_tags = []
     track_idx = start_track_idx
     workspace_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-    assets_sfx_dir = os.path.join(workspace_dir, "7_ASSETS", "sfx")
+    assets_sfx_dir = os.path.join(workspace_dir, "7_ASSETS", "audio", "sfx")
     
     # Check if real assets exist
     whoosh_files = []
