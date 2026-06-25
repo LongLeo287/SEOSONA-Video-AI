@@ -11,14 +11,20 @@ hardsubs, signage, thumbnails. koharu's detect→OCR→**inpaint**→re-render l
 that — and the inpainting (FLUX.2 Klein 4B / lama-manga) is the hard part the pipeline
 lacks. It also ships a local-LLM translation hook (Gemma/Qwen → see `2_KNOWLEDGE/...local-llm-gemma`).
 
-## How to use (license-safe)
-**GPL-3.0 → isolate it.** Invoke koharu as a **separate CLI process** over frames/thumbnails;
-do NOT statically link or embed it in the proprietary pipeline (running a separate GPL
-binary keeps SEOSONA's own code clear of copyleft).
+## ⚠️ Reality check (2026-06-25): koharu is a GUI DESKTOP app
+koharu ships only desktop installers (`x64-setup.exe` / `.msi` / `.AppImage` — a Tauri app),
+**no headless CLI**. So it CANNOT be auto-wired as a batch pipeline stage — it's a **manual
+tool**: install it, open a thumbnail/frame, translate+inpaint by hand. The on-screen-text
+axis is real, but koharu fills it manually, not automatically.
 
-Integration: a new optional stage in the repurposer/localizer — for a source video with
-burned-in foreign text, extract frames → koharu (OCR+translate+inpaint, target=vi) →
-re-render Vietnamese in place. Pilot on hardsub removal + Vietnamese thumbnail re-text.
+**The automation point still exists, tool-agnostic:** `1_AGENTS/repurposer_agent/
+onscreen_translate.py` invokes whatever headless OCR→translate→inpaint binary `KOHARU_BIN`
+points at. If/when a headless tool exists (a koharu CLI build, or an alternative like a
+manga-image-translator CLI), it plugs straight in — no code change. GPL-3.0 → keep any such
+binary isolated as a separate process.
+
+Manual use now: install koharu desktop → translate foreign title cards / hardsub frames /
+thumbnails → drop the re-rendered image back into the render. Automatic: pending a headless tool.
 
 > Pairs with the localizer (audio dub) to cover BOTH axes (audio + on-screen text).
 > Translation backend can be the local Gemma model. Triaged ADOPT (1,434-repo analysis).
