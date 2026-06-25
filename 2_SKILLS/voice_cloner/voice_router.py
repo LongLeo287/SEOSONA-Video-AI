@@ -22,6 +22,28 @@ import os
 from importlib import import_module
 
 
+# ---------------------------------------------------------------------------
+# MALE-ONLY VOICE POLICY
+# The SEOSONA/CQA brand voice is male Southern Vietnamese. A female voice is
+# NEVER produced. These are VieNeu v3turbo's male presets; any other/unknown
+# preset is coerced to the default male preset, and the edge fallback is locked
+# to the approved male voice.
+# ---------------------------------------------------------------------------
+MALE_VIENEU_PRESETS = {"Gia Bảo", "Thái Sơn", "Đức Trí", "Xuân Vĩnh", "Trọng Hữu", "Bình An"}
+DEFAULT_MALE_PRESET = "Trọng Hữu"
+MALE_EDGE_VOICE = "vi-VN-NamMinhNeural"
+
+
+def _coerce_male_preset(voice):
+    """Return an approved MALE VieNeu preset, never a female/unknown one."""
+    name = str(voice).strip() if voice else ""
+    if name in MALE_VIENEU_PRESETS:
+        return name
+    if name:
+        print(f"[Voice Router] '{name}' is not an approved MALE preset -> using {DEFAULT_MALE_PRESET}.")
+    return DEFAULT_MALE_PRESET
+
+
 def _has_vieneu():
     try:
         import vieneu  # noqa: F401
@@ -53,6 +75,13 @@ def synthesize_voice(
     Returns audio_out on VieNeu success, the edge-tts result (path or (path, word_boundaries))
     on fallback, or None only if even the fallback fails.
     """
+    # MALE-ONLY: never emit a female voice. Coerce the preset to an approved male
+    # one and lock the edge fallback to the approved male voice.
+    preset_voice = _coerce_male_preset(preset_voice)
+    if fallback_voice != MALE_EDGE_VOICE:
+        print(f"[Voice Router] fallback voice coerced to male {MALE_EDGE_VOICE}.")
+        fallback_voice = MALE_EDGE_VOICE
+
     if engine != "vieneu":
         return _edge_fallback(text, audio_out, fallback_voice,
                               f"engine '{engine}' is no longer supported — use 'vieneu'")
@@ -60,12 +89,11 @@ def synthesize_voice(
     if not _has_vieneu():
         return _edge_fallback(text, audio_out, fallback_voice, "VieNeu is not installed")
 
-    if not reference_audio and not preset_voice:
-        return _edge_fallback(text, audio_out, fallback_voice,
-                              f"brand '{brand}' has no reference_audio or preset voice configured")
-
-    mode = "clone" if reference_audio else f"preset '{preset_voice}'"
-    print(f"[Voice Router] Engine: VieNeu ({mode}) | brand: {brand}")
+    # Cloning is deferred until a >=3s reference exists; vieneu_engine auto-uses the
+    # male preset when the reference is missing/too short. Always pass both so the
+    # clone activates automatically once a real reference clip is dropped in.
+    mode = "clone>preset" if reference_audio else f"preset '{preset_voice}'"
+    print(f"[Voice Router] Engine: VieNeu ({mode}) | brand: {brand} | male voice: {preset_voice}")
     vieneu = import_module("2_SKILLS.voice_cloner.vieneu_engine")
     result = vieneu.synthesize(text, audio_out, voice=preset_voice, reference_audio=reference_audio)
     if result:

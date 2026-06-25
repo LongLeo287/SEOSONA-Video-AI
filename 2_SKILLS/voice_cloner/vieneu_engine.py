@@ -19,25 +19,29 @@ def synthesize(text, output_path, voice=None, reference_audio=None):
         engine = Vieneu(mode="v3turbo")
         
         infer_kwargs = {"text": text}
+        # Voice cloning is DEFERRED until a real reference exists. A clone is used ONLY
+        # when the reference is present AND >=3s (VieNeu needs 3-5s+ for a stable voice);
+        # otherwise we fall back to the configured male preset. This keeps output clean
+        # while brand reference clips are still being recorded.
+        ref_ok = False
+        file_size = 0
         if reference_audio and os.path.exists(reference_audio):
-            # Validate reference audio file is not empty
             file_size = os.path.getsize(reference_audio)
-            if file_size < 1000:
-                print(f"[VieNeu Engine] WARNING: Reference audio too small ({file_size} bytes), likely corrupted.")
-                return None
-            # VieNeu needs ~3-5s of clean reference to clone a stable voice. A clip that
-            # is too short produces an unstable timbre / gender drift — warn loudly.
+            ref_sec = 0.0
             try:
                 import wave, contextlib
                 with contextlib.closing(wave.open(reference_audio, 'rb')) as _w:
-                    _ref_sec = _w.getnframes() / float(_w.getframerate() or 1)
-                if _ref_sec < 3.0:
-                    print(f"[VieNeu Engine] WARNING: reference is only {_ref_sec:.1f}s — VieNeu needs 3-5s+ "
-                          f"for a stable clone. Replace 7_ASSETS/voice/profiles/ with a clean 10-30s clip.")
+                    ref_sec = _w.getnframes() / float(_w.getframerate() or 1)
             except Exception:
-                pass
-            print(f"[VieNeu Engine] CLONE from reference: {reference_audio}")
-            print(f"[VieNeu Engine]    Reference file size: {file_size:,} bytes")
+                ref_sec = file_size / 88200.0  # rough estimate: 44.1kHz/16-bit mono
+            if file_size >= 1000 and ref_sec >= 3.0:
+                ref_ok = True
+            else:
+                print(f"[VieNeu Engine] Reference unusable for clone ({ref_sec:.1f}s, {file_size:,} B) "
+                      f"— needs >=3s. Using preset instead (clone deferred).")
+
+        if ref_ok:
+            print(f"[VieNeu Engine] CLONE from reference: {reference_audio} ({file_size:,} B)")
             infer_kwargs["ref_audio"] = reference_audio
         else:
             voice = voice or os.environ.get("SEOSONA_VIENEU_VOICE")
