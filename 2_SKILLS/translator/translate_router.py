@@ -42,6 +42,30 @@ def _llm_translate(lines, src, tgt):
     return None
 
 
+def _ollama_translate(lines, src, tgt):
+    """Local self-hosted LLM via Ollama (default model: gemma — multilingual, Vietnamese).
+    Private + no per-token cost. Graceful if Ollama isn't running."""
+    import json as _json
+    import urllib.request
+    model = os.environ.get("SEOSONA_OLLAMA_MODEL", "gemma3")
+    host = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
+    numbered = "\n".join(f"{i+1}. {t}" for i, t in enumerate(lines))
+    prompt = (f"{_SYS}\n\nTranslate these {len(lines)} lines from {src} to {tgt}. "
+              f"Return ONLY the {len(lines)} translations, one per line, numbered the same way.\n\n{numbered}")
+    try:
+        req = urllib.request.Request(
+            f"{host}/api/generate",
+            data=_json.dumps({"model": model, "prompt": prompt, "stream": False}).encode(),
+            headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            resp = _json.loads(r.read().decode()).get("response", "")
+        out = [re.sub(r"^\s*\d+[.)]\s*", "", ln).strip() for ln in resp.splitlines() if ln.strip()]
+        return out if len(out) == len(lines) else None
+    except Exception as e:
+        print(f"[Translate:ollama] unavailable ({e}).")
+        return None
+
+
 def _google_translate(lines, src, tgt):
     try:
         from deep_translator import GoogleTranslator
@@ -61,7 +85,7 @@ def _google_translate(lines, src, tgt):
         return None
 
 
-_ENGINES = {"llm": _llm_translate, "google": _google_translate}
+_ENGINES = {"llm": _llm_translate, "ollama": _ollama_translate, "google": _google_translate}
 
 
 def translate_lines(lines, src="en", tgt="vi"):
@@ -70,7 +94,7 @@ def translate_lines(lines, src="en", tgt="vi"):
     if not lines:
         return []
     primary = os.environ.get("SEOSONA_TRANSLATOR", "llm")
-    for engine in [primary] + [e for e in ("llm", "google") if e != primary]:
+    for engine in [primary] + [e for e in ("llm", "ollama", "google") if e != primary]:
         fn = _ENGINES.get(engine)
         if not fn:
             continue
