@@ -25,7 +25,18 @@ def synthesize(text, output_path, voice=None, reference_audio=None):
             if file_size < 1000:
                 print(f"[VieNeu Engine] WARNING: Reference audio too small ({file_size} bytes), likely corrupted.")
                 return None
-            print(f"[VieNeu Engine] CLONE: male Southern voice from reference: {reference_audio}")
+            # VieNeu needs ~3-5s of clean reference to clone a stable voice. A clip that
+            # is too short produces an unstable timbre / gender drift — warn loudly.
+            try:
+                import wave, contextlib
+                with contextlib.closing(wave.open(reference_audio, 'rb')) as _w:
+                    _ref_sec = _w.getnframes() / float(_w.getframerate() or 1)
+                if _ref_sec < 3.0:
+                    print(f"[VieNeu Engine] WARNING: reference is only {_ref_sec:.1f}s — VieNeu needs 3-5s+ "
+                          f"for a stable clone. Replace 7_ASSETS/voice/profiles/ with a clean 10-30s clip.")
+            except Exception:
+                pass
+            print(f"[VieNeu Engine] CLONE from reference: {reference_audio}")
             print(f"[VieNeu Engine]    Reference file size: {file_size:,} bytes")
             infer_kwargs["ref_audio"] = reference_audio
         else:
@@ -33,13 +44,15 @@ def synthesize(text, output_path, voice=None, reference_audio=None):
             if not voice:
                 print("[VieNeu Engine] No preset voice configured.")
                 return None
-            print(f"[VieNeu Engine] Generating voice with preset: {voice}")
+            # Encoding-safe: preset names contain Vietnamese diacritics that crash on cp1252 consoles.
+            print("[VieNeu Engine] Generating voice with preset:", str(voice).encode("ascii", "replace").decode())
             infer_kwargs["voice"] = voice
-            
-        # Enforce deterministic generation to prevent voice drifting across chunks
-        infer_kwargs["temperature"] = 0.1
-        infer_kwargs["top_p"] = 0.5
-        infer_kwargs["repetition_penalty"] = 1.05
+
+        # Use VieNeu's recommended generation defaults (temperature ~0.8). The previous
+        # override (temperature=0.1, top_p=0.5) was meant to stop gender drift but instead
+        # forced a repetition loop + silence padding + dropped words (~23s of trailing
+        # silence per sentence, hallucinated "bàn ăn…" garbage). Defaults generate clean,
+        # correctly-sized speech, so we no longer override them here.
 
         # Chunk the text to prevent Vieneu from drifting gender on long texts
         import re
