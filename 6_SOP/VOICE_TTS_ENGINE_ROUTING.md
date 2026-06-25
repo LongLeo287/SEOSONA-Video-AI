@@ -29,7 +29,7 @@ This SOP maps external voice cloning and TTS repositories into SEOSONA Video wit
 | Voice routing | `2_SKILLS/voice_cloner/voice_router.py` | VieNeu-TTS (active); others only if installed + given a real probe branch | Single router. VieNeu primary; edge-tts honest fallback. No dead branches. |
 | Subtitle timing | `4_BRAIN/pipeline_manager.py` | engines with word timestamps, forced alignment, script-derived fallback | Prefer native word timestamps; otherwise use verified script-derived fallback or ASR. |
 | Long-form narration | future chunker under `2_SKILLS/tts_generator/` | ebook2audiobook, Coqui TTS | Extract chunking/retry/concat patterns, not full audiobook stack. |
-| Voice cleanup | `2_SKILLS/audio_cleaner/` | voice-pro, Demucs patterns | Use only for owned or rights-cleared reference audio. |
+| Voice cleanup | _(quarantined: `_QUARANTINE/orphan_skills/audio_cleaner/`)_ | voice-pro, Demucs patterns | Not wired. Restore only if a cleanup step is actually needed; use only for owned/rights-cleared audio. |
 | Voice dashboard | none yet | OmniVoice-Studio, voice-pro | Reference UI only. Do not embed full desktop/WebUI apps. |
 
 ## Engine Priority
@@ -89,12 +89,12 @@ Every enabled engine must expose the same return shape:
 
 ## Recommended Next Work
 
-| Adapter | Source inspiration | Target area | Purpose |
-|---|---|---|---|
-| `vieneu_engine.py` | VieNeu-TTS | `2_SKILLS/voice_cloner/` | Primary Vietnamese TTS/cloning adapter with Edge fallback. |
-| `voice_engine_router.py` | voice-pro, GPT-SoVITS, CosyVoice, OmniVoice | `2_SKILLS/voice_cloner/` | One router that checks installed engines and dispatches safely. |
-| `long_text_tts_chunker.py` | ebook2audiobook, Coqui TTS | `2_SKILLS/tts_generator/` | Split, synthesize, validate, and concatenate long scripts. |
-| `voice_reference_cleaner.py` | voice-pro, Demucs | `2_SKILLS/audio_cleaner/` | Clean owned reference audio before cloning. |
+| Adapter | Source inspiration | Target area | Purpose | Status |
+|---|---|---|---|---|
+| `vieneu_engine.py` | VieNeu-TTS | `2_SKILLS/voice_cloner/` | Primary Vietnamese TTS/cloning adapter with Edge fallback. | ✅ DONE |
+| `voice_router.py` | — | `2_SKILLS/voice_cloner/` | Single router: VieNeu (clone > preset) → honest edge-tts fallback. No dead branches. | ✅ DONE (replaces the planned `voice_engine_router.py`) |
+| `long_text_tts_chunker.py` | ebook2audiobook, Coqui TTS | `2_SKILLS/tts_generator/` | Split, synthesize, validate, and concatenate long scripts. | ⬜ Future |
+| `voice_reference_cleaner.py` | voice-pro, Demucs | (was `audio_cleaner`, now quarantined) | Clean owned reference audio before cloning — only if a real need arises. | ⬜ Deferred |
 
 ## Validation Checklist
 

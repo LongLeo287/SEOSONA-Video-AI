@@ -16,9 +16,7 @@ Nhà máy SEOSONA Video tận dụng tối đa mã nguồn mở và các mô hì
 
 | Mô hình / Thư viện | Phân loại | Đánh giá Năng lực |
 | :--- | :--- | :--- |
-| 🗣️ **`F5-TTS`** | AI Voice (Zero-shot) | Mô hình TTS kiến trúc phi tự hồi quy. Có khả năng clone giọng người thực chỉ bằng 1 đoạn mẫu 5s, giữ nguyên cảm xúc rành mạch. |
-| ⚡ **`OmniVoice`** | AI Voice (General) | Engine tạo âm thanh tốc độ cao, lý tưởng cho các giọng đọc tin tức nhanh, rõ ràng. |
-| 🇻🇳 **`VieNeu-TTS`** | AI Voice (Local) | Mô hình sinh giọng nói chuyên biệt dành riêng cho tiếng Việt, phát âm chuẩn ngữ điệu từng vùng miền. |
+| 🇻🇳 **`VieNeu-TTS`** | AI Voice (Local · **engine chính**) | Mô hình sinh giọng chuyên biệt tiếng Việt, clone từ mẫu 3-5s, code-switch Vi+En, chạy CPU/ONNX. Là engine giọng nói DUY NHẤT, qua `voice_router.py`. |
 | ⏱️ **`OpenAI-Whisper`** | Phân tích AI (ASR) | Bản `faster-whisper`. Quan trọng bậc nhất trong bước Forced-Alignment để xuất file `words.json` chứa timestamp mili-giây cho Karaoke. |
 | 🎬 **`moviepy`** | Trình biên tập Video | Ghép các khối Video + Audio bằng mã code Python tĩnh. Dùng kết hợp với FFmpeg. |
 | ☁️ **`edge-tts`** | AI Voice (Cloud) | Mô hình sinh giọng đám mây dự phòng (Fallback) khi Card đồ họa quá tải. |

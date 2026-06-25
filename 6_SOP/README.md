@@ -19,7 +19,7 @@ To add a new SOP, drop it here and add a line to the right group below.
 | SOP | Use for |
 |-----|---------|
 | `voice_cloning_tts_sop.md` | voice cloning / TTS procedure |
-| `VOICE_TTS_ENGINE_ROUTING.md` | which TTS engine to use (VieNeu / OmniVoice / Fish / edge) |
+| `VOICE_TTS_ENGINE_ROUTING.md` | which TTS engine to use (VieNeu primary → edge-tts fallback; single router, no dead branches) |
 | `brand_voice_sop.md` | SEOSONA brand voice rules |
 
 ## 🖥️ Render Engine (HyperFrames)

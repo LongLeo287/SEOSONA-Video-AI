@@ -14,7 +14,7 @@ edit an asset, drop it in the right folder below — no hunting.
 ├── voice/                 ← ALL voice assets (one home; was models/refvoice/voice_profiles)
 │   ├── models/            local TTS model files
 │   ├── reference/         reference audio clips for cloning
-│   └── profiles/          approved voice profiles + omnivoice-vi voice.pt profiles
+│   └── profiles/          approved VieNeu voice profiles / references
 │                          (e.g. seosona_male_southern.wav — the default voice target)
 ├── audio/                 ← music + sound effects
 │   ├── bgm/               background music (*.mp3)

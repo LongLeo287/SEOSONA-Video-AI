@@ -48,7 +48,7 @@ The active runtime and asset gates are clean. Git still contains pending modifie
 
 ```bash
 node scripts/seosona-python.cjs -m unittest discover tests
-node scripts/seosona-python.cjs -m py_compile scripts/convert_to_9_16.py scripts/extract_frames.py scripts/preview_news_spatial.py scripts/inject_os_capabilities.py 4_BRAIN/run_demo.py 2_SKILLS/thumbnail_maker/thumbnail_generator.py 2_SKILLS/voice_cloner/fish_audio_api.py 4_BRAIN/news_video_standards.py 4_BRAIN/video_integration_audit.py
+node scripts/seosona-python.cjs -m py_compile scripts/convert_to_9_16.py scripts/extract_frames.py scripts/preview_news_spatial.py scripts/inject_os_capabilities.py 4_BRAIN/run_demo.py 2_SKILLS/thumbnail_maker/thumbnail_generator.py 2_SKILLS/voice_cloner/voice_router.py 4_BRAIN/news_video_standards.py 4_BRAIN/video_integration_audit.py
 npm run seosona:audit
 npm run video:audit:integration
 npm audit --omit=dev --json

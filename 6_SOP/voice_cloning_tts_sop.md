@@ -14,12 +14,15 @@ VieNeu-TTS is the primary engine — designed specifically for Vietnamese with n
 
 ## Engine Priority
 
+Only two engines are wired through `2_SKILLS/voice_cloner/voice_router.py` — this is the
+single source of truth. F5-TTS / OmniVoice / CosyVoice / Fish-Audio were evaluated and
+**removed** (no dead branches); their knowledge cards remain in `2_KNOWLEDGE/repos/` for
+reference only. See `VOICE_TTS_ENGINE_ROUTING.md`.
+
 | Priority | Engine | Install | GPU? | Voice Clone? | Quality |
 |:---------|:-------|:--------|:-----|:-------------|:--------|
-| 1 | VieNeu-TTS v3 Turbo | `pip install vieneu` | No (CPU/ONNX) | 3-5s reference | 48kHz, natural tone, emotion cues |
-| 2 | OmniVoice (k2-fsa) | See github.com/k2-fsa/OmniVoice | Recommended | Yes | 600+ languages |
-| 3 | CosyVoice3 | See github.com/FunAudioLLM/CosyVoice | Yes | Yes | Good multilingual |
-| 4 | Edge-TTS (fallback) | `pip install edge-tts` | No | No | Pre-built voices only |
+| 1 (primary) | VieNeu-TTS v3 Turbo | `pip install vieneu` | No (CPU/ONNX) | 3-5s reference | 48kHz, natural tone, emotion cues |
+| 2 (fallback) | Edge-TTS | `pip install edge-tts` | No | No | Pre-built voice `vi-VN-NamMinhNeural` (Northern — honest fallback, NOT the brand voice) |
 
 ## Pipeline Flow
 
@@ -30,13 +33,13 @@ Script Text
   |
 [2] OODA Loop Check -> If script segment is too long, EditorAgent trims/rewrites before passing to TTS
   |
-[3] VieNeu-TTS available?
-      YES -> Clone/reference mode only when an approved male Southern reference or preset is configured
-      NO  -> Try OmniVoice -> CosyVoice -> Edge-TTS
+[3] VieNeu-TTS available + reference/preset configured?
+      YES -> Clone (reference) or preset mode
+      NO  -> Edge-TTS honest fallback (`vi-VN-NamMinhNeural`), logged loudly
   |
 [3] Output: voice.mp3 (48kHz mono)
   |
-[4] (Optional) Mix with BGM via audio_mixer.py
+[4] (Optional) Mix with BGM via 5_FRAMEWORK/moviepy_wrapper/audio_mixer.py
       -> Volume ducking: voice at 1.0, BGM at 0.08-0.12
       -> Fade-in 1s, Fade-out 2s
   |
@@ -102,7 +105,7 @@ audio = tts.infer("[cuoi] Noi dung vui ve [hang giong] tiep tuc...")
 
 3. Test:
    ```bash
-   python 2_SKILLS/voice_cloner/fish_audio_api.py
+   node scripts/seosona-python.cjs -m py_compile 2_SKILLS/voice_cloner/voice_router.py
    ```
 
 ## Quality Checklist

@@ -41,7 +41,7 @@ Các bí kíp giữ chân người xem và chuẩn SEO đa nền tảng.
 
 - 🎥 **`video_production_sop.md`**: Dây chuyền sản xuất cơ bản từ A-Z.
 - 🧠 **`SEO_CONTENT_STRATEGY.md`**: Chiến lược mồi câu (Hook) và giữ chân người xem (Retention).
-- 🗣️ **`VOICE_TTS_ENGINE_ROUTING.md`**: Luật định tuyến giọng đọc: Lúc nào dùng F5-TTS, lúc nào dùng OmniVoice.
+- 🗣️ **`VOICE_TTS_ENGINE_ROUTING.md`**: Luật định tuyến giọng đọc: VieNeu (clone > preset) là chính, edge-tts là fallback trung thực. Engine duy nhất, không nhánh chết.
 - 🕵️‍♂️ **`tech_news_faceless_sop.md`**: Công thức luộc tin tức công nghệ (không lộ mặt).
 - ✂️ **`repurposer_sop.md`**: Luật tái chế Video dài thành 5 video ngắn.
 - 🏷️ **`youtube_seo_sop.md`**: Công thức nhồi nhét Keyword vào mô tả Youtube.

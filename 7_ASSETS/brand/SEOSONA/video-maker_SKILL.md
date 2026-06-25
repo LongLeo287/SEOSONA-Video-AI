@@ -5,7 +5,7 @@ description: >
   (A) FACELESS scene-slides tự sinh giọng AI, và (B) EDIT video tự quay (footage)
   với card neon 3D + phụ đề karaoke + mockup UI + screenshot thật + nhạc + SFX.
   Dùng khi user nói "làm video", "edit video", "dựng video hướng dẫn/review/giới thiệu".
-  Engine: build_scene_slides.py / edit_footage.py + F5-TTS + HyperFrames + ffmpeg.
+  Engine: build_scene_slides.py / edit_footage.py + VieNeu (voice_router) + HyperFrames + ffmpeg.
 metadata:
   type: skill
   author: SEOSONA AI
@@ -18,10 +18,10 @@ Skill này gói TOÀN BỘ quy trình làm video SEOSONA AI vào 1 file. Có 2 c
 
 ## 0. CẦN GÌ (prerequisites — cài 1 lần)
 - **video-pipeline** (repo): `build_scene_slides.py`, `run_video.ps1`, `edit_footage.py`, `build_overlays.py`, `build_captions.py`, `fit_scenes.py`, `sfx_mixer.py`, `capture_shot.ps1`.
-- **2 venv**: `.venv` (render/mux) · `.venv-f5` (F5-TTS + faster-whisper).
+- **venv**: `.venv` (render/mux + VieNeu + faster-whisper). VieNeu chạy CPU/ONNX — không cần GPU.
 - **HyperFrames** (`npm run render` trong `hf-demo/`, chạy qua **cmd** không qua ps1 — execution policy chặn npm.ps1).
 - **ffmpeg/ffprobe** ở `tools/`. **Giọng clone**: `refvoice/clone_ref.wav`. **SFX**: `hf-demo/assets/sfx/*.wav`. **Nhạc**: `hf-demo/assets/music/*.mp3`.
-- GPU NVIDIA (F5 nhanh). GTX 16xx cần patch fp32. HF offline: đặt `HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1`.
+- Không cần GPU (VieNeu chạy CPU/ONNX). HF offline: đặt `HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1`.
 
 ---
 
@@ -97,4 +97,4 @@ run_video.ps1 -Spec <ten>_spec.json -Scenes <ten>_scenes.json -Sfx <ten>_sfx.jso
 10. **Batch lớn**: chia chunk nhỏ ~6-8 video/session (tránh tràn context gateway).
 
 ---
-*Skill của SEOSONA AI. Cần video-pipeline + F5-TTS + HyperFrames để chạy. Liên hệ SEOSONA AI để được hướng dẫn cài bộ pipeline.*
+*Skill của SEOSONA AI. Cần video-pipeline + VieNeu-TTS + HyperFrames để chạy. Liên hệ SEOSONA AI để được hướng dẫn cài bộ pipeline.*

@@ -5,7 +5,7 @@ description: >
   (A) FACELESS scene-slides tự sinh giọng AI, và (B) EDIT video tự quay (footage)
   với card neon 3D + phụ đề karaoke + mockup UI + screenshot thật + nhạc + SFX.
   Dùng khi user nói "làm video", "edit video", "dựng video hướng dẫn/review/giới thiệu".
-  Engine: build_scene_slides.py / edit_footage.py + F5-TTS + HyperFrames + ffmpeg.
+  Engine: build_scene_slides.py / edit_footage.py + VieNeu (voice_router) + HyperFrames + ffmpeg.
 metadata:
   type: skill
   author: SEOSONA AI
@@ -18,7 +18,7 @@ Skill này gói TOÀN BỘ quy trình làm video SEOSONA AI vào 1 file. Có 2 c
 
 ## 0. CẦN GÌ (prerequisites — cài 1 lần)
 - **Native News Builder**: Công cụ lõi `scripts/build_news_project.mjs`. (Đây là script native của SEOSONA Video, không cần repo ngoài).
-- **Voice Engine**: `omnivoice_engine.py` (nằm trong `.venv-omnivoice`) hoặc F5-TTS (`f5_tts_local.py`).
+- **Voice Engine**: `2_SKILLS/voice_cloner/voice_router.py` (`synthesize_voice`) — VieNeu (clone > preset) → fallback edge-tts. Engine giọng nói duy nhất.
 - **HyperFrames CLI**: `npx hyperframes render` trong `8_WORKSPACE/` (Đảm bảo đã npm install @hyperframes/cli).
 - **ffmpeg/ffprobe** ở `tools/` dùng để ghép nối video/audio cuối cùng nếu cần custom.
 

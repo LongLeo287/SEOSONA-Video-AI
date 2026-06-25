@@ -12,7 +12,8 @@ SEOSONA Video/
 ├── 2_KNOWLEDGE/       ← knowledge base  → README + INGESTION_INDEX.md
 │   ├── hyperframes/      full HyperFrames docs (guides/reference/catalog) → README.md
 │   └── repos/           distilled ingested repos (OmniVoice, OpenMontage, ...)
-├── 2_SKILLS/          ← 17 Python skills (tts, srt, clipper, thumbnail, voice_cloner, ...) → README.md
+├── 2_SKILLS/          ← 8 active Python skills (voice_cloner, tts, srt, clipper, thumbnail, yt, carousel, translator) → README.md
+│                         (9 unwired skills parked in _QUARANTINE/orphan_skills/)
 ├── 3_MEMORY/          ← memory/state → README
 ├── 4_BRAIN/           ← the engine: pipeline_manager.py (render), workflow_router.py,
 │                         quality_scorer, news_video_standards (THE core)

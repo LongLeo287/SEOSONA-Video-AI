@@ -46,7 +46,7 @@ drop TTS alternatives since VieNeu is chosen) → **2 ADOPT**:
 | VideoCaptioner | A | subtitle | partial | 2_SKILLS/srt_maker/ [needs full distillation] |
 | MoneyPrinterTurbo | A | full-pipeline | partial | 2_SKILLS/b_roll_fetcher/ [needs full distillation] |
 | MoneyPrinterV2 | A | full-pipeline | cleared | 2_KNOWLEDGE/repos/MoneyPrinterV2.md |
-| OmniVoice (k2-fsa) | A | tts-vi-clone | ingested | 2_KNOWLEDGE/repos/OmniVoice.md + WIRED: 2_SKILLS/voice_cloner/omnivoice_engine.py (real generate() API) + fish_audio_api.clone_voice() omnivoice branch |
+| OmniVoice (k2-fsa) | A | tts-vi-clone | superseded | 2_KNOWLEDGE/repos/OmniVoice.md (knowledge kept; engine NOT wired — VieNeu is the single TTS source of truth via voice_router.py. The old omnivoice/fish branches were removed.) |
 | omnivoice-vi (dataset) | A | tts-vi-voices | ingested | 2_KNOWLEDGE/repos/omnivoice-vi-dataset.md (6 female VN voice .pt profiles + dubbing) |
 | OpenMontage | B | agentic-video-OS | ingested | 2_KNOWLEDGE/repos/OpenMontage.md (AGPLv3 — patterns/ideas only: provider scoring, governance, pipeline taxonomy) |
 | WeClone | A | voice-clone | cleared | 2_KNOWLEDGE/repos/WeClone.md |

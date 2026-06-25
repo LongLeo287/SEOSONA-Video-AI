@@ -37,7 +37,6 @@ _ENV_MAP = {
     # core APIs
     ("openai", "api_key"): "OPENAI_API_KEY",
     ("pexels", "api_key"): "PEXELS_API_KEY",
-    ("fish_audio", "api_key"): "FISH_AUDIO_API_KEY",
     # publish destinations
     ("youtube", "data_api_key"): "YOUTUBE_DATA_API_KEY",
     ("youtube", "oauth_file"): "YOUTUBE_OAUTH_FILE",

@@ -81,7 +81,6 @@ api_keys:
   # NOTE: Do not put real Keys here. The system will automatically read from the .env file
   pexels: "${PEXELS_API_KEY}"
   openai: "${OPENAI_API_KEY}"
-  fish_audio: "${FISH_AUDIO_API_KEY}"
 
 whisper:
   model: "turbo"

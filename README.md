@@ -30,7 +30,7 @@
     </td>
     <td width="50%" valign="top">
       <h3><a href="docs/02_AGENTS_AND_SKILLS.md">🤖 2. Bộ Não & Tay Chân</a></h3>
-      Danh sách thả xuống phân tích nhiệm vụ của <b>17 Đặc vụ AI (Agents)</b> và <b>24 Kỹ năng Python Native (Skills)</b>.
+      Danh sách thả xuống phân tích nhiệm vụ của <b>12 Đặc vụ AI (Agents)</b> và <b>8 Kỹ năng Python Native (Skills)</b> đang được nối vào pipeline.
     </td>
   </tr>
   <tr>
@@ -50,7 +50,7 @@
     </td>
     <td width="50%" valign="top">
       <h3><a href="docs/06_LIBRARIES_AND_MODELS.md">🧠 6. Thư Viện & AI Models</a></h3>
-      Bảng danh sách chi tiết các công cụ đồ họa (Puppeteer, FFmpeg) và lõi AI cực mạnh (F5-TTS, Whisper, OmniVoice).
+      Bảng danh sách chi tiết các công cụ đồ họa (Puppeteer, FFmpeg) và lõi AI cực mạnh (VieNeu-TTS, Whisper/PhoWhisper).
     </td>
   </tr>
   <tr>

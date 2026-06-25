@@ -13,7 +13,7 @@ Nơi chứa các lõi Xử lý Ngôn ngữ và Phân tích Logic tĩnh (Chưa đ
 - 🚉 **`pipeline_manager.py` (60.4KB)**: Siêu trạm trung chuyển (Hub). Quyết định xem file dữ liệu nào sẽ đi vào đường ống nào, phân bổ tài nguyên và theo dõi tiến trình chạy.
 - 🔀 **`workflow_router.py`**: Định tuyến công việc. Nó đọc các dữ kiện truyền vào và quyết định: *"À, đây là bài bóc tách code, hãy gọi luồng PR-to-Video"*.
 - 🎯 **`intent_router.py`**: Bộ định tuyến "Ý định". Cố gắng hiểu người dùng hoặc hệ thống mẹ thực sự muốn gì thông qua các luồng văn bản không rõ ràng.
-- 🌉 **`video_capability_bridge.py`**: Cầu nối năng lực. Giao tiếp với các lõi khác để hỏi: *"Hiện tại GPU có rảnh để render F5-TTS không, hay phải dùng Cloud TTS?"*
+- 🌉 **`video_capability_bridge.py`**: Cầu nối năng lực. Giao tiếp với các lõi khác để hỏi: *"Tài nguyên có sẵn để chạy VieNeu local không, hay phải dùng edge-tts fallback?"*
 - 🏭 **`video_template_factory.py`**: Nhà máy đúc khuôn tự động, chuyên rập khuôn các giao diện chuẩn hóa.
 - 💯 **`quality_scorer.py`**: Máy chấm điểm tàn nhẫn. Trả về điểm số (Scale 0-10) xem kịch bản hoặc khung hình có đạt yêu cầu chất lượng hay không.
 

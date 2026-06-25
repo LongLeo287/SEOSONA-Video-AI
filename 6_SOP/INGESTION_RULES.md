@@ -26,7 +26,7 @@ If a capability already exists and new repo adds value:
 - Option A: MERGE the new knowledge into the existing file (add a versioned section)
 - Option B: Create `<existing_name>_supplement.md` with just the delta
 
-**Example**: If `2_SKILLS/voice_cloner/` already exists from F5-TTS analysis,
+**Example**: If `2_SKILLS/voice_cloner/` already exists from VieNeu-TTS analysis,
 and WeClone adds new patterns → add a `## WeClone Supplement` section to the existing file.
 
 ---

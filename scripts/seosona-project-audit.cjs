@@ -302,13 +302,22 @@ function audit() {
   }
   check('LOOP clone template manifest files exist', templateFileFindings.length === 0, templateFileFindings, 'P1');
 
-  const voiceAdapterText = exists('2_SKILLS/voice_cloner/fish_audio_api.py')
-    ? readText('2_SKILLS/voice_cloner/fish_audio_api.py')
+  // Voice contract: the rebuilt single-router system is the source of truth, and the
+  // deprecated fish_audio adapter must NOT be resurrected to satisfy this check.
+  const voiceRouterText = exists('2_SKILLS/voice_cloner/voice_router.py')
+    ? readText('2_SKILLS/voice_cloner/voice_router.py')
     : '';
+  const legacyFishGone = !exists('2_SKILLS/voice_cloner/fish_audio_api.py');
+  const routerHasContract =
+    voiceRouterText.includes('_edge_fallback') &&
+    voiceRouterText.includes('vi-VN-NamMinhNeural') &&
+    /fallback/i.test(voiceRouterText);
   check(
-    'voice adapter has explicit clone/fallback contract',
-    voiceAdapterText.includes('approved male Vietnamese Edge-TTS voice') && !voiceAdapterText.includes('TODO: implement fish audio adapter'),
-    'Fish/VieNeu adapters must either run or explicitly fall back to the approved male Vietnamese voice',
+    'voice router has honest fallback contract (no legacy fish adapter)',
+    routerHasContract && legacyFishGone,
+    legacyFishGone
+      ? 'voice_router.py must route VieNeu (clone > preset) -> honest edge-tts fallback to the approved male Vietnamese voice'
+      : 'legacy 2_SKILLS/voice_cloner/fish_audio_api.py must not be resurrected — voice_router.py is the single source of truth',
     'P2',
   );
 

@@ -11,14 +11,14 @@ Quy trình cực mạnh biến 1 bản tin Text thành 1 video Tiktok rực rỡ
 ```mermaid
 graph LR
     A[researcher_agent] -->|supergraph_news_config.json| B[hermes_agent]
-    B -->|OmniVoice + Whisper| C[words.json + scene.wav]
+    B -->|VieNeu + Whisper| C[words.json + scene.wav]
     C --> D[seosona-news-maker]
     D -->|build_news_project.mjs| E[GSAP HTML]
     E -->|Puppeteer + FFmpeg| F(FINAL.mp4)
 ```
 
 1. **Nạp liệu:** `researcher_agent` đẩy dữ liệu thô. `seo_writer_agent` nhào nặn lại thành `supergraph_news_config.json`.
-2. **Tạo Tiếng:** `hermes_agent` đọc file JSON, gọi ổ đĩa ảo `.venv-omnivoice`. OmniVoice nhả ra file `scene_X.wav`.
+2. **Tạo Tiếng:** `hermes_agent` đọc file JSON, gọi `voice_router.synthesize_voice` (VieNeu clone/preset, fallback edge-tts). Nhả ra file `scene_X.wav`.
 3. **Khớp Nhịp:** Đưa file `.wav` qua mô hình `faster-whisper`. Whisper trả về `words.json` chứa tọa độ mili-giây của TỪNG CHỮ.
 4. **Khởi tạo Đồ họa:** Kích hoạt script `build_news_project.mjs`. Tạo `scene_X.html` 1080x1920, nhúng GSAP khớp với `words.json` tạo Karaoke.
 5. **Kết Xuất:** `html_renderer` dùng Chrome ảo, chụp liên thanh (30 hình/giây).

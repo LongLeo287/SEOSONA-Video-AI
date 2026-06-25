@@ -43,7 +43,7 @@ The router automatically detects the input:
 - **Display/Pronunciation Split:** `4_BRAIN/news_video_standards.py` keeps the visible script and subtitles unchanged while creating a separate pronunciation script for TTS.
 - **English Term Pronunciation:** Approved terms such as `AI`, `SEO`, `GitHub`, `Obscura`, `OpenAI`, and `YouTube` are pronounced via lexicon, but remain correctly spelled on screen.
 - **Required Voice:** News videos require a male Southern Vietnamese profile. Use an approved VieNeu reference/preset when configured; otherwise fallback to Edge-TTS `vi-VN-NamMinhNeural`.
-- **Engine:** `2_SKILLS/voice_cloner/fish_audio_api.py`.
+- **Engine:** `2_SKILLS/voice_cloner/voice_router.py` (`synthesize_voice`) — VieNeu primary (clone > preset) with an honest edge-tts fallback. Single source of truth.
 - **Output:** `8_WORKSPACE/<ProjectName>/.temp/voice.mp3`
 
 ### STEP 3: IDENTIFY TIMESTAMPS
