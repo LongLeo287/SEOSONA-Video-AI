@@ -46,6 +46,7 @@ def _ollama_translate(lines, src, tgt):
     """Local self-hosted LLM via Ollama (default model: gemma — multilingual, Vietnamese).
     Private + no per-token cost. Graceful if Ollama isn't running."""
     import json as _json
+    import re
     import urllib.request
     model = os.environ.get("SEOSONA_OLLAMA_MODEL", "gemma3")
     host = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
