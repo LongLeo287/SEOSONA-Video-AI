@@ -46,33 +46,44 @@ def generate_voice_with_subtitles(text, output_path, voice="vi-VN-NamMinhNeural"
     subtitle_data = []
 
     async def _generate():
+        # SINGLE request: write audio chunks AND collect word boundaries in one pass.
+        # (The old code made two separate edge requests — stream() then save() — which
+        # intermittently tripped edge-tts "No audio was received" throttling and yielded
+        # 0 word boundaries. One pass is reliable and gives real timestamps.)
         communicate = edge_tts.Communicate(text, voice)
         subs = []
-        async for chunk in communicate.stream():
-            if chunk["type"] == "audio":
-                pass  # Audio is saved via communicate.save()
-            elif chunk["type"] == "WordBoundary":
-                start = chunk.get("offset", 0) / 10_000_000
-                duration = chunk.get("duration", 0) / 10_000_000
-                subs.append({
-                    "word": chunk.get("text", ""),
-                    "start": start,
-                    "duration": duration if duration > 0 else 0.25,
-                })
-        # Save audio separately
-        communicate2 = edge_tts.Communicate(text, voice)
-        await communicate2.save(output_path)
+        with open(output_path, "wb") as f:
+            async for chunk in communicate.stream():
+                if chunk["type"] == "audio":
+                    f.write(chunk["data"])
+                elif chunk["type"] == "WordBoundary":
+                    start = chunk.get("offset", 0) / 10_000_000
+                    duration = chunk.get("duration", 0) / 10_000_000
+                    subs.append({
+                        "word": chunk.get("text", ""),
+                        "start": start,
+                        "duration": duration if duration > 0 else 0.25,
+                    })
         return subs
 
-    try:
-        subtitle_data = asyncio.run(_generate())
-        size_kb = os.path.getsize(output_path) // 1024
-        print(f"[TTS Engine] Audio: {os.path.basename(output_path)} ({size_kb}KB)")
-        print(f"[TTS Engine] Subtitles: {len(subtitle_data)} word boundaries")
-        return output_path, subtitle_data
-    except Exception as e:
-        print(f"[TTS Engine] Error: {e}")
-        return None, []
+    # Retry transient edge-tts failures ("No audio was received" under throttling).
+    last_err = None
+    for attempt in range(1, 4):
+        try:
+            subtitle_data = asyncio.run(_generate())
+            if not os.path.exists(output_path) or os.path.getsize(output_path) < 1000:
+                raise RuntimeError("edge-tts produced no/too-little audio")
+            size_kb = os.path.getsize(output_path) // 1024
+            print(f"[TTS Engine] Audio: {os.path.basename(output_path)} ({size_kb}KB)")
+            print(f"[TTS Engine] Subtitles: {len(subtitle_data)} word boundaries")
+            return output_path, subtitle_data
+        except Exception as e:
+            last_err = e
+            print(f"[TTS Engine] Attempt {attempt}/3 failed: {e}")
+            import time
+            time.sleep(1.5 * attempt)
+    print(f"[TTS Engine] Error: {last_err}")
+    return None, []
 
 # Available Vietnamese voices
 VOICES = {

@@ -66,10 +66,14 @@ profiles:
       size: 90
     voice:
       engine: "vieneu"
-      model: "chiquyet_clone_v1"
+      # PRIMARY: clone the CQA brand voice from this reference. Drop a 10-30s clean
+      # clip here to restore the true 'chiquyet' voice — the router prefers the clone.
+      reference_audio: "7_ASSETS/voice/profiles/chiquyet_sample_4s.wav"
+      # Preset used ONLY when the reference is missing. Must be a real VieNeu preset
+      # (valid male: Gia Bảo, Thái Sơn, Đức Trí, Xuân Vĩnh, Trọng Hữu, Bình An).
+      model: "Gia Bảo"
       required_gender: "male"
       required_accent: "southern"
-      reference_audio: "7_ASSETS/voice/profiles/chiquyet_sample_4s.wav"
       fallback_engine: "edge-tts"
       fallback_voice: "vi-VN-NamMinhNeural"
     logo: "Chi Quyet Academy Mascot Logo.png"
