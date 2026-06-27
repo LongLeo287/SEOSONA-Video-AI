@@ -407,7 +407,9 @@ def _css(theme="light", W=1080, H=1920):
 .scene>.kicker,.scene>.head,.scene>.comp{position:relative;z-index:1}
 .kicker{font-weight:800;font-size:30px;letter-spacing:3px;padding:14px 30px;border-radius:999px;text-transform:uppercase}
 .head{margin-top:38px;text-align:center;line-height:1.08}
-.head .l1,.head .l2{display:block;font-weight:900;font-size:80px;letter-spacing:-1px}
+.head .l1{display:block;font-weight:900;font-size:80px;letter-spacing:-1px}
+.head .l2{display:inline-block;position:relative;font-weight:900;font-size:80px;letter-spacing:-1px}
+.l2u{position:absolute;left:2px;right:2px;bottom:-14px;height:8px;border-radius:4px;transform:scaleX(0);transform-origin:left center}
 .comp{margin-top:64px;width:100%;display:flex;justify-content:center}
 .c-bignum{text-align:center;position:relative}.c-bignum .big{font-weight:900;font-size:225px;line-height:1;letter-spacing:-4px;position:relative;z-index:1}
 .c-bignum .bgglow{position:absolute;left:50%;top:44%;width:780px;height:780px;transform:translate(-50%,-50%);border-radius:50%;z-index:0;pointer-events:none}
@@ -622,7 +624,7 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
             f'<div class="{scls}" id="{cid}"{sstyle} data-start="{ap:.2f}" data-duration="{d:.2f}" data-track-index="{2+(i%2)*3}">'
             f'{scbg}'
             f'<div class="kicker" style="{kstyle}">{_esc(sc["kicker"])}</div>'
-            f'<h1 class="head"><span class="l1">{_esc(sc["h1"])}</span><span class="l2" style="{l2style}">{_esc(sc["h2"])}</span></h1>'
+            f'<h1 class="head"><span class="l1">{_esc(sc["h1"])}</span><span class="l2" style="{l2style}">{_esc(sc["h2"])}<i class="l2u" style="background:{"#fff" if hero else acc}"></i></span></h1>'
             f'<div class="comp">{comp}</div></div>')
         if i == 0:
             tweens.append(f'tl.set("#{cid}",{{opacity:1}},0);')
@@ -632,6 +634,10 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
             tweens.append(f'tl.fromTo("#{cid} .kicker",{{y:-24}},{{y:0,duration:0.45,ease:"power2.out"}},{ap:.2f});')
             tweens.append(f'tl.fromTo("#{cid} .head",{{y:28}},{{y:0,duration:0.5,ease:"power3.out"}},{ap+0.06:.2f});')
             tweens.append(f'tl.fromTo("#{cid} .comp",{{y:34,scale:0.97}},{{y:0,scale:1,duration:0.55,ease:"power3.out"}},{ap+0.12:.2f});')
+        # Marker underline draws under the accent heading word (craft/references/css-patterns.md
+        # "highlight/sketch" modes, re-skinned): a hand-drawn accent rule that sweeps in.
+        ut = 0.50 if i == 0 else ap + 0.60
+        tweens.append(f'tl.fromTo("#{cid} .l2u",{{scaleX:0}},{{scaleX:1,duration:0.50,ease:"power2.out"}},{ut:.2f});')
         # Ambient motion (motion-principles.md): a slow glow breathe + ghost drift across the
         # scene so the background is alive, not "nothing loaded". sine.inOut over the scene.
         adur = min(max(d, 2.0), 7.0)
@@ -682,12 +688,24 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
                 '{x:44,ease:"expo.out",duration:0.50},{scale:0.90,ease:"back.out(1.4)",duration:0.55}];'
                 '_it.forEach(function(el,k){var e=Object.assign({opacity:0},_E[k%%_E.length]);'
                 'tl.from(el,e,%.2f+k*%.3f);});})();' % (cid, rstart, rint))
+            # Chart bars GROW left→right via a clip-path wipe (craft/data-in-motion.md: a
+            # number needs visual weight; a bar that fills reads as data, not static text).
+            # clip-path wipe (not scaleX) so the value label never distorts.
+            if comp_kind == "chart":
+                tweens.append(
+                    ';(function(){var _b=document.querySelectorAll("#%s .chfill");'
+                    '_b.forEach(function(el,k){tl.fromTo(el,{clipPath:"inset(0 100%% 0 0)"},'
+                    '{clipPath:"inset(0 0%% 0 0)",duration:0.62,ease:"power2.out"},%.2f+k*%.3f+0.05);});})();'
+                    % (cid, rstart, rint))
         if nxt is not None:
             # Old scene fully GONE by the moment the next mounts (data-start=nxt) → the
             # two are NEVER on screen together (no double-text/ghosting at all). The new
             # then fades in from the light branded bg; the ~1 transition frame is bg+dots,
-            # never black.
-            tweens.append(f'tl.to("#{cid}",{{opacity:0,duration:0.3,ease:"power2.in"}},{nxt-0.33:.2f});')
+            # never black. EXIT STYLE rotates per scene (fade / slide-left / slide-up /
+            # scale-down) so cuts aren't all the same crossfade — but always non-overlapping.
+            _EXITS = ["", ",x:-64", ",y:-52", ",scale:0.92"]
+            ex = _EXITS[i % len(_EXITS)]
+            tweens.append(f'tl.to("#{cid}",{{opacity:0{ex},duration:0.34,ease:"power2.in"}},{nxt-0.34:.2f});')
 
     # karaoke chunks (~4 words), alternating tracks
     chunks = []

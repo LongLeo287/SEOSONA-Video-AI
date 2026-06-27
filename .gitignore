@@ -130,3 +130,16 @@ token.pickle
 
 # archived non-video research notes (kept local, not in git)
 _QUARANTINE/research_archive/
+
+# scratch / one-off video drivers (kept locally, not shipped)
+scripts/clone_news2.py
+scripts/clone_news3.py
+scripts/clone_news4.py
+scripts/clone_news5.py
+scripts/clone_datanews.py
+scripts/clone_seo.py
+scripts/clone_repos.py
+scripts/demo_freeform.py
+scripts/demo_variety.py
+scripts/seo_roadmap.py
+scripts/analyze_reference.py
