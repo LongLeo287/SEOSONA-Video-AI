@@ -143,3 +143,6 @@ scripts/demo_freeform.py
 scripts/demo_variety.py
 scripts/seo_roadmap.py
 scripts/analyze_reference.py
+
+# raw voice recording (local source only — engine uses seosona_ref13.wav)
+7_ASSETS/voice/profiles/seosona.WAV
