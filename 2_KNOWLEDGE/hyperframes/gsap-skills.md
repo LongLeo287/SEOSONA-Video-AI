@@ -8,7 +8,7 @@ gsap-core, gsap-timeline, gsap-utils** (+ trimmed gsap-performance). Ignore gsap
 gsap-react / gsap-frameworks (web-runtime, irrelevant to a deterministic seek render).
 
 ## 🔓 ALL plugins are free (Webflow) — and SEOSONA loads them in EVERY render
-No Club GSAP / auth token. `4_BRAIN/pipeline_manager.py` vendors gsap 3.13.0 +
+No Club GSAP / auth token. `4_BRAIN/native_composer.py` vendors gsap 3.13.0 +
 9 plugins from `5_FRAMEWORK/hf_core/vendor/gsap/` into each render and registers them:
 
 | Plugin | Unlocks for video |
@@ -66,7 +66,7 @@ gsap.to("#logoA",{morphSVG:{shape:"#logoB",type:"rotational",shapeIndex:2},durat
 
 ## Branded ease
 `ease: "seosona"` (a confident smooth ease-out) is registered in every render via
-`CustomEase.create("seosona", "M0,0 C0.22,1 0.36,1 1,1")` in `pipeline_manager.py`. Use it
+`CustomEase.create("seosona", "M0,0 C0.22,1 0.36,1 1,1")` in `native_composer.py`. Use it
 as the default for title/hero reveals to keep one motion signature across all videos. Tune
 the curve there to change the brand feel.
 

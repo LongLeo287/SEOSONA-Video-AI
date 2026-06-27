@@ -37,7 +37,7 @@ def generate_post_mortem(state):
         proposals.append({
             "target": "System Workflow",
             "issue": f"Fatal error occurred: {fatal_error}",
-            "action": "Check logs and add exception handling in pipeline_manager.py."
+            "action": "Check logs and add exception handling in video_engine.py."
         })
         
     if retries > 0:

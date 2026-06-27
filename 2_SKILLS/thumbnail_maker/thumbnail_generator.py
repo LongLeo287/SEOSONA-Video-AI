@@ -19,7 +19,7 @@ BRAND_PALETTES = {
         "blue": "#2B5EA7",
         "light_blue": "#BBDEFB",
         "yellow": "#FFD54F",
-        "logo_path": "7_ASSETS/brand/logos/CQA_Logo.png",
+        "logo_path": "7_ASSETS/brand/logos/Chi Quyet Academy Mascot Logo.png",
         "watermark": "CQA",
         "brand_name": "CHÍ QUYẾT ACADEMY",
         "brand_tagline": "",

@@ -84,11 +84,11 @@ def main():
     except Exception as e:
         print(f"Lỗi Render 9:16: {e}")
 
-    # 3. Render Thumbnail 16:9 (A/B Testing 3 variations)
-    print("\n[3/3] Đang thiết kế Thumbnail Ngang (16:9) & A/B Testing 3 biến thể...")
+    # 3. Render Thumbnail 16:9 (3 layout variations)
+    print("\n[3/3] Đang thiết kế Thumbnail Ngang (16:9) — 3 biến thể layout...")
     variations = []
     layouts = ["auto", "split", "center"]
-    
+
     for i, layout in enumerate(layouts):
         path_var = os.path.join(out_dir, f"Thumbnail_var{i+1}.png")
         try:
@@ -100,23 +100,14 @@ def main():
             variations.append(path_var)
         except Exception as e:
             print(f"Lỗi Render biến thể {i+1}: {e}")
-            
-    # Gọi AI để chọn Thumbnail tốt nhất
+
+    # Pick the first (primary "auto") layout as the final 16:9. The AI A/B tester was
+    # retired (lean profile); choose by hand from the variations if needed.
     if variations:
-        try:
-            import sys
-            sys.path.append(os.path.join(ROOT, "1_AGENTS"))
-            from thumbnail_tester_agent.ab_tester import score_thumbnails
-            import shutil
-            
-            winner_idx = score_thumbnails(variations, brand=brand)
-            winner_path = variations[winner_idx]
-            
-            final_path = os.path.join(out_dir, f"Thumbnail_{brand.upper()}_16x9.png")
-            shutil.copy(winner_path, final_path)
-            print(f"[A/B Tester] Đã chọn xong! Lưu bản xịn nhất tại: {final_path}")
-        except Exception as e:
-            print(f"Lỗi A/B Testing: {e}")
+        import shutil
+        final_path = os.path.join(out_dir, f"Thumbnail_{brand.upper()}_16x9.png")
+        shutil.copy(variations[0], final_path)
+        print(f"Bản chính 16:9: {final_path} (chọn tay từ {len(variations)} biến thể nếu cần)")
 
     sep("HOÀN TẤT QUY TRÌNH VIDEO PACKAGING")
     print(f"Hình ảnh đã được lưu tại thư mục: {out_dir}")

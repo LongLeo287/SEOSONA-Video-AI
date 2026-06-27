@@ -7,7 +7,7 @@ import unittest
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, "4_BRAIN"))
 
-from pipeline_manager import run_pipeline  # noqa: E402
+from video_engine import run_pipeline  # noqa: E402
 
 
 class WorkflowBoundaryTests(unittest.TestCase):
@@ -18,7 +18,7 @@ class WorkflowBoundaryTests(unittest.TestCase):
 
         scripts = package.get("scripts", {})
         for script_name in [
-            "template:clone",
+            "make:video",
             "post:image",
             "thumbnail:create",
             "video:news",

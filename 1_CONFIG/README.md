@@ -43,6 +43,9 @@ Pick ONE of:
 | `google_drive` | `service_account_file`, `folder_id` | Google service-account JSON + target folder id |
 | `telegram` | `bot_token`, `chat_id` | @BotFather + your chat id |
 
+Env-only keys (read from `.env`, no JSON file): `openai` (`OPENAI_API_KEY`),
+`pexels` (`PEXELS_API_KEY`), `9router` — see `_ENV_MAP` in `credentials_manager.py`.
+
 ## Adding a new platform
 Add its `(platform, field) → ENV_VAR` rows to `_ENV_MAP` in `credentials_manager.py`,
 drop a `<platform>.example.json`, and the gitignore rule already protects the real file.

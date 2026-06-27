@@ -7,15 +7,15 @@
 Chào mừng bạn đến với tài liệu cốt lõi của **SEOSONA Video Autonomous Factory**. Đây là một Nhà máy Sản xuất Truyền thông Đa phương tiện hoàn toàn tự động, được thiết kế và làm chủ 100% bởi **SEOSONA AI**. 
 
 ## 1. Mục đích Hệ thống
-Hệ thống này được sinh ra để loại bỏ hoàn toàn sự can thiệp của con người trong quá trình sản xuất nội dung video. Bằng cách kết hợp Trí tuệ nhân tạo (Agents), Xử lý ngôn ngữ tự nhiên (LLMs), Engine Kết xuất giao diện (Puppeteer/HyperFrames), và các thuật toán thị giác máy tính, SEOSONA Video có khả năng biến 1 dòng ý tưởng thành 1 video viral trên Tiktok, Youtube, Instagram Reels chỉ trong vòng chưa đầy 3 phút.
+Hệ thống này được sinh ra để loại bỏ hoàn toàn sự can thiệp của con người trong quá trình sản xuất nội dung video. Bằng cách kết hợp Trí tuệ nhân tạo (Agents), Xử lý ngôn ngữ tự nhiên (LLMs), Engine Kết xuất native (`video_engine` → `native_composer` + HyperFrames), và các thuật toán thị giác máy tính, SEOSONA Video có khả năng biến 1 dòng ý tưởng thành 1 video viral trên Tiktok, Youtube, Instagram Reels chỉ trong vòng chưa đầy 3 phút.
 
 ## 2. Sơ đồ Kiến trúc Phân tầng
 
 ```mermaid
 graph TD
-    A[Lớp Nhận Thức - Cognitive Layer] -->|17 AI Agents| B[Lớp Điều Phối - Workflow Layer]
-    B -->|20 Agentic Workflows| C[Lớp Thực Thi - Execution Layer]
-    C -->|24 Python Skills| D[Lớp Kết Xuất - Rendering Layer]
+    A[Lớp Nhận Thức - Cognitive Layer] -->|10 AI Agents| B[Lớp Điều Phối - Workflow Layer]
+    B -->|21 Agentic Workflows| C[Lớp Thực Thi - Execution Layer]
+    C -->|7 Python Skills| D[Lớp Kết Xuất - Rendering Layer]
     D -->|10 Frameworks| E((Video Thành Phẩm))
 ```
 

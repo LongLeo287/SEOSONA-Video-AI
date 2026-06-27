@@ -1,0 +1,41 @@
+{
+  "name": "ai-news-flash",
+  "title": "AI News Flash (ngắn)",
+  "description": "Tin AI nhanh (Seedance, Gemini API...) ~20-25s",
+  "when_to_use": "",
+  "theme": "light",
+  "aspect": "9:16",
+  "scenes": [
+    {
+      "component": null,
+      "accent": "orange",
+      "kicker_hint": "TIN NÓNG",
+      "hero": true
+    },
+    {
+      "component": null,
+      "accent": "blue",
+      "kicker_hint": "SỰ KIỆN"
+    },
+    {
+      "component": "repo",
+      "accent": "green",
+      "kicker_hint": "CHI TIẾT"
+    },
+    {
+      "component": "bignum",
+      "accent": "orange",
+      "kicker_hint": "CON SỐ"
+    },
+    {
+      "component": "badges",
+      "accent": "green",
+      "kicker_hint": "ĐIỂM CHÍNH"
+    },
+    {
+      "component": "cta",
+      "accent": "blue",
+      "kicker_hint": "SEOSONA AI"
+    }
+  ]
+}

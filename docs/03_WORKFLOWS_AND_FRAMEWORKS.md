@@ -2,7 +2,7 @@
 
 Tài liệu này liệt kê các hệ thống điều phối (Workflows) cấp cao và các Framework dựng hình của SEOSONA Video.
 
-## 🧠 20 Luồng Công Việc (Agentic Workflows)
+## 🧠 21 Luồng Công Việc (Agentic Workflows)
 Nằm trong `.agents/skills/`. Đây là sự kết hợp giữa Agents (Lớp 1) và Python Skills (Lớp 2) để tạo thành các cỗ máy tự động từ A-Z.
 
 <details>
@@ -37,33 +37,33 @@ Nằm trong `.agents/skills/`. Đây là sự kết hợp giữa Agents (Lớp 1
 </details>
 
 <details>
-<summary><b>🔤 Nhóm Hiệu ứng & Quản lý (3 Workflows)</b></summary>
+<summary><b>🔤 Nhóm Hiệu ứng & Quản lý (4 Workflows)</b></summary>
 <br>
 
 - 🅰️ **`embedded-captions`**: Dán phụ đề dính chặt vào video có sẵn (hiệu ứng Cinematic/Karaoke).
 - 🏷️ **`graphic-overlays`**: Dán các thẻ thông tin (Card, Lower-third) bay lượn lên video gốc.
+- 🎬 **`scene-composer`**: Bộ não nội dung — chọn template JSON và đổ kịch bản vào khung qua `native_composer.fill_template`.
 - 🧠 **`seosona-video-operator`**: Mạch điều khiển trung tâm ra lệnh cho toàn bộ các luồng còn lại.
 
 </details>
 
 ---
 
-## 🎨 10 Khung Xương Đồ Họa (Frameworks)
+## 🎨 9 Khung Xương Đồ Họa (Frameworks)
 Nằm trong `5_FRAMEWORK/`. Nơi những file HTML tĩnh biến thành những siêu phẩm 60 Frame/giây.
 
 <details>
 <summary><b>🖥️ Mở rộng danh sách Frameworks</b></summary>
 <br>
 
-1. **`_Archived_HTML_Mockups`**: Các bản vẽ nháp HTML đã được lưu trữ.
-2. **`hf_cards`**: Bộ sưu tập các thẻ Component 3D (Thẻ thông báo, Thẻ số liệu...).
-3. **`hf_core`**: Lõi quy định thẻ DOM (Document Object Model) của HyperFrames.
-4. **`hf_engine`**: Đầu não dịch các dòng lệnh HTML sang tọa độ điểm ảnh.
-5. **`html_renderer`**: Súng ngắm Puppeteer, có nhiệm vụ "bắn" ảnh màn hình liên tục.
-6. **`hyperframes`**: Registry cục bộ lưu trữ các biến thể khung hình.
-7. **`loop-source-seosona-clone`**: Mã nguồn hiệu ứng vòng lặp (Loop animation).
-8. **`moviepy_wrapper`**: Bọc Python để ra lệnh cho phần mềm ghép video.
-9. **`news_loop_path_hyperframes`**: Background động chạy vòng lặp vô tận cho video tin tức.
-10. **`news_spatial_hyperframes`**: Không gian 3D giả lập cho video tỷ lệ dọc 9:16.
+1. **`hf_cards`**: Bộ sưu tập các thẻ Component 3D (Thẻ thông báo, Thẻ số liệu...).
+2. **`hf_core`**: Lõi quy định thẻ DOM (Document Object Model) của HyperFrames.
+3. **`hf_engine`**: Đầu não dịch các dòng lệnh HTML sang tọa độ điểm ảnh.
+4. **`html_renderer`**: Thư mục template/asset HTML còn lại; chức năng chụp ảnh dùng Playwright (file render `.py` đã bị đưa vào (removed), render nay do `native_composer` đảm nhận).
+5. **`hyperframes`**: Registry cục bộ lưu trữ các biến thể khung hình.
+6. **`loop-source-seosona-clone`**: Mã nguồn hiệu ứng vòng lặp (Loop animation).
+7. **`moviepy_wrapper`**: Bọc Python để ra lệnh cho phần mềm ghép video.
+8. **`news_loop_path_hyperframes`**: Background động chạy vòng lặp vô tận cho video tin tức.
+9. **`news_spatial_hyperframes`**: Không gian 3D giả lập cho video tỷ lệ dọc 9:16.
 
 </details>

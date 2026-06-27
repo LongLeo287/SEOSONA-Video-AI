@@ -1,0 +1,51 @@
+{
+  "name": "resource-list",
+  "title": "Resource List",
+  "description": "Kho tài nguyên/list (System Prompts, FreeLLMAPI...)",
+  "when_to_use": "",
+  "theme": "light",
+  "aspect": "9:16",
+  "scenes": [
+    {
+      "component": null,
+      "accent": "orange",
+      "kicker_hint": "KHO TÀI NGUYÊN",
+      "hero": true
+    },
+    {
+      "component": null,
+      "accent": "blue",
+      "kicker_hint": "GIỚI THIỆU"
+    },
+    {
+      "component": "repo",
+      "accent": "green",
+      "kicker_hint": "NGUỒN"
+    },
+    {
+      "component": "steps",
+      "accent": "orange",
+      "kicker_hint": "BÊN TRONG CÓ GÌ"
+    },
+    {
+      "component": "terminal",
+      "accent": "blue",
+      "kicker_hint": "CÁCH LẤY"
+    },
+    {
+      "component": "bignum",
+      "accent": "green",
+      "kicker_hint": "QUY MÔ"
+    },
+    {
+      "component": "badges",
+      "accent": "orange",
+      "kicker_hint": "ĐẶC ĐIỂM"
+    },
+    {
+      "component": "cta",
+      "accent": "blue",
+      "kicker_hint": "SEOSONA AI"
+    }
+  ]
+}

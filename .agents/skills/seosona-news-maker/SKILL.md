@@ -1,100 +1,73 @@
 ---
 name: seosona-news-maker
 description: >
-  Làm video dọc 9:16 (hoặc 16:9) chuyên nghiệp bằng Hermes — 2 chế độ:
-  (A) FACELESS scene-slides tự sinh giọng AI, và (B) EDIT video tự quay (footage)
-  với card neon 3D + phụ đề karaoke + mockup UI + screenshot thật + nhạc + SFX.
-  Dùng khi user nói "làm video", "edit video", "dựng video hướng dẫn/review/giới thiệu".
-  Engine: build_scene_slides.py / edit_footage.py + VieNeu (voice_router) + HyperFrames + ffmpeg.
+  Làm video SEOSONA dạng SYNTHESIZED (tự sinh) — tin tức, giải thích kiến thức, repo/tool
+  showcase — 9:16 (mặc định) hoặc 16:9, light-mode, giọng AI (VieNeu clone), phụ đề karaoke (RULE #1),
+  component (bignum/repo/compare/terminal/steps/badges/stats/quote/tip/feature/chart/mockup/
+  gittree/cta), SFX + BGM ducked. Dùng khi user nói "làm video tin tức / giải thích /
+  giới thiệu repo / làm video từ link GitHub / từ kịch bản". Engine: video_engine → native_composer.
+  (Edit footage tự quay / talking-head → dùng skill `talking-head-video-editor`.)
 metadata:
   type: skill
   author: SEOSONA AI
-  version: "1.0"
+  version: "2.0"
 ---
 
-# 🎬 seosona-news-maker — Skill làm video tự động bằng Hermes
+# 🎬 seosona-news-maker — video SEOSONA tự sinh (synthesized)
 
-Skill này gói TOÀN BỘ quy trình làm video SEOSONA AI vào 1 file. Có 2 chế độ. Bám đúng RULE CỨNG ở cuối để không lỗi.
+Skill cho **engine synthesized**: sinh cảnh từ nội dung (text / GitHub repo / news brief),
+giọng AI VieNeu, render brand-native bằng HyperFrames. Đây là 1 trong 2 engine làm video:
 
-## 0. CẦN GÌ (prerequisites — cài 1 lần)
-- **Native News Builder**: Công cụ lõi `scripts/build_news_project.mjs`. (Đây là script native của SEOSONA Video, không cần repo ngoài).
-- **Voice Engine**: `2_SKILLS/voice_cloner/voice_router.py` (`synthesize_voice`) — VieNeu (clone > preset) → fallback edge-tts. Engine giọng nói duy nhất.
-- **HyperFrames CLI**: `npx hyperframes render` trong `8_WORKSPACE/` (Đảm bảo đã npm install @hyperframes/cli).
-- **ffmpeg/ffprobe** ở `tools/` dùng để ghép nối video/audio cuối cùng nếu cần custom.
+- **Skill này (synthesized)** — máy tự dựng cảnh + giọng AI. → tin tức, giải thích, showcase.
+- **`talking-head-video-editor`** — edit footage tự quay/screen-rec, giọng THẬT. → review/hướng dẫn/giới thiệu bằng người quay.
 
----
+## 0. Engine + lệnh (đã verify chạy thật)
 
-## A. CHẾ ĐỘ FACELESS (scene-slides — tự sinh giọng AI) — DÙNG NHIỀU NHẤT
-Mỗi nhịp lời nói = 1 slide full-màn thiết kế (label → heading 2 tông → 1 component → karaoke đáy). Tạo 3 file rồi chạy 1 lệnh.
+| Việc | Lệnh |
+|---|---|
+| GitHub repo → video (auto template) | `npm run make:video -- <github_url_or_owner/name>` |
+| Ngang 16:9 (YouTube) | `npm run make:video -- <url> --aspect 16:9` |
+| Batch news (nhiều repo, xoay template) | `python 4_BRAIN/make_video.py --news urls.txt` |
+| Từ kịch bản tiếng Việt / website URL | `npm run video:news -- "<script_or_url>" [project] [ratio]` |
 
-### 1) `<ten>_spec.json` (giọng F5)
-```json
-{
-  "ref": "refvoice/clone_ref.wav", "speed": 1.06,
-  "music": "tech", "music_vol": 0.13,
-  "lexicon": {"AI":"ây ai","Hermes":"hơ-mét","9Router":"chín rao-tơ","24/7":"hai mươi tư trên bảy","email":"i-meo"},
-  "segments": [ {"id":1,"text":"Câu 1 ..."}, {"id":2,"text":"Câu 2 ..."} ]
-}
-```
-- **lexicon = CHÌA KHOÁ phát âm**: viết SỐ/brand ĐÚNG trong `text` (vd `AI`, `24/7`, `Hermes`), lexicon chỉ đổi cách ĐỌC. (Xem RULE #1.)
-- Số trong text nên để dạng số `40`, `24/7` + thêm cách đọc vào lexicon. Lời ~8-12 câu cho 45-60s.
+**Tỉ lệ:** mặc định 9:16; đặt `"aspect":"16:9"` trong template JSON hoặc `--aspect 16:9` (CLI) để ra ngang (1920×1080). Hỗ trợ `9:16` · `16:9` · `1:1`.
 
-### 2) `<ten>_scenes.json` (hình)
-```json
-{
-  "mode":"scenes", "accent":"orange", "width":1080, "height":1920, "caption_bottom":390,
-  "keywords":["Hermes","AI","Telegram"],
-  "scenes":[
-    {"label":"HOOK","heading":[{"text":"Dòng 1"},{"text":"Dòng 2","accent":true}],"subnote":"phụ chú **đậm**","segs":[1]},
-    {"label":"...","heading":[...],"comp":{"type":"steps","items":[{"title":"...","sub":"..."}]},"segs":[2]}
-  ]
-}
-```
-- **accent (tông màu)**: `orange`/`gold` (tin tức, Content TQ) · `indigo`/`brand` (tím SEOSONA) · `hocai` (galaxy tím-xanh kênh Học AI) · `chatgpt` (xanh lá) · `viralcrawl` (navy+hồng).
-- **comp (1 component/scene)**: `terminal` (lệnh) · `steps` (bước) · `compare` (2 thanh) · `stats` (3 thẻ số) · `bignum` (số to) · `tagcloud` (tag) · `browser` (cửa sổ + biểu đồ) · `tip` (box 💡) · **`shot`** (screenshot/mockup thật trong khung neon — `{type:shot,src:"assets/shots/x.png",title:"domain",badge:"LIVE",fit:"cover|contain"}`).
-- **`segs`**: id các câu thuộc scene → tự khớp timing.
+**Đầu ra** (`8_WORKSPACE/<project>/`): `*.mp4` + `*.srt` (trong `_captions_upload/`, tránh player auto-load đè karaoke) + `Thumbnail/thumbnail.png` + `publish_report.json` (nếu bật `SEOSONA_PUBLISH`) → tất cả qua quality gate.
 
-### 3) Chạy Native News Builder
-Thay vì script cũ, giờ đây chạy duy nhất:
-```
-node scripts/build_news_project.mjs <ten>_config.json
-npx hyperframes render
-```
-→ Công cụ sẽ tự động xuất project sạch 100% vào `8_WORKSPACE/<ten_project>` và tự generate mã GSAP nhúng phụ đề từ `words.json`.
+**Lõi:** `4_BRAIN/video_engine.py` (định tuyến + quality gate) → `4_BRAIN/native_composer.py`
+(voice qua `voice_router` VieNeu, timing qua `srt_maker/asr_router`, render HyperFrames CLI,
+mix SFX+BGM). Profile brand/giọng/logo đọc từ `system_config.yaml`.
 
----
+## 1. Nội dung (content) — 2 cách
 
-## B. CHẾ ĐỘ EDIT VIDEO TỰ QUAY (footage talking-head/screen-rec)
-1. **Transcribe**: `transcribe_video.py --video <mp4> --out selfshot` → `words.json`. Sửa chính tả brand (Cloud→Claude, herme→Hermes...) → `words_fixed.json`.
-2. **cards.json** (card neon + nhạc + SFX):
-```json
-{"footage":"assets/footage.mp4","duration":108,"caption_bottom":380,"music":"tech","music_vol":0.10,
- "keywords":["claude","hermes"],
- "cards":[{"type":"term","title":"...","sub":"...","accent":"cyan","enter":"right","left":600,"top":150,"width":460,"t":2.0,"dur":7.5}],
- "sfx_events":[{"file":"hf-demo/assets/sfx/whoosh.wav","t":2.0,"db":-14}]}
-```
-   - card types: `term` · `bullet` (rows + cue) · `stat`. accent: cyan/violet/gold/green. `cue`=từ khoá đồng bộ.
-3. **Chạy**: `edit_footage.py --spec cards.json --video <mp4> --words words_fixed.json --composition hf-demo --out final.mp4 --caption-chunk 6` (KHÔNG `--post` cho scene-slides).
+- **Tự động (1 lệnh):** `make_video.py` tự lấy data GitHub thật + điền prose tiếng Việt theo template.
+- **Chất lượng cao (agent):** dùng skill **`scene-composer`** để soạn `content` (segments + 2-tone heading + scene_data) rồi gọi:
+  - `native_composer.make_video_from_template(template, content, project_dir)` — theo 1 trong các template JSON.
+  - `native_composer.make_video_custom(project_dir, scenes_spec)` — tự lắp cảnh tự do từ 14 component.
 
-### MOCKUP UI ĐỘNG (Mức B — video hướng dẫn cần vẽ lại app):
-- Vẽ mỗi UI = 1 file HTML HyperFrames riêng (1080x1920, `#stage` + `window.__timelines["main"]`), recreate CHÍNH XÁC từ screenshot thật.
-- 🔴 Animation dùng `tl.set()`/`tl.to()` — **KHÔNG `tl.call()`** (không chạy khi render-seek). Gõ chữ = pre-bake từng `<span opacity:0>` rồi `tl.set(span,{opacity:1}, t)`.
-- Render mỗi mockup → clip → ffmpeg **overlay cutaway** lên footage đúng giây: `[i]setpts=PTS+START/TB[ci]` + `overlay=enable='between(t,START,END)'` → combined_visual → mux giọng gốc → edit_footage (card + karaoke + SFX).
-- Screenshot thật: `capture_shot.ps1 -Url <url> -Out <abs.png>` (Chrome headless). Chụp TRANG CHỦ (không trang login); ra 403/trắng/captcha → dùng trang khác hoặc mockup vẽ.
+## 2. Template JSON (`7_ASSETS/templates/*.json`) — cấu trúc cảnh (component + accent + kicker)
 
----
+`ai-news-flash` · `benchmark-news` · `data-news` (tin/số liệu) · `insight-explainer` ·
+`opinion-insight` · `seo-explainer` · `tutorial-gittree` (kiến thức/giải thích) ·
+`repo-showcase` · `tool-walkthrough` · `resource-list` (repo/tool/kho).
+Lưu render đẹp thành template mới: `native_composer.extract_template(...)`.
 
-## 🔴 RULE CỨNG (bài học — VI PHẠM = LÀM LẠI)
-1. **TEXT/PHỤ ĐỀ ≠ PHIÊN ÂM**: chữ trên màn viết dạng HIỂN THỊ đúng (số = `24/7` `41`, brand = `AI` `Hermes` `9Router`). Phát âm xử lý RIÊNG bằng `lexicon` trong spec. KHÔNG viết phiên âm (`ây-ai`, `hai mươi tư`) vào text — vì text vừa làm giọng vừa thành phụ đề.
-2. **HOOK FULL Ở FRAME ĐẦU**: scene[0] hiện đủ chữ hook ngay giây 0 (thumbnail nền tảng = frame 0). build_scene_slides tự render scene[0] tĩnh.
-3. **KARAOKE vùng an toàn**: `caption_bottom` 380-390 (không sát đáy). Từ đang nói tô vàng, keyword tô accent.
-4. **CARD/MOCKUP KHÔNG ĐÈ NHAU & KHÔNG ĐÈ MẶT**: mỗi card 1 khung giờ; card đặt vùng trống đối diện mặt; mockup cutaway full-màn thì KHÔNG để card cùng lúc.
-5. **NHIỀU MOCKUP/MINH HOẠ**: video demo app PHẢI ≥2-3 mockup UI khác nhau (cấm 1). Mỗi tính năng 1 màn.
-6. **SFX ĐA DẠNG** (không lặp 1 tiếng): whoosh chuyển cảnh, pop/coin/ding/success/notify/swipe theo loại cảnh.
-7. **ĐẶT TÊN FILE = caption đăng**: `<hook tiếng Việt CÓ DẤU> #seosonavideo #xuhuong #<3 hashtag chủ đề> (9x16).mp4`. Tránh ký tự Windows cấm `< > : " / \ | ? *`.
-8. **VERIFY trước khi giao** (KHÔNG bịa): trích frame (output-seek `ffmpeg -i v -ss T -frames:v 1`), xem không đen (YAVG>12), đo loudness (~-16 LUFS), duration ≥45s, phụ đề + mockup đúng. KHÔNG post-process scene-slides (dìm thành đen).
-9. **Video DÀI >120s**: caption gộp 1-clip (build_captions đã vá) để không rớt clip.
-10. **Batch lớn**: chia chunk nhỏ ~6-8 video/session (tránh tràn context gateway).
+## 3. Component (14) cho mỗi cảnh
+`bignum` (số to) · `repo` (repo card) · `compare` (2 cột) · `terminal` (lệnh) · `steps` (bước) ·
+`badges` · `stats` (3 thẻ số) · `quote` · `tip` (💡) · `feature` · `chart` (bar) · `mockup` (browser) ·
+`gittree` (git log) · `cta`. Accent: `blue` `green` `orange` (light-mode, palette brand).
 
----
-*Skill độc quyền của SEOSONA AI. Hệ thống sử dụng Native News Builder tích hợp trực tiếp, loại bỏ hoàn toàn sự phụ thuộc vào các pipeline bên ngoài.*
+## 🔴 RULE CỨNG
+1. **TEXT/PHỤ ĐỀ = DẠNG HIỂN THỊ, KHÔNG PHIÊN ÂM**: viết `AI` `24/7` `GitHub` đúng trên màn; cách ĐỌC xử lý riêng bằng `lexicon` (native_composer dùng `news_video_standards.PRONUNCIATION_LEXICON`). Caption hiển thị DISPLAY word, không phải âm.
+2. **HOOK ĐỦ Ở FRAME 0**: cảnh 0 hiện đủ kicker + heading ngay giây 0 (frame 0 = thumbnail nền tảng).
+3. **KARAOKE vùng an toàn**: từ đang nói tô vàng, keyword tô accent; không sát đáy.
+4. **LIGHT MODE ONLY**: không nền tối; palette brand (blue `#2A5BDA`, coral `#E2724D`, green `#16A34A`). Cảnh crossfade — không khung trắng.
+5. **GIỌNG**: VieNeu (clone > preset "Trọng Hữu") → fallback edge-tts; nam miền Nam. KHÔNG ghi phiên âm vào text.
+6. **SFX đa dạng** + **BGM ducked** dưới giọng (đã tự động trong native_composer).
+7. **VERIFY trước khi giao** (dữ liệu thật, không bịa): frame không đen (YAVG>12), loudness ~-16 LUFS, duration đúng brief, caption đúng chính tả brand/số liệu, component không rỗng.
+
+## Không làm trong skill này
+- Không edit footage tự quay / talking-head ở đây → dùng skill `talking-head-video-editor`.
+- Engine DUY NHẤT là `native_composer` — đừng tạo lại pipeline render cũ.
+
+*Skill độc quyền SEOSONA AI. Engine: video_engine → native_composer (HyperFrames-native, không phụ thuộc pipeline ngoài).*

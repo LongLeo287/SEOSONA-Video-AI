@@ -15,7 +15,7 @@ python 4_BRAIN/workflow_router.py "<input>" [brand] [ratio] [project_name]
 Canonical production commands:
 
 ```bash
-npm run template:clone -- <video_path> <template_name>
+npm run make:video -- <github_url_or_owner/name>   # GitHub → branded video (auto template)
 npm run post:image -- <text_or_file>
 npm run thumbnail:create -- <title_or_hook>
 npm run video:news -- <script_or_file_or_url> [project_name] [aspect_ratio]
@@ -47,23 +47,23 @@ The router automatically detects the input:
 - **Output:** `8_WORKSPACE/<ProjectName>/.temp/voice.mp3`
 
 ### STEP 3: IDENTIFY TIMESTAMPS
-- Priority: TTS native word boundaries remapped back to exact display words.
-- Fallback: `_estimate_word_level_data_from_script()` (word weight attribution).
-- Fallback: `2_SKILLS/srt_maker/whisper_engine.py` (ASR).
-- **Output:** `8_WORKSPACE/<ProjectName>/SRT/<ProjectName>.srt`
+- Priority: VieNeu native word boundaries remapped to exact DISPLAY words (RULE #1).
+- ASR: `2_SKILLS/srt_maker/asr_router.py` (PhoWhisper → faster/openai-whisper) → word timing,
+  then `news_video_standards.align_tts_boundaries_to_display_words()`.
+- **Output:** sidecar `.srt` written next to the final mp4 by `native_composer`.
 
-### STEP 4: ASSET GATHERING & SCENE GENERATION
-- `_make_news_scene_copy()` parse sentence → optional component mode:
-  - `dashboard`: When detecting numbers/percentages.
-  - `source-card`: When mentioning the report source.
-  - `screenshot`: Default (Browser mockup frame).
-- Required SFX: real assets from `7_ASSETS/sfx/transitions/` and `7_ASSETS/sfx/pops/` when available; generated fallback only if the asset library is empty.
-- Required BGM: real assets from `7_ASSETS/bgm/` when available; generated fallback only if the music library is empty.
+### STEP 4: SCENE GENERATION (components + SFX)
+- `native_composer` builds each scene from the JSON template's components (bignum, repo,
+  compare, terminal, steps, badges, stats, quote, tip, feature, chart, mockup, gittree, cta).
+- SFX cues per component via `native_composer._sfx_cues` from the curated library
+  `7_ASSETS/audio/sfx/` (manifest.json); BGM by mood from `7_ASSETS/audio/bgm/`.
 
-### STEP 5: VIDEO RENDER (HyperFrames Core)
-- `_write_hyperframes_render_project()` generates all HTML/CSS/GSAP.
-- Render: `npx hyperframes@0.6.112 render --format mp4 --output <path>`
-- **Frame 0 Hook:** Kicker + H1 always has 100% opacity at 0 second.
+### STEP 5: VIDEO RENDER (HyperFrames native)
+- `native_composer.make_video()` generates the HTML/CSS/GSAP composition inline
+  (loads GSAP from CDN; light-mode only).
+- Render: local `node node_modules/hyperframes/dist/cli.js render --format mp4`
+  (ffmpeg/ffprobe pinned via `HYPERFRAMES_FFMPEG_PATH`/`HYPERFRAMES_FFPROBE_PATH`).
+- **Frame 0 Hook:** Kicker + H1 always at 100% opacity at second 0.
 
 ### STEP 6: THUMBNAIL
 - `2_SKILLS/thumbnail_maker/thumbnail_generator.py` → HTML → Playwright → PNG.

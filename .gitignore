@@ -83,6 +83,9 @@ outputs/
 # 7. Knowledge Base
 2_KNOWLEDGE/repos/
 !2_KNOWLEDGE/repos/.gitkeep
+# large local corpora (e.g. vietnamese_lines.txt) — kept on disk, not in git
+2_KNOWLEDGE/raw_data/
+!2_KNOWLEDGE/raw_data/.gitkeep
 
 # 8. Framework & Tooling
 .playwright/

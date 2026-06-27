@@ -1,6 +1,6 @@
 # 6_SOP — Standard Operating Procedures (index)
 
-24 SOPs, grouped below for navigation. Kept flat (not subfoldered) because they are
+23 SOPs, grouped below for navigation. Kept flat (not subfoldered) because they are
 cross-referenced by skills/agents and actively edited — moving them would break refs.
 To add a new SOP, drop it here and add a line to the right group below.
 
@@ -26,7 +26,9 @@ To add a new SOP, drop it here and add a line to the right group below.
 | SOP | Use for |
 |-----|---------|
 | `RENDER_ENGINE_DECISION.md` | engine decision (HyperFrames sole) + render config + recipes |
-| `HYPERFRAMES_INTEGRATION.md` | HyperFrames integration details |
+| `HYPERFRAMES_INTEGRATION.md` | HyperFrames integration details + vendor-dir source-of-truth map |
+| `REFERENCE_TO_VIDEO_SOP.md` | reference-to-video conversion procedure |
+| `TEMPLATE_MAP.md` | template library map |
 
 ## 📣 Publishing & SEO
 | SOP | Use for |
@@ -40,14 +42,19 @@ To add a new SOP, drop it here and add a line to the right group below.
 | SOP | Use for |
 |-----|---------|
 | `MASTER_OPERATION.md` | top-level operation manual |
-| `SEOSONA_VIDEO_RECONNECTION_MAP.md` | how the system pieces connect |
+| `SEOSONA_VIDEO_RECONNECTION_MAP.md` | how the system pieces connect (resolver contract, OS binding, audit semantics) |
 | `SEOSONA_WORKFLOW_BOUNDARY_MAP.md` | workflow boundaries |
-| `PROJECT_AUDIT_ISSUES.md` | known audit issues |
-| `INGESTION_RULES.md` | repo/knowledge ingestion rules (see also 2_KNOWLEDGE/INGESTION_INDEX.md) |
-| `EXTERNAL_VIDEO_REPO_CAPABILITY_MAP.md` | external repo capabilities |
+| `PRODUCT_ROADMAP.md` | product roadmap |
 
 ## 🎨 Design & Automation
 | SOP | Use for |
 |-----|---------|
 | `UX_UI_DESIGN_GUIDELINES.md` | UX/UI + visual design (incl. Light Mode law) |
-| `OBSCURA_BROWSER_AUTOMATION.md` | browser automation |
+
+---
+
+> **Consolidated (2026-06-27):** 3 non-production SOPs were moved to
+> (removed) (recoverable, not deleted):
+> `EXTERNAL_VIDEO_REPO_CAPABILITY_MAP.md` (one-time 2026-06-19 ingestion decision log),
+> `INGESTION_RULES.md` (knowledge-ingestion protocol — see `2_KNOWLEDGE/INGESTION_INDEX.md`),
+> `OBSCURA_BROWSER_AUTOMATION.md` (optional browser runtime one-pager).

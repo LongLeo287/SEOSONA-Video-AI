@@ -1,6 +1,6 @@
 # Hiến pháp Vận hành (SOP Index)
 
-Bất kỳ dòng code nào chạy trong hệ thống SEOSONA Video cũng không được vi phạm 22 bộ luật thép này. Tất cả các file SOP được lưu trữ trong thư mục `6_SOP/`. Nhấn vào từng nhóm để xem chi tiết các đạo luật.
+Bất kỳ dòng code nào chạy trong hệ thống SEOSONA Video cũng không được vi phạm 23 bộ luật thép này. Tất cả các file SOP được lưu trữ trong thư mục `6_SOP/`. Nhấn vào từng nhóm để xem chi tiết các đạo luật (danh sách dưới đây liệt kê các SOP tiêu biểu, có thể chưa đủ 23 — ví dụ còn `REFERENCE_TO_VIDEO_SOP.md`, `TEMPLATE_MAP.md`...).
 
 <details>
 <summary><b>🛠️ Nhóm 1: Luật Vận Hành Hệ Thống (System Operations)</b></summary>
@@ -11,9 +11,6 @@ Quy định cách các Server, Agent và API nói chuyện với nhau.
 - ⚙️ **`MASTER_OPERATION.md`**: Quy trình Vận hành Tối cao của hệ thống.
 - 🚧 **`SEOSONA_WORKFLOW_BOUNDARY_MAP.md`**: Bản đồ Ranh giới (Boundary) không được vượt qua của các luồng.
 - 🔌 **`SEOSONA_VIDEO_RECONNECTION_MAP.md`**: Sơ đồ nối lại mạch hệ thống khi đứt gãy.
-- 🌐 **`EXTERNAL_VIDEO_REPO_CAPABILITY_MAP.md`**: Bản đồ năng lực gọi các kho lưu trữ (repo) bên ngoài.
-- 📥 **`INGESTION_RULES.md`**: Quy định nạp dữ liệu đầu vào.
-- 🕵️ **`OBSCURA_BROWSER_AUTOMATION.md`**: Quy tắc tự động hóa trình duyệt chống phát hiện (anti-detect).
 - 🧩 **`HYPERFRAMES_INTEGRATION.md`**: Quy trình tích hợp HyperFrames.
 - 🏭 **`SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY.md`**: Nhà máy tự động đúc các mẫu template video.
 

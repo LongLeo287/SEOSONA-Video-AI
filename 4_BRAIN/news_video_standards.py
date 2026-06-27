@@ -30,6 +30,22 @@ CORE_PRONUNCIATION_LEXICON: Dict[str, str] = {
     "Next.js": "next chấm giây ét",
     "24/7": "hai mươi tư trên bảy",
     "24h": "hai mươi tư giờ",
+    # common English tech terms — Vietnamese phonetics so the male VN voice reads them
+    # acceptably (VieNeu is a VN TTS; raw English would be mispronounced).
+    "Claude": "clốt", "Codex": "cô đếch", "Cursor": "cơ sơ", "Docker": "đốc cơ",
+    "Ollama": "âu la ma", "Gemini": "giê mi nai", "Kimi": "ki mi", "Grok": "grốc",
+    "Anthropic": "ăn thro pic", "Microsoft": "mai cờ rô sốt", "Apple": "áp pồ",
+    "GPU": "gi pi diu", "CPU": "xi pi diu", "IDE": "ai đi i", "CLI": "xi eo ai",
+    "SQL": "ét qiu eo", "HTML": "hát ti em eo", "CSS": "xi ét ét", "JS": "giây ét",
+    "npm": "en pi em", "pip": "píp", "Markdown": "mác đao", "token": "tâu cừn",
+    "prompt": "prom", "model": "mô đồ", "agent": "ây dần", "Agent": "ây dần",
+    "local": "lâu cồ", "cloud": "cờ lao", "open source": "âu pừn sọt", "code": "cốt",
+    "coding": "cô đinh", "schema": "sờ kê ma", "backlink": "béc linh", "traffic": "trép phích",
+    "Overview": "âu vơ viu", "benchmark": "ben mác", "stream": "sì trim", "endpoint": "en point",
+    "MIT": "em ai ti", "E-E-A-T": "i i ây ti", "GEO": "giê ô", "AEO": "ây i ô",
+    "Stripe": "sờ trai", "Vercel": "vơ xeo", "Linear": "li ni a", "HuggingFace": "hâ ging phây",
+    "ByteDance": "bai đừn", "DeepClaude": "đip clốt", "LocalAI": "lâu cô eo ai",
+    "Voicebox": "vois bóc", "Artifacts": "a ti phách", "Skills": "sờ kiu", "Skill": "sờ kiu",
 }
 
 _lexicon_path = os.path.join(os.path.dirname(__file__), 'lexicon.json')

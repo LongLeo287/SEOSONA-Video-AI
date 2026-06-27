@@ -1,0 +1,46 @@
+{
+  "name": "opinion-insight",
+  "title": "Opinion / Insight (góc nhìn)",
+  "description": "Bài góc nhìn/khái niệm (Khi AI lấy trí tuệ, LOOP là gì, RAG fusion)",
+  "when_to_use": "",
+  "theme": "light",
+  "aspect": "9:16",
+  "scenes": [
+    {
+      "component": null,
+      "accent": "orange",
+      "kicker_hint": "GÓC NHÌN",
+      "hero": true
+    },
+    {
+      "component": null,
+      "accent": "blue",
+      "kicker_hint": "KHÁI NIỆM"
+    },
+    {
+      "component": "quote",
+      "accent": "blue",
+      "kicker_hint": "CÂU NÓI"
+    },
+    {
+      "component": "feature",
+      "accent": "green",
+      "kicker_hint": "THAY ĐỔI GÌ"
+    },
+    {
+      "component": "tip",
+      "accent": "orange",
+      "kicker_hint": "GHI NHỚ"
+    },
+    {
+      "component": "bignum",
+      "accent": "green",
+      "kicker_hint": "TÁC ĐỘNG"
+    },
+    {
+      "component": "cta",
+      "accent": "blue",
+      "kicker_hint": "SEOSONA AI"
+    }
+  ]
+}

@@ -24,16 +24,9 @@ def main():
         sys.exit(1)
 
 
-    if "--generate-broll" in sys.argv:
-        os.environ["SEOSONA_AUTO_BROLL"] = "1"
-        sys.argv.remove("--generate-broll")
-        print("[System] B-Roll AI Generation ENABLED.")
-        
-    if "--autopilot" in sys.argv:
-        os.environ["SEOSONA_AUTOPILOT"] = "1"
-        sys.argv.remove("--autopilot")
-        print("[System] Social Media Auto-Pilot ENABLED.")
-        
+    # NOTE: the old --generate-broll / --autopilot flags were removed — they set
+    # SEOSONA_AUTO_BROLL / SEOSONA_AUTOPILOT env vars that the legacy pipeline_manager
+    # read but the current video_engine does not. They were dead no-ops.
     input_value = sys.argv[1]
 
     project_name = sys.argv[2] if len(sys.argv) > 2 else None

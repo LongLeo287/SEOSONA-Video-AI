@@ -52,58 +52,28 @@ def synthesize(text, output_path, voice=None, reference_audio=None):
             print("[VieNeu Engine] Generating voice with preset:", str(voice).encode("ascii", "replace").decode())
             infer_kwargs["voice"] = voice
 
-        # Use VieNeu's recommended generation defaults (temperature ~0.8). The previous
-        # override (temperature=0.1, top_p=0.5) was meant to stop gender drift but instead
-        # forced a repetition loop + silence padding + dropped words (~23s of trailing
-        # silence per sentence, hallucinated "bàn ăn…" garbage). Defaults generate clean,
-        # correctly-sized speech, so we no longer override them here.
+        # SINGLE generation on the FULL text — ONE consistent voice for the whole video.
+        # VieNeu auto-chunks long text internally (max_chars=256) while keeping ONE resolved
+        # voice, so the timbre stays consistent end-to-end. The old code split the text by
+        # sentence and called infer() once PER sentence, which re-resolved/re-sampled the
+        # voice each time and produced "several different voices in one video". A moderate
+        # temperature + crossfade keeps delivery stable and the internal joins smooth,
+        # WITHOUT the temp=0.1 silence/repetition bug.
+        # Lower temperature = more deterministic delivery -> consistent timbre AND even
+        # pace across VieNeu's internal chunks (high temp made each chunk sound like a
+        # slightly different voice at an uneven speed). Higher crossfade smooths joins.
+        infer_kwargs.setdefault("temperature", 0.4)
+        infer_kwargs.setdefault("top_p", 0.85)
+        infer_kwargs.setdefault("crossfade_p", 0.15)
+        print("[VieNeu Engine] Generating full take (single, consistent voice)...")
+        audio = engine.infer(**infer_kwargs)  # infer_kwargs already carries the full text + voice/ref
+        engine.save(audio=audio, output_path=output_path)
 
-        # Chunk the text to prevent Vieneu from drifting gender on long texts
-        import re
-        chunks = [c.strip() for c in re.split(r'(?<=[.!?。！？\n])\s+', text) if c.strip()]
-        if not chunks:
-            chunks = [text]
-
-        from moviepy.editor import AudioFileClip, concatenate_audioclips
-        temp_clips = []
-        for i, chunk in enumerate(chunks):
-            print(f"[VieNeu Engine] Generating chunk {i+1}/{len(chunks)}...")
-            infer_kwargs["text"] = chunk
-            chunk_audio = engine.infer(**infer_kwargs)
-            chunk_path = f"{output_path}_chunk_{i}.mp3"
-            engine.save(audio=chunk_audio, output_path=chunk_path)
-            
-            out_size = os.path.getsize(chunk_path)
-            if out_size >= 1000:
-                temp_clips.append(AudioFileClip(chunk_path))
-
-        if not temp_clips:
-            print("[VieNeu Engine] WARNING: Failed to generate any valid audio chunks.")
-            return None
-
-        # Concatenate all chunks
-        final_clip = concatenate_audioclips(temp_clips)
-        final_clip.write_audiofile(output_path, logger=None)
-        final_clip.close()
-        for clip in temp_clips:
-            clip.close()
-
-        # Cleanup chunk files
-        for i in range(len(chunks)):
-            chunk_path = f"{output_path}_chunk_{i}.mp3"
-            if os.path.exists(chunk_path):
-                try:
-                    os.remove(chunk_path)
-                except Exception:
-                    pass
-            
-        print(f"[VieNeu Engine] OK: Saved combined audio: {output_path}")
-        # Verify output file is valid
         out_size = os.path.getsize(output_path)
         if out_size < 5000:
             print(f"[VieNeu Engine] WARNING: Output audio suspiciously small ({out_size} bytes).")
             return None
-        print(f"[VieNeu Engine]    Output size: {out_size:,} bytes - voice generation successful.")
+        print(f"[VieNeu Engine] OK: {output_path} ({out_size:,} bytes) — single consistent voice.")
         return output_path
     except Exception as e:
         print(f"[VieNeu Engine] Error: {e}")

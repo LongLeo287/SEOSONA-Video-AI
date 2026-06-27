@@ -16,40 +16,37 @@ graph TD
     end
 
     subgraph BRAIN["4_BRAIN"]
-        B1["workflow_router.py"]
-        B2["pipeline_manager.py"]
+        B1["workflow_router.py (SuperGraph + quality gate)"]
+        B2["video_engine.py (unified entry)"]
+        B2b["native_composer.py (renderer)"]
+        B2c["scene_composer.py (content brain)"]
         B3["quality_scorer.py"]
     end
 
     subgraph AGENTS["1_AGENTS"]
-        C1["researcher_agent"]
         C2["scraper_agent"]
-        C3["writer_agent"]
-        C4["editor_agent"]
         C5["repurposer_agent"]
-        C6["seo_optimizer"]
-        C7["quality_reviewer"]
+        C6["seo_writer_agent"]
+        C6b["seo_optimizer"]
+        C7["trend_jacking_agent"]
         C8["publisher_agent"]
     end
 
     subgraph SKILLS["2_SKILLS"]
-        D1["script_writer"]
         D2["tts_generator"]
         D3["voice_cloner"]
-        D4["srt_maker"]
-        D5["srt_parser"]
+        D4["srt_maker (asr_router)"]
         D6["yt_downloader"]
-        D7["visual_fetcher"]
         D8["video_clipper"]
         D9["thumbnail_maker"]
-        D10["metadata_extractor"]
+        D10["translator / carousel_maker"]
     end
 
     subgraph FRAMEWORK["5_FRAMEWORK"]
         E1["hf_core"]
-        E2["hf_cards"]
-        E3["html_renderer"]
-        E4["moviepy_wrapper legacy helpers"]
+        E2["hf_cards / master_template"]
+        E3["hyperframes catalog blocks"]
+        E4["hf_engine (vendored, gitignored)"]
     end
 
     subgraph PROMPTS["9_PROMPTS"]
@@ -80,12 +77,15 @@ graph TD
     INPUT --> B1
     B1 --> B2
     B2 --> AGENTS
+    B2 --> B2c
+    B2c --> B2b
     B2 --> SKILLS
-    SKILLS --> FRAMEWORK
-    FRAMEWORK --> F1
-    FRAMEWORK --> F2
-    FRAMEWORK --> F3
-    FRAMEWORK --> G1
+    B2b --> FRAMEWORK
+    B2b --> F1
+    B2b --> F2
+    B2b --> F3
+    B2b --> F4
+    B2b --> G1
     SKILLS --> G2
     SKILLS --> G3
     C8 --> G4
@@ -141,8 +141,8 @@ validation commands.
 2_KNOWLEDGE/    Project-level capability cards and external repository notes
 2_SKILLS/       Technical implementation modules
 3_MEMORY/       Local runtime memory and ignored operational traces
-4_BRAIN/        Workflow routing, orchestration, and scoring
-5_FRAMEWORK/    HyperFrames, HTML renderer, and legacy media helpers
+4_BRAIN/        Unified video engine (video_engine + native_composer + scene_composer), routing, scoring
+5_FRAMEWORK/    HyperFrames render layer (hf_core, hf_cards/master_template, catalog blocks)
 6_SOP/          Standard operating procedures
 7_ASSETS/       Logos, fonts, SFX, BGM, and brand assets
 8_WORKSPACE/    Generated ephemeral outputs (MP4, SRT) and analytics logs
@@ -162,14 +162,12 @@ The current anti-drift map is `6_SOP/SEOSONA_VIDEO_RECONNECTION_MAP.md`.
 
 ## Iron Rules
 
-1. **HyperFrames & Open Design (Nexu-io) are the CORE** of the Render and dynamic UI system. All frame processing workflows (html_renderer) must be based on their open design standards.
-2. The package `seosona-frame-showcase-landscape-16-9-frame-pack` is designated as the **Standard Master Template** (at `5_FRAMEWORK/hf_cards/master_template`).
-3. Based on that, the system generated a dedicated **Master Template 9:16** (at `5_FRAMEWORK/hf_cards/master_template_9_16`). This is the default design prioritized when users request Tiktok/Shorts videos. Whenever a new format or Frame Pack is initialized, the system must clone from these `master_template` directories to ensure design standards.
-4. FFmpeg is the underlying media processing library (audio overlay/concat).
+1. **HyperFrames & Open Design (Nexu-io) are the CORE** of the render system. The engine `4_BRAIN/native_composer.py` builds HyperFrames compositions programmatically and renders natively via the HyperFrames CLI — all compositions follow the open design standards.
+2. **Light Mode Only** — the SEOSONA brand is light-mode (blue `#2A5BDA`, coral `#E2724D`); dark backgrounds are forbidden. The renderer enforces this; scenes crossfade so there is never a blank frame.
+3. **JSON templates** in `7_ASSETS/templates/*.json` define scene STRUCTURE only (component + accent + kicker hint); content fills them via `native_composer.fill_template`. Manage templates with `native_composer.save_template`/`extract_template` + the `scene-composer` agent skill. The legacy HTML template factory is retired (removed).
+4. FFmpeg is the underlying media processing library (voice/BGM/SFX mix, loudnorm, clip cutting).
 5. yt-dlp is the primary media ingestion dependency for YouTube downloads.
-5. Playwright remains primary for exact screenshots (headless rendering of HyperFrames DOM).
-6. yutu is the preferred future YouTube channel operations adapter.
-7. Secrets stay in `.env` or external credential stores, never in Git or memory logs.
-8. Generated media and production workspaces remain ignored unless explicitly promoted as samples.
-
-TASK COMPLETED
+6. Playwright is primary for scrape screenshots (headless capture of source pages/B-roll).
+7. yutu is the preferred future YouTube channel operations adapter.
+8. Secrets stay in `.env` or external credential stores, never in Git or memory logs.
+9. Generated media and production workspaces remain ignored unless explicitly promoted as samples.

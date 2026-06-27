@@ -26,33 +26,9 @@ if not hasattr(Image, "ANTIALIAS"):
 
 
 def detect_input_type(input_value):
-    """
-    Auto-detects the input type and returns the appropriate video mode.
-    """
-    if not input_value:
-        return "create", input_value
-
-    if input_value.startswith("http://") or input_value.startswith("https://"):
-        if "youtube.com" in input_value or "youtu.be" in input_value:
-            return "download", input_value
-        if "drive.google.com" in input_value:
-            return "download", input_value
-        if "docs.google.com" in input_value or "sheets.google.com" in input_value:
-            return "scrape", input_value
-        return "scrape", input_value
-
-    if os.path.isdir(input_value):
-        return "repurpose", input_value
-
-    if os.path.isfile(input_value):
-        ext = os.path.splitext(input_value)[1].lower()
-        if ext in [".srt", ".mp4", ".mkv", ".avi", ".mov"]:
-            return "repurpose", input_value
-        if ext in [".txt", ".md"]:
-            with open(input_value, "r", encoding="utf-8") as f:
-                return "create", f.read()
-
-    return "create", input_value
+    """Auto-detect the input type. Single source of truth lives in the unified
+    engine (`video_engine.detect_input_type`); this delegates to it."""
+    return import_module("video_engine").detect_input_type(input_value)
 
 
 def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
@@ -94,12 +70,12 @@ def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
     else:
         print("[Router] -> Routing to: TTS -> Subtitles -> HyperFrames Render")
 
-    pipeline = import_module("4_BRAIN.pipeline_manager")
-    
+    engine = import_module("video_engine")
+
     # ---------------------------------------------------------
-    # SUPERGRAPH INTEGRATION (Phase 4 & 5)
-    # Wrap the legacy linear pipeline inside the new DAG Graph.
-    # Future sprints will split pipeline_manager into discrete Nodes.
+    # SUPERGRAPH INTEGRATION
+    # Wrap the unified video_engine inside the DAG Graph so the quality gate +
+    # post-mortem feedback run around every render, regardless of input mode.
     # ---------------------------------------------------------
     import datetime
     
@@ -112,9 +88,9 @@ def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
     final_project_dir = os.path.join(project_root, "8_WORKSPACE", final_project_name)
 
     def legacy_pipeline_node(state):
-        print("[Graph] Executing Legacy Pipeline Monolith...")
+        print("[Graph] Executing video_engine render...")
         try:
-            result = pipeline.run_pipeline(
+            result = engine.run_pipeline(
                 state["input_val"],
                 brand=state["brand"],
                 mode=state["mode"],
@@ -220,7 +196,7 @@ if __name__ == "__main__":
         _, processed = detect_input_type(input_val)
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         sys.path.append(project_root)
-        pipeline = import_module("4_BRAIN.pipeline_manager")
-        pipeline.run_pipeline(processed, brand=brand, mode=mode_override, aspect_ratio=ratio, project_name=name)
+        engine = import_module("video_engine")
+        engine.run_pipeline(processed, brand=brand, mode=mode_override, aspect_ratio=ratio, project_name=name)
     else:
         route(input_val, brand, ratio, name)

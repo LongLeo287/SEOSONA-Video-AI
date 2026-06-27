@@ -1,0 +1,46 @@
+{
+  "name": "insight-explainer",
+  "title": "Insight / Concept",
+  "description": "Giải thích khái niệm/góc nhìn (RAG fusion, essay AI...)",
+  "when_to_use": "",
+  "theme": "light",
+  "aspect": "9:16",
+  "scenes": [
+    {
+      "component": null,
+      "accent": "orange",
+      "kicker_hint": "GÓC NHÌN",
+      "hero": true
+    },
+    {
+      "component": null,
+      "accent": "blue",
+      "kicker_hint": "KHÁI NIỆM"
+    },
+    {
+      "component": "compare",
+      "accent": "green",
+      "kicker_hint": "SO SÁNH"
+    },
+    {
+      "component": "steps",
+      "accent": "orange",
+      "kicker_hint": "CÁCH HOẠT ĐỘNG"
+    },
+    {
+      "component": "bignum",
+      "accent": "green",
+      "kicker_hint": "TÁC ĐỘNG"
+    },
+    {
+      "component": null,
+      "accent": "orange",
+      "kicker_hint": "KẾT LUẬN"
+    },
+    {
+      "component": "cta",
+      "accent": "blue",
+      "kicker_hint": "SEOSONA AI"
+    }
+  ]
+}

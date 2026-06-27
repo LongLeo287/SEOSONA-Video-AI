@@ -4,10 +4,10 @@ This workspace is connected to SEOSONA OS.
 
 ## Startup
 
-1. Resolve SEOSONA through `D:/SEOSONA OS`.
-2. Read `D:/SEOSONA OS/1_CORE/SOUL.md`.
-3. Read `D:/SEOSONA OS/2_KNOWLEDGE/MASTER_INDEX.md`.
-4. Check project memory at `D:/SEOSONA OS/3_MEMORY/projects/seosona-video/`.
+1. Resolve SEOSONA OS through `~/.seosona` (portable anchor; a junction to the local OS root).
+2. Read `~/.seosona/1_CORE/SOUL.md`.
+3. Read `~/.seosona/2_KNOWLEDGE/MASTER_INDEX.md`.
+4. Check project memory at `~/.seosona/3_MEMORY/projects/seosona-video/`.
 
 ## Task Intake
 
@@ -15,5 +15,3 @@ This workspace is connected to SEOSONA OS.
 - Create or update `task.md` for multi-step work.
 - Create `implementation_plan.md` before broad architectural changes.
 - Create `walkthrough.md` after implementation.
-
-TASK COMPLETED

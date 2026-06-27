@@ -10,20 +10,20 @@ Quy trình cực mạnh biến 1 bản tin Text thành 1 video Tiktok rực rỡ
 
 ```mermaid
 graph LR
-    A[researcher_agent] -->|supergraph_news_config.json| B[hermes_agent]
-    B -->|VieNeu + Whisper| C[words.json + scene.wav]
-    C --> D[seosona-news-maker]
-    D -->|build_news_project.mjs| E[GSAP HTML]
-    E -->|Puppeteer + FFmpeg| F(FINAL.mp4)
+    A[scraper_agent] -->|script_text| B[video_engine.run_pipeline]
+    B -->|voice_router + asr_router| C[words.json + scene.wav]
+    C --> D[scene_composer]
+    D -->|native_composer.fill_template| E[HyperFrames JSON]
+    E -->|native render + FFmpeg mix| F(FINAL.mp4)
 ```
 
-1. **Nạp liệu:** `researcher_agent` đẩy dữ liệu thô. `seo_writer_agent` nhào nặn lại thành `supergraph_news_config.json`.
-2. **Tạo Tiếng:** `hermes_agent` đọc file JSON, gọi `voice_router.synthesize_voice` (VieNeu clone/preset, fallback edge-tts). Nhả ra file `scene_X.wav`.
-3. **Khớp Nhịp:** Đưa file `.wav` qua mô hình `faster-whisper`. Whisper trả về `words.json` chứa tọa độ mili-giây của TỪNG CHỮ.
-4. **Khởi tạo Đồ họa:** Kích hoạt script `build_news_project.mjs`. Tạo `scene_X.html` 1080x1920, nhúng GSAP khớp với `words.json` tạo Karaoke.
-5. **Kết Xuất:** `html_renderer` dùng Chrome ảo, chụp liên thanh (30 hình/giây).
-6. **Gộp Trộn:** `ffmpeg` gom ảnh, ghép âm thanh gốc, chèn hiệu ứng chuyển cảnh "Woosh" qua `sfx_mixer`.
-7. **Xuất Xưởng:** `FINAL.mp4` được đưa qua `quality_reviewer` đo LUFS, rồi `publisher_agent` tải lên.
+1. **Nạp liệu:** `scraper_agent` đẩy dữ liệu thô. `seo_writer_agent` nhào nặn lại thành kịch bản (`script_text`) đưa vào `video_engine.run_pipeline`.
+2. **Tạo Tiếng:** `native_composer` gọi `voice_router.synthesize_voice` (VieNeu clone/preset, fallback edge-tts). Nhả ra file `scene_X.wav`.
+3. **Khớp Nhịp:** Đưa file `.wav` qua `asr_router` (`faster-whisper`). Trả về `words.json` chứa tọa độ mili-giây của TỪNG CHỮ, dùng cho phụ đề RULE #1.
+4. **Khởi tạo Đồ họa:** `scene_composer` chọn template JSON trong `7_ASSETS/templates/`, `native_composer.fill_template` đổ nội dung vào khung HyperFrames 1080x1920 khớp với `words.json`.
+5. **Kết Xuất:** `native_composer` render native các HyperFrames (không cần chụp màn hình từng frame).
+6. **Gộp Trộn:** `ffmpeg` ghép âm thanh gốc, trộn BGM đã ducking và chèn SFX/chuyển cảnh "Woosh" ngay trong `native_composer`.
+7. **Xuất Xưởng:** `FINAL.mp4` được đưa qua `4_BRAIN/quality_scorer.py` đo chất lượng/LUFS, rồi `publisher_agent` tải lên.
 <br>
 </details>
 
@@ -33,10 +33,10 @@ graph LR
 
 Dành cho các chủ đề học thuật, công nghệ chuyên sâu dài 3-5 phút.
 
-1. **Viết kịch bản:** `writer_agent` nhận chủ đề, viết thành `narrator_scripts.json`.
-2. **Âm nhạc:** `tts_generator` sinh giọng đọc. `hermes_agent` gọi MusicGen sinh nhạc nền (BGM).
+1. **Viết kịch bản:** `seo_writer_agent` nhận chủ đề, viết thành kịch bản 5 phần (`script_text`).
+2. **Âm nhạc:** `voice_router` sinh giọng đọc (VieNeu). `native_composer` trộn nhạc nền (BGM) đã ducking.
 3. **Sinh Đồ họa:** Kích hoạt `motion-graphics` sinh ra Typography động, biểu đồ (Data-Viz), vòng lặp hạt từ `news_loop_path_hyperframes`.
-4. **Lắp ráp:** Ghép các khối trừu tượng này lại bằng `hf_core`. Render MP4.
+4. **Lắp ráp:** `scene_composer` + `native_composer` ghép các khối này lại bằng `hf_core`. Render MP4 native.
 <br>
 </details>
 
@@ -46,10 +46,10 @@ Dành cho các chủ đề học thuật, công nghệ chuyên sâu dài 3-5 ph�
 
 Tạo các video phô diễn tính năng (Feature Reveal) hào nhoáng cho một phần mềm SaaS.
 
-1. **Lấy Dữ liệu:** `visual_fetcher` cào logo, mã màu (Brand Colors), font chữ từ link URL.
-2. **Chụp Màn Hình:** `html_renderer` (Puppeteer) vào trang chủ sản phẩm, chụp Full-size Screenshots.
+1. **Lấy Dữ liệu:** `scraper_agent` cào logo, mã màu (Brand Colors), font chữ từ link URL.
+2. **Chụp Màn Hình:** `video_engine` dùng Playwright vào trang chủ sản phẩm, chụp Full-size Screenshots.
 3. **Ghép Mockup:** Đưa vào `hf_cards` nhốt ảnh chụp vào Laptop/Điện thoại 3D Neon.
-4. **Hiệu ứng:** `sfx_mixer` bơm tiếng pop, click chuột nhịp độ nhanh (Fast-paced). Xuất video chuẩn Apple.
+4. **Hiệu ứng:** `native_composer` bơm tiếng pop, click chuột nhịp độ nhanh (Fast-paced) từ thư viện SFX. Xuất video chuẩn Apple.
 <br>
 </details>
 
@@ -60,7 +60,7 @@ Tạo các video phô diễn tính năng (Feature Reveal) hào nhoáng cho một
 Biến một đoạn code khô khan (Diff Text) thành một video giải thích trực quan. *(Lưu ý: Đây chỉ là thao tác đọc Text từ URL Pull Request, tuyệt đối không phải là "Phân tích Repo").*
 
 1. **Quét URL PR:** `scraper_agent` bóc tách Text từ một Github Pull Request cụ thể (Title, Body, Code Diff +/-).
-2. **Dịch thuật:** `llm_processor` giải thích dòng code đó bằng ngôn ngữ con người.
+2. **Dịch thuật:** `seo_writer_agent` (qua `llm_engine`) giải thích dòng code đó bằng ngôn ngữ con người.
 3. **Mô phỏng Code:** `hf_cards` tạo thẻ "Terminal". Mã code được tự động đánh màu Syntax Highlighting và chạy hiệu ứng gõ phím máy chữ.
 4. **Phân tích:** Chuyển sang thẻ Đồ thị (Chart Component) mô tả tính năng mới giúp hệ thống chạy nhanh ra sao. Render MP4.
 <br>
@@ -71,7 +71,7 @@ Biến một đoạn code khô khan (Diff Text) thành một video giải thích
 <br>
 
 1. **Nhập URL:** Người dùng cung cấp link Landing Page.
-2. **Auto Scroll:** `html_renderer` đóng vai người dùng, tự động cuộn trang mượt mà, hover vào các nút bấm để quay lại hành vi (Screencast).
+2. **Auto Scroll:** `video_engine` dùng Playwright đóng vai người dùng, tự động cuộn trang mượt mà, hover vào các nút bấm để quay lại hành vi (Screencast).
 3. **Dán nhãn:** `graphic-overlays` dán các thẻ Text lơ lửng bám theo các nút bấm trên giao diện web. Xuất ra Video Tour.
 <br>
 </details>
@@ -83,9 +83,9 @@ Biến một đoạn code khô khan (Diff Text) thành một video giải thích
 Đóng gói Graphic lên Video người quay sẵn (Talking head).
 
 1. **Nhận video thô:** User đẩy file MP4 (quay bằng điện thoại) vào `8_WORKSPACE`.
-2. **Bóc băng:** `faster-whisper` chạy ra Transcript.
-3. **Kích hoạt thẻ:** Dựa vào Transcript, `hermes_agent` đặt mốc thời gian. (vd: Nói chữ "Tuyệt vời", hệ thống quăng bảng 3D chữ "Tuyệt Vời" bay ngang qua).
-4. **Nối đè (Merging):** Dùng FFmpeg dán lớp trong suốt (Alpha-channel) của thẻ đồ họa đè lên video gốc.
+2. **Bóc băng:** `asr_router` (`faster-whisper`) chạy ra Transcript.
+3. **Kích hoạt thẻ:** Dựa vào Transcript, `srt_analyzer` đặt mốc thời gian. (vd: Nói chữ "Tuyệt vời", hệ thống quăng bảng 3D chữ "Tuyệt Vời" bay ngang qua).
+4. **Nối đè (Merging):** `native_composer` dùng FFmpeg dán lớp trong suốt (Alpha-channel) của thẻ đồ họa đè lên video gốc.
 <br>
 </details>
 
@@ -95,8 +95,8 @@ Biến một đoạn code khô khan (Diff Text) thành một video giải thích
 
 Biến 1 video dài thành 10 video ngắn.
 
-1. **Chia nhỏ:** `repurposer_agent` ngậm 1 video dài 1 tiếng. Dò tìm các đoạn có tần số âm lượng lớn, nhiều tiếng cười.
-2. **Crop thông minh:** Nhận diện khuôn mặt đẩy khung 16:9 vào mặt người nói, crop dọc thành 9:16.
+1. **Chia nhỏ:** `repurposer_agent` (qua `srt_analyzer`) ngậm 1 video dài 1 tiếng. Dò tìm các đoạn có tần số âm lượng lớn, nhiều tiếng cười.
+2. **Crop thông minh:** `clipper` nhận diện khuôn mặt đẩy khung 16:9 vào mặt người nói, crop dọc thành 9:16.
 3. **Dán Phụ đề:** Gọi luồng `embedded-captions` nhúng phụ đề to đùng giữa ngực.
 4. **Thu hoạch:** Sinh ra 5-10 video Shorts từ video gốc.
 <br>

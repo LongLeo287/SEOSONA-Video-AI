@@ -56,18 +56,15 @@ The current news video pipeline must:
 
 ### 3. Export Template
 
-After a successful render, export the reusable template:
-
-```bash
-npm run video:template:export -- 8_WORKSPACE/PROJECT_NAME "PROJECT_NAME Template"
-```
-
-Or from Python:
+After a successful render, export the reusable template. The old
+`npm run video:template:export` / `video_template_factory.py` factory is RETIRED
+(removed). Templates are now JSON in `7_ASSETS/templates/`,
+extracted via `native_composer.extract_template`:
 
 ```python
-from video_template_factory import export_template_from_project
+from native_composer import extract_template
 
-export_template_from_project(
+extract_template(
     "8_WORKSPACE/PROJECT_NAME",
     "PROJECT_NAME Template",
     out_root="7_ASSETS/templates",
@@ -110,4 +107,4 @@ To clone a video style safely:
 
 ## Current Gate State
 
-`SV-INT-VOICE-REFERENCE` is closed in the current project state because `7_ASSETS/voice/profiles/seosona_male_southern.wav` exists. Edge-TTS `vi-VN-NamMinhNeural` remains the approved operational fallback when a clone-grade VieNeu/Fish preset is not available.
+`SV-INT-VOICE-REFERENCE` is closed in the current project state because `7_ASSETS/voice/profiles/seosona_ref13.wav` exists. Edge-TTS `vi-VN-NamMinhNeural` remains the approved operational fallback when a clone-grade VieNeu/Fish preset is not available.

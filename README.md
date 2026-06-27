@@ -30,17 +30,17 @@
     </td>
     <td width="50%" valign="top">
       <h3><a href="docs/02_AGENTS_AND_SKILLS.md">🤖 2. Bộ Não & Tay Chân</a></h3>
-      Danh sách thả xuống phân tích nhiệm vụ của <b>12 Đặc vụ AI (Agents)</b> và <b>8 Kỹ năng Python Native (Skills)</b> đang được nối vào pipeline.
+      Danh sách thả xuống phân tích nhiệm vụ của <b>10 Đặc vụ AI (Agents)</b> và <b>7 Kỹ năng Python Native (Skills)</b> đang được nối vào pipeline.
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
       <h3><a href="docs/03_WORKFLOWS_AND_FRAMEWORKS.md">🔄 3. Luồng Điều Phối & Đồ Họa</a></h3>
-      Bảng điều khiển chứa <b>20 Luồng Công Việc (Workflows)</b> và <b>10 Bộ kết xuất đồ họa (Frameworks)</b> siêu xịn.
+      Bảng điều khiển chứa <b>21 Luồng Công Việc (Workflows)</b> và <b>9 Bộ kết xuất đồ họa (Frameworks)</b> siêu xịn.
     </td>
     <td width="50%" valign="top">
       <h3><a href="docs/04_SOP_INDEX.md">📖 4. Hiến pháp Vận hành (SOPs)</a></h3>
-      Bao quát toàn bộ <b>22 bộ luật thép</b> về Thẩm mỹ, Vận hành và Nội dung của nhà máy.
+      Bao quát toàn bộ <b>26 bộ luật thép</b> về Thẩm mỹ, Vận hành và Nội dung của nhà máy.
     </td>
   </tr>
   <tr>

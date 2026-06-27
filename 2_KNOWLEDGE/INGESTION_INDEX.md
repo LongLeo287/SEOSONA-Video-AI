@@ -1,10 +1,13 @@
 # SEOSONA Video — Repo Ingestion Index
+# MASTER inventory (1445 repos, tiered + risk-flagged): see `2_KNOWLEDGE/REPO_INVENTORY.md`
+#   (summary) + `2_KNOWLEDGE/raw_data/repo_inventory.xlsx` (full, gitignored). This file
+#   tracks the video-relevant ingestion/integration status below.
 # This is the SINGLE SOURCE OF TRUTH for what has/hasn't been ingested.
 # RULE: Check this file BEFORE creating any new knowledge file.
 # Last updated: 2026-06-24 (11-repo triage: OmniVoice wired, OpenMontage patterns ingested)
 #
 # NOTE (2026-06-24): 2_KNOWLEDGE/repos/ was decluttered — 63 video/TTS/audio/render
-# notes kept; 731 non-video research notes moved to _QUARANTINE/research_archive/
+# notes kept; 731 non-video research notes removed
 # (gitignored, local-only). If a link below points to a repos/*.md that's no longer
 # there, the raw note is in the archive; the *integration* (code/skills) is unaffected.
 
@@ -36,21 +39,21 @@ drop TTS alternatives since VieNeu is chosen) → **2 ADOPT**:
 
 | Repo | Tier | Domain | Status | Integrated Into |
 |------|------|--------|--------|----------------|
-| **hyperframes** | **CORE** | **render-engine** | **ingested** | **2_KNOWLEDGE/hyperframes/ (guides+reference+catalog, 20 files) · .agents/skills/ (18 skills) · 5_FRAMEWORK/hf_engine/ (source) · 4_BRAIN/pipeline_manager.py (render). See 2_KNOWLEDGE/hyperframes/README.md** |
+| **hyperframes** | **CORE** | **render-engine** | **ingested** | **2_KNOWLEDGE/hyperframes/ (guides+reference+catalog, 20 files) · .agents/skills/ (18 skills) · 5_FRAMEWORK/hf_engine/ (source) · 4_BRAIN/native_composer.py (render). See 2_KNOWLEDGE/hyperframes/README.md** |
 | gsap-skills (greensock) | A | animation | **ingested + WIRED (deep)** | MIT. Deep-analysed → 2_KNOWLEDGE/hyperframes/gsap-skills.md (techniques + seek-render gotchas) + hyperframes-animation skill. **9 free plugins vendored (gsap 3.13.0): SplitText/MorphSVG/DrawSVG/MotionPath/ScrambleText/CustomEase/EasePack/CustomBounce/CustomWiggle** auto-loaded+registered in every render; ScrollTrigger dropped (seek render). Brand ease `"seosona"` (CustomEase) pre-registered + applied to hero titles. Verified by render. |
 | openclaw-skill-infographic (tuanminhhole) | B | design-vi | **ingested** | MIT. 9_PROMPTS/design_assets/infographic_vn_presets.md (VN-safe fonts + 3 design strategies + aspect presets) → referenced by carousel_master_prompt. 9router creds added to 1_CONFIG for the optional Recraft/Flux/Ideogram image-gen backend. |
 | **PhoWhisper-large (VinAI)** | A | asr-vi | **ingested + WIRED** | BSD-3, local. Vietnamese ASR. Wired as the PRIMARY engine in `2_SKILLS/srt_maker/asr_router.py` (switchable `SEOSONA_ASR`, falls back to faster-whisper → openai-whisper). Set `SEOSONA_PHOWHISPER_MODEL` to a CT2 PhoWhisper repo to activate; until then the router auto-uses faster-whisper. Lower WER on Vietnamese for subtitles + repurposer hooks. |
 | **VideoLingo (Huanshere)** | A | subtitle/dub | **ingested + WIRED (full)** | Apache-2.0. (1) WhisperX single-line subtitle cutting = `group_words_to_segments`. (2) **Full translate→dub localizer built**: `1_AGENTS/repurposer_agent/localizer.py` `localize_video()` = ASR router (PhoWhisper) → translate router (LLM primary, Google backup, keeps EN tech terms) → VieNeu brand-voice dub (time-fit via ffmpeg atempo) → translated .srt + aligned dubbed .wav. New switchable `2_SKILLS/translator/`. |
 | F5-TTS | A | voice-clone | partial | 2_SKILLS/voice_cloner/ [needs full distillation] |
-| VieNeu-TTS | A | tts-vi | partial | 4_BRAIN/pipeline_manager.py [needs SOP update] |
+| VieNeu-TTS | A | tts-vi | partial | 2_SKILLS/voice_cloner/voice_router.py (via 4_BRAIN/native_composer.py) [needs SOP update] |
 | VideoCaptioner | A | subtitle | partial | 2_SKILLS/srt_maker/ [needs full distillation] |
-| MoneyPrinterTurbo | A | full-pipeline | partial | 2_SKILLS/b_roll_fetcher/ [needs full distillation] |
+| MoneyPrinterTurbo | A | full-pipeline | quarantined | removed (not wired; reference note only) |
 | MoneyPrinterV2 | A | full-pipeline | cleared | 2_KNOWLEDGE/repos/MoneyPrinterV2.md |
 | OmniVoice (k2-fsa) | A | tts-vi-clone | superseded | 2_KNOWLEDGE/repos/OmniVoice.md (knowledge kept; engine NOT wired — VieNeu is the single TTS source of truth via voice_router.py. The old omnivoice/fish branches were removed.) |
 | omnivoice-vi (dataset) | A | tts-vi-voices | ingested | 2_KNOWLEDGE/repos/omnivoice-vi-dataset.md (6 female VN voice .pt profiles + dubbing) |
 | OpenMontage | B | agentic-video-OS | ingested | 2_KNOWLEDGE/repos/OpenMontage.md (AGPLv3 — patterns/ideas only: provider scoring, governance, pipeline taxonomy) |
 | WeClone | A | voice-clone | cleared | 2_KNOWLEDGE/repos/WeClone.md |
-| story2audio | A | tts+subtitle | partial | 2_SKILLS/audio_mixer/ [incomplete] |
+| story2audio | A | tts+subtitle | quarantined | removed (not wired; reference note only) |
 | autoclip | A | video-clip | cleared | 2_KNOWLEDGE/repos/autoclip.md |
 | skill-autoshorts | A | shorts-workflow | cleared | 2_KNOWLEDGE/repos/skill-autoshorts.md |
 | pipecat | A | audio-pipeline | cleared | 2_KNOWLEDGE/repos/pipecat.md |

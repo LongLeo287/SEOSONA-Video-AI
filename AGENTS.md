@@ -26,6 +26,4 @@ For ANY video task, use the HyperFrames stack already in this repo — do not ha
 2. Use the `/hyperframes` slash command (and `-core`, `-animation`, `-cli`, `-creative`, `-media`, `-registry`, plus workflow skills) to author compositions.
 3. Consult the knowledge base `2_KNOWLEDGE/hyperframes/` (start at its `README.md`) for the HTML schema, package APIs, and rendering.
 4. Pull ready-made blocks/transitions/captions from the catalog: `npx hyperframes add <name>` — see `2_KNOWLEDGE/hyperframes/catalog/CATALOG_INDEX.md`.
-5. Render via `4_BRAIN/pipeline_manager.py` (or `/hyperframes-cli`); config + decisions in `6_SOP/RENDER_ENGINE_DECISION.md`.
-
-TASK COMPLETED
+5. Render via `4_BRAIN/video_engine.py` → `native_composer.py` (or `npm run make:video` for a GitHub one-shot, or `/hyperframes-cli`); config + decisions in `6_SOP/RENDER_ENGINE_DECISION.md`.

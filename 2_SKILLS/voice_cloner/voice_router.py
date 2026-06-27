@@ -15,22 +15,24 @@ Two real paths only, with an HONEST fallback:
 
 Rebuilt 2026-06-24. The old fish_audio_api.py router had dead branches
 (fish_audio/f5tts/cosyvoice/omnivoice all fell through to edge-tts) and duplicate
-engines (2× VieNeu, 2× F5, a stray English Kokoro). Those are quarantined under
-_QUARANTINE/voice_legacy/. This router routes only what actually works.
+engines (2× VieNeu, 2× F5, a stray English Kokoro) — all since removed. This router
+routes only what actually works.
 """
 import os
 from importlib import import_module
 
 
 # ---------------------------------------------------------------------------
-# MALE-ONLY VOICE POLICY
-# The SEOSONA/CQA brand voice is male Southern Vietnamese. A female voice is
-# NEVER produced. These are VieNeu v3turbo's male presets; any other/unknown
-# preset is coerced to the default male preset, and the edge fallback is locked
-# to the approved male voice.
+# SINGLE APPROVED VOICE POLICY
+# The brand voice is ONE approved male preset — "Trọng Hữu" (user-selected
+# 2026-06-25). All other VieNeu presets (female AND the other male ones) are
+# removed from use: any requested voice is coerced to this single approved one.
+# The edge fallback is locked to the approved male Vietnamese voice.
+# To change the brand voice, edit APPROVED_VOICE (must be a real VieNeu preset).
 # ---------------------------------------------------------------------------
-MALE_VIENEU_PRESETS = {"Gia Bảo", "Thái Sơn", "Đức Trí", "Xuân Vĩnh", "Trọng Hữu", "Bình An"}
-DEFAULT_MALE_PRESET = "Trọng Hữu"
+APPROVED_VOICE = "Trọng Hữu"
+MALE_VIENEU_PRESETS = {APPROVED_VOICE}   # the only voice allowed
+DEFAULT_MALE_PRESET = APPROVED_VOICE
 MALE_EDGE_VOICE = "vi-VN-NamMinhNeural"
 
 

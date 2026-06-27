@@ -16,7 +16,7 @@ Ingested 2026-06-24 from the official docs (`hyperframes.heygen.com`, 206-page
 | **Full engine source** | `5_FRAMEWORK/hf_engine/` | Vendored monorepo: cli, core, engine, producer, player, sdk, shader-transitions, studio, aws-lambda, gcp-cloud-run (reference; gitignored). |
 | **Catalog source** | `5_FRAMEWORK/hf_engine/registry/` | 97 blocks + 25 components (real HTML + registry-item.json). |
 | **Knowledge base** | `2_KNOWLEDGE/hyperframes/` | This module (guides + reference + catalog). |
-| **Render integration** | `4_BRAIN/pipeline_manager.py` STEP 5 | CLI local binary (default) + Producer API opt-in (`5_FRAMEWORK/hf_producer_render.mjs`). |
+| **Render integration** | `4_BRAIN/native_composer.py` (render step) | CLI local binary (default) + Producer API opt-in (`5_FRAMEWORK/hf_producer_render.mjs`). |
 
 ## Knowledge map
 
@@ -48,6 +48,6 @@ Ingested 2026-06-24 from the official docs (`hyperframes.heygen.com`, 206-page
 
 ## How SEOSONA Video uses this
 - **Agents** invoke the `.agents/skills/hyperframes*` slash commands to author compositions.
-- **Pipeline** (`pipeline_manager.py`) builds an HTML scene project and renders via the CLI local binary (or Producer API with `SEOSONA_HF_PRODUCER=1`).
+- **Pipeline** (`4_BRAIN/video_engine.py` → `native_composer.py`) builds an HTML scene project and renders via the CLI local binary (or Producer API with `SEOSONA_HF_PRODUCER=1`).
 - **Blocks/components** are pulled from the catalog with `npx hyperframes add <name>` into a project's `compositions/`.
 - Decision + render-config: see `6_SOP/RENDER_ENGINE_DECISION.md`.

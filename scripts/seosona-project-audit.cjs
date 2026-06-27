@@ -128,7 +128,6 @@ function audit() {
     'requirements.txt',
     '6_SOP/MASTER_OPERATION.md',
     '6_SOP/SEOSONA_WORKFLOW_BOUNDARY_MAP.md',
-    '6_SOP/EXTERNAL_VIDEO_REPO_CAPABILITY_MAP.md',
     '6_SOP/HYPERFRAMES_INTEGRATION.md',
     '6_SOP/SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY.md',
     '6_SOP/SEOSONA_VIDEO_RECONNECTION_MAP.md',
@@ -143,7 +142,7 @@ function audit() {
     'seosona:route',
     'seosona:audit',
     'video:run',
-    'template:clone',
+    'make:video',
     'post:image',
     'thumbnail:create',
     'video:news',
@@ -221,7 +220,7 @@ function audit() {
   check('secret hygiene scan', secretFindings.length === 0, secretFindings, 'P1');
 
   const duplicateFunctionFindings = [];
-  for (const file of ['4_BRAIN/pipeline_manager.py']) {
+  for (const file of ['4_BRAIN/video_engine.py', '4_BRAIN/native_composer.py']) {
     if (!exists(file)) continue;
     const content = fs.readFileSync(path.join(root, file), 'utf8');
     const names = [...content.matchAll(/^def\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/gm)].map((match) => match[1]);
@@ -239,11 +238,9 @@ function audit() {
   );
 
   const runtimePathFiles = [
-    'scripts/convert_to_9_16.py',
     'scripts/extract_frames.py',
-    'scripts/preview_news_spatial.py',
     'scripts/inject_os_capabilities.py',
-    '4_BRAIN/run_demo.py',
+    '4_BRAIN/video_engine.py',
     '2_SKILLS/thumbnail_maker/thumbnail_generator.py',
   ];
   const localPathFindings = [];
@@ -268,19 +265,13 @@ function audit() {
   const requiredProductionAssets = [
     '7_ASSETS/brand/logos/Seosona_Logo.png',
     '7_ASSETS/brand/logos/Chi Quyet Academy Mascot Logo.png',
-    '7_ASSETS/voice/profiles/seosona_male_southern.wav',
+    '7_ASSETS/voice/profiles/seosona_ref13.wav',
     '7_ASSETS/audio/bgm/bgm_tech_ambient.mp3',
     '7_ASSETS/audio/sfx/pops/pop_01.wav',
     '7_ASSETS/audio/sfx/transitions/whoosh_01.wav',
-    '7_ASSETS/templates/loop-source-seosona-clone/template.json',
-    '7_ASSETS/templates/loop-source-seosona-clone/index.html',
-    '7_ASSETS/templates/loop-source-seosona-clone/hyperframes.json',
-    '7_ASSETS/templates/loop-source-seosona-clone/production_manifest.json',
-    '7_ASSETS/templates/loop-source-seosona-clone/sample.srt',
-    '7_ASSETS/templates/loop-source-seosona-clone/thumbnail.png',
-    '7_ASSETS/templates/loop-source-seosona-clone/assets/bgm_loop_96.mp3',
-    '7_ASSETS/templates/loop-source-seosona-clone/assets/pop_01.wav',
-    '7_ASSETS/templates/loop-source-seosona-clone/assets/whoosh_01.wav',
+    // NOTE: the legacy `loop-source-seosona-clone` template was removed (2026-06-25).
+    // The template library is being rebuilt on the new native_composer engine — see
+    // 6_SOP/REFERENCE_TO_VIDEO_SOP.md. No single template is a hard requirement anymore.
   ];
   const assetFindings = [];
   for (const asset of requiredProductionAssets) {
@@ -291,16 +282,6 @@ function audit() {
   }
   check('required production assets are restorable', assetFindings.length === 0, assetFindings, 'P1');
 
-  const templateManifestPath = '7_ASSETS/templates/loop-source-seosona-clone/template.json';
-  const templateFileFindings = [];
-  if (exists(templateManifestPath)) {
-    const template = readJson(templateManifestPath);
-    for (const file of template.files || []) {
-      const templateFile = path.posix.join('7_ASSETS/templates/loop-source-seosona-clone', file.replaceAll('\\', '/'));
-      if (!exists(templateFile)) templateFileFindings.push(templateFile);
-    }
-  }
-  check('LOOP clone template manifest files exist', templateFileFindings.length === 0, templateFileFindings, 'P1');
 
   // Voice contract: the rebuilt single-router system is the source of truth, and the
   // deprecated fish_audio adapter must NOT be resurrected to satisfy this check.

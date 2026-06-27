@@ -12,7 +12,7 @@ Nằm trong thư mục `scripts/`, đây là những "Sợi cáp" liên lạc gi
 - 🔌 **`seosona-project-bridge.cjs`**: Cáp mạng chính. Giúp OS nhận diện được Repository này có những Workflow gì và ra lệnh khởi chạy luồng Node.js tương ứng.
 - 🐍 **`seosona-python.cjs`**: Cáp Python. Giúp môi trường Node.js gọi các lệnh Python (Whisper, VieNeu-TTS) một cách trơn tru mà không bị lỗi biến môi trường.
 - 🏥 **`seosona_doctor.py` & `seosona-project-audit.cjs`**: Bộ đôi bác sĩ. Luôn chạy kiểm tra sức khỏe của dự án (Check xem thiếu thư viện không, Node version có chuẩn không) trước khi bấm nút Render.
-- 🏗️ **`build_news_project.mjs`**: Siêu kịch bản Native, tiêm mã đồ họa GSAP và dựng cảnh tự động cho luồng News Pipeline.
+- 🏗️ **`4_BRAIN/native_composer.py`**: Engine render native — tự sinh HTML/CSS/GSAP, dựng cảnh + phụ đề karaoke và render HyperFrames cho luồng video synthesized (thay `build_news_project.mjs` cũ đã nghỉ hưu).
 
 </details>
 

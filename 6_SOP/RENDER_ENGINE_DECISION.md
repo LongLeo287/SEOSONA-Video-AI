@@ -31,13 +31,13 @@ Migrating would mean **paying a license + a multi-week React rewrite for a rende
 A minimal HyperFrames project was actually rendered with the local binary to verify each item:
 
 - ✅ **Local binary works** — `node_modules/.bin/hyperframes render` produced an MP4 with no network. Confirms the npx-removal hardening.
-- ✅ **0.7.4 ADOPTED** — rendered the same project on 0.6.112 (7.4s) and 0.7.4 (4.8s, **faster**); `--quality high`/`--fps`/`--resolution` all accepted. Default pinned to **0.7.4** in package.json + `pipeline_manager` (revert with `SEOSONA_HF_VERSION=0.6.112`). *Do one real-video render to confirm before high-volume use.*
+- ✅ **0.7.4 ADOPTED** — rendered the same project on 0.6.112 (7.4s) and 0.7.4 (4.8s, **faster**); `--quality high`/`--fps`/`--resolution` all accepted. Default pinned to **0.7.4** in package.json + `native_composer` (revert with `SEOSONA_HF_VERSION=0.6.112`). *Do one real-video render to confirm before high-volume use.*
 - ✅ **Shader transitions WORK** — a 3-scene project with `whip-pan` + `light-leak` rendered successfully. The IIFE is vendored at `.agents/skills/graphic-overlays/assets/vendor/shader-transitions.global.js`; a working reference is at `5_FRAMEWORK/hf_core/templates/shader_transitions_reference.html`.
 - ✅ **Producer API UNBLOCKED (now opt-in)** — it first failed because `@hyperframes/producer` pulls full `puppeteer` whose bundled Chrome download fails here. Fix: skip the download (`.puppeteerrc.cjs` `skipDownload:true` / `PUPPETEER_SKIP_DOWNLOAD=1`) and point puppeteer at an **existing Chrome** (system Chrome / Playwright Chromium / Edge) via `PUPPETEER_EXECUTABLE_PATH`. Validated: rendered via the Producer API with streaming progress using system Chrome. Implemented as the Node helper `5_FRAMEWORK/hf_producer_render.mjs` (auto-detects Chrome), enabled from the pipeline with `SEOSONA_HF_PRODUCER=1`. **Default stays CLI** (simplest, reliable); the Producer path adds streaming progress + a render queue for high throughput.
   - Install once: `PUPPETEER_SKIP_DOWNLOAD=1 npm install @hyperframes/producer` (the `.puppeteerrc.cjs` makes this automatic), then run with `SEOSONA_HF_PRODUCER=1`.
 
 ### Shader-transition integration recipe (for a real-render session)
-The 13 transitions are declared via a JS call, NOT attributes. To wire into `_write_hyperframes_render_project`:
+The 13 transitions are declared via a JS call, NOT attributes. To wire into the HTML that `native_composer.make_video()` emits:
 1. Copy the vendored `shader-transitions.global.js` into the render `assets/` (next to `gsap.min.js`).
 2. Emit each scene as `<div id="scene-N" class="scene">…</div>` (N+1 scenes).
 3. After gsap, add `<script src="assets/shader-transitions.global.js"></script>`.
@@ -49,6 +49,6 @@ The 13 transitions are declared via a JS call, NOT attributes. To wire into `_wr
 
 ## Sources
 - https://github.com/heygen-com/hyperframes (Apache-2.0, "Write HTML. Render video. Built for agents.")
-- https://registry.npmjs.org/hyperframes (latest 0.7.4; pinned 0.6.112)
+- https://registry.npmjs.org/hyperframes (latest 0.7.4; pinned 0.7.4)
 - https://www.remotion.dev/docs/license · https://remotion.pro/license (company-size license)
 - https://github.com/remotion-dev/remotion

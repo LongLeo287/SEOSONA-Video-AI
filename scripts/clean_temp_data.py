@@ -1,4 +1,4 @@
-﻿import os
+import os
 import shutil
 
 def cleanup_temp_folders(root_dir):

@@ -20,7 +20,7 @@ Everything else is an adapter around it:
 - `5_FRAMEWORK/hf_core/` owns the active local HyperFrames framework snapshot.
 - `5_FRAMEWORK/hf_engine/` is an upstream/vendor reference and package source.
 - `5_FRAMEWORK/hf_cards/` owns reusable card and stat-card render projects.
-- `7_ASSETS/video_templates/` owns reusable, promoted production templates.
+- `7_ASSETS/templates/` owns reusable, promoted production templates (JSON).
 - `8_WORKSPACE/` owns generated outputs and must stay disposable.
 - `9_PROMPTS/` owns all externalized LLM prompts (AIDA, PAS, Carousel, Repurpose).
 - `6_SOP/` owns SEOSONA-specific operating decisions.
@@ -40,7 +40,7 @@ reference-only source.
 | Full project audit | `npm run seosona:audit` | `scripts/seosona-project-audit.cjs` |
 | Integration audit | `npm run video:audit:integration` | `4_BRAIN/video_integration_audit.py` |
 | Video production | `npm run video:news -- <script_or_url> [project] [ratio]` | `4_BRAIN/workflow_router.py` (Supergraph Entrypoint) |
-| Template export | `npm run video:template:export -- <workspace_project> "<name>"` | `4_BRAIN/video_template_factory.py` |
+| Template export | `native_composer.extract_template(<workspace_project>, "<name>")` | JSON in `7_ASSETS/templates/` (old `npm run video:template:export` / `video_template_factory.py` RETIRED (removed)) |
 
 ## Resolver Contract
 

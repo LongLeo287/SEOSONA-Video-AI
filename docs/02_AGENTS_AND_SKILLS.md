@@ -3,8 +3,8 @@
 Tài liệu này liệt kê bộ não nhận thức (Agents) và tay chân thực thi (Skills) của SEOSONA Video.
 Nguồn sự thật: `1_AGENTS/ROSTER.md` và `2_SKILLS/README.md`.
 
-## 🤖 Lớp Nhận Thức: 12 AI Agents (`1_AGENTS/`)
-Tất cả 12 agent dưới đây đều có code thật và được gọi từ pipeline/workflow.
+## 🤖 Lớp Nhận Thức: 10 AI Agents (`1_AGENTS/`)
+Tất cả 10 agent dưới đây đều có code thật và được gọi từ pipeline/workflow.
 (Thư mục `personas/` chứa định nghĩa gốc tính cách — không tính là agent.)
 
 <details>
@@ -40,7 +40,6 @@ Tất cả 12 agent dưới đây đều có code thật và được gọi từ
 <br>
 
 - 📈 **`seo_optimizer`**: Tối ưu metadata YouTube — title/tags/description + JSON-LD (`youtube_seo.py`).
-- 🖼️ **`thumbnail_tester_agent`**: Chấm điểm ảnh bìa bằng thị giác máy + A/B testing (`ab_tester.py`).
 
 </details>
 
@@ -48,7 +47,6 @@ Tất cả 12 agent dưới đây đều có code thật và được gọi từ
 <summary><b>5. Nhóm Kiểm duyệt & Đăng tải (3 Agents)</b></summary>
 <br>
 
-- 📝 **`editor_agent`**: Soát lỗi, enforce Light-Mode cho brand profile (`editor.py`).
 - 📊 **`analytics_feedback_agent`**: Phân tích retention, sinh post-mortem (`feedback_generator.py`).
 - 🚀 **`publisher_agent`**: Nắm API đăng tải (YouTube/TikTok/FB/Drive) — `publish_dispatch.py`. **Publish cần User cho phép rõ ràng.**
 
@@ -56,9 +54,9 @@ Tất cả 12 agent dưới đây đều có code thật và được gọi từ
 
 ---
 
-## 🛠️ Lớp Thực Thi: 8 Python Skills (`2_SKILLS/`)
+## 🛠️ Lớp Thực Thi: 7 Python Skills (`2_SKILLS/`)
 Mỗi skill dưới đây đều được nối vào pipeline/workflow (`2_SKILLS.<name>.<module>`).
-9 skill chưa dùng đã được dời sang `_QUARANTINE/orphan_skills/` (xem README ở đó).
+9 skill chưa dùng đã được đã gỡ khỏi dự án (xem README ở đó).
 
 <details>
 <summary><b>🔊 Âm thanh & Giọng nói (2 Skills)</b></summary>
@@ -93,7 +91,6 @@ Mỗi skill dưới đây đều được nối vào pipeline/workflow (`2_SKILL
 <br>
 
 - 🎠 **`carousel_maker`**: Biến text thành chuỗi ảnh carousel (gọi từ `workflow_social_post`).
-- 🌐 **`translator`**: Bản địa hóa/dịch kịch bản (gọi từ `localizer`).
 
 </details>
 
@@ -103,6 +100,6 @@ Mỗi skill dưới đây đều được nối vào pipeline/workflow (`2_SKILL
 
 `audio_cleaner`, `audio_mixer`, `b_roll_fetcher`, `llm_processor`, `metadata_extractor`,
 `script_writer`, `sfx_mixer`, `srt_parser`, `visual_fetcher` — dời sang
-`_QUARANTINE/orphan_skills/`. Có code thật nhưng chưa nơi nào gọi; phục hồi khi cần.
+(removed). Có code thật nhưng chưa nơi nào gọi; phục hồi khi cần.
 
 </details>

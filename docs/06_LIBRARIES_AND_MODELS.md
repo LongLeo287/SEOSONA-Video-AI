@@ -6,7 +6,7 @@ Nhà máy SEOSONA Video tận dụng tối đa mã nguồn mở và các mô hì
 
 | Thư viện | Nhiệm vụ chính | Phân tích chức năng |
 | :--- | :--- | :--- |
-| 🌐 **`puppeteer-core`** / **`playwright`** | Trình duyệt ảo | Là hạt nhân của Framework `html_renderer`, cung cấp khả năng chạy file HTML của HyperFrames và liên tục "bắn" ảnh chụp màn hình cực kỳ chuẩn xác. |
+| 🌐 **`playwright`** (chính) / **`puppeteer-core`** | Trình duyệt ảo | Dùng cho bước chụp ảnh màn hình (scrape screenshots) trong `video_engine` — Playwright là engine chụp ảnh chính. (Cả hai vẫn là dependency; render video nay do `native_composer` đảm nhận, không còn chụp từng frame.) |
 | 🎞️ **`fluent-ffmpeg`** / **`ffmpeg-static`** | Xử lý Video | Trình bao bọc mã nguồn cho phép gọi lệnh FFmpeg từ NodeJS để ráp nối hàng nghìn ảnh tĩnh thành video chuyển động. |
 | 🖼️ **`sharp`** / **`jimp`** | Xử lý Hình ảnh | Thao tác nén, nới rộng tỷ lệ khung hình (Aspect Ratio), và resize ảnh tốc độ cao (chủ yếu dùng tạo thumbnail hoặc nén b-roll). |
 | 🕸️ **`cheerio`** | Cào dữ liệu | Dùng để bóc tách siêu tốc (Scrape) dữ liệu văn bản từ các trang web HTML rác mà không cần bật trình duyệt. |

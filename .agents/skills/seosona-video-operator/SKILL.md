@@ -10,13 +10,23 @@ metadata:
 # SEOSONA Video Operator
 
 Use this skill when a task asks to audit, improve, clone, template, or produce videos inside SEOSONA Video.
+**This is the TỔNG / master entry** — it routes to the right engine + workflow skill below.
+
+## Two video engines (pick by input)
+
+| Engine | Input | Output | Voice | Entry skill / command |
+|---|---|---|---|---|
+| **Synthesized** (`4_BRAIN/video_engine.py` → `native_composer.py`) | text / GitHub repo / website / news brief | dựng cảnh từ template JSON (9:16 + 16:9) | AI (VieNeu) | `/seosona-news-maker`, `/faceless-explainer`, `/pr-to-video`, `/product-launch-video`, `/website-to-video`, `/general-video` + `/scene-composer` (soạn content). Lệnh: `npm run make:video` / `video:news` |
+| **Footage** (`scripts/talking_head_*`) | video tự quay / screen-rec | edit + karaoke caption + card (9:16 + 16:9) | giọng THẬT | `/talking-head-video-editor`. Lệnh: `npm run talkinghead:transcribe` → `talkinghead:edit` |
+
+Edit/overlay video có sẵn: `/embedded-captions`, `/graphic-overlays`. Avatar (trả phí, tương lai): `/heygen-native-api`.
 
 ## Operating Contract
 
 1. Source language in scripts, subtitles, scene copy, and thumbnails is Vietnamese.
 2. English technical terms stay visually correct in display text.
 3. Pronunciation is handled through the lexicon in `4_BRAIN/news_video_standards.py`, not by writing phonetics into display text.
-4. Default news voice target is male Southern Vietnamese. The fallback voice is `vi-VN-NamMinhNeural`; true approved-clone output requires `7_ASSETS/voice/profiles/seosona_male_southern.wav` or an approved VieNeu preset.
+4. Default news voice target is male Southern Vietnamese. The fallback voice is `vi-VN-NamMinhNeural`; true approved-clone output requires `7_ASSETS/voice/profiles/seosona_ref13.wav` or an approved VieNeu preset.
    - **All voice goes through ONE path:** `2_SKILLS/voice_cloner/voice_router.py` (`synthesize_voice`) → **VieNeu (clone > preset)**, with an honest edge-tts fallback that logs loudly that it is the Northern non-brand voice. Engines are: SEOSONA → VieNeu clone of the Southern reference; CQA → VieNeu clone of the expert reference (config in `system_config.yaml`). VieNeu is the only engine — there is no fish_audio/F5/OmniVoice/Kokoro path (removed). Never add a dead `if engine==…` branch; add a real probe.
 5. Production outputs must include voice, background music, SFX/transitions, subtitles, thumbnail, and a production manifest.
 6. HyperFrames is the canonical renderer. MoviePy/FFmpeg are fallback or muxing tools, not the primary template authoring model.
@@ -33,7 +43,7 @@ HyperFrames is the core engine. Everything you need is already in this repo — 
 - `/hyperframes-creative` — design direction, palettes, typography, beats
 - `/hyperframes-media` — TTS, transcription, background removal
 - `/hyperframes-registry` — install catalog blocks/components
-- Workflow skills: `/general-video`, `/faceless-explainer`, `/embedded-captions`, `/graphic-overlays`, `/motion-graphics`, `/product-launch-video`, `/website-to-video`, `/pr-to-video`
+- Workflow skills: `/seosona-news-maker`, `/talking-head-video-editor`, `/scene-composer`, `/general-video`, `/faceless-explainer`, `/embedded-captions`, `/graphic-overlays`, `/motion-graphics`, `/product-launch-video`, `/website-to-video`, `/pr-to-video`
 
 **2. Knowledge base — `2_KNOWLEDGE/hyperframes/`** (read for API/rules/specs):
 - `guides/` — quickstart, GSAP contract, rendering/4K/HDR, the 7-step pipeline, prompting, common mistakes
@@ -47,7 +57,7 @@ npx hyperframes add <block-name>   # e.g. whip-pan, cinematic-zoom, caption-pill
 ```
 Browse names + categories in `2_KNOWLEDGE/hyperframes/catalog/CATALOG_INDEX.md`. Transitions → `TRANSITIONS.md`; word-timed captions → `CAPTIONS.md`. Source HTML lives in `5_FRAMEWORK/hf_engine/registry/{blocks,components}/`.
 
-**4. Render** — the pipeline (`4_BRAIN/pipeline_manager.py` STEP 5) renders via the local `hyperframes` binary (no npx network). Tunables via env: `SEOSONA_HF_VERSION` (default 0.7.4), `SEOSONA_HF_QUALITY/FPS/RESOLUTION`, `SEOSONA_HF_TRANSITIONS=1`, `SEOSONA_HF_PRODUCER=1` (Producer API, streaming progress). Decisions + recipes: `6_SOP/RENDER_ENGINE_DECISION.md`.
+**4. Render** — the pipeline (`4_BRAIN/video_engine.py` → `native_composer.py`) renders via the local `hyperframes` binary (no npx network). Tunables via env: `SEOSONA_HF_VERSION` (default 0.7.4), `SEOSONA_HF_QUALITY/FPS/RESOLUTION`, `SEOSONA_HF_TRANSITIONS=1`, `SEOSONA_HF_PRODUCER=1` (Producer API, streaming progress). Decisions + recipes: `6_SOP/RENDER_ENGINE_DECISION.md`.
 
 **Workflow:** intent → `/hyperframes` (or a workflow skill) → consult `2_KNOWLEDGE/hyperframes/` for the schema → pull catalog blocks/transitions/captions with `npx hyperframes add` → assemble composition → render. Don't hand-write what the catalog already provides.
 
@@ -69,7 +79,7 @@ Use:
 npm run video:run -- seosona create 9:16 PROJECT_NAME
 ```
 
-The pipeline routes through `4_BRAIN/workflow_router.py`, `4_BRAIN/pipeline_manager.py`, `4_BRAIN/news_video_standards.py`, and the HyperFrames templates under `5_FRAMEWORK/`.
+The pipeline routes through `4_BRAIN/workflow_router.py`, `4_BRAIN/video_engine.py` → `native_composer.py`, `4_BRAIN/news_video_standards.py`, and the HyperFrames templates under `5_FRAMEWORK/`.
 
 ## Localize / Dub A Foreign Video
 
@@ -88,12 +98,14 @@ Chain (all switchable routers, graceful fallback): ASR (`SEOSONA_ASR`, PhoWhispe
 
 ## Export A Reusable Template
 
-After a successful render, export the HyperFrames render project into the template registry:
+After a successful render, export the render project into the template registry.
+Templates are JSON in `7_ASSETS/templates/`, extracted via `native_composer.extract_template`
+(the old `video_template_factory` is retired (removed)):
 
 ```python
-from video_template_factory import export_template_from_project
+from native_composer import extract_template
 
-export_template_from_project(
+extract_template(
     "8_WORKSPACE/PROJECT_NAME",
     "Project Name Template",
     out_root="7_ASSETS/templates",
@@ -107,7 +119,7 @@ The exported template preserves layout, motion, sample subtitle, thumbnail, and 
 Run:
 
 ```bash
-python -m unittest tests.test_news_video_standards tests.test_video_template_factory tests.test_video_integration_audit
+python -m pytest tests/ -q
 npm run seosona:audit
 ```
 

@@ -35,9 +35,11 @@ function resolveCandidate(value) {
 
 function hasOsAnchors(osRoot) {
   if (!osRoot) return false;
+  // Only the operationally-essential anchors are required, so the project survives the
+  // OS reorganizing its docs. MASTER_INDEX.md is a human doc index (the OS removed it in
+  // a 2026 "deepest sweep"); it is no longer a hard anchor.
   return [
     '1_CORE/SOUL.md',
-    '2_KNOWLEDGE/MASTER_INDEX.md',
     '1_CORE/scripts/seosona_capability_bridge.js',
   ].every((relativePath) => fs.existsSync(path.join(osRoot, relativePath)));
 }
@@ -84,7 +86,6 @@ function projectStatus() {
     osRoot,
     anchors: osRoot ? {
       soul: path.join(osRoot, '1_CORE', 'SOUL.md'),
-      masterIndex: path.join(osRoot, '2_KNOWLEDGE', 'MASTER_INDEX.md'),
       capabilityBridge: bridgePath(osRoot),
       projectMemory: memoryNamespacePath,
     } : null,

@@ -10,12 +10,15 @@ Nơi chứa các lõi Xử lý Ngôn ngữ và Phân tích Logic tĩnh (Chưa đ
 <br>
 
 - 🧠 **`llm_engine.py` (29.6KB)**: Quả tim của hệ thống. Chứa các thuật toán gọi API, quản lý Context Window, Rate Limit, và Retry Logic khi giao tiếp với các mô hình ngôn ngữ lớn (OpenAI, Anthropic).
-- 🚉 **`pipeline_manager.py` (60.4KB)**: Siêu trạm trung chuyển (Hub). Quyết định xem file dữ liệu nào sẽ đi vào đường ống nào, phân bổ tài nguyên và theo dõi tiến trình chạy.
-- 🔀 **`workflow_router.py`**: Định tuyến công việc. Nó đọc các dữ kiện truyền vào và quyết định: *"À, đây là bài bóc tách code, hãy gọi luồng PR-to-Video"*.
+- 🚉 **`video_engine.py`**: Cửa ngõ thống nhất của pipeline render (`run_pipeline(script_text, brand, mode, aspect_ratio, project_name)`). Quyết định file dữ liệu nào đi vào đường ống nào và điều phối toàn bộ tiến trình.
+- 🎨 **`native_composer.py`**: Trình kết xuất thực sự — giọng nói + phụ đề RULE #1 + render native HyperFrames + trộn BGM-ducking/SFX. Cũng quản lý template JSON qua `fill_template` / `list/load/save/extract_template`.
+- 🧩 **`scene_composer.py`**: Bộ não nội dung, chọn và sắp xếp các cảnh trước khi đưa vào `native_composer`.
+- 🔀 **`workflow_router.py`**: Định tuyến công việc, bọc `video_engine` trong SuperGraph DAG + quality gate. Nó đọc các dữ kiện truyền vào và quyết định: *"À, đây là bài bóc tách code, hãy gọi luồng PR-to-Video"*.
 - 🎯 **`intent_router.py`**: Bộ định tuyến "Ý định". Cố gắng hiểu người dùng hoặc hệ thống mẹ thực sự muốn gì thông qua các luồng văn bản không rõ ràng.
-- 🌉 **`video_capability_bridge.py`**: Cầu nối năng lực. Giao tiếp với các lõi khác để hỏi: *"Tài nguyên có sẵn để chạy VieNeu local không, hay phải dùng edge-tts fallback?"*
-- 🏭 **`video_template_factory.py`**: Nhà máy đúc khuôn tự động, chuyên rập khuôn các giao diện chuẩn hóa.
 - 💯 **`quality_scorer.py`**: Máy chấm điểm tàn nhẫn. Trả về điểm số (Scale 0-10) xem kịch bản hoặc khung hình có đạt yêu cầu chất lượng hay không.
+
+> [!NOTE]
+> `pipeline_manager.py`, `video_capability_bridge.py` và `video_template_factory.py` đã NGHỈ HƯU và được đã gỡ khỏi dự án. Render nay đi qua `video_engine.py` → `native_composer.py`; template là file JSON trong `7_ASSETS/templates/` quản lý qua `native_composer.extract_template/save_template` + skill `scene-composer`.
 
 </details>
 
@@ -46,7 +49,7 @@ Nơi chứa các luật nạp Dữ liệu đầu vào (Ingestion).
 <br>
 
 - 📑 **`INGESTION_INDEX.md`**: Quy tắc tối cao về việc nạp dữ liệu từ bên ngoài (Web, PDF, Notion, Github) vào hệ thống sao cho an toàn và không bị nhiễm độc thông tin.
-- 📦 **`raw_data/`**: Nơi tập kết các đống dữ liệu thô (HTML rác, file Text chưa dọn dẹp) trước khi bị `researcher_agent` phân tích.
+- 📦 **`raw_data/`**: Nơi tập kết các đống dữ liệu thô (HTML rác, file Text chưa dọn dẹp) trước khi bị `scraper_agent` / `trend_jacking_agent` phân tích.
 - 🐙 **`repos/`**: Chứa mã nguồn của các Github Repository được clone về để chuẩn bị làm nguyên liệu cho luồng `PR-to-Video`.
 
 </details>

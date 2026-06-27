@@ -125,23 +125,25 @@ def run_integration_audit(
         ("6_SOP/HYPERFRAMES_INTEGRATION.md", "SV-INT-HYPERFRAMES-SOP"),
         ("6_SOP/tech_news_faceless_sop.md", "SV-INT-NEWS-SOP"),
         ("4_BRAIN/news_video_standards.py", "SV-INT-NEWS-STANDARDS"),
-        ("4_BRAIN/video_template_factory.py", "SV-INT-TEMPLATE-FACTORY"),
+        ("4_BRAIN/video_engine.py", "SV-INT-VIDEO-ENGINE"),
+        ("4_BRAIN/native_composer.py", "SV-INT-NATIVE-COMPOSER"),
+        ("4_BRAIN/scene_composer.py", "SV-INT-SCENE-COMPOSER"),
     ]
     for relative_path, issue_id in required_project_files:
         check(f"project artifact: {relative_path}", _exists(project_root, relative_path), relative_path, issue_id, "P1")
 
-    template_dirs = [
-        "5_FRAMEWORK/news_spatial_hyperframes",
-        "5_FRAMEWORK/news_loop_path_hyperframes",
-    ]
-    for relative_path in template_dirs:
-        check(
-            f"HyperFrames template: {relative_path}",
-            _exists(project_root, os.path.join(relative_path, "index.html")),
-            relative_path,
-            "SV-INT-HYPERFRAMES-TEMPLATE",
-            "P1",
-        )
+    # New engine: templates are JSON (structure only) under 7_ASSETS/templates/,
+    # consumed by native_composer.fill_template (the old HTML scaffolds are retired).
+    templates_dir = os.path.join(project_root, "7_ASSETS", "templates")
+    json_templates = [f for f in os.listdir(templates_dir)] if os.path.isdir(templates_dir) else []
+    json_templates = [f for f in json_templates if f.endswith(".json")]
+    check(
+        "JSON video templates present (7_ASSETS/templates/*.json)",
+        len(json_templates) > 0,
+        f"{len(json_templates)} templates",
+        "SV-INT-JSON-TEMPLATES",
+        "P1",
+    )
 
     asset_dirs = [
         ("7_ASSETS/audio/bgm", (".mp3", ".wav")),

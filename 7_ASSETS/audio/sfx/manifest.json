@@ -1,0 +1,39 @@
+{
+  "_doc": "SEOSONA curated SFX library. Built from 'Sound Effects Pack' by scripts/build_sfx_library.sh (trim + tail-fade + loudnorm). The engine (4_BRAIN/native_composer.py) mixes these per-component at scene timestamps.",
+  "roles": {
+    "transition": {
+      "use": "Played at every scene change (alternates swish/whoosh).",
+      "cues": ["transition/swish_01.mp3", "transition/swish_02.mp3", "transition/whoosh_01.mp3", "transition/whoosh_02.mp3"]
+    },
+    "impact": {
+      "use": "Punch on a big-number / stat reveal (bignum component).",
+      "cues": ["impact/impact_soft.mp3", "impact/impact_deep.mp3"]
+    },
+    "ui": {
+      "use": "positive = badge/CTA reveal; click = step / list item.",
+      "cues": ["ui/positive.mp3", "ui/click.mp3"]
+    },
+    "typing": {
+      "use": "Keyboard bed under a terminal component.",
+      "cues": ["typing/keyboard.mp3"]
+    },
+    "riser": {
+      "use": "Short lift into the hook / a major reveal.",
+      "cues": ["riser/riser_short.mp3", "riser/riser_long.mp3"]
+    }
+  },
+  "source": "D:/SEOSONA AI/Sound Effects Pack",
+  "provenance": {
+    "transition/swish_01.mp3": "Swish/Classic, Stone Texture, Fast.mp3",
+    "transition/swish_02.mp3": "Swish/Fast, Clothy.mp3",
+    "transition/whoosh_01.mp3": "Whooshes/Fast, Close, Airy, Zoom 01.mp3",
+    "transition/whoosh_02.mp3": "Whooshes/Classic, Airy.mp3",
+    "impact/impact_soft.mp3": "Impacts/Cinematic, Deep, Boom, Impact.mp3",
+    "impact/impact_deep.mp3": "Impacts/Bass, Boom, Distant Impact 02.mp3",
+    "ui/positive.mp3": "User Interface/Button, Positive, Chord, Bright.mp3",
+    "ui/click.mp3": "Clicks/Button, Generic UI Click x2.mp3",
+    "typing/keyboard.mp3": "Typing/Keyboard, Apple Magic, Typing, Short Phrases.mp3",
+    "riser/riser_short.mp3": "Riser/Bass, Sharp Detail Riser.mp3",
+    "riser/riser_long.mp3": "Riser/Epic Sunrise Riser.mp3"
+  }
+}

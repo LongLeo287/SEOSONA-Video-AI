@@ -41,7 +41,7 @@ profiles:
       engine: "vieneu"
       # PRIMARY: clone the Southern male brand voice from this reference (keeps the
       # exact brand voice across every video). Use a 10-30s clean clip for best stability.
-      reference_audio: "7_ASSETS/voice/profiles/seosona_male_southern.wav"
+      reference_audio: "7_ASSETS/voice/profiles/seosona_ref13.wav"
       required_gender: "male"
       required_accent: "southern"
       # Preset used ONLY if the reference is missing (router prefers the clone).
@@ -69,9 +69,8 @@ profiles:
       # PRIMARY: clone the CQA brand voice from this reference. Drop a 10-30s clean
       # clip here to restore the true 'chiquyet' voice — the router prefers the clone.
       reference_audio: "7_ASSETS/voice/profiles/chiquyet_sample_4s.wav"
-      # Preset used ONLY when the reference is missing. Must be a real VieNeu preset
-      # (valid male: Gia Bảo, Thái Sơn, Đức Trí, Xuân Vĩnh, Trọng Hữu, Bình An).
-      model: "Gia Bảo"
+      # Single approved brand voice (locked system-wide in voice_router.APPROVED_VOICE).
+      model: "Trọng Hữu"
       required_gender: "male"
       required_accent: "southern"
       fallback_engine: "edge-tts"

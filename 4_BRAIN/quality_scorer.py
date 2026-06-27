@@ -109,9 +109,16 @@ def score_video(video_path, expected_duration=None, brand="seosona"):
     max_points += 20
     project_dir = os.path.dirname(video_path)
 
-    srt_dir = os.path.join(project_dir, "SRT")
-    has_srt = os.path.isdir(srt_dir) and any(f.endswith(".srt") for f in os.listdir(srt_dir))
-    if has_srt:
+    # Search recursively — native_composer writes the sidecar SRT to _captions_upload/
+    # (a non-auto-loading folder so players don't draw a 2nd subtitle over the karaoke)
+    # and the thumbnail to Thumbnail/. Accept either, anywhere under the project dir.
+    def _find_srt():
+        for _root, _dirs, files in os.walk(project_dir):
+            if any(f.lower().endswith(".srt") for f in files):
+                return True
+        return False
+
+    if _find_srt():
         results["checks"]["srt_file"] = {"status": "PASS"}
         total_points += 10
     else:
@@ -120,7 +127,7 @@ def score_video(video_path, expected_duration=None, brand="seosona"):
 
     thumb_dir = os.path.join(project_dir, "Thumbnail")
     has_thumb = os.path.isdir(thumb_dir) and any(
-        f.endswith((".png", ".jpg")) for f in os.listdir(thumb_dir)
+        f.lower().endswith((".png", ".jpg")) for f in os.listdir(thumb_dir)
     )
     if has_thumb:
         results["checks"]["thumbnail"] = {"status": "PASS"}

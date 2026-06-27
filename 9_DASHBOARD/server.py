@@ -9,7 +9,9 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 INBOX_DIR = ROOT_DIR / "0_INPUT_INBOX"
 QUEUE_FILE = INBOX_DIR / "production_queue.yaml"
 DONE_DIR = INBOX_DIR / "done"
-TEMP_DIR = ROOT_DIR / ".temp"
+# Active render area. The engine (native_composer / video_engine / make_video) writes
+# finished projects under 8_WORKSPACE/ (auto/, news_batch/, clones/, ...), not .temp/.
+WORKSPACE_DIR = ROOT_DIR / "8_WORKSPACE"
 
 def get_queue_data():
     if not QUEUE_FILE.exists():
@@ -28,11 +30,13 @@ def get_done_files():
     except Exception:
         return []
 
-def get_temp_files():
-    if not TEMP_DIR.exists():
+def get_active_projects():
+    """Render-project folders currently in 8_WORKSPACE (each = one video build)."""
+    if not WORKSPACE_DIR.exists():
         return []
     try:
-        return [f.name for f in TEMP_DIR.iterdir() if f.is_file()]
+        return [d.name for d in WORKSPACE_DIR.iterdir()
+                if d.is_dir() and not d.name.startswith((".", "_"))]
     except Exception:
         return []
 
@@ -44,17 +48,17 @@ def index():
 def metrics():
     queue_data = get_queue_data()
     done_files = get_done_files()
-    temp_files = get_temp_files()
-    
-    # Calculate totals
-    total_pending = sum(len(items) for items in queue_data.values() if items)
+    active_projects = get_active_projects()
+
+    # Calculate totals — count only real queued items (skip empty-string placeholders)
+    total_pending = sum(len([i for i in items if i]) for items in queue_data.values() if items)
     total_done = len(done_files)
-    
+
     return jsonify({
         "status": "online",
         "total_pending": total_pending,
         "total_done": total_done,
-        "total_processing_temp": len(temp_files),
+        "total_processing_temp": len(active_projects),
         "queue_details": queue_data,
         "done_files": done_files
     })

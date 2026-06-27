@@ -29,11 +29,11 @@ Use the vendor skills as follows:
 - `embedded-captions` and `graphic-overlays`: existing footage enhancement.
 - `motion-graphics`: short kinetic stat cards, lower thirds, chart reveals, and logo stings.
 - `seosona-video-operator`: project-level audit, Vietnamese news delivery gates, template export, and clone-safe reuse.
-- `Supergraph DAG` (`4_BRAIN/workflow_router.py`): orchestrates HyperFrames rendering via `pipeline_manager.py` and auto-corrects using the `OODA Loop`.
+- `Supergraph DAG` (`4_BRAIN/workflow_router.py`): orchestrates HyperFrames rendering via `4_BRAIN/video_engine.py` → `native_composer.py` and auto-corrects using the `OODA Loop`.
 
 ## SEOSONA Video Rules
 
-1. Keep HyperFrames CLI calls pinned to `hyperframes@0.6.112` unless the whole project is upgraded in one pass.
+1. Keep HyperFrames CLI calls pinned to `hyperframes@0.7.4` unless the whole project is upgraded in one pass.
 2. Run `npm run check` inside the affected HyperFrames project after editing any composition.
 3. Avoid render-time network fetches. Use local `@font-face` declarations and local assets.
 4. Put vendor knowledge in `5_FRAMEWORK/hf_core/.skills/`; put SEOSONA-specific decisions in this SOP or project memory.
@@ -42,15 +42,15 @@ Use the vendor skills as follows:
 
 ## Template Export
 
-Verified render outputs can be exported into reusable templates with `4_BRAIN/video_template_factory.py`.
+Templates are JSON files in `7_ASSETS/templates/`, managed via the new template API on `native_composer` (the old `video_template_factory.py` is RETIRED (removed)).
 
 ```python
-from video_template_factory import export_template_from_project
+from native_composer import extract_template
 
-export_template_from_project(
+extract_template(
     "8_WORKSPACE/PROJECT_NAME",
     "PROJECT_NAME Template",
-    out_root="7_ASSETS/video_templates",
+    out_root="7_ASSETS/templates",
 )
 ```
 

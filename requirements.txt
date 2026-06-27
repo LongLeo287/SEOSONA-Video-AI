@@ -10,6 +10,8 @@ requests>=2.31.0
 ffmpeg-python>=0.2.0
 python-dotenv>=1.0.0
 openai>=1.12.0
+flask>=3.0.0          # 9_DASHBOARD/server.py
+playwright>=1.40.0    # scrape screenshots + thumbnail_maker (headless capture)
 
 # Voice Engine (single source of truth: VieNeu primary -> edge-tts fallback)
 vieneu>=3.0.0
