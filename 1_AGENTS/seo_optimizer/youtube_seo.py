@@ -13,7 +13,7 @@ def generate_youtube_metadata(hook_text, keywords, brand_profile, video_duration
     brand_tone = brand_profile.get('brand_tone', 'Chuyên gia, đáng tin cậy')
     target = brand_profile.get('target_audience', 'Người làm SEO, Marketing')
     
-    # 1. Expand LSI Keywords (Simulated)
+    # 1. Expand LSI keywords — deterministic offline heuristic (NOT an LLM call)
     lsi_keywords = keywords.copy()
     if "SEO" in [k.upper() for k in keywords]:
         lsi_keywords.extend(["Tối ưu công cụ tìm kiếm", "Website chuẩn SEO", "Digital Marketing"])

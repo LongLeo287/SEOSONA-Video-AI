@@ -27,8 +27,10 @@ def analyze_srt_for_hooks(srt_path):
         with open(srt_path, 'r', encoding='utf-8') as f:
             srt_content = f.read()
     else:
-        srt_content = "[DUMMY SRT CONTENT FOR TESTING] 00:00:15,000 --> 00:00:45,000 Bí mật AI"
-    
+        # Never fabricate input — analysing dummy SRT would silently produce fake hooks.
+        print(f"[SRT Analyzer] ERROR: file not found: {srt_path} — returning [] (no fabricated content).")
+        return []
+
     system_prompt = get_repurpose_prompt()
     user_prompt = f"Analyze this SRT file and output a JSON array of the best hooks:\n\n{srt_content}"
     

@@ -150,6 +150,9 @@ scripts/demo_freeform.py
 scripts/demo_variety.py
 scripts/seo_roadmap.py
 scripts/analyze_reference.py
+scripts/_qa_captions.py
+scripts/_test_cqa.py
+scripts/_test_planner.py
 
 # Full 77s voice clone source — local only (14MB). Engine reads it as reference_audio
 # (system_config.yaml). seosona_ref13.wav (13s) is the git-tracked lightweight fallback.

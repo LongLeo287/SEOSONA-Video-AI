@@ -47,14 +47,17 @@ def _is_junction(p):
         return False
 
 
+PYEXE = sys.executable   # overridden by --python (the isolated training venv)
+
+
 def run(script, env=None):
-    print(f"\n===== running {script} =====")
+    print(f"\n===== running {script}  [py={PYEXE}] =====")
     e = dict(os.environ)
     e["PYTHONIOENCODING"] = "utf-8"
     e["PYTHONPATH"] = os.path.join(REPO, "src") + os.pathsep + REPO + os.pathsep + e.get("PYTHONPATH", "")
     if env:
         e.update(env)
-    subprocess.run([sys.executable, script], cwd=REPO, env=e, check=True)
+    subprocess.run([PYEXE, script], cwd=REPO, env=e, check=True)
 
 
 def main():
@@ -62,7 +65,13 @@ def main():
     ap.add_argument("--dataset", required=True, help="prepared dataset dir (raw_audio + metadata.csv)")
     ap.add_argument("--max-steps", type=int, default=None, help="override training max_steps")
     ap.add_argument("--skip-prep", action="store_true", help="skip filter+encode (data already encoded)")
+    ap.add_argument("--python", help="python exe to run repo scripts (the isolated training venv "
+                                     "with torch 2.8 — neucodec segfaults on the inference env's torch 2.5)")
     args = ap.parse_args()
+
+    global PYEXE
+    if args.python:
+        PYEXE = os.path.abspath(args.python)
 
     wire_dataset(args.dataset)
 

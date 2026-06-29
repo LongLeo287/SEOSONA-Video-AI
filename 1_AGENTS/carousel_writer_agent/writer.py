@@ -41,7 +41,9 @@ class CarouselWriterAgent:
         if isinstance(response_json, list) and len(response_json) > 0:
             return response_json
 
-        # Fallback mock data demonstrating multiple archetypes
+        # Offline placeholder (LLM returned nothing / no API key). Logged loudly so this
+        # demo content is never mistaken for generated output.
+        print("[Carousel Writer] WARNING: LLM unavailable — returning OFFLINE PLACEHOLDER carousel (not real content).")
         return [
             {
                 "type": "cover",
