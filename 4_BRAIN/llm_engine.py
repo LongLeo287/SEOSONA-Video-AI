@@ -626,20 +626,21 @@ def generate_json_from_prompt(system_prompt: str, user_prompt: str, model_name: 
     json_instructions = "\n\nCRITICAL: You MUST output ONLY valid JSON format. Do not use markdown blocks like ```json. Start directly with { or [."
     full_system_prompt = system_prompt + json_instructions
 
-    # --- Try Gemini ---
+    # --- Try Gemini (google-genai SDK; FREE tier = Flash models, NOT Pro) ---
     if gemini_key and "gemini" in model_name.lower():
         try:
-            import google.generativeai as genai
-            genai.configure(api_key=gemini_key)
-            model = genai.GenerativeModel(
-                model_name=model_name,
-                system_instruction=full_system_prompt
+            from google import genai
+            from google.genai import types
+            client = genai.Client(api_key=gemini_key)
+            response = client.models.generate_content(
+                model=model_name,
+                contents=user_prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=full_system_prompt,
+                    response_mime_type="application/json",
+                ),
             )
-            response = model.generate_content(
-                user_prompt,
-                generation_config=genai.GenerationConfig(response_mime_type="application/json")
-            )
-            text_response = response.text.strip()
+            text_response = (response.text or "").strip()
             return _clean_and_parse(text_response, system_prompt, user_prompt, model_name)
         except Exception as e:
             print(f"[LLM Engine] Gemini error: {e}. Falling back to offline NLP.")
@@ -691,14 +692,15 @@ def generate_text_from_prompt(system_prompt: str, user_prompt: str, model_name: 
 
     if gemini_key and "gemini" in model_name.lower():
         try:
-            import google.generativeai as genai
-            genai.configure(api_key=gemini_key)
-            model_obj = genai.GenerativeModel(
-                model_name=model_name,
-                system_instruction=system_prompt
+            from google import genai
+            from google.genai import types
+            client = genai.Client(api_key=gemini_key)
+            response = client.models.generate_content(
+                model=model_name,
+                contents=user_prompt,
+                config=types.GenerateContentConfig(system_instruction=system_prompt),
             )
-            response = model_obj.generate_content(user_prompt)
-            return response.text.strip()
+            return (response.text or "").strip()
         except Exception as e:
             print(f"[LLM Engine] Gemini text error: {e}")
 
