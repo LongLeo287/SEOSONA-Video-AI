@@ -88,6 +88,51 @@ def _gittree():
             "edges": [["a", "b"], ["b", "c"], ["b", "d"], ["c", "d"]],
             "branches": {"main": nc.BLUE, "feature": nc.GREEN}, "head": "d"}
 
+# ---------------------------------------------------------------- Gemini prose
+def _gemini_script(gh, scenes):
+    """Write clean Vietnamese segments + 2-tone headings via the LLM (Gemini free tier
+    when GEMINI_API_KEY is set; offline → returns None so the deterministic path runs).
+    Fixes 'voice lỗi tiếng Việt': the LLM TRANSLATES the English desc and never dumps raw
+    English / the hyphenated repo slug into the spoken text."""
+    try:
+        import llm_engine
+    except Exception:
+        return None
+    if not os.getenv("GEMINI_API_KEY"):
+        return None  # only the real LLM is worth it here; offline NLP can't translate well
+    kinds = [sc.get("component") or "text" for sc in scenes]
+    name, desc = gh.get("name", ""), (gh.get("desc") or "")
+    sysp = ("Bạn là biên kịch video tin tức công nghệ tiếng Việt cho kênh SEOSONA. "
+            "Viết kịch bản NGẮN, tự nhiên, thuần Việt. TUYỆT ĐỐI KHÔNG chèn nguyên câu "
+            "tiếng Anh vào lời đọc; DỊCH mô tả sang tiếng Việt. Tên repo đọc tự nhiên, "
+            "lần đầu nêu tên rồi sau gọi 'dự án này' / 'công cụ này' (đừng lặp slug). "
+            "Mỗi cảnh 1 ý, ~15-28 từ. Số đọc bình thường.")
+    userp = (f"Repo GitHub: {name}\nMô tả (tiếng Anh, hãy DỊCH): {desc}\n"
+             f"Sao: {gh.get('stars_h')}, ngôn ngữ: {gh.get('lang')}, "
+             f"chủ đề: {', '.join((gh.get('topics') or [])[:6])}\n"
+             f"Số cảnh: {len(scenes)}. Vai trò từng cảnh: {kinds}\n"
+             f"Trả JSON: {{\"scenes\":[{{\"seg\":\"lời đọc\",\"h1\":\"dòng 1 (≤22)\","
+             f"\"h2\":\"từ nhấn (≤22)\"}}]}} đúng {len(scenes)} phần tử, cảnh cuối là CTA theo dõi SEOSONA.")
+    try:
+        out = llm_engine.generate_json_from_prompt(sysp, userp, model_name="gemini-2.5-flash")
+        rows = out.get("scenes") if isinstance(out, dict) else (out if isinstance(out, list) else None)
+        if not rows or len(rows) < len(scenes):
+            return None
+        import re as _re
+        def _clean_voice(s):
+            s = _re.sub(r"[\U0001F000-\U0001FAFF\U00002600-\U000027BF]", "", str(s))  # emoji
+            s = _re.sub(r"https?://\S+|[→&%$#=]", " ", s)                              # urls/symbols
+            return _re.sub(r"\s+", " ", s).strip()
+        SEG = [_clean_voice(r.get("seg", "")) for r in rows[:len(scenes)]]
+        HEAD = [(str(r.get("h1", name)).strip(), str(r.get("h2", "")).strip()) for r in rows[:len(scenes)]]
+        if any(not s for s in SEG):
+            return None
+        return SEG, HEAD
+    except Exception as e:
+        print(f"[make_video] Gemini script failed ({e}) — deterministic prose.")
+        return None
+
+
 # ---------------------------------------------------------------- auto content
 def auto_content(gh, template):
     """Walk a template's scenes; produce segments + 2-tone headings + real data."""
@@ -119,7 +164,9 @@ def auto_content(gh, template):
                 h1, h2 = "Được tin dùng bởi", "cộng đồng dev"
             data = {"big": stars, "label": "★  GITHUB STARS"}
         elif kind == "repo":
-            seg = f"{name}: {desc}."
+            # NEVER speak the raw English desc — VieNeu mangles it. Voice = Vietnamese;
+            # the English desc still shows on the repo CARD (display), not in narration.
+            seg = f"{name} là một dự án mã nguồn mở đang được giới công nghệ chú ý."
             h1, h2 = name, "trên GitHub"
             data = slots["repo"]
         elif kind == "compare":
@@ -153,6 +200,16 @@ def auto_content(gh, template):
         SEG.append(seg); HEAD.append((h1, h2))
         if data is not None: DATA[i] = data
 
+    # Prefer clean Gemini-written Vietnamese prose (translates the English desc, no slug
+    # spam) — the deterministic SEG/HEAD above is the offline fallback. DATA (real repo
+    # card / stars / badges) is kept either way.
+    g = _gemini_script(gh, scenes)
+    if g:
+        SEG, HEAD = g
+        print("[make_video] script: Gemini (clean Vietnamese)")
+    else:
+        print("[make_video] script: deterministic template (no GEMINI_API_KEY)")
+
     lex = dict(_BASE_LEX)
     return compose(template, segments=SEG, headings=HEAD, scene_data=DATA, lexicon=lex)
 
@@ -165,7 +222,8 @@ def make(url, *, template=None, theme=None, output=None, project_dir=None, aspec
     template = template or pick_t
     theme = theme or pick_theme
     name = gh["name"]
-    project_dir = project_dir or os.path.join(ROOT, "8_WORKSPACE", "auto", name)
+    # Output folder = the project name directly under 8_WORKSPACE (no "auto" wrapper).
+    project_dir = project_dir or os.path.join(ROOT, "8_WORKSPACE", name)
     output = output or os.path.join(project_dir, f"{name} - SEOSONA.mp4")
     print(f"[make_video] {gh['full']} → template={template} theme={theme} aspect={aspect or 'template'}  ({reason})")
     content = auto_content(gh, template)

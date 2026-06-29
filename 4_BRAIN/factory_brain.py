@@ -114,7 +114,10 @@ def record_and_gate(policy):
         man = pm.load(pdir)
         if not man:
             # tag any untagged finished project (best-effort variant inference)
-            has_mp4 = any(f.endswith(".mp4") for _r, _d, fs in os.walk(pdir) for f in fs)
+            # DIRECT mp4 only (not recursive) — else a CONTAINER dir (e.g. 8_WORKSPACE/auto
+            # holding many project subfolders) gets mis-tagged as one video.
+            has_mp4 = any(f.endswith(".mp4") for f in os.listdir(pdir)
+                          if os.path.isfile(os.path.join(pdir, f)))
             if not has_mp4:
                 continue
             man = pm.record(pdir)
