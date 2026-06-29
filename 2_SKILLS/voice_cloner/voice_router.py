@@ -65,13 +65,14 @@ def _lora_synth(text, audio_out):
 
 # ---------------------------------------------------------------------------
 # SINGLE APPROVED VOICE POLICY
-# The brand voice is ONE approved male preset — "Trọng Hữu" (user-selected
-# 2026-06-25). All other VieNeu presets (female AND the other male ones) are
-# removed from use: any requested voice is coerced to this single approved one.
-# The edge fallback is locked to the approved male Vietnamese voice.
+# The brand voice is ONE approved male preset — "Gia Bảo" (user-selected
+# 2026-06-29 after A/B-listening all 6 male VieNeu presets; "giọng mượt mà").
+# All other VieNeu presets (female AND the other 5 male ones) are removed from
+# use: any requested voice is coerced to this single approved one. The edge
+# fallback is locked to the approved male Vietnamese voice.
 # To change the brand voice, edit APPROVED_VOICE (must be a real VieNeu preset).
 # ---------------------------------------------------------------------------
-APPROVED_VOICE = "Trọng Hữu"
+APPROVED_VOICE = "Gia Bảo"
 MALE_VIENEU_PRESETS = {APPROVED_VOICE}   # the only voice allowed
 DEFAULT_MALE_PRESET = APPROVED_VOICE
 MALE_EDGE_VOICE = "vi-VN-NamMinhNeural"

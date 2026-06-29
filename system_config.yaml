@@ -47,7 +47,7 @@ profiles:
       required_gender: "male"
       required_accent: "southern"
       # The brand news voice: a fixed VieNeu preset (consistent, no clone drift).
-      model: "Trọng Hữu"
+      model: "Gia Bảo"
       # Fallback runs only if VieNeu fails — NORTHERN, NOT the brand voice.
       fallback_voice: "vi-VN-NamMinhNeural"
     logo: "Seosona_Logo.png"
@@ -73,7 +73,7 @@ profiles:
       # TODO: record and save as 7_ASSETS/voice/profiles/chiquyet_ref.wav
       reference_audio: "7_ASSETS/voice/profiles/chiquyet_ref.wav"
       # Single approved brand voice (locked system-wide in voice_router.APPROVED_VOICE).
-      model: "Trọng Hữu"
+      model: "Gia Bảo"
       required_gender: "male"
       required_accent: "southern"
       fallback_engine: "edge-tts"

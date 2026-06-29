@@ -55,7 +55,7 @@ def _load_profile(brand="seosona"):
     Falls back to a SEOSONA-shaped default if the file/brand is missing — the
     engine must never crash on a config gap."""
     default = {"logo": "Seosona_Logo.png",
-               "voice": {"engine": "vieneu", "model": "Trọng Hữu",
+               "voice": {"engine": "vieneu", "model": "Gia Bảo",
                          "reference_audio": "",  # news = stable preset, NOT a clone (clone = CQA only)
                          "required_gender": "male", "required_accent": "southern",
                          "fallback_voice": "vi-VN-NamMinhNeural"}}
