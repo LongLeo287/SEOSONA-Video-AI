@@ -40,16 +40,23 @@ the inner loop; humans set strategy + guardrails.
    real metrics   analyze+learn   pick topics/variants  enqueue+produce+publish
 ```
 
-| Stage | What it does | Component (✅ exists / ⚠️ orphaned / 🔨 to build) |
+| Stage | What it does | Component (✅ built / ⚠️ needs creds) |
 |---|---|---|
-| **PLAN** | pick topics + template + variants for the next batch | 🔨 strategist + ✅ trend_jacking/scraper |
+| **PLAN** | pick topics + template + variants for the next batch | ✅ `.agents/skills/factory-strategist` + trend_jacking/scraper |
 | **PRODUCE** | render the videos | ✅ `video_engine → native_composer` (+ talking-head) |
 | **QA** | gate quality before publish | ✅ `4_BRAIN/quality_scorer.py` |
-| **PUBLISH** | post to YT/TikTok/FB/Drive | ⚠️ `publisher_agent` (needs creds — Phase 4) |
-| **MEASURE** | pull real performance back in | 🔨 performance ingest |
-| **LEARN** | turn metrics into decisions | ⚠️ `analytics_feedback_agent` (re-ground) |
-| **ORCHESTRATE** | run the whole loop unattended | 🔨 `4_BRAIN/factory.py` + cron |
+| **PUBLISH** | post to YT/TikTok/FB/Drive | ⚠️ `publisher_agent` — built & gated, **needs creds (Phase 4)** |
+| **MEASURE** | pull real performance back in | ✅ `analytics_feedback_agent/performance_ingest.py` (⚠️ live fetch needs creds) |
+| **LEARN** | turn metrics into decisions | ✅ `factory_ledger.py` + `analytics_feedback_agent` (re-grounded) |
+| **ORCHESTRATE** | run the whole loop unattended | ✅ `4_BRAIN/factory_brain.py` (cron-ready) |
+| **TAG** | tie each video to its variant | ✅ `4_BRAIN/production_manifest.py` (keystone) |
 | **QUEUE (reliability)** | batch with retry/timeout/idempotency | ✅ `scripts/queue_processor.py` |
+
+> **Status 2026-06-29:** the loop is BUILT and runs end-to-end on the QA signal
+> (`factory_brain.py --dry-run` verified). Two integrations remain credential-gated:
+> live **PUBLISH** and live **MEASURE** (Phase 4 — add `1_CONFIG/credentials/*`).
+> Until then the ledger learns from the QA score and auto-upgrades to real metrics
+> the moment they land (no code change).
 
 ---
 
@@ -58,16 +65,15 @@ the inner loop; humans set strategy + guardrails.
 **Works (production line is real):** `queue_processor.py` (crash-isolated batch),
 both engines, `quality_scorer`, 11 agents, hermes telegram remote, 26 SOPs.
 
-**Orphaned (must re-ground):** `MASTER_OPERATION.md` and
-`analytics_feedback_agent/feedback_generator.py` describe a **Supergraph /
-`EVALUATE_NODE` / OODA** feedback architecture that was **retired** when the engine
-moved to `video_engine.py`. The self-improvement wiring therefore **does not run
-today** — re-establishing it on the new engine is the core of this north-star, not
-a nice-to-have. (Follow-up: update MASTER_OPERATION to drop the dead Supergraph
-description — see [[render-engine-video-engine]].)
+**Re-grounded (2026-06-29):** `analytics_feedback_agent/feedback_generator.py` used
+to read a **Supergraph / `EVALUATE_NODE` / OODA** state that was **retired** with the
+engine migration (so it never ran). It now reads the `production_manifest.json` the
+new engine produces; `MASTER_OPERATION.md` STEP 7 was corrected to match.
 
-**Missing:** real-world performance ingest, a learning ledger that biases
-production, an orchestrator loop, and graduated-autonomy guardrails.
+**Now built (2026-06-29):** real-world performance ingest (creds-gated), the learning
+ledger that biases production (`factory_ledger.py`), the orchestrator loop
+(`factory_brain.py`), and graduated-autonomy guardrails (`factory_policy.yaml`).
+What remains is **credentials** (live publish + metrics) and **cron** — see §7.
 
 ---
 
@@ -141,17 +147,20 @@ the loop); **every auto-action logged**.
 
 ## 7. Build plan (mapped to PRODUCT_ROADMAP phases)
 
-| Step | Builds | Roadmap phase | Depends on |
-|---|---|---|---|
-| A | Re-ground feedback on `video_engine` + variant tagging (manifest) | 3→6 | — |
-| B | Factory Brain orchestrator (`factory.py`) + cron, L1 autonomy | 3/5 | A |
-| C | Performance ingest (real metrics) | 4 | publish creds |
-| D | Strategist + learning ledger → template/variant weighting | 5/6 | C |
-| E | Dashboard observability + graduate to L2/L3 | 6 | D |
+| Step | Builds | Status |
+|---|---|---|
+| A | Variant tagging (manifest) + re-ground feedback on `video_engine` | ✅ DONE 2026-06-29 |
+| B | Factory Brain orchestrator (`factory_brain.py`) + guardrails, L1 | ✅ DONE 2026-06-29 |
+| C | Performance ingest (real metrics) | ⚠️ scaffold DONE; live fetch needs creds (Phase 4) |
+| D | Strategist + learning ledger → template weighting | ✅ DONE 2026-06-29 |
+| E | Dashboard observability + graduate to L2/L3 | ⬜ next |
 
-**Start point when we return:** Step A (variant tagging + re-grounding feedback) —
-it's the keystone; nothing learns until each video is tagged and its outcome
-captured. It needs no external credentials, so it's unblocked today.
+**Remaining to "fully autonomous":**
+1. **Credentials** (`1_CONFIG/credentials/*`) → flips on live PUBLISH + MEASURE so the
+   ledger learns from real views/CTR/retention, not just QA.
+2. **Cron** the loop (`4_BRAIN/factory_brain.py`) for unattended turns.
+3. **Dashboard** (Step E) to watch cohorts improve + graduate L1→L2→L3.
+4. **Strategist** runs each turn to fill the queue from ledger + trends (skill ready).
 
 ---
 
