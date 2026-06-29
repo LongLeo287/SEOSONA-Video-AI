@@ -65,10 +65,18 @@ the inner loop; humans set strategy + guardrails.
 **Works (production line is real):** `queue_processor.py` (crash-isolated batch),
 both engines, `quality_scorer`, 11 agents, hermes telegram remote, 26 SOPs.
 
-**Re-grounded (2026-06-29):** `analytics_feedback_agent/feedback_generator.py` used
-to read a **Supergraph / `EVALUATE_NODE` / OODA** state that was **retired** with the
-engine migration (so it never ran). It now reads the `production_manifest.json` the
-new engine produces; `MASTER_OPERATION.md` STEP 7 was corrected to match.
+**Feedback — the accurate picture (corrected 2026-06-29):** what was retired is the
+heavyweight `pipeline_manager` engine. `workflow_router` still wraps the NEW
+`video_engine` in a *lightweight* `graph_executor.SuperGraph` whose `evaluate_node`
+DOES call `analytics_feedback_agent.feedback_generator` — so a post-mortem already
+runs for the `video:news` / `video:course` paths (it was never fully dead).
+Two real gaps remained: (a) the GitHub one-shot `make:video` bypasses
+`workflow_router`, so it got no feedback; (b) there was no cross-video LEARNING
+(each post-mortem was standalone). This north-star fixes both: `feedback_generator`
+now also accepts a produced project dir, and `factory_brain` tags every video
+(`production_manifest`) + aggregates them (`factory_ledger`) regardless of entry path.
+`factory_brain` is the consolidated loop going forward; `workflow_router.evaluate_node`
+stays as the inline per-render hook.
 
 **Now built (2026-06-29):** real-world performance ingest (creds-gated), the learning
 ledger that biases production (`factory_ledger.py`), the orchestrator loop
@@ -105,9 +113,9 @@ gate); each output is registered with its variant tags so the loop can close.
 
 | # | Machine | New artifact | Reuses | Role |
 |---|---|---|---|---|
-| 1 | **Factory Brain** | `4_BRAIN/factory.py` + `.agents/skills/factory-operator` | queue_processor, engines | Runs PLAN→…→LEARN unattended; cron-triggered |
+| 1 | **Factory Brain** | `4_BRAIN/factory_brain.py` | queue_processor, engines | Runs PLAN→…→LEARN unattended; cron-triggered |
 | 2 | **Performance ingest** | extend `analytics_feedback_agent` (`performance_ingest.py`) | publisher creds | OBSERVE: metrics → `3_MEMORY/performance/` |
-| 3 | **Learning ledger** | `3_MEMORY/learning/ledger.json` + `7_ASSETS/templates/_performance.json` | quality_scorer history | ORIENT: variant → KPI memory |
+| 3 | **Learning ledger** | `3_MEMORY/learning/ledger.json` + `3_MEMORY/learning/template_weights.json` | quality_scorer history | ORIENT: variant → KPI memory |
 | 4 | **Strategist** | `.agents/skills/factory-strategist/SKILL.md` | trend_jacking, scraper, ledger | DECIDE: next-batch plan → queue |
 | 5 | **Variant tagging** | `production_manifest.json` per output | native_composer/make_video | Ties each video to its template/hook/thumbnail/length/voice |
 | 6 | **Guardrails** | `1_CONFIG/factory_policy.yaml` | — | Approval gate, budget caps, kill switch |
@@ -118,8 +126,8 @@ No new render engine, no new queue, no new agent that duplicates an existing one
 
 ## 5. How it actually learns (self-improvement mechanics)
 
-- **Template selection** is weighted by `_performance.json` (winners get picked
-  more; losers decay) — `make_video`/strategist read it instead of round-robin.
+- **Template selection** is weighted by `3_MEMORY/learning/template_weights.json`
+  (winners get picked more; losers decay) — strategist reads it instead of round-robin.
 - **Hook / title / thumbnail** run as tagged A/B variants; outcomes recorded by
   variant; winning patterns promoted into the default set, losers retired.
 - **Length & pacing** tuned from retention curves (where viewers drop off).

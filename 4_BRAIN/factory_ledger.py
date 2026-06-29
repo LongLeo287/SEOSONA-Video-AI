@@ -25,7 +25,10 @@ sys.path.insert(0, os.path.dirname(__file__))
 import production_manifest as pm
 
 LEDGER_PATH = os.path.join(ROOT, "3_MEMORY", "learning", "ledger.json")
-WEIGHTS_PATH = os.path.join(ROOT, "7_ASSETS", "templates", "_performance.json")
+# NOTE: kept OUT of 7_ASSETS/templates/ on purpose — native_composer.list_templates()
+# enumerates every *.json there, so a weights file placed inside would be mis-read as
+# a (broken) template. Lives beside the ledger instead.
+WEIGHTS_PATH = os.path.join(ROOT, "3_MEMORY", "learning", "template_weights.json")
 
 DIMENSIONS = ["template", "brand", "aspect", "voice", "topic", "length_bucket"]
 

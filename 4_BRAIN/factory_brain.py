@@ -23,6 +23,12 @@ autonomy; run it by hand to do one supervised turn.
 import os, sys, json, subprocess
 from datetime import datetime, timezone
 
+# Never die on a log line: a cron/Windows cp1252 console can't encode the emoji
+# banners — force UTF-8 on our streams (same guard as native_composer/queue_processor).
+for _s in (sys.stdout, sys.stderr):
+    try: _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception: pass
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 for p in (ROOT, os.path.dirname(__file__)):
     if p not in sys.path:

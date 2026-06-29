@@ -3,11 +3,14 @@
 
 The system runs on a **unified engine**: Router (`4_BRAIN/workflow_router.py`) →
 `4_BRAIN/video_engine.py` (entry + quality gate) → `4_BRAIN/native_composer.py`
-(render). The earlier **Supergraph / OODA / `EVALUATE_NODE`** DAG was **retired** with
-that migration — do not rely on it; it no longer runs.
+(render). The heavyweight `pipeline_manager` engine was **retired** in that migration.
+`workflow_router` still wraps `video_engine` in a *lightweight* `graph_executor.SuperGraph`
+(`MAIN_PIPELINE` → check → `EVALUATE`) — that `EVALUATE` node still runs the feedback
+agent for the `video:news`/`video:course` paths. It is a thin quality-gate wrapper,
+NOT the old retired pipeline.
 
-The machine-learning feedback it used to promise is re-established, on the new
-engine, by the **Autonomous Factory loop** — see the north-star
+Cross-video machine learning (so production self-improves, not just one-off
+post-mortems) is added by the **Autonomous Factory loop** — see the north-star
 `6_SOP/AUTONOMOUS_FACTORY_LOOP.md` (manifest → ledger → strategist, run by
 `4_BRAIN/factory_brain.py`). Workflow boundaries: `SEOSONA_WORKFLOW_BOUNDARY_MAP.md`.
 Image and video workflows are separate operating lanes.

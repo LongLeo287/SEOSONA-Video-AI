@@ -22,7 +22,7 @@ write the queue; `factory_brain.py` produces it.
 1. **Learning ledger** — `3_MEMORY/learning/ledger.json` (rebuild fresh first):
    `python 4_BRAIN/factory_ledger.py`  → ranks template / topic / aspect / voice /
    length by `avg_score` (real metrics when present, QA score until then).
-2. **Template weights** — `7_ASSETS/templates/_performance.json` (selection bias).
+2. **Template weights** — `3_MEMORY/learning/template_weights.json` (selection bias).
 3. **Trends / ideas** — `1_AGENTS/trend_jacking_agent` + `scraper_agent` for fresh topics.
 4. **Policy** — `1_CONFIG/factory_policy.yaml` (`batch_max`, `explore_ratio`).
 
