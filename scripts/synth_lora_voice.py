@@ -19,6 +19,7 @@ import sys, os, argparse
 
 REPO = os.path.join(os.path.dirname(__file__), "..", "2_KNOWLEDGE", "external_toolkits", "VieNeu-TTS")
 REPO = os.path.abspath(REPO)
+sys.path.insert(0, os.path.join(REPO, "src"))   # vieneu + vieneu_utils on path at import time
 DEFAULT_ADAPTER = os.path.join(REPO, "finetune", "output", "VieNeu-TTS-0.3B-LoRA")
 BASE = "pnnbao-ump/VieNeu-TTS-0.3B"
 
@@ -41,12 +42,33 @@ def _engine(adapter):
     return _TTS
 
 
-def synth(text, out_path, adapter=DEFAULT_ADAPTER, temperature=0.4, top_k=50):
+_LEX = None
+def _pron(text):
+    """Apply the brand pronunciation lexicon so English terms (SEO, website, AI…) are
+    READ correctly — the display text stays elsewhere; here we feed TTS the spoken form.
+    Same rule the synthesized engine uses (news_video_standards RULE #1)."""
+    global _LEX
+    if _LEX is None:
+        import re
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "4_BRAIN"))
+        try:
+            import news_video_standards as nvs
+            _LEX = (dict(nvs.PRONUNCIATION_LEXICON), re)
+        except Exception:
+            _LEX = ({}, re)
+    lex, re = _LEX
+    for k in sorted(lex, key=len, reverse=True):
+        text = re.sub(r'(?<![A-Za-z0-9])' + re.escape(k) + r'(?![A-Za-z0-9])', lex[k], text)
+    return text
+
+
+def synth(text, out_path, adapter=DEFAULT_ADAPTER, temperature=0.7, top_k=50, apply_lexicon=True):
     import soundfile as sf
     from vieneu_utils.phonemize_text import phonemize_with_dict
     tts = _engine(adapter)
     sr = getattr(tts, "sample_rate", 24000) or 24000
-    phones = phonemize_with_dict(text)
+    spoken = _pron(text) if apply_lexicon else text   # English terms → Vietnamese pronunciation
+    phones = phonemize_with_dict(spoken)
     prompt = f"<|TEXT_PROMPT_START|>{phones}<|TEXT_PROMPT_END|><|SPEECH_GENERATION_START|>"
     output_str = tts._infer_torch(tts.tokenizer.encode(prompt), temperature=temperature, top_k=top_k)
     wav = tts._decode(output_str)          # engine's correct codes→audio decode

@@ -37,6 +37,7 @@ To add a new SOP, drop it here and add a line to the right group below.
 | `publishing_checklist.md` | pre-publish checklist |
 | `youtube_seo_sop.md` | YouTube SEO |
 | `YOUTUBE_CHANNEL_OPERATIONS_MCP.md` | channel operations (MCP) |
+| `GOOGLE_DRIVE_SHEETS_LAYER.md` | Drive/Sheets management layer — publish-output vs manage-everything (two roles); credential setup |
 | `SEO_CONTENT_STRATEGY.md` | content strategy |
 
 ## 🗺️ System, Operation & Maps
