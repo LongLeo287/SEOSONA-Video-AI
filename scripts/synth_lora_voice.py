@@ -88,6 +88,11 @@ def synth(text, out_path, adapter=DEFAULT_ADAPTER, temperature=0.7, top_k=50,
             pad_token_id=tts.tokenizer.pad_token_id or end_id)
     output_str = tts.tokenizer.decode(out[0, ids.shape[-1]:].cpu().tolist(), add_special_tokens=False)
     wav = tts._decode(output_str)          # engine's correct codes→audio decode
+    # Peak-normalize — raw decode can be very quiet (-30dB); makes standalone samples
+    # audible to judge. (The video engine loudnorms downstream anyway.)
+    import numpy as _np
+    peak = float(_np.max(_np.abs(wav))) or 1.0
+    wav = (wav / peak * 0.95).astype("float32")
     sf.write(out_path, wav, sr)
     return out_path, len(wav) / sr
 
