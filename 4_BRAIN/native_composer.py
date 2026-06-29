@@ -421,6 +421,9 @@ def _css(brand="seosona", W=1080, H=1920):
 .scbg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .scglow{position:absolute;left:50%;top:34%;width:1000px;height:1000px;transform:translate(-50%,-50%);border-radius:50%}
 .scghost{position:absolute;left:50%;top:58%;transform:translateX(-50%);font-weight:900;font-size:300px;line-height:1;white-space:nowrap;letter-spacing:-6px;text-transform:uppercase}
+/* Soft "liquid" depth blobs (brand colours, light-mode). Animated via GSAP (not CSS
+   @keyframes) so every captured frame is deterministic. Low opacity = subtle premium depth. */
+.scblob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.13;z-index:0;pointer-events:none;will-change:transform}
 .scene>.kicker,.scene>.head,.scene>.comp{position:relative;z-index:1}
 .kicker{font-weight:800;font-size:30px;letter-spacing:3px;padding:14px 30px;border-radius:999px;text-transform:uppercase}
 .head{margin-top:38px;text-align:center;line-height:1.08}
@@ -668,7 +671,15 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
             glowbg, ghostcol = "radial-gradient(circle,#ffffff2b 0%,transparent 70%)", "#ffffff14"
         else:
             glowbg, ghostcol = f"radial-gradient(circle,{acc}1f 0%,transparent 70%)", "#0F172A0A"
-        scbg = (f'<div class="scbg"><div class="scglow" style="background:{glowbg}"></div>'
+        # Brand-colour depth blobs (light-mode safe): scene accent + brand coral; white on hero.
+        _coral = _theme(brand).get("coral", "#E2724D")
+        if hero:
+            b1c, b2c, bop = "#ffffff", "#ffffff", "opacity:.09"
+        else:
+            b1c, b2c, bop = acc, _coral, "opacity:.13"
+        blobs = (f'<div class="scblob" id="{cid}_bl1" style="width:560px;height:560px;left:-130px;top:14%;background:{b1c};{bop}"></div>'
+                 f'<div class="scblob" id="{cid}_bl2" style="width:520px;height:520px;right:-150px;top:54%;background:{b2c};{bop}"></div>')
+        scbg = (f'<div class="scbg">{blobs}<div class="scglow" style="background:{glowbg}"></div>'
                 f'<div class="scghost" style="color:{ghostcol}">{_esc(sc["kicker"])}</div></div>')
         scene_html.append(
             f'<div class="{scls}" id="{cid}"{sstyle} data-start="{ap:.2f}" data-duration="{d:.2f}" data-track-index="{2+(i%2)*3}">'
@@ -693,6 +704,10 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
         adur = min(max(d, 2.0), 7.0)
         tweens.append(f'tl.fromTo("#{cid} .scglow",{{scale:0.92,opacity:0}},{{scale:1.12,opacity:1,duration:{adur:.2f},ease:"sine.inOut"}},{ap:.2f});')
         tweens.append(f'tl.fromTo("#{cid} .scghost",{{x:-26,opacity:0}},{{x:26,opacity:1,duration:{adur:.2f},ease:"sine.inOut"}},{ap:.2f});')
+        # Liquid depth: the two brand blobs drift slowly across the scene (deterministic via
+        # GSAP). Position only — opacity is owned by the inline style so they stay subtle.
+        tweens.append(f'tl.fromTo("#{cid}_bl1",{{x:0,y:0}},{{x:54,y:-36,duration:{adur:.2f},ease:"sine.inOut"}},{ap:.2f});')
+        tweens.append(f'tl.fromTo("#{cid}_bl2",{{x:0,y:0}},{{x:-46,y:32,duration:{adur:.2f},ease:"sine.inOut"}},{ap:.2f});')
         # Recipe 1 (craft/motion-recipes-seosona.md): a bignum should TICK/POP + grow its
         # glow, not just slide up — gives the number impact. Glow grows on every scene; the
         # pop is skipped on the hero scene 0 (which already has its own intro set at t=0).
@@ -778,7 +793,17 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
             tweens.append(f'tl.set("#k{ci}_{wi}",{{color:"{ch["acc"]}",fontWeight:800}},{w["start"]:.2f});')
             tweens.append(f'tl.set("#k{ci}_{wi}",{{color:"#E5E7EB",fontWeight:700}},{w["end"]:.2f});')
 
-    js = "window.__timelines=window.__timelines||{};const tl=gsap.timeline({paused:true});" + "".join(tweens) + 'window.__timelines["main"]=tl;'
+    # fitText: shrink any oversized number/headline to fit its container BEFORE the timeline
+    # is built (runs once at load → identical on every captured frame, so it's deterministic).
+    # Stops the long-number / long-word overflow that made big stats spill past the card.
+    fit_js = ("(function(){function fit(sel,minPx){var e=document.querySelectorAll(sel);"
+              "for(var i=0;i<e.length;i++){var el=e[i],p=el.parentElement||el,"
+              "av=(p.clientWidth||0)*0.96;if(!av)continue;"
+              "var s=parseFloat(getComputedStyle(el).fontSize)||60,g=0;"
+              "while(el.scrollWidth>av&&s>minPx&&g++<90){s-=2;el.style.fontSize=s+'px';}}}"
+              "fit('.c-bignum .big',96);fit('.c-stats .stnum',38);fit('.c-mockup .mk-num',30);"
+              "fit('.head .l1',46);fit('.head .l2',46);})();")
+    js = "window.__timelines=window.__timelines||{};" + fit_js + "const tl=gsap.timeline({paused:true});" + "".join(tweens) + 'window.__timelines["main"]=tl;'
     VW, VH = _DIMS.get(aspect, (1080, 1920))
     res = "portrait" if VH >= VW else "landscape"
     doc = (f'<!doctype html><html lang="vi" data-resolution="{res}"><head><meta charset="UTF-8"/>'
