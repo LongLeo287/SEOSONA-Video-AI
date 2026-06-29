@@ -1,0 +1,28 @@
+# SEOSONA Video — Autonomous Factory Policy (guardrails)
+# The factory loop (4_BRAIN/factory_brain.py) reads this BEFORE every run.
+# Autonomy is graduated — see L0..L3 in 6_SOP/AUTONOMOUS_FACTORY_LOOP.md.
+
+autonomy_level: 1          # 0=manual  1=auto-produce+approve-to-publish  2=auto-publish≤cap  3=full
+kill_switch: false         # true → factory_brain refuses to run (hard stop)
+
+quality:
+  min_score: 70            # QA gate: a video below this is NOT eligible to publish
+  require_pass: true       # quality_scorer 'pass' must be true to publish
+
+publish:
+  enabled: false           # master publish switch (needs 1_CONFIG/credentials/* — Phase 4)
+  require_approval: true    # L1: a human must approve before anything goes live
+  platforms: []            # e.g. [google_drive, youtube] once credentials exist
+  daily_cap: 3             # max auto-publishes/day at L2 (ignored at L0/L1)
+
+production:
+  batch_max: 10            # max videos produced per loop run
+  retries: 2               # per-item (passed to queue_processor)
+  timeout_s: 1800          # per-item render timeout
+
+learning:
+  rebuild_ledger: true     # rebuild the learning ledger after each run
+  explore_ratio: 0.2       # fraction of each batch reserved for exploration (new variants)
+
+budget:
+  max_videos_per_day: 30   # absolute safety cap regardless of level

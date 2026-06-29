@@ -1,10 +1,16 @@
 # STANDARD OPERATION DOCUMENTS (MASTER OPERATION)
-*Updated: 2026-06-23 — Version v4.0 (SEOSONA OS Supergraph & HyperFrames Engine)*
+*Updated: 2026-06-29 — Version v5.0 (unified video_engine + Autonomous Factory loop)*
 
-The system operates on a **Supergraph DAG Architecture** going from Router (`4_BRAIN/workflow_router.py`) to `MAIN_PIPELINE`, running through the **OODA Loop** for auto-correction, and ending at `EVALUATE_NODE` for machine learning feedback.
+The system runs on a **unified engine**: Router (`4_BRAIN/workflow_router.py`) →
+`4_BRAIN/video_engine.py` (entry + quality gate) → `4_BRAIN/native_composer.py`
+(render). The earlier **Supergraph / OODA / `EVALUATE_NODE`** DAG was **retired** with
+that migration — do not rely on it; it no longer runs.
 
-Workflow boundaries are defined in `6_SOP/SEOSONA_WORKFLOW_BOUNDARY_MAP.md`.
-Image workflows and video workflows are separate operating lanes.
+The machine-learning feedback it used to promise is re-established, on the new
+engine, by the **Autonomous Factory loop** — see the north-star
+`6_SOP/AUTONOMOUS_FACTORY_LOOP.md` (manifest → ledger → strategist, run by
+`4_BRAIN/factory_brain.py`). Workflow boundaries: `SEOSONA_WORKFLOW_BOUNDARY_MAP.md`.
+Image and video workflows are separate operating lanes.
 
 ## ENTRY POINT
 
@@ -71,11 +77,17 @@ The router automatically detects the input:
 - **Output:** `8_WORKSPACE/<ProjectName>/Thumbnail/<ProjectName>_Thumbnail.png`
 - Thumbnail generation is part of the production gate. Do not set `SEOSONA_SKIP_THUMBNAIL=1` for final delivery.
 
-### STEP 7: EVALUATE & MACHINE LEARNING (SUPERGRAPH)
-- `EVALUATE_NODE` catches the output from the main pipeline.
-- `1_AGENTS/analytics_feedback_agent/feedback_generator.py` analyzes quality score and OODA retries.
-- Output 1 (Human): `Báo_cáo_chất_lượng.md` bundled inside `8_WORKSPACE/<ProjectName>/`.
-- Output 2 (Machine): `post_mortem_<id>.json` sent to `3_MEMORY/reports/`.
+### STEP 7: EVALUATE & LEARN (Autonomous Factory loop)
+- `4_BRAIN/quality_scorer.py` gates the output (score/pass) — the pre-publish QA gate.
+- `4_BRAIN/production_manifest.py` tags the finished video with its variant + QA score
+  (`production_manifest.json`) — the keystone that lets the factory learn.
+- `1_AGENTS/analytics_feedback_agent/feedback_generator.py` (re-grounded on the
+  manifest, no longer on the retired `EVALUATE_NODE`) writes a post-mortem:
+  - Human: `Bao_cao_chat_luong.md` inside `8_WORKSPACE/<ProjectName>/`.
+  - Machine: `<id>.json` in `3_MEMORY/reports/`.
+- `4_BRAIN/factory_ledger.py` aggregates all manifests → `3_MEMORY/learning/ledger.json`
+  (+ template weights) so production self-improves. Orchestrated by `factory_brain.py`.
+  Full design: `6_SOP/AUTONOMOUS_FACTORY_LOOP.md`.
 
 ---
 
