@@ -139,6 +139,24 @@ def _sfx(key_or_rel):
     rel = SFX.get(key_or_rel, key_or_rel)
     return os.path.join(SFX_DIR, rel)
 
+# Semantic SFX (adopted from AI-auto-generate-video's keyword tiers, mapped to our library):
+# when a scene's text carries an emphasis word, the structural per-component accent is
+# OVERRIDDEN by a fitting sound — content-aware, but NO extra cue (keeps the mix uncluttered).
+_SEMANTIC_SFX = [
+    (("miễn phí", "thành công", "tốt nhất", "nhanh nhất", "đứng đầu", "vượt trội", "kỷ lục",
+      "ấn tượng", "mạnh nhất", "hàng đầu", "dẫn đầu", "đột phá"), "ui_success", 0.44),
+    (("cảnh báo", "nguy hiểm", "rủi ro", "vấn đề", "chú ý", "thách thức", "lưu ý", "sai lầm"), "impact_hit", 0.44),
+    (("ra mắt", "mới nhất", "bùng nổ", "cách mạng", "nâng cấp", "sắp tới"), "riser_short", 0.34),
+]
+
+def _semantic_sfx(text):
+    """Return (sfx_key, vol) if the text hits an emphasis keyword, else None."""
+    t = str(text or "").lower()
+    for kws, key, vol in _SEMANTIC_SFX:
+        if any(k in t for k in kws):
+            return key, vol
+    return None
+
 # ---------------------------------------------------------------- BGM (by mood)
 # Drop royalty-free / licensed tracks here, one per mood. IMPORTANT: viral/chart
 # songs are copyrighted — muxing them into the file risks mute/takedown (esp. Ads);
@@ -208,6 +226,9 @@ def _sfx_cues(groups, scenes, TOTAL):
                 add(t, "ui_pop", 0.34)
         elif kind in _COMP_SFX:
             key, vol, lead = _COMP_SFX[kind]
+            sem = _semantic_sfx(f"{sc.get('kicker','')} {sc.get('h1','')} {sc.get('h2','')}")
+            if sem:                                 # content-aware accent overrides the default
+                key, vol = sem
             add(reveal - lead, key, vol)
     return cues
 
