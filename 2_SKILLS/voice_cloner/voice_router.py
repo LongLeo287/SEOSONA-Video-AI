@@ -126,11 +126,13 @@ def synthesize_voice(
         print(f"[Voice Router] fallback voice coerced to male {MALE_EDGE_VOICE}.")
         fallback_voice = MALE_EDGE_VOICE
 
-    # Chí Quyết LoRA = the CQA BRANCH voice ONLY (courses / lectures / knowledge — it IS
-    # his voice). The SEOSONA news branch stays on VieNeu. Gate on brand == "cqa";
-    # SEOSONA_VOICE=lora forces it for testing. Any miss falls through to VieNeu below.
+    # Chí Quyết LoRA = the CQA BRANCH voice (courses / lectures / knowledge — it IS his
+    # voice). It is OPT-IN for now: the v1 adapter wasn't good enough (a better one is
+    # training), so until a verified adapter exists CQA TEMPORARILY uses the Gia Bảo
+    # preset like news. Enable the clone with SEOSONA_VOICE=lora (set this back to the
+    # brand-default `(brand=="cqa" ...)` gate once the new adapter passes listening QA).
     _v = os.environ.get("SEOSONA_VOICE", "").lower()
-    if (str(brand).lower() == "cqa" and _v != "off") or _v == "lora":
+    if _v == "lora":
         lora = _lora_synth(text, audio_out)
         if lora:
             return lora
