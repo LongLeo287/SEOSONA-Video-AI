@@ -14,7 +14,7 @@ The deterministic auto-content is an honest DRAFT: it only uses real fields
 Scene-Composer agent can still author richer prose; this command exists so a
 news batch can be produced with one call.
 """
-import os, sys, json, re, argparse
+import os, sys, json, re, argparse, subprocess
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if ROOT not in sys.path: sys.path.insert(0, ROOT)
@@ -110,7 +110,16 @@ def _stats(gh):
     items.append((gh.get("license") or "OSS", "GIẤY PHÉP"))
     return {"items": items[:3]}
 
+def _shot_domain(gh):
+    u = (gh.get("homepage") or gh.get("url") or "github.com")
+    return u.replace("https://", "").replace("http://", "").split("/")[0] or "github.com"
+
 def _mockup(gh):
+    # If a REAL screenshot was captured (make() → _capture_shot), show it inside the
+    # browser chrome — real visuals beat synthetic tiles. Else fall back to the data tiles.
+    shot = gh.get("_shot_img")
+    if shot:
+        return {"img": shot, "url": _shot_domain(gh), "title": gh.get("name", "")}
     return {"url": gh.get("full") or gh.get("url", "github.com"),
             "tiles": [(gh.get("stars_h", "0"), "Sao"),
                       (gh.get("lang") or "Đa nền", "Ngôn ngữ"),
@@ -301,6 +310,32 @@ def auto_content(gh, template):
     lex = dict(_BASE_LEX)
     return compose(template, segments=SEG, headings=HEAD, scene_data=DATA, lexicon=lex)
 
+# ---------------------------------------------------------------- real screenshot (shot)
+def _capture_shot(gh, project_dir):
+    """Best-effort real screenshot for the `shot`/mockup scene: try the project HOMEPAGE,
+    then fall back to the GitHub repo page. Returns an abs PNG path, or None on any failure
+    (so the render gracefully falls back to synthetic tiles). Needs node + a browser."""
+    script = os.path.join(ROOT, "scripts", "capture_shot.js")
+    if not os.path.exists(script):
+        return None
+    os.makedirs(project_dir, exist_ok=True)
+    out = os.path.join(project_dir, "_shot_raw.png")
+    urls = []
+    hp = (gh.get("homepage") or "").strip()
+    if hp.startswith("http"):
+        urls.append(hp)
+    urls.append(gh.get("url") or f"https://github.com/{gh.get('full','')}")
+    for u in urls:
+        try:
+            r = subprocess.run(["node", script, u, out], capture_output=True, text=True, timeout=80)
+            if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 8000:
+                print(f"[make_video] shot captured: {u}")
+                return out
+            print(f"[make_video] shot skipped for {u} (rc={r.returncode})")
+        except Exception as e:
+            print(f"[make_video] shot error {u}: {type(e).__name__}")
+    return None
+
 # ---------------------------------------------------------------- one-shot
 def make(url, *, template=None, theme=None, output=None, project_dir=None, aspect=None):
     gh = fetch_github(url)
@@ -314,6 +349,7 @@ def make(url, *, template=None, theme=None, output=None, project_dir=None, aspec
     project_dir = project_dir or os.path.join(ROOT, "8_WORKSPACE", name)
     output = output or os.path.join(project_dir, f"{name} - SEOSONA.mp4")
     print(f"[make_video] {gh['full']} → template={template} theme={theme} aspect={aspect or 'template'}  ({reason})")
+    gh["_shot_img"] = _capture_shot(gh, project_dir)   # real screenshot (homepage→GitHub), best-effort
     content = auto_content(gh, template)
     kw = {"aspect": aspect} if aspect else {}   # else use the template's aspect
     nc.make_video_from_template(template, content, project_dir, output=output, theme=theme, **kw)

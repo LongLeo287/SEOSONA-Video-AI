@@ -39,6 +39,7 @@ def fetch_github(repo):
             "license": ((j.get("license") or {}).get("spdx_id") or "").replace("NOASSERTION", ""),
             "topics": j.get("topics") or [],
             "url": j.get("html_url", f"https://github.com/{repo}"),
+            "homepage": (j.get("homepage") or "").strip(),
         }
     except Exception as e:
         return {"error": str(e), "full": repo}

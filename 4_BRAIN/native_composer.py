@@ -340,7 +340,9 @@ def _component(kind, d, acc, pal=None):
         # data: {"url":"site.com", "tiles":[(num,label),...]} (mini-dashboard)  OR
         #       {"url":.., "lines":["...", ...]} (content rows)
         url = d.get("url", "seosona.ai")
-        if d.get("tiles"):
+        if d.get("img"):                            # REAL screenshot inside the browser chrome
+            body = f'<div class="mkshot"><img src="{_esc(d["img"])}" alt=""/></div>'
+        elif d.get("tiles"):
             body = '<div class="mktiles">' + "".join(
                 f'<div class="mktile ritem"><div class="mktnum" style="color:{acc}">{_esc(n)}</div>'
                 f'<div class="mktlab">{_esc(l)}</div></div>' for n, l in d["tiles"][:4]) + '</div>'
@@ -513,6 +515,9 @@ def _css(brand="seosona", W=1080, H=1920):
 .mkdot{width:20px;height:20px;border-radius:50%}.mkdot.r{background:#FF5F57}.mkdot.y{background:#FEBC2E}.mkdot.g{background:#28C840}
 .mkaddr{margin-left:18px;background:var(--card);border:1px solid var(--cardb);border-radius:999px;padding:10px 30px;font-size:28px;color:var(--muted);font-weight:600;flex:1;text-align:center}
 .mkbody{padding:44px 40px}
+/* real screenshot fills the window body edge-to-edge (no padding) */
+.c-mockup:has(.mkshot) .mkbody{padding:0}
+.mkshot{width:100%;line-height:0}.mkshot img{width:100%;height:auto;display:block}
 .mktiles{display:flex;flex-wrap:wrap;gap:24px}
 .mktile{flex:1 1 40%;background:var(--hibg);border-radius:20px;padding:34px 28px;text-align:center}
 .mktnum{font-weight:900;font-size:72px;line-height:1}.mktlab{margin-top:12px;font-weight:700;font-size:28px;color:var(--muted)}
@@ -576,6 +581,15 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
     if not os.path.exists(logo_src):
         logo_src = os.path.join(ROOT, BRAND["logo"])
     shutil.copy(logo_src, os.path.join(assets, "logo.png"))
+    # Copy any real screenshot (captured by make_video's `shot` step) into the render assets
+    # and rewrite the component to the relative path. Graceful: skips if the file is gone.
+    for sc in scenes:
+        comp = sc.get("comp")
+        if comp and comp[0] == "mockup" and isinstance(comp[1], dict):
+            img = comp[1].get("img")
+            if img and os.path.isabs(img) and os.path.exists(img):
+                shutil.copy(img, os.path.join(assets, "shot.png"))
+                comp[1]["img"] = "assets/shot.png"
 
     # 1) voice (pronunciation form) via VieNeu male
     lex = dict(nvs.PRONUNCIATION_LEXICON); lex.update(lexicon or {})
