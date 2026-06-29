@@ -11,7 +11,7 @@ then mixes SFX + normalises loudness.
 Reuses the existing, working stack: voice_router/vieneu_engine, srt_maker.asr_router,
 news_video_standards (display↔pronunciation + RULE #1 alignment).
 """
-import os, sys, json, shutil, subprocess, html, re
+import os, sys, json, shutil, subprocess, html, re, time
 
 # Vietnamese voice names / captions are printed during a render. On a non-UTF-8
 # Windows console (cp1252) those prints raise UnicodeEncodeError and kill the
@@ -56,7 +56,7 @@ def _load_profile(brand="seosona"):
     engine must never crash on a config gap."""
     default = {"logo": "Seosona_Logo.png",
                "voice": {"engine": "vieneu", "model": "Trọng Hữu",
-                         "reference_audio": "7_ASSETS/voice/profiles/seosona_ref13.wav",
+                         "reference_audio": "",  # news = stable preset, NOT a clone (clone = CQA only)
                          "required_gender": "male", "required_accent": "southern",
                          "fallback_voice": "vi-VN-NamMinhNeural"}}
     try:
@@ -363,14 +363,14 @@ THEMES = {
               "ink": "#16224A", "ink2": "#3A4A6B", "muted": "#6B7A99", "card": "#ffffff",
               "cardb": "#E3E9F5", "tagbg": "#EEF3FC", "tagtx": "#3A4A6B", "dots": "#CBD8F0",
               "footerbg": "#ffffff", "footertx": "#3A4A6B", "kara": "#16224A", "karatx": "#FFFFFF",
-              "ghbg": "#16224A", "ghtx": "#ffffff", "fb": "#2A5BDA",
+              "ghbg": "#16224A", "ghtx": "#ffffff", "fb": "#2A5BDA", "dotc": "#16A34A",
               "coral": "#E2724D", "badbg": "#FFF7F4", "badbd": "#F4D6CC", "hibg": "#EEF3FC"},
     # CQA (Chi Quyết Academy) — fun, creator-focused, indigo. Still 100% light mode.
     "cqa": {"bg": "radial-gradient(125% 80% at 50% 0%,#E9EDFF 0%,#F4F7FF 45%,#FFFFFF 100%)",
               "ink": "#1A1D2B", "ink2": "#3A3F55", "muted": "#6B7088", "card": "#ffffff",
               "cardb": "#E4E8F7", "tagbg": "#EEF1FE", "tagtx": "#3A3F55", "dots": "#C9D2F2",
               "footerbg": "#ffffff", "footertx": "#3A3F55", "kara": "#1A1D2B", "karatx": "#FFFFFF",
-              "ghbg": "#1A1D2B", "ghtx": "#ffffff", "fb": "#4A60E9",
+              "ghbg": "#1A1D2B", "ghtx": "#ffffff", "fb": "#4A60E9", "dotc": "#10B981",
               "coral": "#FB7185", "badbg": "#FFF5F6", "badbd": "#FBD5DB", "hibg": "#EEF1FE"},
 }
 THEMES["light"] = THEMES["seosona"]   # back-compat alias (the `theme` arg is always light-mode)
@@ -499,7 +499,7 @@ def _css(brand="seosona", W=1080, H=1920):
 .cta-btn{color:#fff;font-weight:800;font-size:42px;padding:28px 56px;border-radius:999px}
 .c-gitlog{width:880px;background:var(--card);border:1px solid var(--cardb);border-radius:28px;padding:46px 56px;box-shadow:0 24px 60px rgba(20,40,90,.10)}
 .gltitle{font-family:monospace;font-size:32px;font-weight:700;color:var(--muted);margin-bottom:36px}
-.glprompt{color:#2A5BDA;font-weight:800}
+.glprompt{color:var(--fb);font-weight:800}
 .glrows{border-left:5px solid var(--cardb);margin-left:21px;display:flex;flex-direction:column;gap:34px}
 .glrow{display:flex;align-items:center;gap:22px;margin-left:-22px}
 .gldot{width:38px;height:38px;border-radius:50%;flex:none;box-shadow:0 0 0 7px var(--card)}
@@ -508,7 +508,7 @@ def _css(brand="seosona", W=1080, H=1920):
 .glhead{margin-left:auto;background:var(--coral);color:#fff;font-weight:800;font-size:24px;letter-spacing:1px;padding:8px 16px;border-radius:9px}
 .footer{position:absolute;left:50%;transform:translateX(-50%);bottom:230px;background:var(--card);border:1px solid var(--cardb);border-radius:999px;
  padding:20px 40px;font-weight:700;font-size:30px;color:var(--ink2);box-shadow:0 12px 34px rgba(20,40,90,.10);white-space:nowrap}
-.footer .dotg{color:#16A34A;margin-right:12px}.footer .b1{color:var(--fb);font-weight:800}.footer .b2{color:#16A34A;font-weight:700}.footer .sep{color:var(--cardb);margin:0 14px}
+.footer .dotg{color:var(--dotc);margin-right:12px}.footer .b1{color:var(--fb);font-weight:800}.footer .b2{color:var(--dotc);font-weight:700}.footer .sep{color:var(--cardb);margin:0 14px}
 .kara{position:absolute;left:50%;transform:translateX(-50%);bottom:300px;background:var(--kara);border-radius:20px;padding:20px 38px;max-width:880px;box-shadow:0 18px 40px rgba(8,15,35,.40)}
 .kara span{color:var(--karatx);font-weight:700;font-size:36px;letter-spacing:-.5px;margin:0 7px}
 """
@@ -532,6 +532,7 @@ _DIMS = {"9:16": (1080, 1920), "16:9": (1920, 1080), "1:1": (1080, 1080)}
 def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
                target_lufs=-14, voice="Trọng Hữu", theme="light", music="tech",
                accent_shift=None, brand="seosona", aspect="9:16"):
+    _t0 = time.time()   # render wall-clock for the observability hub (Phase 6)
     # accent_shift rotates the whole colour scheme so two videos from the SAME
     # template don't look identical. None -> auto-derive a stable shift from the topic.
     if accent_shift is None:
@@ -615,6 +616,16 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
     for w in words: w["duration"] = w["end"] - w["start"]
     plan = nvs.prepare_tts_script(display_full)
     dwords = nvs.align_tts_boundaries_to_display_words(plan, words, dur)
+    # Caption-sync QC: the aligner needs ≥1 ASR boundary per spoken word, else it falls
+    # back to EVENLY-ESTIMATED timing (captions still show display words — RULE #1 — but
+    # drift from the voice). Surface which path was taken so sync quality is observable.
+    _ntts, _nasr = len(plan.tts_words), len(words)
+    _ratio = round(_nasr / _ntts, 2) if _ntts else 0.0
+    if _nasr < _ntts:
+        print(f"[caption-sync] ⚠ ESTIMATED timing — ASR {_nasr} < spoken {_ntts} words "
+              f"(ratio {_ratio}); captions show display words but may drift from voice.")
+    else:
+        print(f"[caption-sync] ✓ real word-level timing (ASR {_nasr} ≥ spoken {_ntts}).")
 
     # 3) scene boundaries from word counts
     counts = [len(nvs.tokenize_words(s)) for s in segments]
@@ -850,6 +861,15 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
         print(f"[native_composer] thumbnail grab skipped: {e}")
 
     print(f"FINAL: {out}  ({len(cues)} SFX cues, BGM ducked: {os.path.basename(bgm)})")
+    # Phase 6: emit a render metric to the observability hub (best-effort, never fatal).
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "9_DASHBOARD"))   # observability hub home
+        import obs_metrics
+        obs_metrics.record("render", output=out, brand=brand, duration=round(dur, 1),
+                           wpm=wpm0, caption_sync=("real" if _nasr >= _ntts else "estimated"),
+                           sfx=len(cues), render_seconds=round(time.time() - _t0, 1))
+    except Exception as _e:
+        print(f"[obs] render metric skipped: {_e}")
     return out
 
 

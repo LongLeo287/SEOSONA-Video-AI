@@ -39,15 +39,14 @@ profiles:
       size: 70
     voice:
       engine: "vieneu"
-      # PRIMARY: clone the Southern male brand voice from this 13s clip. A/B tested
-      # 2026-06-29 (scripts/build_voice_ref.py + MFCC/pitch similarity vs the source):
-      # this hand-picked 13s clip clones BEST (timbre 0.944) — it beat auto-built clean
-      # windows AND the raw 77s recording (0.784, worst: feeding 77s makes VieNeu drone).
-      # The raw seosona.WAV stays local as the source for any future LoRA fine-tune.
-      reference_audio: "7_ASSETS/voice/profiles/seosona_ref13.wav"
+      # NEWS branch = STABLE PRESET voice, NOT a clone. Zero-shot cloning ref13 every
+      # render made the voice DRIFT in tone scene-to-scene (unstable on long text) AND
+      # mis-used Chí Quyết's voice for news. The clone (LoRA) is reserved for the CQA
+      # branch only. So: NO reference here → VieNeu uses the consistent preset below.
+      reference_audio: ""
       required_gender: "male"
       required_accent: "southern"
-      # Preset used ONLY if the reference is missing (router prefers the clone).
+      # The brand news voice: a fixed VieNeu preset (consistent, no clone drift).
       model: "Trọng Hữu"
       # Fallback runs only if VieNeu fails — NORTHERN, NOT the brand voice.
       fallback_voice: "vi-VN-NamMinhNeural"
