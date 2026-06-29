@@ -39,10 +39,12 @@ profiles:
       size: 70
     voice:
       engine: "vieneu"
-      # PRIMARY: clone the Southern male brand voice from this reference (77s full
-      # recording — local only, gitignored). seosona_ref13.wav (13s) is the git-tracked
-      # lightweight fallback for clean checkouts.
-      reference_audio: "7_ASSETS/voice/profiles/seosona.WAV"
+      # PRIMARY: clone the Southern male brand voice from this 13s clip. A/B tested
+      # 2026-06-29 (scripts/build_voice_ref.py + MFCC/pitch similarity vs the source):
+      # this hand-picked 13s clip clones BEST (timbre 0.944) — it beat auto-built clean
+      # windows AND the raw 77s recording (0.784, worst: feeding 77s makes VieNeu drone).
+      # The raw seosona.WAV stays local as the source for any future LoRA fine-tune.
+      reference_audio: "7_ASSETS/voice/profiles/seosona_ref13.wav"
       required_gender: "male"
       required_accent: "southern"
       # Preset used ONLY if the reference is missing (router prefers the clone).
