@@ -13,7 +13,7 @@ SEOSONA Video/
 │   ├── hyperframes/      full HyperFrames docs (guides/reference/catalog) → README.md
 │   └── repos/           distilled ingested repos (OmniVoice, OpenMontage, ...)
 ├── 2_SKILLS/          ← 7 active Python skills (voice_cloner, tts, srt, clipper, thumbnail, yt, carousel) → README.md
-│                         (legacy unwired skills đã gỡ khỏi dự án)
+│                         (legacy unwired skills removed from the project)
 ├── 3_MEMORY/          ← memory/state → README
 ├── 4_BRAIN/           ← the engine: video_engine.py (unified entry) → native_composer.py
 │                         (renderer) + scene_composer.py (content) + make_video.py (1-shot);
@@ -67,6 +67,13 @@ SEOSONA Video/
 ## Conventions
 - Numbered tiers 0→9 = role order (input → agents → knowledge/skills → memory →
   brain → framework → SOP → assets → workspace → dashboard/prompts).
+- **A tier number can be SHARED by two folders ON PURPOSE** — it groups by role, it is
+  not a unique key. Intentional pairs: `1_` = AGENTS + CONFIG (the "who acts" layer),
+  `2_` = KNOWLEDGE + SKILLS (the "what it knows / can do" layer), `9_` = DASHBOARD +
+  PROMPTS (the "human-facing" layer). NOT a mistake — do NOT renumber: the tier prefix
+  is hard-coded as a string in 100+ places (imports like `2_SKILLS.voice_cloner`, paths
+  like `7_ASSETS/...`, npm scripts), so renaming a tier breaks the system. The number is
+  a label, not an address to change.
 - Reusable inputs live in `7_ASSETS/`; transient outputs in `8_WORKSPACE/`.
 - HyperFrames is the sole render engine (Apache-2.0) — see `6_SOP/RENDER_ENGINE_DECISION.md`.
 - Connected to SEOSONA OS via `~/.seosona` (`seosona.project.json`).
