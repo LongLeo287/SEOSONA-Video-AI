@@ -40,6 +40,28 @@ def _find_outputs(project_dir):
     }
 
 
+def _write_script_txt(project_dir, srt_rel):
+    """Plain narration → <project_dir>/script.txt (CapCut auto-caption aid; idea from
+    AI-auto-generate-video's 3-file output). Derived from the sidecar SRT so it needs
+    no extra inputs — strips indices/timestamps, dedupes consecutive lines."""
+    if not srt_rel:
+        return None
+    srt = os.path.join(project_dir, srt_rel)
+    if not os.path.exists(srt):
+        return None
+    lines, prev = [], None
+    for ln in open(srt, encoding="utf-8", errors="replace"):
+        t = ln.strip()
+        if not t or t.isdigit() or "-->" in t:
+            continue
+        if t != prev:
+            lines.append(t); prev = t
+    out = os.path.join(project_dir, "script.txt")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write(" ".join(lines).strip() + "\n")
+    return out
+
+
 def _length_bucket(seconds):
     if not seconds:
         return "unknown"
@@ -111,6 +133,11 @@ def record(project_dir, *, template=None, brand="seosona", topic=None, aspect="9
     os.makedirs(project_dir, exist_ok=True)
     with open(os.path.join(project_dir, MANIFEST_NAME), "w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
+    # 3-file output aid: a plain narration script.txt for CapCut auto-caption.
+    try:
+        _write_script_txt(project_dir, outputs.get("srt"))
+    except Exception as e:
+        print(f"[manifest] script.txt skipped: {e}")
     return manifest
 
 

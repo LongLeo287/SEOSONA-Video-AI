@@ -192,10 +192,11 @@ def run_integration_audit(
         "P1",
     )
 
-    seosona_text = _read_text(seosona_skill_path)
+    _sk = _read_text(seosona_skill_path).upper()
     check(
         "SEOSONA rules assimilated: text separate from pronunciation",
-        "TEXT" in seosona_text.upper() and ("PHIEN" in seosona_text.upper() or "PHI" in seosona_text.upper()),
+        # Language-robust: the SKILL may be VN ("phiên âm") or EN ("pronunciation"/"display").
+        "TEXT" in _sk and any(t in _sk for t in ("PHIEN", "PHI", "PRONUNCIATION", "DISPLAY")),
         seosona_skill_path,
         "SV-INT-seosona-RULES",
         "P2",

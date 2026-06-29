@@ -77,4 +77,19 @@ def compose(template_name, *, segments, headings, scene_data=None, kickers=None,
         if i in scene_data:
             sc["data"] = scene_data[i]
         scenes.append(sc)
-    return {"segments": segments, "scenes": scenes, "lexicon": lexicon or {}}
+    content = {"segments": segments, "scenes": scenes, "lexicon": lexicon or {}}
+
+    # Validate the content contract before it reaches the renderer (fail fast with a
+    # clear message; idea borrowed from the zod schema in AI-auto-generate-video).
+    try:
+        import os, sys
+        sys.path.insert(0, os.path.dirname(__file__))
+        import script_schema
+        v = script_schema.validate_content(content)
+        for w in v["warnings"]:
+            print(f"[scene_composer] WARN: {w}")
+        if not v["ok"]:
+            raise ValueError("invalid content: " + "; ".join(v["errors"]))
+    except ImportError:
+        pass   # schema module optional — never block on its absence
+    return content
