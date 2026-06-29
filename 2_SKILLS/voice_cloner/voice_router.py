@@ -125,9 +125,11 @@ def synthesize_voice(
         print(f"[Voice Router] fallback voice coerced to male {MALE_EDGE_VOICE}.")
         fallback_voice = MALE_EDGE_VOICE
 
-    # OPT-IN: fine-tuned Chí Quyết LoRA brand voice (SEOSONA_VOICE=lora). Highest
-    # fidelity; on any miss it falls through to the VieNeu path below (unchanged default).
-    if os.environ.get("SEOSONA_VOICE", "").lower() == "lora":
+    # Chí Quyết LoRA = the CQA BRANCH voice ONLY (courses / lectures / knowledge — it IS
+    # his voice). The SEOSONA news branch stays on VieNeu. Gate on brand == "cqa";
+    # SEOSONA_VOICE=lora forces it for testing. Any miss falls through to VieNeu below.
+    _v = os.environ.get("SEOSONA_VOICE", "").lower()
+    if (str(brand).lower() == "cqa" and _v != "off") or _v == "lora":
         lora = _lora_synth(text, audio_out)
         if lora:
             return lora

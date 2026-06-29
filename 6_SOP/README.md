@@ -22,6 +22,7 @@ To add a new SOP, drop it here and add a line to the right group below.
 | `voice_cloning_tts_sop.md` | voice cloning / TTS procedure |
 | `VOICE_TTS_ENGINE_ROUTING.md` | which TTS engine to use (VieNeu primary → edge-tts fallback; single router, no dead branches) |
 | `brand_voice_sop.md` | SEOSONA brand voice rules |
+| `CHIQUYET_VOICE_STYLE.md` | CQA branch: Chí Quyết rhythm/style profile (from 19.6h lectures) + LoRA clone voice (brand=cqa only) |
 
 ## 🖥️ Render Engine (HyperFrames)
 | SOP | Use for |
