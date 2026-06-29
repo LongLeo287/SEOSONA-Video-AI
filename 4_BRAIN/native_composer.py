@@ -235,7 +235,9 @@ def _split_bignum(s):
             "target": val, "decimals": decimals, "comma": ("," in num or val >= 1000)}
 
 
-def _component(kind, d, acc):
+def _component(kind, d, acc, pal=None):
+    if pal is None:
+        pal = ACCENT_PALETTE["seosona"]
     if kind == "bignum":
         # Recipe 1: pair the number with an accent-tinted radial glow so it has visual
         # weight instead of floating in empty space (craft/data-in-motion.md). The glow +
@@ -255,13 +257,13 @@ def _component(kind, d, acc):
                 f'<div class="repo-desc">{_esc(d["desc"])}</div><div class="tags">{tags}</div>'
                 f'<div class="repo-btn" style="background:{acc}">{_esc(d.get("btn","Xem ngay"))}</div></div>')
     if kind == "compare":
-        # Brand convention (from the SEOSONA carousel): the "old/bad" side is CORAL,
-        # the "new/winner" side is BLUE — fixed, independent of the scene accent.
+        # Bad side = coral (var(--coral)); winner side = brand blue (pal["blue"]) so CQA
+        # renders #4A60E9 and SEOSONA renders #2A5BDA, not the same hardcoded color.
         lt, li = d["left"]; rt, ri = d["right"]
         lrows = "".join(f'<div class="crow x ritem">✕ {_esc(x)}</div>' for x in li)
-        rrows = "".join(f'<div class="crow v ritem" style="color:{BLUE}">✓ {_esc(x)}</div>' for x in ri)
+        rrows = "".join(f'<div class="crow v ritem" style="color:{pal["blue"]}">✓ {_esc(x)}</div>' for x in ri)
         return (f'<div class="c-compare"><div class="col bad"><div class="ctitle bad">{_esc(lt)}</div>{lrows}</div>'
-                f'<div class="col hi" style="border-color:{BLUE}"><div class="ctitle" style="color:{BLUE}">{_esc(rt)}</div>{rrows}</div></div>')
+                f'<div class="col hi" style="border-color:{pal["blue"]}"><div class="ctitle" style="color:{pal["blue"]}">{_esc(rt)}</div>{rrows}</div></div>')
     if kind == "terminal":
         rows = ""
         for k2, txt in d["lines"]:
@@ -301,7 +303,7 @@ def _component(kind, d, acc):
     if kind == "chart":
         # horizontal bar chart (data viz). data: {"title":.., "items":[(label, pct0-100, disp), ...]}
         # disp optional (text shown on the bar); each bar can have its own color via 4th elem.
-        cols = [acc, GREEN, ORANGE, BLUE]
+        cols = [acc, pal["green"], pal["orange"], pal["blue"]]
         rows = ""
         for i, it in enumerate(d["items"]):
             lab, pct = it[0], max(3, min(100, float(it[1])))
@@ -356,22 +358,37 @@ def _component(kind, d, acc):
 # soft blue-tinted bg, navy ink, white cards on a light-blue border, coral-tinted
 # "before" card + blue-tinted "after" card for compare, navy karaoke pill.
 THEMES = {
-    "light": {"bg": "radial-gradient(125% 80% at 50% 0%,#EDF3FB 0%,#F5F9FF 45%,#FFFFFF 100%)",
+    # SEOSONA — professional, blue-tinted (sampled from the brand carousel).
+    "seosona": {"bg": "radial-gradient(125% 80% at 50% 0%,#EDF3FB 0%,#F5F9FF 45%,#FFFFFF 100%)",
               "ink": "#16224A", "ink2": "#3A4A6B", "muted": "#6B7A99", "card": "#ffffff",
               "cardb": "#E3E9F5", "tagbg": "#EEF3FC", "tagtx": "#3A4A6B", "dots": "#CBD8F0",
               "footerbg": "#ffffff", "footertx": "#3A4A6B", "kara": "#16224A", "karatx": "#FFFFFF",
               "ghbg": "#16224A", "ghtx": "#ffffff", "fb": "#2A5BDA",
               "coral": "#E2724D", "badbg": "#FFF7F4", "badbd": "#F4D6CC", "hibg": "#EEF3FC"},
+    # CQA (Chi Quyết Academy) — fun, creator-focused, indigo. Still 100% light mode.
+    "cqa": {"bg": "radial-gradient(125% 80% at 50% 0%,#E9EDFF 0%,#F4F7FF 45%,#FFFFFF 100%)",
+              "ink": "#1A1D2B", "ink2": "#3A3F55", "muted": "#6B7088", "card": "#ffffff",
+              "cardb": "#E4E8F7", "tagbg": "#EEF1FE", "tagtx": "#3A3F55", "dots": "#C9D2F2",
+              "footerbg": "#ffffff", "footertx": "#3A3F55", "kara": "#1A1D2B", "karatx": "#FFFFFF",
+              "ghbg": "#1A1D2B", "ghtx": "#ffffff", "fb": "#4A60E9",
+              "coral": "#FB7185", "badbg": "#FFF5F6", "badbd": "#FBD5DB", "hibg": "#EEF1FE"},
 }
+THEMES["light"] = THEMES["seosona"]   # back-compat alias (the `theme` arg is always light-mode)
 ACCENT_PALETTE = {
-    "light": {"blue": "#2A5BDA", "green": "#16A34A", "orange": "#E2724D"},
+    "seosona": {"blue": "#2A5BDA", "green": "#16A34A", "orange": "#E2724D"},
+    "cqa":     {"blue": "#4A60E9", "green": "#10B981", "orange": "#F59E0B"},
 }
 
 
-def _resolve_acc(acc, theme="light"):
+def _theme(brand="seosona"):
+    """Light-mode token set for a brand (falls back to SEOSONA)."""
+    return THEMES.get(brand, THEMES["seosona"])
+
+
+def _resolve_acc(acc, brand="seosona"):
     """Accent role ('blue'/'green'/'orange') -> brand hex; a raw hex passes through.
-    Light mode only — any legacy theme value falls back to the light palette."""
-    return ACCENT_PALETTE["light"].get(acc, acc)
+    Light mode only; the actual palette is chosen by BRAND (SEOSONA vs CQA)."""
+    return ACCENT_PALETTE.get(brand, ACCENT_PALETTE["seosona"]).get(acc, acc)
 
 
 _ACC_ORDER = ["blue", "green", "orange"]
@@ -389,8 +406,8 @@ def _auto_shift(output):
     return (sum(ord(c) for c in base) % 3) if base else 0
 
 
-def _css(theme="light", W=1080, H=1920):
-    t = THEMES["light"]
+def _css(brand="seosona", W=1080, H=1920):
+    t = _theme(brand)
     faces = "".join(f"@font-face{{font-family:BVP;src:url('assets/{f}');font-weight:{w}}}" for f,w,_ in FONTS)
     vars_ = ";".join(f"--{k}:{v}" for k, v in t.items())
     css = faces + "\n*{margin:0;padding:0;box-sizing:border-box;font-family:BVP,Arial,sans-serif}\n" + \
@@ -521,6 +538,7 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
         accent_shift = _auto_shift(output)
     profile = _load_profile(brand)        # logo + voice come from system_config.yaml
     vcfg = profile.get("voice", {}) or {}
+    _pal = ACCENT_PALETTE.get(brand, ACCENT_PALETTE["seosona"])
     os.makedirs(project_dir, exist_ok=True)
     proj = os.path.join(project_dir, "proj"); assets = os.path.join(proj, "assets")
     os.makedirs(assets, exist_ok=True)
@@ -564,17 +582,34 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
     # 2) timing → DISPLAY words (RULE #1)
     from moviepy.editor import AudioFileClip
     dur = AudioFileClip(voice_path).duration
-    # Auto-pace: a slow cloned voice can overshoot the 45–60s target. Gently speed it
-    # up (atempo preserves pitch) so the video lands ~58s, capped so it never sounds
-    # rushed. Done BEFORE ASR so captions/scenes time to the final voice.
-    if dur > 64:
-        rate = min(1.35, round(dur / 58.0, 3))
+    # Auto-pace (WPM-aware, ported from claude-code-video-toolkit tools/pacing.py):
+    # a cloned voice inherits pace from its reference and can overshoot the 45–60s
+    # target. Speeding it up to a fixed 58s rushes DENSE scripts (>200 wpm = a tongue
+    # twister). So we target the LONGER of 58s or the duration that keeps the voice
+    # under a comfortable ceiling — better a 66s video than a rushed 58s one. atempo
+    # preserves pitch. Done BEFORE ASR so captions/scenes time to the final voice.
+    # BIDIRECTIONAL — a cloned voice's pace varies wildly take-to-take (we've seen the
+    # same script come out 122 wpm AND 214 wpm). So correct in BOTH directions:
+    #   too fast (>~MAX_WPM) → slow down (atempo<1, floored at 0.85 to avoid artifacts)
+    #   too slow/long        → speed up (atempo>1, capped 1.35)
+    MAX_WPM, MIN_ATEMPO = 175.0, 0.85   # toolkit: 170–210 wpm reads as "fast"; 0.85 = artifact floor
+    nwords = len(nvs.tokenize_words(display_full))
+    wpm0 = round(nwords / dur * 60, 1) if dur else 0.0
+    wpm_dur = (nwords / MAX_WPM * 60.0) if nwords else dur   # duration that yields MAX_WPM
+    rate = None
+    if wpm0 > MAX_WPM + 8 and dur > 0:                       # rushed clone → stretch toward MAX_WPM
+        rate = max(MIN_ATEMPO, round(dur / wpm_dur, 3))
+    elif dur > max(58.0, wpm_dur) + 6:                       # comfortable but long → tighten to ~58s
+        rate = min(1.35, round(dur / max(58.0, wpm_dur), 3))
+    if rate and abs(rate - 1.0) > 0.02:
         sped = os.path.join(assets, "voice_p.mp3")
         subprocess.run([_ffmpeg_bin(), "-y", "-hide_banner", "-loglevel", "error", "-i", voice_path,
                         "-filter:a", f"atempo={rate}", sped], check=True)
         shutil.move(sped, voice_path)
-        print(f"[pace] voice {dur:.1f}s → atempo {rate} → {AudioFileClip(voice_path).duration:.1f}s")
         dur = AudioFileClip(voice_path).duration
+        print(f"[pace] {nwords}w {wpm0}→{round(nwords/dur*60,1) if dur else 0} wpm | atempo {rate} | → {dur:.1f}s")
+    else:
+        print(f"[pace] {nwords}w {wpm0} wpm | {dur:.1f}s — within comfort band, no change")
     asr = __import__("2_SKILLS.srt_maker.asr_router", fromlist=["x"])
     words = asr.transcribe_words(voice_path, language="vi")
     for w in words: w["duration"] = w["end"] - w["start"]
@@ -602,15 +637,15 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
         nxt = appear(i+1) if i+1 < len(scenes) else None
         gone = (nxt + 0.45) if nxt is not None else TOTAL
         d = max(1.0, gone - ap)
-        acc = _resolve_acc(_rotate_acc(sc.get("acc", "blue"), accent_shift), theme); cid = f"sc{i}"
-        comp = _component(sc["comp"][0], sc["comp"][1], acc) if sc.get("comp") else ""
+        acc = _resolve_acc(_rotate_acc(sc.get("acc", "blue"), accent_shift), brand); cid = f"sc{i}"
+        comp = _component(sc["comp"][0], sc["comp"][1], acc, _pal) if sc.get("comp") else ""
         comp_kind = sc["comp"][0] if sc.get("comp") else None
         # HERO scene = full-bleed accent background + white text (breaks the "always
         # light + centered card" sameness). kicker/heading use white; component picks
         # white via .scene.hero CSS overrides.
         hero = bool(sc.get("hero"))
         scls = "scene clip hero" if hero else "scene clip"
-        sstyle = f' style="background:linear-gradient(157deg,{acc} 0%,#16224A 165%)"' if hero else ""
+        sstyle = f' style="background:linear-gradient(157deg,{acc} 0%,{_theme(brand)["ink"]} 165%)"' if hero else ""
         kstyle = "color:#fff;background:#ffffff2e" if hero else f"color:{acc};background:{acc}1f"
         l2style = "color:#fff" if hero else f"color:{acc}"
         # Ambient depth layer: breathing glow + oversized faint ghost word (the kicker).
@@ -710,7 +745,7 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
     # karaoke chunks (~4 words), alternating tracks
     chunks = []
     for si, grp in enumerate(groups):
-        acc = _resolve_acc(_rotate_acc(scenes[si].get("acc", "blue") if si < len(scenes) else "blue", accent_shift), theme)
+        acc = _resolve_acc(_rotate_acc(scenes[si].get("acc", "blue") if si < len(scenes) else "blue", accent_shift), brand)
         for j in range(0, len(grp), 4):
             sub = grp[j:j+4]
             if sub: chunks.append({"start": sub[0]["start"], "end": sub[-1]["end"], "acc": acc, "words": sub})
@@ -732,7 +767,7 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
     VW, VH = _DIMS.get(aspect, (1080, 1920))
     res = "portrait" if VH >= VW else "landscape"
     doc = (f'<!doctype html><html lang="vi" data-resolution="{res}"><head><meta charset="UTF-8"/>'
-           f'<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><style>{_css(theme, VW, VH)}</style></head><body>'
+           f'<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><style>{_css(brand, VW, VH)}</style></head><body>'
            f'<div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL:.2f}" data-width="{VW}" data-height="{VH}">'
            f'<div class="dots"></div>'
            f'<audio id="voice" class="clip" data-start="0" data-duration="{TOTAL:.2f}" data-track-index="0" src="assets/voice.mp3" data-volume="1"></audio>'

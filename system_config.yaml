@@ -39,9 +39,10 @@ profiles:
       size: 70
     voice:
       engine: "vieneu"
-      # PRIMARY: clone the Southern male brand voice from this reference (keeps the
-      # exact brand voice across every video). Use a 10-30s clean clip for best stability.
-      reference_audio: "7_ASSETS/voice/profiles/seosona_ref13.wav"
+      # PRIMARY: clone the Southern male brand voice from this reference (77s full
+      # recording — local only, gitignored). seosona_ref13.wav (13s) is the git-tracked
+      # lightweight fallback for clean checkouts.
+      reference_audio: "7_ASSETS/voice/profiles/seosona.WAV"
       required_gender: "male"
       required_accent: "southern"
       # Preset used ONLY if the reference is missing (router prefers the clone).
@@ -66,9 +67,10 @@ profiles:
       size: 90
     voice:
       engine: "vieneu"
-      # PRIMARY: clone the CQA brand voice from this reference. Drop a 10-30s clean
-      # clip here to restore the true 'chiquyet' voice — the router prefers the clone.
-      reference_audio: "7_ASSETS/voice/profiles/chiquyet_sample_4s.wav"
+      # PRIMARY: clone from a CQA brand voice recording once recorded. Drop a 10-30s
+      # clean clip here (male Southern VN, no noise). Missing → falls back to preset.
+      # TODO: record and save as 7_ASSETS/voice/profiles/chiquyet_ref.wav
+      reference_audio: "7_ASSETS/voice/profiles/chiquyet_ref.wav"
       # Single approved brand voice (locked system-wide in voice_router.APPROVED_VOICE).
       model: "Trọng Hữu"
       required_gender: "male"

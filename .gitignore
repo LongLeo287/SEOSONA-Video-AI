@@ -144,5 +144,6 @@ scripts/demo_variety.py
 scripts/seo_roadmap.py
 scripts/analyze_reference.py
 
-# raw voice recording (local source only — engine uses seosona_ref13.wav)
+# Full 77s voice clone source — local only (14MB). Engine reads it as reference_audio
+# (system_config.yaml). seosona_ref13.wav (13s) is the git-tracked lightweight fallback.
 7_ASSETS/voice/profiles/seosona.WAV
