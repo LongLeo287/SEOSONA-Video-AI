@@ -157,3 +157,6 @@ scripts/_test_planner.py
 # Full 77s voice clone source — local only (14MB). Engine reads it as reference_audio
 # (system_config.yaml). seosona_ref13.wav (13s) is the git-tracked lightweight fallback.
 7_ASSETS/voice/profiles/seosona.WAV
+
+# stale standalone VieNeu venv (recreatable via setup_vieneu_env.ps1; inference uses the hermes venv)
+2_SKILLS/voice_cloner/.venv-vieneu/
