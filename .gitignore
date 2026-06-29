@@ -160,3 +160,10 @@ scripts/_test_planner.py
 
 # stale standalone VieNeu venv (recreatable via setup_vieneu_env.ps1; inference uses the hermes venv)
 2_SKILLS/voice_cloner/.venv-vieneu/
+
+# runtime logs + dashboard runtime state (generated)
+logs/
+9_DASHBOARD/feedback_state.json
+
+# Loop-engineering: per-task git worktrees (isolated parallel code edits)
+.worktrees/
