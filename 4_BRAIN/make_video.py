@@ -39,7 +39,21 @@ def classify(gh):
     if topics & {"cli", "tool", "utility", "developer-tools", "productivity"} \
        or has("command line", "command-line", " cli", "terminal"):
         return ("tool-walkthrough", "light", "CLI/tiện ích")
-    return ("repo-showcase", "light", "repo showcase")
+    # AI / agent / data repos → the component-rich templates (chart + mockup + compare +
+    # feature + stats), rotated so we don't repeat the same one every time.
+    if topics & {"ai", "ml", "machine-learning", "llm", "agent", "ai-agent", "mcp",
+                 "deep-learning", "nlp", "data", "analytics"} \
+       or has("agent", "llm", " ai ", "mcp", "model", "data"):
+        return (_rot(name, ["data-news", "benchmark-news", "insight-explainer"]), "light", "AI/agent — rich")
+    # generic fallback ROTATES across rich showcase templates (was always repo-showcase).
+    return (_rot(name, ["repo-showcase", "data-news", "tool-walkthrough", "benchmark-news"]),
+            "light", "rotated showcase")
+
+
+def _rot(name, options):
+    """Deterministic per-repo rotation so the same repo is stable but different repos
+    get different templates (fixes 'same template every time')."""
+    return options[sum(ord(c) for c in (name or "x")) % len(options)]
 
 # ---------------------------------------------------------------- prose helpers
 _BASE_LEX = {"GitHub": "gít hắp", "API": "ây pi ai", "AI": "ây ai", "CLI": "xi eo ai",
@@ -87,6 +101,43 @@ def _gittree():
                         {"id": "d", "x": 82, "y": 58, "branch": "main"}],
             "edges": [["a", "b"], ["b", "c"], ["b", "d"], ["c", "d"]],
             "branches": {"main": nc.BLUE, "feature": nc.GREEN}, "head": "d"}
+
+# Rich components from REAL repo data (were missing → those scenes rendered bare).
+def _stats(gh):
+    items = [(gh.get("stars_h", "0"), "GITHUB STARS")]
+    if gh.get("lang"): items.append((gh["lang"], "NGÔN NGỮ"))
+    items.append((gh.get("license") or "OSS", "GIẤY PHÉP"))
+    return {"items": items[:3]}
+
+def _mockup(gh):
+    return {"url": gh.get("full") or gh.get("url", "github.com"),
+            "tiles": [(gh.get("stars_h", "0"), "Sao"),
+                      (gh.get("lang") or "Đa nền", "Ngôn ngữ"),
+                      (str(len(gh.get("topics") or [])) or "—", "Chủ đề"),
+                      (gh.get("license") or "OSS", "Giấy phép")][:4]}
+
+def _feature(gh):
+    tps = (gh.get("topics") or [])[:3]
+    emo = ["⚡", "🚀", "🔧", "📦", "🧠", "🔒"]
+    if tps:
+        return {"items": [(emo[i % len(emo)], t.replace("-", " ").title(), "") for i, t in enumerate(tps)]}
+    return {"items": [("⚡", "Nhanh & gọn", ""), ("🔧", "Dễ tích hợp", ""), ("📦", "Mã nguồn mở", "")]}
+
+def _tip(gh):
+    return {"title": "Mẹo nhanh",
+            "text": f"Clone {gh['name']}, đọc README rồi chạy thử — cộng đồng {gh.get('stars_h','nhiều')} sao hỗ trợ nhanh."}
+
+def _quote(gh):
+    return {"text": _clean(gh.get("desc"), 120) or f"{gh['name']} — dự án mã nguồn mở đáng chú ý",
+            "by": gh.get("owner", "")}
+
+def _chart(gh):
+    tps = (gh.get("topics") or [])[:4]
+    if tps:  # illustrative emphasis of the project's topics (not precise metrics)
+        vals = [92, 78, 66, 54]
+        return {"title": "Trọng tâm của dự án",
+                "items": [(t.replace("-", " ").title(), vals[i % 4], "") for i, t in enumerate(tps)]}
+    return {"title": "Vì sao nổi bật", "items": [("Hiệu năng", 90, ""), ("Dễ dùng", 82, ""), ("Cộng đồng", 75, "")]}
 
 # ---------------------------------------------------------------- Gemini prose
 def _gemini_script(gh, scenes):
@@ -189,6 +240,30 @@ def auto_content(gh, template):
             seg = f"{name} giúp bạn hình dung mọi thứ một cách trực quan."
             h1, h2 = "Trực quan hóa", "dễ hiểu"
             data = _gittree()
+        elif kind == "stats":
+            seg = f"Vài con số nói lên sức hút của {name}."
+            h1, h2 = "Những con số", "biết nói"
+            data = _stats(gh)
+        elif kind == "chart":
+            seg = f"Đây là những gì {name} tập trung giải quyết."
+            h1, h2 = "Trọng tâm", "dự án"
+            data = _chart(gh)
+        elif kind == "mockup":
+            seg = f"Mọi thông tin quan trọng của {name} gói gọn trong một chỗ."
+            h1, h2 = "Tổng quan", "dự án"
+            data = _mockup(gh)
+        elif kind == "feature":
+            seg = f"Những tính năng nổi bật khiến {name} đáng chú ý."
+            h1, h2 = "Tính năng", "nổi bật"
+            data = _feature(gh)
+        elif kind == "tip":
+            seg = f"Một mẹo nhỏ để bắt đầu với {name} thật nhanh."
+            h1, h2 = "Mẹo", "bắt đầu nhanh"
+            data = _tip(gh)
+        elif kind == "quote":
+            seg = f"Nói ngắn gọn, đây là tinh thần của {name}."
+            h1, h2 = "Tóm lại", "một câu"
+            data = _quote(gh)
         else:  # text-only scene
             if first:
                 seg = f"{name} đang gây chú ý trong giới công nghệ — đây là lý do."
