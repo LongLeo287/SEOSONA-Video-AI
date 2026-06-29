@@ -627,31 +627,57 @@ def generate_json_from_prompt(system_prompt: str, user_prompt: str, model_name: 
     full_system_prompt = system_prompt + json_instructions
 
     # --- Try Gemini (google-genai SDK; FREE tier = Flash models, NOT Pro) ---
+    # BACKUP CHAIN: the free tier rate-limits per-model per-minute, but each Flash model
+    # has its OWN quota. So on a 429/quota error we don't give up — we try the next free
+    # Flash model (same key), then one backoff-retry on the primary. Only if the WHOLE
+    # chain is exhausted do we fall through to OpenAI → Ollama → offline.
     if gemini_key and "gemini" in model_name.lower():
-        try:
-            from google import genai
-            from google.genai import types
-            client = genai.Client(api_key=gemini_key)
-            response = client.models.generate_content(
-                model=model_name,
-                contents=user_prompt,
+        import time as _t
+        from google import genai
+        from google.genai import types
+        client = genai.Client(api_key=gemini_key)
+        _chain, _seen = [], set()
+        for m in (model_name, "gemini-2.0-flash", "gemini-2.5-flash-lite", "gemini-1.5-flash"):
+            if m not in _seen:
+                _seen.add(m); _chain.append(m)
+
+        def _gem(m):
+            r = client.models.generate_content(
+                model=m, contents=user_prompt,
                 config=types.GenerateContentConfig(
                     system_instruction=full_system_prompt,
-                    response_mime_type="application/json",
-                ),
-            )
-            text_response = (response.text or "").strip()
-            return _clean_and_parse(text_response, system_prompt, user_prompt, model_name)
-        except Exception as e:
-            print(f"[LLM Engine] Gemini error: {e}. Falling back to offline NLP.")
+                    response_mime_type="application/json"))
+            return (r.text or "").strip()
 
-    # --- Try OpenAI ---
-    elif openai_key and "gpt" in model_name.lower():
+        last_err = None
+        for m in _chain:
+            try:
+                out = _gem(m)
+                if m != model_name:
+                    print(f"[LLM Engine] Gemini backup model '{m}' succeeded.")
+                return _clean_and_parse(out, system_prompt, user_prompt, model_name)
+            except Exception as e:
+                last_err = e
+                rate = any(s in str(e).lower() for s in ("429", "quota", "rate", "resource_exhausted", "exhausted"))
+                print(f"[LLM Engine] Gemini '{m}' {'rate-limited' if rate else 'error'}: {str(e)[:120]}")
+        # whole chain failed — if it was rate-limiting, the per-minute window may reset; one retry.
+        if any(s in str(last_err).lower() for s in ("429", "quota", "rate", "resource_exhausted", "exhausted")):
+            print("[LLM Engine] Gemini chain exhausted — backoff 15s then 1 retry on primary…")
+            _t.sleep(15)
+            try:
+                return _clean_and_parse(_gem(model_name), system_prompt, user_prompt, model_name)
+            except Exception as e:
+                print(f"[LLM Engine] Gemini retry failed: {str(e)[:120]}. Trying next backup.")
+        # fall through (NOT elif) to OpenAI / Ollama / offline below.
+
+    # --- Try OpenAI (also reached as a backup after the Gemini chain is exhausted) ---
+    if openai_key and ("gpt" in model_name.lower() or "gemini" in model_name.lower()):
+        _oai_model = model_name if "gpt" in model_name.lower() else "gpt-4o-mini"
         try:
             import openai
             client = openai.OpenAI(api_key=openai_key)
             response = client.chat.completions.create(
-                model=model_name,
+                model=_oai_model,
                 response_format={"type": "json_object"},
                 messages=[
                     {"role": "system", "content": full_system_prompt},
@@ -663,9 +689,39 @@ def generate_json_from_prompt(system_prompt: str, user_prompt: str, model_name: 
         except Exception as e:
             print(f"[LLM Engine] OpenAI error: {e}. Falling back to offline NLP.")
 
+    # --- Try Ollama (FREE, local — run `ollama serve` + pull a model). Default path when no
+    # cloud key is set; gated on a reachable daemon so it never blocks if Ollama is off. ---
+    ollama_out = _try_ollama_json(full_system_prompt, user_prompt)
+    if ollama_out is not None:
+        return _clean_and_parse(ollama_out, system_prompt, user_prompt, model_name)
+
     # --- Smart Offline NLP Fallback ---
-    print(f"[LLM Offline] No API keys detected. Running Smart NLP Engine...")
+    print(f"[LLM Offline] No API key / Ollama. Running Smart NLP Engine...")
     return _smart_offline_router(system_prompt, user_prompt, model_name)
+
+
+def _try_ollama_json(system_prompt: str, user_prompt: str):
+    """Call a local Ollama model for JSON. Returns the raw text, or None if Ollama isn't
+    reachable / no model configured (so the caller falls through to offline). FREE + local.
+    Configure with SEOSONA_OLLAMA_MODEL (e.g. 'qwen2.5:3b', 'llama3.2'); host via OLLAMA_HOST."""
+    model = os.getenv("SEOSONA_OLLAMA_MODEL")
+    if not model:
+        return None
+    host = os.getenv("OLLAMA_HOST", "http://localhost:11434").rstrip("/")
+    try:
+        import requests
+        r = requests.post(f"{host}/api/chat", timeout=120, json={
+            "model": model, "stream": False, "format": "json",
+            "messages": [{"role": "system", "content": system_prompt},
+                         {"role": "user", "content": user_prompt}],
+        })
+        if r.status_code == 200:
+            print(f"[LLM Engine] Ollama ({model}) — local/free.")
+            return (r.json().get("message", {}).get("content") or "").strip()
+        print(f"[LLM Engine] Ollama HTTP {r.status_code}; falling back.")
+    except Exception as e:
+        print(f"[LLM Engine] Ollama unavailable ({type(e).__name__}); falling back.")
+    return None
 
 
 def _clean_and_parse(text: str, sys_p: str, user_p: str, model: str) -> dict:

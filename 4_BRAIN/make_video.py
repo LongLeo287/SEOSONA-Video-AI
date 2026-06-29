@@ -56,9 +56,10 @@ def _rot(name, options):
     return options[sum(ord(c) for c in (name or "x")) % len(options)]
 
 # ---------------------------------------------------------------- prose helpers
-_BASE_LEX = {"GitHub": "gít hắp", "API": "ây pi ai", "AI": "ây ai", "CLI": "xi eo ai",
-             "SEOSONA": "sê ô sô na", "MIT": "em ai ti", "open source": "âu pừn sọt",
-             "Docker": "đốc cơ", "npm": "en pi em", "Git": "gít"}
+# make_video only adds repo-specific terms here; the AUTHORITATIVE tech lexicon lives in
+# news_video_standards.CORE_PRONUNCIATION_LEXICON (merged underneath at compose time).
+# Keep this minimal so we never override nvs's curated phonetics.
+_BASE_LEX = {"SEOSONA": "sê ô sô na"}
 _INSTALL = {"python": "pip install", "go": "go install", "rust": "cargo install",
             "javascript": "npm install", "typescript": "npm install"}
 

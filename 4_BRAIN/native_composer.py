@@ -593,7 +593,11 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
     # same script come out 122 wpm AND 214 wpm). So correct in BOTH directions:
     #   too fast (>~MAX_WPM) → slow down (atempo<1, floored at 0.85 to avoid artifacts)
     #   too slow/long        → speed up (atempo>1, capped 1.35)
-    MAX_WPM, MIN_ATEMPO = 175.0, 0.85   # toolkit: 170–210 wpm reads as "fast"; 0.85 = artifact floor
+    MAX_WPM, MIN_ATEMPO = 200.0, 0.88   # 170–210 wpm reads as energetic-news "fast" — keep a
+                                         # naturally-paced voice (e.g. Gia Bảo ~204) instead of
+                                         # slowing it to a draggy, time-stretch-artifacted crawl.
+                                         # Only a real tongue-twister (>208) gets trimmed; floor
+                                         # raised to 0.88 so we never hit audible stretch artifacts.
     nwords = len(nvs.tokenize_words(display_full))
     wpm0 = round(nwords / dur * 60, 1) if dur else 0.0
     wpm_dur = (nwords / MAX_WPM * 60.0) if nwords else dur   # duration that yields MAX_WPM

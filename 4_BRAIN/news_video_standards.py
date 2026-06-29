@@ -46,6 +46,14 @@ CORE_PRONUNCIATION_LEXICON: Dict[str, str] = {
     "Stripe": "sờ trai", "Vercel": "vơ xeo", "Linear": "li ni a", "HuggingFace": "hâ ging phây",
     "ByteDance": "bai đừn", "DeepClaude": "đip clốt", "LocalAI": "lâu cô eo ai",
     "Voicebox": "vois bóc", "Artifacts": "a ti phách", "Skills": "sờ kiu", "Skill": "sờ kiu",
+    # added 2026-06-29 (English-pronunciation pass) — terms that recur in repo videos but
+    # were missing; phonetics follow the conventions above (G→"gi", H→"hát", spelled-out).
+    "GPT": "gi pi ti", "Git": "gít", "Python": "pai thon", "JavaScript": "gia va sờ cơ ríp",
+    "TypeScript": "típ sờ cơ ríp", "Linux": "li núc", "Windows": "quin đâu",
+    "Kubernetes": "ku bơ nét", "framework": "phrêm uốc", "repo": "rê pô",
+    "URL": "diu a eo", "SDK": "ét đi cây", "UI": "diu ai", "UX": "diu ích",
+    "JSON": "giây sần", "HTTP": "hát ti ti pi", "HTTPS": "hát ti ti pi ét",
+    "GitLab": "gít láp", "VS Code": "vi ét cốt", "Node": "nốt", "Nodejs": "nốt giây ét",
 }
 
 _lexicon_path = os.path.join(os.path.dirname(__file__), 'lexicon.json')
@@ -199,12 +207,21 @@ def prepare_tts_script(display_text: str) -> TtsPlan:
     )
 
 
-def _estimate_word_data(words: Sequence[str], duration: float) -> List[dict]:
+def _estimate_word_data(words: Sequence[str], duration: float, span=None) -> List[dict]:
+    """Spread words proportionally by char weight. With `span=(t0,t1)` it distributes over
+    the REAL speech envelope from ASR (respects leading/trailing silence) instead of a flat
+    0..duration guess — used when per-word ASR timing can't be trusted but its overall
+    span can."""
     if not words:
         return []
     duration = max(0.3, float(duration or 0.3))
-    lead_in = 0.08
-    tail_pad = 0.08
+    if span:
+        t0, t1 = float(span[0]), float(span[1])
+        lead_in = max(0.0, t0)
+        tail_pad = max(0.0, duration - min(duration, t1))
+    else:
+        lead_in = 0.08
+        tail_pad = 0.08
     gap = 0.025 if len(words) > 1 else 0.0
     total_weight = sum(max(1, len(word)) for word in words)
     total_gap = gap * max(0, len(words) - 1)
@@ -226,10 +243,31 @@ def align_tts_boundaries_to_display_words(
 ) -> List[dict]:
     """Map pronunciation word boundaries back onto the exact display words."""
     boundaries = [item for item in tts_boundaries if str(item.get("word", "")).strip()]
-    if not boundaries or not plan.display_words:
+    n = len(plan.display_words)
+    if not boundaries or not n:
         return _estimate_word_data(plan.display_words, duration)
 
-    grouped: Dict[int, List[dict]] = {idx: [] for idx in range(len(plan.display_words))}
+    def _b_start(b):
+        return float(b.get("start", 0.0))
+
+    def _b_end(b):
+        return float(b.get("start", 0.0)) + max(0.05, float(b.get("duration", 0.25)))
+
+    # The real speech envelope (first..last heard word) — usable even when the ASR text
+    # itself is unreliable; lets the estimate respect leading/trailing silence. Only trust
+    # it when it covers a plausible fraction of the clip (a too-short envelope means the
+    # ASR also got the timing wrong → flat full-duration estimate is safer).
+    env = (min(_b_start(b) for b in boundaries), max(_b_end(b) for b in boundaries))
+    _span = env if (env[1] - env[0]) > max(1.0, 0.4 * duration) else None
+
+    # PLAUSIBILITY GUARD: if ASR returned far fewer words than the spoken script, the take
+    # is likely low-quality/hallucinated — its per-word timings are garbage, so don't trust
+    # them; spread display words smoothly over the real envelope instead.
+    if len(boundaries) < 0.6 * max(1, len(plan.tts_words)):
+        return _estimate_word_data(plan.display_words, duration, span=_span)
+
+    # Index-based grouping (ASR word i ↔ spoken word i ↔ display word mapping[i]).
+    grouped: Dict[int, List[dict]] = {idx: [] for idx in range(n)}
     for boundary_idx, boundary in enumerate(boundaries):
         if boundary_idx >= len(plan.tts_word_to_display_index):
             break
@@ -237,22 +275,50 @@ def align_tts_boundaries_to_display_words(
         if display_idx in grouped:
             grouped[display_idx].append(boundary)
 
-    if any(not grouped[idx] for idx in range(len(plan.display_words))):
-        return _estimate_word_data(plan.display_words, duration)
+    real = {}
+    for idx in range(n):
+        g = grouped[idx]
+        if g:
+            real[idx] = (max(0.0, min(_b_start(b) for b in g)), max(_b_end(b) for b in g))
 
+    # If too few display words got real timing, fall back to the envelope estimate.
+    if len(real) < 0.5 * n:
+        return _estimate_word_data(plan.display_words, duration, span=_span)
+
+    # PARTIAL-REAL: keep real timing where ASR matched; linearly interpolate the gaps
+    # (was all-or-nothing → one missed word dumped the whole scene to a flat estimate).
+    filled = sorted(real)
     aligned = []
-    for idx, display_word in enumerate(plan.display_words):
-        group = grouped[idx]
-        start = min(float(item.get("start", 0.0)) for item in group)
-        end = max(
-            float(item.get("start", 0.0)) + max(0.05, float(item.get("duration", 0.25)))
-            for item in group
-        )
-        aligned.append({
-            "word": display_word,
-            "start": max(0.0, start),
-            "end": min(float(duration), max(start + 0.05, end)),
-        })
+    for idx in range(n):
+        if idx in real:
+            start, end = real[idx]
+        else:
+            prev = max([i for i in filled if i < idx], default=None)
+            nxt = min([i for i in filled if i > idx], default=None)
+            if prev is not None and nxt is not None:
+                gap = max(0.0, real[nxt][0] - real[prev][1]); steps = nxt - prev
+                start = real[prev][1] + gap * ((idx - prev - 1) / steps)
+                end = real[prev][1] + gap * ((idx - prev) / steps)
+            elif prev is not None:
+                start = real[prev][1]; end = start + 0.25
+            elif nxt is not None:
+                end = real[nxt][0]; start = max(0.0, end - 0.25)
+            else:
+                start, end = 0.0, 0.25
+        aligned.append({"word": plan.display_words[idx],
+                        "start": max(0.0, start),
+                        "end": min(float(duration), max(start + 0.05, end))})
+
+    # Enforce monotonic, non-overlapping order (interpolated gaps can otherwise overlap).
+    for i in range(1, len(aligned)):
+        if aligned[i]["start"] < aligned[i - 1]["start"]:
+            aligned[i]["start"] = aligned[i - 1]["start"]
+        if aligned[i - 1]["end"] > aligned[i]["start"]:
+            aligned[i - 1]["end"] = aligned[i]["start"]
+        if aligned[i - 1]["end"] <= aligned[i - 1]["start"]:
+            aligned[i - 1]["end"] = aligned[i - 1]["start"] + 0.02
+        if aligned[i]["end"] <= aligned[i]["start"]:
+            aligned[i]["end"] = aligned[i]["start"] + 0.05
     return aligned
 
 
