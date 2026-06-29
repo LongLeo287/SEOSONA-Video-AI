@@ -32,6 +32,7 @@
     "ledger": "node scripts/seosona-python.cjs 4_BRAIN/factory_ledger.py",
     "freshness": "node scripts/seosona-python.cjs scripts/check_freshness.py",
     "catalog": "node scripts/seosona-python.cjs scripts/gen_catalog.py",
+    "mirror": "node scripts/seosona-python.cjs scripts/sheets_mirror.py",
     "build:desktop": "node scripts/build_desktop_app.cjs",
     "test": "npm run seosona:doctor"
   },

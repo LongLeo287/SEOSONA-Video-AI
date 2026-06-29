@@ -19,7 +19,48 @@ engines (2× VieNeu, 2× F5, a stray English Kokoro) — all since removed. This
 routes only what actually works.
 """
 import os
+import subprocess
+import glob
 from importlib import import_module
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+
+def _ffmpeg():
+    for c in glob.glob(os.path.join(ROOT, "node_modules", "ffmpeg-static", "ffmpeg*")):
+        if os.path.exists(c):
+            return c
+    return "ffmpeg"
+
+
+def _lora_synth(text, audio_out):
+    """Brand voice via the fine-tuned Chí Quyết LoRA (timbre ~0.98). OPT-IN only
+    (SEOSONA_VOICE=lora). Runs in the isolated training venv (torch 2.8; neucodec
+    segfaults on this env's torch 2.5) via subprocess, then transcodes to audio_out.
+    Returns audio_out on success, None on any miss → caller falls back to VieNeu."""
+    venv_py = os.path.join(ROOT, "7_ASSETS", "voice", "training", ".venv-train", "Scripts", "python.exe")
+    script = os.path.join(ROOT, "scripts", "synth_lora_voice.py")
+    adapter = os.path.join(ROOT, "2_KNOWLEDGE", "external_toolkits", "VieNeu-TTS",
+                           "finetune", "output", "VieNeu-TTS-0.3B-LoRA", "adapter_model.safetensors")
+    if not (os.path.exists(venv_py) and os.path.exists(script) and os.path.exists(adapter)):
+        print("[Voice Router] LoRA voice unavailable (venv/adapter missing) — using VieNeu.")
+        return None
+    tmp_wav = audio_out + ".lora.wav"
+    try:
+        env = dict(os.environ); env["PYTHONIOENCODING"] = "utf-8"
+        r = subprocess.run([venv_py, script, text, "-o", tmp_wav],
+                           env=env, timeout=600, capture_output=True, text=True)
+        if r.returncode != 0 or not os.path.exists(tmp_wav):
+            print(f"[Voice Router] LoRA synth failed (rc={r.returncode}) — falling back to VieNeu.")
+            return None
+        subprocess.run([_ffmpeg(), "-y", "-hide_banner", "-loglevel", "error",
+                        "-i", tmp_wav, audio_out], check=True)
+        os.remove(tmp_wav)
+        print(f"[Voice Router] Engine: Chí Quyết LoRA voice -> {audio_out}")
+        return audio_out
+    except Exception as e:
+        print(f"[Voice Router] LoRA path error ({e}) — falling back to VieNeu.")
+        return None
 
 
 # ---------------------------------------------------------------------------
@@ -83,6 +124,13 @@ def synthesize_voice(
     if fallback_voice != MALE_EDGE_VOICE:
         print(f"[Voice Router] fallback voice coerced to male {MALE_EDGE_VOICE}.")
         fallback_voice = MALE_EDGE_VOICE
+
+    # OPT-IN: fine-tuned Chí Quyết LoRA brand voice (SEOSONA_VOICE=lora). Highest
+    # fidelity; on any miss it falls through to the VieNeu path below (unchanged default).
+    if os.environ.get("SEOSONA_VOICE", "").lower() == "lora":
+        lora = _lora_synth(text, audio_out)
+        if lora:
+            return lora
 
     if engine != "vieneu":
         return _edge_fallback(text, audio_out, fallback_voice,

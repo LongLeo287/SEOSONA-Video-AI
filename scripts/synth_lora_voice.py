@@ -62,15 +62,31 @@ def _pron(text):
     return text
 
 
-def synth(text, out_path, adapter=DEFAULT_ADAPTER, temperature=0.7, top_k=50, apply_lexicon=True):
-    import soundfile as sf
+def synth(text, out_path, adapter=DEFAULT_ADAPTER, temperature=0.7, top_k=50,
+          apply_lexicon=True, repetition_penalty=1.1):
+    """Custom generate (not _infer_torch) so we control LENGTH: the 0.3B model emits
+    EOS too early → rushed/clipped speech. We floor min_new_tokens to the text length
+    (~codes/char) and add repetition_penalty, then use the engine's correct _decode."""
+    import soundfile as sf, torch
     from vieneu_utils.phonemize_text import phonemize_with_dict
     tts = _engine(adapter)
     sr = getattr(tts, "sample_rate", 24000) or 24000
     spoken = _pron(text) if apply_lexicon else text   # English terms → Vietnamese pronunciation
     phones = phonemize_with_dict(spoken)
     prompt = f"<|TEXT_PROMPT_START|>{phones}<|TEXT_PROMPT_END|><|SPEECH_GENERATION_START|>"
-    output_str = tts._infer_torch(tts.tokenizer.encode(prompt), temperature=temperature, top_k=top_k)
+    ids = torch.tensor(tts.tokenizer.encode(prompt)).unsqueeze(0).to(tts.backbone.device)
+    end_id = tts.tokenizer.convert_tokens_to_ids("<|SPEECH_GENERATION_END|>")
+    # Floor min_new_tokens so the model can't EOS too early (was truncating to ~5s),
+    # but modest so it doesn't OVER-generate (≈50 NeuCodec frames/sec; ~6 frames/char ≈
+    # natural pace). Capped so long inputs don't run away.
+    min_new = min(max(200, int(len(spoken) * 6)), 700)
+    with torch.no_grad():
+        out = tts.backbone.generate(
+            ids, do_sample=True, temperature=temperature, top_k=top_k,
+            repetition_penalty=repetition_penalty, eos_token_id=end_id,
+            min_new_tokens=min_new, max_new_tokens=4096, use_cache=True,
+            pad_token_id=tts.tokenizer.pad_token_id or end_id)
+    output_str = tts.tokenizer.decode(out[0, ids.shape[-1]:].cpu().tolist(), add_special_tokens=False)
     wav = tts._decode(output_str)          # engine's correct codes→audio decode
     sf.write(out_path, wav, sr)
     return out_path, len(wav) / sr
