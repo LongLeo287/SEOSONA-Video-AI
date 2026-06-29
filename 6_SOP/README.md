@@ -1,6 +1,6 @@
 # 6_SOP — Standard Operating Procedures (index)
 
-24 SOPs, grouped below for navigation. Kept flat (not subfoldered) because they are
+27 SOPs, grouped below for navigation. Kept flat (not subfoldered) because they are
 cross-referenced by skills/agents and actively edited — moving them would break refs.
 To add a new SOP, drop it here and add a line to the right group below.
 
@@ -10,6 +10,7 @@ To add a new SOP, drop it here and add a line to the right group below.
 | `video_production_sop.md` | the core video production procedure |
 | `tech_news_faceless_sop.md` | faceless Vietnamese tech-news videos (the default format) |
 | `video_course_sop.md` | course/educational videos |
+| `talking_head_sop.md` | engine #2: edit filmed/screen-rec footage with REAL voice (talking-head) |
 | `repurposer_sop.md` | long-to-short repurposing |
 | `carousel_sop.md` | social carousels |
 | `thumbnail_sop.md` | thumbnails |

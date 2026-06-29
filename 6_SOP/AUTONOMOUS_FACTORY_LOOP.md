@@ -132,7 +132,7 @@ No new render engine, no new queue, no new agent that duplicates an existing one
   variant; winning patterns promoted into the default set, losers retired.
 - **Length & pacing** tuned from retention curves (where viewers drop off).
 - **Topic choice** = trend signal × past topic performance (exploit + explore).
-- **Voice** (e.g. Chí Quyết clone vs others) compared by retention/engagement.
+- **Voice** (e.g. Chi Quyet clone vs others) compared by retention/engagement.
 - **Explore/exploit**: a fixed % of each batch is exploration so the factory keeps
   discovering, not just over-fitting yesterday's winner.
 
@@ -186,3 +186,22 @@ cohorts with human touches falling.
 1. **Publish credentials** + which platforms first (gates OBSERVE).
 2. **Autonomy level** to target first (recommend L1: auto-make, approve-to-publish).
 3. **Analytics access** (YouTube Data/Analytics API, TikTok, FB) for real metrics.
+
+---
+
+## 10. Operations — daily commands (npm)
+
+| Command | Does |
+|---|---|
+| `npm run factory` | one full loop turn (PLAN→PRODUCE→QA→PUBLISH→LEARN), honours `factory_policy.yaml` |
+| `npm run factory -- --dry-run` | plan only, produce nothing |
+| `npm run factory:learn` | rebuild the learning ledger + post-mortems (no production) |
+| `npm run ledger` | print the learning ledger + template weights |
+| `npm run freshness` | dependency freshness (engines installed-vs-latest) |
+| `npm run catalog` | regenerate `7_ASSETS/templates/CATALOG.md` |
+| `npm run start:queue` | run the inbox queue (PRODUCE only, reliable batch) |
+| `npm run daily` | scheduled unattended runner (queue + optional publish) |
+
+**Cron it** (Windows `schtasks` / Linux cron — see `deploy/SCHEDULING.md`) to run
+`npm run factory` on a schedule → full autonomy at the configured `autonomy_level`.
+Kill switch: set `kill_switch: true` in `1_CONFIG/factory_policy.yaml`.

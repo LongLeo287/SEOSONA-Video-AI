@@ -27,6 +27,11 @@
     "daily": "node scripts/seosona-python.cjs scripts/daily_production.py",
     "feedback": "node scripts/seosona-python.cjs 9_DASHBOARD/feedback_loop.py",
     "start:dashboard": "node scripts/seosona-python.cjs 9_DASHBOARD/server.py",
+    "factory": "node scripts/seosona-python.cjs 4_BRAIN/factory_brain.py",
+    "factory:learn": "node scripts/seosona-python.cjs 4_BRAIN/factory_brain.py --learn-only",
+    "ledger": "node scripts/seosona-python.cjs 4_BRAIN/factory_ledger.py",
+    "freshness": "node scripts/seosona-python.cjs scripts/check_freshness.py",
+    "catalog": "node scripts/seosona-python.cjs scripts/gen_catalog.py",
     "build:desktop": "node scripts/build_desktop_app.cjs",
     "test": "npm run seosona:doctor"
   },
