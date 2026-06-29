@@ -131,6 +131,12 @@ token.pickle
 # archived non-video research notes (kept local, not in git)
 _QUARANTINE/research_archive/
 
+# external toolkits cloned for reference/training (VieNeu finetune, etc.) — local only
+2_KNOWLEDGE/external_toolkits/
+
+# voice training workspace (datasets, LoRA adapters, checkpoints) — large, local only
+7_ASSETS/voice/training/
+
 # scratch / one-off video drivers (kept locally, not shipped)
 scripts/clone_news2.py
 scripts/clone_news3.py

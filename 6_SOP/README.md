@@ -1,6 +1,6 @@
 # 6_SOP — Standard Operating Procedures (index)
 
-23 SOPs, grouped below for navigation. Kept flat (not subfoldered) because they are
+24 SOPs, grouped below for navigation. Kept flat (not subfoldered) because they are
 cross-referenced by skills/agents and actively edited — moving them would break refs.
 To add a new SOP, drop it here and add a line to the right group below.
 
@@ -41,6 +41,7 @@ To add a new SOP, drop it here and add a line to the right group below.
 ## 🗺️ System, Operation & Maps
 | SOP | Use for |
 |-----|---------|
+| `AUTONOMOUS_FACTORY_LOOP.md` | 🌟 NORTH-STAR: the autonomous self-improving factory (OODA loop, component blueprint, guardrails, build plan) |
 | `MASTER_OPERATION.md` | top-level operation manual |
 | `SEOSONA_VIDEO_RECONNECTION_MAP.md` | how the system pieces connect (resolver contract, OS binding, audit semantics) |
 | `SEOSONA_WORKFLOW_BOUNDARY_MAP.md` | workflow boundaries |
