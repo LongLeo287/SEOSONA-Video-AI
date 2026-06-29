@@ -286,15 +286,17 @@ def auto_content(gh, template):
     else:
         print("[make_video] script: deterministic template (Gemini unavailable)")
 
-    # Cap repo-slug repetition in the SPOKEN text (a hyphenated slug said 8× is what VieNeu
-    # mangles): keep the name in the first 2 segments, then 'dự án này' / 'công cụ này'.
-    # Applies to BOTH paths so the voice is clean even when Gemini is rate-limited.
-    seen = 0
-    for i in range(len(SEG)):
-        if name and name in SEG[i]:
-            seen += 1
-            if seen > 2:
-                SEG[i] = SEG[i].replace(name, "dự án này" if i % 2 else "công cụ này")
+    # Cap repo-slug repetition in the SPOKEN text — DETERMINISTIC PATH ONLY. A hyphenated
+    # slug said 8× is what VieNeu mangles, and the deterministic template repeats {name}
+    # every segment. Gemini already varies it naturally (its prompt says "name once, then
+    # 'dự án này'"), so forcing this on Gemini output produced awkward 'Dự án "công cụ này"'.
+    if not g:
+        seen = 0
+        for i in range(len(SEG)):
+            if name and name in SEG[i]:
+                seen += 1
+                if seen > 2:
+                    SEG[i] = SEG[i].replace(name, "dự án này" if i % 2 else "công cụ này")
 
     lex = dict(_BASE_LEX)
     return compose(template, segments=SEG, headings=HEAD, scene_data=DATA, lexicon=lex)
