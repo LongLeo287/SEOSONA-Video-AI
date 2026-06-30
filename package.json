@@ -12,6 +12,8 @@
     "seosona:audit-portability": "node scripts/seosona-project-bridge.cjs audit-portability",
     "seosona:audit": "node scripts/seosona-project-audit.cjs",
     "python:which": "node scripts/seosona-python.cjs --which",
+    "env:check": "node scripts/seosona-python.cjs 0_SETUP/check_env.py",
+    "env:setup": "powershell -ExecutionPolicy Bypass -File 0_SETUP/bootstrap.ps1",
     "video:run": "node scripts/seosona-python.cjs 4_BRAIN/workflow_router.py",
     "make:video": "node scripts/seosona-python.cjs 4_BRAIN/make_video.py",
     "post:image": "node scripts/seosona-python.cjs scripts/workflow_social_post.py",
@@ -36,6 +38,7 @@
     "eval": "node scripts/seosona-python.cjs 4_BRAIN/eval_run.py",
     "factory:eval": "node scripts/seosona-python.cjs 4_BRAIN/factory_brain.py --eval",
     "eval:render": "node scripts/seosona-python.cjs 4_BRAIN/eval_run.py --render",
+    "security:scan": "node scripts/seosona-python.cjs scripts/security_scan.py",
     "build:desktop": "node scripts/build_desktop_app.cjs",
     "test": "npm run seosona:doctor"
   },
