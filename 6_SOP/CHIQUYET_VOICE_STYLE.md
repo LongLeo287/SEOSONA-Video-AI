@@ -31,10 +31,10 @@ LoRA clone voice + the script style. The SEOSONA news branch stays formal + VieN
 6. RULE #1 still holds: display text vs spoken; English terms pronounced via lexicon.
 
 ## Wiring
-- Voice: `2_SKILLS/voice_cloner/voice_router.py`. The Chí Quyết LoRA is **opt-in**
-  (`SEOSONA_VOICE=lora`) until a verified adapter exists — **until then CQA temporarily
-  uses the Gia Bảo preset** like news (the v1 clone wasn't good enough; v2 is training).
-  Re-enable the brand-default gate once the new adapter passes listening QA. See
-  [[voice-clone-reference]].
+- Voice: `2_SKILLS/voice_cloner/voice_router.py` = **OmniVoice (CQA clone) primary → VieNeu
+  'Gia Bảo' preset backup** (user decision 2026-06-30). The VieNeu-LoRA + F5 clone experiments
+  were REMOVED; voice cloning will be done via **OmniVoice** (k2-fsa, Apache-2.0, VN-native).
+  This profile is engine-agnostic — it's the delivery STYLE (rhythm/markers), apply it to
+  whatever engine voices CQA.
 - This profile should be injected into the Gemini system prompt for CQA course videos
   (`npm run video:course`) so the SCRIPT matches his delivery, not just the timbre.
