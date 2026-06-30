@@ -1,0 +1,46 @@
+{
+ "name": "listicle-top5",
+ "title": "Listicle / Top-N",
+ "description": "Liệt kê N công cụ/mẹo (Top 5 công cụ AI, 7 thủ thuật). Hook → từng mục → cách dùng → chốt.",
+ "when_to_use": "Khi nội dung là một DANH SÁCH có thứ tự (top 5/7/10), mỗi mục là một điểm riêng.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "orange",
+   "kicker_hint": "TOP 5",
+   "hero": true
+  },
+  {
+   "component": null,
+   "accent": "blue",
+   "kicker_hint": "BỐI CẢNH"
+  },
+  {
+   "component": "chart",
+   "accent": "green",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "NỔI BẬT"
+  },
+  {
+   "component": "steps",
+   "accent": "blue",
+   "kicker_hint": "CÁCH DÙNG"
+  },
+  {
+   "component": "bignum",
+   "accent": "green",
+   "kicker_hint": "KẾT QUẢ"
+  },
+  {
+   "component": "cta",
+   "accent": "orange",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}
