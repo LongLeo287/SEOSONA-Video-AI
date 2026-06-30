@@ -147,6 +147,42 @@ def _chart(gh):
     return {"title": "Vì sao nổi bật", "items": [("Hiệu năng", 90, ""), ("Dễ dùng", 82, ""), ("Cộng đồng", 75, "")]}
 
 # ---------------------------------------------------------------- Gemini prose
+def _gemini_outline(gh, kinds):
+    """Stage 1 of a two-stage script (pattern adopted from ArcReel/Toonflow, re-implemented
+    natively — their image/character/storyboard machinery is N/A to our faceless HTML engine,
+    but their CORE discipline transfers: PLAN a coherent arc BEFORE writing scenes). Returns a
+    short per-scene 'focus' list so the video flows hook→what-it-is→key-points→why→CTA instead
+    of N disjoint/repetitive scenes (the original 'cảnh giống nhau' complaint). Returns None on
+    any failure → stage 2 then runs WITHOUT a plan = exactly the previous behavior (no regression)."""
+    try:
+        import llm_engine
+    except Exception:
+        return None
+    if not os.getenv("GEMINI_API_KEY"):
+        return None
+    n = len(kinds)
+    name, desc = gh.get("name", ""), (gh.get("desc") or "")
+    sysp = ("Bạn là đạo diễn nội dung video tin tức công nghệ SEOSONA. Trước khi viết lời, "
+            "hãy LẬP DÀN Ý mạch lạc cho cả video: mỗi cảnh một TRỌNG TÂM riêng biệt, KHÔNG trùng ý, "
+            "ghép lại thành một mạch kể liền lạc: mở đầu gây chú ý → giới thiệu dự án là gì → "
+            "1-2 điểm nổi bật CỤ THỂ → vì sao đáng quan tâm → kêu gọi theo dõi. "
+            "GROUNDING: chỉ dựa trên dữ kiện được cung cấp, KHÔNG bịa.")
+    userp = (f"Repo: {name}\nMô tả (tiếng Anh): {desc}\n"
+             f"Sao: {gh.get('stars_h')}, ngôn ngữ: {gh.get('lang')}, "
+             f"chủ đề: {', '.join((gh.get('topics') or [])[:6])}\n"
+             f"Số cảnh: {n}. Vai trò trực quan từng cảnh: {kinds}\n"
+             f"Trả JSON: {{\"focus\":[\"trọng tâm cảnh 1 (3-8 từ)\", ...]}} đúng {n} phần tử; "
+             f"cảnh cuối = kêu gọi theo dõi SEOSONA.")
+    try:
+        out = llm_engine.generate_json_from_prompt(sysp, userp, model_name="gemini-2.5-flash")
+        foci = out.get("focus") if isinstance(out, dict) else (out if isinstance(out, list) else None)
+        if not foci or len(foci) < n:
+            return None
+        return [str(f).strip() for f in foci[:n]]
+    except Exception:
+        return None
+
+
 def _gemini_script(gh, scenes):
     """Write clean Vietnamese segments + 2-tone headings via the LLM (Gemini free tier
     when GEMINI_API_KEY is set; offline → returns None so the deterministic path runs).
@@ -170,10 +206,17 @@ def _gemini_script(gh, scenes):
             "Mỗi cảnh 1 ý, ~15-28 từ. Số đọc bình thường. "
             "GROUNDING: CHỈ dùng dữ kiện được cung cấp (tên/mô tả/sao/ngôn ngữ/chủ đề); "
             "TUYỆT ĐỐI KHÔNG bịa số liệu, tính năng, hay khẳng định không có trong dữ kiện.")
+    # Stage 1: plan a coherent arc first (graceful — None → write without it = old behavior).
+    plan = _gemini_outline(gh, kinds)
+    plan_txt = ""
+    if plan:
+        plan_txt = ("Dàn ý đã duyệt — BÁM SÁT, mỗi cảnh đúng trọng tâm CỦA NÓ, không lặp ý cảnh khác:\n"
+                    + "\n".join(f"  Cảnh {i + 1}: {p}" for i, p in enumerate(plan)) + "\n")
     userp = (f"Repo GitHub: {name}\nMô tả (tiếng Anh, hãy DỊCH): {desc}\n"
              f"Sao: {gh.get('stars_h')}, ngôn ngữ: {gh.get('lang')}, "
              f"chủ đề: {', '.join((gh.get('topics') or [])[:6])}\n"
              f"Số cảnh: {len(scenes)}. Vai trò từng cảnh: {kinds}\n"
+             f"{plan_txt}"
              f"Trả JSON: {{\"scenes\":[{{\"seg\":\"lời đọc\",\"h1\":\"dòng 1 (≤22)\","
              f"\"h2\":\"từ nhấn (≤22)\"}}]}} đúng {len(scenes)} phần tử, cảnh cuối là CTA theo dõi SEOSONA.")
     try:

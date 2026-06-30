@@ -48,7 +48,7 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 |------|-----|------|-------|-----------|---------|
 | [every-app/open-seo](https://github.com/every-app/open-seo) | seo | S | 94 | SEO stack; MCP; Agent skills; Keyword research; Rank tr | ✅ REFERENCE→ADOPTED pattern: tools need paid DataForSEO (SKIP), but built free/local `.agents/skills/video-seo-metadata` from its workflow shape |
 | [chroma-core/chroma](https://github.com/chroma-core/chroma) | rag | S | 94 | Vector database; AI search infrastructure; RAG stack; E | ⏳ analyze |
-| [ArcReel/ArcReel](https://github.com/ArcReel/ArcReel) | video | S | 92 | Video generation; AI Agent workflow; Claude Agent SDK;  | ⏳ analyze |
+| [ArcReel/ArcReel](https://github.com/ArcReel/ArcReel) | video | S | 92 | Video generation; AI Agent workflow; Claude Agent SDK;  | ✅ **REFERENCE-pattern** (AGPL — analyze-only, not vendored) — gem = two-stage script (plan→scenes) → built `_gemini_outline`; image/character patterns N/A to faceless HTML |
 | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) | rag | S | 92 | Document parsing; PDF/OCR; Markdown/JSON; Agentic workf | ⏳ analyze |
 | [lumina-ai-inc/chunkr](https://github.com/lumina-ai-inc/chunkr) | rag | S | 91 | Document intelligence; Layout analysis; OCR; Semantic c | ⏳ analyze |
 | [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) | rag | S | 90 | MCP; Codebase memory; Knowledge graph | ⏳ analyze |
@@ -56,7 +56,7 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 | [feicaiclub/video-spec-builder](https://github.com/feicaiclub/video-spec-builder) | video | S | 90 | Video spec; Storyboard; HyperFrames; Claude Code/Cursor | ✅ REFERENCE (interactive skill ≠ our autonomous factory; idea backlog: component subtypes, scene-validate, 9:16 layout) |
 | [StarTrail-org/PixelRAG](https://github.com/StarTrail-org/PixelRAG) | rag | S | 90 | Visual RAG; Screenshot tiles; Layout-aware retrieval | ⏳ analyze |
 | [github/spec-kit](https://github.com/github/spec-kit) | skills | S | 90 | Spec-driven development; Planning; Engineering workflow | ⏳ analyze |
-| [HBAI-Ltd/Toonflow-app](https://github.com/HBAI-Ltd/Toonflow-app) | video | S | 90 | Animated short drama; AI scriptwriting; Storyboarding;  | ⏳ analyze |
+| [HBAI-Ltd/Toonflow-app](https://github.com/HBAI-Ltd/Toonflow-app) | video | S | 90 | Animated short drama; AI scriptwriting; Storyboarding;  | ✅ **ADOPTED pattern** (Apache, targeted brain) — two-stage decomposition → built native two-stage `_gemini_script`; image/drama machinery N/A |
 | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | rag | S | 88 | Context compression; Token optimization; MCP | ⏳ analyze |
 | [yifanfeng97/Hyper-Extract](https://github.com/yifanfeng97/Hyper-Extract) | rag | S | 88 | LLM extraction; Knowledge graphs; Hypergraphs; Structur | ⏳ analyze |
 | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) | skills | S | 86 | Agent skill; Recency workflows | ⏳ analyze |
