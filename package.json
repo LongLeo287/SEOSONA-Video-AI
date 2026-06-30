@@ -33,6 +33,8 @@
     "freshness": "node scripts/seosona-python.cjs scripts/check_freshness.py",
     "catalog": "node scripts/seosona-python.cjs scripts/gen_catalog.py",
     "mirror": "node scripts/seosona-python.cjs scripts/sheets_mirror.py",
+    "eval": "node scripts/seosona-python.cjs 4_BRAIN/eval_run.py",
+    "eval:render": "node scripts/seosona-python.cjs 4_BRAIN/eval_run.py --render",
     "build:desktop": "node scripts/build_desktop_app.cjs",
     "test": "npm run seosona:doctor"
   },

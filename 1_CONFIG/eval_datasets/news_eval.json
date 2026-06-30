@@ -1,0 +1,10 @@
+{
+  "name": "news_eval",
+  "description": "Fixed regression set for the SEOSONA news pipeline. Run via 4_BRAIN/eval_run.py after pipeline changes to catch quality regressions (narration/brand/visual) the metadata gate can't see. Mix of big + small + has-homepage + no-homepage repos so template rotation, the real-screenshot path, and the Gemini/deterministic script path are all exercised.",
+  "cases": [
+    {"id": "n8n",                 "url": "https://github.com/n8n-io/n8n",                 "note": "big + homepage → real homepage shot, tool-walkthrough"},
+    {"id": "ai-14all",            "url": "https://github.com/ai-creed/ai-14all",          "note": "small, no homepage → GitHub-page shot, data-news"},
+    {"id": "dify",                "url": "https://github.com/langgenius/dify",            "note": "big + homepage, AI branch (rich template)"},
+    {"id": "hermes-agent",        "url": "https://github.com/nousresearch/hermes-agent",  "note": "AI/agent branch, benchmark-news"}
+  ]
+}

@@ -45,6 +45,7 @@ To add a new SOP, drop it here and add a line to the right group below.
 | SOP | Use for |
 |-----|---------|
 | `AUTONOMOUS_FACTORY_LOOP.md` | 🌟 NORTH-STAR: the autonomous self-improving factory (OODA loop, component blueprint, guardrails, build plan) |
+| `EVAL_FLYWHEEL.md` | Qualitative QA: Gemini-as-judge grades narration/brand/visual (free) + regression eval set — `npm run eval` |
 | `MASTER_OPERATION.md` | top-level operation manual |
 | `SEOSONA_VIDEO_RECONNECTION_MAP.md` | how the system pieces connect (resolver contract, OS binding, audit semantics) |
 | `SEOSONA_WORKFLOW_BOUNDARY_MAP.md` | workflow boundaries |
