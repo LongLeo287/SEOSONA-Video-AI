@@ -15,6 +15,7 @@ Scene-Composer agent can still author richer prose; this command exists so a
 news batch can be produced with one call.
 """
 import os, sys, json, re, argparse, subprocess
+from importlib import import_module
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if ROOT not in sys.path: sys.path.insert(0, ROOT)
@@ -339,6 +340,42 @@ def _capture_shot(gh, project_dir):
             print(f"[make_video] shot error {u}: {type(e).__name__}")
     return None
 
+def _finalize_outputs(gh, project_dir, output, name):
+    """Ready-to-post sidecars + behavioral verify (adopted from AI-auto-generate-video /
+    loha: the 3-file CapCut-ready output + RULE #8 'verify before deliver').
+      • <name> - voice.mp3  — the narration track alone (drop into CapCut/editor)
+      • script.txt          — plain narration text (CapCut auto-caption)
+      • caption.txt         — a suggested post caption + hashtags
+    Then runs evaluator.evaluate() so a silent/black/too-short render is flagged loudly."""
+    import shutil, glob as _g
+    va = os.path.join(project_dir, "proj", "assets", "voice.mp3")
+    if os.path.exists(va):
+        try: shutil.copy(va, os.path.join(project_dir, f"{name} - voice.mp3"))
+        except Exception: pass
+    srts = _g.glob(os.path.join(project_dir, "**", "*_cc.srt"), recursive=True)
+    hook_vn = ""
+    if srts:
+        try:
+            lines = [ln.strip() for ln in open(srts[0], encoding="utf-8")
+                     if ln.strip() and "-->" not in ln and not ln.strip().isdigit()]
+            open(os.path.join(project_dir, "script.txt"), "w", encoding="utf-8").write(" ".join(lines))
+            hook_vn = lines[0] if lines else ""
+        except Exception: pass
+    try:  # caption = the Vietnamese opening line (VN channel) + topic hashtags
+        tags = " ".join("#" + re.sub(r"[^a-z0-9]", "", t.lower()) for t in (gh.get("topics") or [])[:4])
+        hook = hook_vn or f"{name} — {_clean(gh.get('desc'), 100)}"
+        cap = f"{hook}\n\n#SEOSONA #congnghe #AI #laptrinh {tags}".strip()
+        open(os.path.join(project_dir, "caption.txt"), "w", encoding="utf-8").write(cap)
+    except Exception: pass
+    try:
+        ev = import_module("evaluator").evaluate(output, record=False)
+        if ev.get("ok"):
+            print("[make_video] ✓ verify passed (audio not silent + frames not blank + duration OK)")
+        else:
+            print(f"[make_video] ⚠ VERIFY FOUND ISSUES: {'; '.join(ev.get('reasons', []))}")
+    except Exception as e:
+        print(f"[make_video] verify skipped ({type(e).__name__})")
+
 # ---------------------------------------------------------------- one-shot
 def make(url, *, template=None, theme=None, output=None, project_dir=None, aspect=None):
     gh = fetch_github(url)
@@ -356,6 +393,7 @@ def make(url, *, template=None, theme=None, output=None, project_dir=None, aspec
     content = auto_content(gh, template)
     kw = {"aspect": aspect} if aspect else {}   # else use the template's aspect
     nc.make_video_from_template(template, content, project_dir, output=output, theme=theme, **kw)
+    _finalize_outputs(gh, project_dir, output, name)
     return output
 
 # ---------------------------------------------------------------- news rotation
