@@ -32,11 +32,22 @@ old ad-hoc "spin a generic Explore agent and eyeball it" habit. It is the execut
 
 ## Procedure (one repo/idea)
 
-### 1. ANALYZE — factual, not marketing
+### 1. ANALYZE — factual, not marketing, and DEEP
 - **Clone + read the ACTUAL source** (entry points, configs, core modules). **Ignore the
-  README's claims** — they cause hallucinated capabilities. Use an `Explore` subagent for
-  breadth, but the verdict rests on code you cited (file:line).
+  README's claims**. Use an `Explore` subagent for breadth; verdict rests on cited `file:line`.
 - Output an evidence note: real exports/APIs, dependencies, architecture, license.
+
+### 1b. DIG — extract the HIDDEN value (mandatory; don't stop at "REFERENCE/dup")
+Repos hide adoptable specifics even when the whole is rejected. Before any verdict, list the
+top extractable items and decide ADOPT/SKIP **per item** (not for the whole repo):
+- exact **config values / thresholds / magic numbers** (timings, ratios, limits)
+- **prompt text + few-shot examples** (the real wording, not paraphrase)
+- **recipes / code snippets / algorithms** (the clever bit)
+- **data files / lexicons / catalogs / taxonomies** (often the gold)
+- **edge-case + error handling** they solved that we haven't
+- **schemas / field lists / validation rules**
+- **undocumented features** not in the README
+If you concluded "dup", prove it per-item — usually 5–15% is genuinely new and worth harvesting.
 
 ### 2. SECURITY — gate before anything enters
 Refuse + log-as-rejected + STOP if any: obfuscated code, network-exfil, hardcoded secrets,

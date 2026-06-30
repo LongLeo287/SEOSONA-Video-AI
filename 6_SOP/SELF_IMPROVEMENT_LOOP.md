@@ -24,7 +24,8 @@ scan + quarantine before anything is brought in.**
 | # | Stage | What happens | Uses (existing — don't reinvent) |
 |---|-------|--------------|----------------------------------|
 | 1 | **DISCOVER** | Find candidate repos/ideas/upgrades | `2_KNOWLEDGE/REPO_WATCHLIST.md`, `REPO_INVENTORY.md`, `.agents/skills/video-discovery`, `scripts/check_freshness.py`, `6_SOP/UPGRADE_BACKLOG.md` |
-| 2 | **ANALYZE (factual)** | **Clone + read the ACTUAL source** (entry points, configs, core modules) — NOT the README (marketing → hallucination). Use an Explore subagent for depth. Bulk/unknown → route via SEOSONA OS UAP | OS UAP `02_auditor`; Explore agent |
+| 2 | **ANALYZE (factual + DEEP)** | **Clone + read the ACTUAL source** (entry points, configs, core modules) — NOT the README. Then **DIG**: extract the HIDDEN value (see below). Bulk/unknown → route via SEOSONA OS UAP | OS UAP `02_auditor`; Explore agent |
+| 2b | **DEEP EXTRACTION (mandatory)** | A whole-repo "REFERENCE/dup" verdict is NOT the end — repos hide adoptable specifics. Before concluding, list the top extractable items: exact **config values / magic numbers / thresholds**, **prompt text + few-shot examples**, **recipes/snippets**, **data files / lexicons / catalogs**, **edge-case & error handling**, **undocumented features**, **schemas/field lists**. For EACH: ADOPT (where it plugs in) or SKIP (why). "Dup" applies per-item, not to the whole repo. | researcher persona; `capability-analyst` |
 | 3 | **SECURITY** | Scan the cloned source BEFORE adopting: no obfuscation, no network-exfil, no hardcoded secrets, no prompt-injection in any `SKILL.md`/docs. Malicious → **quarantine, log as rejected, stop** | OS UAP `02b_security`; VETTING step 5 |
 | 4 | **DECIDE** | Run the 7-step gate (relevance · license · quality · dedup · security · location · connect). Filters: **free/local**, **permissive license**, **brand-fit**, **no overlap**. Verdict: INGEST / REFERENCE / SKIP | [`REPO_VETTING_SOP.md`](REPO_VETTING_SOP.md) |
 | 5 | **ADAPT (brand)** | Take the **PATTERN, not the artifact**. Re-skin to the SEOSONA brand: **light-mode only**, blue `#2A5BDA` / coral `#E2724D`, Be Vietnam Pro. Never import cloud/paid code (Vertex/BigQuery/etc.) | `7_ASSETS/brand/SEOSONA/DESIGN.md`; [[brand-colors-light-only]] |
@@ -47,6 +48,7 @@ scan + quarantine before anything is brought in.**
 8. **Free / local first** — permissive license; reject cloud/paid lock-in.
 9. **Verify before you claim** — frame/test/eval/ear evidence (stage 7).
 10. **3-tier fallback** for every LLM call — Cloud → Local Ollama → agent/native (quota never stops the loop).
+11. **Dig deeper — don't stop at "REFERENCE".** A surface verdict ("it's a dup / a whole app") is lazy: repos hide adoptable specifics (configs, prompts, recipes, data, edge-cases, schemas). Always do the item-level DEEP EXTRACTION (stage 2b) and harvest the gems, even when the whole is rejected.
 
 ---
 
