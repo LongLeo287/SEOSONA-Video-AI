@@ -266,7 +266,8 @@ def _gemini_script(gh, scenes, feedback=None):
             "Viết kịch bản NGẮN, tự nhiên, thuần Việt. TUYỆT ĐỐI KHÔNG chèn nguyên câu "
             "tiếng Anh vào lời đọc; DỊCH mô tả sang tiếng Việt. Tên repo đọc tự nhiên, "
             "lần đầu nêu tên rồi sau gọi 'dự án này' / 'công cụ này' (đừng lặp slug). "
-            "Mỗi cảnh 1 ý, ~15-28 từ. Số đọc bình thường. "
+            "Mỗi cảnh 1 ý nhưng KHAI TRIỂN ĐỦ Ý — ~30-42 từ/cảnh (mục tiêu video ~90 giây, đừng viết quá ngắn). "
+            "Số đọc bình thường. "
             "ĐA DẠNG MỞ ĐẦU (rất quan trọng, từ OpenMontage): mỗi cảnh mở đầu bằng từ/cấu trúc KHÁC nhau "
             "— KHÔNG từ mở đầu nào lặp ≥2 lần (đừng cảnh nào cũng 'Với', 'Đây', 'Ngoài ra'); tự kiểm lại trước khi trả. "
             "GROUNDING: CHỈ dùng dữ kiện được cung cấp (tên/mô tả/sao/ngôn ngữ/chủ đề); "
@@ -356,6 +357,31 @@ def _lint_script(SEG, HEAD, kinds, name="", label=""):
 
 
 # ---------------------------------------------------------------- auto content
+def _enrich_seg(seg, gh, i):
+    """Append a rotating REAL-data clause so deterministic scenes carry ~2× the words → the video reaches
+    the ~90s target without fabricating anything (every clause comes from a real GitHub field). The hook
+    scene (i==0) stays punchy. Different fact per scene → no repetition."""
+    if i == 0:
+        return seg
+    facts = []
+    d = _clean(gh.get("desc", ""), 120)
+    if d:
+        facts.append(f"nói ngắn gọn thì đây là {d.lower()}")
+    if gh.get("lang"):
+        facts.append(f"dự án được viết bằng {gh['lang']}")
+    if gh.get("stars_h"):
+        facts.append(f"và hiện đã chạm mốc {gh['stars_h']} sao trên GitHub")
+    if gh.get("license"):
+        facts.append(f"phát hành theo giấy phép {gh['license']} nên hoàn toàn mở")
+    tps = [t.replace("-", " ") for t in (gh.get("topics") or [])[:3]]
+    if tps:
+        facts.append("xoay quanh các chủ đề " + ", ".join(tps))
+    if not facts:
+        return seg
+    tail = facts[i % len(facts)]
+    return f"{seg} Đáng chú ý, {tail}."
+
+
 def auto_content(gh, template):
     """Walk a template's scenes; produce segments + 2-tone headings + real data."""
     scenes = nc.load_template(template)["scenes"]
@@ -447,7 +473,7 @@ def auto_content(gh, template):
                 seg = f"Đây là điều khiến {name} trở nên nổi bật."
                 h1, h2 = "Giải pháp", "đáng thử"
 
-        SEG.append(seg); HEAD.append((h1, h2))
+        SEG.append(_enrich_seg(seg, gh, i)); HEAD.append((h1, h2))
         if data is not None: DATA[i] = data
 
     # Prefer clean Gemini-written Vietnamese prose (translates the English desc, no slug
@@ -621,6 +647,13 @@ def make(url, *, template=None, theme=None, output=None, project_dir=None, aspec
     kw = {"aspect": aspect} if aspect else {}   # else use the template's aspect
     nc.make_video_from_template(template, content, project_dir, output=output, theme=theme, **kw)
     _finalize_outputs(gh, project_dir, output, name)
+    # Optional: also hand off an editable CapCut project (env SEOSONA_CAPCUT_EXPORT=1) so the
+    # user can embellish with CapCut's SFX/transitions/text-effects. Best-effort, off by default.
+    if os.environ.get("SEOSONA_CAPCUT_EXPORT") == "1":
+        try:
+            import_module("capcut_export").export(output, aspect=aspect or "9:16")
+        except Exception:
+            pass
     return output
 
 # ---------------------------------------------------------------- news rotation
