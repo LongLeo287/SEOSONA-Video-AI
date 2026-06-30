@@ -158,8 +158,8 @@ def _gemini_outline(gh, kinds):
         import llm_engine
     except Exception:
         return None
-    if not os.getenv("GEMINI_API_KEY"):
-        return None
+    if not (os.getenv("GEMINI_API_KEY") or os.getenv("SEOSONA_OLLAMA_MODEL")):
+        return None  # need a real LLM (cloud Gemini OR local Ollama); offline NLP can't plan
     n = len(kinds)
     name, desc = gh.get("name", ""), (gh.get("desc") or "")
     sysp = ("Bạn là đạo diễn nội dung video tin tức công nghệ SEOSONA. Trước khi viết lời, "
@@ -192,8 +192,8 @@ def _gemini_script(gh, scenes):
         import llm_engine
     except Exception:
         return None
-    if not os.getenv("GEMINI_API_KEY"):
-        return None  # only the real LLM is worth it here; offline NLP can't translate well
+    if not (os.getenv("GEMINI_API_KEY") or os.getenv("SEOSONA_OLLAMA_MODEL")):
+        return None  # cloud Gemini OR local Ollama; offline NLP can't translate/ground well
     kinds = [sc.get("component") or "text" for sc in scenes]
     name, desc = gh.get("name", ""), (gh.get("desc") or "")
     # Prompt hardened with prompt-master gems (MIT): explicit role + GROUNDING (no fabrication)
