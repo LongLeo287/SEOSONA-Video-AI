@@ -103,6 +103,14 @@ pnpm-debug.log*
 *.pdf
 credentials.json
 client_secret.json
+
+# Brand reference/content images — kept on disk, NOT pushed. Render uses only brand/logos/* +
+# Thumbnail/Thumbnail.png + DESIGN.md; the rest (AI art, thumbnail variants, social carousel, source
+# photos) is brand archive with 0 code refs. (Proposal PDFs already covered by *.pdf above.)
+7_ASSETS/brand/SEOSONA/*.png
+7_ASSETS/brand/SEOSONA/Thumbnail/*
+!7_ASSETS/brand/SEOSONA/Thumbnail/Thumbnail.png
+7_ASSETS/brand/SEOSONA/carousel*/
 token.pickle
 *.pem
 *.key
@@ -125,8 +133,13 @@ token.pickle
 
 
 # Vendored HyperFrames monorepo source (reference only; render uses the npm/local
-# hyperframes binary, not this checkout). Kept on disk, out of git.
-5_FRAMEWORK/hf_engine/
+# hyperframes binary, not this checkout). Kept on disk, out of git — EXCEPT registry/,
+# which is the runtime block library (hf_blocks/block_picker/native_composer._overlay_blocks
+# read it). Tracking it makes a fresh clone able to render the 97 blocks.
+5_FRAMEWORK/hf_engine/*
+!5_FRAMEWORK/hf_engine/registry/
+# but NOT registry/examples — demo compositions hf_blocks never renders (it uses blocks/ + components/)
+5_FRAMEWORK/hf_engine/registry/examples/
 
 # archived non-video research notes (kept local, not in git)
 _QUARANTINE/research_archive/
@@ -167,3 +180,19 @@ logs/
 
 # Loop-engineering: per-task git worktrees (isolated parallel code edits)
 .worktrees/
+
+# vendored external (OpenClaw-ecosystem) skills — own LICENSE/.gitignore, kept local
+2_SKILLS/os_decodo-openclaw-skill/
+2_SKILLS/os_humanizer/
+2_SKILLS/os_openclaw-skill-infographic/
+
+# publish sessions (sensitive)
+5_FRAMEWORK/publish/cookies/
+logs/publish/
+7_ASSETS/voice/.venv-omnivoice/
+7_ASSETS/voice/training/.venv-train/
+7_ASSETS/models/
+8_WORKSPACE/voice_test/
+# env/setup management
+7_ASSETS/models/ollama/
+3_MEMORY/factory_metrics.jsonl

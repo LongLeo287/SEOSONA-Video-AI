@@ -39,6 +39,7 @@
     "factory:eval": "node scripts/seosona-python.cjs 4_BRAIN/factory_brain.py --eval",
     "eval:render": "node scripts/seosona-python.cjs 4_BRAIN/eval_run.py --render",
     "security:scan": "node scripts/seosona-python.cjs scripts/security_scan.py",
+    "factory:metrics": "node scripts/seosona-python.cjs 4_BRAIN/factory_metrics.py",
     "build:desktop": "node scripts/build_desktop_app.cjs",
     "test": "npm run seosona:doctor"
   },

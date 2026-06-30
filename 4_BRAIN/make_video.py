@@ -521,14 +521,24 @@ def _finalize_outputs(gh, project_dir, output, name):
         cap = f"{hook}\n\n#SEOSONA #congnghe #AI #laptrinh {tags}".strip()
         open(os.path.join(project_dir, "caption.txt"), "w", encoding="utf-8").write(cap)
     except Exception: pass
+    ev = {}
     try:
-        ev = import_module("evaluator").evaluate(output, record=False)
+        ev = import_module("evaluator").evaluate(output, record=False) or {}
         if ev.get("ok"):
             print("[make_video] ✓ verify passed (audio not silent + frames not blank + duration OK)")
         else:
             print(f"[make_video] ⚠ VERIFY FOUND ISSUES: {'; '.join(ev.get('reasons', []))}")
     except Exception as e:
         print(f"[make_video] verify skipped ({type(e).__name__})")
+    # Flight-recorder (observability-light): one JSONL row per video → factory health signal.
+    try:
+        sz = round(os.path.getsize(output) / 1e6, 2) if os.path.exists(output) else 0
+        import_module("factory_metrics").record(
+            repo=gh.get("full") or name, output=os.path.basename(output),
+            size_mb=sz, dur_s=ev.get("duration") or ev.get("dur_s"),
+            ok=bool(ev.get("ok")), issues=ev.get("reasons") or [])
+    except Exception:
+        pass
 
 # ---------------------------------------------------------------- one-shot
 def make(url, *, template=None, theme=None, output=None, project_dir=None, aspect=None):
