@@ -65,6 +65,26 @@ animation-delay**. CSS @keyframes run in WALL-CLOCK, NOT synced to our paused-GS
 flicker/desync per captured frame. Our stagger MUST stay GSAP tweens. (Same reason we use gsap, not
 CSS @keyframes, for the blobs.) Mermaid zoom / slide-engine = backlog (interactive, not for render).
 
+## 7. Hooks & narrative structure (from calesthio/OpenMontage, AGPL — patterns learned, not vendored)
+Used by `_gemini_outline` (Stage 1) to vary the arc per topic instead of one fixed template.
+
+**Hook patterns (scene 1 — pick the one the facts support):**
+- **Số liệu bất ngờ** — "[con số phản trực giác]. Vì sao?"
+- **Lật ngộ nhận** — "Bạn nghĩ [X]. Thực ra [Y]."
+- **Tính mới** — "[Thứ này] vừa thay đổi [lĩnh vực]."
+- **Câu hỏi tò mò** — "Vì sao [điều ai cũng gặp] lại xảy ra?"
+- **So sánh tương phản** — "[A] mất [nhiều]. [B] chỉ [ít]."
+- **Góc nhìn ít ai nói** — "Điều về [chủ đề] mà không ai giải thích."
+- NEVER: "trong video này…", chào mở màn dài, logo-only >1s.
+
+**Narrative structures (pick by topic, don't always use the same):**
+giới-thiệu-dự-án · vấn-đề→giải-pháp · kể-bằng-số-liệu (stat-heavy) · so-sánh A/B · tiến-trình/timeline.
+→ Mỗi video chọn 1 cho hợp → tránh cảm giác công thức (đúng than phiền "video giống nhau").
+
+**Climax/điểm-nhấn:** mark 1 hero scene (giữa-cuối) → giữ lâu hơn + 1 hiệu ứng nhấn (chưa wire vào render — BACKLOG: `hero_moment` flag trong native_composer).
+
+**From OpenMontage = REFERENCE/BACKLOG (not built — over-build for a solo 1-pipeline factory):** declarative pipeline-manifests + stage-director skills + tool-registry/selector + checkpoint-resume + executable-playbook YAML + 5-aspect scene grammar + CHAI prompt-oversight. Clone at `2_KNOWLEDGE/external_toolkits/OpenMontage` for reference if we ever scale to multiple video pipelines.
+
 ## Status
 **Knowledge CAPTURED** (this doc) — use it now in the Gemini script prompt + scene planning + any
 motion work. **Code adoption = BACKLOG** (not yet wired): the CustomEase presets need the GSAP

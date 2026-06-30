@@ -162,10 +162,16 @@ def _gemini_outline(gh, kinds):
         return None  # need a real LLM (cloud Gemini OR local Ollama); offline NLP can't plan
     n = len(kinds)
     name, desc = gh.get("name", ""), (gh.get("desc") or "")
+    # Outline patterns adopted from OpenMontage (AGPL — learned, re-implemented native):
+    # a HOOK pattern for scene 1 + a fitting NARRATIVE STRUCTURE + one CLIMAX scene → kills the
+    # "every video feels the same" problem by varying the arc per topic (not a fixed template).
     sysp = ("Bạn là đạo diễn nội dung video tin tức công nghệ SEOSONA. Trước khi viết lời, "
-            "hãy LẬP DÀN Ý mạch lạc cho cả video: mỗi cảnh một TRỌNG TÂM riêng biệt, KHÔNG trùng ý, "
-            "ghép lại thành một mạch kể liền lạc: mở đầu gây chú ý → giới thiệu dự án là gì → "
-            "1-2 điểm nổi bật CỤ THỂ → vì sao đáng quan tâm → kêu gọi theo dõi. "
+            "hãy LẬP DÀN Ý mạch lạc cho cả video: mỗi cảnh một TRỌNG TÂM riêng biệt, KHÔNG trùng ý. "
+            "CẢNH 1 = HOOK mạnh, chọn 1 kiểu hợp dữ kiện: số liệu bất ngờ · lật ngộ nhận · "
+            "tính mới/vừa ra mắt · câu hỏi tò mò · so sánh tương phản · góc nhìn ít ai nói "
+            "(TRÁNH 'trong video này…'). Chọn 1 MẠCH KỂ hợp chủ đề (giới thiệu-dự-án · "
+            "vấn-đề→giải-pháp · kể-bằng-số-liệu · so-sánh · tiến-trình/timeline) thay vì khuôn cố định. "
+            "Đánh dấu 1 cảnh ĐIỂM NHẤN (cao trào) ở giữa-cuối. Cảnh cuối = kêu gọi theo dõi. "
             "GROUNDING: chỉ dựa trên dữ kiện được cung cấp, KHÔNG bịa.")
     userp = (f"Repo: {name}\nMô tả (tiếng Anh): {desc}\n"
              f"Sao: {gh.get('stars_h')}, ngôn ngữ: {gh.get('lang')}, "
