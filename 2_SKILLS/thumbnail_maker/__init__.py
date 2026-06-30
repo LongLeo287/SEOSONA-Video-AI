@@ -1,1 +1,1 @@
-from .thumbnail_generator import generate_html_thumbnail
+from .thumbnail_maker import make_thumbnail
