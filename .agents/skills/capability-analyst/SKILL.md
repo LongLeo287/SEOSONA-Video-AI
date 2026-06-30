@@ -91,8 +91,13 @@ verdict: INGEST | REFERENCE | SKIP
 - **Fail-closed:** an LLM step that 429s/errs falls Cloud→Ollama→agent (3-tier), never silently
   to a guess; SECURITY doubt → REJECT, not "probably fine".
 
-## Scale: delegate vs local
-- **One trusted repo** → run this skill by hand (stages 1–9).
-- **Bulk / unknown (e.g. the 1500-repo inventory)** → DELEGATE to SEOSONA OS UAP (it clones,
-  security-scans, does factual analysis, emits KI at scale), then pull the English KI via
-  `scripts/inject_os_capabilities.py`. Don't re-implement the OS pipeline locally.
+## Scale the dig to repo SIZE (be honest about coverage)
+A single Explore agent canNOT read a giant repo — it samples and misses gems. MAP first, then route:
+1. **MAP** — `scout`/Glob: file count, LOC, languages, top-level dirs. Know the size before digging.
+2. **Small** (≤~60 files / ≤~15k LOC) → ONE agent reads it fully (stages 1–9 by hand).
+3. **Big** → make a full-text **DIGEST** (`gitingest` / `markitdown`), then **FAN-OUT**: one agent
+   per subtree/module (`src/`, `plugins/`, `skills/`, `data/`, `configs/`), each returns a gem
+   list; SYNTHESIZE. No single agent holds the whole repo.
+4. **Huge / many repos** (the 1500-inventory) → DELEGATE to SEOSONA OS UAP (clone + factual
+   analysis + AAAK at scale), pull KI via `scripts/inject_os_capabilities.py`. Don't re-implement it.
+- **Always state coverage honestly**: "read 8/8 modules" vs "sampled 30% — gems may remain".
