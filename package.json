@@ -20,6 +20,8 @@
     "thumbnail:create": "node scripts/seosona-python.cjs scripts/workflow_thumbnail.py",
     "video:news": "node scripts/seosona-python.cjs scripts/workflow_video_news.py",
     "video:course": "node scripts/seosona-python.cjs scripts/workflow_video_course.py",
+    "library:status": "node scripts/seosona-python.cjs scripts/grow_library.py status",
+    "library": "node scripts/seosona-python.cjs scripts/grow_library.py",
     "talkinghead:transcribe": "node scripts/seosona-python.cjs scripts/talking_head_transcribe.py",
     "talkinghead:edit": "node scripts/seosona-python.cjs scripts/talking_head_edit.py",
     "video:audit:integration": "node scripts/seosona-python.cjs scripts/seosona-video-integration-audit.py",
@@ -39,6 +41,7 @@
     "factory:eval": "node scripts/seosona-python.cjs 4_BRAIN/factory_brain.py --eval",
     "eval:render": "node scripts/seosona-python.cjs 4_BRAIN/eval_run.py --render",
     "security:scan": "node scripts/seosona-python.cjs scripts/security_scan.py",
+    "skill:lint": "node scripts/seosona-python.cjs scripts/skill_lint.py",
     "factory:metrics": "node scripts/seosona-python.cjs 4_BRAIN/factory_metrics.py",
     "build:desktop": "node scripts/build_desktop_app.cjs",
     "test": "npm run seosona:doctor"
