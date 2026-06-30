@@ -68,6 +68,7 @@ Audit trail of every external repo/knowledge ingested into SEOSONA Video. Proces
 | 2026-06-30 | yusufkaraaslan/Skill_Seekers | MIT (14.3k★, 23MB) | (PART-B B-tier batch11) docs/repo→skill generator — mostly DUP (gitingest+markitdown+capability-analyst cover extraction). 1 cheap gem BUILT: **skill-quality linter** → `scripts/skill_lint.py` (`npm run skill:lint`) validates OUR skills' frontmatter/name/description/body. Tested: 43 skills all OK. Scan→bootstrap + AgentClient = REFERENCE/BACKLOG. | `scripts/skill_lint.py` | SYSTEM: skill-library gate |
 | 2026-06-30 | Upload-Post/skill-autoshorts | **NO-LICENSE** (96★, full-read) | (PART-B B-tier batch11) daily viral-clip pipeline (Whisper+Gemini+Upload-Post) — thinner than ours, NO-LICENSE→pattern-only. HOT.md learning-flywheel = BACKLOG (needs publish+analytics we lack); cycle-pick ≈ our processed-ledger (DUP); hook-overlay = DUP (HTML captions); inline frame-QA = we have eval_judge/evaluator. No cheap gem to build. | (none — REFERENCE) | thinner/DUP, no-license |
 
+| 2026-06-30 | Unclecheng-li/AI-Animation-Skill | MIT (453★, full-read) | (PART-B B-tier batch11) REFERENCE/SKIP — HTML presentation SLIDES via CSS @keyframes (wall-clock) → NOT seek-safe for our paused-GSAP render. Motion patterns (orb-float≈our scblob, pulse-glow≈our scglow, explode/shake=off-brand for pro tech-news) = DUP/off-brand. No buildable gem. | (none — REFERENCE) | CSS-keyframes slides, not seek-safe |
 ## Rejected (logged so we don't re-evaluate)
 | Source | Why rejected |
 |--------|--------------|
