@@ -62,14 +62,14 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) | skills | S | 86 | Agent skill; Recency workflows | ⏳ analyze |
 | [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | skills | S | 86 | Claude Code best practices; Commands/agents/skills/hook | ✅ REFERENCE→ADOPTED pattern: added "Execution Contract + Fail-Closed" to 3 personas + capability-analyst. Rest already covered by SIL |
 | [opendataloader-project/opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) | rag | S | 86 | PDF ingestion; RAG; Document loader | ⏳ analyze |
-| [nicobailon/visual-explainer](https://github.com/nicobailon/visual-explainer) | skills | A | 76 | Visual explanation; HTML artifact; Agent skill | ⏳ analyze |
+| [nicobailon/visual-explainer](https://github.com/nicobailon/visual-explainer) | skills | A | 76 | Visual explanation; HTML artifact; Agent skill | ✅ **ADOPTED** knowledge (MIT, 100% skill) — depth tiers + overflow guard + tag-label → VIDEO_CRAFT_RULES §6 (rejected its CSS-keyframes stagger: not seek-safe) |
 | [nemocake/claude-obsidian-assistant](https://github.com/nemocake/claude-obsidian-assistant) | rag | A | 76 | Obsidian; Claude workspace; Notes/memory | ⏳ analyze |
 | [datalab-to/lift](https://github.com/datalab-to/lift) | rag | A | 76 | Document extraction; RAG prep; Data pipeline | ⏳ analyze |
 | [tuanminhhole/openclaw-skill-learning-memory](https://github.com/tuanminhhole/openclaw-skill-learning-memory) | rag | A | 75 | OpenClaw; Learning memory; Skill memory | ⏳ analyze |
 | [ant-design/ant-design](https://github.com/ant-design/ant-design) | design | A | 75 | React UI library; Enterprise design system; Components; | ⏳ analyze |
-| [nidhinjs/prompt-master](https://github.com/nidhinjs/prompt-master) | skills | A | 74 | Claude skill; Prompt engineering; Context retention; Pr | ⏳ analyze |
+| [nidhinjs/prompt-master](https://github.com/nidhinjs/prompt-master) | skills | A | 74 | Claude skill; Prompt engineering; Context retention; Pr | ✅ **ADOPTED** (MIT, 5/5 read) — grounding/role/no-fabricate → hardened `_gemini_script` |
 | [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | skills | A | 73 | GSAP; Animation skills; Agent skills | ✅ REFERENCE (MIT; 90% dup with our motion-recipes; keep cloned for GSAP pattern lookup. immediateRender flash = non-issue here, frame-0 verified) |
-| [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | skills | A | 72 | Skill collection; AI education; prompt ops | ⏳ analyze |
+| [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | skills | A | 72 | Skill collection; AI education; prompt ops | ✅ **ADOPTED** — actually **MIT** (declared in SKILL.md; gh-api wrongly said no-license). 4 LLM-coding principles → `6_SOP/LLM_CODING_DISCIPLINE.md` |
 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | skills | A | 72 | Agent skills; Automation helper | ⏳ analyze |
 | [yaojingang/yao-meta-skill](https://github.com/yaojingang/yao-meta-skill) | skills | A | 57 | Meta-skill; Agent skills; Evaluation; Governance; Porta | ⏳ analyze |
 | [arm64x/PHP-Lazada-Affiliate-API-Tool](https://github.com/arm64x/PHP-Lazada-Affiliate-API-Tool) | seo | A | 46 | Vietnamese / Local market; SEO stack | ⏳ analyze |

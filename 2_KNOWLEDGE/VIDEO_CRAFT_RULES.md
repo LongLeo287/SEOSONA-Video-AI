@@ -51,6 +51,20 @@ stagger, ease, transform/opacity). NO ScrollTrigger / matchMedia / tl.call / CSS
 **Data-driven motion** (`gsap.utils`, pure/seek-safe): `mapRange` (value→scale/hue), `snap` (discrete steps),
 `distribute({from:"center"})` (weight by position), `clamp`. Use only on data components (stats/compare), never captions.
 
+## 6. Static-CSS craft (from nicobailon/visual-explainer, MIT — SEEK-SAFE picks only)
+Static CSS = always seek-safe (no animation timing). Adoptable:
+- **Depth tiers** for component cards (light-mode shadows): `elevated` (0 2px 8px) for primary,
+  `hero` (0 4px 20px + faint brand tint) for the focal stat, flat for reference. Improves hierarchy
+  with zero new components.
+- **Overflow guard:** add `min-width:0` to grid/flex children (stops content-overflow on narrow
+  layouts) — a cheap base-reset win.
+- **Scene-tag label:** small uppercase mono label + colored dot (`::before`) to badge a scene's tag
+  (hook/data/...) using the scene-tag colors.
+⚠️ **REJECTED (agent mislabelled it "seek-safe"):** the `--i` staggered fade via **CSS @keyframes +
+animation-delay**. CSS @keyframes run in WALL-CLOCK, NOT synced to our paused-GSAP seek → would
+flicker/desync per captured frame. Our stagger MUST stay GSAP tweens. (Same reason we use gsap, not
+CSS @keyframes, for the blobs.) Mermaid zoom / slide-engine = backlog (interactive, not for render).
+
 ## Status
 **Knowledge CAPTURED** (this doc) — use it now in the Gemini script prompt + scene planning + any
 motion work. **Code adoption = BACKLOG** (not yet wired): the CustomEase presets need the GSAP

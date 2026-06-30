@@ -160,11 +160,16 @@ def _gemini_script(gh, scenes):
         return None  # only the real LLM is worth it here; offline NLP can't translate well
     kinds = [sc.get("component") or "text" for sc in scenes]
     name, desc = gh.get("name", ""), (gh.get("desc") or "")
-    sysp = ("Bạn là biên kịch video tin tức công nghệ tiếng Việt cho kênh SEOSONA. "
+    # Prompt hardened with prompt-master gems (MIT): explicit role + GROUNDING (no fabrication)
+    # + Gemini-specific guard (it hallucinates stats / drifts format). Brand tone locked.
+    sysp = ("Bạn là biên kịch video tin tức công nghệ tiếng Việt cho kênh SEOSONA "
+            "(thương hiệu: xanh #2A5BDA / cam #E2724D, tông chuyên nghiệp, khán giả VN). "
             "Viết kịch bản NGẮN, tự nhiên, thuần Việt. TUYỆT ĐỐI KHÔNG chèn nguyên câu "
             "tiếng Anh vào lời đọc; DỊCH mô tả sang tiếng Việt. Tên repo đọc tự nhiên, "
             "lần đầu nêu tên rồi sau gọi 'dự án này' / 'công cụ này' (đừng lặp slug). "
-            "Mỗi cảnh 1 ý, ~15-28 từ. Số đọc bình thường.")
+            "Mỗi cảnh 1 ý, ~15-28 từ. Số đọc bình thường. "
+            "GROUNDING: CHỈ dùng dữ kiện được cung cấp (tên/mô tả/sao/ngôn ngữ/chủ đề); "
+            "TUYỆT ĐỐI KHÔNG bịa số liệu, tính năng, hay khẳng định không có trong dữ kiện.")
     userp = (f"Repo GitHub: {name}\nMô tả (tiếng Anh, hãy DỊCH): {desc}\n"
              f"Sao: {gh.get('stars_h')}, ngôn ngữ: {gh.get('lang')}, "
              f"chủ đề: {', '.join((gh.get('topics') or [])[:6])}\n"
