@@ -127,6 +127,33 @@ def record_and_gate(policy):
     return eligible, blocked
 
 
+def _eval_gate(eligible):
+    """PERIODIC qualitative QA dimension (Gemini/Ollama/agent judge — see EVAL_FLYWHEEL.md).
+    Opt-in via --eval (it spends one LLM call per video, sharing the free quota with
+    script-gen — so NOT run every loop). A video the judge actively FAILS is moved out of
+    eligible; a SKIPPED judge (no LLM / quota 429) never blocks. Returns (still_eligible,
+    eval_blocked, verdicts)."""
+    try:
+        import eval_judge
+    except Exception as e:
+        print(f"[factory] EVAL skipped (import: {type(e).__name__})")
+        return eligible, [], {}
+    still, eval_blocked, verdicts = [], [], {}
+    for vid in eligible:
+        pdir = os.path.join(WORKSPACE, vid)
+        mp4 = next((os.path.join(pdir, f) for f in (os.listdir(pdir) if os.path.isdir(pdir) else [])
+                    if f.endswith(".mp4") and not f.startswith("_") and "_raw" not in f), None)
+        if not mp4:
+            still.append(vid); continue
+        v = eval_judge.judge(mp4)
+        verdicts[vid] = {k: v.get(k) for k in ("overall", "pass", "weak", "skipped", "reason")}
+        if v.get("skipped") or v.get("pass"):
+            still.append(vid)            # unavailable OR passed → keep eligible
+        else:
+            eval_blocked.append(vid)     # judge actively failed → block publish
+    return still, eval_blocked, verdicts
+
+
 def maybe_publish(policy, eligible, dry_run):
     pub = policy["publish"]
     if not pub.get("enabled"):
@@ -160,7 +187,7 @@ def learn(policy):
     return led
 
 
-def run(dry_run=False, learn_only=False):
+def run(dry_run=False, learn_only=False, do_eval=False):
     policy = load_policy()
     report = {"started": _now(), "policy_level": policy["autonomy_level"], "dry_run": dry_run}
     print("=" * 60)
@@ -197,6 +224,14 @@ def run(dry_run=False, learn_only=False):
     report["blocked_by_qa"] = blocked
     print(f"[factory] QA gate: {len(eligible)} eligible, {len(blocked)} blocked.")
 
+    # QUALITATIVE EVAL (periodic, opt-in) — Gemini/Ollama/agent judge beyond metadata.
+    if do_eval:
+        eligible, eval_blocked, verdicts = _eval_gate(eligible)
+        report["eval_blocked"] = eval_blocked
+        report["eval_verdicts"] = verdicts
+        print(f"[factory] EVAL (qualitative judge): {len(eval_blocked)} blocked, "
+              f"{len(eligible)} still eligible.")
+
     # PUBLISH (gated)
     report["publish"] = maybe_publish(policy, eligible, dry_run)
     print(f"[factory] PUBLISH: {report['publish']['status']}")
@@ -225,6 +260,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="SEOSONA autonomous factory — one loop turn")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--learn-only", action="store_true", help="just rebuild the ledger + feedback")
+    ap.add_argument("--eval", action="store_true", dest="do_eval",
+                    help="run the qualitative Gemini/Ollama/agent judge on eligible videos (periodic; spends LLM quota)")
     a = ap.parse_args()
-    out = run(dry_run=a.dry_run, learn_only=a.learn_only)
+    out = run(dry_run=a.dry_run, learn_only=a.learn_only, do_eval=a.do_eval)
     print(json.dumps(out, ensure_ascii=False, indent=2))

@@ -45,6 +45,7 @@ To add a new SOP, drop it here and add a line to the right group below.
 | SOP | Use for |
 |-----|---------|
 | `AUTONOMOUS_FACTORY_LOOP.md` | 🌟 NORTH-STAR: the autonomous self-improving factory (OODA loop, component blueprint, guardrails, build plan) |
+| `SELF_IMPROVEMENT_LOOP.md` | 🔄 How the SYSTEM learns & upgrades itself — 9-stage capability loop (discover→analyze→security→decide→adapt→build→verify→wire→record); umbrella over vetting/ingestion/eval/freshness |
 | `EVAL_FLYWHEEL.md` | Qualitative QA: Gemini-as-judge grades narration/brand/visual (free) + regression eval set — `npm run eval` |
 | `MASTER_OPERATION.md` | top-level operation manual |
 | `SEOSONA_VIDEO_RECONNECTION_MAP.md` | how the system pieces connect (resolver contract, OS binding, audit semantics) |
