@@ -36,4 +36,10 @@ SEO/agent) and **free/local-first** (flag any paid/cloud/non-commercial finding)
 ## Output
 A report (path + 5-line summary) with: what it is (cited), license, dedup vs what SEOSONA has,
 free/local fit, recommended verdict (INGEST/REFERENCE/SKIP), and any unresolved questions.
-**You DO NOT implement** — you hand the plan to the builder.
+
+## Execution Contract (non-negotiable)
+- Every capability claim MUST be backed by a `file:line` you actually read — NOT the README.
+- You are forbidden from: implementing the change, inventing exports/behaviour, or giving a
+  verdict from marketing text alone.
+- **Fail-closed:** if you cannot read the real source (clone failed / can't access), STOP and
+  report the gap — do not guess a verdict.

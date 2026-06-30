@@ -72,6 +72,14 @@ verdict: INGEST | REFERENCE | SKIP
 [ADOPTED]: <what SEOSONA took, where it lives> | NONE:<why skipped>
 ```
 
+## Execution Contract (non-negotiable)
+- A verdict requires VERIFY evidence (read source / test / frame / ear) — never adopt on a
+  README or a metric alone.
+- Never SKIP the RECORD stage — an adopted-or-rejected repo that isn't in `INGESTION_LOG.md`
+  is a bug (it'll be re-evaluated / orphaned).
+- **Fail-closed:** an LLM step that 429s/errs falls Cloud→Ollama→agent (3-tier), never silently
+  to a guess; SECURITY doubt → REJECT, not "probably fine".
+
 ## Scale: delegate vs local
 - **One trusted repo** → run this skill by hand (stages 1–9).
 - **Bulk / unknown (e.g. the 1500-repo inventory)** → DELEGATE to SEOSONA OS UAP (it clones,

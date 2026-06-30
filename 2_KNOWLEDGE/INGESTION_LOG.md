@@ -33,6 +33,9 @@ Audit trail of every external repo/knowledge ingested into SEOSONA Video. Proces
 | 2026-06-30 | greensock/gsap-skills | MIT | (PART-B batch1) REFERENCE — GSAP agent-instruction set, ~90% dup with our `hyperframes/craft/motion-recipes-seosona.md` (same upstream). Kept cloned for pattern lookup. Verified the immediateRender first-frame-flash risk is N/A here (scene-0 uses tl.set, later scenes opacity-gated; frame-0 correct). | (reference only) | no rebuild — dedup |
 | 2026-06-30 | feicaiclub/video-spec-builder | MIT | (PART-B batch1) REFERENCE — interactive Claude/Cursor spec skill (5-phase Q&A) ≠ our autonomous factory. Idea-backlog (not built, no-bloat): finer component subtypes, per-scene validate checklist (component ≤4×), 9:16 layout rules, audio-timeline. | (reference only) | no rebuild — different paradigm |
 
+| 2026-06-30 | every-app/open-seo | MIT | (PART-B batch2) PATTERN adopted — its keyword/rank/SERP tools all need PAID DataForSEO → SKIPPED (free/local rule). Built native free/local `.agents/skills/video-seo-metadata` (topic→title/desc/tags/hashtags) from its workflow shape. Fills a real gap (no video-SEO metadata before). | `.agents/skills/video-seo-metadata/SKILL.md` | SEO: publish-ready metadata, no paid API |
+| 2026-06-30 | shanraisshan/claude-code-best-practice | MIT | (PART-B batch2) PATTERN adopted — REFERENCE (SIL more mature). Took "Execution Contract + Fail-Closed Guardrail" + when_to_use routing → hardened the 3 personas + capability-analyst. Skipped over-reach (new SOPs/templates/hooks). | `1_AGENTS/personas/{researcher,scout,security-auditor}.md` · `.agents/skills/capability-analyst/SKILL.md` | SYSTEM: agents no longer improvise/silent-fail |
+
 ## Rejected (logged so we don't re-evaluate)
 | Source | Why rejected |
 |--------|--------------|

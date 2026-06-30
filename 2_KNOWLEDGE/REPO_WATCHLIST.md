@@ -46,7 +46,7 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 
 | Repo | Cat | Tier | Score | Why (tags) | Verdict |
 |------|-----|------|-------|-----------|---------|
-| [every-app/open-seo](https://github.com/every-app/open-seo) | seo | S | 94 | SEO stack; MCP; Agent skills; Keyword research; Rank tr | ⏳ analyze |
+| [every-app/open-seo](https://github.com/every-app/open-seo) | seo | S | 94 | SEO stack; MCP; Agent skills; Keyword research; Rank tr | ✅ REFERENCE→ADOPTED pattern: tools need paid DataForSEO (SKIP), but built free/local `.agents/skills/video-seo-metadata` from its workflow shape |
 | [chroma-core/chroma](https://github.com/chroma-core/chroma) | rag | S | 94 | Vector database; AI search infrastructure; RAG stack; E | ⏳ analyze |
 | [ArcReel/ArcReel](https://github.com/ArcReel/ArcReel) | video | S | 92 | Video generation; AI Agent workflow; Claude Agent SDK;  | ⏳ analyze |
 | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) | rag | S | 92 | Document parsing; PDF/OCR; Markdown/JSON; Agentic workf | ⏳ analyze |
@@ -60,7 +60,7 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | rag | S | 88 | Context compression; Token optimization; MCP | ⏳ analyze |
 | [yifanfeng97/Hyper-Extract](https://github.com/yifanfeng97/Hyper-Extract) | rag | S | 88 | LLM extraction; Knowledge graphs; Hypergraphs; Structur | ⏳ analyze |
 | [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) | skills | S | 86 | Agent skill; Recency workflows | ⏳ analyze |
-| [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | skills | S | 86 | Claude Code best practices; Commands/agents/skills/hook | ⏳ analyze |
+| [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | skills | S | 86 | Claude Code best practices; Commands/agents/skills/hook | ✅ REFERENCE→ADOPTED pattern: added "Execution Contract + Fail-Closed" to 3 personas + capability-analyst. Rest already covered by SIL |
 | [opendataloader-project/opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) | rag | S | 86 | PDF ingestion; RAG; Document loader | ⏳ analyze |
 | [nicobailon/visual-explainer](https://github.com/nicobailon/visual-explainer) | skills | A | 76 | Visual explanation; HTML artifact; Agent skill | ⏳ analyze |
 | [nemocake/claude-obsidian-assistant](https://github.com/nemocake/claude-obsidian-assistant) | rag | A | 76 | Obsidian; Claude workspace; Notes/memory | ⏳ analyze |
