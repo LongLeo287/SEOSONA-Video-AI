@@ -429,22 +429,32 @@ def _generate_social_post_offline(user_prompt: str) -> dict:
 
 def _generate_thumbnail_offline(user_prompt: str) -> dict:
     """Generate thumbnail variable suggestions from raw content."""
-    keywords = _tfidf_keywords(user_prompt, top_n=6)
-    intent   = _classify_intent(user_prompt)
-    numbers  = _extract_numbers(user_prompt)
+    # Strip the English art-direction framing so TF-IDF runs on the real (Vietnamese)
+    # content only — otherwise framing words like "content"/"the" leak in as keywords.
+    content = re.split(r'(?i)\bcontent:\s*', user_prompt, maxsplit=1)
+    content = content[-1] if len(content) > 1 else user_prompt
+    _STOP = {"the", "and", "for", "you", "with", "this", "that", "your", "content",
+             "thumbnail", "title", "label", "cta", "hook", "layout", "main", "type"}
+    keywords = [k for k in _tfidf_keywords(content, top_n=8)
+                if k.lower() not in _STOP and len(k) > 2][:6]
+    intent   = _classify_intent(content)
+    numbers  = _extract_numbers(content)
 
     title_kw = keywords[0].upper() if keywords else "AI AGENT"
     hook_kw  = keywords[1].upper() if len(keywords) > 1 else "THỰC CHIẾN"
 
+    # Canonical lowercase keys — must match what thumbnail_maker / consumers read.
+    # (Previously emitted PILL_LABEL/MAIN_TITLE/... which no caller read → output was
+    # silently discarded. thumbnail_maker._normalize_nlp still accepts both spellings.)
     return {
-        "PILL_LABEL": intent.replace("_", " "),
-        "MAIN_TITLE": _make_title(keywords, intent).upper(),
-        "TITLE_HIGHLIGHT_KEYWORD": title_kw,
-        "SHORT_HOOK": f"Tại sao {numbers[0] if numbers else '80%'} doanh nghiệp bỏ lỡ điều này?",
-        "CTA_TEXT": f"KHÁM PHÁ NGAY »",
-        "CTA_HIGHLIGHT_KEYWORD": "NGAY",
-        "SUBTEXT_ITALIC": f"Dùng {keywords[0].title() if keywords else 'AI'} đúng cách — không phải để thay thế, mà để nhân lên",
-        "LAYOUT_TYPE": "text_only"
+        "top_label": intent.replace("_", " "),
+        "main_title": _make_title(keywords, intent).upper(),
+        "title_highlight": title_kw,
+        "hook": f"Tại sao {numbers[0] if numbers else '80%'} doanh nghiệp bỏ lỡ điều này?",
+        "cta": "KHÁM PHÁ NGAY",
+        "cta_highlight": "NGAY",
+        "subtext_italic": f"Dùng {keywords[0].title() if keywords else 'AI'} đúng cách — không phải để thay thế, mà để nhân lên",
+        "layout_type": "text_only"
     }
 
 

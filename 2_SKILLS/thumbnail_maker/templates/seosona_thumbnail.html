@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>SEOSONA Thumbnail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+        body.is-portrait  { width: 1080px; height: 1920px; }
+        body.is-landscape { width: 1920px; height: 1080px; }
+
+        /* Only the canvas matching the body's aspect class is shown. */
+        .canvas { display: none; position: relative; width: 100%; height: 100%;
+                  background-color: {{COLOR_NAVY}};
+                  background-image: radial-gradient(rgba(255,255,255,0.12) 1.8px, transparent 1.8px);
+                  background-size: 32px 32px; overflow: hidden; }
+        body.is-portrait  .canvas.portrait  { display: block; }
+        body.is-landscape .canvas.landscape { display: flex; }
+
+        /* Shared atoms (scoped per layout where sizes differ) */
+        .logo-pill { background: white; border-radius: 9999px; display: inline-flex;
+                     align-items: center; justify-content: center; }
+        .logo-pill img { object-fit: contain; }
+        .top-label { background-color: {{COLOR_BLUE}}; color: white; font-weight: 800;
+                     border-radius: 9999px; text-transform: uppercase; letter-spacing: 2px;
+                     box-shadow: 0 12px 28px rgba(0,0,0,0.25); }
+        .title-keyword { color: {{COLOR_LIGHT_BLUE}}; padding-bottom: 2px; display: inline; }
+        .main-title { font-weight: 900; text-transform: uppercase;
+                      text-shadow: 0 16px 40px rgba(0,0,0,0.7); }
+        .subtext-italic { font-weight: 400; font-style: italic; color: rgba(255,255,255,0.68);
+                          line-height: 1.4; }
+        .float-icon { position: absolute; z-index: 5; opacity: 0.45; }
+
+        /* ════════════════════════ PORTRAIT 9:16 ════════════════════════ */
+        .portrait .watermark { position: absolute; top: 25%; right: -60px; font-size: 320px;
+            font-weight: 900; color: rgba(255,255,255,0.05); line-height: 0.9; z-index: 1;
+            pointer-events: none; writing-mode: vertical-lr; text-orientation: mixed; letter-spacing: 20px; }
+        .portrait .fi-chart { left: 30px; top: 42%; width: 180px; height: 180px;
+            background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 20px; }
+        .portrait .fi-flowchart { left: 50px; top: 62%; width: 140px; height: 140px; }
+        .portrait .fi-ai-chip { right: 40px; top: 48%; width: 160px; height: 160px;
+            background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 18px; }
+        .portrait .fi-checklist { right: 60px; top: 66%; width: 120px; height: 120px; }
+        .portrait .layer-top { position: absolute; top: 0; left: 0; right: 0; z-index: 10;
+            display: flex; flex-direction: column; align-items: center; padding: 60px 60px 0; }
+        .portrait .logo-pill { padding: 14px 36px; box-shadow: 0 12px 30px rgba(0,0,0,0.25); margin-bottom: 8px; }
+        .portrait .logo-pill img { height: 48px; }
+        .portrait .logo-tagline { font-size: 20px; font-weight: 500; color: rgba(255,255,255,0.55);
+            letter-spacing: 0.5px; margin-bottom: 30px; }
+        .portrait .top-label { font-size: 34px; padding: 14px 42px; margin-bottom: 24px; }
+        .portrait .main-title { font-size: 105px; line-height: 1.08; letter-spacing: -3px;
+            text-align: center; max-width: 960px; z-index: 12; }
+        .portrait .main-title.center-full { font-size: 130px; margin-top: 60px; }
+        .portrait .title-keyword { border-bottom: 10px solid {{COLOR_LIGHT_BLUE}}; }
+        .portrait .layer-portrait { position: absolute; bottom: 280px; left: 50%; transform: translateX(-50%);
+            width: 1200px; height: 900px; z-index: 15; display: flex; justify-content: center; align-items: flex-end; }
+        .portrait .layer-portrait img { max-width: 110%; max-height: 110%; object-fit: contain;
+            filter: drop-shadow(0 0 80px rgba(187,222,251,0.35)); }
+        .portrait .layer-bottom { position: absolute; bottom: 0; left: 0; right: 0; z-index: 30;
+            display: flex; flex-direction: column; align-items: center; padding: 0 55px 50px; }
+        .portrait .subtext-italic { font-size: 30px; text-align: center; margin-bottom: 28px; max-width: 900px; }
+        .portrait .cta-pill { display: inline-flex; align-items: center; gap: 10px; background: {{COLOR_NAVY}};
+            border: 3px solid {{COLOR_BLUE}}; border-radius: 9999px; padding: 16px 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); margin-bottom: 30px; max-width: 980px; }
+        .portrait .cta-pill .cta-text { font-size: 46px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: -1px; line-height: 1; text-shadow: 0 8px 20px rgba(0,0,0,0.4); white-space: nowrap; }
+        .portrait .cta-highlight { color: {{COLOR_YELLOW}}; }
+        .portrait .cta-arrows { font-size: 50px; font-weight: 900; color: {{COLOR_YELLOW}}; margin-left: 8px; }
+        .portrait .footer { width: 100%; border-top: 2px solid rgba(255,255,255,0.15); padding-top: 24px;
+            text-align: center; font-size: 26px; font-weight: 600; color: rgba(255,255,255,0.55);
+            letter-spacing: 2px; text-transform: uppercase; }
+
+        /* ════════════════════════ LANDSCAPE 16:9 ═══════════════════════ */
+        .landscape .watermark { position: absolute; top: 50%; right: -40px; transform: translateY(-50%);
+            font-size: 380px; font-weight: 900; color: rgba(255,255,255,0.04); line-height: 0.85; z-index: 1;
+            pointer-events: none; text-align: right; white-space: nowrap; }
+        .landscape .fi-chart { right: 380px; top: 80px; width: 160px; height: 160px;
+            background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 18px; }
+        .landscape .fi-ai-chip { right: 120px; bottom: 220px; width: 140px; height: 140px;
+            background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 16px; }
+        .landscape .fi-flowchart { right: 400px; bottom: 180px; width: 130px; height: 130px; }
+        .landscape .fi-checklist { right: 180px; top: 100px; width: 110px; height: 110px; }
+        .landscape .inner { position: absolute; inset: 0; z-index: 10; display: flex; }
+        .landscape .left-section { flex: 1.2; display: flex; flex-direction: column; justify-content: center;
+            padding: 80px 80px 80px 100px; z-index: 20; position: relative; }
+        .landscape .left-section.center-full { flex: 1; align-items: center; text-align: center; padding: 80px 120px; }
+        .landscape .logo-pill { padding: 12px 32px; box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+            margin-bottom: 6px; align-self: flex-start; }
+        .landscape .center-full .logo-pill { align-self: center; }
+        .landscape .logo-pill img { height: 50px; }
+        .landscape .logo-tagline { font-size: 18px; font-weight: 500; color: rgba(255,255,255,0.5); margin-bottom: 30px; }
+        .landscape .center-full .logo-tagline { text-align: center; }
+        .landscape .top-label { font-size: 36px; padding: 14px 44px; margin-bottom: 24px; display: inline-block; }
+        .landscape .main-title { font-size: 120px; line-height: 1.05; letter-spacing: -3px;
+            max-width: 1050px; margin-bottom: 20px; }
+        .landscape .center-full .main-title { font-size: 135px; text-align: center; max-width: 1600px; }
+        .landscape .title-keyword { border-bottom: 12px solid {{COLOR_LIGHT_BLUE}}; }
+        .landscape .subtext-italic { font-size: 26px; color: rgba(255,255,255,0.65); max-width: 800px; margin-bottom: 30px; }
+        .landscape .cta-pill { display: inline-flex; align-items: center; gap: 12px; background: {{COLOR_YELLOW}};
+            border-radius: 9999px; padding: 22px 55px; box-shadow: 0 18px 40px rgba(0,0,0,0.35); }
+        .landscape .cta-pill .cta-text { font-size: 52px; font-weight: 900; line-height: 1; text-transform: uppercase;
+            letter-spacing: -1px; color: #0E1633; white-space: nowrap; }
+        .landscape .cta-highlight { color: {{COLOR_BLUE}}; }
+        .landscape .cta-arrows { font-size: 46px; font-weight: 900; color: {{COLOR_BLUE}}; margin-left: 6px; }
+        .landscape .right-section { flex: 0.8; position: relative; z-index: 15; }
+        .landscape .right-section img { position: absolute; bottom: -60px; right: -30px; max-height: 115%;
+            max-width: 140%; object-fit: contain; filter: drop-shadow(0 0 70px rgba(187,222,251,0.3)); z-index: 16; }
+    </style>
+</head>
+<body class="{{ASPECT_CLASS}}">
+
+    <!-- ════════════ PORTRAIT 9:16 ════════════ -->
+    <div class="canvas portrait">
+        <div class="watermark">{{WATERMARK}}</div>
+        <div class="float-icon fi-chart">
+            <svg viewBox="0 0 140 140" fill="none" stroke="{{COLOR_BLUE}}" stroke-width="2.5">
+                <rect x="10" y="80" width="25" height="50" rx="4" fill="rgba(255,255,255,0.08)"/>
+                <rect x="45" y="50" width="25" height="80" rx="4" fill="rgba(255,255,255,0.08)"/>
+                <rect x="80" y="30" width="25" height="100" rx="4" fill="rgba(255,255,255,0.08)"/>
+                <polyline points="22,75 57,45 92,25" stroke="{{COLOR_LIGHT_BLUE}}" stroke-width="2" fill="none"/>
+                <circle cx="22" cy="75" r="4" fill="{{COLOR_LIGHT_BLUE}}"/>
+                <circle cx="57" cy="45" r="4" fill="{{COLOR_LIGHT_BLUE}}"/>
+                <circle cx="92" cy="25" r="4" fill="{{COLOR_LIGHT_BLUE}}"/>
+            </svg>
+        </div>
+        <div class="float-icon fi-flowchart">
+            <svg viewBox="0 0 140 140" fill="none" stroke="{{COLOR_BLUE}}" stroke-width="2">
+                <rect x="30" y="10" width="80" height="35" rx="8" fill="rgba(255,255,255,0.06)"/>
+                <line x1="70" y1="45" x2="70" y2="65"/><line x1="70" y1="65" x2="30" y2="65"/>
+                <line x1="70" y1="65" x2="110" y2="65"/>
+                <rect x="5" y="75" width="50" height="30" rx="6" fill="rgba(255,255,255,0.06)"/>
+                <rect x="85" y="75" width="50" height="30" rx="6" fill="rgba(255,255,255,0.06)"/>
+                <line x1="30" y1="65" x2="30" y2="75"/><line x1="110" y1="65" x2="110" y2="75"/>
+            </svg>
+        </div>
+        <div class="float-icon fi-ai-chip">
+            <svg viewBox="0 0 124 124" fill="none" stroke="{{COLOR_BLUE}}" stroke-width="2">
+                <rect x="30" y="30" width="64" height="64" rx="14" fill="rgba(255,255,255,0.06)"/>
+                <circle cx="62" cy="62" r="16" stroke="{{COLOR_LIGHT_BLUE}}"/>
+                <circle cx="62" cy="62" r="6" fill="{{COLOR_LIGHT_BLUE}}" stroke="none"/>
+                <line x1="62" y1="10" x2="62" y2="30"/><line x1="62" y1="94" x2="62" y2="114"/>
+                <line x1="10" y1="62" x2="30" y2="62"/><line x1="94" y1="62" x2="114" y2="62"/>
+                <line x1="42" y1="10" x2="42" y2="30"/><line x1="82" y1="10" x2="82" y2="30"/>
+                <line x1="42" y1="94" x2="42" y2="114"/><line x1="82" y1="94" x2="82" y2="114"/>
+                <text x="62" y="66" font-family="sans-serif" font-size="16" fill="{{COLOR_LIGHT_BLUE}}" text-anchor="middle" stroke="none" font-weight="700">AI</text>
+            </svg>
+        </div>
+        <div class="float-icon fi-checklist">
+            <svg viewBox="0 0 120 120" fill="none" stroke="{{COLOR_BLUE}}" stroke-width="2">
+                <rect x="10" y="10" width="100" height="100" rx="16" fill="rgba(255,255,255,0.06)"/>
+                <polyline points="30,50 42,62 58,42" stroke="{{COLOR_LIGHT_BLUE}}" stroke-width="3"/>
+                <line x1="68" y1="50" x2="90" y2="50" stroke-width="2.5"/>
+                <polyline points="30,78 42,90 58,70" stroke="{{COLOR_LIGHT_BLUE}}" stroke-width="3"/>
+                <line x1="68" y1="78" x2="90" y2="78" stroke-width="2.5"/>
+                <line x1="30" y1="30" x2="90" y2="30" stroke-width="2.5"/>
+            </svg>
+        </div>
+        <div class="layer-top">
+            <div class="logo-pill"><img src="{{LOGO_PATH}}" alt="Logo"></div>
+            <div class="logo-tagline">{{BRAND_TAGLINE}}</div>
+            <div class="top-label">{{TOP_LABEL}}</div>
+            <h1 class="main-title {{TITLE_CLASS}}">
+                {{MAIN_TITLE_1}} <span class="title-keyword">{{MAIN_TITLE_KW}}</span><br>{{MAIN_TITLE_2}}
+            </h1>
+        </div>
+        <div class="layer-portrait" style="{{PORTRAIT_STYLE}}">
+            <img src="{{PORTRAIT_PATH}}" alt="Character">
+        </div>
+        <div class="layer-bottom">
+            <p class="subtext-italic" style="{{SUBTEXT_STYLE}}">{{SUBTEXT_ITALIC}}</p>
+            <div class="cta-pill">
+                <span class="cta-text">{{CTA_1}} <span class="cta-highlight">{{CTA_KW}}</span> {{CTA_2}}</span>
+                <span class="cta-arrows">»</span>
+            </div>
+            <div class="footer">{{BRAND_NAME}} · {{BRAND_TAGLINE_UPPER}}</div>
+        </div>
+    </div>
+
+    <!-- ════════════ LANDSCAPE 16:9 ════════════ -->
+    <div class="canvas landscape">
+        <div class="watermark">{{WATERMARK}}</div>
+        <div class="float-icon fi-chart">
+            <svg viewBox="0 0 124 124" fill="none" stroke="{{COLOR_BLUE}}" stroke-width="2.5">
+                <rect x="8" y="70" width="22" height="44" rx="4" fill="rgba(255,255,255,0.08)"/>
+                <rect x="38" y="44" width="22" height="70" rx="4" fill="rgba(255,255,255,0.08)"/>
+                <rect x="68" y="24" width="22" height="90" rx="4" fill="rgba(255,255,255,0.08)"/>
+                <polyline points="19,66 49,40 79,20" stroke="{{COLOR_LIGHT_BLUE}}" stroke-width="2" fill="none"/>
+                <circle cx="19" cy="66" r="3.5" fill="{{COLOR_LIGHT_BLUE}}"/>
+                <circle cx="49" cy="40" r="3.5" fill="{{COLOR_LIGHT_BLUE}}"/>
+                <circle cx="79" cy="20" r="3.5" fill="{{COLOR_LIGHT_BLUE}}"/>
+            </svg>
+        </div>
+        <div class="float-icon fi-ai-chip">
+            <svg viewBox="0 0 108 108" fill="none" stroke="{{COLOR_BLUE}}" stroke-width="2">
+                <rect x="24" y="24" width="60" height="60" rx="12" fill="rgba(255,255,255,0.06)"/>
+                <circle cx="54" cy="54" r="14" stroke="{{COLOR_LIGHT_BLUE}}"/>
+                <circle cx="54" cy="54" r="5" fill="{{COLOR_LIGHT_BLUE}}" stroke="none"/>
+                <line x1="54" y1="6" x2="54" y2="24"/><line x1="54" y1="84" x2="54" y2="102"/>
+                <line x1="6" y1="54" x2="24" y2="54"/><line x1="84" y1="54" x2="102" y2="54"/>
+                <text x="54" y="58" font-family="sans-serif" font-size="14" fill="{{COLOR_LIGHT_BLUE}}" text-anchor="middle" stroke="none" font-weight="700">AI</text>
+            </svg>
+        </div>
+        <div class="float-icon fi-flowchart">
+            <svg viewBox="0 0 130 130" fill="none" stroke="{{COLOR_BLUE}}" stroke-width="2">
+                <rect x="30" y="10" width="70" height="30" rx="8" fill="rgba(255,255,255,0.06)"/>
+                <line x1="65" y1="40" x2="65" y2="55"/><line x1="65" y1="55" x2="30" y2="55"/>
+                <line x1="65" y1="55" x2="100" y2="55"/>
+                <rect x="5" y="65" width="50" height="25" rx="6" fill="rgba(255,255,255,0.06)"/>
+                <rect x="75" y="65" width="50" height="25" rx="6" fill="rgba(255,255,255,0.06)"/>
+                <line x1="30" y1="55" x2="30" y2="65"/><line x1="100" y1="55" x2="100" y2="65"/>
+            </svg>
+        </div>
+        <div class="float-icon fi-checklist">
+            <svg viewBox="0 0 110 110" fill="none" stroke="{{COLOR_BLUE}}" stroke-width="2">
+                <rect x="10" y="10" width="90" height="90" rx="14" fill="rgba(255,255,255,0.06)"/>
+                <polyline points="28,46 38,56 52,38" stroke="{{COLOR_LIGHT_BLUE}}" stroke-width="2.5"/>
+                <line x1="62" y1="46" x2="82" y2="46" stroke-width="2"/>
+                <polyline points="28,70 38,80 52,62" stroke="{{COLOR_LIGHT_BLUE}}" stroke-width="2.5"/>
+                <line x1="62" y1="70" x2="82" y2="70" stroke-width="2"/>
+                <line x1="28" y1="28" x2="82" y2="28" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="inner">
+            <div class="left-section {{TEXT_ALIGN_CLASS}}">
+                <div class="logo-pill"><img src="{{LOGO_PATH}}" alt="Logo"></div>
+                <div class="logo-tagline">{{BRAND_TAGLINE}}</div>
+                <div class="top-label">{{TOP_LABEL}}</div>
+                <h1 class="main-title">
+                    {{MAIN_TITLE_1}} <span class="title-keyword">{{MAIN_TITLE_KW}}</span><br>{{MAIN_TITLE_2}}
+                </h1>
+                <p class="subtext-italic" style="{{SUBTEXT_STYLE}}">{{SUBTEXT_ITALIC}}</p>
+                <div class="cta-pill">
+                    <span class="cta-text">{{CTA_1}} <span class="cta-highlight">{{CTA_KW}}</span> {{CTA_2}}</span>
+                    <span class="cta-arrows">»</span>
+                </div>
+            </div>
+            <div class="right-section" style="{{PORTRAIT_STYLE}}">
+                <img src="{{PORTRAIT_PATH}}" alt="Character">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

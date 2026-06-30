@@ -266,7 +266,8 @@ def _gemini_script(gh, scenes, feedback=None):
             "Viết kịch bản NGẮN, tự nhiên, thuần Việt. TUYỆT ĐỐI KHÔNG chèn nguyên câu "
             "tiếng Anh vào lời đọc; DỊCH mô tả sang tiếng Việt. Tên repo đọc tự nhiên, "
             "lần đầu nêu tên rồi sau gọi 'dự án này' / 'công cụ này' (đừng lặp slug). "
-            "Mỗi cảnh 1 ý, ~15-28 từ. Số đọc bình thường. "
+            "Mỗi cảnh 1 ý nhưng KHAI TRIỂN ĐỦ Ý — ~30-42 từ/cảnh (mục tiêu video ~90 giây, đừng viết quá ngắn). "
+            "Số đọc bình thường. "
             "ĐA DẠNG MỞ ĐẦU (rất quan trọng, từ OpenMontage): mỗi cảnh mở đầu bằng từ/cấu trúc KHÁC nhau "
             "— KHÔNG từ mở đầu nào lặp ≥2 lần (đừng cảnh nào cũng 'Với', 'Đây', 'Ngoài ra'); tự kiểm lại trước khi trả. "
             "GROUNDING: CHỈ dùng dữ kiện được cung cấp (tên/mô tả/sao/ngôn ngữ/chủ đề); "
@@ -621,6 +622,13 @@ def make(url, *, template=None, theme=None, output=None, project_dir=None, aspec
     kw = {"aspect": aspect} if aspect else {}   # else use the template's aspect
     nc.make_video_from_template(template, content, project_dir, output=output, theme=theme, **kw)
     _finalize_outputs(gh, project_dir, output, name)
+    # Optional: also hand off an editable CapCut project (env SEOSONA_CAPCUT_EXPORT=1) so the
+    # user can embellish with CapCut's SFX/transitions/text-effects. Best-effort, off by default.
+    if os.environ.get("SEOSONA_CAPCUT_EXPORT") == "1":
+        try:
+            import_module("capcut_export").export(output, aspect=aspect or "9:16")
+        except Exception:
+            pass
     return output
 
 # ---------------------------------------------------------------- news rotation

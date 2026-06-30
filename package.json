@@ -44,7 +44,8 @@
     "skill:lint": "node scripts/seosona-python.cjs scripts/skill_lint.py",
     "factory:metrics": "node scripts/seosona-python.cjs 4_BRAIN/factory_metrics.py",
     "build:desktop": "node scripts/build_desktop_app.cjs",
-    "test": "npm run seosona:doctor"
+    "test": "npm run seosona:doctor",
+    "capcut:export": "node scripts/seosona-python.cjs 4_BRAIN/capcut_export.py"
   },
   "keywords": [],
   "author": "",

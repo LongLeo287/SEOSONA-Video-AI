@@ -33,6 +33,10 @@ def _find_outputs(project_dir):
     srts = glob.glob(os.path.join(project_dir, "**", "*.srt"), recursive=True)
     thumbs = glob.glob(os.path.join(project_dir, "Thumbnail", "*.png")) + \
              glob.glob(os.path.join(project_dir, "Thumbnail", "*.jpg"))
+    # Prefer the branded designer thumbnail.png over the raw frame fallback (thumbnail_frame.png).
+    thumbs.sort(key=lambda p: (os.path.basename(p) != "thumbnail.png",
+                               "frame" in os.path.basename(p).lower(),
+                               os.path.basename(p)))
     return {
         "mp4": os.path.relpath(mp4, project_dir) if mp4 else None,
         "srt": os.path.relpath(srts[0], project_dir) if srts else None,
