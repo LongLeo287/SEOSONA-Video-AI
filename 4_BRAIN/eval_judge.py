@@ -114,21 +114,83 @@ def _judge_gemini(frames, narration):
     return None
 
 
+def _judge_ollama(frames, narration):
+    """LOCAL fallback when Gemini is down (quota/no-key). Uses an Ollama VISION model
+    (set SEOSONA_OLLAMA_VISION, e.g. 'llava' or 'qwen2.5vl', + `ollama serve`). Returns the
+    parsed dict, or None if not configured / unreachable."""
+    model = os.getenv("SEOSONA_OLLAMA_VISION")
+    if not model:
+        return None
+    host = os.getenv("OLLAMA_HOST", "http://localhost:11434").rstrip("/")
+    try:
+        import base64
+        import requests
+        imgs = [base64.b64encode(open(f, "rb").read()).decode() for f in frames]
+        rub = "\n".join(f"- {k}: {v}" for k, v in DIMENSIONS.items())
+        prompt = ("Giám khảo QA video 9:16 tiếng Việt (kênh SEOSONA). Lời đọc:\n"
+                  + narration[:1500] + "\n\nChấm 1-5 từng tiêu chí:\n" + rub
+                  + '\nTrả JSON: {"scores":{... 5 keys ...},"notes":[],"verdict":"pass|fail"}')
+        r = requests.post(f"{host}/api/chat", timeout=240, json={
+            "model": model, "stream": False, "format": "json",
+            "messages": [{"role": "user", "content": prompt, "images": imgs}]})
+        if r.status_code == 200:
+            print(f"[eval_judge] graded by LOCAL Ollama vision ({model})")
+            return json.loads(r.json().get("message", {}).get("content") or "{}")
+        print(f"[eval_judge] ollama HTTP {r.status_code}")
+    except Exception as e:
+        print(f"[eval_judge] ollama vision unavailable ({type(e).__name__})")
+    return None
+
+
+def _agent_review_dump(video_path, frames, narration):
+    """Last resort when BOTH Gemini and local Ollama are unavailable: persist the frames +
+    narration + rubric so the CODING AGENT (Claude) can grade them IN-SESSION (the user's
+    standing rule: 'if Gemini is out of quota, you or a local LLM handle it'). Returns the
+    request dir. The agent then Reads the frames and writes the verdict."""
+    import shutil
+    d = os.path.join(ROOT, "3_MEMORY", "eval_results", "agent_review",
+                     os.path.splitext(os.path.basename(video_path))[0])
+    os.makedirs(d, exist_ok=True)
+    kept = []
+    for i, f in enumerate(frames):
+        dst = os.path.join(d, f"frame_{i}.png")
+        try:
+            shutil.copy(f, dst); kept.append(dst)
+        except Exception:
+            pass
+    json.dump({"video": video_path, "narration": narration, "frames": kept,
+               "rubric": DIMENSIONS, "pass_threshold": PASS_THRESHOLD},
+              open(os.path.join(d, "request.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=2)
+    return d
+
+
 def judge(video_path):
-    """Grade one rendered video qualitatively. Returns a verdict dict (graceful)."""
+    """Grade one rendered video qualitatively. Chain: Gemini vision → local Ollama vision →
+    agent-review dump (Claude grades in-session). Returns a verdict dict (always graceful)."""
     if not video_path or not os.path.exists(video_path):
         return {"skipped": True, "reason": "file not found"}
     frames = _frames(video_path)
     if not frames:
         return {"skipped": True, "reason": "no frames extracted"}
-    res = _judge_gemini(frames, _narration(video_path))
+    narration = _narration(video_path)
+    res = _judge_gemini(frames, narration) or _judge_ollama(frames, narration)
+    if not res or "scores" not in res:
+        # Both cloud + local LLM unavailable → hand to the coding agent (user's rule).
+        review_dir = _agent_review_dump(video_path, frames, narration)
+        for f in frames:
+            try:
+                os.remove(f)
+            except Exception:
+                pass
+        rel = os.path.relpath(review_dir, ROOT)
+        print(f"[eval_judge] Gemini + local LLM both unavailable → AGENT REVIEW queued: {rel}")
+        return {"skipped": True, "reason": "needs agent/local review", "agent_review": rel}
     for f in frames:
         try:
             os.remove(f)
         except Exception:
             pass
-    if not res or "scores" not in res:
-        return {"skipped": True, "reason": "Gemini unavailable / bad response"}
     scores = res["scores"]
     nums = [v for v in scores.values() if isinstance(v, (int, float))]
     overall = round(sum(nums) / len(nums), 2) if nums else 0.0

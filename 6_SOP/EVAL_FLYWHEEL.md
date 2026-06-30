@@ -43,7 +43,11 @@ written timestamped to `3_MEMORY/eval_results/results_<ts>.json` + a printed sum
 - **It is NOT auto-run on every render** (on purpose) — it spends a Gemini call (+ images),
   and the free tier is shared with the news-script generation. Run it as a periodic
   regression check, or on a video you want a second opinion on.
-- **Graceful:** no `GEMINI_API_KEY` / quota 429 → returns `{"skipped": true}`, never blocks.
-  If you hit 429, the daily free quota is spent — wait for reset (or space the runs out).
+- **Fallback chain when Gemini is down (user's rule "Gemini hết quota → bạn hoặc LLM local xử lý"):**
+  `eval_judge` tries **Gemini vision → local Ollama vision → agent-review**. To enable the
+  local tier: `ollama serve` + `ollama pull llava` (or qwen2.5vl) + set
+  `SEOSONA_OLLAMA_VISION=llava`. If BOTH are unavailable it dumps the frames + narration +
+  rubric to `3_MEMORY/eval_results/agent_review/<video>/request.json`, and the **coding agent
+  (Claude) grades them in-session** and writes `verdict.json` there.
 - Free/local. The Google-Cloud parts of agents-cli (Vertex eval service, BigQuery, GEPA
   optimize) were intentionally NOT adopted.
