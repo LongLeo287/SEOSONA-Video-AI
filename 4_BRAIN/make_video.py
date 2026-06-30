@@ -210,6 +210,8 @@ def _gemini_script(gh, scenes):
             "tiếng Anh vào lời đọc; DỊCH mô tả sang tiếng Việt. Tên repo đọc tự nhiên, "
             "lần đầu nêu tên rồi sau gọi 'dự án này' / 'công cụ này' (đừng lặp slug). "
             "Mỗi cảnh 1 ý, ~15-28 từ. Số đọc bình thường. "
+            "ĐA DẠNG MỞ ĐẦU (rất quan trọng, từ OpenMontage): mỗi cảnh mở đầu bằng từ/cấu trúc KHÁC nhau "
+            "— KHÔNG từ mở đầu nào lặp ≥2 lần (đừng cảnh nào cũng 'Với', 'Đây', 'Ngoài ra'); tự kiểm lại trước khi trả. "
             "GROUNDING: CHỈ dùng dữ kiện được cung cấp (tên/mô tả/sao/ngôn ngữ/chủ đề); "
             "TUYỆT ĐỐI KHÔNG bịa số liệu, tính năng, hay khẳng định không có trong dữ kiện.")
     # Stage 1: plan a coherent arc first (graceful — None → write without it = old behavior).
@@ -243,6 +245,52 @@ def _gemini_script(gh, scenes):
     except Exception as e:
         print(f"[make_video] Gemini script failed ({e}) — deterministic prose.")
         return None
+
+
+# ---------------------------------------------------------------- script lint (no LLM)
+# Mechanical quality gate (pattern from voocel/ainovel-cli, MIT): catch the MASTER_VIDEO_SPEC
+# rules a model often misses — cheap, deterministic, no LLM call. Warns (non-blocking).
+_LINT_FORBIDDEN = ("trong video này", "hôm nay mình", "như các bạn đã biết", "kính thưa")
+_LINT_EN_OK = {"ai", "github", "python", "api", "seo", "app", "web", "ios", "css", "html",
+               "js", "go", "rust", "sql", "llm", "ui", "ux", "pdf", "cli", "gpu", "open", "source"}
+
+def _lint_script(SEG, HEAD, kinds, name=""):
+    import re as _re
+    from collections import Counter
+    warn = []
+    if SEG:
+        last = SEG[-1].lower()
+        if "seosona" not in last and "theo dõi" not in last:
+            warn.append("cảnh cuối thiếu CTA theo dõi SEOSONA")
+    firsts = Counter()
+    for i, s in enumerate(SEG):
+        w = len(s.split())
+        if w < 5:
+            warn.append(f"cảnh {i}: lời quá ngắn ({w} từ)")
+        elif w > 40:
+            warn.append(f"cảnh {i}: lời quá dài ({w} từ)")
+        for ph in _LINT_FORBIDDEN:
+            if ph in s.lower():
+                warn.append(f"cảnh {i}: cụm cấm '{ph}'")
+        for tok in _re.findall(r"[A-Za-z][A-Za-z]{5,}", s):       # English-leak suspect
+            tl = tok.lower()
+            if tl not in _LINT_EN_OK and tl != name.lower() and tl != "seosona" and not tok.istitle():
+                warn.append(f"cảnh {i}: nghi lọt tiếng Anh '{tok}'")   # skip Proper Nouns (Title-case)
+                break
+        fw = (s.split() or [""])[0].lower().strip(".,!?:")
+        if fw:
+            firsts[fw] += 1
+    for w, c in firsts.items():                                    # opening diversity (OpenMontage)
+        if c >= 2:
+            warn.append(f"từ mở đầu '{w}' lặp {c} cảnh")
+    for k, c in Counter(k for k in kinds if k and k != "text").items():  # visual variety
+        if c >= 4:
+            warn.append(f"component '{k}' lặp {c}× (đơn điệu)")
+    if warn:
+        print(f"[script-lint] ⚠ {len(warn)} cảnh báo: " + " | ".join(warn[:8]))
+    else:
+        print("[script-lint] ✓ sạch (CTA · độ dài · không lọt-Anh · mở đầu & visual đa dạng)")
+    return warn
 
 
 # ---------------------------------------------------------------- auto content
@@ -385,6 +433,9 @@ def auto_content(gh, template):
         if used > 1:
             print(f"[make_video] multi-shot: {used} real screenshots placed across scenes")
 
+    eff_kinds = [comp_overrides.get(i) or (scenes[i].get("component") or "text")
+                 for i in range(len(SEG))]
+    _lint_script(SEG, HEAD, eff_kinds, name)
     lex = dict(_BASE_LEX)
     return compose(template, segments=SEG, headings=HEAD, scene_data=DATA, lexicon=lex,
                    comp_overrides=comp_overrides)
