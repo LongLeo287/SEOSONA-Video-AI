@@ -39,3 +39,37 @@ nextlevelbuilder/ui-ux-pro-max-skill · (see `INGESTION_LOG.md`).
 
 > markitdown done. Next when resuming: SYSTEM → vet `gitingest`; FACTORY → check `facebook/astryx`
 > license for design-system depth + `openclaw-skill-infographic` for thumbnail/card craft.
+
+## Batch-1 triage (2026-06-30) — S+A video-relevant CANDIDATEs from inventory(34)
+
+From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 already logged). Full triage CSV: `3_MEMORY/eval_results/batch1_triage.csv`. Each runs through the `capability-analyst` skill (SELF_IMPROVEMENT_LOOP) before adopting.
+
+| Repo | Cat | Tier | Score | Why (tags) | Verdict |
+|------|-----|------|-------|-----------|---------|
+| [every-app/open-seo](https://github.com/every-app/open-seo) | seo | S | 94 | SEO stack; MCP; Agent skills; Keyword research; Rank tr | ⏳ analyze |
+| [chroma-core/chroma](https://github.com/chroma-core/chroma) | rag | S | 94 | Vector database; AI search infrastructure; RAG stack; E | ⏳ analyze |
+| [ArcReel/ArcReel](https://github.com/ArcReel/ArcReel) | video | S | 92 | Video generation; AI Agent workflow; Claude Agent SDK;  | ⏳ analyze |
+| [opendatalab/MinerU](https://github.com/opendatalab/MinerU) | rag | S | 92 | Document parsing; PDF/OCR; Markdown/JSON; Agentic workf | ⏳ analyze |
+| [lumina-ai-inc/chunkr](https://github.com/lumina-ai-inc/chunkr) | rag | S | 91 | Document intelligence; Layout analysis; OCR; Semantic c | ⏳ analyze |
+| [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) | rag | S | 90 | MCP; Codebase memory; Knowledge graph | ⏳ analyze |
+| [EverMind-AI/EverOS](https://github.com/EverMind-AI/EverOS) | rag | S | 90 | Persistent memory; Agent OS; Self-evolving knowledge | ⏳ analyze |
+| [feicaiclub/video-spec-builder](https://github.com/feicaiclub/video-spec-builder) | video | S | 90 | Video spec; Storyboard; HyperFrames; Claude Code/Cursor | ⏳ analyze |
+| [StarTrail-org/PixelRAG](https://github.com/StarTrail-org/PixelRAG) | rag | S | 90 | Visual RAG; Screenshot tiles; Layout-aware retrieval | ⏳ analyze |
+| [github/spec-kit](https://github.com/github/spec-kit) | skills | S | 90 | Spec-driven development; Planning; Engineering workflow | ⏳ analyze |
+| [HBAI-Ltd/Toonflow-app](https://github.com/HBAI-Ltd/Toonflow-app) | video | S | 90 | Animated short drama; AI scriptwriting; Storyboarding;  | ⏳ analyze |
+| [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | rag | S | 88 | Context compression; Token optimization; MCP | ⏳ analyze |
+| [yifanfeng97/Hyper-Extract](https://github.com/yifanfeng97/Hyper-Extract) | rag | S | 88 | LLM extraction; Knowledge graphs; Hypergraphs; Structur | ⏳ analyze |
+| [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) | skills | S | 86 | Agent skill; Recency workflows | ⏳ analyze |
+| [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | skills | S | 86 | Claude Code best practices; Commands/agents/skills/hook | ⏳ analyze |
+| [opendataloader-project/opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) | rag | S | 86 | PDF ingestion; RAG; Document loader | ⏳ analyze |
+| [nicobailon/visual-explainer](https://github.com/nicobailon/visual-explainer) | skills | A | 76 | Visual explanation; HTML artifact; Agent skill | ⏳ analyze |
+| [nemocake/claude-obsidian-assistant](https://github.com/nemocake/claude-obsidian-assistant) | rag | A | 76 | Obsidian; Claude workspace; Notes/memory | ⏳ analyze |
+| [datalab-to/lift](https://github.com/datalab-to/lift) | rag | A | 76 | Document extraction; RAG prep; Data pipeline | ⏳ analyze |
+| [tuanminhhole/openclaw-skill-learning-memory](https://github.com/tuanminhhole/openclaw-skill-learning-memory) | rag | A | 75 | OpenClaw; Learning memory; Skill memory | ⏳ analyze |
+| [ant-design/ant-design](https://github.com/ant-design/ant-design) | design | A | 75 | React UI library; Enterprise design system; Components; | ⏳ analyze |
+| [nidhinjs/prompt-master](https://github.com/nidhinjs/prompt-master) | skills | A | 74 | Claude skill; Prompt engineering; Context retention; Pr | ⏳ analyze |
+| [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | skills | A | 73 | GSAP; Animation skills; Agent skills | ⏳ analyze |
+| [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | skills | A | 72 | Skill collection; AI education; prompt ops | ⏳ analyze |
+| [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | skills | A | 72 | Agent skills; Automation helper | ⏳ analyze |
+| [yaojingang/yao-meta-skill](https://github.com/yaojingang/yao-meta-skill) | skills | A | 57 | Meta-skill; Agent skills; Evaluation; Governance; Porta | ⏳ analyze |
+| [arm64x/PHP-Lazada-Affiliate-API-Tool](https://github.com/arm64x/PHP-Lazada-Affiliate-API-Tool) | seo | A | 46 | Vietnamese / Local market; SEO stack | ⏳ analyze |
