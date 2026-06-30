@@ -53,7 +53,7 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 | [lumina-ai-inc/chunkr](https://github.com/lumina-ai-inc/chunkr) | rag | S | 91 | Document intelligence; Layout analysis; OCR; Semantic c | ⏳ analyze |
 | [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) | rag | S | 90 | MCP; Codebase memory; Knowledge graph | ⏳ analyze |
 | [EverMind-AI/EverOS](https://github.com/EverMind-AI/EverOS) | rag | S | 90 | Persistent memory; Agent OS; Self-evolving knowledge | ⏳ analyze |
-| [feicaiclub/video-spec-builder](https://github.com/feicaiclub/video-spec-builder) | video | S | 90 | Video spec; Storyboard; HyperFrames; Claude Code/Cursor | ⏳ analyze |
+| [feicaiclub/video-spec-builder](https://github.com/feicaiclub/video-spec-builder) | video | S | 90 | Video spec; Storyboard; HyperFrames; Claude Code/Cursor | ✅ REFERENCE (interactive skill ≠ our autonomous factory; idea backlog: component subtypes, scene-validate, 9:16 layout) |
 | [StarTrail-org/PixelRAG](https://github.com/StarTrail-org/PixelRAG) | rag | S | 90 | Visual RAG; Screenshot tiles; Layout-aware retrieval | ⏳ analyze |
 | [github/spec-kit](https://github.com/github/spec-kit) | skills | S | 90 | Spec-driven development; Planning; Engineering workflow | ⏳ analyze |
 | [HBAI-Ltd/Toonflow-app](https://github.com/HBAI-Ltd/Toonflow-app) | video | S | 90 | Animated short drama; AI scriptwriting; Storyboarding;  | ⏳ analyze |
@@ -68,7 +68,7 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 | [tuanminhhole/openclaw-skill-learning-memory](https://github.com/tuanminhhole/openclaw-skill-learning-memory) | rag | A | 75 | OpenClaw; Learning memory; Skill memory | ⏳ analyze |
 | [ant-design/ant-design](https://github.com/ant-design/ant-design) | design | A | 75 | React UI library; Enterprise design system; Components; | ⏳ analyze |
 | [nidhinjs/prompt-master](https://github.com/nidhinjs/prompt-master) | skills | A | 74 | Claude skill; Prompt engineering; Context retention; Pr | ⏳ analyze |
-| [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | skills | A | 73 | GSAP; Animation skills; Agent skills | ⏳ analyze |
+| [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | skills | A | 73 | GSAP; Animation skills; Agent skills | ✅ REFERENCE (MIT; 90% dup with our motion-recipes; keep cloned for GSAP pattern lookup. immediateRender flash = non-issue here, frame-0 verified) |
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | skills | A | 72 | Skill collection; AI education; prompt ops | ⏳ analyze |
 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | skills | A | 72 | Agent skills; Automation helper | ⏳ analyze |
 | [yaojingang/yao-meta-skill](https://github.com/yaojingang/yao-meta-skill) | skills | A | 57 | Meta-skill; Agent skills; Evaluation; Governance; Porta | ⏳ analyze |
