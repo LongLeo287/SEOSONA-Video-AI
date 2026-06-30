@@ -347,7 +347,8 @@ def _capture_one(url, out):
     if not os.path.exists(script):
         return None
     try:
-        r = subprocess.run(["node", script, url, out], capture_output=True, text=True, timeout=80)
+        r = subprocess.run(["node", script, url, out], capture_output=True, text=True,
+                            encoding="utf-8", errors="replace", timeout=80)
         if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 8000:
             return out
     except Exception:
