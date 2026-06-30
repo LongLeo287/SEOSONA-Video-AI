@@ -102,6 +102,60 @@ def _render_env():
     env["HYPERFRAMES_FFPROBE_PATH"] = _ffprobe_bin()
     return env
 
+
+def _scene_block(sc):
+    """A scene may use a HyperFrames registry block via scene['block'] or comp=('block',{name})."""
+    b = sc.get("block")
+    if b:
+        return b if isinstance(b, str) else (b or {}).get("name")
+    if sc.get("comp") and sc["comp"][0] == "block":
+        return (sc["comp"][1] or {}).get("name")
+    return None
+
+
+def _overlay_blocks(out, scenes, starts, total):
+    """Render each scene's HyperFrames block (hf_blocks) + overlay it onto the final video at the
+    scene's time window. NO-OP when no scene uses a block (normal news renders are untouched)."""
+    jobs = []
+    for i, sc in enumerate(scenes):
+        name = _scene_block(sc)
+        if name:
+            t0 = float(starts[i]) if i < len(starts) else 0.0
+            t1 = float(starts[i + 1]) if i + 1 < len(starts) else float(total)
+            jobs.append((name, t0, t1))
+    if not jobs:
+        return out
+    import tempfile, shutil
+    if os.path.join(ROOT, "4_BRAIN") not in sys.path:
+        sys.path.insert(0, os.path.join(ROOT, "4_BRAIN"))
+    hf_blocks = __import__("hf_blocks")
+    r = subprocess.run([_ffprobe_bin(), "-v", "error", "-select_streams", "v:0",
+                        "-show_entries", "stream=width,height", "-of", "csv=p=0:s=x", out],
+                       capture_output=True, text=True)
+    try:
+        W, _H = [int(x) for x in r.stdout.strip().split("x")]
+    except Exception:
+        W = 1080
+    inputs, filt, cur, idx = ["-i", out], [], "0:v", 1
+    for n, (name, t0, t1) in enumerate(jobs):
+        clip = hf_blocks.render_block(name, os.path.join(tempfile.gettempdir(), f"hfblk_{name}.mp4"))
+        if not clip:
+            continue
+        inputs += ["-i", clip]
+        filt.append(f"[{idx}:v]scale={int(W*0.9)}:-1[bz{n}]")
+        filt.append(f"[{cur}][bz{n}]overlay=(W-w)/2:(H-h)/3:enable='between(t,{t0:.2f},{t1:.2f})'[bo{n}]")
+        cur, idx = f"bo{n}", idx + 1
+    if idx == 1:
+        return out
+    tmp = out + ".blk.mp4"
+    subprocess.run([_ffmpeg_bin(), "-y", "-hide_banner", "-loglevel", "error", *inputs,
+                    "-filter_complex", ";".join(filt), "-map", f"[{cur}]", "-map", "0:a",
+                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
+                    "-c:a", "copy", tmp], check=True)
+    shutil.move(tmp, out)
+    print(f"[native_composer] overlaid {idx-1} block(s)")
+    return out
+
 # ---------------------------------------------------------------- SFX library
 # Curated from the "Sound Effects Pack" by scripts/build_sfx_library.sh.
 # Mixed per-component at scene timestamps so the video feels produced like the
@@ -543,6 +597,13 @@ def _css(brand="seosona", W=1080, H=1920):
 .glrow{display:flex;align-items:center;gap:22px;margin-left:-22px}
 .gldot{width:38px;height:38px;border-radius:50%;flex:none;box-shadow:0 0 0 7px var(--card)}
 .glid{font-family:monospace;font-size:42px;font-weight:900;color:var(--ink)}
+/* --- Design-craft upgrades (mined from ant-design + open-design, re-skinned brand, light,
+   SEEK-SAFE: static CSS only, no @keyframes; convergent picks from 2 design digs) --- */
+.big,.bn-num,.stnum,.chval,.mktnum{font-variant-numeric:tabular-nums}              /* no digit jitter on count-up */
+.qtext,.head .l1,.ctitle,.chtitle,.tiptext{text-wrap:balance}                      /* no orphan/awkward wraps */
+.c-repo,.stat,.c-quote,.c-tip,.c-chart,.feat,.step,.c-gitlog,.c-mockup,.col{       /* layered premium depth (ant-design pattern), brand-tinted ambient */
+  box-shadow:0 0 0 1px rgba(15,23,42,.05),0 2px 6px -2px rgba(15,23,42,.08),0 18px 44px -10px rgba(42,91,218,.13)}
+.stars,.mkstars{box-shadow:0 2px 8px rgba(15,23,42,.12)}                           /* star pill floats (ant Badge) */
 .gltag{font-size:28px;font-weight:800;padding:8px 20px;border-radius:999px}
 .glhead{margin-left:auto;background:var(--coral);color:#fff;font-weight:800;font-size:24px;letter-spacing:1px;padding:8px 16px;border-radius:9px}
 .footer{position:absolute;left:50%;transform:translateX(-50%);bottom:230px;background:var(--card);border:1px solid var(--cardb);border-radius:999px;
@@ -907,6 +968,14 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
         f"[mix]alimiter=limit=0.95:level=disabled,loudnorm=I={target_lufs}:TP=-1.5:LRA=11,aresample=48000[ao]"
     subprocess.run([_ffmpeg_bin(),"-y","-hide_banner","-loglevel","error",*inputs,"-filter_complex",fc,
                     "-map","0:v","-map","[ao]","-c:v","copy","-c:a","aac","-b:a","192k","-ar","48000",out], check=True)
+
+    # 6b) BLOCK OVERLAY (gated, additive) — scenes may carry a HyperFrames registry block
+    #     (comp=("block",{name}) or scene["block"]); render it + overlay onto the final video at the
+    #     scene's time window. Pure no-op when no scene uses a block, so normal news renders are unchanged.
+    try:
+        _overlay_blocks(out, scenes, starts, TOTAL)
+    except Exception as e:
+        print(f"[native_composer] block overlay skipped: {e}")
 
     # 7) DISPLAY-word SRT (RULE #1) — one cue per scene, aligned to narration timing.
     # Captions are baked into the video too, but a sidecar .srt is needed for upload
