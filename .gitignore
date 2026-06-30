@@ -196,3 +196,4 @@ logs/publish/
 # env/setup management
 7_ASSETS/models/ollama/
 3_MEMORY/factory_metrics.jsonl
+3_MEMORY/recent_angles.jsonl

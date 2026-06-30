@@ -32,6 +32,17 @@ def classify(gh):
     text = f"{name} {desc} {' '.join(topics)}"
     has = lambda *ks: any(k in text for k in ks)
 
+    # If the repo content clearly fits one of the NEW content-shape archetypes (top-N list, X-vs-Y,
+    # tutorial…), use it for scene-arc variety. Only the 10 new archetypes early-return; generic
+    # matches fall through to the repo-type logic below.
+    try:
+        import template_picker as _tp
+        _a = _tp.pick_template(text, fallback=None)
+        if _a in _tp.NEW_ARCHETYPES:
+            return (_a, "light", f"archetype: {_a}")
+    except Exception:
+        pass
+
     if "awesome" in name or has("awesome", "curated", "collection", "list of", "list-of"):
         return ("resource-list", "light", "kho/list/awesome collection")
     if topics & {"tutorial", "learning", "education", "game", "visualization", "interactive"} \
@@ -146,6 +157,30 @@ def _chart(gh):
                 "items": [(t.replace("-", " ").title(), vals[i % 4], "") for i, t in enumerate(tps)]}
     return {"title": "Vì sao nổi bật", "items": [("Hiệu năng", 90, ""), ("Dễ dùng", 82, ""), ("Cộng đồng", 75, "")]}
 
+# ---------------------------------------------------------------- episodic anti-repeat
+# Across a BATCH, stop every video opening the same way (pattern from mvanhorn/last30days):
+# remember the last N videos' scene-1 opening + feed it to the outline as "open differently".
+_ANGLES = os.path.join(ROOT, "3_MEMORY", "recent_angles.jsonl")
+
+def _recent_openings(n=6):
+    try:
+        import json as _j
+        rows = [_j.loads(x) for x in open(_ANGLES, encoding="utf-8").read().splitlines() if x.strip()]
+        return [r.get("open", "") for r in rows[-n:] if r.get("open")]
+    except Exception:
+        return []
+
+def _record_opening(repo, opening):
+    try:
+        import json as _j, datetime as _dt
+        os.makedirs(os.path.dirname(_ANGLES), exist_ok=True)
+        with open(_ANGLES, "a", encoding="utf-8") as f:
+            f.write(_j.dumps({"repo": repo, "open": (opening or "").strip()[:60],
+                              "ts": _dt.datetime.now().isoformat(timespec="seconds")}, ensure_ascii=False) + "\n")
+    except Exception:
+        pass
+
+
 # ---------------------------------------------------------------- Gemini prose
 def _gemini_outline(gh, kinds):
     """Stage 1 of a two-stage script (pattern adopted from ArcReel/Toonflow, re-implemented
@@ -173,10 +208,15 @@ def _gemini_outline(gh, kinds):
             "vấn-đề→giải-pháp · kể-bằng-số-liệu · so-sánh · tiến-trình/timeline) thay vì khuôn cố định. "
             "Đánh dấu 1 cảnh ĐIỂM NHẤN (cao trào) ở giữa-cuối. Cảnh cuối = kêu gọi theo dõi. "
             "GROUNDING: chỉ dựa trên dữ kiện được cung cấp, KHÔNG bịa.")
+    _recent = _recent_openings()
+    avoid = (("Mấy video GẦN ĐÂY đã mở đầu kiểu: " + " / ".join(f'\"{r[:40]}\"' for r in _recent)
+              + ". Cảnh 1 video NÀY phải mở theo cách KHÁC HẲN (đừng lặp lại các kiểu trên).\n")
+             if _recent else "")
     userp = (f"Repo: {name}\nMô tả (tiếng Anh): {desc}\n"
              f"Sao: {gh.get('stars_h')}, ngôn ngữ: {gh.get('lang')}, "
              f"chủ đề: {', '.join((gh.get('topics') or [])[:6])}\n"
              f"Số cảnh: {n}. Vai trò trực quan từng cảnh: {kinds}\n"
+             f"{avoid}"
              f"Trả JSON: {{\"focus\":[\"trọng tâm cảnh 1 (3-8 từ)\", ...]}} đúng {n} phần tử; "
              f"cảnh cuối = kêu gọi theo dõi SEOSONA.")
     try:
@@ -521,6 +561,7 @@ def _finalize_outputs(gh, project_dir, output, name):
         cap = f"{hook}\n\n#SEOSONA #congnghe #AI #laptrinh {tags}".strip()
         open(os.path.join(project_dir, "caption.txt"), "w", encoding="utf-8").write(cap)
     except Exception: pass
+    _record_opening(gh.get("full") or name, hook_vn)   # episodic anti-repeat: remember this opening
     ev = {}
     try:
         ev = import_module("evaluator").evaluate(output, record=False) or {}
