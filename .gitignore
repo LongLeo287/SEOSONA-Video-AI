@@ -197,3 +197,5 @@ logs/publish/
 7_ASSETS/models/ollama/
 3_MEMORY/factory_metrics.jsonl
 3_MEMORY/recent_angles.jsonl
+3_MEMORY/template_scores.json
+3_MEMORY/HOT_LEARNINGS.md

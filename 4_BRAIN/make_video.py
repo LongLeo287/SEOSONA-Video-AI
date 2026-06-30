@@ -23,6 +23,20 @@ sys.path.insert(0, os.path.dirname(__file__))
 from scene_composer import fetch_github, repo_data_slots, compose
 import native_composer as nc
 
+# Per-render signals captured for the learning-flywheel (factory_metrics → learn_flywheel).
+_LAST_RENDER = {}
+_TEMPLATE_SCORES = os.path.join(ROOT, "3_MEMORY", "template_scores.json")
+
+def _weak_templates():
+    """Templates the flywheel found to empirically underperform (pass-rate <70% over >=3 runs).
+    classify() drops these from rotation → the factory stops reusing what fails. Best-effort."""
+    try:
+        import json as _j
+        s = _j.load(open(_TEMPLATE_SCORES, encoding="utf-8"))
+        return {t for t, v in s.items() if v.get("n", 0) >= 3 and v.get("pass_rate", 1) < 0.7}
+    except Exception:
+        return set()
+
 # ---------------------------------------------------------------- classify
 def classify(gh):
     """Pick (template, theme, reason) from repo metadata."""
@@ -64,8 +78,11 @@ def classify(gh):
 
 def _rot(name, options):
     """Deterministic per-repo rotation so the same repo is stable but different repos
-    get different templates (fixes 'same template every time')."""
-    return options[sum(ord(c) for c in (name or "x")) % len(options)]
+    get different templates (fixes 'same template every time'). The learning-flywheel
+    drops empirically-weak templates from the pool (keeps >=1)."""
+    weak = _weak_templates()
+    pool = [o for o in options if o not in weak] or options
+    return pool[sum(ord(c) for c in (name or "x")) % len(pool)]
 
 # ---------------------------------------------------------------- prose helpers
 # make_video only adds repo-specific terms here; the AUTHORITATIVE tech lexicon lives in
@@ -491,7 +508,9 @@ def auto_content(gh, template):
 
     eff_kinds = [comp_overrides.get(i) or (scenes[i].get("component") or "text")
                  for i in range(len(SEG))]
-    _lint_script(SEG, HEAD, eff_kinds, name)
+    _w = _lint_script(SEG, HEAD, eff_kinds, name)
+    _LAST_RENDER["lint_warns"] = len(_w)          # flywheel signals
+    _LAST_RENDER["script"] = "llm" if g else "deterministic"
     lex = dict(_BASE_LEX)
     return compose(template, segments=SEG, headings=HEAD, scene_data=DATA, lexicon=lex,
                    comp_overrides=comp_overrides)
@@ -577,7 +596,9 @@ def _finalize_outputs(gh, project_dir, output, name):
         import_module("factory_metrics").record(
             repo=gh.get("full") or name, output=os.path.basename(output),
             size_mb=sz, dur_s=ev.get("duration") or ev.get("dur_s"),
-            ok=bool(ev.get("ok")), issues=ev.get("reasons") or [])
+            ok=bool(ev.get("ok")), issues=ev.get("reasons") or [],
+            template=_LAST_RENDER.get("template"), script=_LAST_RENDER.get("script"),
+            lint_warns=_LAST_RENDER.get("lint_warns"))
     except Exception:
         pass
 
@@ -595,6 +616,7 @@ def make(url, *, template=None, theme=None, output=None, project_dir=None, aspec
     output = output or os.path.join(project_dir, f"{name} - SEOSONA.mp4")
     print(f"[make_video] {gh['full']} → template={template} theme={theme} aspect={aspect or 'template'}  ({reason})")
     gh["_shots"] = _capture_shots(gh, project_dir)     # up to 2 real screenshots (homepage + GitHub), best-effort
+    _LAST_RENDER.clear(); _LAST_RENDER["template"] = template   # flywheel: record which template was used
     content = auto_content(gh, template)
     kw = {"aspect": aspect} if aspect else {}   # else use the template's aspect
     nc.make_video_from_template(template, content, project_dir, output=output, theme=theme, **kw)

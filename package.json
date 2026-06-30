@@ -32,7 +32,7 @@
     "feedback": "node scripts/seosona-python.cjs 9_DASHBOARD/feedback_loop.py",
     "start:dashboard": "node scripts/seosona-python.cjs 9_DASHBOARD/server.py",
     "factory": "node scripts/seosona-python.cjs 4_BRAIN/factory_brain.py",
-    "factory:learn": "node scripts/seosona-python.cjs 4_BRAIN/factory_brain.py --learn-only",
+    "factory:learn": "node scripts/seosona-python.cjs 4_BRAIN/learn_flywheel.py",
     "ledger": "node scripts/seosona-python.cjs 4_BRAIN/factory_ledger.py",
     "freshness": "node scripts/seosona-python.cjs scripts/check_freshness.py",
     "catalog": "node scripts/seosona-python.cjs scripts/gen_catalog.py",
