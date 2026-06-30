@@ -44,6 +44,27 @@ hashtags    : 5–8 (#SEOSONA #congnghe #AI + topic-specific)
 thumb_text  : 2–4 word on-thumbnail phrase
 ```
 
+## Keyword intent (classify the search pull — pick ONE per video)
+- **Informational** ("how to / what is / cách / là gì") → explainer, top-of-funnel.
+- **Navigational** (brand/product name) → awareness, discovery.
+- **Commercial** ("vs / alternative / so sánh / thay thế") → comparison, positioning.
+- **Transactional** ("free / download / tải / dùng thử") → lead-gen.
+SEOSONA tech videos usually mix **informational + commercial**; the title plants the intent keyword.
+
+## Keyword derivation (free/local — no API)
+1. **Seed** from the topic's REAL terms: repo name, language, domain, category. Ask "what would a
+   VN viewer TYPE to find this?" (e.g. repo+lang → "ten-repo Python", tool+usecase, problem+solution).
+2. **Expand**: variations (free/open-source), long-tail (+audience), comparison ("X alternative"), guide intent ("… hướng dẫn").
+3. **Map intent** (above) → keep 1–2 that fit the video.
+4. **Dedup/priority**: keep specific 2–4-word + clear-intent; drop brand-only / too-broad / off-domain.
+5. **Front-load** the keyword in the first 1–2 words of the title.
+
+## Formulas (exact)
+- **Title** ≤60 (Shorts ≤50): `[1–2 word keyword] + [benefit/curiosity]`. Keyword first; one idea; no ALL-CAPS; no fake numbers.
+- **Description** 120–200w, 4 short ¶: hook line · what+why (with REAL numbers: stars/lang/license) · key points · CTA "Theo dõi SEOSONA" + link. No AI-filler ("delve/explore"), no unverified stats.
+- **Tags** 8–12 lowercase: 1–2 category + 3–5 topic + 2–3 niche/comparison.
+- **Hashtags** 5–8: always `#SEOSONA #congnghe #AI` + topic-specific.
+
 ## Rules (brand + SEO)
 - Vietnamese (system files English; this is CONTENT → Vietnamese). English tech terms kept as-is
   in display (GitHub, AI) — pronunciation is the voice layer's job, not here.
