@@ -189,7 +189,7 @@ def _gemini_outline(gh, kinds):
         return None
 
 
-def _gemini_script(gh, scenes):
+def _gemini_script(gh, scenes, feedback=None):
     """Write clean Vietnamese segments + 2-tone headings via the LLM (Gemini free tier
     when GEMINI_API_KEY is set; offline → returns None so the deterministic path runs).
     Fixes 'voice lỗi tiếng Việt': the LLM TRANSLATES the English desc and never dumps raw
@@ -225,6 +225,7 @@ def _gemini_script(gh, scenes):
              f"chủ đề: {', '.join((gh.get('topics') or [])[:6])}\n"
              f"Số cảnh: {len(scenes)}. Vai trò từng cảnh: {kinds}\n"
              f"{plan_txt}"
+             f"{('BẢN TRƯỚC BỊ LỖI, hãy SỬA hết: ' + feedback + chr(10)) if feedback else ''}"
              f"Trả JSON: {{\"scenes\":[{{\"seg\":\"lời đọc\",\"h1\":\"dòng 1 (≤22)\","
              f"\"h2\":\"từ nhấn (≤22)\"}}]}} đúng {len(scenes)} phần tử, cảnh cuối là CTA theo dõi SEOSONA.")
     try:
@@ -254,7 +255,7 @@ _LINT_FORBIDDEN = ("trong video này", "hôm nay mình", "như các bạn đã b
 _LINT_EN_OK = {"ai", "github", "python", "api", "seo", "app", "web", "ios", "css", "html",
                "js", "go", "rust", "sql", "llm", "ui", "ux", "pdf", "cli", "gpu", "open", "source"}
 
-def _lint_script(SEG, HEAD, kinds, name=""):
+def _lint_script(SEG, HEAD, kinds, name="", label=""):
     import re as _re
     from collections import Counter
     warn = []
@@ -262,8 +263,11 @@ def _lint_script(SEG, HEAD, kinds, name=""):
         last = SEG[-1].lower()
         if "seosona" not in last and "theo dõi" not in last:
             warn.append("cảnh cuối thiếu CTA theo dõi SEOSONA")
+    _PLACEHOLDER = {"lời đọc", "dòng 1", "từ nhấn", "lời", "seg", "h1", "h2"}
     firsts = Counter()
     for i, s in enumerate(SEG):
+        if s.strip().lower() in _PLACEHOLDER:          # model echoed the JSON schema example
+            warn.append(f"cảnh {i}: ECHO placeholder (model không sinh nội dung thật)")
         w = len(s.split())
         if w < 5:
             warn.append(f"cảnh {i}: lời quá ngắn ({w} từ)")
@@ -286,10 +290,11 @@ def _lint_script(SEG, HEAD, kinds, name=""):
     for k, c in Counter(k for k in kinds if k and k != "text").items():  # visual variety
         if c >= 4:
             warn.append(f"component '{k}' lặp {c}× (đơn điệu)")
+    tag = f"[script-lint{(' ' + label) if label else ''}]"
     if warn:
-        print(f"[script-lint] ⚠ {len(warn)} cảnh báo: " + " | ".join(warn[:8]))
+        print(f"{tag} ⚠ {len(warn)} cảnh báo: " + " | ".join(warn[:8]))
     else:
-        print("[script-lint] ✓ sạch (CTA · độ dài · không lọt-Anh · mở đầu & visual đa dạng)")
+        print(f"{tag} ✓ sạch (CTA · độ dài · không lọt-Anh · mở đầu & visual đa dạng)")
     return warn
 
 
@@ -394,9 +399,20 @@ def auto_content(gh, template):
     g = _gemini_script(gh, scenes)
     if g:
         SEG, HEAD = g
-        print("[make_video] script: Gemini (clean Vietnamese)")
+        print("[make_video] script: LLM (clean Vietnamese)")
+        # Corrective loop (adopted from ainovel-cli critic idea): if the LLM draft trips SERIOUS
+        # lint warnings, regenerate ONCE with them fed back, keep whichever is cleaner. Bounded
+        # (1 retry, only on serious issues) → no runaway, no extra call on a clean draft.
+        _k = [sc.get("component") or "text" for sc in scenes]
+        w1 = _lint_script(SEG, HEAD, _k, name, label="draft")
+        serious = [x for x in w1 if ("lọt tiếng Anh" in x or "thiếu CTA" in x or "quá ngắn" in x or "quá dài" in x)]
+        if serious:
+            g2 = _gemini_script(gh, scenes, feedback="; ".join(serious[:6]))
+            if g2 and len(_lint_script(g2[0], g2[1], _k, name, label="retry")) < len(w1):
+                SEG, HEAD = g2
+                print("[make_video] script: regenerated cleaner after lint feedback")
     else:
-        print("[make_video] script: deterministic template (Gemini unavailable)")
+        print("[make_video] script: deterministic template (LLM unavailable)")
 
     # Cap repo-slug repetition in the SPOKEN text — DETERMINISTIC PATH ONLY. A hyphenated
     # slug said 8× is what VieNeu mangles, and the deterministic template repeats {name}
