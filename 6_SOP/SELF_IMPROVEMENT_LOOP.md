@@ -19,7 +19,7 @@ scan + quarantine before anything is brought in.**
 
 ---
 
-## The 9 stages
+## The stages (1–9 = per item; 10 = periodic upkeep)
 
 | # | Stage | What happens | Uses (existing — don't reinvent) |
 |---|-------|--------------|----------------------------------|
@@ -34,6 +34,9 @@ scan + quarantine before anything is brought in.**
 | 7 | **VERIFY** | NO claim without evidence: tests pass (`pytest`), **extract a frame and look** (`ffmpeg -ss` → Read the PNG), run the judge (`npm run eval`), or listen. Any LLM step uses the **3-tier fallback: Cloud (Gemini) → Local (Ollama) → agent/native** — never blocks on quota | `4_BRAIN/evaluator.py`, `eval_judge.py`, [`EVAL_FLYWHEEL.md`](EVAL_FLYWHEEL.md) |
 | 8 | **WIRE** | Connect it: npm script, SOP index, `factory_brain` if it's a factory stage. **No orphans** | `package.json`, `6_SOP/README.md`, `4_BRAIN/factory_brain.py` |
 | 9 | **RECORD** | Log it so it's never re-evaluated or orphaned: `INGESTION_LOG.md` (+ WATCHLIST/INVENTORY), a memory note, a commit. Bulky clones live in gitignored `2_KNOWLEDGE/external_toolkits/` (reference) or are wiped (OS "zero host bloat") | `2_KNOWLEDGE/INGESTION_LOG.md`; auto-memory |
+| 10 | **REFLECT & CONSOLIDATE (periodic, not per-item)** | **(a) Session-close reflection** (from `openclaw-skill-learning-memory`, MIT): at the end of a work session, self-check — *did we learn something new?* (→ memory note) · *did we build a reusable pattern?* (→ propose a skill, with evidence) · *is any memory now stale/contradicted?* (→ fix or delete). **(b) Consolidate** (from `EverMind-AI/EverOS`, Apache-2.0): when several entries teach the SAME thing (e.g. 3 repos → same motion trick), MERGE them into one coherent note + mark the originals superseded — so knowledge doesn't fragment. Keep the audit trail (don't silently erase). | `INGESTION_LOG.md`; auto-memory; this loop |
+
+> **Backlog patterns learned but NOT built** (no-bloat — adopt only on real need; EverOS cloned at `2_KNOWLEDGE/external_toolkits/EverOS` for reference): a **cascade daemon** (file-watcher → SQLite queue → index rebuild) to auto-index new skills; **structured observability** (structlog event logs + latency metrics) for long autonomous runs; **YAML prompt-slots** (override LLM prompts without code edits). Each is real but heavy — build deliberately when a concrete need appears, not speculatively.
 
 ---
 

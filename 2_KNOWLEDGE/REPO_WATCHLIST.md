@@ -52,7 +52,7 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) | rag | S | 92 | Document parsing; PDF/OCR; Markdown/JSON; Agentic workf | ⏳ analyze |
 | [lumina-ai-inc/chunkr](https://github.com/lumina-ai-inc/chunkr) | rag | S | 91 | Document intelligence; Layout analysis; OCR; Semantic c | ⏳ analyze |
 | [DeusData/codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) | rag | S | 90 | MCP; Codebase memory; Knowledge graph | ⏳ analyze |
-| [EverMind-AI/EverOS](https://github.com/EverMind-AI/EverOS) | rag | S | 90 | Persistent memory; Agent OS; Self-evolving knowledge | ⏳ analyze |
+| [EverMind-AI/EverOS](https://github.com/EverMind-AI/EverOS) | rag | S | 90 | Persistent memory; Agent OS; Self-evolving knowledge | ✅ **ADOPT-knowledge** (Apache-2.0) — Reflect & Consolidate → SIL stage 10; cascade/observability/prompt-slots = BACKLOG |
 | [feicaiclub/video-spec-builder](https://github.com/feicaiclub/video-spec-builder) | video | S | 90 | Video spec; Storyboard; HyperFrames; Claude Code/Cursor | ✅ REFERENCE (interactive skill ≠ our autonomous factory; idea backlog: component subtypes, scene-validate, 9:16 layout) |
 | [StarTrail-org/PixelRAG](https://github.com/StarTrail-org/PixelRAG) | rag | S | 90 | Visual RAG; Screenshot tiles; Layout-aware retrieval | ⏳ analyze |
 | [github/spec-kit](https://github.com/github/spec-kit) | skills | S | 90 | Spec-driven development; Planning; Engineering workflow | ⏳ analyze |
@@ -64,8 +64,8 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 | [opendataloader-project/opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) | rag | S | 86 | PDF ingestion; RAG; Document loader | ⏳ analyze |
 | [nicobailon/visual-explainer](https://github.com/nicobailon/visual-explainer) | skills | A | 76 | Visual explanation; HTML artifact; Agent skill | ✅ **ADOPTED** knowledge (MIT, 100% skill) — depth tiers + overflow guard + tag-label → VIDEO_CRAFT_RULES §6 (rejected its CSS-keyframes stagger: not seek-safe) |
 | [nemocake/claude-obsidian-assistant](https://github.com/nemocake/claude-obsidian-assistant) | rag | A | 76 | Obsidian; Claude workspace; Notes/memory | ⏳ analyze |
-| [datalab-to/lift](https://github.com/datalab-to/lift) | rag | A | 76 | Document extraction; RAG prep; Data pipeline | ⏳ analyze |
-| [tuanminhhole/openclaw-skill-learning-memory](https://github.com/tuanminhhole/openclaw-skill-learning-memory) | rag | A | 75 | OpenClaw; Learning memory; Skill memory | ⏳ analyze |
+| [datalab-to/lift](https://github.com/datalab-to/lift) | rag | A | 76 | Document extraction; RAG prep; Data pipeline | ✅ **SKIP-DUP** (Apache code / OpenRAIL-M model, 100% read) — markitdown+gitingest cover it; schema-PDF→JSON = BACKLOG (license-risk flagged) |
+| [tuanminhhole/openclaw-skill-learning-memory](https://github.com/tuanminhhole/openclaw-skill-learning-memory) | rag | A | 75 | OpenClaw; Learning memory; Skill memory | ✅ **SKIP-DUP** (MIT, 100% read) — thinner than our SIL; extracted session-close reflection → SIL stage 10a |
 | [ant-design/ant-design](https://github.com/ant-design/ant-design) | design | A | 75 | React UI library; Enterprise design system; Components; | ⏳ analyze |
 | [nidhinjs/prompt-master](https://github.com/nidhinjs/prompt-master) | skills | A | 74 | Claude skill; Prompt engineering; Context retention; Pr | ✅ **ADOPTED** (MIT, 5/5 read) — grounding/role/no-fabricate → hardened `_gemini_script` |
 | [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | skills | A | 73 | GSAP; Animation skills; Agent skills | ✅ REFERENCE (MIT; 90% dup with our motion-recipes; keep cloned for GSAP pattern lookup. immediateRender flash = non-issue here, frame-0 verified) |
