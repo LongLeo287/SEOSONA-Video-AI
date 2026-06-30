@@ -22,6 +22,7 @@ Touch only what you must; clean up only your own mess.
 - Don't "improve" adjacent code/comments/formatting; don't refactor what isn't broken; match existing style.
 - Remove only the imports/vars/functions YOUR change orphaned. Pre-existing dead code → mention, don't delete (unless asked).
 - Test: every changed line traces directly to the request.
+- **Mark deliberate shortcuts** (from `DietrichGebert/ponytail`, MIT) with a greppable tag + upgrade trigger, e.g. `# TODO(seosona): naïve heuristic — profile before optimising`. A tagged shortcut is a tracked decision; an untagged one is silent debt that rots. Harvest with `grep -rn "TODO(seosona)"` into [`UPGRADE_BACKLOG.md`](UPGRADE_BACKLOG.md).
 
 ## 4. Goal-driven execution
 Define success criteria; loop until verified.

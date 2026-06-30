@@ -73,6 +73,13 @@ Strip cloud/paid/non-commercial deps.
 ### 5–8. BUILD (native, reuse-first) → VERIFY (test + extract-frame + eval + ear; 3-tier LLM
 fallback Cloud→Ollama→agent) → WIRE (npm/SOP/factory, no orphan).
 
+**Before BUILDing a new SKILL, qualify it** (gate from `yaojingang/yao-meta-skill`, MIT — adopted
+lightweight; its full skill-OS/governance machinery is REFERENCE-only, premature at our ~20-skill
+scale): make it a skill ONLY if it's a **recurring job with a reusable output + a clear trigger**.
+If it's a one-off, an explanation/summary, or brainstorming → it is NOT a skill (write a function,
+a doc, or just do it). If a skill already covers it → EXTEND that one. (Prevents skill-bloat — the
+same no-bloat discipline as [`6_SOP/LLM_CODING_DISCIPLINE.md`](../../../6_SOP/LLM_CODING_DISCIPLINE.md).)
+
 ### 9. RECORD — never leave it orphaned or re-evaluated
 Append to `2_KNOWLEDGE/INGESTION_LOG.md` (+ WATCHLIST), write/update a memory note, commit.
 Use the structured KI block below so a future agent can reuse the knowledge without re-reading
