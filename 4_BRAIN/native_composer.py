@@ -271,6 +271,13 @@ def _component(kind, d, acc, pal=None):
         return (f'<div class="c-bignum"><div class="bgglow" style="background:radial-gradient(circle,{acc}29 0%,transparent 68%)"></div>'
                 f'<div class="big" style="color:{acc}">{inner}</div><div class="biglabel">{_esc(d["label"])}</div></div>')
     if kind == "repo":
+        if d.get("img"):                            # REAL screenshot framed as a browser window
+            return (f'<div class="c-mockup"><div class="mkbar"><span class="mkdot r"></span>'
+                    f'<span class="mkdot y"></span><span class="mkdot g"></span>'
+                    f'<span class="mkaddr">{_esc(d.get("url","github.com"))}</span></div>'
+                    f'<div class="mkbody"><div class="mkshot"><img src="{_esc(d["img"])}" alt=""/></div></div>'
+                    f'<div class="mkcap"><b>{_esc(d["owner"])}/{_esc(d["name"])}</b>'
+                    f'<span class="mkstars" style="background:{acc}">★ {_esc(d["stars"])}</span></div></div>')
         tags = "".join(f'<span class="tag">{_esc(t)}</span>' for t in d.get("tags", []))
         return (f'<div class="c-repo"><div class="repo-top"><div class="gh">◉</div>'
                 f'<div class="repo-name"><b>{_esc(d["owner"])}</b> / {_esc(d["name"])}</div>'
@@ -518,6 +525,9 @@ def _css(brand="seosona", W=1080, H=1920):
 /* real screenshot fills the window body edge-to-edge (no padding) */
 .c-mockup:has(.mkshot) .mkbody{padding:0}
 .mkshot{width:100%;line-height:0}.mkshot img{width:100%;height:auto;display:block}
+.mkcap{display:flex;align-items:center;justify-content:space-between;padding:26px 38px;border-top:1px solid var(--cardb)}
+.mkcap b{font-size:34px;font-weight:800;color:var(--ink)}
+.mkstars{color:#fff;font-weight:800;font-size:28px;padding:10px 24px;border-radius:999px}
 .mktiles{display:flex;flex-wrap:wrap;gap:24px}
 .mktile{flex:1 1 40%;background:var(--hibg);border-radius:20px;padding:34px 28px;text-align:center}
 .mktnum{font-weight:900;font-size:72px;line-height:1}.mktlab{margin-top:12px;font-weight:700;font-size:28px;color:var(--muted)}
@@ -585,7 +595,7 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
     # and rewrite the component to the relative path. Graceful: skips if the file is gone.
     for sc in scenes:
         comp = sc.get("comp")
-        if comp and comp[0] == "mockup" and isinstance(comp[1], dict):
+        if comp and comp[0] in ("mockup", "repo") and isinstance(comp[1], dict):
             img = comp[1].get("img")
             if img and os.path.isabs(img) and os.path.exists(img):
                 shutil.copy(img, os.path.join(assets, "shot.png"))

@@ -229,7 +229,10 @@ def auto_content(gh, template):
             # the English desc still shows on the repo CARD (display), not in narration.
             seg = f"{name} là một dự án mã nguồn mở đang được giới công nghệ chú ý."
             h1, h2 = name, "trên GitHub"
-            data = slots["repo"]
+            data = dict(slots["repo"])
+            if gh.get("_shot_img"):          # show the REAL screenshot in the repo scene
+                data["img"] = gh["_shot_img"]
+                data["url"] = _shot_domain(gh)
         elif kind == "compare":
             seg = f"So với cách làm thủ công, {name} nhanh và gọn hơn hẳn."
             h1, h2 = "Vì sao chọn", name
