@@ -111,16 +111,12 @@ def _stats(gh):
     items.append((gh.get("license") or "OSS", "GIẤY PHÉP"))
     return {"items": items[:3]}
 
-def _shot_domain(gh):
-    u = (gh.get("homepage") or gh.get("url") or "github.com")
-    return u.replace("https://", "").replace("http://", "").split("/")[0] or "github.com"
-
 def _mockup(gh):
-    # If a REAL screenshot was captured (make() → _capture_shot), show it inside the
+    # If a REAL screenshot was captured (make() → _capture_shots), show it inside the
     # browser chrome — real visuals beat synthetic tiles. Else fall back to the data tiles.
-    shot = gh.get("_shot_img")
-    if shot:
-        return {"img": shot, "url": _shot_domain(gh), "title": gh.get("name", "")}
+    shots = gh.get("_shots") or []
+    if shots:
+        return {"img": shots[0]["img"], "url": shots[0]["url"], "title": gh.get("name", "")}
     return {"url": gh.get("full") or gh.get("url", "github.com"),
             "tiles": [(gh.get("stars_h", "0"), "Sao"),
                       (gh.get("lang") or "Đa nền", "Ngôn ngữ"),
@@ -231,9 +227,10 @@ def auto_content(gh, template):
             seg = f"{name} là một dự án mã nguồn mở đang được giới công nghệ chú ý."
             h1, h2 = name, "trên GitHub"
             data = dict(slots["repo"])
-            if gh.get("_shot_img"):          # show the REAL screenshot in the repo scene
-                data["img"] = gh["_shot_img"]
-                data["url"] = _shot_domain(gh)
+            _shots = gh.get("_shots") or []
+            if _shots:                       # show the REAL screenshot in the repo scene
+                data["img"] = _shots[0]["img"]
+                data["url"] = _shots[0]["url"]
         elif kind == "compare":
             seg = f"So với cách làm thủ công, {name} nhanh và gọn hơn hẳn."
             h1, h2 = "Vì sao chọn", name
@@ -311,34 +308,69 @@ def auto_content(gh, template):
                 if seen > 2:
                     SEG[i] = SEG[i].replace(name, "dự án này" if i % 2 else "công cụ này")
 
-    lex = dict(_BASE_LEX)
-    return compose(template, segments=SEG, headings=HEAD, scene_data=DATA, lexicon=lex)
+    # MULTI-SHOT: place captured screenshots across MORE than one scene (loha RULE #5).
+    # shots[0] already went to the template's repo/mockup scene above (if it has one). Any
+    # extra shot is injected into a spare text-only scene (not the hook or CTA) by overriding
+    # its component to a mockup window — so a video can show 2 real screenshots, not 1.
+    shots = gh.get("_shots") or []
+    comp_overrides = {}
+    if shots:
+        placed = {i for i, d in DATA.items() if isinstance(d, dict) and d.get("img")}
+        used = len(placed)
+        for i, sc in enumerate(scenes):
+            if used >= len(shots):
+                break
+            if i == 0 or i == n - 1 or i in placed or sc.get("component"):
+                continue                     # skip hook, CTA, already-shot, and data-component scenes
+            s = shots[used]
+            DATA[i] = {"img": s["img"], "url": s["url"], "title": name}
+            comp_overrides[i] = "mockup"
+            SEG[i] = f"Đây là giao diện thực tế của {name if used == 0 else 'dự án này'}."
+            HEAD[i] = ("Giao diện", "thực tế")
+            placed.add(i); used += 1
+        if used > 1:
+            print(f"[make_video] multi-shot: {used} real screenshots placed across scenes")
 
-# ---------------------------------------------------------------- real screenshot (shot)
-def _capture_shot(gh, project_dir):
-    """Best-effort real screenshot for the `shot`/mockup scene: try the project HOMEPAGE,
-    then fall back to the GitHub repo page. Returns an abs PNG path, or None on any failure
-    (so the render gracefully falls back to synthetic tiles). Needs node + a browser."""
+    lex = dict(_BASE_LEX)
+    return compose(template, segments=SEG, headings=HEAD, scene_data=DATA, lexicon=lex,
+                   comp_overrides=comp_overrides)
+
+# ---------------------------------------------------------------- real screenshots (shots)
+def _capture_one(url, out):
+    """Headless-capture one URL → PNG. Returns out on success, else None (best-effort)."""
     script = os.path.join(ROOT, "scripts", "capture_shot.js")
     if not os.path.exists(script):
         return None
+    try:
+        r = subprocess.run(["node", script, url, out], capture_output=True, text=True, timeout=80)
+        if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 8000:
+            return out
+    except Exception:
+        pass
+    return None
+
+def _dom(u):
+    return (u or "").replace("https://", "").replace("http://", "").split("/")[0] or "github.com"
+
+def _capture_shots(gh, project_dir):
+    """Up to 2 DISTINCT real screenshots — the project HOMEPAGE and the GitHub repo page
+    (adopt loha RULE #5 '≥2-3 mockups': real visuals across more than one scene). Returns a
+    list of {img, url}; empty on total failure → render falls back to synthetic tiles."""
     os.makedirs(project_dir, exist_ok=True)
-    out = os.path.join(project_dir, "_shot_raw.png")
-    urls = []
+    targets = []
     hp = (gh.get("homepage") or "").strip()
     if hp.startswith("http"):
-        urls.append(hp)
-    urls.append(gh.get("url") or f"https://github.com/{gh.get('full','')}")
-    for u in urls:
-        try:
-            r = subprocess.run(["node", script, u, out], capture_output=True, text=True, timeout=80)
-            if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 8000:
-                print(f"[make_video] shot captured: {u}")
-                return out
-            print(f"[make_video] shot skipped for {u} (rc={r.returncode})")
-        except Exception as e:
-            print(f"[make_video] shot error {u}: {type(e).__name__}")
-    return None
+        targets.append(hp)
+    targets.append(gh.get("url") or f"https://github.com/{gh.get('full','')}")
+    shots = []
+    for i, u in enumerate(targets):
+        p = _capture_one(u, os.path.join(project_dir, f"_shot_{i}.png"))
+        if p:
+            shots.append({"img": p, "url": _dom(u)})
+            print(f"[make_video] shot {len(shots)} captured: {u}")
+        else:
+            print(f"[make_video] shot skipped: {u}")
+    return shots
 
 def _finalize_outputs(gh, project_dir, output, name):
     """Ready-to-post sidecars + behavioral verify (adopted from AI-auto-generate-video /
@@ -389,7 +421,7 @@ def make(url, *, template=None, theme=None, output=None, project_dir=None, aspec
     project_dir = project_dir or os.path.join(ROOT, "8_WORKSPACE", name)
     output = output or os.path.join(project_dir, f"{name} - SEOSONA.mp4")
     print(f"[make_video] {gh['full']} → template={template} theme={theme} aspect={aspect or 'template'}  ({reason})")
-    gh["_shot_img"] = _capture_shot(gh, project_dir)   # real screenshot (homepage→GitHub), best-effort
+    gh["_shots"] = _capture_shots(gh, project_dir)     # up to 2 real screenshots (homepage + GitHub), best-effort
     content = auto_content(gh, template)
     kw = {"aspect": aspect} if aspect else {}   # else use the template's aspect
     nc.make_video_from_template(template, content, project_dir, output=output, theme=theme, **kw)

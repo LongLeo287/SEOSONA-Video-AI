@@ -593,13 +593,14 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
     shutil.copy(logo_src, os.path.join(assets, "logo.png"))
     # Copy any real screenshot (captured by make_video's `shot` step) into the render assets
     # and rewrite the component to the relative path. Graceful: skips if the file is gone.
-    for sc in scenes:
+    for _si, sc in enumerate(scenes):
         comp = sc.get("comp")
         if comp and comp[0] in ("mockup", "repo") and isinstance(comp[1], dict):
             img = comp[1].get("img")
             if img and os.path.isabs(img) and os.path.exists(img):
-                shutil.copy(img, os.path.join(assets, "shot.png"))
-                comp[1]["img"] = "assets/shot.png"
+                rel = f"assets/shot_{_si}.png"   # unique per scene so multiple shots don't collide
+                shutil.copy(img, os.path.join(assets, f"shot_{_si}.png"))
+                comp[1]["img"] = rel
 
     # 1) voice (pronunciation form) via VieNeu male
     lex = dict(nvs.PRONUNCIATION_LEXICON); lex.update(lexicon or {})
@@ -673,9 +674,12 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
     # drift from the voice). Surface which path was taken so sync quality is observable.
     _ntts, _nasr = len(plan.tts_words), len(words)
     _ratio = round(_nasr / _ntts, 2) if _ntts else 0.0
-    if _nasr < _ntts:
-        print(f"[caption-sync] ⚠ ESTIMATED timing — ASR {_nasr} < spoken {_ntts} words "
-              f"(ratio {_ratio}); captions show display words but may drift from voice.")
+    if _nasr < 0.6 * _ntts:
+        print(f"[caption-sync] ⚠ low ASR ({_nasr}/{_ntts}, ratio {_ratio}) — spreading over the real "
+              f"speech envelope (take likely low-quality).")
+    elif _nasr < _ntts:
+        print(f"[caption-sync] ✓ proportional anchor to real ASR timing (ASR {_nasr} < spoken {_ntts}, "
+              f"ratio {_ratio}) — robust to dropped words.")
     else:
         print(f"[caption-sync] ✓ real word-level timing (ASR {_nasr} ≥ spoken {_ntts}).")
 
@@ -1031,7 +1035,8 @@ def fill_template(template, content):
                          f"'{template.get('name')}' has {len(tscenes)}")
     scenes = []
     for ts, cs in zip(tscenes, cscenes):
-        comp = (ts["component"], cs.get("data", {})) if ts.get("component") else None
+        kind = cs.get("comp_override") or ts.get("component")   # content may override (e.g. inject a 2nd shot)
+        comp = (kind, cs.get("data", {})) if kind else None
         scenes.append({"kicker": cs.get("kicker") or ts.get("kicker_hint", ""),
                        "h1": cs["h1"], "h2": cs["h2"], "hero": cs.get("hero") or ts.get("hero", False),
                        "acc": ts.get("accent", "blue"), "comp": comp})  # accent ROLE; resolved by theme at render

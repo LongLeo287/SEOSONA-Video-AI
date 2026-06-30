@@ -59,7 +59,8 @@ def repo_data_slots(gh, *, btn="Tải miễn phí", extra_tags=None):
     }
 
 
-def compose(template_name, *, segments, headings, scene_data=None, kickers=None, lexicon=None):
+def compose(template_name, *, segments, headings, scene_data=None, kickers=None, lexicon=None,
+            comp_overrides=None):
     """Assemble a `content` dict for a template.
 
     segments  : list[str]  — display script, one per scene (RULE #1 display form)
@@ -70,6 +71,7 @@ def compose(template_name, *, segments, headings, scene_data=None, kickers=None,
     """
     scene_data = scene_data or {}
     kickers = kickers or {}
+    comp_overrides = comp_overrides or {}
     scenes = []
     for i, (h1, h2) in enumerate(headings):
         sc = {"h1": h1, "h2": h2}
@@ -77,6 +79,8 @@ def compose(template_name, *, segments, headings, scene_data=None, kickers=None,
             sc["kicker"] = kickers[i]
         if i in scene_data:
             sc["data"] = scene_data[i]
+        if i in comp_overrides:                  # let content swap a scene's component (e.g. inject a 2nd shot)
+            sc["comp_override"] = comp_overrides[i]
         scenes.append(sc)
     content = {"segments": segments, "scenes": scenes, "lexicon": lexicon or {}}
 
