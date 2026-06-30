@@ -70,6 +70,7 @@ Audit trail of every external repo/knowledge ingested into SEOSONA Video. Proces
 
 | 2026-06-30 | Unclecheng-li/AI-Animation-Skill | MIT (453★, full-read) | (PART-B B-tier batch11) REFERENCE/SKIP — HTML presentation SLIDES via CSS @keyframes (wall-clock) → NOT seek-safe for our paused-GSAP render. Motion patterns (orb-float≈our scblob, pulse-glow≈our scglow, explode/shake=off-brand for pro tech-news) = DUP/off-brand. No buildable gem. | (none — REFERENCE) | CSS-keyframes slides, not seek-safe |
 | 2026-06-30 | **C-tier sweep (741 repos, lowest 'Backlog' tier)** | mixed (scout, no clone) | (PART-B final) **DRY** — top-25 relevant scouted: 15 off-domain (medical/tax/git-config/scrapers/TV-clients), 5 DUP (TTS/voice we have), 5 marginal (China-centric kits). 0 genuine gems. 1 marginal REFERENCE: **Huanshere/VideoLingo** (17k★, subtitle/translate/dub pipeline) — revisit ONLY if multilingual/dubbing expansion. Inventory mining CLOSED. | (none) | vein exhausted after S+A+B |
+| 2026-06-30 | nateherkai/hyperframes-student-kit | NOASSERTION (271MB, MAP) | (PART-B final keyword-sweep — last repo with any video-domain keyword) REFERENCE — HyperFrames learning kit; we already OWN the canonical engine (5_FRAMEWORK/hf_engine) + 97-block registry + open-design craft library. Derivative examples, can't-vendor (no-license), C-tier. Skim only if we ever want more template samples. | (none) | we own the source engine |
 ## Rejected (logged so we don't re-evaluate)
 | Source | Why rejected |
 |--------|--------------|
