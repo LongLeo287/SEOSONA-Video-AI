@@ -1,55 +1,57 @@
-# Giải phẫu Phần Hồn: Não bộ, Ký ức và Kiến thức
+# Anatomy of the Soul: Brain, Memory, and Knowledge
 
-Nếu các Luồng (Workflows) là "Tay chân", thì đây chính là "Phần Hồn" giúp SEOSONA Video có khả năng tự tư duy và tiến hóa theo thời gian.
+If the Workflows are the "Hands and Feet", then this is the "Soul" that gives SEOSONA Video the ability to reason on its own and evolve over time.
 
-## 🧠 1. Hệ thần kinh trung ương (`4_BRAIN/`)
-Nơi chứa các lõi Xử lý Ngôn ngữ và Phân tích Logic tĩnh (Chưa đụng đến Render). Nhấn vào để xem chi tiết các lõi:
+## 🧠 1. Central Nervous System (`4_BRAIN/`)
+The home of the Language Processing and static Logic Analysis cores (Render not yet touched). Click to see the cores in detail:
 
 <details open>
-<summary><b>⚙️ Các Engine Tư Duy Cốt Lõi</b></summary>
+<summary><b>⚙️ The Core Reasoning Engines</b></summary>
 <br>
 
-- 🧠 **`llm_engine.py` (29.6KB)**: Quả tim của hệ thống. Chứa các thuật toán gọi API, quản lý Context Window, Rate Limit, và Retry Logic khi giao tiếp với các mô hình ngôn ngữ lớn (OpenAI, Anthropic).
-- 🚉 **`video_engine.py`**: Cửa ngõ thống nhất của pipeline render (`run_pipeline(script_text, brand, mode, aspect_ratio, project_name)`). Quyết định file dữ liệu nào đi vào đường ống nào và điều phối toàn bộ tiến trình.
-- 🎨 **`native_composer.py`**: Trình kết xuất thực sự — giọng nói + phụ đề RULE #1 + render native HyperFrames + trộn BGM-ducking/SFX. Cũng quản lý template JSON qua `fill_template` / `list/load/save/extract_template`.
-- 🧩 **`scene_composer.py`**: Bộ não nội dung, chọn và sắp xếp các cảnh trước khi đưa vào `native_composer`.
-- 🔀 **`workflow_router.py`**: Định tuyến công việc, bọc `video_engine` trong SuperGraph DAG + quality gate. Nó đọc các dữ kiện truyền vào và quyết định: *"À, đây là bài bóc tách code, hãy gọi luồng PR-to-Video"*.
-- 🎯 **`intent_router.py`**: Bộ định tuyến "Ý định". Cố gắng hiểu người dùng hoặc hệ thống mẹ thực sự muốn gì thông qua các luồng văn bản không rõ ràng.
-- 💯 **`quality_scorer.py`**: Máy chấm điểm tàn nhẫn. Trả về điểm số (Scale 0-10) xem kịch bản hoặc khung hình có đạt yêu cầu chất lượng hay không.
+- 🧠 **`llm_engine.py` (29.6KB)**: The heart of the system. Contains the algorithms for calling APIs, managing the Context Window, Rate Limit, and Retry Logic when communicating with large language models (OpenAI, Anthropic).
+- 🚉 **`video_engine.py`**: The unified gateway of the render pipeline (`run_pipeline(script_text, brand, mode, aspect_ratio, project_name)`). Decides which data file goes into which pipe and orchestrates the entire process.
+- 🎨 **`native_composer.py`**: the real renderer — voice + RULE #1 subtitles + native HyperFrames render + BGM-ducking/SFX mixing + partial re-render (`redo=visual/voice/mix/thumb`). Templates are managed by `template_generator.py` + `template_picker.py`.
+- 🧩 **`scene_composer.py`**: The content brain, selects and arranges scenes before passing them to `native_composer`.
+- 🔀 **`workflow_router.py`**: Routes work, wrapping `video_engine` in a SuperGraph DAG + quality gate. It reads the incoming facts and decides: *"Ah, this is a code-parsing post, let's call the PR-to-Video flow"*.
+- 🎯 **`intent_router.py`**: The "Intent" router. Tries to understand what the user or parent system really wants through ambiguous text flows.
+- 💯 **`quality_scorer.py`**: The ruthless scoring machine. Returns a score (Scale 0-10) of whether the script or frame meets quality requirements.
+- 🏗️ **`template_generator.py`**: Grows the template library — generates a NEW scene-arc archetype JSON from a brief (used by `scripts/grow_library.py` + `workflow_router`). Part of the nạp→học→tạo library loop.
+- 🔌 **`seosona_bootstrap.py`**: Auto-bootstrap on import — checks env + loads config so every entry point starts from a known-good state.
+- 🕸️ **`knowledge_graph.py`**: The queryable "second brain" — `recall/find/neighbors/related/stats/health/learned` over the structure graph + content notes (built by `scripts/gen_knowledge_graph.py` + `gen_knowledge_notes.py`; audited by `scripts/knowledge_audit.py`).
 
 > [!NOTE]
-> `pipeline_manager.py`, `video_capability_bridge.py` và `video_template_factory.py` đã NGHỈ HƯU và được đã gỡ khỏi dự án. Render nay đi qua `video_engine.py` → `native_composer.py`; template là file JSON trong `7_ASSETS/templates/` quản lý qua `native_composer.extract_template/save_template` + skill `scene-composer`.
+> `pipeline_manager.py`, `video_capability_bridge.py`, and `video_template_factory.py` are RETIRED and have been removed from the project. Rendering now goes through `video_engine.py` → `native_composer.py`; templates are JSON files in `7_ASSETS/templates/` managed by `template_generator.py` + `template_picker.py` + the `scene-composer` skill (grown via `grow_library`).
 
 </details>
 
 ---
 
-## 💾 2. Không gian Lưu trữ Ký ức (`3_MEMORY/`)
-Hệ thống không bị mất trí nhớ sau khi tắt máy. Nó lưu lại mọi kinh nghiệm vào thư mục này.
+## 💾 2. Memory Storage Space (`3_MEMORY/`)
+The system does not lose its memory after shutdown. It records every experience into this directory.
 
 <details>
-<summary><b>📂 Cấu trúc Ký ức Dài hạn</b></summary>
+<summary><b>📂 Long-term Memory Structure</b></summary>
 <br>
 
-- 🧬 **`chroma_db/`**: Cơ sở dữ liệu Vector (Vector Database). Lưu trữ hàng nghìn Embeddings (Tọa độ không gian ngữ nghĩa). Khi Agent cần tìm một dự án cũ, nó sẽ tìm trong này bằng cách đo khoảng cách Cosine.
-- 🕸️ **`knowledge_graph/`**: Đồ thị tri thức. Bản đồ nhện liên kết các thực thể với nhau (Ví dụ: "Video A" `được làm bằng` "Luồng B" `dựa trên` "Trend C").
-- 🏦 **`context_bank/`**: Ngân hàng Bối cảnh. Lưu lại các bối cảnh, prompt thành công để tái sử dụng.
-- 📚 **`project_log/` & `video_history/`**: Nhật ký lịch sử của từng đoạn video đã xuất xưởng.
-- 🚨 **`error_log/`**: Nơi lưu giữ các lỗi rớt mạng, tràn RAM để hệ thống tự phân tích và sửa sai ở lần chạy sau.
+- 🕸️ **`knowledge_graph/`**: Knowledge graph. A spider-web map linking entities together (e.g.: "Video A" `is made by` "Flow B" `based on` "Trend C").
+- 🏦 **`context_bank/`**: Context Bank. Records successful contexts and prompts for reuse.
+- 📚 **`project_log/` & `video_history/`**: Historical logs of each shipped video.
+- 🚨 **`error_log/`**: The place that keeps network-drop and RAM-overflow errors so the system can self-analyze and fix mistakes on the next run.
 
 </details>
 
 ---
 
-## 📖 3. Tàng Kinh Các (`2_KNOWLEDGE/`)
-Nơi chứa các luật nạp Dữ liệu đầu vào (Ingestion).
+## 📖 3. The Knowledge Vault (`2_KNOWLEDGE/`)
+The home of the rules for ingesting input Data (Ingestion).
 
 <details>
-<summary><b>📥 Nguồn Nạp Liệu</b></summary>
+<summary><b>📥 Ingestion Sources</b></summary>
 <br>
 
-- 📑 **`INGESTION_INDEX.md`**: Quy tắc tối cao về việc nạp dữ liệu từ bên ngoài (Web, PDF, Notion, Github) vào hệ thống sao cho an toàn và không bị nhiễm độc thông tin.
-- 📦 **`raw_data/`**: Nơi tập kết các đống dữ liệu thô (HTML rác, file Text chưa dọn dẹp) trước khi bị `scraper_agent` / `trend_jacking_agent` phân tích.
-- 🐙 **`repos/`**: Chứa mã nguồn của các Github Repository được clone về để chuẩn bị làm nguyên liệu cho luồng `PR-to-Video`.
+- 📑 **`INGESTION_INDEX.md`**: The supreme rule on ingesting external data (Web, PDF, Notion, Github) into the system safely and without information poisoning.
+- 📦 **`raw_data/`**: The staging area for piles of raw data (messy HTML, uncleaned Text files) before being analyzed by `scraper_agent` / `trend_jacking_agent`.
+- 🐙 **`repos/`**: Contains the source code of Github Repositories cloned down to be prepared as material for the `PR-to-Video` flow.
 
 </details>

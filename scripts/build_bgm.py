@@ -44,7 +44,8 @@ def build(mood):
     for i, ch in enumerate(prog):
         p = os.path.join(tmp, f"c{i}.wav"); chord_wav(ch, dur, p); parts.append(p)
     listf = os.path.join(tmp, "list.txt")
-    open(listf, "w").write("".join(f"file '{p}'\n" for p in parts))
+    with open(listf, "w", encoding="utf-8") as _lf:   # explicit UTF-8: a non-ASCII tmp path must not crash on Windows cp1252
+        _lf.write("".join(f"file '{p}'\n" for p in parts))
     bed = os.path.join(tmp, "bed.wav")
     subprocess.run(["ffmpeg","-y","-hide_banner","-loglevel","error","-f","concat","-safe","0",
                     "-i",listf,"-c","copy",bed], check=True)

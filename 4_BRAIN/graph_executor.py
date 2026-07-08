@@ -41,12 +41,21 @@ class SuperGraph:
         current_node = self.entry_point
         state = initial_state
 
+        # This engine ALLOWS loops, so a buggy/oscillating condition_func could route forever and hang the
+        # (unattended) render. Cap total steps — far above any real graph (a handful of nodes) — and abort
+        # loudly instead of spinning. On trip, record an error so downstream routing/gates see the failure.
+        steps, MAX_STEPS = 0, 200
         while current_node != "END":
+            steps += 1
+            if steps > MAX_STEPS:
+                print(f"[Graph] ⚠ exceeded {MAX_STEPS} steps at [{current_node}] — aborting (non-terminating loop?)")
+                state["error"] = f"graph exceeded {MAX_STEPS} steps (non-terminating loop)"
+                break
             print(f"\n[Graph] ---> Entering Node: [{current_node.upper()}]")
-            
+
             if current_node not in self.nodes:
                 raise ValueError(f"Node '{current_node}' not found in graph.")
-                
+
             action_func = self.nodes[current_node]
             try:
                 state = action_func(state)

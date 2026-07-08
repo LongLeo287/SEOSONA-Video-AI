@@ -1,0 +1,56 @@
+{
+ "name": "versus-deep",
+ "title": "So sánh sâu A vs B",
+ "description": "Đối đầu 2 lựa chọn — thông số + khác biệt + nên chọn gì (ChatGPT vs Claude, SEO vs GEO).",
+ "when_to_use": "Khi cần SO SÁNH KỸ 2 đối tượng theo nhiều tiêu chí rồi đưa khuyến nghị.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "orange",
+   "kicker_hint": "ĐỐI ĐẦU",
+   "hero": true
+  },
+  {
+   "component": "compare",
+   "accent": "blue",
+   "kicker_hint": "TỔNG QUAN"
+  },
+  {
+   "component": "stats",
+   "accent": "green",
+   "kicker_hint": "THÔNG SỐ"
+  },
+  {
+   "component": "compare",
+   "accent": "orange",
+   "kicker_hint": "CHI TIẾT"
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "KHÁC BIỆT"
+  },
+  {
+   "component": "bignum",
+   "accent": "green",
+   "kicker_hint": "CHỌN GÌ"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "blue",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "cta",
+   "accent": "orange",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

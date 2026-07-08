@@ -1,12 +1,12 @@
-# Giải phẫu Toàn bộ 7 Quy trình Vận hành (Step-by-step)
+# Anatomy of All 7 Operating Pipelines (Step-by-step)
 
-Dưới đây là tiết lộ chính xác cách thức từng hạt dữ liệu di chuyển trong hệ thống để tạo thành các tuyệt tác video khác nhau.
+Below is the exact reveal of how each grain of data moves through the system to form the various video masterpieces.
 
 <details open>
-<summary><b>🎥 QUY TRÌNH 1: Native News Pipeline (Video Tin tức 9:16)</b></summary>
+<summary><b>🎥 PIPELINE 1: Native News Pipeline (9:16 News Video)</b></summary>
 <br>
 
-Quy trình cực mạnh biến 1 bản tin Text thành 1 video Tiktok rực rỡ chỉ trong 60 giây.
+An extremely powerful pipeline that turns a single Text news item into a vibrant TikTok video in just 60 seconds.
 
 ```mermaid
 graph LR
@@ -17,87 +17,87 @@ graph LR
     E -->|native render + FFmpeg mix| F(FINAL.mp4)
 ```
 
-1. **Nạp liệu:** `scraper_agent` đẩy dữ liệu thô. `seo_writer_agent` nhào nặn lại thành kịch bản (`script_text`) đưa vào `video_engine.run_pipeline`.
-2. **Tạo Tiếng:** `native_composer` gọi `voice_router.synthesize_voice` (VieNeu clone/preset, fallback edge-tts). Nhả ra file `scene_X.wav`.
-3. **Khớp Nhịp:** Đưa file `.wav` qua `asr_router` (`faster-whisper`). Trả về `words.json` chứa tọa độ mili-giây của TỪNG CHỮ, dùng cho phụ đề RULE #1.
-4. **Khởi tạo Đồ họa:** `scene_composer` chọn template JSON trong `7_ASSETS/templates/`, `native_composer.fill_template` đổ nội dung vào khung HyperFrames 1080x1920 khớp với `words.json`.
-5. **Kết Xuất:** `native_composer` render native các HyperFrames (không cần chụp màn hình từng frame).
-6. **Gộp Trộn:** `ffmpeg` ghép âm thanh gốc, trộn BGM đã ducking và chèn SFX/chuyển cảnh "Woosh" ngay trong `native_composer`.
-7. **Xuất Xưởng:** `FINAL.mp4` được đưa qua `4_BRAIN/quality_scorer.py` đo chất lượng/LUFS, rồi `publisher_agent` tải lên.
+1. **Ingestion:** `scraper_agent` pushes the raw data. `seo_writer_agent` reshapes it into a script (`script_text`) fed into `video_engine.run_pipeline`.
+2. **Generate Voice:** `native_composer` calls `voice_router.synthesize_voice` (**OmniVoice primary → VieNeu backup**). It outputs `voice.mp3` (paced + loudnorm).
+3. **Beat Matching:** The `.wav` file is passed through `asr_router` (`faster-whisper`). It returns `words.json` containing the millisecond coordinates of EVERY WORD, used for the RULE #1 subtitles.
+4. **Initialize Graphics:** `scene_composer` picks a JSON template in `7_ASSETS/templates/`, and `native_composer.fill_template` pours the content into a 1080x1920 HyperFrames frame matched to `words.json`.
+5. **Render:** `native_composer` renders the HyperFrames natively (no need to screenshot each frame).
+6. **Mix & Merge:** `ffmpeg` combines the original audio, mixes the ducked BGM, and inserts SFX/"Woosh" transitions right inside `native_composer`.
+7. **Ship:** `FINAL.mp4` is passed through `4_BRAIN/quality_scorer.py` to measure quality/LUFS, then `publisher_agent` uploads it.
 <br>
 </details>
 
 <details>
-<summary><b>👤 QUY TRÌNH 2: Faceless Explainer Pipeline (Video Không Mặt 16:9)</b></summary>
+<summary><b>👤 PIPELINE 2: Faceless Explainer Pipeline (Faceless Video 16:9)</b></summary>
 <br>
 
-Dành cho các chủ đề học thuật, công nghệ chuyên sâu dài 3-5 phút.
+For academic topics and in-depth technology, 3-5 minutes long.
 
-1. **Viết kịch bản:** `seo_writer_agent` nhận chủ đề, viết thành kịch bản 5 phần (`script_text`).
-2. **Âm nhạc:** `voice_router` sinh giọng đọc (VieNeu). `native_composer` trộn nhạc nền (BGM) đã ducking.
-3. **Sinh Đồ họa:** Kích hoạt `motion-graphics` sinh ra Typography động, biểu đồ (Data-Viz), vòng lặp hạt từ `news_loop_path_hyperframes`.
-4. **Lắp ráp:** `scene_composer` + `native_composer` ghép các khối này lại bằng `hf_core`. Render MP4 native.
-<br>
-</details>
-
-<details>
-<summary><b>🚀 QUY TRÌNH 3: Product Launch Pipeline (Video Quảng Cáo Sản Phẩm)</b></summary>
-<br>
-
-Tạo các video phô diễn tính năng (Feature Reveal) hào nhoáng cho một phần mềm SaaS.
-
-1. **Lấy Dữ liệu:** `scraper_agent` cào logo, mã màu (Brand Colors), font chữ từ link URL.
-2. **Chụp Màn Hình:** `video_engine` dùng Playwright vào trang chủ sản phẩm, chụp Full-size Screenshots.
-3. **Ghép Mockup:** Đưa vào `hf_cards` nhốt ảnh chụp vào Laptop/Điện thoại 3D Neon.
-4. **Hiệu ứng:** `native_composer` bơm tiếng pop, click chuột nhịp độ nhanh (Fast-paced) từ thư viện SFX. Xuất video chuẩn Apple.
+1. **Write script:** `seo_writer_agent` receives the topic and writes it into a 5-part script (`script_text`).
+2. **Music:** `voice_router` generates the voiceover (VieNeu). `native_composer` mixes the ducked background music (BGM).
+3. **Generate Graphics:** Activates `motion-graphics` to generate animated Typography, charts (Data-Viz), and particle loops from `news_loop_path_hyperframes`.
+4. **Assemble:** `scene_composer` + `native_composer` join these blocks together using `hf_core`. Renders the MP4 natively.
 <br>
 </details>
 
 <details>
-<summary><b>💻 QUY TRÌNH 4: PR-to-Video (Minh họa Tính năng từ Code Diff)</b></summary>
+<summary><b>🚀 PIPELINE 3: Product Launch Pipeline (Product Advertising Video)</b></summary>
 <br>
 
-Biến một đoạn code khô khan (Diff Text) thành một video giải thích trực quan. *(Lưu ý: Đây chỉ là thao tác đọc Text từ URL Pull Request, tuyệt đối không phải là "Phân tích Repo").*
+Creates flashy Feature Reveal videos for a SaaS software product.
 
-1. **Quét URL PR:** `scraper_agent` bóc tách Text từ một Github Pull Request cụ thể (Title, Body, Code Diff +/-).
-2. **Dịch thuật:** `seo_writer_agent` (qua `llm_engine`) giải thích dòng code đó bằng ngôn ngữ con người.
-3. **Mô phỏng Code:** `hf_cards` tạo thẻ "Terminal". Mã code được tự động đánh màu Syntax Highlighting và chạy hiệu ứng gõ phím máy chữ.
-4. **Phân tích:** Chuyển sang thẻ Đồ thị (Chart Component) mô tả tính năng mới giúp hệ thống chạy nhanh ra sao. Render MP4.
-<br>
-</details>
-
-<details>
-<summary><b>🌐 QUY TRÌNH 5: Website-to-Video (Chuyển Website Thành Video Tour)</b></summary>
-<br>
-
-1. **Nhập URL:** Người dùng cung cấp link Landing Page.
-2. **Auto Scroll:** `video_engine` dùng Playwright đóng vai người dùng, tự động cuộn trang mượt mà, hover vào các nút bấm để quay lại hành vi (Screencast).
-3. **Dán nhãn:** `graphic-overlays` dán các thẻ Text lơ lửng bám theo các nút bấm trên giao diện web. Xuất ra Video Tour.
+1. **Get Data:** `scraper_agent` scrapes the logo, brand colors, and fonts from the URL link.
+2. **Screenshots:** `video_engine` uses Playwright to visit the product homepage and capture full-size screenshots.
+3. **Mockup Assembly:** Feeds them into `hf_cards` to place the screenshots inside a 3D Neon Laptop/Phone.
+4. **Effects:** `native_composer` injects pop sounds and fast-paced mouse clicks from the SFX library. Exports an Apple-standard video.
 <br>
 </details>
 
 <details>
-<summary><b>🎬 QUY TRÌNH 6: Edit Footage & Graphic Overlays</b></summary>
+<summary><b>💻 PIPELINE 4: PR-to-Video (Feature Illustration from Code Diff)</b></summary>
 <br>
 
-Đóng gói Graphic lên Video người quay sẵn (Talking head).
+Turns a dry block of code (Diff Text) into a visual explainer video. *(Note: This is merely reading Text from a Pull Request URL, absolutely NOT "Repo Analysis".)*
 
-1. **Nhận video thô:** User đẩy file MP4 (quay bằng điện thoại) vào `8_WORKSPACE`.
-2. **Bóc băng:** `asr_router` (`faster-whisper`) chạy ra Transcript.
-3. **Kích hoạt thẻ:** Dựa vào Transcript, `srt_analyzer` đặt mốc thời gian. (vd: Nói chữ "Tuyệt vời", hệ thống quăng bảng 3D chữ "Tuyệt Vời" bay ngang qua).
-4. **Nối đè (Merging):** `native_composer` dùng FFmpeg dán lớp trong suốt (Alpha-channel) của thẻ đồ họa đè lên video gốc.
+1. **Scan PR URL:** `scraper_agent` parses the Text from a specific Github Pull Request (Title, Body, Code Diff +/-).
+2. **Translate:** `seo_writer_agent` (via `llm_engine`) explains that line of code in human language.
+3. **Simulate Code:** `hf_cards` creates a "Terminal" card. The code is automatically syntax-highlighted and runs a typewriter keystroke effect.
+4. **Analyze:** Switches to a Chart Component card describing how the new feature speeds up the system. Renders the MP4.
 <br>
 </details>
 
 <details>
-<summary><b>♻️ QUY TRÌNH 7: Repurposing (Tái Chế Nội Dung)</b></summary>
+<summary><b>🌐 PIPELINE 5: Website-to-Video (Turning a Website into a Tour Video)</b></summary>
 <br>
 
-Biến 1 video dài thành 10 video ngắn.
+1. **Enter URL:** The user provides a Landing Page link.
+2. **Auto Scroll:** `video_engine` uses Playwright to act as a user, automatically scrolling the page smoothly and hovering over buttons to record the behavior (Screencast).
+3. **Label:** `graphic-overlays` pastes floating Text cards that track the buttons on the web interface. Exports a Tour Video.
+<br>
+</details>
 
-1. **Chia nhỏ:** `repurposer_agent` (qua `srt_analyzer`) ngậm 1 video dài 1 tiếng. Dò tìm các đoạn có tần số âm lượng lớn, nhiều tiếng cười.
-2. **Crop thông minh:** `clipper` nhận diện khuôn mặt đẩy khung 16:9 vào mặt người nói, crop dọc thành 9:16.
-3. **Dán Phụ đề:** Gọi luồng `embedded-captions` nhúng phụ đề to đùng giữa ngực.
-4. **Thu hoạch:** Sinh ra 5-10 video Shorts từ video gốc.
+<details>
+<summary><b>🎬 PIPELINE 6: Edit Footage & Graphic Overlays</b></summary>
+<br>
+
+Packages graphics onto pre-recorded video (Talking head).
+
+1. **Receive raw video:** User pushes an MP4 file (recorded on a phone) into `8_WORKSPACE`.
+2. **Transcribe:** `asr_router` (`faster-whisper`) produces the Transcript.
+3. **Activate cards:** Based on the Transcript, `srt_analyzer` sets timestamps. (e.g.: when the word "Tuyệt vời" is spoken, the system throws a 3D "Tuyệt Vời" text card flying across).
+4. **Merging:** `native_composer` uses FFmpeg to paste the transparent (Alpha-channel) layer of the graphic card on top of the original video.
+<br>
+</details>
+
+<details>
+<summary><b>♻️ PIPELINE 7: Repurposing (Content Recycling)</b></summary>
+<br>
+
+Turns 1 long video into 10 short videos.
+
+1. **Split:** `repurposer_agent` (via `srt_analyzer`) consumes a 1-hour-long video. It scans for segments with high volume frequency and lots of laughter.
+2. **Smart Crop:** `clipper` detects faces, pushes the 16:9 frame onto the speaker's face, and crops vertically into 9:16.
+3. **Burn Subtitles:** Calls the `embedded-captions` flow to embed huge subtitles in the center of the chest.
+4. **Harvest:** Produces 5-10 Shorts videos from the original video.
 <br>
 </details>

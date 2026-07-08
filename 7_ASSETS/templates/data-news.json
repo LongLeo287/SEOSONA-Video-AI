@@ -1,51 +1,56 @@
 {
-  "name": "data-news",
-  "title": "Data News (chart + mockup)",
-  "description": "Tin/so sánh giàu data-viz — hero hook + biểu đồ cột + mockup dashboard",
-  "when_to_use": "",
-  "theme": "light",
-  "aspect": "9:16",
-  "scenes": [
-    {
-      "component": "bignum",
-      "accent": "blue",
-      "kicker_hint": "TIN NÓNG",
-      "hero": true
-    },
-    {
-      "component": null,
-      "accent": "green",
-      "kicker_hint": "SỰ KIỆN"
-    },
-    {
-      "component": "chart",
-      "accent": "blue",
-      "kicker_hint": "BIỂU ĐỒ"
-    },
-    {
-      "component": "mockup",
-      "accent": "green",
-      "kicker_hint": "TỔNG QUAN"
-    },
-    {
-      "component": "feature",
-      "accent": "orange",
-      "kicker_hint": "ĐIỂM CHÍNH"
-    },
-    {
-      "component": "compare",
-      "accent": "blue",
-      "kicker_hint": "SO SÁNH"
-    },
-    {
-      "component": "tip",
-      "accent": "green",
-      "kicker_hint": "GHI NHỚ"
-    },
-    {
-      "component": "cta",
-      "accent": "blue",
-      "kicker_hint": "SEOSONA AI"
-    }
-  ]
+ "name": "data-news",
+ "title": "Data News (chart + mockup)",
+ "description": "Tin/so sánh giàu data-viz — hero hook + biểu đồ cột + mockup dashboard",
+ "when_to_use": "",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": "bignum",
+   "accent": "blue",
+   "kicker_hint": "TIN NÓNG",
+   "hero": true
+  },
+  {
+   "component": null,
+   "accent": "green",
+   "kicker_hint": "SỰ KIỆN"
+  },
+  {
+   "component": "chart",
+   "accent": "blue",
+   "kicker_hint": "BIỂU ĐỒ"
+  },
+  {
+   "component": "mockup",
+   "accent": "green",
+   "kicker_hint": "TỔNG QUAN"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "compare",
+   "accent": "blue",
+   "kicker_hint": "SO SÁNH"
+  },
+  {
+   "component": "tip",
+   "accent": "green",
+   "kicker_hint": "GHI NHỚ"
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "cta",
+   "accent": "blue",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
 }

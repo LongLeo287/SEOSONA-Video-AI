@@ -1,0 +1,56 @@
+{
+ "name": "launch",
+ "title": "Ra mắt / Announcement",
+ "description": "Công bố sản phẩm/tính năng mới — tính năng + giao diện + so với cũ + thông số.",
+ "when_to_use": "Khi RA MẮT một sản phẩm/tính năng, cần khoe điểm mới + giao diện + nâng cấp.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": "bignum",
+   "accent": "orange",
+   "kicker_hint": "RA MẮT",
+   "hero": true
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "TÍNH NĂNG"
+  },
+  {
+   "component": "mockup",
+   "accent": "green",
+   "kicker_hint": "GIAO DIỆN"
+  },
+  {
+   "component": "compare",
+   "accent": "orange",
+   "kicker_hint": "SO VỚI CŨ"
+  },
+  {
+   "component": "stats",
+   "accent": "blue",
+   "kicker_hint": "THÔNG SỐ"
+  },
+  {
+   "component": "feature",
+   "accent": "green",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "orange",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "compare",
+   "accent": "blue",
+   "kicker_hint": "SO SÁNH"
+  },
+  {
+   "component": "cta",
+   "accent": "green",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

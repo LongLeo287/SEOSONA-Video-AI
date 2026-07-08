@@ -38,18 +38,14 @@ profiles:
       main: "BeVietnamPro-Bold"
       size: 70
     voice:
-      engine: "vieneu"
-      # NEWS branch = STABLE PRESET voice, NOT a clone. Zero-shot cloning ref13 every
-      # render made the voice DRIFT in tone scene-to-scene (unstable on long text) AND
-      # mis-used Chí Quyết's voice for news. The clone (LoRA) is reserved for the CQA
-      # branch only. So: NO reference here → VieNeu uses the consistent preset below.
-      reference_audio: ""
+      # BRAND VOICE = OmniVoice cloning the Chí Quyết (CQA) voice — same voice for BOTH brands
+      # (user decision 2026-06-29). Routed by voice_router (OmniVoice primary → VieNeu backup).
+      engine: "omnivoice"
+      reference_audio: "7_ASSETS/voice/profiles/cqa_omnivoice_ref.wav"
       required_gender: "male"
       required_accent: "southern"
-      # The brand news voice: a fixed VieNeu preset (consistent, no clone drift).
-      model: "Gia Bảo"
-      # Fallback runs only if VieNeu fails — NORTHERN, NOT the brand voice.
-      fallback_voice: "vi-VN-NamMinhNeural"
+      backup_engine: "vieneu"
+      backup_model: "Gia Bảo"
     logo: "Seosona_Logo.png"
     animation: "slide_up"
     brand_tone: "Professional, reputable, market-leading, sharp insights"
@@ -67,17 +63,13 @@ profiles:
       main: "BeVietnamPro-Black"
       size: 90
     voice:
-      engine: "vieneu"
-      # PRIMARY: clone from a CQA brand voice recording once recorded. Drop a 10-30s
-      # clean clip here (male Southern VN, no noise). Missing → falls back to preset.
-      # TODO: record and save as 7_ASSETS/voice/profiles/chiquyet_ref.wav
-      reference_audio: "7_ASSETS/voice/profiles/chiquyet_ref.wav"
-      # Single approved brand voice (locked system-wide in voice_router.APPROVED_VOICE).
-      model: "Gia Bảo"
+      # BRAND VOICE = OmniVoice cloning the Chí Quyết (CQA) voice (voice_router: OmniVoice → VieNeu backup).
+      engine: "omnivoice"
+      reference_audio: "7_ASSETS/voice/profiles/cqa_omnivoice_ref.wav"
       required_gender: "male"
       required_accent: "southern"
-      fallback_engine: "edge-tts"
-      fallback_voice: "vi-VN-NamMinhNeural"
+      backup_engine: "vieneu"
+      backup_model: "Gia Bảo"
     logo: "Chi Quyet Academy Mascot Logo.png"
     animation: "elastic_pop"
     brand_tone: "Fun, approachable, inspiring, easy to understand"

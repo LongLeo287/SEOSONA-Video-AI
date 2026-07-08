@@ -22,6 +22,7 @@ for repos relevant to SEOSONA Video that are NOT yet ingested. Each is run throu
 | [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | skills catalog | 1000+ pointers incl. Corey Haines marketing stack (no SKILL.md to vendor) |
 
 ## Voice / TTS
+- **Qwen3-TTS** (via [alexchan197611/ai_media_assistant](https://github.com/alexchan197611/ai_media_assistant), MIT) — **WATCH**: a VN-capable TTS we don't have; that repo runs it in its own venv alongside OmniVoice. Candidate for a VN voice A/B vs VieNeu **only if** a quality gap appears (brand voice currently locked to VieNeu). Hands-on VN + word-timing test required before any adoption.
 - [k2-fsa/OmniVoice](https://github.com/k2-fsa/OmniVoice) — **WATCH**: Apache-2.0, 600+ langs, active; needs hands-on VN quality test → only permissive path to a clone-voice backup. (VN test) — confirmed VN+clone but NO word-timing (no sync benefit) + torch2.8 conflict
  — already covered; alternatives are REFERENCE only
 - In use: VieNeu-TTS (brand voice), PhoWhisper (ASR), edge-tts (fallback).
@@ -74,3 +75,12 @@ From 1463-repo inventory → 87 S+A video-relevant → 27 NEW candidates (29 alr
 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | skills | A | 72 | Agent skills; Automation helper (67k★) | ✅ **REFERENCE** (MIT) — lazy/reuse discipline = our Karpathy LLM_CODING_DISCIPLINE; 1 micro-gem (tagged-shortcut comments) adopted |
 | [yaojingang/yao-meta-skill](https://github.com/yaojingang/yao-meta-skill) | skills | A | 57 | Meta-skill; Agent skills; Evaluation; Governance; Porta | ✅ **REFERENCE** (MIT) — enterprise skill-OS, over-built at ~20-skill scale; 1 gem (skill-qualification gate) → capability-analyst |
 | [arm64x/PHP-Lazada-Affiliate-API-Tool](https://github.com/arm64x/PHP-Lazada-Affiliate-API-Tool) | seo | A | 46 | Vietnamese / Local market; SEO stack | ⏳ analyze |
+
+## User-shared batch (2026-07-01) — triaged via 7-step gate (see INGESTION_LOG)
+| Repo | Area | Why | Verdict |
+|------|------|-----|---------|
+| [alexchan197611/ai_media_assistant](https://github.com/alexchan197611/ai_media_assistant) | video | MIT, 193★ — closest sibling: local script→short-video, same OmniVoice+Qwen3-TTS, FFmpeg render | ✅ **REFERENCE** — confirms our architecture; don't recreate (Pixelle precedent). Gems→ Qwen3-TTS (voice watch) + emotion image-match/caption-styles (image-backed template BACKLOG, brand-gated) |
+| [diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute) | system/llm | MIT, 8.9k★ — AI gateway, 236 providers, token-compression 15–95%, circuit-breaker | ✅ **ADOPT-pattern (BUILT)** — circuit-breaker → `llm_engine._gemini_scenes` (cooldown on 429/quota keys, test 4/4). Token-compression SKIPPED (cost ~0). Gateway not vendored. Could be a personal proxy in front of Claude Code (out-of-scope for the factory) |
+| [agentscope-ai/QwenPaw](https://github.com/agentscope-ai/QwenPaw) | system/agent | Apache-2.0, 20.4k★ — personal-agent platform; 3-layer memory | ✅ **REFERENCE** — only gem = working/history/distilled memory (≈ ours); platform scope N/A |
+| [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) | marketing/agents | MIT, 122k★ — 232 personas | ✅ **REFERENCE** (already listed above; made a video angle 2026-07-01) |
+| [LongNgn204/local-coding-agent](https://github.com/LongNgn204/local-coding-agent) | system | **AGPL-3.0**, 11★ — MCP coding-agent for ChatGPT Web | ❌ **SKIP** — wrong domain (not video) + copyleft |

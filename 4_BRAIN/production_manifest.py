@@ -149,8 +149,13 @@ def load(project_dir):
     p = os.path.join(project_dir, MANIFEST_NAME)
     if not os.path.exists(p):
         return None
-    with open(p, encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(p, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        # A corrupt/truncated manifest (crash mid-write, hand-edit) must degrade to "missing", NOT crash
+        # the caller (factory_brain.record_and_gate, set_performance). Mirrors scan()'s skip-on-error.
+        return None
 
 
 def scan(workspace_dir=None):
@@ -171,7 +176,7 @@ def set_performance(project_dir, metrics):
     m = load(project_dir)
     if not m:
         return None
-    m["performance"].update(metrics or {})
+    m.setdefault("performance", {}).update(metrics or {})   # tolerate a manifest with no performance key
     m["performance"]["updated"] = _now_iso()
     with open(os.path.join(project_dir, MANIFEST_NAME), "w", encoding="utf-8") as f:
         json.dump(m, f, ensure_ascii=False, indent=2)

@@ -45,27 +45,7 @@ if os_ki_dir.exists():
             count_ki += 1
 print(f"Injected {count_ki} knowledge items from SEOSONA OS.")
 
-orchestrator_path = ROOT / "1_AGENTS" / "hermes_orchestrator.py"
-bridge_script = OS_ROOT / "1_CORE" / "scripts" / "hermes_brain.py"
-orchestrator_path.write_text(
-    f'''"""
-Hermes Orchestrator Bridge.
-Connects SEOSONA Video to the configured SEOSONA OS Hermes controller.
-"""
-import subprocess
-
-
-def ask_hermes(task_description):
-    bridge_script = {str(bridge_script)!r}
-    result = subprocess.run(
-        ["python", bridge_script, "--task", task_description],
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        check=False,
-    )
-    return result.stdout
-''',
-    encoding="utf-8",
-)
-print("Injected Hermes Orchestrator Bridge.")
+# NOTE: the Hermes Orchestrator bridge (1_AGENTS/hermes_orchestrator.py) was removed
+# 2026-07-02 — it shelled out to SEOSONA OS/1_CORE/scripts/hermes_brain.py, which does not
+# exist, and nothing imported it. If the OS Hermes controller is ever revived, regenerate a
+# bridge here against the real, verified path.

@@ -60,9 +60,9 @@ def _default_external_sources(project_root: str) -> Dict[str, str]:
         Path(os.environ["SEOSONA_HYPERFRAMES_SOURCE"]).expanduser()
     ] if os.environ.get("SEOSONA_HYPERFRAMES_SOURCE") else []
     hyperframes_candidates.extend([
-        project_path / "5_FRAMEWORK" / "hf_engine",
+        project_path / "node_modules" / "hyperframes",         # REAL runtime dep (native_composer -> dist/cli.js)
         project_path / "5_FRAMEWORK" / "hf_engine" / "hyperframes-main",
-        project_path / "5_FRAMEWORK" / "hf_core",
+        project_path / "5_FRAMEWORK" / "hf_engine",            # vendored reference copy (monorepo layout)
         drive_downloads / "hyperframes-main",
         home_downloads / "hyperframes-main",
     ])
@@ -168,7 +168,9 @@ def run_integration_audit(
     voice = (((config.get("profiles") or {}).get("seosona") or {}).get("voice") or {})
     required_gender = str(voice.get("required_gender", "")).lower()
     required_accent = str(voice.get("required_accent", "")).lower()
-    fallback_voice = str(voice.get("fallback_voice", ""))
+    # Voice arch (2026): OmniVoice (primary, clones CQA) -> VieNeu (backup). edge-tts + all other
+    # engines were removed (see voice_router.py) — so the backup is now backup_engine, not a fallback_voice.
+    backup_engine = str(voice.get("backup_engine", "")).lower()
     reference_audio = str(voice.get("reference_audio", ""))
     check(
         "voice policy: male southern",
@@ -178,9 +180,9 @@ def run_integration_audit(
         "P1",
     )
     check(
-        "voice fallback: Vietnamese male",
-        fallback_voice == "vi-VN-NamMinhNeural",
-        {"fallback_voice": fallback_voice},
+        "voice backup engine: VieNeu",
+        backup_engine == "vieneu",
+        {"backup_engine": backup_engine},
         "SV-INT-VOICE-FALLBACK",
         "P1",
     )

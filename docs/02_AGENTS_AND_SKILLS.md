@@ -1,105 +1,104 @@
-# Danh sách Agents và Kỹ năng Python
+# List of Agents and Python Skills
 
-Tài liệu này liệt kê bộ não nhận thức (Agents) và tay chân thực thi (Skills) của SEOSONA Video.
-Nguồn sự thật: `1_AGENTS/ROSTER.md` và `2_SKILLS/README.md`.
+This document lists the cognitive brain (Agents) and the execution hands and feet (Skills) of SEOSONA Video.
+Source of truth: `1_AGENTS/ROSTER.md` and `2_SKILLS/README.md`.
 
-## 🤖 Lớp Nhận Thức: 10 AI Agents (`1_AGENTS/`)
-Tất cả 10 agent dưới đây đều có code thật và được gọi từ pipeline/workflow.
-(Thư mục `personas/` chứa định nghĩa gốc tính cách — không tính là agent.)
+## 🤖 Cognitive Layer: 10 AI Agents (`1_AGENTS/`)
+All 10 agents below have real code and are called from the pipeline/workflow.
+(The `personas/` directory contains the original personality definitions — it does not count as an agent.)
 
 <details>
-<summary><b>1. Nhóm Điều phối & Điều khiển từ xa (2 Agents)</b></summary>
+<summary><b>1. Orchestration & Remote Control Group (2 Agents)</b></summary>
 <br>
 
-- 👑 **`hermes_agent`**: Bot điều khiển từ xa qua Telegram (`telegram_remote.py`) — `/news`, `/publish`, `/trend`, `/status`. Entry độc lập, không nằm trong pipeline dispatch.
-- 🔥 **`trend_jacking_agent`**: Rình trend (`trend_tracker.py`) rồi kích hoạt pipeline làm video bám xu hướng. Chạy qua `/trend` hoặc cron.
+- 👑 **`hermes_agent`**: Remote control bot via Telegram (`telegram_remote.py`) — `/news`, `/publish`, `/trend`, `/status`. Standalone entry point, not part of the pipeline dispatch.
+- 🔥 **`trend_jacking_agent`**: Watches for trends (`trend_tracker.py`) then triggers the pipeline to make trend-following videos. Runs via `/trend` or cron.
 
 </details>
 
 <details>
-<summary><b>2. Nhóm Nghiên cứu & Nạp liệu (1 Agent)</b></summary>
+<summary><b>2. Research & Data Ingestion Group (1 Agent)</b></summary>
 <br>
 
-- ⛏️ **`scraper_agent`**: Bóc tách HTML/JSON, cào nội dung trang web/tin tức (`scraper.py`, `news_scraper.py`) để dựng kịch bản.
+- ⛏️ **`scraper_agent`**: Parses HTML/JSON, scrapes content from websites/news (`scraper.py`, `news_scraper.py`) to build scripts.
 
 </details>
 
 <details>
-<summary><b>3. Nhóm Sáng tạo Nội dung & Kịch bản (4 Agents)</b></summary>
+<summary><b>3. Content Creation & Scripting Group (4 Agents)</b></summary>
 <br>
 
-- 🎯 **`seo_writer_agent`**: Viết kịch bản video khớp hành vi tìm kiếm (`writer.py`).
-- 🎠 **`carousel_writer_agent`**: Nội dung dạng trượt (carousel) cho LinkedIn/Instagram.
-- 💬 **`social_media_agent`**: Caption MXH theo khung PAS (giật tít, chim mồi).
-- ✂️ **`repurposer_agent`**: Cắt video/podcast dài thành shorts/reels (`srt_analyzer.py`, `localizer.py`).
+- 🎯 **`seo_writer_agent`**: Writes video scripts aligned with search behavior (`writer.py`).
+- 🎠 **`carousel_writer_agent`**: Slide-style (carousel) content for LinkedIn/Instagram.
+- 💬 **`social_media_agent`**: Social media captions following the PAS framework (clickbait, hooks).
+- ✂️ **`repurposer_agent`**: Cuts long videos/podcasts into shorts/reels (`srt_analyzer.py`, `localizer.py`).
 
 </details>
 
 <details>
-<summary><b>4. Nhóm Tối ưu hóa & MXH (2 Agents)</b></summary>
+<summary><b>4. Optimization & Social Media Group (2 Agents)</b></summary>
 <br>
 
-- 📈 **`seo_optimizer`**: Tối ưu metadata YouTube — title/tags/description + JSON-LD (`youtube_seo.py`).
+- 📈 **`seo_optimizer`**: Optimizes YouTube metadata — title/tags/description + JSON-LD (`youtube_seo.py`).
 
 </details>
 
 <details>
-<summary><b>5. Nhóm Kiểm duyệt & Đăng tải (3 Agents)</b></summary>
+<summary><b>5. Moderation & Publishing Group (3 Agents)</b></summary>
 <br>
 
-- 📊 **`analytics_feedback_agent`**: Phân tích retention, sinh post-mortem (`feedback_generator.py`).
-- 🚀 **`publisher_agent`**: Nắm API đăng tải (YouTube/TikTok/FB/Drive) — `publish_dispatch.py`. **Publish cần User cho phép rõ ràng.**
+- 📊 **`analytics_feedback_agent`**: Analyzes retention, generates post-mortems (`feedback_generator.py`).
+- 🚀 **`publisher_agent`**: Holds the publishing APIs (YouTube/TikTok/FB/Drive) — `publish_dispatch.py`. **Publishing requires explicit User permission.**
 
 </details>
 
 ---
 
-## 🛠️ Lớp Thực Thi: 7 Python Skills (`2_SKILLS/`)
-Mỗi skill dưới đây đều được nối vào pipeline/workflow (`2_SKILLS.<name>.<module>`).
-9 skill chưa dùng đã được đã gỡ khỏi dự án (xem README ở đó).
+## 🛠️ Execution Layer: 7 Python Skills (`2_SKILLS/`)
+Each skill below is wired into the pipeline/workflow (`2_SKILLS.<name>.<module>`).
+9 unused skills have been removed from the project (see the README there).
 
 <details>
-<summary><b>🔊 Âm thanh & Giọng nói (2 Skills)</b></summary>
+<summary><b>🔊 Audio & Voice (2 Skills)</b></summary>
 <br>
 
-- 🗣️ **`voice_cloner`**: Router giọng nói DUY NHẤT (`voice_router.synthesize_voice`) — VieNeu (clone > preset) → fallback edge-tts trung thực (`vi-VN-NamMinhNeural`). Không còn nhánh F5/OmniVoice/Fish.
-- 🎙️ **`tts_generator`**: Engine edge-TTS sinh giọng + phụ đề (đóng vai fallback, được `voice_router` gọi).
+- 🗣️ **`voice_cloner`**: the ONLY voice router (`voice_router.synthesize_voice`) — **OmniVoice PRIMARY** (k2-fsa, local, VN-native, clones the CQA brand voice) **→ VieNeu BACKUP** (only when OmniVoice can't run). edge-tts / F5 / LoRA / fish all removed (2026-06-29).
 
 </details>
 
 <details>
-<summary><b>📝 Phụ đề (1 Skill)</b></summary>
+<summary><b>📝 Subtitles (1 Skill)</b></summary>
 <br>
 
-- 📝 **`srt_maker`**: Sinh SRT qua faster-whisper / PhoWhisper (timestamp đến từng chữ cho Karaoke).
+- 📝 **`srt_maker`**: Generates SRT via faster-whisper / PhoWhisper (word-level timestamps for Karaoke).
 
 </details>
 
 <details>
-<summary><b>🎞️ Hình ảnh & Video (3 Skills + templates)</b></summary>
+<summary><b>🎞️ Image & Video (3 Skills + templates)</b></summary>
 <br>
 
-- ✂️ **`video_clipper`**: Cắt/định dạng clip (gồm short dọc 9:16).
-- 🖼️ **`thumbnail_maker`**: Sinh thumbnail HTML.
-- ⬇️ **`yt_downloader`**: Tải video nguồn từ YouTube (yt-dlp) — gọi từ `workflow_router`.
-- 🎨 **`hf_blueprints`**: Bản vẽ/template cảnh HyperFrames (HTML, không phải skill Python).
+- ✂️ **`video_clipper`**: Cuts/formats clips (including vertical 9:16 shorts).
+- 🖼️ **`thumbnail_maker`**: Generates HTML thumbnails.
+- ⬇️ **`yt_downloader`**: Downloads source videos from YouTube (yt-dlp) — called from `workflow_router`.
+- 🎨 **`hf_blueprints`**: HyperFrames scene blueprints/templates (HTML, not a Python skill).
 
 </details>
 
 <details>
-<summary><b>✍️ Nội dung & Xử lý (2 Skills)</b></summary>
+<summary><b>✍️ Content & Processing (2 Skills)</b></summary>
 <br>
 
-- 🎠 **`carousel_maker`**: Biến text thành chuỗi ảnh carousel (gọi từ `workflow_social_post`).
+- 🎠 **`carousel_maker`**: Turns text into a sequence of carousel images (called from `workflow_social_post`).
 
 </details>
 
 <details>
-<summary><b>🗄️ Đã quarantine (9 Skills — không nối vào pipeline)</b></summary>
+<summary><b>🗄️ Quarantined (9 Skills — not wired into the pipeline)</b></summary>
 <br>
 
 `audio_cleaner`, `audio_mixer`, `b_roll_fetcher`, `llm_processor`, `metadata_extractor`,
-`script_writer`, `sfx_mixer`, `srt_parser`, `visual_fetcher` — dời sang
-(removed). Có code thật nhưng chưa nơi nào gọi; phục hồi khi cần.
+`script_writer`, `sfx_mixer`, `srt_parser`, `visual_fetcher` — moved to
+(removed). They have real code but nothing calls them yet; restore when needed.
 
 </details>

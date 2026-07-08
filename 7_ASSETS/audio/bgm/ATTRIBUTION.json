@@ -1,0 +1,62 @@
+[
+  {
+    "id": "7d573956-f2f0-457a-9ed6-3b2de0280c4e",
+    "file": "bgm_tech_7d573956.mp3",
+    "mood": "tech",
+    "title": "Ambient Dance",
+    "creator": "Zeropage",
+    "license": "CC BY 3.0",
+    "source": "https://www.jamendo.com/track/23557",
+    "provider": "jamendo"
+  },
+  {
+    "id": "297e676f-18e5-478c-9a39-e707f56eb5be",
+    "file": "bgm_tech_297e676f.mp3",
+    "mood": "tech",
+    "title": "Ambient Voyager",
+    "creator": "Zeropage",
+    "license": "CC BY 3.0",
+    "source": "https://www.jamendo.com/track/20231",
+    "provider": "jamendo"
+  },
+  {
+    "id": "27bbb433-1b9c-40ee-a2ef-0087679b9118",
+    "file": "bgm_news_27bbb433.mp3",
+    "mood": "news",
+    "title": "Ruslan Latypov - Corporate Music",
+    "creator": "Ruslan Latypov",
+    "license": "CC BY 3.0",
+    "source": "https://www.jamendo.com/track/1693123",
+    "provider": "jamendo"
+  },
+  {
+    "id": "394ae39d-127a-4989-8aee-9a1a78619c1b",
+    "file": "bgm_insight_394ae39d.mp3",
+    "mood": "insight",
+    "title": "Inspiring Corporate",
+    "creator": "Soundrider/Dope",
+    "license": "CC BY 3.0",
+    "source": "https://www.jamendo.com/track/1670484",
+    "provider": "jamendo"
+  },
+  {
+    "id": "3b4580e1-1454-4b4c-a03a-e03bf4af0849",
+    "file": "bgm_upbeat_3b4580e1.mp3",
+    "mood": "upbeat",
+    "title": "Upbeat Corporate",
+    "creator": "Soundrider/Dope",
+    "license": "CC BY 3.0",
+    "source": "https://www.jamendo.com/track/1670486",
+    "provider": "jamendo"
+  },
+  {
+    "id": "45bc4dac-af0d-4895-9d8a-f8a5bedb2b6a",
+    "file": "bgm_tech_45bc4dac.mp3",
+    "mood": "tech",
+    "title": "Meio Ambiente",
+    "creator": "NeLaS",
+    "license": "CC BY 3.0",
+    "source": "https://www.jamendo.com/track/26646",
+    "provider": "jamendo"
+  }
+]

@@ -42,9 +42,15 @@ def _perf_score(m):
         ret = perf.get("retention")          # avg view fraction 0..1
         ctr = perf.get("ctr")                # 0..1
         if ret is not None or ctr is not None:
-            r = float(ret) if ret is not None else 0.5
-            c = float(ctr) if ctr is not None else 0.05
-            return max(0.0, min(1.0, 0.7 * r + 0.3 * min(c / 0.1, 1.0)))
+            try:
+                # float() on injected/API metrics can raise (a "N/A"/""/text value) — a single malformed
+                # manifest must NOT crash the whole ledger rebuild (the factory's LEARN/ORIENT stage, which
+                # factory_brain.learn doesn't guard). On bad real metrics, fall through to the QA proxy below.
+                r = float(ret) if ret is not None else 0.5
+                c = float(ctr) if ctr is not None else 0.05
+                return max(0.0, min(1.0, 0.7 * r + 0.3 * min(c / 0.1, 1.0)))
+            except (TypeError, ValueError):
+                pass
     # Fallback: internal QA score (0..100) — honest proxy until metrics exist.
     q = (m.get("quality") or {}).get("score")
     return (q / 100.0) if isinstance(q, (int, float)) else 0.5
@@ -61,8 +67,10 @@ def rebuild(workspace_dir=None, write=True):
 
     dims = {d: defaultdict(lambda: {"n": 0, "score_sum": 0.0, "qa_pass": 0,
                                     "qa_sum": 0.0, "views_sum": 0}) for d in DIMENSIONS}
+    _gsum, _gn = 0.0, 0
     for m in manifests:
         s = _perf_score(m)
+        _gsum += s; _gn += 1
         var = m.get("variant") or {}
         qa = (m.get("quality") or {}).get("score") or 0
         qpass = 1 if (m.get("quality") or {}).get("pass") else 0
@@ -78,6 +86,11 @@ def rebuild(workspace_dir=None, write=True):
 
     ledger = {"generated": _now_iso(), "total_videos": len(manifests),
               "signal": "real+qa" if has_real else "qa-only", "dimensions": {}}
+    # Bayesian shrinkage: pull a value's avg toward the GLOBAL mean by a pseudo-count K, so a template
+    # seen ONCE (one lucky/unlucky video) can't out/under-rank a proven one with many samples. Rank &
+    # weight on conf_score (confidence-adjusted), not the raw avg — else the flywheel learns from noise.
+    _gmean = (_gsum / _gn) if _gn else 0.5
+    K = 3.0
     for d in DIMENSIONS:
         rows = {}
         for key, c in dims[d].items():
@@ -85,12 +98,13 @@ def rebuild(workspace_dir=None, write=True):
             rows[key] = {
                 "n": c["n"],
                 "avg_score": round(c["score_sum"] / n, 4),
+                "conf_score": round((c["score_sum"] + K * _gmean) / (c["n"] + K), 4),
                 "avg_qa": round(c["qa_sum"] / n, 1),
                 "qa_pass_rate": round(c["qa_pass"] / n, 3),
                 "views_total": c["views_sum"],
             }
         ledger["dimensions"][d] = dict(sorted(rows.items(),
-                                              key=lambda kv: -kv[1]["avg_score"]))
+                                              key=lambda kv: -kv[1]["conf_score"]))
 
     # Template selection weights (softmax-ish: winners weighted up, min floor so
     # exploration never dies). Only over templates actually seen.
@@ -98,12 +112,13 @@ def rebuild(workspace_dir=None, write=True):
     weights = {}
     if tmpl:
         floor = 0.15
-        scores = {k: v["avg_score"] for k, v in tmpl.items() if k != "unknown"}
-        if scores:
-            lo, hi = min(scores.values()), max(scores.values())
-            span = (hi - lo) or 1.0
-            for k, sc in scores.items():
-                weights[k] = round(floor + (1 - floor) * (sc - lo) / span, 3)
+        scores = {k: v["conf_score"] for k, v in tmpl.items() if k != "unknown"}   # confidence-adjusted, not raw avg
+        # Map the CONFIDENCE score directly onto [floor, 1] (FIXED scale, NOT min-max of the current set):
+        # min-max always stretches best→1 / worst→floor regardless of how close or low-confidence they are,
+        # which re-inflates a single lucky video's weight and defeats the shrinkage. Fixed scale keeps
+        # close / low-confidence conf_scores → close weights (no runaway from one sample).
+        for k, sc in scores.items():
+            weights[k] = round(floor + (1 - floor) * max(0.0, min(1.0, sc)), 3)
 
     if write:
         os.makedirs(os.path.dirname(LEDGER_PATH), exist_ok=True)

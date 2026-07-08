@@ -1,0 +1,22 @@
+{
+  "chrome_extension_explain": {
+    "group": "text",
+    "title": "TobyFlow là gì?",
+    "when": "Giới thiệu TobyFlow cho người mới bắt đầu.",
+    "schema": {
+      "title": "Tiêu đề giải thích.",
+      "text": "Nội dung giải thích chi tiết."
+    },
+    "html": "<div style=\"background-color: #ffffff; padding: 24px; border-radius: 8px; font-family: sans-serif; color: #0F172A;\">\n  <h2 style=\"font-size: 20px; margin-bottom: 8px; color: #0F172A;\">{{title}}</h2>\n  <p class=\"ritem\" style=\"line-height: 1.6; font-size: 16px; color: #64748B;\">\n    {{text}}\n  </p>\n</div>"
+  },
+  "ai_integration": {
+    "group": "text",
+    "title": "Điểm Đặc Biệt",
+    "when": "Giải thích lợi thế độc đáo của TobyFlow.",
+    "schema": {
+      "title": "Tiêu đề mô tả điểm đặc biệt.",
+      "text": "Nội dung giải thích chi tiết."
+    },
+    "html": "<div style=\"background-color: #ffffff; padding: 24px; border-radius: 8px; font-family: sans-serif; color: #0F172A;\"><h3 style=\"font-size: 1.5em; margin-bottom: 8px; color: #0F172A;\">{{title}}</h3><p class=\"ritem\" style=\"line-height: 1.6; font-size: 1rem; color: #64748B;\">{{text}}</p></div>"
+  }
+}

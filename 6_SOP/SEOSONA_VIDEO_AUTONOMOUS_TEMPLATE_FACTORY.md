@@ -107,4 +107,4 @@ To clone a video style safely:
 
 ## Current Gate State
 
-`SV-INT-VOICE-REFERENCE` is closed in the current project state because `7_ASSETS/voice/profiles/seosona_ref13.wav` exists. Edge-TTS `vi-VN-NamMinhNeural` remains the approved operational fallback when a clone-grade VieNeu/Fish preset is not available.
+`SV-INT-VOICE-REFERENCE` is closed. The brand voice = the OmniVoice CQA clone (primary); **VieNeu is the only backup** when OmniVoice can't run. edge-tts / F5 / fish were removed (2026-06-29) — no external fallback.

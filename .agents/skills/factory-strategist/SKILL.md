@@ -25,6 +25,9 @@ write the queue; `factory_brain.py` produces it.
 2. **Template weights** — `3_MEMORY/learning/template_weights.json` (selection bias).
 3. **Trends / ideas** — `1_AGENTS/trend_jacking_agent` + `scraper_agent` for fresh topics.
 4. **Policy** — `1_CONFIG/factory_policy.yaml` (`batch_max`, `explore_ratio`).
+5. **Learned effect performance** — `python 4_BRAIN/knowledge_graph.py learned` (which transitions/text-
+   effects correlate with higher quality scores, from real renders — accumulates over time; ignore
+   entries flagged "few samples" until there's enough data).
 
 ## Decide (the algorithm)
 1. **Exploit** — fill ~`(1 - explore_ratio)` of the batch with the top templates ×

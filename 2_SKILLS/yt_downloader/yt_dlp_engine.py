@@ -4,20 +4,6 @@ Inherited from SEOSONA OS Skill: multimedia_production/video_audio_ingestion.
 """
 import subprocess
 import os
-import json
-
-def probe_metadata(url):
-    """
-    Extract video metadata without downloading (from SEOSONA OS video_audio_ingestion SKILL).
-    """
-    cmd = ["yt-dlp", "--ignore-config", "--dump-single-json", url]
-    try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-        if result.returncode == 0:
-            return json.loads(result.stdout)
-    except Exception as e:
-        print(f"[yt-dlp] Metadata probe failed: {e}")
-    return None
 
 def download_audio(url, output_dir, archive_file=None):
     """

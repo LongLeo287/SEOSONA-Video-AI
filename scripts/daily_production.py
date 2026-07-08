@@ -63,13 +63,31 @@ def main():
         except Exception:
             pass
 
+        # Discovery (Loop move #2): self-enqueue new items from sources.txt before the queue runs.
+        _log_line(logf, "[daily] ── discovery ──")
+        try:
+            sys.path.insert(0, str(ROOT / "4_BRAIN"))
+            import discovery
+            added = discovery.discover()
+            _log_line(logf, f"[daily] discovery added {len(added)} item(s)")
+        except Exception as e:
+            _log_line(logf, f"[daily] discovery skipped: {e}")
+
         # 1) Inbox queue (the reliable batch — retry/isolation/idempotency built in).
-        _log_line(logf, "[daily] ── inbox queue ──")
-        rc = subprocess.run(
-            [sys.executable, str(ROOT / "scripts" / "queue_processor.py"),
-             "--retries", str(a.retries), "--timeout", str(a.timeout)],
-            cwd=ROOT,
-        ).returncode
+        #    SEOSONA_CONCURRENCY>1 runs isolated parallel renders.
+        conc = os.environ.get("SEOSONA_CONCURRENCY", "1")
+        _log_line(logf, f"[daily] ── inbox queue (concurrency={conc}) ──")
+        # Backstop timeout ABOVE loop_guard's own wall-clock (SEOSONA_MAX_WALL_SECONDS, default 7200) so an
+        # UNATTENDED run can never hang forever if the queue's internal guard somehow doesn't fire.
+        _queue_cap = int(os.environ.get("SEOSONA_MAX_WALL_SECONDS", "7200")) + 1800
+        try:
+            rc = subprocess.run(
+                [sys.executable, str(ROOT / "scripts" / "queue_processor.py"),
+                 "--retries", str(a.retries), "--timeout", str(a.timeout), "--concurrency", conc],
+                cwd=ROOT, timeout=_queue_cap,
+            ).returncode
+        except subprocess.TimeoutExpired:
+            rc = 1; _log_line(logf, f"[daily] queue TIMED OUT after {_queue_cap}s — killed")
         rc_total |= (1 if rc not in (0, 2) else 0)   # 2 = some items failed (logged), still a clean run
         _log_line(logf, f"[daily] queue exit={rc} (0=all ok, 2=some failed+logged)")
 
@@ -80,10 +98,17 @@ def main():
                 urls = [u.strip() for u in src.read_text(encoding="utf-8").splitlines()
                         if u.strip() and not u.strip().startswith("#")]
                 _log_line(logf, f"[daily] ── news batch ({len(urls)} urls) ──")
-                rc2 = subprocess.run(
-                    [sys.executable, str(ROOT / "4_BRAIN" / "make_video.py"), "--news", str(src)],
-                    cwd=ROOT,
-                ).returncode
+                # The news batch is a DIRECT make_video call (no queue, no loop_guard) → without a timeout a
+                # single hung render would stall the whole unattended run. Cap it at ~per-video-timeout ×
+                # url count + buffer.
+                _news_cap = a.timeout * max(1, len(urls)) + 600
+                try:
+                    rc2 = subprocess.run(
+                        [sys.executable, str(ROOT / "4_BRAIN" / "make_video.py"), "--news", str(src)],
+                        cwd=ROOT, timeout=_news_cap,
+                    ).returncode
+                except subprocess.TimeoutExpired:
+                    rc2 = 1; _log_line(logf, f"[daily] news batch TIMED OUT after {_news_cap}s — killed")
                 rc_total |= (1 if rc2 != 0 else 0)
                 _log_line(logf, f"[daily] news exit={rc2}")
             else:

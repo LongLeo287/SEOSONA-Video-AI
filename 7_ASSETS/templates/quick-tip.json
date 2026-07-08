@@ -1,0 +1,56 @@
+{
+ "name": "quick-tip",
+ "title": "Mẹo nhanh (ngắn)",
+ "description": "Một thủ thuật gọn — mẹo → cách làm → lợi ích. Video ngắn 15-20s.",
+ "when_to_use": "Khi chỉ có MỘT mẹo duy nhất, cần truyền tải nhanh gọn.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "orange",
+   "kicker_hint": "MẸO",
+   "hero": true
+  },
+  {
+   "component": "tip",
+   "accent": "blue",
+   "kicker_hint": "THỦ THUẬT"
+  },
+  {
+   "component": "steps",
+   "accent": "green",
+   "kicker_hint": "LÀM SAO"
+  },
+  {
+   "component": "bignum",
+   "accent": "orange",
+   "kicker_hint": "LỢI ÍCH"
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "green",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "compare",
+   "accent": "orange",
+   "kicker_hint": "SO SÁNH"
+  },
+  {
+   "component": "chiprow",
+   "accent": "blue",
+   "kicker_hint": "TƯƠNG THÍCH"
+  },
+  {
+   "component": "cta",
+   "accent": "blue",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

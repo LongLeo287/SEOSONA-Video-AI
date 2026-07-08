@@ -1,0 +1,56 @@
+{
+ "name": "deep-tutorial",
+ "title": "Hướng dẫn sâu",
+ "description": "Tutorial nhiều bước — mục tiêu → setup → các bước → kết quả → lưu ý.",
+ "when_to_use": "Khi DẠY làm một thứ qua nhiều bước có terminal/giao diện, sâu hơn tool-walkthrough.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "orange",
+   "kicker_hint": "MỤC TIÊU",
+   "hero": true
+  },
+  {
+   "component": "terminal",
+   "accent": "blue",
+   "kicker_hint": "SETUP"
+  },
+  {
+   "component": "steps",
+   "accent": "green",
+   "kicker_hint": "CÁC BƯỚC"
+  },
+  {
+   "component": "mockup",
+   "accent": "orange",
+   "kicker_hint": "KẾT QUẢ"
+  },
+  {
+   "component": "tip",
+   "accent": "blue",
+   "kicker_hint": "LƯU Ý"
+  },
+  {
+   "component": "bignum",
+   "accent": "green",
+   "kicker_hint": "THÀNH QUẢ"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "blue",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "cta",
+   "accent": "orange",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

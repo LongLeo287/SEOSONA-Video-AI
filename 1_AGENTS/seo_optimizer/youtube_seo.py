@@ -5,6 +5,22 @@ Inherits knowledge from SEOSONA OS Skill: seo_marketing/video_content and Websit
 import json
 from datetime import datetime
 
+
+def _smart_title(s):
+    """Title-case for display while PRESERVING acronym/brand casing. Python's str.title() downcases
+    acronyms — 'SEO' → 'Seo', 'AI' → 'Ai' — which mangles the exact-match primary keyword in the public
+    title. Only all-lowercase words are capitalised; anything already carrying an uppercase letter
+    (SEO, ChatGPT, iPhone) is left untouched."""
+    return " ".join(w if any(c.isupper() for c in w) else w.capitalize() for w in str(s).split())
+
+
+def _mmss(seconds):
+    """Format seconds as MM:SS for YouTube chapter markers. A plain `00:{seconds}` breaks for any
+    video ≥ 60s (e.g. '00:72'), and YouTube then rejects the whole chapter list — carry the minutes."""
+    s = max(0, int(seconds))
+    return f"{s // 60:02d}:{s % 60:02d}"
+
+
 def generate_youtube_metadata(hook_text, keywords, brand_profile, video_duration=60):
     """
     Generates Title, Description, Tags, Hashtags, and JSON-LD for YouTube upload.
@@ -21,7 +37,7 @@ def generate_youtube_metadata(hook_text, keywords, brand_profile, video_duration
     # 2. Title: [Primary Keyword] — [Benefit/Outcome] ([Year])
     # Tối ưu CTR theo chuẩn OS
     primary_kw = keywords[0] if keywords else "Marketing"
-    title = f"{primary_kw.title()} | Hướng Dẫn Tối Ưu Toàn Diện ({datetime.now().year})"
+    title = f"{_smart_title(primary_kw)} | Hướng Dẫn Tối Ưu Toàn Diện ({datetime.now().year})"
     if len(title) > 65:
         title = title[:62] + "..."
 
@@ -33,9 +49,9 @@ Giải pháp thực tế, bám sát thuật toán mới nhất giúp bạn tăng
 
 📌 TIMESTAMPS (CHƯƠNG VIDEO)
 00:00 — Giới thiệu & Vấn đề cốt lõi
-{f"00:{int(video_duration*0.3):02d}"} — Phân tích kỹ thuật chuyên sâu
-{f"00:{int(video_duration*0.6):02d}"} — Ứng dụng & Case Study
-{f"00:{int(video_duration*0.9):02d}"} — Tổng kết & Giải pháp
+{_mmss(video_duration*0.3)} — Phân tích kỹ thuật chuyên sâu
+{_mmss(video_duration*0.6)} — Ứng dụng & Case Study
+{_mmss(video_duration*0.9)} — Tổng kết & Giải pháp
 
 🔗 TÀI NGUYÊN HỮU ÍCH
 - Website chính thức: https://seosona.com
@@ -47,7 +63,16 @@ Giải pháp thực tế, bám sát thuật toán mới nhất giúp bạn tăng
 """
 
     # 4. Tags (Phân bổ theo đối thủ & biến thể)
-    tags = list(set(keywords + lsi_keywords))[:15]
+    # Order-preserving, case-insensitive dedupe — PRIMARY keywords first. A plain list(set(...)) reorders by
+    # hash, so the primary keyword could be buried past the 15-tag cap or dropped entirely; YouTube weights
+    # earlier tags, so order matters for discovery.
+    seen, tags = set(), []
+    for kw in keywords + lsi_keywords:
+        k = (kw or "").strip()
+        if k and k.lower() not in seen:
+            seen.add(k.lower())
+            tags.append(k)
+    tags = tags[:15]
 
     # 5. Hashtags (Tối đa 3 cho Title)
     hashtags = [f"#{kw.replace(' ', '')}" for kw in keywords[:3]]
@@ -88,9 +113,15 @@ def generate_tiktok_metadata(hook_text, keywords):
     hashtags = [f"#{kw.replace(' ', '')}" for kw in keywords[:5]]
     hashtags += ["#seosona", "#seo", "#digitalmarketing", "#tips"]
 
-    # Áp dụng Hook trực tiếp vào caption
-    caption = f"🚨 {hook_text}\n\n👉 Click link ở Bio để tìm hiểu thêm!\n\n{' '.join(hashtags)}"
-    if len(caption) > 150:
-        caption = caption[:147] + "..."
+    # Áp dụng Hook trực tiếp vào caption. Truncate only the HOOK, never the tail — the OLD code capped the
+    # WHOLE caption (and at a wrong 150 vs TikTok's ~2200), which sliced the hashtags off the end and killed
+    # discovery. Reserve room for the CTA + hashtags so they always survive.
+    tail = f"\n\n👉 Click link ở Bio để tìm hiểu thêm!\n\n{' '.join(hashtags)}"
+    max_len = 2200                                    # TikTok / Reels caption limit
+    hook = hook_text.strip()
+    room = max_len - len(tail) - 2                    # 2 = "🚨 " prefix
+    if len(hook) > room:
+        hook = hook[:max(0, room - 3)].rstrip() + "..."
+    caption = f"🚨 {hook}{tail}"
 
     return {"caption": caption, "hashtags": hashtags}

@@ -58,7 +58,10 @@ def group_words_to_segments(word_level_data, max_words=7, max_duration=2.5):
         word_text = w["word"]
         duration = current_segment[-1]["end"] - current_segment[0]["start"]
         
-        has_punctuation = any(mark in word_text for mark in punctuation_marks)
+        # break on punctuation at the END of the word (a real sentence/clause boundary), NOT anywhere in it:
+        # a bare `'.' in word` split on VN numbers ("1.000.000" thousands-sep, "3.5" decimal, "10:30" time),
+        # fragmenting number-heavy captions mid-phrase.
+        has_punctuation = word_text.rstrip().endswith(tuple(punctuation_marks))
         too_long = len(current_segment) >= max_words
         too_slow = duration >= max_duration
         

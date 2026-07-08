@@ -1,193 +1,2316 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEOSONA Nightingale Dashboard</title>
-    <style>
-        :root {
-            --bg-dark: #0f172a;
-            --panel-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-green: #10b981;
-            --accent-blue: #3b82f6;
-            --accent-purple: #8b5cf6;
-            --danger: #ef4444;
-        }
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            margin: 0;
-            padding: 2rem;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 1rem;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            font-weight: 600;
-            background: linear-gradient(to right, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .status-badge {
-            margin-left: auto;
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--accent-green);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .card {
-            background: var(--panel-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border: 1px solid #334155;
-        }
-        .card h3 {
-            margin: 0 0 0.5rem 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .card .value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 0;
-        }
-        .val-green { color: var(--accent-green); }
-        .val-blue { color: var(--accent-blue); }
-        .val-purple { color: var(--accent-purple); }
-        
-        .queues-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-        @media (max-width: 768px) {
-            .queues-container { grid-template-columns: 1fr; }
-        }
-        .list-box {
-            background: var(--panel-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid #334155;
-        }
-        .list-box h3 { margin-top: 0; color: var(--text-main); }
-        ul { list-style: none; padding: 0; margin: 0; }
-        li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #334155;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-        }
-        li:last-child { border-bottom: none; }
-        .cat-badge {
-            background: #334155;
-            color: var(--text-main);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin-right: 10px;
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#2A5BDA"/>
+<meta name="description" content="SEOSONA Video Factory — App Dashboard v4.0"/>
+<title>SEOSONA Video</title>
+<script>
+  const savedTheme = localStorage.getItem('seosona-theme') || 'light';  // default = light (brand); 🌓 toggles dark
+  document.documentElement.setAttribute('data-theme', savedTheme);
+</script>
+<link rel="icon" href="/static/icon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/seosona-dashboard.css">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="header">
-        <h1>Nightingale Monitor</h1>
-        <div class="status-badge">● System Online</div>
+<div class="app-shell">
+
+<!-- ══════════════════════════════════════════════
+     TITLEBAR
+══════════════════════════════════════════════════ -->
+<div class="titlebar">
+  <div class="tb-breadcrumb">
+    <span class="tb-workspace" style="font-weight:700;color:var(--slate)">SEOSONA OS</span>
+    <span class="tb-sep" style="margin:0 8px;color:var(--border)">/</span>
+    <span class="tb-crumb" id="tbViewCrumb" onclick="openCmdPalette()">Overview</span>
+  </div>
+  <div class="tb-spacer"></div>
+  <div class="tb-actions">
+    <div class="tb-clock" id="tbClock"></div>
+    <div class="tb-icon-btn" id="btnThemeToggle" title="Toggle Theme" onclick="toggleTheme()">🌓</div>
+    <div class="tb-icon-btn" id="btnCmdPalette" title="Command Palette (Ctrl+K)">🔍</div>
+    <div class="tb-icon-btn" id="btnTermToggle" title="Terminal (Ctrl+J)">⌨️</div>
+    <div class="tb-icon-btn" style="position:relative" id="btnNotif" title="Notifications">
+      🔔<div class="badge-dot" id="notifDot" style="position:absolute;top:5px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--coral);border:2px solid var(--white);display:none"></div>
+      <div class="notif-panel" id="notifPanel">
+        <div class="notif-hd"><h3>Notifications</h3><button class="btn xs" id="btnClearNotif">Clear</button></div>
+        <div id="notifList"><div class="empty" style="padding:16px">Chưa có thông báo</div></div>
+      </div>
+    </div>
+    <div class="tb-btn" id="btnRefreshBrain" title="Refresh Knowledge Graph">↻ Refresh</div>
+    <div class="tb-status" id="tbStatus"><span class="dot"></span><span id="tbStatusText">online</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     APP BODY
+══════════════════════════════════════════════════ -->
+<div class="app-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="drag-handle" id="dragHandle"></div>
+    <div class="sb-head">
+      <div class="sb-logo" style="background:none;box-shadow:none;width:auto;height:24px;padding:0;"><img src="/static/logo.png" style="height:100%;width:auto;object-fit:contain;" alt="SEOSONA" /></div>
+      <div class="sb-status-dot" id="sbDot"></div>
+      <button class="sb-toggle" id="btnToggleSidebar" title="Toggle Sidebar">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+      </button>
+    </div>
+    <div class="sb-body">
+      <div class="sb-section">Factory</div>
+      <div class="sb-navlink active" data-view="overview" data-tip="Overview">
+        <span class="sb-icon">▦</span><span class="sb-label">Overview</span>
+      </div>
+      <div class="sb-navlink" data-view="studio" data-tip="Studio — create a video">
+        <span class="sb-icon">🎬</span><span class="sb-label">Studio</span>
+        <span class="sb-badge" id="studioBadge">＋</span>
+      </div>
+      <div class="sb-navlink" data-view="pipeline" data-tip="Pipeline — production DAG">
+        <span class="sb-icon">🔀</span><span class="sb-label">Pipeline</span>
+      </div>
+      <div class="sb-navlink" data-view="analytics" data-tip="Analytics">
+        <span class="sb-icon">📊</span><span class="sb-label">Analytics</span>
+      </div>
+      <div class="sb-navlink" data-view="factory" data-tip="Factory">
+        <span class="sb-icon">🏭</span><span class="sb-label">Factory</span>
+      </div>
+      <div class="sb-navlink" data-view="library" data-tip="Library">
+        <span class="sb-icon">🎞</span><span class="sb-label">Library</span>
+        <span class="sb-badge" id="libBadge">—</span>
+      </div>
+      <div class="sb-navlink" data-view="queue" data-tip="Queue">
+        <span class="sb-icon">📋</span><span class="sb-label">Queue</span>
+        <span class="sb-badge" id="queueBadge">0</span>
+      </div>
+      <div class="sb-navlink" data-view="activity" data-tip="Activity">
+        <span class="sb-icon">⚡</span><span class="sb-label">Activity</span>
+        <span class="sb-badge" id="actBadge">—</span>
+      </div>
+      <div class="sb-section">Intelligence</div>
+      <div class="sb-navlink" data-view="knowledge" data-tip="Knowledge">
+        <span class="sb-icon">🧠</span><span class="sb-label">Knowledge</span>
+      </div>
+      <div class="sb-navlink" data-view="learning" data-tip="Learning">
+        <span class="sb-icon">📈</span><span class="sb-label">Learning</span>
+      </div>
+      <div class="sb-navlink" data-view="templates" data-tip="Templates">
+        <span class="sb-icon">🎨</span><span class="sb-label">Templates</span>
+        <span class="sb-badge" id="tplBadge">—</span>
+      </div>
+      <div class="sb-navlink" data-view="systemmap" data-tip="System Map">
+        <span class="sb-icon">🕸</span><span class="sb-label">System Map</span>
+      </div>
+      <div class="sb-section">System</div>
+      <div class="sb-navlink" data-view="health" data-tip="Health">
+        <span class="sb-icon">🩺</span><span class="sb-label">Health</span>
+        <span class="sb-badge" id="healthBadge">OK</span>
+      </div>
+      <div class="sb-navlink" data-view="kanban" data-tip="Kanban Board">
+        <span class="sb-icon">🗃</span><span class="sb-label">Kanban</span>
+        <span class="sb-badge" id="kbBadge">—</span>
+      </div>
+      <div class="sb-navlink" data-view="preview" data-tip="Preview Lab">
+        <span class="sb-icon">🧪</span><span class="sb-label">Preview Lab</span>
+      </div>
+      <div class="sb-navlink" data-view="tasks" data-tip="Tasks">
+        <span class="sb-icon">✅</span><span class="sb-label">Tasks</span>
+        <span class="sb-badge" id="tasksBadge">—</span>
+      </div>
+      <div class="sb-navlink" data-view="projects" data-tip="Projects">
+        <span class="sb-icon">📁</span><span class="sb-label">Projects</span>
+        <span class="sb-badge" id="projBadge">—</span>
+      </div>
+      <div class="sb-navlink" data-view="commands" data-tip="Commands">
+        <span class="sb-icon">⌨️</span><span class="sb-label">Commands</span>
+      </div>
+      <div class="sb-navlink" data-view="wiki" data-tip="Wiki">
+        <span class="sb-icon">📖</span><span class="sb-label">Wiki</span>
+      </div>
+      <div class="sb-navlink" data-view="brand" data-tip="Brand Kit">
+        <span class="sb-icon">🎭</span><span class="sb-label">Brand Kit</span>
+      </div>
+      <div class="sb-navlink" data-view="settings" data-tip="Settings">
+        <span class="sb-icon">⚙️</span><span class="sb-label">Settings</span>
+      </div>
+    </div>
+    <div class="sb-foot">
+      <button class="btn primary w-full" id="btnSBRefresh">↻ <span class="sb-foot-text">Refresh Brain</span></button>
+      <div id="brainStamp" class="hint"></div>
+    </div>
+  </aside>
+
+  <!-- WORKSPACE -->
+  <div class="workspace">
+
+    <!-- Panel Tabs -->
+    <div class="panel-tabs" id="panelTabs"></div>
+
+    <!-- Panel Content -->
+    <div class="panel-content" id="panelContent">
+
+      <!-- ════════════════ VIEW: OVERVIEW ════════════════ -->
+      <div class="view active" id="view-overview">
+        <div class="grid kpis mb-16" id="kpis"></div>
+        <div class="grid cols-2 mb-14">
+          <div class="card card-blue">
+            <div class="card-header"><h2>🎬 Recent Renders</h2><div class="flex gap-8 items-center"><span class="pill info" id="rrCount">—</span><button class="btn xs" onclick="navigateTo('library')">Library →</button></div></div>
+            <div class="table-wrap table-scroll" id="recentRenders"><div class="empty-state"><div class="es-icon">🎬</div><div class="es-title">Loading…</div></div></div>
+          </div>
+          <div class="card card-coral">
+            <div class="card-header"><h2>📋 Queue Status</h2><button class="btn xs" onclick="navigateTo('queue')">Manage →</button></div>
+            <div id="queueBox"><div class="empty-state"><div class="es-icon">📋</div><div class="es-title">Loading…</div></div></div>
+            <div class="divider"></div>
+            <div class="card-header mt-4"><h2>🔄 Queue Runs</h2><span class="pill mut" id="qrunCount">—</span></div>
+            <div class="table-wrap" id="queueRuns"><div class="empty">Loading…</div></div>
+          </div>
+        </div>
+        <div class="card mb-14">
+          <div class="card-header"><h2>🔧 Production Pipeline</h2><span class="pill mut">Standard Flow</span></div>
+          <div class="pipeline" id="pipelineView"></div>
+          <div class="hint mt-10">Luồng sản xuất chuẩn SEOSONA · trạng thái từ events.jsonl · STEP 1→8</div>
+        </div>
+      </div>
+
+      <!-- ════════════════ VIEW: ANALYTICS ════════════════ -->
+      <div class="view" id="view-analytics">
+        <div class="section-head"><div class="section-title">Analytics</div><div class="section-sub">Thống kê sản xuất, chất lượng theo thời gian, cấu trúc hệ thống</div></div>
+        <div class="grid kpis-sm mb-16" id="sysKpis"></div>
+        <div class="grid cols-2 mb-14">
+          <div class="card card-blue">
+            <div class="card-header"><h2>📊 Daily Render Volume</h2><span class="pill info" id="trendDays">30 ngày</span></div>
+            <div style="height: 160px; padding: 10px"><canvas id="chartBar"></canvas></div>
+          </div>
+          <div class="card card-green">
+            <div class="card-header"><h2>📈 Quality Score Trend</h2><span class="pill ok">Avg score/day</span></div>
+            <div style="height: 160px; padding: 10px"><canvas id="chartLine"></canvas></div>
+          </div>
+        </div>
+        <div class="grid cols-3">
+          <div class="card card-purple"><div class="card-header"><h2>📚 Knowledge Base</h2></div><div id="kbStats"><div class="empty">Loading…</div></div></div>
+          <div class="card card-teal"><div class="card-header"><h2>🤖 Agents Roster</h2></div><div id="agentStats"><div class="empty">Loading…</div></div></div>
+          <div class="card card-amber"><div class="card-header"><h2>🧠 Brain Engine</h2></div><div id="brainStats"><div class="empty">Loading…</div></div></div>
+        </div>
+      </div>
+
+      <!-- ════════════════ VIEW: FACTORY ════════════════ -->
+      <div class="view" id="view-factory">
+        <div class="section-head"><div class="section-title">Factory Control</div><div class="section-sub">Sản xuất video, enqueue, scoreboard template, và production log</div></div>
+        <div class="card card-green mb-14">
+          <div class="card-header"><h2>➕ Enqueue Video</h2><div class="flex gap-8 items-center"><span class="pill ok">Guarded</span></div></div>
+          <div class="enqueue">
+            <select class="search-input" id="enqCat" style="max-width:190px">
+              <option value="news_videos">📰 news_videos</option>
+              <option value="course_videos">📚 course_videos</option>
+              <option value="carousels">🖼 carousels</option>
+              <option value="thumbnails">🖼 thumbnails</option>
+            </select>
+            <input class="search-input" id="enqItem" placeholder="GitHub URL hoặc chủ đề video…" style="flex:1;min-width:180px"/>
+            <button class="btn primary" id="btnEnqueue">+ Enqueue</button>
+          </div>
+          <div class="hint" id="enqMsg"></div>
+        </div>
+        <div class="tabs">
+          <div class="tab active" data-tab="factory-scores">🏆 Template Scores</div>
+          <div class="tab" data-tab="factory-log">📝 Production Log</div>
+        </div>
+        <div class="tab-panel active" id="factory-scores">
+          <div class="card">
+            <div class="card-header"><h2>Template Scoreboard</h2><div class="flex gap-8 items-center"><input class="search-input" id="scoreSearch" placeholder="Search…" style="max-width:220px;min-height:32px;padding:6px 14px;font-size:12px"/><span class="pill info" id="templateCount">—</span></div></div>
+            <div class="table-wrap" id="templateScores"><div class="empty-state"><div class="es-icon">📊</div><div class="es-title">Loading…</div></div></div>
+          </div>
+        </div>
+        <div class="tab-panel" id="factory-log">
+          <div class="card">
+            <div class="card-header"><h2>Production Log</h2><div class="flex gap-8 items-center"><input class="search-input" id="logSearch" placeholder="Search…" style="max-width:220px;min-height:32px;padding:6px 14px;font-size:12px"/><span class="pill warn" id="prodCount">—</span></div></div>
+            <div class="table-wrap table-scroll" id="factoryRows"><div class="empty-state"><div class="es-icon">🏭</div><div class="es-title">Loading…</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════════ VIEW: LIBRARY ════════════════ -->
+      <div class="view" id="view-library">
+        <div class="section-head"><div class="section-title">Video Library</div><div class="section-sub">Tất cả MP4 đã render trong 8_WORKSPACE</div></div>
+        <div class="rowbar">
+          <div class="search-wrap" style="flex:1;max-width:340px"><span class="si-ic">🔍</span><input class="search-input" id="libSearch" placeholder="Tìm video…"/></div>
+          <div class="flex gap-8 items-center"><span class="pill info" id="libTotal">0 videos</span><button class="btn sm" id="btnRefreshLib">↻ Refresh</button></div>
+        </div>
+        <div class="lib-grid mt-12" id="libGrid"><div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🎞</div><div class="es-title">Loading…</div></div></div>
+      </div>
+
+      <!-- ════════════════ VIEW: QUEUE ════════════════ -->
+      <div class="view" id="view-queue">
+        <div class="section-head"><div class="section-title">Production Queue</div><div class="section-sub">Xem, thêm và quản lý hàng đợi sản xuất</div></div>
+        <div class="grid cols-2 mb-14">
+          <div class="card card-blue"><div class="card-header"><h2>📥 Queue Categories</h2><button class="btn xs" id="btnRefreshQueue">↻</button></div><div id="queueDetailBox"><div class="empty">Loading…</div></div></div>
+          <div class="card card-green"><div class="card-header"><h2>✅ Done Files</h2><span class="pill ok" id="doneCountBadge">—</span></div><div id="doneFilesBox" style="max-height:300px;overflow-y:auto"><div class="empty">Loading…</div></div></div>
+        </div>
+        <div class="card card-coral">
+          <div class="card-header"><h2>➕ Add to Queue</h2></div>
+          <div class="enqueue">
+            <select class="search-input" id="enqCat2" style="max-width:190px">
+              <option value="news_videos">📰 news_videos</option>
+              <option value="course_videos">📚 course_videos</option>
+              <option value="carousels">🖼 carousels</option>
+              <option value="thumbnails">🖼 thumbnails</option>
+            </select>
+            <input class="search-input" id="enqItem2" placeholder="GitHub URL hoặc chủ đề…" style="flex:1"/>
+            <button class="btn primary" id="btnEnqueue2">+ Add</button>
+          </div>
+          <div class="hint" id="enqMsg2"></div>
+        </div>
+      </div>
+
+      <!-- ════════════════ VIEW: STUDIO (create) ════════════════ -->
+      <div class="view" id="view-studio">
+        <div class="section-head"><div class="section-title">🎬 Studio — Create a Video</div><div class="section-sub">GitHub repo → video có thương hiệu (dùng engine make_video). Chạy nền, xem tiến độ + preview bên dưới.</div></div>
+        <div class="grid cols-2 mb-14">
+          <div class="card card-blue">
+            <div class="card-header"><h2>➕ New Video</h2></div>
+            <div class="flex gap-8" style="flex-wrap:wrap;align-items:flex-end">
+              <div style="flex:1;min-width:220px">
+                <label class="hint">GitHub repo (owner/name hoặc URL)</label>
+                <input class="search-input" id="stTarget" placeholder="vd: msitarzewski/agency-agents" style="width:100%"/>
+              </div>
+              <div>
+                <label class="hint">Template</label>
+                <select class="search-input" id="stTemplate" style="min-width:160px"><option value="">(auto)</option></select>
+              </div>
+              <div>
+                <label class="hint">Tỷ lệ</label>
+                <select class="search-input" id="stAspect" style="min-width:110px">
+                  <option value="">(template)</option><option value="9:16">9:16</option><option value="16:9">16:9</option><option value="1:1">1:1</option>
+                </select>
+              </div>
+              <button class="btn primary" id="btnStGenerate">🎬 Generate</button>
+            </div>
+            <div class="flex gap-8 items-center" style="margin-top:10px">
+              <label class="toggle"><input type="checkbox" id="stDry"><div class="toggle-track"></div>Dry-run (test, không render thật)</label>
+            </div>
+            <div class="hint" id="stMsg"></div>
+          </div>
+          <div class="card card-green">
+            <div class="card-header"><h2>👁 Preview</h2><span class="pill mut" id="stPreviewLabel">—</span></div>
+            <div id="stPreview"><div class="empty">Chọn một job đã xong để xem video.</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h2>🧾 Jobs</h2><button class="btn xs" id="btnStRefresh">↻</button></div>
+          <div id="stJobs"><div class="empty">Loading…</div></div>
+        </div>
+      </div>
+
+      <!-- ════════════════ VIEW: ACTIVITY ════════════════ -->
+      <div class="view" id="view-activity">
+        <div class="section-head"><div class="section-title">Live Activity Feed</div><div class="section-sub">Flight recorder — render / quality / publish (auto-refresh)</div></div>
+        <div class="rowbar mb-12">
+          <div class="flex gap-8 items-center">
+            <label class="toggle"><input type="checkbox" id="autoFeed" checked><div class="toggle-track"></div>Auto-refresh</label>
+            <button class="btn sm" id="btnLoadEvents">↻ Reload</button>
+          </div>
+          <div class="flex gap-8 items-center">
+            <span class="pill info" id="evTotal">—</span>
+            <select class="search-input" id="evFilter" style="max-width:150px;min-height:32px;padding:5px 14px;font-size:12px">
+              <option value="">All events</option>
+              <option value="render">🎬 render</option>
+              <option value="quality">✅ quality</option>
+              <option value="publish">📤 publish</option>
+              <option value="error">⛔ error</option>
+            </select>
+          </div>
+        </div>
+        <div class="card"><div id="eventFeed"><div class="empty-state"><div class="es-icon">⚡</div><div class="es-title">Loading…</div></div></div></div>
+      </div>
+
+      <!-- ════════════════ VIEW: KNOWLEDGE ════════════════ -->
+      <div class="view" id="view-knowledge">
+        <div class="section-head"><div class="section-title">Second Brain — Knowledge Recall</div><div class="section-sub">Truy vấn 680+ knowledge items từ các repo đã ingest</div></div>
+        <div class="search-wrap mb-14"><span class="si-ic">🧠</span><input class="search-input" id="recallInput" placeholder="Gõ chủ đề… transition, voice clone, SEO title, capcut, thumbnail…"/></div>
+        <div class="tabs">
+          <div class="tab active" data-tab="recall-results">🔍 Recall Results</div>
+          <div class="tab" data-tab="recall-graph">📊 Graph Health</div>
+        </div>
+        <div class="tab-panel active" id="recall-results">
+          <div id="recallResults"><div class="empty-state"><div class="es-icon">🧠</div><div class="es-title">Gõ chủ đề để truy vấn</div><div class="es-sub">680+ knowledge items</div></div></div>
+        </div>
+        <div class="tab-panel" id="recall-graph">
+          <div class="grid cols-3 mb-14" id="graphHealthKpis"></div>
+          <div class="card"><div class="card-header"><h2>Orphan Nodes</h2></div><div id="orphanList"><div class="empty">Loading…</div></div></div>
+        </div>
+      </div>
+
+      <!-- ════════════════ VIEW: LEARNING ════════════════ -->
+      <div class="view" id="view-learning">
+        <div class="section-head"><div class="section-title">Factory Learning Loop</div><div class="section-sub">Effect ↔ điểm chất lượng, HOT_LEARNINGS, angles đã sản xuất</div></div>
+        <div class="card card-blue mb-14">
+          <div class="card-header"><h2>⚙️ Effect Performance</h2><div class="flex gap-8 items-center"><span class="pill info" id="fxCount">—</span><select class="search-input" id="fxSort" style="max-width:150px;min-height:32px;padding:5px 14px;font-size:12px"><option value="score">Sort: Score</option><option value="n">Sort: Count</option></select></div></div>
+          <div class="hint mb-10">"few samples" = chưa đủ tin cậy (cần ≥5 renders)</div>
+          <div class="table-wrap" id="learnedBox"><div class="empty-state"><div class="es-icon">📊</div><div class="es-title">Loading…</div></div></div>
+        </div>
+        <div class="grid cols-2">
+          <div class="card card-coral"><div class="card-header"><h2>🔥 HOT_LEARNINGS</h2><span class="pill coral">Self-analysis</span></div><div id="hotLearn" style="max-height:440px;overflow-y:auto"><div class="empty-state"><div class="es-icon">🔥</div><div class="es-title">Loading…</div></div></div></div>
+          <div class="card card-green"><div class="card-header"><h2>🎯 Recent Angles</h2><span class="pill ok" id="angleCount">—</span></div><div class="table-wrap" id="anglesBox"><div class="empty-state"><div class="es-icon">🎯</div><div class="es-title">Loading…</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- ════════════════ VIEW: TEMPLATES ════════════════ -->
+      <div class="view" id="view-templates">
+        <div class="section-head"><div class="section-title">Scene Templates</div><div class="section-sub">22 JSON scene-structure templates trong 7_ASSETS/templates/ — cho native_composer</div></div>
+        <div class="rowbar mb-14">
+          <div class="search-wrap" style="flex:1;max-width:300px"><span class="si-ic">🔍</span><input class="search-input" id="tplSearch" placeholder="Tìm template…"/></div>
+          <span class="pill info" id="tplTotal">—</span>
+        </div>
+        <div class="grid cols-3" id="tplGrid"><div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🎨</div><div class="es-title">Loading…</div></div></div>
+      </div>
+
+      <!-- ════════════════ VIEW: SYSTEM MAP ════════════════ -->
+      <!-- ════════════════ VIEW: PIPELINE (production DAG) ════════════════ -->
+      <div class="view" id="view-pipeline">
+        <div class="section-head">
+          <div class="section-title">Production Pipeline</div>
+          <div class="section-sub">Dây chuyền sản xuất mô tả bằng DATA (4_BRAIN/pipeline_dag) — mỗi node một stage, chạy theo thứ tự phụ thuộc. Click để xem chi tiết.</div>
+        </div>
+        <div class="map-canvas-container">
+          <div class="graph-floating-toolbar">
+            <button class="btn sm" id="btnFitPipeline">Fit View</button>
+            <span id="pipelineStats" class="hint ml-8" style="font-size:11px;"></span>
+          </div>
+          <div id="pipelineGraph" style="width:100%;height:100%"></div>
+          <div class="node-inspector" id="pipeInspector">
+            <div class="ni-header">
+              <div>
+                <div class="ni-title" id="pipTitle">Stage</div>
+                <div class="ni-group" id="pipKind">KIND</div>
+              </div>
+              <div class="ni-close" id="pipClose" title="Đóng">✕</div>
+            </div>
+            <div class="ni-body">
+              <div class="ni-section-title">Mô tả</div>
+              <div id="pipNote" class="muted small" style="line-height:1.5;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="view" id="view-systemmap">
+        <div class="section-head">
+          <div class="section-title">System Architecture Map</div>
+          <div class="section-sub">Đồ thị kiến trúc lõi — kéo, zoom, click để xem chi tiết</div>
+        </div>
+        <div class="map-canvas-container">
+          <div class="graph-floating-toolbar">
+            <div class="search-wrap" style="width:240px; margin:0;"><span class="si-ic">🔍</span><input class="search-input" id="graphSearch" placeholder="Tìm node…"/></div>
+            <button class="btn sm" id="btnFitGraph">Fit View</button>
+            <a href="/systemmap" target="_blank" class="btn sm">Full ↗</a>
+            <span id="graphStats" class="hint ml-8" style="font-size:11px;"></span>
+          </div>
+          <div id="graph" style="width:100%;height:100%"></div>
+          
+          <!-- Node Inspector Side Panel -->
+          <div class="node-inspector" id="nodeInspector">
+            <div class="ni-header">
+              <div>
+                <div class="ni-title" id="niTitle">Node Name</div>
+                <div class="ni-group" id="niGroup">GROUP</div>
+              </div>
+              <div class="ni-close" id="niClose" title="Đóng">✕</div>
+            </div>
+            <div class="ni-body">
+              <div class="ni-section-title">Kết nối (Edges)</div>
+              <div class="ni-conn-list" id="niConnList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════════ VIEW: HEALTH ════════════════ -->
+      <div class="view" id="view-health">
+        <div class="section-head"><div class="section-title">System Health & Integrity</div><div class="section-sub">Broken refs · orphans · duplicates · stale files</div></div>
+        <div class="rowbar mb-14"><div></div><button class="btn coral" id="btnReAudit">🩺 Re-audit System</button></div>
+        <div class="grid kpis mb-16" id="healthKpis"></div>
+        <div class="grid cols-2" id="healthDetails"></div>
+      </div>
+
+      <!-- ════════════════ VIEW: COMMANDS ════════════════ -->
+      <div class="view" id="view-commands">
+        <div class="section-head"><div class="section-title">Quick Commands</div><div class="section-sub">Tất cả npm scripts từ package.json — click để copy lệnh vào terminal</div></div>
+        <div id="npmGroups"></div>
+      </div>
+
+      <!-- ════════════════ VIEW: WIKI ════════════════ -->
+      <div class="view" id="view-wiki">
+        <div class="wiki-layout">
+          <!-- Left nav (grouped) -->
+          <nav class="wiki-nav" id="wikiNav">
+            <div class="wiki-nav-title">📖 SEOSONA Wiki</div>
+            <div class="wiki-nav-group">
+              <div class="wiki-nav-group-label">CORE</div>
+              <div class="wiki-nav-item active" data-sec="wiki-overview"><span class="wni-ic">📐</span> Big Picture</div>
+              <div class="wiki-nav-item" data-sec="wiki-engines"><span class="wni-ic">⚙️</span> Render Engines</div>
+              <div class="wiki-nav-item" data-sec="wiki-pipeline"><span class="wni-ic">✍️</span> Script Pipeline</div>
+              <div class="wiki-nav-item" data-sec="wiki-masterop"><span class="wni-ic">🏭</span> Master Operation</div>
+              <div class="wiki-nav-item" data-sec="wiki-effects"><span class="wni-ic">🎭</span> Effect Library</div>
+              <div class="wiki-nav-item" data-sec="wiki-loop"><span class="wni-ic">🔄</span> Learning Loop</div>
+            </div>
+            <div class="wiki-nav-group">
+              <div class="wiki-nav-group-label">REFERENCE</div>
+              <div class="wiki-nav-item" data-sec="wiki-agents"><span class="wni-ic">🤖</span> Agents & Skills</div>
+              <div class="wiki-nav-item" data-sec="wiki-templates"><span class="wni-ic">🎨</span> Templates</div>
+              <div class="wiki-nav-item" data-sec="wiki-api"><span class="wni-ic">🔌</span> API Reference</div>
+              <div class="wiki-nav-item" data-sec="wiki-npm"><span class="wni-ic">⌨️</span> NPM Commands</div>
+              <div class="wiki-nav-item" data-sec="wiki-dirs"><span class="wni-ic">📂</span> Directory Ref</div>
+            </div>
+          </nav>
+          <!-- Right body -->
+          <div class="wiki-body" id="wikiBody">
+            <div class="wiki-progress"><div class="wiki-progress-fill" id="wikiProgressFill"></div></div>
+            <div class="wiki-article" id="wikiArticle"></div>
+          </div>
+        </div>
+        <!-- Floating TOC minimap -->
+        <div class="wiki-toc" id="wikiToc"></div>
+      </div>
+
+      <!-- ════════════════ VIEW: BRAND ════════════════ -->
+      <div class="view" id="view-brand">
+        <div class="section-head"><div class="section-title">Brand Kit</div><div class="section-sub">Màu sắc, typography, CTA constants — nguồn: brand_kit.py + DESIGN.md</div></div>
+        <div class="card card-blue mb-14"><div class="card-header"><h2>🎨 Brand Palette</h2><span class="pill info">click để copy hex</span></div><div class="swatch-grid" id="brandSwatches"></div></div>
+        <div class="grid cols-2 mb-14">
+          <div class="card card-coral"><div class="card-header"><h2>🏷 Semantic Roles</h2></div><div id="brandRoles"></div></div>
+          <div class="card card-amber"><div class="card-header"><h2>✍️ Typography</h2></div><div id="brandTypo"></div></div>
+        </div>
+        <div class="card card-green"><div class="card-header"><h2>📢 CTA Copy</h2><span class="pill ok">CTA constants</span></div><div id="brandCTA"></div></div>
+      </div>
+
+      <!-- ════════════════ VIEW: SETTINGS ════════════════ -->
+      <div class="view" id="view-settings">
+        <div class="section-head"><div class="section-title">Settings</div><div class="section-sub">Tuỳ chỉnh dashboard — giao diện, polling, mặc định</div></div>
+        <div class="grid cols-2">
+          <div class="card">
+            <div class="settings-section">
+              <h3>🖥 Display</h3>
+              <div class="setting-row">
+                <div><div class="setting-label">Sidebar State</div><div class="setting-desc">Expanded / Icons / Hidden</div></div>
+                <div class="flex gap-8">
+                  <button class="btn xs" onclick="setSidebar('expanded')">Full</button>
+                  <button class="btn xs" onclick="setSidebar('icons')">Icons</button>
+                  <button class="btn xs" onclick="setSidebar('hidden')">Hide</button>
+                </div>
+              </div>
+              <div class="setting-row">
+                <div><div class="setting-label">Default View</div><div class="setting-desc">View mở khi load dashboard</div></div>
+                <select class="search-input" id="settingDefaultView" style="max-width:160px;min-height:32px;padding:5px 14px;font-size:12px"></select>
+              </div>
+              <div class="setting-row">
+                <div><div class="setting-label">Terminal Height</div><div class="setting-desc">Chiều cao terminal drawer</div></div>
+                <select class="search-input" id="settingTermH" style="max-width:120px;min-height:32px;padding:5px 14px;font-size:12px">
+                  <option value="240">240px</option>
+                  <option value="290" selected>290px</option>
+                  <option value="380">380px</option>
+                  <option value="460">460px</option>
+                </select>
+              </div>
+            </div>
+            <div class="settings-section">
+              <h3>🔄 Polling & Refresh</h3>
+              <div class="setting-row">
+                <div><div class="setting-label">Auto-refresh Interval</div><div class="setting-desc">Polling interval (giây)</div></div>
+                <select class="search-input" id="settingPoll" style="max-width:120px;min-height:32px;padding:5px 14px;font-size:12px">
+                  <option value="5">5s</option>
+                  <option value="10" selected>10s</option>
+                  <option value="30">30s</option>
+                  <option value="60">60s</option>
+                </select>
+              </div>
+              <div class="setting-row">
+                <div><div class="setting-label">Activity Auto-feed</div><div class="setting-desc">Tự động reload activity</div></div>
+                <label class="toggle"><input type="checkbox" id="settingAutoFeed" checked><div class="toggle-track"></div></label>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="settings-section">
+              <h3>🔔 Notifications</h3>
+              <div class="setting-row">
+                <div><div class="setting-label">Health Alerts</div><div class="setting-desc">Thông báo khi phát hiện issues</div></div>
+                <label class="toggle"><input type="checkbox" id="settingHealthAlert" checked><div class="toggle-track"></div></label>
+              </div>
+              <div class="setting-row">
+                <div><div class="setting-label">Enqueue Confirm</div><div class="setting-desc">Thông báo khi enqueue thành công</div></div>
+                <label class="toggle"><input type="checkbox" id="settingEnqAlert" checked><div class="toggle-track"></div></label>
+              </div>
+            </div>
+            <div class="settings-section">
+              <h3>🔧 System</h3>
+              <div class="setting-row">
+                <div><div class="setting-label">Process Monitor</div><div class="setting-desc">Hiện trạng thái process (Python/Node)</div></div>
+                <div id="procStatus"><div class="empty" style="padding:8px">Loading…</div></div>
+              </div>
+              <div class="setting-row">
+                <div><div class="setting-label">Export Metrics</div><div class="setting-desc">Tải xuống dữ liệu metrics dạng JSON</div></div>
+                <button class="btn sm" onclick="exportMetrics()">📥 Export</button>
+              </div>
+              <div class="setting-row">
+                <div><div class="setting-label">Dashboard Version</div></div>
+                <span class="pill info xs">v4.0.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ VIEW: KANBAN ════════ -->
+      <div class="view" id="view-kanban">
+        <div class="section-head">
+          <div class="section-title">🗃 Production Kanban</div>
+          <div class="section-sub">Pipeline board — kéo thả cards để cập nhật trạng thái sản xuất</div>
+        </div>
+        <div class="rowbar mb-14">
+          <div class="flex gap-8 items-center">
+            <span class="pill info" id="kbTotal">—</span>
+            <button class="btn sm" id="btnRefreshKb">↻ Refresh</button>
+          </div>
+          <div class="flex gap-12 items-center">
+            <label class="toggle"><input type="checkbox" id="kbLiveMode"><div class="toggle-track"></div>Live refresh</label>
+            <select class="search-input" id="kbFilter" style="max-width:160px;min-height:32px;padding:5px 12px;font-size:12px">
+              <option value="">All types</option>
+              <option value="news_videos">📰 News</option>
+              <option value="course_videos">📚 Course</option>
+              <option value="carousels">🖼 Carousels</option>
+              <option value="render">🎬 Renders</option>
+            </select>
+          </div>
+        </div>
+        <div class="kb-board" id="kbBoard"></div>
+      </div>
+
+      <!-- ════════ VIEW: TASKS ════════ -->
+      <div class="view" id="view-tasks">
+        <div class="section-head">
+          <div class="section-title">✅ Task Tracker</div>
+          <div class="section-sub">Recent events as tasks — flight recorder, pipeline steps, QA results</div>
+        </div>
+        <div class="rowbar mb-14">
+          <div class="flex gap-8 items-center">
+            <button class="btn xs" id="btnTaskFilter" data-f="all" onclick="filterTasks('all',this)">All</button>
+            <button class="btn xs" onclick="filterTasks('render',this)">🎬 Renders</button>
+            <button class="btn xs" onclick="filterTasks('quality',this)">✅ QA</button>
+            <button class="btn xs" onclick="filterTasks('publish',this)">📤 Publish</button>
+            <button class="btn xs" onclick="filterTasks('error',this)">⛔ Errors</button>
+          </div>
+          <div class="flex gap-8 items-center">
+            <span class="pill info" id="tasksTotal">—</span>
+            <button class="btn sm" onclick="loadTasks()">↻</button>
+          </div>
+        </div>
+        <div class="grid cols-2 mb-14">
+          <div class="card card-green">
+            <div class="card-header"><h2>📊 Task Summary</h2></div>
+            <div id="taskSummary"></div>
+          </div>
+          <div class="card card-blue">
+            <div class="card-header"><h2>🔥 Hot Queue</h2><span class="pill warn xs" id="hotQCount">—</span></div>
+            <div id="hotQueue"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h2>📋 Task List</h2>
+            <div class="search-wrap" style="max-width:260px"><span class="si-ic">🔍</span><input class="search-input" id="taskSearch" placeholder="Filter tasks…"/></div>
+          </div>
+          <div id="taskList"></div>
+        </div>
+      </div>
+
+      <!-- ════════ VIEW: PROJECTS ════════ -->
+      <div class="view" id="view-projects">
+        <div class="section-head">
+          <div class="section-title">📁 Projects</div>
+          <div class="section-sub">Tất cả project folders trong 8_WORKSPACE — click để xem chi tiết</div>
+        </div>
+        <div class="rowbar mb-14">
+          <div class="search-wrap" style="flex:1;max-width:340px"><span class="si-ic">🔍</span><input class="search-input" id="projSearch" placeholder="Tìm project…"/></div>
+          <div class="flex gap-8 items-center">
+            <span class="pill info" id="projTotal">—</span>
+            <button class="btn sm" id="btnRefreshProj">↻ Refresh</button>
+            <div class="flex gap-4">
+              <button class="btn xs" id="btnProjGrid" onclick="setProjView('grid')" title="Grid">▦</button>
+              <button class="btn xs" id="btnProjList" onclick="setProjView('list')" title="List">≡</button>
+            </div>
+          </div>
+        </div>
+        <div id="projContainer"></div>
+      </div>
+
+      <!-- ════════ VIEW: PREVIEW ════════ -->
+      <div class="view" id="view-preview">
+        <div class="preview-layout">
+          <div class="preview-sidebar">
+            <div class="p-head flex justify-between items-center">
+              Projects <button class="btn info xs" id="btnRefreshPreview">↻</button>
+            </div>
+            <div class="preview-list" id="previewList"><div class="empty">Loading…</div></div>
+          </div>
+          <div class="preview-main">
+            <div class="preview-header">
+              <b id="previewProjectName">Select a project</b>
+              <button class="btn coral" id="btnStartPreview" style="display:none">🚀 Start Preview Server</button>
+            </div>
+            <iframe class="preview-frame" id="previewFrame" src="about:blank"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.panel-content -->
+
+    <!-- TERMINAL DRAWER -->
+    <div class="terminal-drawer" id="terminalDrawer">
+      <div class="terminal-header">
+        <div class="terminal-tabs">
+          <div class="terminal-tab active" id="termTabLog">📋 System Log</div>
+          <div class="terminal-tab" id="termTabProc">⚡ Processes</div>
+        </div>
+        <div class="th-title" id="termTitle">TERMINAL</div>
+        <button class="th-close-btn" id="btnTermClose" title="Close (Ctrl+J)">✕</button>
+      </div>
+      <div class="terminal-body" id="termBody">
+        <div class="t-line system">▶ SEOSONA Video Factory — Terminal Panel</div>
+        <div class="t-line system">▶ Dùng Command Palette (Ctrl+K) để copy npm scripts</div>
+        <div class="t-line system">▶ Process status: loading…</div>
+      </div>
+      <div class="terminal-input-row">
+        <span class="terminal-prompt">seosona@factory:~$</span>
+        <input class="terminal-input" id="termInput" placeholder="npm run … (type to filter commands)" autocomplete="off" spellcheck="false"/>
+      </div>
     </div>
 
-    <div class="grid">
-        <div class="card">
-            <h3>Pending Tasks</h3>
-            <p class="value val-purple" id="val-pending">0</p>
-        </div>
-        <div class="card">
-            <h3>Active Temp Files</h3>
-            <p class="value val-blue" id="val-temp">0</p>
-        </div>
-        <div class="card">
-            <h3>Completed Assets</h3>
-            <p class="value val-green" id="val-done">0</p>
-        </div>
+  </div><!-- /.workspace -->
+</div><!-- /.app-body -->
+
+<!-- STATUS BAR -->
+<div class="statusbar">
+  <div class="sb-item" id="sbStatusItem">
+    <span class="sbi-dot" id="sbDotStatus"></span>
+    <span id="sbStatusLabel">online</span>
+  </div>
+  <div class="sb-divider"></div>
+  <div class="sb-item" onclick="navigateTo('library')">🎬 <span id="sbRenders">—</span> renders</div>
+  <div class="sb-divider"></div>
+  <div class="sb-item" onclick="navigateTo('queue')">📋 Queue: <span id="sbQueue">—</span></div>
+  <div class="sb-divider"></div>
+  <div class="sb-item" onclick="navigateTo('health')">🩺 Health: <span id="sbHealth">—</span></div>
+  <div class="sb-right">
+    <div class="sb-item" onclick="openCmdPalette()"><kbd class="sb-kbd">Ctrl+K</kbd> Palette</div>
+    <div class="sb-item" onclick="toggleTerminal()"><kbd class="sb-kbd">Ctrl+J</kbd> Terminal</div>
+    <div class="sb-item" onclick="setSidebar('icons')"><kbd class="sb-kbd">[</kbd> Sidebar</div>
+  </div>
+</div>
+
+</div><!-- /.app-shell -->
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<!-- VIDEO MODAL -->
+<dialog id="videoModal">
+  <div class="modal-header">
+    <h3 id="videoModalTitle">Video</h3>
+    <button class="btn-close" onclick="closeVideoModal()">✕</button>
+  </div>
+  <video id="videoPlayer" controls></video>
+</dialog>
+
+<!-- CONTEXT MENU -->
+<div class="ctx-menu" id="ctxMenu" style="display:none"></div>
+
+<!-- COMMAND PALETTE -->
+<div class="cmd-palette-overlay" id="cmdPaletteOverlay">
+  <div class="cmd-palette">
+    <div class="cp-search">
+      <span class="cp-ic">🔍</span>
+      <input class="cp-input" id="cpInput" placeholder="Tìm trang, lệnh, action…" autocomplete="off" spellcheck="false"/>
+      <kbd class="kbd">ESC</kbd>
     </div>
-
-    <div class="queues-container">
-        <div class="list-box">
-            <h3>⏳ Pending Queue</h3>
-            <ul id="queue-list">
-                <li>Loading...</li>
-            </ul>
-        </div>
-        <div class="list-box">
-            <h3>✅ Completed Inbox</h3>
-            <ul id="done-list">
-                <li>Loading...</li>
-            </ul>
-        </div>
+    <div class="cp-results" id="cpResults"></div>
+    <div class="cp-footer">
+      <span><kbd class="kbd">↑↓</kbd> Di chuyển</span>
+      <span><kbd class="kbd">↵</kbd> Chọn</span>
+      <span><kbd class="kbd">ESC</kbd> Đóng</span>
     </div>
+  </div>
+</div>
 
-    <script>
-        async function fetchMetrics() {
-            try {
-                const res = await fetch('/api/metrics');
-                const data = await res.json();
-                
-                document.getElementById('val-pending').innerText = data.total_pending;
-                document.getElementById('val-temp').innerText = data.total_processing_temp;
-                document.getElementById('val-done').innerText = data.total_done;
+<!-- ══════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+<script>
+/* ─── Core ─────────────────────────── */
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('seosona-theme', next);
+  if(typeof updateGraphTheme === 'function' && graphBuilt) updateGraphTheme();
+}
 
-                // Render pending queue
-                const queueList = document.getElementById('queue-list');
-                queueList.innerHTML = '';
-                let hasPending = false;
-                for (const [category, items] of Object.entries(data.queue_details)) {
-                    if (items && items.length > 0) {
-                        hasPending = true;
-                        items.forEach(item => {
-                            queueList.innerHTML += `<li><span class="cat-badge">${category}</span> ${item}</li>`;
-                        });
-                    }
-                }
-                if (!hasPending) queueList.innerHTML = '<li>No pending tasks.</li>';
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const el = (t,c,h) => { const e = document.createElement(t); if(c) e.className=c; if(h!=null) e.innerHTML=h; return e; };
+const esc = s => String(s??'').replace(/[&<>"]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const base = p => String(p??'').split(/[/\\]/).pop();
+const fmt = v => v==null ? '—' : String(v);
+const pct = v => v==null ? '—' : v+'%';
+const J = u => fetch(u).then(r=>r.json()).catch(()=>({}));
+const POST = (u,b) => fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b??{})}).then(r=>r.json()).catch(e=>({ok:false,error:String(e)}));
+// Safe addEventListener — no-ops if element not found
+const on = (sel,ev,fn) => { const e=$(sel); if(e) e.addEventListener(ev,fn); };
+// Global error handler — catch null refs gracefully
+window.addEventListener('error',e=>{
+  if(e.message&&(e.message.includes('null')||e.message.includes('Cannot read'))) { e.preventDefault(); return; }
+});
 
-                // Render done files
-                const doneList = document.getElementById('done-list');
-                doneList.innerHTML = '';
-                if (data.done_files.length === 0) {
-                    doneList.innerHTML = '<li>No completed files yet.</li>';
-                } else {
-                    data.done_files.forEach(f => {
-                        doneList.innerHTML += `<li>${f}</li>`;
-                    });
-                }
-            } catch (err) {
-                console.error('Failed to fetch metrics:', err);
-            }
-        }
+/* ─── Mermaid init ──────────────────── */
+mermaid.initialize({startOnLoad:false,theme:'base',themeVariables:{primaryColor:'#EEF2FF',primaryTextColor:'#0F172A',primaryBorderColor:'#2A5BDA',lineColor:'#94A3B8',secondaryColor:'#FEF0EB',tertiaryColor:'#DCFCE7'},fontFamily:'Be Vietnam Pro,sans-serif',fontSize:12,flowchart:{curve:'basis',useMaxWidth:true}});
 
-        // Poll every 3 seconds
-        fetchMetrics();
-        setInterval(fetchMetrics, 3000);
-    </script>
+/* ─── Clock ─────────────────────────── */
+function tick(){ $('#tbClock').textContent = new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'}); }
+tick(); setInterval(tick,1000);
+
+/* ─── Toast ─────────────────────────── */
+let toastT;
+function toast(msg,kind=''){
+  const t=$('#toast'); t.textContent=msg; t.className='toast show '+kind;
+  clearTimeout(toastT); toastT=setTimeout(()=>t.className='toast',3500);
+}
+
+/* ─── Notifications ─────────────────── */
+let notifications=[];
+$('#btnNotif').addEventListener('click',e=>{ e.stopPropagation(); $('#notifPanel').classList.toggle('open'); });
+document.addEventListener('click',e=>{ if(!$('#btnNotif').contains(e.target)) $('#notifPanel').classList.remove('open'); });
+$('#btnClearNotif').addEventListener('click',()=>{ notifications=[]; $('#notifList').innerHTML='<div class="empty" style="padding:16px">Chưa có thông báo</div>'; $('#notifDot').style.display='none'; });
+function addNotif(msg,kind='info'){
+  const t=new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
+  const ics={ok:'✅',bad:'⛔',info:'💬',warn:'⚠️'};
+  notifications.unshift({msg,t,ic:ics[kind]||'💬'});
+  if(notifications.length>10) notifications.pop();
+  $('#notifList').innerHTML=notifications.map(n=>`<div class="notif-item"><div class="notif-ic">${n.ic}</div><div><div class="notif-text">${esc(n.msg)}</div><div class="notif-time">${n.t}</div></div></div>`).join('');
+  $('#notifDot').style.display='block';
+}
+
+/* ─── Panel Tabs ────────────────────── */
+const VIEW_META={
+  overview:  {title:'Overview',     sub:'Toàn cảnh nhà máy',              ic:'▦'},
+  studio:    {title:'Studio',       sub:'Tạo video mới từ GitHub repo',   ic:'🎬'},
+  pipeline:  {title:'Pipeline',     sub:'Dây chuyền sản xuất (DAG stages)', ic:'🔀'},
+  analytics: {title:'Analytics',    sub:'Thống kê sản xuất',              ic:'📊'},
+  factory:   {title:'Factory',      sub:'Sản xuất & template scores',     ic:'🏭'},
+  library:   {title:'Library',      sub:'Video đã render',                ic:'🎞'},
+  queue:     {title:'Queue',        sub:'Hàng đợi sản xuất',              ic:'📋'},
+  activity:  {title:'Activity',     sub:'Flight recorder trực tiếp',      ic:'⚡'},
+  knowledge: {title:'Knowledge',    sub:'Second Brain recall',            ic:'🧠'},
+  learning:  {title:'Learning',     sub:'Factory learning loop',          ic:'📈'},
+  templates: {title:'Templates',    sub:'22 scene templates',             ic:'🎨'},
+  systemmap: {title:'System Map',   sub:'Kiến trúc vis-network',          ic:'🕸'},
+  health:    {title:'Health',       sub:'Audit & integrity',              ic:'🩺'},
+  kanban:    {title:'Kanban',       sub:'Production pipeline board',      ic:'🗃'},
+  tasks:     {title:'Tasks',        sub:'Task tracker & flight log',      ic:'✅'},
+  projects:  {title:'Projects',     sub:'Workspace project folders',      ic:'📁'},
+  commands:  {title:'Commands',     sub:'NPM scripts quick-launch',       ic:'⌨️'},
+  wiki:      {title:'Wiki',         sub:'System documentation đầy đủ',   ic:'📖'},
+  brand:     {title:'Brand Kit',    sub:'Màu, typography, CTA',          ic:'🎭'},
+  settings:  {title:'Settings',     sub:'Cấu hình dashboard',             ic:'⚙️'},
+  preview:   {title:'Preview Lab',  sub:'HyperFrames composition preview', ic:'🧪'},
+};
+
+let currentPreviewProj = null;
+async function loadPreviewProjects() {
+  const d = await J('/api/file-tree');
+  const ws = (d.tree||[]).find(x => x.name === '8_WORKSPACE');
+  const list = $('#previewList');
+  if(!ws || !ws.children || !ws.children.length) {
+    list.innerHTML = '<div class="empty">No projects</div>'; return;
+  }
+  const projs = ws.children.filter(c => c.is_dir && !c.name.startsWith('.') && !c.name.startsWith('_'));
+  list.innerHTML = projs.map(p => `<div class="preview-item" data-proj="${esc(p.name)}"><span>📁 ${esc(p.name)}</span></div>`).join('');
+  
+  $$('.preview-item').forEach(el => el.addEventListener('click', () => {
+    $$('.preview-item').forEach(x => x.classList.remove('active'));
+    el.classList.add('active');
+    currentPreviewProj = el.dataset.proj;
+    $('#previewProjectName').textContent = currentPreviewProj;
+    $('#btnStartPreview').style.display = 'block';
+    $('#previewFrame').src = 'about:blank';
+  }));
+}
+$('#btnRefreshPreview')?.addEventListener('click', loadPreviewProjects);
+$('#btnStartPreview')?.addEventListener('click', async () => {
+  if(!currentPreviewProj) return;
+  const b = $('#btnStartPreview'); b.textContent = 'Starting...'; b.disabled = true;
+  try {
+    const res = await POST('/api/action/preview', {project: currentPreviewProj});
+    if(res.ok) {
+      setTimeout(() => {
+        $('#previewFrame').src = `http://localhost:${res.port}`;
+        b.textContent = '🚀 Restart Preview Server'; b.disabled = false;
+        toast('Preview server started', 'ok');
+      }, 2000);
+    } else {
+      toast('Failed: ' + res.error, 'bad');
+      b.textContent = '🚀 Start Preview Server'; b.disabled = false;
+    }
+  } catch(e) {
+    toast('Error starting preview', 'bad');
+    b.textContent = '🚀 Start Preview Server'; b.disabled = false;
+  }
+});
+
+let openTabs=['overview'];
+let currentView='overview';
+let graphBuilt=false;
+let pipelineBuilt=false, pNet=null, pNodesDS=null;   // hoisted: activateView reads pipelineBuilt on initial load
+
+function renderTabs(){
+  const tabsEl=$('#panelTabs');
+  tabsEl.innerHTML='';
+  openTabs.forEach(v=>{
+    const m=VIEW_META[v]||{title:v,ic:'•'};
+    const tab=el('div','p-tab'+(currentView===v?' active':''));
+    tab.innerHTML=`<span class="p-tab-ic">${m.ic}</span><span>${m.title}</span><span class="p-tab-close" data-close="${v}">✕</span>`;
+    tab.addEventListener('click',e=>{ if(e.target.dataset.close) closeTab(e.target.dataset.close); else navigateTo(v); });
+    tabsEl.appendChild(tab);
+  });
+  const addBtn=el('div','tab-new-btn','＋');
+  addBtn.title='Open Command Palette';
+  addBtn.addEventListener('click',openCmdPalette);
+  tabsEl.appendChild(addBtn);
+}
+
+function closeTab(v,e){
+  if(e) e.stopPropagation();
+  const idx=openTabs.indexOf(v);
+  openTabs=openTabs.filter(t=>t!==v);
+  if(!openTabs.length){ openTabs=['overview']; }
+  if(currentView===v) currentView=openTabs[Math.min(idx,openTabs.length-1)]||'overview';
+  renderTabs();
+  activateView(currentView);
+}
+
+function activateView(v){
+  $$('.sb-navlink').forEach(x=>x.classList.toggle('active',x.dataset.view===v));
+  $$('.view').forEach(x=>x.classList.remove('active'));
+  const vEl=$('#view-'+v);
+  if(vEl) vEl.classList.add('active');
+  const m=VIEW_META[v]||{title:v,sub:''};
+  $('#tbViewCrumb').textContent=m.title;
+  document.title='SEOSONA · '+m.title;
+  // Lazy loaders
+  if(v==='systemmap'&&!graphBuilt) buildGraph();
+  if(v==='activity') loadEvents();
+  if(v==='learning'){ loadLearned(); loadHot(); loadAngles(); }
+  if(v==='health') loadHealth();
+  if(v==='queue') loadQueueDetail();
+  if(v==='factory') loadFactory();
+  if(v==='library') loadLibrary();
+  if(v==='analytics') loadAnalytics();
+  if(v==='templates') loadTemplates();
+  if(v==='brand') renderBrandKit();
+  if(v==='commands') loadCommands();
+  if(v==='knowledge') loadGraphHealth();
+  if(v==='wiki') renderWiki();
+  if(v==='settings') loadSettings();
+  if(v==='kanban') loadKanban();
+  if(v==='tasks') loadTasks();
+  if(v==='projects') loadProjects();
+  if(v==='preview') loadPreviewProjects();
+  if(v==='studio') loadStudio();
+  if(v==='pipeline'&&!pipelineBuilt) buildPipeline();
+  // statusbar
+  updateSBCrumb(v);
+}
+
+function navigateTo(v){
+  if(!VIEW_META[v]) return;
+  if(!openTabs.includes(v)) openTabs.push(v);
+  currentView=v;
+  localStorage.setItem('seosona-view',v);
+  renderTabs();
+  activateView(v);
+}
+
+function updateSBCrumb(v){ const m=VIEW_META[v]; if(m) $('#tbViewCrumb').textContent=m.title; }
+
+// Restore last view
+navigateTo(localStorage.getItem('seosona-view')||'overview');
+
+/* ─── Tab switching (inner) ─────────── */
+document.addEventListener('click',e=>{
+  const tab=e.target.closest('.tab'); if(!tab) return;
+  const tabsEl=tab.parentElement;
+  const panelId=tab.dataset.tab;
+  tabsEl.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  const parent=tab.closest('.view')||document;
+  parent.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===panelId));
+});
+
+/* ─── Sidebar ───────────────────────── */
+function setSidebar(state){
+  const sb=$('#sidebar');
+  sb.classList.remove('icons','hidden');
+  if(state==='icons') sb.classList.add('icons');
+  if(state==='hidden') sb.classList.add('hidden');
+  localStorage.setItem('seosona-sidebar',state);
+}
+// Restore
+const sbState=localStorage.getItem('seosona-sidebar')||'expanded';
+if(sbState!=='expanded') setSidebar(sbState);
+
+// Sidebar navlinks
+$$('.sb-navlink').forEach(n=>n.addEventListener('click',()=>navigateTo(n.dataset.view)));
+
+// Drag-to-resize
+const dragHandle=$('#dragHandle');
+let dragging=false,startX,startW;
+dragHandle.addEventListener('mousedown',e=>{
+  dragging=true; startX=e.clientX; startW=$('#sidebar').offsetWidth;
+  dragHandle.classList.add('active');
+  document.body.style.cursor='col-resize'; document.body.style.userSelect='none';
+});
+document.addEventListener('mousemove',e=>{
+  if(!dragging) return;
+  const nw=Math.max(60,Math.min(400,startW+(e.clientX-startX)));
+  $('#sidebar').style.width=nw+'px';
+  if(nw<80) $('#sidebar').classList.add('icons'); else $('#sidebar').classList.remove('icons');
+});
+document.addEventListener('mouseup',()=>{
+  if(!dragging) return; dragging=false;
+  dragHandle.classList.remove('active');
+  document.body.style.cursor=''; document.body.style.userSelect='';
+  localStorage.setItem('seosona-sidebar-w',$('#sidebar').offsetWidth);
+});
+
+// Toggle Sidebar Button
+$('#btnToggleSidebar').addEventListener('click', () => {
+  const sidebar = $('#sidebar');
+  sidebar.classList.toggle('icons');
+  if (sidebar.classList.contains('icons')) {
+    sidebar.style.width = ''; // Let CSS handle collapsed width
+    localStorage.setItem('seosona-sidebar-collapsed', 'true');
+  } else {
+    const savedW = localStorage.getItem('seosona-sidebar-w') || '248';
+    sidebar.style.width = savedW + 'px';
+    localStorage.removeItem('seosona-sidebar-collapsed');
+  }
+});
+
+// Restore collapsed state on load
+if (localStorage.getItem('seosona-sidebar-collapsed') === 'true') {
+  $('#sidebar').classList.add('icons');
+  $('#sidebar').style.width = '';
+}
+
+/* ─── Terminal Drawer ───────────────── */
+let termOpen=false;
+function toggleTerminal(){
+  termOpen=!termOpen;
+  $('#terminalDrawer').classList.toggle('open',termOpen);
+  if(termOpen) loadTerminalLog();
+}
+$('#btnTermToggle').addEventListener('click',toggleTerminal);
+$('#btnTermClose').addEventListener('click',toggleTerminal);
+$('#settingTermH').addEventListener('change',e=>{ document.documentElement.style.setProperty('--terminal-h',e.target.value+'px'); });
+$('#termInput').addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    const val=e.target.value.trim();
+    if(val){ addTermLine('$ '+val,'info'); e.target.value=''; addTermLine('→ npm '+val+' (open terminal to run)','system'); }
+  }
+});
+$('#termTabLog').addEventListener('click',()=>{ $$('.terminal-tab').forEach(t=>t.classList.remove('active')); $('#termTabLog').classList.add('active'); loadTerminalLog(); });
+$('#termTabProc').addEventListener('click',async()=>{ $$('.terminal-tab').forEach(t=>t.classList.remove('active')); $('#termTabProc').classList.add('active'); loadProcessStatus(); });
+function addTermLine(text,cls=''){
+  const body=$('#termBody');
+  const d=el('div','t-line'+(cls?' '+cls:''),esc(text));
+  body.appendChild(d);
+  body.scrollTop=body.scrollHeight;
+}
+async function loadTerminalLog(){
+  addTermLine('─── System Log ───','system');
+  const m=await J('/api/metrics');
+  if(m.health&&m.health.recent_renders){
+    m.health.recent_renders.slice(0,10).forEach(r=>{
+      addTermLine(`render: ${base(r.name||r.output)} [${r.verdict||'?'}] score=${r.score??'—'} dur=${r.duration??'—'}s`,(r.verdict==='PASS'?'ok':'warn'));
+    });
+  }
+  addTermLine(`Status: ${m.status||'?'} | Done: ${m.total_done} | Pending: ${m.total_pending}`,'info');
+}
+async function loadProcessStatus(){
+  addTermLine('─── Running Processes ───','system');
+  const d=await J('/api/process-status');
+  const procs=d.processes||[];
+  if(procs.length){ procs.forEach(p=>addTermLine(`[${p.pid}] ${p.name}`,'ok')); }
+  else addTermLine('No python/node/ffmpeg processes detected','system');
+}
+
+/* ─── KPI helper ────────────────────── */
+function makeKpi(icon,label,val,mod=''){
+  const d=document.createElement('div');
+  d.className='kpi '+mod;
+  d.title=`${label}: ${val}`;
+  d.innerHTML=`<div class="kpi-icon">${icon}</div><span class="kpi-val num" data-countup="${esc(val)}">${esc(val)}</span><span class="kpi-label">${esc(label)}</span>`;
+  return d;
+}
+
+/* ─── CountUp Animation (ported from SEOSONA Website) ── */
+function countUp(el, duration=1200){
+  const raw=el.getAttribute('data-countup')||el.textContent;
+  // Extract number and suffix/prefix
+  const match=raw.match(/^([^0-9]*?)([\d.]+)(.*)$/);
+  if(!match) return;
+  const prefix=match[1], end=parseFloat(match[2]), suffix=match[3];
+  if(isNaN(end)||end===0) return;
+  const isFloat=raw.includes('.');
+  el.setAttribute('data-counting','');
+  const start=performance.now();
+  const tick=(now)=>{
+    const elapsed=now-start;
+    const progress=Math.min(elapsed/duration,1);
+    // Ease-out cubic (same as Website CountUp.tsx)
+    const eased=1-Math.pow(1-progress,3);
+    const current=eased*end;
+    el.textContent=prefix+(isFloat?current.toFixed(1):Math.round(current).toLocaleString())+suffix;
+    if(progress<1) requestAnimationFrame(tick);
+    else{el.removeAttribute('data-counting');el.textContent=raw;}
+  };
+  requestAnimationFrame(tick);
+}
+
+// Observe KPI values and trigger countUp when visible
+const _kpiObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting && !e.target._counted){
+      e.target._counted=true;
+      countUp(e.target);
+    }
+  });
+},{threshold:0.5});
+// Re-observe after DOM updates
+const _observeKpis=()=>{
+  document.querySelectorAll('.kpi-val[data-countup]').forEach(el=>{
+    if(!el._counted) _kpiObserver.observe(el);
+  });
+};
+// Auto-detect new KPIs via MutationObserver
+const _domWatcher=new MutationObserver(()=>_observeKpis());
+_domWatcher.observe(document.body,{childList:true,subtree:true});
+
+
+/* ─── SVG Charts ─────────────────────── */
+function barChart(data,{color='#2A5BDA',height=150}={}){
+  if(!data.length) return '<div class="chart-empty"><span>📊</span><span>Chưa có dữ liệu</span></div>';
+  const W=600,H=height,pt={t:8,b:26,l:4,r:4};
+  const iW=W-pt.l-pt.r,iH=H-pt.t-pt.b;
+  const max=Math.max(...data.map(d=>d.v||0),1);
+  const bw=iW/data.length;const bp=Math.max(2,bw*.14);
+  const bars=data.map((d,i)=>{
+    const v=d.v||0,h2=Math.max(v?3:0,Math.round((v/max)*iH));
+    const x=pt.l+i*bw+bp/2,y=pt.t+iH-h2;
+    const lab=(d.day||'').slice(5)||String(d.label||'');
+    return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(bw-bp).toFixed(1)}" height="${h2}" rx="3" fill="${color}" opacity="${v?1:.15}"/>
+      <text x="${(x+(bw-bp)/2).toFixed(1)}" y="${H-4}" text-anchor="middle" font-size="9" fill="#94A3B8">${esc(lab)}</text>
+      ${v?`<text x="${(x+(bw-bp)/2).toFixed(1)}" y="${(y-3).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="700" fill="${color}">${v}</text>`:''}`;
+  }).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block">${bars}</svg>`;
+}
+function lineChart(data,{color='#16A34A',height=150}={}){
+  const valid=data.filter(d=>d.v!=null);
+  if(valid.length<2) return '<div class="chart-empty"><span>📈</span><span>Chưa đủ dữ liệu</span></div>';
+  const W=600,H=height,pt={t:12,b:26,l:8,r:8};
+  const iW=W-pt.l-pt.r,iH=H-pt.t-pt.b;
+  const max=Math.max(...valid.map(d=>d.v),1),min=0;
+  const pts=data.map((d,i)=>{
+    const x=pt.l+(i/Math.max(data.length-1,1))*iW;
+    const y=d.v!=null?pt.t+iH-((d.v-min)/(max-min))*iH:null;
+    return [x,y,(d.day||'').slice(5)];
+  });
+  const lp=pts.filter(p=>p[1]!=null);
+  const path=lp.map(([x,y],i)=>`${i?'L':'M'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+  const [ax,ay]=lp[0],[bx,by]=lp[lp.length-1];
+  const area=`${path} L${bx.toFixed(1)},${(pt.t+iH).toFixed(1)} L${ax.toFixed(1)},${(pt.t+iH).toFixed(1)} Z`;
+  const uid='lg'+Math.random().toString(36).slice(2);
+  const labels=pts.filter((_,i)=>i%Math.ceil(data.length/8)===0).map(([x,,lab])=>`<text x="${x.toFixed(1)}" y="${H-4}" text-anchor="middle" font-size="9" fill="#94A3B8">${esc(lab)}</text>`).join('');
+  const dots=lp.map(([x,y])=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${color}"/>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block">
+    <defs><linearGradient id="${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${color}" stop-opacity=".15"/><stop offset="100%" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+    <path d="${area}" fill="url(#${uid})"/><path d="${path}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
+    ${dots}${labels}</svg>`;
+}
+
+/* ─── OVERVIEW ──────────────────────── */
+async function loadOverview(){
+  const m=await J('/api/metrics'); if(!m.health) return;
+  const h=m.health,t=h.totals||{};
+  const online=m.status==='online';
+  $$('#sbDot,#sbDotStatus').forEach(d=>d.style.background=online?'var(--green)':'var(--coral)');
+  $('#tbStatusText').textContent=m.status||'online';
+  $('#sbStatusLabel').textContent=m.status||'online';
+  $('#tbStatus').style.background=online?'var(--green-light)':'var(--coral-light)';
+  $('#tbStatus').style.color=online?'#15803D':'#9A3412';
+  $('#sbRenders').textContent=m.total_done||'0';
+  $('#sbQueue').textContent=m.total_pending||'0';
+  $('#queueBadge').textContent=m.total_pending||'0';
+
+  // KPIs
+  const qpct=t.quality_pass_pct;
+  const kd=[
+    {ic:'🎬',l:'Videos Done',v:fmt(m.total_done),m:''},
+    {ic:'📋',l:'Queue Pending',v:fmt(m.total_pending),m:m.total_pending>0?'warn':''},
+    {ic:'⚙️',l:'Active Projects',v:fmt(m.total_processing_temp),m:'info'},
+    {ic:'🎙',l:'Caption Sync',v:pct(t.caption_sync_real_pct),m:t.caption_sync_real_pct>=80?'good':'warn'},
+    {ic:'⏱',l:'Avg Render(s)',v:fmt(t.avg_render_seconds),m:'teal'},
+    {ic:'✅',l:'Quality Pass%',v:pct(qpct),m:qpct==null?'':qpct>=80?'good':qpct>=60?'warn':'bad'},
+  ];
+  const ke=$('#kpis'); ke.innerHTML='';
+  kd.forEach(k=>ke.appendChild(makeKpi(k.ic,k.l,k.v,k.m)));
+
+  // Recent renders
+  const rr=(h.recent_renders||[]).slice(0,12);
+  $('#rrCount').textContent=rr.length+' renders';
+  const rrEl=$('#recentRenders');
+  if(rr.length){
+    const tbl=el('table');
+    tbl.innerHTML=`<thead><tr><th>Video</th><th>Dur</th><th>WPM</th><th>Score</th><th>Sync</th></tr></thead>`;
+    const tb=el('tbody');
+    rr.forEach(r=>{const tr=el('tr');tr.innerHTML=`<td><span class="tr200">${esc(base(r.name||r.output))}</span></td><td class="num small">${esc(r.duration!=null?r.duration+'s':'—')}</td><td class="num small">${esc(r.wpm??'—')}</td><td>${r.score!=null?`<span class="pill ${r.verdict==='PASS'?'ok':'bad'} xs">${esc(r.score)}</span>`:'—'}</td><td>${r.caption_sync?`<span class="pill ${r.caption_sync==='real'?'ok':'mut'} xs">${esc(r.caption_sync)}</span>`:'—'}</td>`;tb.appendChild(tr);});
+    tbl.appendChild(tb);rrEl.innerHTML='';rrEl.appendChild(tbl);
+  } else rrEl.innerHTML=`<div class="empty-state"><div class="es-icon">🎬</div><div class="es-title">Chưa có render nào</div></div>`;
+
+  // Queue box
+  const q=m.queue_details||{};
+  const qEl=$('#queueBox');
+  const qe=Object.entries(q);
+  const ics={news_videos:'📰',course_videos:'📚',carousels:'🖼',thumbnails:'🖼'};
+  qEl.innerHTML=(qe.length?qe.map(([k,v])=>{const c=(v||[]).filter(Boolean).length;return `<div class="flex items-center justify-between" style="padding:9px 2px;border-bottom:1px solid var(--border-soft)"><span style="font-weight:600">${ics[k]||'📌'} ${esc(k)}</span><span class="pill ${c>0?'warn':'mut'} xs">${c}</span></div>`;}).join(''):'')
+    +`<div class="flex items-center justify-between" style="padding:9px 2px"><span style="font-weight:700;color:var(--green)">✅ Done on disk</span><span class="pill ok xs">${esc(m.total_done)}</span></div>`;
+
+  // Queue runs
+  const qruns=h.queue_runs||[];
+  $('#qrunCount').textContent=qruns.length+' runs';
+  const qrunEl=$('#queueRuns');
+  if(qruns.length){
+    const tbl=el('table');tbl.innerHTML=`<thead><tr><th>Run</th><th>OK</th><th>Failed</th><th>Skipped</th></tr></thead>`;
+    const tb=el('tbody');
+    qruns.forEach(r=>{const tr=el('tr');tr.innerHTML=`<td class="mono xs">${esc(r.run)}</td><td><span class="pill ok xs">${r.ok}</span></td><td><span class="pill ${r.failed>0?'bad':'mut'} xs">${r.failed}</span></td><td><span class="pill mut xs">${r.skipped}</span></td>`;tb.appendChild(tr);});
+    tbl.appendChild(tb);qrunEl.innerHTML='';qrunEl.appendChild(tbl);
+  } else qrunEl.innerHTML='<div class="empty">Chưa có run nào</div>';
+
+  // Pipeline
+  renderPipeline(rr);
+  // Health badge
+  $('#sbHealth').textContent=`${m.total_done} done`;
+}
+
+/* ─── Pipeline ──────────────────────── */
+const PSTEPS=[{l:'Topic\nInput',ic:'📥'},{l:'Research\nScript',ic:'✍️'},{l:'TTS\nVoice',ic:'🎙'},{l:'SRT\nCaption',ic:'📝'},{l:'HyperFrames\nRender',ic:'🎬'},{l:'SFX\nBGM Mix',ic:'🎵'},{l:'QA\nScore',ic:'✅'},{l:'Output\nMP4',ic:'📤'}];
+function renderPipeline(renders){
+  const pe=$('#pipelineView');
+  pe.innerHTML=PSTEPS.map((s,i)=>{
+    const m=renders&&renders.length>0?(i<5?'done':i===5?'active':''):'';
+    return `<div class="pip-step ${m}"><div class="pip-dot">${s.ic}</div><div class="pip-label">${s.l.replace('\n','<br>')}</div></div>`;
+  }).join('');
+}
+
+/* ─── ANALYTICS ─────────────────────── */
+let chartBarInst = null, chartLineInst = null;
+async function loadAnalytics(){
+  const [trend,stats]=await Promise.all([J('/api/daily-trend'),J('/api/system-stats')]);
+  const days=trend.days||[];
+  $('#trendDays').textContent=days.length+' ngày';
+  
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const tColor = isDark ? '#94a3b8' : '#64748b';
+  const gColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+
+  const labels = days.map(d=>d.day.slice(5));
+  const renders = days.map(d=>d.renders);
+  const scores = days.map(d=>d.avg_score);
+
+  if(chartBarInst) chartBarInst.destroy();
+  chartBarInst = new Chart($('#chartBar'), {
+    type: 'bar',
+    data: { labels, datasets: [{ label: 'Renders', data: renders, backgroundColor: '#3A70FF', borderRadius: 4 }] },
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: tColor }, grid: { display: false } }, y: { ticks: { color: tColor }, grid: { color: gColor } } }, plugins: { legend: { display: false } } }
+  });
+
+  if(chartLineInst) chartLineInst.destroy();
+  chartLineInst = new Chart($('#chartLine'), {
+    type: 'line',
+    data: { labels, datasets: [{ label: 'Avg Quality', data: scores, borderColor: '#22C55E', backgroundColor: 'rgba(34,197,94,0.15)', fill: true, tension: 0.4 }] },
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { ticks: { color: tColor }, grid: { display: false } }, y: { ticks: { color: tColor }, grid: { color: gColor } } }, plugins: { legend: { display: false } } }
+  });
+
+  const sk=$('#sysKpis'); sk.innerHTML='';
+  [{ic:'🎬',l:'MP4 Videos',v:stats.mp4_total??'—',m:''},{ic:'🤖',l:'AI Agents',v:stats.agents??'—',m:'purple'},{ic:'🧩',l:'Skill Modules',v:stats.skill_modules??'—',m:'teal'},{ic:'🧠',l:'Brain Files',v:stats.brain_files??'—',m:''},{ic:'📚',l:'Knowledge',v:stats.knowledge_files??'—',m:'info'},{ic:'🎨',l:'Templates',v:stats.templates??'—',m:'coral'}].forEach(k=>sk.appendChild(makeKpi(k.ic,k.l,k.v,k.m)));
+  const rows=[['📚 Knowledge files',stats.knowledge_files],['🧠 Brain scripts',stats.brain_files],['📋 SOP docs',stats.sop_files]];
+  $('#kbStats').innerHTML=rows.map(([l,v])=>`<div class="flex items-center justify-between" style="padding:8px 0;border-bottom:1px solid var(--border-soft)"><span class="small">${l}</span><span class="pill purple xs">${v??'—'}</span></div>`).join('');
+  $('#agentStats').innerHTML=[['🤖 AI Agents',stats.agents],['🧩 Skills',stats.skill_modules],['🎬 Videos produced',stats.mp4_total]].map(([l,v])=>`<div class="flex items-center justify-between" style="padding:8px 0;border-bottom:1px solid var(--border-soft)"><span class="small">${l}</span><span class="pill teal xs">${v??'—'}</span></div>`).join('');
+  $('#brainStats').innerHTML=[['🧠 Brain .py',stats.brain_files],['🎨 Templates',stats.templates],['Total renders',days.reduce((s,d)=>s+d.renders,0)]].map(([l,v])=>`<div class="flex items-center justify-between" style="padding:8px 0;border-bottom:1px solid var(--border-soft)"><span class="small">${l}</span><span class="pill amber xs">${v??'—'}</span></div>`).join('');
+}
+
+/* ─── FACTORY ───────────────────────── */
+let factData=null;
+async function loadFactory(){
+  const d=await J('/api/factory-metrics'); factData=d;
+  const sc=d.template_scores||{};
+  const scKeys=Object.keys(sc);
+  $('#templateCount').textContent=scKeys.length+' templates';
+  const renderScores=(filter='')=>{
+    const filtered=scKeys.filter(k=>!filter||k.toLowerCase().includes(filter.toLowerCase()));
+    const scEl=$('#templateScores');
+    if(!filtered.length){scEl.innerHTML=`<div class="empty">Không tìm thấy "${filter}"</div>`;return;}
+    const tbl=el('table'); tbl.innerHTML=`<thead><tr><th>Template</th><th>Pass%</th><th>Progress</th><th>n</th></tr></thead>`;
+    const tb=el('tbody');
+    filtered.forEach(t=>{const v=sc[t];const pr=Math.round((v.pass_rate||0)*100);const tr=el('tr');tr.innerHTML=`<td style="font-weight:700">${esc(t)}</td><td><span class="pill ${pr>=80?'ok':pr>=60?'warn':'bad'} xs">${pr}%</span></td><td style="min-width:110px"><div class="progress"><div class="progress-fill ${pr>=80?'green':pr>=60?'amber':'coral'}" style="width:${pr}%"></div></div></td><td class="num muted">${esc(v.n)}</td>`;tb.appendChild(tr);});
+    tbl.appendChild(tb);scEl.innerHTML='';scEl.appendChild(tbl);
+  };
+  renderScores();
+  $('#scoreSearch').addEventListener('input',e=>renderScores(e.target.value));
+  const rows=(d.rows||[]).slice().reverse();
+  $('#prodCount').textContent=rows.length+' runs';
+  const renderLog=(filter='')=>{
+    const filtered=filter?rows.filter(r=>JSON.stringify(r).toLowerCase().includes(filter.toLowerCase())):rows;
+    const fEl=$('#factoryRows');
+    if(!filtered.length){fEl.innerHTML=`<div class="empty">Không tìm thấy</div>`;return;}
+    const tbl=el('table');tbl.innerHTML=`<thead><tr><th>Repo/Topic</th><th>Template</th><th>Status</th><th>Lint</th></tr></thead>`;
+    const tb=el('tbody');
+    filtered.forEach(r=>{const tr=el('tr');tr.innerHTML=`<td><span class="tr200">${esc(base(r.repo||r.output||''))}</span></td><td class="small">${esc(r.template||'—')}</td><td>${r.ok?'<span class="pill ok xs">✓</span>':'<span class="pill bad xs">✗</span>'}</td><td class="num small">${esc(r.lint_warns??'—')}</td>`;tb.appendChild(tr);});
+    tbl.appendChild(tb);fEl.innerHTML='';fEl.appendChild(tbl);
+  };
+  renderLog();
+  $('#logSearch').addEventListener('input',e=>renderLog(e.target.value));
+}
+
+/* ─── LIBRARY ───────────────────────── */
+let libData=[];
+async function loadLibrary(){
+  $('#libGrid').innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🎞</div><div class="es-title">Loading…</div></div>`;
+  const d=await J('/api/workspace'); libData=d.files||[];
+  $('#libTotal').textContent=(d.total||0)+' videos';
+  $('#libBadge').textContent=d.total||0;
+  renderLib();
+}
+function openVideoModal(f) {
+  const m = $('#videoModal');
+  $('#videoModalTitle').textContent = f.name;
+  $('#videoPlayer').src = '/api/video/' + f.path;
+  m.showModal();
+  $('#videoPlayer').play().catch(e=>console.log(e));
+}
+function closeVideoModal() {
+  const m = $('#videoModal');
+  const vp = $('#videoPlayer');
+  vp.pause(); vp.removeAttribute('src'); vp.load();
+  m.close();
+}
+
+function renderLib(filter=''){
+  const filtered=filter?libData.filter(f=>f.name.toLowerCase().includes(filter.toLowerCase())||(f.folder||'').toLowerCase().includes(filter.toLowerCase())):libData;
+  const g=$('#libGrid'); g.innerHTML='';
+  if(!filtered.length){g.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🎞</div><div class="es-title">${filter?'Không tìm thấy':'Chưa có video'}</div><div class="es-sub">Render bằng npm run make:video</div></div>`;return;}
+  filtered.forEach(f=>{const c=el('div','lib-card');c.innerHTML=`<div class="lib-thumb">🎬${f.folder?`<div class="lib-folder-tag">${esc(f.folder)}</div>`:''}</div><div class="lib-name" title="${esc(f.name)}">${esc(f.name)}</div><div class="lib-meta">${esc(f.size_mb)} MB · ${esc((f.mtime||'').replace('T',' ').slice(0,16))}</div>`;c.onclick=()=>openVideoModal(f);g.appendChild(c);});
+}
+$('#libSearch').addEventListener('input',e=>renderLib(e.target.value));
+$('#btnRefreshLib').addEventListener('click',loadLibrary);
+
+/* ─── QUEUE ─────────────────────────── */
+async function loadQueueDetail(){
+  const m=await J('/api/metrics');
+  const q=m.queue_details||{};const done=m.done_files||[];
+  const ics={news_videos:'📰',course_videos:'📚',carousels:'🖼',thumbnails:'🖼'};
+  const qEl=$('#queueDetailBox');const qe=Object.entries(q);
+  qEl.innerHTML=qe.length?qe.map(([k,v])=>{const items=(v||[]).filter(Boolean);return `<div style="margin-bottom:14px"><div class="label mb-6">${ics[k]||'📌'} ${esc(k)} <span class="pill ${items.length?'warn':'mut'} xs">${items.length}</span></div>${items.length?items.map(it=>`<div class="small mono" style="padding:4px;border-bottom:1px solid var(--border-soft);word-break:break-all">${esc(it)}</div>`).join(''):'<div class="empty" style="padding:8px;font-size:11px">Trống</div>'}</div>`;}).join(''):'<div class="empty">Không có queue data</div>';
+  $('#doneCountBadge').textContent=done.length;
+  $('#doneFilesBox').innerHTML=done.length?done.slice(0,50).map(f=>`<div class="small mono" style="padding:4px;border-bottom:1px solid var(--border-soft)">${esc(f)}</div>`).join(''):'<div class="empty">Chưa có file done</div>';
+}
+$('#btnRefreshQueue').addEventListener('click',loadQueueDetail);
+
+/* ─── ACTIVITY ──────────────────────── */
+const EVIC={render:'🎬',quality:'✅',publish:'📤',error:'⛔'};
+const EVCLS={render:'render',quality:'quality',publish:'publish',error:'error'};
+let allEvents=[];
+async function loadEvents(){
+  const d=await J('/api/events'); allEvents=d.events||[];
+  const tot=d.total||0;
+  $('#evTotal').textContent=tot+' events';
+  $('#actBadge').textContent=tot;
+  renderEvents();
+}
+function renderEvents(){
+  const filter=$('#evFilter').value;
+  const evs=filter?allEvents.filter(e=>e.event===filter):allEvents;
+  const fe=$('#eventFeed');
+  if(!evs.length){fe.innerHTML=`<div class="empty-state"><div class="es-icon">⚡</div><div class="es-title">Không có sự kiện</div></div>`;return;}
+  fe.innerHTML=evs.map(e=>{
+    const ex=e.event==='render'?`Dur ${esc(e.duration||'?')}s · ${esc(e.caption_sync||'—')}`
+      :e.event==='quality'?`<span class="pill ${e.verdict==='PASS'?'ok':'bad'} xs">${esc(e.verdict)}</span> score <b>${esc(e.score)}</b>`
+      :esc(JSON.stringify(e).slice(0,60));
+    return `<div class="feed"><div class="feed-ic ${EVCLS[e.event]||''}">${EVIC[e.event]||'•'}</div><div style="flex:1;min-width:0"><div class="flex items-center gap-8 wrap"><b class="small">${esc(e.event)}</b><span style="font-size:10.5px;color:var(--grey)">${esc((e.ts||'').replace('T',' '))}</span></div><div class="xs muted truncate">${esc(base(e.output))}</div><div class="xs mt-4">${ex}</div></div></div>`;
+  }).join('');
+}
+$('#evFilter').addEventListener('change',renderEvents);
+$('#btnLoadEvents').addEventListener('click',loadEvents);
+
+/* ─── KNOWLEDGE ─────────────────────── */
+let recT;
+$('#recallInput').addEventListener('input',e=>{
+  clearTimeout(recT);const q=e.target.value.trim();
+  if(!q){$('#recallResults').innerHTML=`<div class="empty-state"><div class="es-icon">🧠</div><div class="es-title">Gõ chủ đề để truy vấn</div></div>`;return;}
+  recT=setTimeout(async()=>{
+    $('#recallResults').innerHTML=`<div class="empty" style="padding:24px">Searching…</div>`;
+    const d=await J('/api/recall?q='+encodeURIComponent(q));
+    const rs=d.results||[];
+    if(!rs.length){$('#recallResults').innerHTML=`<div class="empty-state"><div class="es-icon">🔍</div><div class="es-title">Không tìm thấy</div></div>`;return;}
+    $('#recallResults').innerHTML='';
+    rs.forEach(r=>{const v=r.verdict?`<span class="pill ${r.verdict==='BUILT'?'ok':r.verdict==='REJECTED'?'bad':'info'} xs">${esc(r.verdict)}</span>`:'';const c=el('div','recall-card');c.innerHTML=`<div class="recall-head"><div class="recall-title">${esc(r.title)}</div><div class="flex gap-8 items-center">${v}<span class="pill mut xs">${esc(r.source)}·${esc(r.kind)}</span></div></div><div class="recall-body">${esc(r.snippet)}</div>`;$('#recallResults').appendChild(c);});
+  },300);
+});
+async function loadGraphHealth(){
+  const gh=await J('/api/graph-health');
+  const kp=$('#graphHealthKpis');kp.innerHTML='';
+  [{ic:'🔗',l:'Nodes',v:gh.stats?.nodes??'—',m:'info'},{ic:'📡',l:'Edges',v:gh.stats?.edges??'—',m:'info'},{ic:'👻',l:'Orphans',v:(gh.orphans||[]).length,m:(gh.orphans||[]).length?'warn':'good'},{ic:'🔚',l:'Dead-ends',v:(gh.dead_end_hubs||[]).length,m:(gh.dead_end_hubs||[]).length?'warn':'good'}].forEach(k=>kp.appendChild(makeKpi(k.ic,k.l,k.v,k.m)));
+  const orph=gh.orphans||[];
+  $('#orphanList').innerHTML=orph.length?orph.slice(0,20).map(f=>`<div class="small" style="padding:5px 0;border-bottom:1px solid var(--border-soft)"><span class="pill warn xs">○</span> ${esc(f.label||f.id||f)}</div>`).join(''):`<div class="empty-state"><div class="es-icon">✅</div><div class="es-title">Không có orphan nodes</div></div>`;
+}
+
+/* ─── LEARNING ──────────────────────── */
+async function loadLearned(){
+  const d=await J('/api/learned');const fx=d.effects||{};
+  const sk=$('#fxSort')?.value||'score';
+  let rows=Object.entries(fx);
+  rows.sort((a,b)=>sk==='n'?(b[1].n||0)-(a[1].n||0):(b[1].avg_score||0)-(a[1].avg_score||0));
+  $('#fxCount').textContent=rows.length+' effects';
+  const fxEl=$('#learnedBox');
+  if(!rows.length){fxEl.innerHTML=`<div class="empty-state"><div class="es-icon">📊</div><div class="es-title">Chưa đủ dữ liệu</div></div>`;return;}
+  const tbl=el('table');tbl.innerHTML=`<thead><tr><th>Effect</th><th>Avg Score</th><th>n</th><th>Confidence</th></tr></thead>`;
+  const tb=el('tbody');
+  rows.forEach(([n,v])=>{const s=v.avg_score!=null?Number(v.avg_score).toFixed(1):'—';const tr=el('tr');tr.innerHTML=`<td style="font-weight:700">${esc(n)}</td><td class="num">${s}</td><td class="num muted">${esc(v.n)}</td><td>${v.confident?'<span class="pill ok xs">confident</span>':'<span class="pill mut xs">few samples</span>'}</td>`;tb.appendChild(tr);});
+  tbl.appendChild(tb);fxEl.innerHTML='';fxEl.appendChild(tbl);
+}
+$('#fxSort')?.addEventListener('change',loadLearned);
+async function loadHot(){
+  const d=await J('/api/hot-learnings');const md=d.markdown||'';
+  if(!md){$('#hotLearn').innerHTML=`<div class="empty-state"><div class="es-icon">🔥</div><div class="es-title">Chưa có HOT_LEARNINGS</div></div>`;return;}
+  const html=esc(md).replace(/^### (.*)$/gm,'<h4>$1</h4>').replace(/^## (.*)$/gm,'<h3>$1</h3>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`(.+?)`/g,'<code>$1</code>').replace(/^[-*] (.*)$/gm,'<div class="li">$1</div>').replace(/\n{2,}/g,'<br>');
+  $('#hotLearn').innerHTML=`<div class="md small" style="padding:4px">${html}</div>`;
+}
+async function loadAngles(){
+  const d=await J('/api/angles');const a=d.angles||[];
+  $('#angleCount').textContent=a.length+' angles';
+  const aEl=$('#anglesBox');
+  if(!a.length){aEl.innerHTML=`<div class="empty-state"><div class="es-icon">🎯</div><div class="es-title">Chưa có angles</div></div>`;return;}
+  const tbl=el('table');tbl.innerHTML=`<thead><tr><th>Repo</th><th>Angle/Hook</th><th>When</th></tr></thead>`;
+  const tb=el('tbody');
+  a.forEach(x=>{const tr=el('tr');tr.innerHTML=`<td class="small bold">${esc(x.repo||'—')}</td><td class="small">${esc((x.open||'').slice(0,70))}${(x.open||'').length>70?'…':''}</td><td class="xs muted">${esc((x.ts||'').replace('T',' ').slice(0,16))}</td>`;tb.appendChild(tr);});
+  tbl.appendChild(tb);aEl.innerHTML='';aEl.appendChild(tbl);
+}
+
+/* ─── TEMPLATES ─────────────────────── */
+let allTpl=[],tplSc={};
+async function loadTemplates(){
+  const [td,sd]=await Promise.all([J('/api/templates'),J('/api/factory-metrics')]);
+  allTpl=td.templates||[];tplSc=sd.template_scores||{};
+  $('#tplTotal').textContent=td.total+' templates';
+  $('#tplBadge').textContent=td.total;renderTpl();
+}
+function renderTpl(filter=''){
+  const filtered=filter?allTpl.filter(t=>t.name.toLowerCase().includes(filter.toLowerCase())):allTpl;
+  const g=$('#tplGrid');g.innerHTML='';
+  if(!filtered.length){g.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🎨</div><div class="es-title">Không tìm thấy</div></div>`;return;}
+  const AC={blue:'#2A5BDA',green:'#16A34A',orange:'#E2724D',coral:'#E2724D',amber:'#D97706',purple:'#7C3AED',teal:'#0891B2'};
+  filtered.forEach(t=>{
+    const sc=tplSc[t.name];const pr=sc?Math.round((sc.pass_rate||0)*100):null;
+    const hex=AC[t.accent]||'#2A5BDA';
+    const c=el('div','card card-sm');c.style.borderTop=`3px solid ${hex}`;
+    c.innerHTML=`<div class="flex items-center justify-between mb-8 gap-8"><div style="font-size:12.5px;font-weight:800">${esc(t.name)}</div>${pr!=null?`<span class="pill ${pr>=80?'ok':pr>=60?'warn':'bad'} xs">${pr}%</span>`:'<span class="pill mut xs">—</span>'}</div>${t.kicker?`<div class="xs muted mb-8">${esc(t.kicker)}</div>`:''}<div class="flex gap-6 flex-wrap">${t.accent?`<span class="pill xs" style="background:${hex}22;color:${hex}">●&nbsp;${t.accent}</span>`:''}<span class="pill info xs">${esc(t.file)}</span>${sc?`<span class="pill mut xs">n=${sc.n}</span>`:''}</div>`;
+    g.appendChild(c);
+  });
+}
+$('#tplSearch').addEventListener('input',e=>renderTpl(e.target.value));
+
+/* ─── Studio (create) ───────────────── */
+let stPollTimer=null;
+async function loadStudio(){
+  const sel=$('#stTemplate');
+  if(sel && sel.options.length<=1){                       // populate template dropdown once
+    const td=await J('/api/templates');
+    (td.templates||[]).forEach(t=>{ const o=document.createElement('option'); o.value=t.name; o.textContent=t.name; sel.appendChild(o); });
+  }
+  renderStudioJobs();
+}
+async function renderStudioJobs(){
+  const d=await J('/api/studio/jobs'); const jobs=d.jobs||[];
+  $('#studioBadge').textContent = jobs.filter(j=>j.status==='running').length || '＋';
+  const box=$('#stJobs');
+  if(!jobs.length){ box.innerHTML='<div class="empty">Chưa có job nào. Nhập repo và bấm Generate.</div>'; return; }
+  box.innerHTML='';
+  jobs.forEach(j=>{
+    const pill=j.status==='done'?'ok':j.status==='failed'?'bad':j.status==='running'?'info':'mut';
+    const row=el('div','flex items-center justify-between',
+      `<div style="min-width:0"><div style="font-weight:700;font-size:12.5px">${esc(j.target)} <span class="pill ${pill} xs">${esc(j.status)}</span></div>
+       <div class="xs muted">${esc(j.id)} · ${esc(j.template)} · ${esc(j.aspect)}${j.error?' · ⛔ '+esc(j.error):''}</div></div>
+       <div class="flex gap-6">${(j.status==='done'&&j.output)?`<button class="btn xs" data-play="${esc(j.output)}" data-lbl="${esc(j.target)}">▶ Preview</button><a class="btn xs" href="/api/video/${j.output.split('/').map(encodeURIComponent).join('/')}" download>⬇ Download</a>`:''}</div>`);
+    row.style.padding='9px 4px'; row.style.borderBottom='1px solid var(--border-soft)';
+    box.appendChild(row);
+  });
+  box.querySelectorAll('[data-play]').forEach(b=>b.addEventListener('click',()=>studioPreview(b.dataset.play,b.dataset.lbl)));
+  clearTimeout(stPollTimer);                               // keep polling only while a job runs AND we're on Studio
+  if(jobs.some(j=>j.status==='running') && $('#view-studio').classList.contains('active'))
+    stPollTimer=setTimeout(renderStudioJobs, 3000);
+}
+function studioPreview(path,label){
+  $('#stPreviewLabel').textContent=label||path;
+  const url='/api/video/'+path.split('/').map(encodeURIComponent).join('/');
+  $('#stPreview').innerHTML=`<video src="${url}" controls autoplay style="width:100%;border-radius:10px;background:#000"></video>`;
+}
+$('#btnStGenerate')?.addEventListener('click',async()=>{
+  const target=$('#stTarget').value.trim(), template=$('#stTemplate').value, aspect=$('#stAspect').value, dry=$('#stDry').checked;
+  if(!target){ $('#stMsg').textContent='Nhập GitHub repo trước.'; return; }
+  $('#stMsg').textContent='Đang khởi tạo job…';
+  const r=await POST('/api/studio/generate',{target,template,aspect,dry});
+  if(r.ok){ $('#stMsg').textContent=`✅ Job ${r.job_id} đã bắt đầu${dry?' (dry-run)':''}. Tiến độ hiện bên dưới.`; toast('Studio job started','ok'); renderStudioJobs(); }
+  else { $('#stMsg').textContent='⛔ '+(r.error||'lỗi'); toast('Generate lỗi','bad'); }
+});
+$('#btnStRefresh')?.addEventListener('click',renderStudioJobs);
+
+/* ─── SYSTEM MAP ─────────────────────── */
+const GCOL={dir:'#2A5BDA',brain:'#93A9F5',pipeline:'#E2724D',sopcat:'#CBD5E1',agent:'#16A34A',persona:'#5EEAD4',skill:'#0EA5E9',template:'#F59E0B',component:'#C4B5FD',asset:'#CBD5E1',domainskill:'#F9A8D4',fxTransition:'#60A5FA',fxTextEffect:'#818CF8',fxOverlay:'#34D399',fxExit:'#A78BFA'};
+let gNet, gNodes, gEdges;
+
+function getGraphTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  return {
+    ink: isDark ? '#F8FAFC' : '#0F172A',
+    surface: isDark ? '#16223A' : '#FFFFFF',
+    border: isDark ? '#334155' : '#E2E8F0',
+    edge: isDark ? '#475569' : '#DCE3F5',
+    edgeHover: isDark ? '#3A70FF' : '#93A9F5',
+    shadow: isDark ? 'rgba(0,0,0,0.5)' : 'rgba(15,23,42,0.1)'
+  };
+}
+
+async function buildGraph(){
+  const d=await J('/api/graph');
+  if(!d.nodes?.length){$('#graphStats').textContent='Graph trống — bấm Refresh Brain';return;}
+  
+  const th = getGraphTheme();
+  const nodes=d.nodes.map(n=>{
+    let bg = GCOL[n.group] || '#CBD5E1';
+    let border = th.border;
+    let shape = 'dot';
+    let size = 12;
+    if(n.group === 'dir') { shape='box'; size=22; border='#1E4CC4'; bg='#2A5BDA'; }
+    else if(n.group === 'pipeline' || n.group === 'brain') { shape='diamond'; size=18; }
+    else if(n.group === 'agent' || n.group === 'persona') { shape='hexagon'; size=16; }
+    
+    return {
+      id:n.id, label:n.label, group:n.group, rawData: n,
+      color:{ background:bg, border:border, highlight:{background:'#E2724D',border:'#c55a3a'}, hover:{background:'#93A9F5',border:'#2A5BDA'} },
+      font:{ face:'Be Vietnam Pro', size:n.group==='dir'?14:11, color:n.group==='dir'?'#fff':th.ink },
+      shape:shape, size:size,
+      shadow:{ enabled:true, color:th.shadow, size:4, x:0, y:2 }
+    };
+  });
+  
+  gNodes=new vis.DataSet(nodes);
+  gEdges=new vis.DataSet(d.edges);
+  
+  gNet=new vis.Network($('#graph'),{nodes:gNodes,edges:gEdges},{
+    edges:{color:{color:th.edge,highlight:'#2A5BDA',hover:th.edgeHover},width:1,smooth:{type:'continuous'},shadow:{enabled:true,color:th.shadow,size:2,x:0,y:1}},
+    physics:{barnesHut:{gravitationalConstant:-9000,springLength:110,springConstant:.02,damping:.4},stabilization:{iterations:220},timestep:.4},
+    layout:{improvedLayout:false},
+    interaction:{hover:true,tooltipDelay:120}
+  });
+  
+  gNet.once('stabilizationIterationsDone',()=>gNet.setOptions({physics:false}));
+  
+  gNet.on("click", function (params) {
+    if (params.nodes.length > 0) {
+      openNodeInspector(params.nodes[0]);
+    } else {
+      closeNodeInspector();
+    }
+  });
+
+  const s=await J('/api/graph-stats');
+  $('#graphStats').textContent=`${d.nodes.length} nodes · ${d.edges.length} edges`+(s.generated?` · ${s.generated.replace('T',' ')}`:'');
+  graphBuilt=true;
+}
+
+/* ─── Pipeline DAG view (production stages, hierarchical L→R) ─────────── */
+const PKIND={research:'#2A5BDA',write:'#5EEAD4',render:'#E2724D',gate:'#F59E0B',publish:'#16A34A'};
+// last-run status → {border color, glyph, human label}. `error:*` maps by prefix.
+function pipeStatus(s){
+  if(!s) return {c:null, g:'', t:'chưa chạy'};
+  if(s==='ok') return {c:'#16A34A', g:' ✓', t:'ok'};
+  if(s==='skipped') return {c:'#94A3B8', g:' ⏭', t:'bỏ qua'};
+  if(s==='descriptive') return {c:null, g:'', t:'mô tả (chạy trong stage khác)'};
+  if(s.startsWith('error')) return {c:'#DC2626', g:' ✗', t:s};
+  return {c:'#94A3B8', g:'', t:s};
+}
+async function buildPipeline(){
+  const d=await J('/api/pipeline');
+  if(d.error){$('#pipelineStats').textContent='Lỗi: '+d.error;return;}
+  if(!d.nodes?.length){$('#pipelineStats').textContent='Pipeline trống';return;}
+  const th=getGraphTheme();
+  const nodes=d.nodes.map(n=>{
+    const st=pipeStatus(n.status);              // border shows LAST-RUN outcome, background = stage kind
+    const border=st.c||th.border, bw=st.c?3:(n.runnable?2:1);
+    return {
+      id:n.id, label:n.label+st.g, rawData:n,
+      color:{background:PKIND[n.kind]||'#CBD5E1', border:border,
+             highlight:{background:'#E2724D',border:'#c55a3a'}, hover:{background:'#93A9F5',border:'#2A5BDA'}},
+      font:{face:'Be Vietnam Pro', size:13, color:(n.kind==='write'||n.kind==='gate')?'#0b1220':'#fff', multi:false},
+      shape:n.runnable?'box':'ellipse', margin:10,
+      borderWidth:bw, shapeProperties:{borderDashes:n.runnable?false:[4,4]},
+      shadow:{enabled:true,color:th.shadow,size:4,x:0,y:2}
+    };
+  });
+  pNodesDS=new vis.DataSet(nodes);
+  pNet=new vis.Network($('#pipelineGraph'),{nodes:pNodesDS,edges:new vis.DataSet(d.edges)},{
+    layout:{hierarchical:{enabled:true,direction:'LR',sortMethod:'directed',levelSeparation:210,nodeSpacing:120}},
+    edges:{arrows:'to',color:{color:th.edge,highlight:'#2A5BDA'},width:1.5,smooth:{type:'cubicBezier',forceDirection:'horizontal',roundness:.4}},
+    physics:false, interaction:{hover:true,tooltipDelay:120,dragNodes:false}
+  });
+  pNet.on('click',params=>{
+    if(params.nodes.length){
+      const n=pNodesDS.get(params.nodes[0]).rawData; const st=pipeStatus(n.status);
+      $('#pipTitle').textContent=n.label;
+      $('#pipKind').textContent=n.kind+(n.runnable?' · run':' · mô tả');
+      $('#pipKind').style.background=PKIND[n.kind]||'#888'; $('#pipKind').style.color='#fff';
+      $('#pipNote').innerHTML=`<div style="margin-bottom:8px;"><b>Lần chạy gần nhất:</b> <span style="color:${st.c||'var(--muted,#64748b)'}">${esc(st.t)}</span></div>${esc(n.note||'—')}`;
+      $('#pipeInspector').classList.add('open');
+    } else $('#pipeInspector').classList.remove('open');
+  });
+  const lr=d.last_run;
+  const lrTxt=lr?` · chạy gần nhất ${(''+lr.ts).replace('T',' ')}${lr.topic?` → “${esc(lr.topic)}”`:''}`:' · chưa chạy lần nào';
+  $('#pipelineStats').innerHTML=`${d.nodes.length} stages · ${d.edges.length} bước${lrTxt}`;
+  pipelineBuilt=true;
+}
+$('#pipClose')?.addEventListener('click',()=>$('#pipeInspector').classList.remove('open'));
+$('#btnFitPipeline')?.addEventListener('click',()=>pNet?.fit({animation:{duration:400}}));
+
+function updateGraphTheme() {
+  if(!gNet || !gNodes) return;
+  const th = getGraphTheme();
+  const updates = gNodes.get().map(n => ({
+    id: n.id,
+    font: { color: n.group==='dir'?'#fff':th.ink },
+    color: { border: n.group==='dir'?'#1E4CC4':th.border },
+    shadow: { color: th.shadow }
+  }));
+  gNodes.update(updates);
+  gNet.setOptions({ edges: { color: { color: th.edge, hover: th.edgeHover }, shadow: { color: th.shadow } } });
+}
+
+function openNodeInspector(nodeId) {
+  const node = gNodes.get(nodeId);
+  if(!node) return;
+  $('#niTitle').textContent = node.label;
+  $('#niGroup').textContent = node.group;
+  $('#niGroup').style.background = GCOL[node.group] || '#CBD5E1';
+  $('#niGroup').style.color = '#fff';
+  
+  const connectedEdges = gEdges.get().filter(e => e.from === nodeId || e.to === nodeId);
+  const connList = $('#niConnList');
+  connList.innerHTML = '';
+  
+  if(connectedEdges.length === 0) {
+    connList.innerHTML = '<div class="muted small text-center" style="padding:16px 0;">Không có kết nối nào</div>';
+  } else {
+    const seen = new Set();
+    connectedEdges.forEach(e => {
+      const targetId = e.from === nodeId ? e.to : e.from;
+      if(seen.has(targetId)) return;
+      seen.add(targetId);
+      const targetNode = gNodes.get(targetId);
+      if(targetNode) {
+        const item = el('div','ni-conn-item');
+        item.innerHTML = `<div class="ni-conn-icon" style="background:${GCOL[targetNode.group]||'#888'}">${targetNode.label[0].toUpperCase()}</div><div style="flex:1;min-width:0;"><div style="font-weight:600;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(targetNode.label)}</div><div class="muted" style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;">${esc(targetNode.group)}</div></div>`;
+        item.onclick = () => {
+          gNet.selectNodes([targetId]);
+          gNet.fit({nodes:[targetId],animation:{duration:350}});
+          openNodeInspector(targetId);
+        };
+        connList.appendChild(item);
+      }
+    });
+  }
+  
+  $('#nodeInspector').classList.add('open');
+}
+
+function closeNodeInspector() {
+  $('#nodeInspector').classList.remove('open');
+}
+
+$('#niClose')?.addEventListener('click', closeNodeInspector);
+
+$('#graphSearch').addEventListener('input',e=>{
+  if(!gNet) return;const q=e.target.value.trim().toLowerCase();
+  if(!q){gNet.unselectAll();return;}
+  const ids=gNodes.get().filter(n=>n.label.toLowerCase().includes(q)).map(n=>n.id);
+  gNet.selectNodes(ids);if(ids.length) gNet.fit({nodes:ids,animation:{duration:350}});
+});
+$('#btnFitGraph').addEventListener('click',()=>gNet?.fit({animation:{duration:400}}));
+
+/* ─── HEALTH ─────────────────────────── */
+async function loadHealth(){
+  const [a,gh]=await Promise.all([J('/api/knowledge-audit'),J('/api/graph-health')]);
+  const core=(a.broken_path_refs||[]).filter(f=>!f.skill_doc);
+  const issues=core.length+(a.broken_graph_links||[]).length;
+  $('#healthBadge').textContent=issues>0?issues+'!':'OK';
+  $('#sbHealth').textContent=issues>0?`${issues} issues`:'clean';
+  const hkEl=$('#healthKpis');hkEl.innerHTML='';
+  [{ic:'🔗',l:'Broken Refs',v:core.length,m:core.length?'bad':'good'},{ic:'🕸',l:'Graph Links',v:(a.broken_graph_links||[]).length,m:(a.broken_graph_links||[]).length?'bad':'good'},{ic:'👻',l:'Orphan Nodes',v:(gh.orphans||[]).length,m:(gh.orphans||[]).length?'warn':'good'},{ic:'🔚',l:'Dead-ends',v:(gh.dead_end_hubs||[]).length,m:(gh.dead_end_hubs||[]).length?'warn':'good'},{ic:'♻️',l:'Overlaps',v:(a.overlap_pairs||[]).length,m:(a.overlap_pairs||[]).length?'warn':'good'},{ic:'📜',l:'Stale Files',v:(a.stale_files||[]).length,m:(a.stale_files||[]).length?'warn':'good'}].forEach(k=>hkEl.appendChild(makeKpi(k.ic,k.l,k.v,k.m)));
+  if(issues>0 && localStorage.getItem('seosona-healthalert')!=='0') addNotif(`Health: ${issues} issues detected`,'bad');
+  const det=$('#healthDetails');det.innerHTML='';
+  function hList(title,items,fmt){const c=el('div','card');c.innerHTML=`<h2>${title} <span class="pill ${items.length?'warn':'ok'} xs">${items.length}</span></h2>`;if(items.length){const w=el('div');items.slice(0,20).forEach(item=>w.appendChild(el('div','small',fmt(item))));c.appendChild(w);}else c.appendChild(el('div','empty-state',`<div class="es-icon">✅</div><div class="es-title">Sạch</div>`));det.appendChild(c);}
+  hList('Broken core-doc refs',core,f=>`<div style="padding:5px 0;border-bottom:1px solid var(--border-soft)"><span class="pill bad xs">✗</span> ${esc(f.doc)} → <span class="mono">${esc(f.missing_path)}</span></div>`);
+  hList('Overlap pairs',a.overlap_pairs||[],f=>`<div style="padding:5px 0;border-bottom:1px solid var(--border-soft)"><span class="pill warn xs">~${esc(f.similarity)}</span> ${esc(f.a)} ≈ ${esc(f.b)}</div>`);
+  hList('Orphan nodes',gh.orphans||[],f=>`<div style="padding:5px 0;border-bottom:1px solid var(--border-soft)"><span class="pill warn xs">○</span> ${esc(f.label||f.id||f)}</div>`);
+  hList('Dead-end hubs',gh.dead_end_hubs||[],f=>`<div style="padding:5px 0;border-bottom:1px solid var(--border-soft)"><span class="pill warn xs">◑</span> ${esc(f.label||f.id||f)}</div>`);
+}
+
+/* ─── COMMANDS ──────────────────────── */
+async function loadCommands(){
+  const d=await J('/api/npm-scripts');
+  const scripts=d.scripts||{};
+  const groups=d.groups||{};
+  const npmEl=$('#npmGroups');npmEl.innerHTML='';
+  const groupIcons={seosona:'🔗',video:'🎬',make:'🎬',post:'📤',thumbnail:'🖼',library:'📚',talkinghead:'🗣️',autonomy:'🤖',start:'▶️',daily:'📅',feedback:'🔄',factory:'🏭',graph:'🕸',ledger:'📋',freshness:'📊',catalog:'📑',mirror:'🔄',eval:'⚖️',security:'🔒',skill:'🧩',build:'🏗',test:'✅',capcut:'✂️',env:'🌿',python:'🐍'};
+  Object.entries(groups).forEach(([grp,cmds])=>{
+    const g=el('div','npm-group');g.innerHTML=`<div class="npm-group-title">${groupIcons[grp]||'📌'} ${grp}</div>`;
+    cmds.forEach(({name,cmd})=>{
+      const item=el('div','npm-item');
+      item.innerHTML=`<span class="npm-name">npm run ${esc(name)}</span><span class="npm-cmd">${esc(cmd)}</span><button class="btn xs npm-run-btn" data-cmd="${esc(name)}">Copy</button>`;
+      item.querySelector('.npm-run-btn').addEventListener('click',()=>{
+        navigator.clipboard?.writeText('npm run '+name);
+        toast(`Copied: npm run ${name}`,'ok');
+        addTermLine(`$ npm run ${name}   (copied to clipboard)`,'info');
+      });
+      g.appendChild(item);
+    });
+    npmEl.appendChild(g);
+  });
+}
+
+/* ─── WIKI ──────────────────────────── */
+const WIKI_SECTIONS=[
+  {id:'wiki-overview',title:'Big Picture',icon:'📐',tag:'data flow'},
+  {id:'wiki-engines',title:'Render Engines',icon:'⚙️',tag:'2 engines'},
+  {id:'wiki-pipeline',title:'Script Pipeline',icon:'✍️',tag:'6 stages'},
+  {id:'wiki-masterop',title:'Master Operation',icon:'🏭',tag:'7 steps'},
+  {id:'wiki-effects',title:'Effect Library',icon:'🎭',tag:'4 layers'},
+  {id:'wiki-loop',title:'Learning Loop',icon:'🔄',tag:'OODA'},
+  {id:'wiki-agents',title:'Agents & Skills',icon:'🤖',tag:'10+7'},
+  {id:'wiki-templates',title:'Templates',icon:'🎨',tag:'22 templates'},
+  {id:'wiki-api',title:'API Reference',icon:'🔌',tag:'REST'},
+  {id:'wiki-npm',title:'NPM Commands',icon:'⌨️',tag:'package.json'},
+  {id:'wiki-dirs',title:'Directory Ref',icon:'📂',tag:'10 dirs'},
+];
+const WIKI_CONTENT={
+  'wiki-overview':{
+    hero:'Big Picture — Data Flow',sub:'10 thư mục đánh số (0-9) chia theo VAI TRÒ: input → processing (brain) → supporting → output → feedback/học. Học vòng lại vào brain — đây là "nhà máy tự cải thiện".',
+    stats:[{v:'10',l:'Numbered dirs'},{v:'2',l:'Render engines'},{v:'39',l:'SOP docs'},{v:'~40',l:'BRAIN modules'},{v:'10+7',l:'Agents + Skills'}],
+    mermaid:`flowchart TD
+  subgraph INPUT["📥 INPUT"]
+    A0["0_INPUT_INBOX<br/>queue · feeds · sources"]
+    A1["0_SETUP<br/>bootstrap · env check"]
+  end
+  subgraph BRAIN["🧠 PROCESSING — THE BRAIN"]
+    B1["1_AGENTS<br/>10 agents"]
+    B4["4_BRAIN<br/>core engine ~40 modules"]
+    B5["5_FRAMEWORK<br/>HyperFrames render"]
+  end
+  subgraph SUPPORT["📚 SUPPORTING (read-only)"]
+    C2K["2_KNOWLEDGE<br/>ingested knowledge"]
+    C2S["2_SKILLS<br/>7 python skills"]
+    C6["6_SOP<br/>39 SOPs"]
+    C7["7_ASSETS<br/>templates · voice · audio"]
+  end
+  subgraph OUT["📤 OUTPUT"]
+    D8["8_WORKSPACE<br/>MP4 + SRT + thumb"]
+  end
+  subgraph FEEDBACK["🔁 FEEDBACK / LEARNING"]
+    E3["3_MEMORY<br/>metrics · learnings"]
+    E9D["9_DASHBOARD<br/>observability hub"]
+  end
+  A0 --> B4
+  B1 <--> B4
+  B4 --> B5
+  C2K -.-> B4
+  C2S -.-> B4
+  C6 -.-> B4
+  C7 -.-> B4
+  B5 --> D8
+  D8 --> E3
+  D8 --> E9D
+  E3 ==>|learn and improve| B4`},
+  'wiki-engines':{hero:'Two Render Engines',sub:'Mọi input hội tụ về workflow_router → video_engine, rồi rẽ vào 1 trong 2 engine render.',mermaid:`flowchart LR
+  IN["Input: URL / text / file"] --> WR["workflow_router.py<br/>detect input type"]
+  WR --> VE["video_engine.py<br/>unified orchestrator"]
+  VE -->|"create / scrape / download"| NC["native_composer.py<br/>ENGINE 1 — PRIMARY<br/>TTS + HyperFrames"]
+  IN2["Real footage (manual)"] --> THT["talking_head_transcribe.py"]
+  THT --> THE["talking_head_edit.py<br/>ENGINE 2 — SECONDARY<br/>real voice + ASS captions"]
+  NC --> QS["quality_scorer.py"]
+  THE --> QS
+  QS --> EV["evaluator.py<br/>maker-checker QA"]
+  EV --> OUT["8_WORKSPACE<br/>FINAL.mp4"]`},
+  'wiki-pipeline':{hero:'Script Writing Pipeline',sub:'Đường viết kịch bản DUY NHẤT mà mọi path (Agent / GitHub one-shot / freeform / course) phải đi qua. Không path nào được bỏ qua VERIFY (5 gate cứng).',
+    mermaid:`flowchart LR
+  S1["1. FETCH<br/>url/topic → SourceData"] --> S2["2. ANALYZE<br/>→ KeyFacts"]
+  S2 --> S3["3. REASON<br/>→ Angle"]
+  S3 --> S4["4. PLAN<br/>→ Outline 5-9 scenes"]
+  S4 --> S5["5. WRITE<br/>→ Script"]
+  S5 --> S6{"6. VERIFY<br/>5 hard gates"}
+  S6 -->|fail: rewrite| S5
+  S6 -->|pass| REN["→ Render"]`},
+  'wiki-masterop':{hero:'Master Operation — 7 Steps',sub:'Luồng vận hành tổng của MỘT video, từ script đến học lại. Source: 6_SOP/MASTER_OPERATION.md',
+    mermaid:`flowchart TD
+  M1["STEP 1 — Scripting / data intake"] --> M2["STEP 2 — Voice synthesis (TTS)"]
+  M2 --> M3["STEP 3 — Timestamps (ASR align)"]
+  M3 --> M4["STEP 4 — Scene generation (components + SFX)"]
+  M4 --> M5["STEP 5 — Video render (HyperFrames)"]
+  M5 --> M6["STEP 6 — Thumbnail"]
+  M6 --> M7["STEP 7 — Evaluate and Learn"]
+  M7 -.->|feeds back into| M1`},
+  'wiki-effects':{hero:'Effect Library Stack — 4 Layers',sub:'Hệ thống thư viện tái sử dụng cho variety — mỗi lớp có selector riêng, xoay theo video để không nhàm.',
+    mermaid:`flowchart TD
+  L1["Layer 1 — TEMPLATE<br/>20 archetypes · template_picker"] --> L2["Layer 2 — COMPONENT<br/>25 components (16 caption + 9 effect)"]
+  L2 --> L3["Layer 3 — BLOCK<br/>97 HyperFrames blocks · block_picker"]
+  L3 --> L4["Layer 4 — EFFECT<br/>6 transitions · 5 text-effects · 2 overlays<br/>5 exits · 3 motion-profiles · 8 sfx-categories"]`},
+  'wiki-loop':{hero:'Learning Loop — OODA',sub:'Nhà máy tự quan sát chất lượng đầu ra của chính nó và điều chỉnh rotation/template.',
+    mermaid:`flowchart TD
+  OB["OBSERVE<br/>eval_run.py records score + effects"] --> OR["ORIENT<br/>learn_flywheel.py aggregates"]
+  OR --> DE["DECIDE<br/>factory_brain.py picks next template"]
+  DE --> AC["ACT<br/>native_composer renders with new params"]
+  AC -->|next video| OB`},
+};
+const WIKI_AGENTS_HTML=`
+<div class="accord"><div class="accord-head" onclick="this.parentElement.classList.toggle('open')"><span>👑 Orchestration & Remote Control (2 agents)</span><span class="accord-arrow">▼</span></div><div class="accord-body">
+  <div class="agent-row"><div class="agent-icon">👑</div><div><div class="agent-name">hermes_agent</div><div class="agent-desc">Remote control via Telegram — /news, /publish, /trend, /status</div></div></div>
+  <div class="agent-row"><div class="agent-icon">🔥</div><div><div class="agent-name">trend_jacking_agent</div><div class="agent-desc">Watches trends → triggers pipeline for trend-following videos</div></div></div>
+</div></div>
+<div class="accord"><div class="accord-head" onclick="this.parentElement.classList.toggle('open')"><span>⛏️ Research & Data (1 agent)</span><span class="accord-arrow">▼</span></div><div class="accord-body">
+  <div class="agent-row"><div class="agent-icon">⛏️</div><div><div class="agent-name">scraper_agent</div><div class="agent-desc">Parses HTML/JSON, scrapes content from websites/news to build scripts</div></div></div>
+</div></div>
+<div class="accord"><div class="accord-head" onclick="this.parentElement.classList.toggle('open')"><span>🎯 Content Creation & Scripting (4 agents)</span><span class="accord-arrow">▼</span></div><div class="accord-body">
+  <div class="agent-row"><div class="agent-icon">🎯</div><div><div class="agent-name">seo_writer_agent</div><div class="agent-desc">Writes video scripts aligned with search behavior (writer.py)</div></div></div>
+  <div class="agent-row"><div class="agent-icon">🎠</div><div><div class="agent-name">carousel_writer_agent</div><div class="agent-desc">Slide-style carousel content for LinkedIn/Instagram</div></div></div>
+  <div class="agent-row"><div class="agent-icon">💬</div><div><div class="agent-name">social_media_agent</div><div class="agent-desc">Social captions following PAS framework (clickbait, hooks)</div></div></div>
+  <div class="agent-row"><div class="agent-icon">✂️</div><div><div class="agent-name">repurposer_agent</div><div class="agent-desc">Cuts long videos/podcasts into shorts/reels</div></div></div>
+</div></div>
+<div class="accord"><div class="accord-head" onclick="this.parentElement.classList.toggle('open')"><span>📊 Optimization & Publishing (3 agents)</span><span class="accord-arrow">▼</span></div><div class="accord-body">
+  <div class="agent-row"><div class="agent-icon">📈</div><div><div class="agent-name">seo_optimizer</div><div class="agent-desc">Optimizes YouTube metadata — title/tags/description + JSON-LD</div></div></div>
+  <div class="agent-row"><div class="agent-icon">📊</div><div><div class="agent-name">analytics_feedback_agent</div><div class="agent-desc">Analyzes retention, generates post-mortems</div></div></div>
+  <div class="agent-row"><div class="agent-icon">🚀</div><div><div class="agent-name">publisher_agent</div><div class="agent-desc">Publishing APIs (YouTube/TikTok/FB/Drive) — requires explicit User permission</div></div></div>
+</div></div>
+<div class="divider"></div>
+<h3 style="font-size:14px;font-weight:800;margin-bottom:12px">🛠 Execution Skills (2_SKILLS/)</h3>
+<div class="accord"><div class="accord-head" onclick="this.parentElement.classList.toggle('open')"><span>🔊 Audio &amp; Voice + 📝 Subtitles</span><span class="accord-arrow">▼</span></div><div class="accord-body">
+  <div class="agent-row"><div class="agent-icon">🗣️</div><div><div class="agent-name">voice_cloner</div><div class="agent-desc">OmniVoice PRIMARY (k2-fsa, local, VN-native) → VieNeu BACKUP. The ONLY voice router.</div></div></div>
+  <div class="agent-row"><div class="agent-icon">📝</div><div><div class="agent-name">srt_maker</div><div class="agent-desc">Generates SRT via faster-whisper / PhoWhisper (word-level timestamps for Karaoke)</div></div></div>
+</div></div>
+<div class="accord"><div class="accord-head" onclick="this.parentElement.classList.toggle('open')"><span>🎞️ Image &amp; Video Skills</span><span class="accord-arrow">▼</span></div><div class="accord-body">
+  <div class="agent-row"><div class="agent-icon">✂️</div><div><div class="agent-name">video_clipper</div><div class="agent-desc">Cuts/formats clips (including vertical 9:16 shorts)</div></div></div>
+  <div class="agent-row"><div class="agent-icon">🖼️</div><div><div class="agent-name">thumbnail_maker</div><div class="agent-desc">Generates HTML thumbnails</div></div></div>
+  <div class="agent-row"><div class="agent-icon">⬇️</div><div><div class="agent-name">yt_downloader</div><div class="agent-desc">Downloads source videos from YouTube (yt-dlp)</div></div></div>
+  <div class="agent-row"><div class="agent-icon">🎨</div><div><div class="agent-name">hf_blueprints</div><div class="agent-desc">HyperFrames scene blueprints/templates</div></div></div>
+</div></div>`;
+
+const WIKI_API=[
+  {m:'GET',r:'/api/metrics',d:'Full factory metrics — KPIs, totals, recent renders, queue'},
+  {m:'GET',r:'/api/events',d:'Flight recorder events (render/quality/publish)'},
+  {m:'GET',r:'/api/recall?q=',d:'Second Brain recall search'},
+  {m:'GET',r:'/api/learned',d:'Effect performance data from learning flywheel'},
+  {m:'GET',r:'/api/hot-learnings',d:'HOT_LEARNINGS markdown content'},
+  {m:'GET',r:'/api/angles',d:'Recent content angles produced'},
+  {m:'GET',r:'/api/graph',d:'vis-network graph nodes + edges JSON'},
+  {m:'GET',r:'/api/graph-stats',d:'Graph generation timestamp + stats'},
+  {m:'GET',r:'/api/graph-health',d:'Orphans, dead-end hubs, graph health'},
+  {m:'GET',r:'/api/knowledge-audit',d:'Broken path refs, overlaps, stale files'},
+  {m:'GET',r:'/api/factory-metrics',d:'Template scores + production log rows'},
+  {m:'GET',r:'/api/workspace',d:'List MP4 files in 8_WORKSPACE'},
+  {m:'GET',r:'/api/daily-trend',d:'Render + quality aggregated per day (30d)'},
+  {m:'GET',r:'/api/system-stats',d:'File counts: agents, skills, brain, templates'},
+  {m:'GET',r:'/api/templates',d:'List 22 scene-structure JSON templates'},
+  {m:'GET',r:'/api/npm-scripts',d:'All npm scripts from package.json (grouped)'},
+  {m:'GET',r:'/api/file-tree',d:'Workspace directory tree (depth-limited)'},
+  {m:'GET',r:'/api/process-status',d:'Running Python/Node/ffmpeg processes'},
+  {m:'POST',r:'/api/action/enqueue',d:'Add item to production queue'},
+  {m:'POST',r:'/api/action/refresh-brain',d:'Regenerate knowledge graph + notes'},
+  {m:'POST',r:'/api/action/re-audit',d:'Run knowledge integrity audit'},
+];
+const WIKI_DIRS=[
+  {n:'0_INPUT_INBOX',role:'input',cls:'input',d:'Production queue (YAML), discovery sources, incoming feed items'},
+  {n:'0_SETUP',role:'meta',cls:'support',d:'Bootstrap scripts, environment check, credential templates'},
+  {n:'1_AGENTS',role:'processing',cls:'processing',d:'10 AI agents — scrape/write/publish/analyze (Hermes, SEO Writer, Repurposer…)'},
+  {n:'1_CONFIG',role:'meta',cls:'support',d:'Credentials, API keys, publishing policy (never commit!)'},
+  {n:'2_KNOWLEDGE',role:'supporting',cls:'support',d:'Ingested knowledge from repos — 680+ items. Read-only inputs to 4_BRAIN'},
+  {n:'2_SKILLS',role:'supporting',cls:'support',d:'7 Python execution skills — voice_cloner, srt_maker, video_clipper, thumbnail_maker…'},
+  {n:'3_MEMORY',role:'feedback',cls:'feedback',d:'metrics/, learnings/, state/ — the factory\'s learning memory'},
+  {n:'4_BRAIN',role:'processing',cls:'processing',d:'Core engine ~40 modules: video_engine, native_composer, quality_scorer, factory_brain…'},
+  {n:'5_FRAMEWORK',role:'processing',cls:'processing',d:'HyperFrames — 97 catalog blocks, HTML render engine for video frames'},
+  {n:'6_SOP',role:'supporting',cls:'support',d:'39 Standard Operating Procedures — MASTER_OPERATION.md, style guides, rules'},
+  {n:'7_ASSETS',role:'supporting',cls:'support',d:'22 scene templates, voice profiles, BGM, brand kit, thumbnails'},
+  {n:'8_WORKSPACE',role:'output',cls:'output',d:'Per-video output folders: FINAL.mp4, SRT, thumbnail, script, metadata'},
+  {n:'9_DASHBOARD',role:'feedback',cls:'feedback',d:'This observability hub — Flask server, obs_metrics.py, static assets'},
+];
+
+// ── Wiki: Page-based article rendering ──
+let _wikiCurrentSec = 'wiki-overview';
+const _wikiVisited = new Set();
+
+function wikiHeroHtml(sec){
+  const s=WIKI_SECTIONS.find(x=>x.id===sec);
+  if(!s) return '';
+  const d=WIKI_CONTENT[sec];
+  const heroTitle = d?.hero || s.title;
+  const herSub = d?.sub || '';
+  const statsHtml=d?.stats?`<div class="wiki-stat-row">${d.stats.map(st=>`<div class="wiki-stat"><b>${st.v}</b><span>${st.l}</span></div>`).join('')}</div>`:'';
+  const idx=WIKI_SECTIONS.findIndex(x=>x.id===sec);
+  const readTime = Math.max(1, Math.ceil((herSub.length + (d?.mermaid||'').length) / 400));
+  return `<div class="wiki-section-hero">
+    <div class="wiki-hero-breadcrumb"><a href="#">Wiki</a> <span>›</span> <span>${s.title}</span></div>
+    <span class="wiki-hero-icon">${s.icon}</span>
+    <div class="wiki-tag">${s.tag}</div>
+    <h2>${heroTitle}</h2>
+    <p>${herSub}</p>
+    ${statsHtml}
+    <div class="wiki-hero-meta"><span>📄 ${idx+1} / ${WIKI_SECTIONS.length}</span><span>⏱ ${readTime} min read</span></div>
+  </div>`;
+}
+
+function wikiContentHtml(sec){
+  const d=WIKI_CONTENT[sec];
+  if(sec==='wiki-agents') return WIKI_AGENTS_HTML;
+  if(sec==='wiki-templates') return `<div id="wikiTplGrid" class="dir-grid"></div>`;
+  if(sec==='wiki-api') return `<div class="table-wrap"><table><thead><tr><th>Method</th><th>Route</th><th>Description</th></tr></thead><tbody>${WIKI_API.map(a=>`<tr><td><span class="api-method ${a.m.toLowerCase()}">${a.m}</span></td><td><span class="code">${esc(a.r)}</span></td><td class="small">${esc(a.d)}</td></tr>`).join('')}</tbody></table></div>`;
+  if(sec==='wiki-npm') return `<div id="wikiNpmList"><div class="empty">Loading…</div></div>`;
+  if(sec==='wiki-dirs') return `<div class="dir-grid">${WIKI_DIRS.map(d=>`<div class="dir-card ${d.cls}"><h4>${esc(d.n)}</h4><div class="dir-role">${d.role}</div><div class="dir-desc">${esc(d.d)}</div></div>`).join('')}</div>`;
+  if(!d) return '<div class="empty">Content coming soon…</div>';
+  const mmHtml=d.mermaid?`<div class="mermaid-wrap"><div class="mermaid">${d.mermaid}</div></div>`:'';
+  return mmHtml;
+}
+
+function wikiNavHtml(sec){
+  const idx=WIKI_SECTIONS.findIndex(x=>x.id===sec);
+  const prev=idx>0?WIKI_SECTIONS[idx-1]:null;
+  const next=idx<WIKI_SECTIONS.length-1?WIKI_SECTIONS[idx+1]:null;
+  let html='<div class="wiki-article-nav">';
+  if(prev) html+=`<div class="wiki-article-nav-btn prev" data-nav="${prev.id}"><span class="wiki-article-nav-label">← Previous</span><span class="wiki-article-nav-title">${prev.icon} ${prev.title}</span></div>`;
+  else html+='<div></div>';
+  if(next) html+=`<div class="wiki-article-nav-btn next" data-nav="${next.id}"><span class="wiki-article-nav-label">Next →</span><span class="wiki-article-nav-title">${next.icon} ${next.title}</span></div>`;
+  html+='</div>';
+  return html;
+}
+
+function renderWikiPage(sec){
+  _wikiCurrentSec=sec;
+  _wikiVisited.add(sec);
+  const article=$('#wikiArticle');
+  if(!article) return;
+  article.innerHTML = wikiHeroHtml(sec)
+    + `<div class="wiki-content">${wikiContentHtml(sec)}</div>`
+    + wikiNavHtml(sec);
+  article.classList.remove('wiki-article');
+  void article.offsetWidth;
+  article.classList.add('wiki-article');
+  const body=$('#wikiBody');
+  if(body) body.scrollTop=0;
+  $$('.wiki-nav-item').forEach(x=>{
+    x.classList.remove('active');
+    if(x.dataset.sec===sec) x.classList.add('active');
+    if(_wikiVisited.has(x.dataset.sec) && x.dataset.sec!==sec){
+      if(!x.querySelector('.wni-visited')){
+        const dot=document.createElement('span');dot.className='wni-visited';x.appendChild(dot);
+      }
+    }
+  });
+  $$('.wiki-toc-dot').forEach(d=>{d.classList.toggle('active',d.dataset.sec===sec)});
+  if(sec==='wiki-templates'){
+    setTimeout(async()=>{const d=await J('/api/templates');const g=$('#wikiTplGrid');if(g) g.innerHTML=(d.templates||[]).map(t=>`<div class="card card-sm"><div style="font-size:12.5px;font-weight:800">${esc(t.name)}</div><div class="xs muted mt-4">${esc(t.kicker||t.file)}</div></div>`).join('');},200);
+  }
+  if(sec==='wiki-npm'){
+    setTimeout(async()=>{const d=await J('/api/npm-scripts');const el2=$('#wikiNpmList');if(!el2) return;const scripts=d.scripts||{};el2.innerHTML=Object.entries(scripts).map(([n,c])=>`<div class="npm-item"><span class="npm-name">npm run ${esc(n)}</span><span class="npm-cmd">${esc(c)}</span><button class="btn xs npm-run-btn" onclick="navigator.clipboard?.writeText('npm run ${esc(n)}');toast('Copied!','ok')">Copy</button></div>`).join('');},200);
+  }
+  setTimeout(async()=>{
+    try{const nodes=article.querySelectorAll('.mermaid');if(nodes.length) await mermaid.run({nodes});}catch(e){console.warn('Mermaid:',e);}
+  },250);
+  article.querySelectorAll('.wiki-article-nav-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>renderWikiPage(btn.dataset.nav));
+  });
+}
+
+async function renderWiki(){
+  const toc=$('#wikiToc');
+  if(toc){
+    toc.innerHTML=WIKI_SECTIONS.map(s=>`<div class="wiki-toc-dot${s.id===_wikiCurrentSec?' active':''}" data-sec="${s.id}" data-title="${s.title}"></div>`).join('');
+    toc.querySelectorAll('.wiki-toc-dot').forEach(dot=>{
+      dot.addEventListener('click',()=>renderWikiPage(dot.dataset.sec));
+    });
+  }
+  $$('.wiki-nav-item').forEach(item=>{
+    item.addEventListener('click',()=>renderWikiPage(item.dataset.sec));
+  });
+  const body=$('#wikiBody');
+  const fill=$('#wikiProgressFill');
+  if(body && fill){
+    body.addEventListener('scroll',()=>{
+      const pct=body.scrollTop/(body.scrollHeight-body.clientHeight)*100;
+      fill.style.width=Math.min(100,Math.max(0,pct))+'%';
+    });
+  }
+  renderWikiPage(_wikiCurrentSec);
+}
+
+
+
+
+/* ─── BRAND KIT ─────────────────────── */
+function renderBrandKit(){
+  const pal=[{n:'Blue',h:'#2A5BDA',r:'Primary'},{n:'Blue Deep',h:'#1E4CC4',r:'Hover'},{n:'Coral',h:'#E2724D',r:'Accent'},{n:'Green',h:'#16A34A',r:'Success'},{n:'Amber',h:'#D97706',r:'Caution'},{n:'Navy',h:'#16224A',r:'Dark'},{n:'Ink',h:'#0F172A',r:'Body'},{n:'Grey',h:'#94A3B8',r:'Muted'},{n:'BG',h:'#F2F6FF',r:'Background'}];
+  const sw=$('#brandSwatches');sw.innerHTML='';
+  pal.forEach(p=>{const tc=['#F2F6FF','#94A3B8'].includes(p.h)?'#475569':'#fff';const s=el('div','swatch');s.innerHTML=`<div class="swatch-color" style="background:${p.h};display:flex;align-items:center;justify-content:center"><span style="font-size:9.5px;font-weight:700;color:${tc};opacity:.75">${p.r}</span></div><div class="swatch-info"><div class="swatch-name">${p.n}</div><div class="swatch-hex">${p.h}</div></div>`;s.addEventListener('click',()=>{navigator.clipboard?.writeText(p.h);toast(`Copied: ${p.h}`,'ok');});sw.appendChild(s);});
+  $('#brandRoles').innerHTML=[{r:'emphasis',c:'#2A5BDA',d:'Highlighted word / hero keyword'},{r:'success',c:'#16A34A',d:'Solution / free / confirmed ✓'},{r:'danger',c:'#E2724D',d:'Error / cost / pain / deprecated'},{r:'caution',c:'#D97706',d:'Warning / "verify this"'},{r:'baseline',c:'#94A3B8',d:'Old/human reference (grey)'}].map(r=>`<div class="flex items-center gap-12" style="padding:8px 0;border-bottom:1px solid var(--border-soft)"><div style="width:12px;height:12px;border-radius:2px;background:${r.c};flex-shrink:0"></div><span style="font-weight:700;font-size:12px;min-width:80px">${r.r}</span><span class="xs muted">${r.d}</span></div>`).join('');
+  $('#brandTypo').innerHTML=[{n:'H1',sz:'32px',w:'900',s:'SEOSONA Video'},{n:'H2',sz:'20px',w:'800',s:'Dashboard'},{n:'Body',sz:'13px',w:'400',s:'Nhà máy sản xuất video tự động'},{n:'Small',sz:'11.5px',w:'600',s:'be-vietnam-pro'},{n:'Mono',sz:'11.5px',w:'400',s:'0xDEAD',mono:true}].map(t=>`<div style="padding:8px 0;border-bottom:1px solid var(--border-soft)"><div style="font-size:${t.sz};font-weight:${t.w};font-family:${t.mono?'var(--mono)':'var(--font)'};line-height:1.2">${t.s}</div><div class="xs muted mt-4">${t.n} · ${t.sz} · ${t.w}</div></div>`).join('');
+  $('#brandCTA').innerHTML=[['CTA_FOLLOW','Theo dõi SEOSONA'],['CTA_TAGLINE','Thủ thuật AI & lập trình mỗi ngày'],['CTA_BUTTON','👉 Theo dõi SEOSONA'],['FOOTER_TAG','Share to be shared more']].map(([k,v])=>`<div class="flex items-center gap-12" style="padding:9px 0;border-bottom:1px solid var(--border-soft)"><code class="mono xs" style="min-width:130px;color:var(--blue-deep)">${k}</code><span class="small" style="flex:1">${esc(v)}</span><button class="btn xs" onclick="navigator.clipboard?.writeText('${esc(v)}');toast('Copied!','ok')">Copy</button></div>`).join('');
+}
+
+/* ─── SETTINGS ──────────────────────── */
+async function loadSettings(){
+  const vsel=$('#settingDefaultView');
+  vsel.innerHTML=Object.entries(VIEW_META).map(([v,m])=>`<option value="${v}" ${v===(localStorage.getItem('seosona-view')||'overview')?'selected':''}>${m.title}</option>`).join('');
+  vsel.addEventListener('change',e=>localStorage.setItem('seosona-view',e.target.value));
+  const d=await J('/api/process-status');
+  const procs=d.processes||[];
+  $('#procStatus').innerHTML=procs.length?procs.map(p=>`<div class="small" style="padding:3px 0"><span class="pill ok xs">●</span> ${esc(p.name)} <span class="muted">[${p.pid}]</span></div>`).join(''):'<span class="pill mut xs">No processes</span>';
+  // ── persisted preference controls (load current + wire on-change; real effects) ──
+  const poll=$('#settingPoll');
+  if(poll){ poll.value=localStorage.getItem('seosona-poll')||'10';
+    poll.onchange=e=>{ localStorage.setItem('seosona-poll',e.target.value); startPolling(); toast('Polling: mỗi '+e.target.value+'s','ok'); }; }
+  const af=$('#settingAutoFeed');
+  if(af){ af.checked=(localStorage.getItem('seosona-autofeed')??'1')==='1';
+    af.onchange=e=>{ localStorage.setItem('seosona-autofeed',e.target.checked?'1':'0'); const a=$('#autoFeed'); if(a) a.checked=e.target.checked; }; }
+  const ha=$('#settingHealthAlert');
+  if(ha){ ha.checked=(localStorage.getItem('seosona-healthalert')??'1')==='1';
+    ha.onchange=e=>localStorage.setItem('seosona-healthalert',e.target.checked?'1':'0'); }
+  const ea=$('#settingEnqAlert');
+  if(ea){ ea.checked=(localStorage.getItem('seosona-enqalert')??'1')==='1';
+    ea.onchange=e=>localStorage.setItem('seosona-enqalert',e.target.checked?'1':'0'); }
+}
+async function exportMetrics(){
+  const m=await J('/api/metrics');
+  const b=new Blob([JSON.stringify(m,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='seosona_metrics_'+new Date().toISOString().slice(0,10)+'.json';a.click();
+  toast('Metrics exported','ok');
+}
+
+/* ─── COMMAND PALETTE ───────────────── */
+const PAL_ITEMS=[
+  ...Object.entries(VIEW_META).map(([v,m])=>({type:'view',view:v,name:m.title,desc:m.sub,ic:m.ic})),
+  {type:'action',name:'Refresh Brain',desc:'Tái tạo knowledge graph + notes',ic:'↻',fn:()=>$('#btnRefreshBrain').click()},
+  {type:'action',name:'Re-audit System',desc:'Integrity audit toàn hệ thống',ic:'🩺',fn:()=>$('#btnReAudit')?.click()},
+  {type:'action',name:'Toggle Terminal',desc:'Ctrl+J',ic:'⌨️',fn:toggleTerminal},
+  {type:'action',name:'Toggle Sidebar',desc:'Thu/mở sidebar',ic:'◀',fn:()=>setSidebar($('#sidebar').classList.contains('icons')?'expanded':'icons')},
+  {type:'action',name:'Export Metrics JSON',desc:'Tải metrics',ic:'📥',fn:exportMetrics},
+  {type:'action',name:'Open Full System Map',desc:'Mở SYSTEM_MAP.html',ic:'🕸',fn:()=>window.open('/systemmap','_blank')},
+];
+let cpSel=0,cpFiltered=[...PAL_ITEMS];
+const cpOverlay=$('#cmdPaletteOverlay');
+const cpInput=$('#cpInput');
+const cpResults=$('#cpResults');
+function openCmdPalette(){ cpOverlay.classList.add('open'); cpInput.value=''; cpInput.focus(); renderPal(''); }
+function closeCmdPalette(){ cpOverlay.classList.remove('open'); cpSel=0; }
+function renderPal(q){
+  cpFiltered=q?PAL_ITEMS.filter(i=>(i.name+i.desc).toLowerCase().includes(q.toLowerCase())):[...PAL_ITEMS];
+  cpSel=Math.min(cpSel,Math.max(0,cpFiltered.length-1));
+  if(!cpFiltered.length){cpResults.innerHTML=`<div class="cp-empty">Không tìm thấy</div>`;return;}
+  cpResults.innerHTML=cpFiltered.map((item,i)=>`<div class="cp-result ${i===cpSel?'sel':''}" data-idx="${i}">
+    <div class="cp-result-ic">${item.ic}</div>
+    <div><div class="cp-result-name">${esc(item.name)}</div><div class="cp-result-desc">${esc(item.desc)}</div></div>
+    ${item.type==='view'?`<div class="cp-result-kbd"><kbd class="kbd">${item.view[0]}</kbd></div>`:''}
+  </div>`).join('');
+  $$('.cp-result').forEach((e2,i)=>{ e2.addEventListener('click',()=>selectPal(i)); e2.addEventListener('mouseover',()=>{cpSel=i;renderPal(cpInput.value);}); });
+}
+function selectPal(i){ const item=cpFiltered[i];if(!item) return;closeCmdPalette();if(item.type==='view') navigateTo(item.view);else if(item.fn) item.fn(); }
+cpInput.addEventListener('input',e=>{cpSel=0;renderPal(e.target.value);});
+cpInput.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'){e.preventDefault();cpSel=Math.min(cpSel+1,cpFiltered.length-1);renderPal(cpInput.value);}
+  else if(e.key==='ArrowUp'){e.preventDefault();cpSel=Math.max(cpSel-1,0);renderPal(cpInput.value);}
+  else if(e.key==='Enter'){e.preventDefault();selectPal(cpSel);}
+  else if(e.key==='Escape') closeCmdPalette();
+});
+cpOverlay.addEventListener('click',e=>{if(e.target===cpOverlay) closeCmdPalette();});
+$('#btnCmdPalette').addEventListener('click',()=>cpOverlay.classList.contains('open')?closeCmdPalette():openCmdPalette());
+
+/* ─── Context Menu ──────────────────── */
+const ctxEl=$('#ctxMenu');
+function showCtx(items,x,y){
+  ctxEl.innerHTML=items.map(it=>it==='-'?'<div class="ctx-sep"></div>':`<div class="ctx-item ${it.cls||''}" onclick="(${it.fn})();hideCtx()">${it.ic||''} ${esc(it.label)}</div>`).join('');
+  ctxEl.style.left=x+'px'; ctxEl.style.top=y+'px'; ctxEl.style.display='block';
+}
+function hideCtx(){ ctxEl.style.display='none'; }
+document.addEventListener('click',hideCtx);
+$$('.sb-navlink').forEach(n=>n.addEventListener('contextmenu',e=>{
+  e.preventDefault();const v=n.dataset.view;const m=VIEW_META[v];if(!m) return;
+  showCtx([
+    {label:'Open '+m.title,ic:m.ic,fn:`()=>navigateTo('${v}')`},
+    {label:'Open in new tab',ic:'↗',fn:`()=>window.open('/','_blank')`},
+    '-',
+    {label:'Copy view ID',ic:'📋',fn:`()=>navigator.clipboard?.writeText('${v}')`},
+  ],e.clientX,e.clientY);
+}));
+
+/* ─── Keyboard shortcuts ────────────── */
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();cpOverlay.classList.contains('open')?closeCmdPalette():openCmdPalette();return;}
+  if((e.ctrlKey||e.metaKey)&&e.key==='j'){e.preventDefault();toggleTerminal();return;}
+  if((e.ctrlKey||e.metaKey)&&e.key==='b'){e.preventDefault();setSidebar($('#sidebar').classList.contains('icons')?'expanded':'icons');return;}
+  if((e.ctrlKey||e.metaKey)&&e.key===','){e.preventDefault();navigateTo('settings');return;}
+  if(e.key==='Escape'&&cpOverlay.classList.contains('open')){closeCmdPalette();return;}
+  if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) return;
+  const vmap={o:'overview',a:'analytics',f:'factory',l:'library',q:'queue',e:'activity',k:'knowledge',n:'learning',t:'templates',s:'systemmap',h:'health',c:'commands',b:'brand',w:'wiki','S':'settings'};
+  if(vmap[e.key]) navigateTo(vmap[e.key]);
+  if(e.key==='['){const sb=$('#sidebar');if(sb.classList.contains('icons')) setSidebar('hidden');else if(sb.classList.contains('hidden')) setSidebar('expanded');else setSidebar('icons');}
+  if(e.key===']') setSidebar('expanded');
+  if(e.key==='r') loadOverview();
+});
+
+/* ─── Actions ───────────────────────── */
+async function withBusy(btn,fn){ const o=btn.innerHTML;btn.disabled=true;btn.textContent='⏳…';try{return await fn();}finally{btn.disabled=false;btn.innerHTML=o;} }
+[$('#btnRefreshBrain'),$('#btnSBRefresh')].forEach(btn=>btn?.addEventListener('click',e=>withBusy(e.currentTarget,async()=>{
+  toast('Đang refresh brain…','info');addTermLine('$ Refreshing SEOSONA Brain…','info');
+  const r=await POST('/api/action/refresh-brain');
+  if(r.ok){toast('Brain updated ✓','ok');addNotif('Brain refreshed ✓','ok');graphBuilt=false;if(currentView==='systemmap') buildGraph();loadHealth();stampBrain();addTermLine('✓ Brain refresh complete','ok');}
+  else{toast('Error: '+(r.error||'?'),'bad');addNotif('Brain refresh failed','bad');addTermLine('✗ Brain refresh failed: '+(r.error||'?'),'err');}
+})));
+$('#btnReAudit').addEventListener('click',e=>withBusy(e.currentTarget,async()=>{
+  toast('Auditing…','info');const r=await POST('/api/action/re-audit');
+  r.ok?(toast('Audit done ✓','ok'),loadHealth()):toast('Error: '+(r.error||'?'),'bad');
+}));
+$('#btnLoadEvents').addEventListener('click',loadEvents);
+async function doEnqueue(itemId,catId,msgId){
+  const item=$(itemId).value.trim(),category=$(catId).value;
+  if(!item){$(msgId).textContent='Nhập URL hoặc chủ đề trước.';return;}
+  const r=await POST('/api/action/enqueue',{item,category});
+  if(r.ok){$(itemId).value='';$(msgId).textContent=`✓ Đã thêm vào ${r.category} (${r.queue_len})`;
+    if(localStorage.getItem('seosona-enqalert')!=='0'){ toast(`Đã thêm vào ${r.category} ✓`,'ok'); addNotif(`Enqueued: "${item.slice(0,40)}"`,'ok'); }
+    loadOverview();}
+  else{$(msgId).textContent='Lỗi: '+(r.error||'?');toast('Enqueue error','bad');}
+}
+$('#btnEnqueue').addEventListener('click',()=>doEnqueue('#enqItem','#enqCat','#enqMsg'));
+$('#btnEnqueue2').addEventListener('click',()=>doEnqueue('#enqItem2','#enqCat2','#enqMsg2'));
+['#enqItem','#enqItem2'].forEach(id=>$(id)?.addEventListener('keydown',e=>{if(e.key==='Enter') $(id==='#enqItem'?'#btnEnqueue':'#btnEnqueue2').click();}));
+
+/* ─── Brain stamp ───────────────────── */
+async function stampBrain(){const s=await J('/api/graph-stats');if(s.generated) $('#brainStamp').textContent=s.generated.replace('T',' ').slice(0,16);}
+
+/* ─── BOOT ──────────────────────────── */
+loadOverview();
+loadFactory();
+stampBrain();
+renderPipeline([]);
+renderTabs();
+
+// Auto-refresh
+let pollTimer=null;
+function startPolling(){                                   // restartable so Settings' poll-interval takes effect live
+  clearInterval(pollTimer);
+  const ms=parseInt(localStorage.getItem('seosona-poll')||'10')*1000;
+  pollTimer=setInterval(()=>{
+    loadOverview();
+    if(currentView==='activity'&&$('#autoFeed')?.checked) loadEvents();
+    if(currentView==='kanban'&&$('#kbLiveMode')?.checked) loadKanban();
+  },ms);
+}
+startPolling();
+
+/* ─── KANBAN ────────────────────────── */
+const KB_COLS=[
+  {id:'queue',     label:'📥 Queue',      cls:'info',   color:'#2A5BDA'},
+  {id:'processing',label:'⚙️ Processing', cls:'warn',   color:'#D97706'},
+  {id:'qa',        label:'🔍 QA Review',  cls:'purple', color:'#7C3AED'},
+  {id:'done',      label:'✅ Done',       cls:'ok',     color:'#16A34A'},
+];
+const TYPE_IC={news_videos:'📰',course_videos:'📚',carousels:'🖼',thumbnails:'🖼',render:'🎬',project:'📁'};
+let kbData={},draggedCard=null;
+
+async function loadKanban(){
+  const d=await J('/api/kanban'); kbData=d.lanes||{};
+  const total=d.total||0; $('#kbTotal').textContent=total+' items'; $('#kbBadge').textContent=total;
+  renderKanban($('#kbFilter').value);
+}
+function renderKanban(filter){
+  const board=$('#kbBoard'); board.innerHTML='';
+  KB_COLS.forEach(col=>{
+    const items=(kbData[col.id]||[]).filter(it=>!filter||it.type===filter);
+    const colEl=el('div','kb-col'); colEl.dataset.lane=col.id;
+    colEl.style.setProperty('--kb-acc',col.color);
+    // Header
+    const head=el('div','kb-col-head');
+    head.innerHTML=`<div class="kb-col-title">${col.label}</div><span class="pill ${col.cls} xs kb-col-count">${items.length}</span>`;
+    colEl.appendChild(head);
+    // Cards zone
+    const cardsEl=el('div','kb-cards'); cardsEl.id='kb-'+col.id;
+    cardsEl.addEventListener('dragover',e=>{e.preventDefault();cardsEl.classList.add('kb-drag-over');});
+    cardsEl.addEventListener('dragleave',e=>{if(!cardsEl.contains(e.relatedTarget))cardsEl.classList.remove('kb-drag-over');});
+    cardsEl.addEventListener('drop',e=>{
+      e.preventDefault();cardsEl.classList.remove('kb-drag-over');
+      if(draggedCard){cardsEl.insertBefore(draggedCard,cardsEl.firstChild);draggedCard.classList.remove('kb-dragging');draggedCard=null;updateKbCounts();toast('✓ Card moved to '+col.label,'ok');}
+    });
+    if(!items.length){
+      const empty=el('div','kb-empty-col');
+      empty.innerHTML=`<div style="text-align:center;padding:16px 8px"><div style="font-size:20px;margin-bottom:6px">${col.id==='queue'?'📭':col.id==='processing'?'⚙️':col.id==='qa'?'🔍':'🎉'}</div><div class="xs muted">${col.id==='queue'?'Queue trống':'Không có item'}</div></div>`;
+      cardsEl.appendChild(empty);
+    }
+    items.forEach(item=>cardsEl.appendChild(makeKbCard(item,col)));
+    colEl.appendChild(cardsEl);
+    // Add card button
+    const addBtn=el('div','kb-add',`<span style="font-size:15px">+</span> Add card`);
+    addBtn.addEventListener('click',()=>kbAddPrompt(col.id));
+    colEl.appendChild(addBtn);
+    board.appendChild(colEl);
+  });
+}
+function makeKbCard(item,col){
+  const card=el('div','kb-card');
+  card.id='kbc-'+item.id; card.draggable=true;
+  // Priority: high if failed QA, medium if processing, low if done
+  const prio=item.verdict==='FAIL'?'p-high':item.verdict==='PASS'||item.lane==='done'?'p-low':'p-medium';
+  card.classList.add(prio);
+  // Build meta pills
+  const pills=[];
+  pills.push(`<span class="pill ${col.cls} xs">${TYPE_IC[item.type]||'📌'} ${esc(item.type||'item')}</span>`);
+  if(item.score!=null) pills.push(`<span class="pill ok xs">★ ${item.score}</span>`);
+  if(item.verdict) pills.push(`<span class="pill ${item.verdict==='PASS'?'ok':'bad'} xs">${item.verdict}</span>`);
+  if(item.duration) pills.push(`<span class="pill mut xs">${item.duration}s</span>`);
+  if(item.wpm) pills.push(`<span class="pill info xs">${Math.round(item.wpm)} WPM</span>`);
+  if(item.size_mb) pills.push(`<span class="pill mut xs">${item.size_mb} MB</span>`);
+  if(item.n) pills.push(`<span class="pill mut xs">${item.n} files</span>`);
+  // Foot
+  const projHtml=item.project?`<span class="xs muted truncate" style="max-width:100px">📁 ${esc(item.project)}</span>`:'';
+  const tsHtml=item.ts?`<span class="xs muted">${esc(item.ts.replace('T',' '))}</span>`:'';
+  card.innerHTML=`
+    <div class="kb-card-header">
+      <div class="kb-card-title">${esc((item.title||'').slice(0,55)+(item.title&&item.title.length>55?'…':''))}</div>
+      <div class="kb-card-actions" title="Actions">⋯</div>
+    </div>
+    <div class="kb-card-meta">${pills.join('')}</div>
+    <div class="kb-card-foot">${projHtml}${tsHtml}</div>`;
+  card.addEventListener('dragstart',e=>{draggedCard=card;card.classList.add('kb-dragging');e.dataTransfer.setData('text/plain',item.id);e.dataTransfer.effectAllowed='move';});
+  card.addEventListener('dragend',()=>{card.classList.remove('kb-dragging');draggedCard=null;});
+  return card;
+}
+function updateKbCounts(){
+  $$('.kb-col').forEach(col=>{const n=col.querySelectorAll('.kb-card').length;const b=col.querySelector('.kb-col-count');if(b)b.textContent=n;});
+  $('#kbTotal').textContent=[...$$('.kb-card')].length+' items';
+}
+function kbAddPrompt(lane){
+  const title=prompt('Card title (URL or topic):');if(!title)return;
+  const item={id:Date.now(),title,type:'manual',lane};
+  const col=KB_COLS.find(c=>c.id===lane)||KB_COLS[0];
+  const cardsEl=$('#kb-'+lane);if(!cardsEl)return;
+  cardsEl.appendChild(makeKbCard(item,col));updateKbCounts();toast('Card added','ok');
+}
+$('#btnRefreshKb').addEventListener('click',loadKanban);
+$('#kbFilter').addEventListener('change',e=>renderKanban(e.target.value));
+
+/* ─── TASKS ─────────────────────────── */
+const TASK_IC2={render:'🎬',quality:'✅',publish:'📤',error:'⛔'};
+const TASK_CLS2={render:'info',quality:'ok',publish:'warn',error:'bad'};
+let allTasks=[],taskFilter='all';
+async function loadTasks(){
+  const d=await J('/api/events');allTasks=d.events||[];
+  $('#tasksTotal').textContent=allTasks.length+' tasks';$('#tasksBadge').textContent=allTasks.length;
+  const counts={};allTasks.forEach(e=>{counts[e.event]=(counts[e.event]||0)+1;});
+  $('#taskSummary').innerHTML=Object.entries(counts).length?Object.entries(counts).map(([k,v])=>`<div class="flex items-center justify-between" style="padding:9px 0;border-bottom:1px solid var(--border-soft)"><span class="flex items-center gap-8">${TASK_IC2[k]||'•'} <span class="small bold">${esc(k)}</span></span><span class="pill ${TASK_CLS2[k]||'info'} xs">${v}</span></div>`).join(''):'<div class="empty">No events</div>';
+  const m=await J('/api/metrics');const q=m.queue_details||{};
+  const hotItems=Object.entries(q).flatMap(([cat,items])=>(items||[]).filter(Boolean).map(i=>({cat,i})));
+  $('#hotQCount').textContent=hotItems.length;
+  $('#hotQueue').innerHTML=hotItems.slice(0,8).map(({cat,i})=>`<div class="task-item task-pending"><div class="task-check">○</div><div class="flex-col" style="flex:1;min-width:0"><div class="task-name">${esc(i.slice(0,55)+(i.length>55?'…':''))}</div><div class="task-meta">${TYPE_IC[cat]||'📌'} <span class="pill mut xs">${esc(cat)}</span></div></div></div>`).join('')||'<div class="empty">Queue empty</div>';
+  renderTaskList();
+}
+function renderTaskList(search2){
+  const evs=taskFilter==='all'?allTasks:allTasks.filter(e=>e.event===taskFilter);
+  const search=search2!==undefined?search2:($('#taskSearch')?.value||'');
+  const filtered=search?evs.filter(e=>JSON.stringify(e).toLowerCase().includes(search.toLowerCase())):evs;
+  const tl=$('#taskList');if(!tl)return;
+  if(!filtered.length){tl.innerHTML='<div class="empty-state"><div class="es-icon">✅</div><div class="es-title">No tasks</div></div>';return;}
+  tl.innerHTML=filtered.map(e=>{
+    const isDone=(e.event==='quality'&&e.verdict==='PASS')||(e.event==='publish');
+    const isErr=e.event==='error'||(e.event==='quality'&&e.verdict==='FAIL');
+    const cls=isDone?'task-done':isErr?'task-error':'task-pending';
+    const ic=isDone?'✅':isErr?'⛔':TASK_IC2[e.event]||'○';
+    const sub=e.event==='render'?`${e.duration||'?'}s · ${e.caption_sync||'—'}`:e.event==='quality'?`Score: ${e.score||'?'} · ${e.verdict||'?'}`:e.event;
+    return `<div class="task-item ${cls}"><div class="task-check">${ic}</div><div class="flex-col" style="flex:1;min-width:0"><div class="task-name">${esc(base(e.output)||e.event)}</div><div class="task-meta"><span class="pill ${TASK_CLS2[e.event]||'info'} xs">${esc(e.event)}</span> <span class="xs muted">${esc(sub)}</span> <span class="xs muted">· ${esc((e.ts||'').replace('T',' ').slice(0,16))}</span></div></div><div class="task-actions">${isDone?'<span class="pill ok xs">Done</span>':isErr?'<span class="pill bad xs">Error</span>':'<span class="pill mut xs">⏳</span>'}</div></div>`;
+  }).join('');
+}
+function filterTasks(f,btn){
+  taskFilter=f;
+  $$('#view-tasks .btn.xs').forEach(b=>{b.style.background='';b.style.color='';});
+  if(btn){btn.style.background='var(--blue)';btn.style.color='#fff';}
+  renderTaskList();
+}
+$('#taskSearch').addEventListener('input',e=>renderTaskList(e.target.value));
+
+/* ─── PROJECTS ──────────────────────── */
+let projData=[],projViewMode='grid';
+async function loadProjects(){
+  const d=await J('/api/workspace');const files=d.files||[];
+  const folders={};
+  files.forEach(f=>{const fld=f.folder||'_root';if(!folders[fld])folders[fld]={name:fld,files:[],total_mb:0};folders[fld].files.push(f);folders[fld].total_mb+=parseFloat(f.size_mb||0);});
+  projData=Object.values(folders);
+  $('#projTotal').textContent=projData.length+' projects';$('#projBadge').textContent=projData.length;
+  renderProjects();
+}
+function renderProjects(filter){
+  const q=filter!==undefined?filter:($('#projSearch')?.value||'');
+  const filtered=q?projData.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())):projData;
+  const c=$('#projContainer');c.innerHTML='';
+  if(!filtered.length){c.innerHTML='<div class="empty-state"><div class="es-icon">📁</div><div class="es-title">No projects</div></div>';return;}
+  if(projViewMode==='grid'){
+    c.className='lib-grid';
+    filtered.forEach(p=>{
+      const n=p.files.length,mb=p.total_mb.toFixed(1);
+      const latest=(p.files[0]?.mtime||'').replace('T',' ').slice(0,10);
+      const card=el('div','proj-card');
+      card.innerHTML=`<div class="proj-thumb">📁<div class="lib-folder-tag">${n} files</div></div><div class="proj-name" title="${esc(p.name)}">${esc(p.name==='_root'?'(root)':p.name)}</div><div class="proj-meta flex gap-6 flex-wrap"><span class="pill info xs">${n} MP4</span><span class="pill mut xs">${mb} MB</span></div><div class="proj-files mt-8">${p.files.slice(0,3).map(f=>`<div class="xs muted truncate">🎬 ${esc(f.name)}</div>`).join('')}${n>3?`<div class="xs muted">+${n-3} more…</div>`:''}</div>`;
+      card.addEventListener('click',()=>{toast(`${p.name}: ${n} videos, ${mb} MB`,'info');});
+      c.appendChild(card);
+    });
+  } else {
+    c.className='';
+    const tbl=el('table');tbl.innerHTML=`<thead><tr><th>Folder</th><th>Files</th><th>Size</th><th>Latest</th></tr></thead>`;
+    const tb=el('tbody');
+    filtered.forEach(p=>{const n=p.files.length,mb=p.total_mb.toFixed(1),latest=(p.files[0]?.mtime||'').replace('T',' ').slice(0,10);const tr=el('tr');tr.style.cursor='pointer';tr.innerHTML=`<td style="font-weight:700">📁 ${esc(p.name==='_root'?'(root)':p.name)}</td><td class="num"><span class="pill info xs">${n}</span></td><td class="num">${mb} MB</td><td class="small muted">${latest||'—'}</td>`;tr.addEventListener('click',()=>toast(`${p.name}: ${n} videos`,'info'));tb.appendChild(tr);});
+    tbl.appendChild(tb);c.innerHTML='';c.appendChild(tbl);
+  }
+}
+function setProjView(mode){
+  projViewMode=mode;
+  [$('#btnProjGrid'),$('#btnProjList')].forEach((b,i)=>{if(b){b.style.background=mode===['grid','list'][i]?'var(--blue)':'';b.style.color=mode===['grid','list'][i]?'#fff':'';};});
+  renderProjects();
+}
+$('#projSearch').addEventListener('input',e=>renderProjects(e.target.value));
+$('#btnRefreshProj').addEventListener('click',loadProjects);
+</script>
 </body>
 </html>
+

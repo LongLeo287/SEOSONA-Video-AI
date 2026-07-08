@@ -25,7 +25,7 @@ for d in dirs_to_scan:
                                 lines_to_translate.add(line)
                                 if filepath not in files_to_modify:
                                     files_to_modify.append(filepath)
-                except: pass
+                except Exception: pass   # not bare `except:` — let Ctrl-C / SystemExit through
 
 print(f"Found {len(lines_to_translate)} unique lines to translate in Python files.")
 
@@ -48,7 +48,7 @@ def process_batch(b):
         for item in b:
             try:
                 translation_map[item] = translator.translate(item) + "\n"
-            except:
+            except Exception:
                 translation_map[item] = item
 
 for line in lines_to_translate:

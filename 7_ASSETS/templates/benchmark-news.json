@@ -1,51 +1,56 @@
 {
-  "name": "benchmark-news",
-  "title": "Benchmark / News (con số)",
-  "description": "Tin có nhiều con số/benchmark (Gemini SQL 80%, Kimi nhanh 6×, MCP -99% token)",
-  "when_to_use": "",
-  "theme": "light",
-  "aspect": "9:16",
-  "scenes": [
-    {
-      "component": "bignum",
-      "accent": "orange",
-      "kicker_hint": "TIN NÓNG",
-      "hero": true
-    },
-    {
-      "component": null,
-      "accent": "blue",
-      "kicker_hint": "SỰ KIỆN"
-    },
-    {
-      "component": "stats",
-      "accent": "blue",
-      "kicker_hint": "CON SỐ"
-    },
-    {
-      "component": "compare",
-      "accent": "green",
-      "kicker_hint": "SO SÁNH"
-    },
-    {
-      "component": "feature",
-      "accent": "orange",
-      "kicker_hint": "ĐIỂM CHÍNH"
-    },
-    {
-      "component": "bignum",
-      "accent": "green",
-      "kicker_hint": "QUY MÔ"
-    },
-    {
-      "component": "badges",
-      "accent": "orange",
-      "kicker_hint": "ĐẶC ĐIỂM"
-    },
-    {
-      "component": "cta",
-      "accent": "blue",
-      "kicker_hint": "SEOSONA AI"
-    }
-  ]
+ "name": "benchmark-news",
+ "title": "Benchmark / News (con số)",
+ "description": "Tin có nhiều con số/benchmark (Gemini SQL 80%, Kimi nhanh 6×, MCP -99% token)",
+ "when_to_use": "",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": "bignum",
+   "accent": "orange",
+   "kicker_hint": "TIN NÓNG",
+   "hero": true
+  },
+  {
+   "component": null,
+   "accent": "blue",
+   "kicker_hint": "SỰ KIỆN"
+  },
+  {
+   "component": "stats",
+   "accent": "blue",
+   "kicker_hint": "CON SỐ"
+  },
+  {
+   "component": "compare",
+   "accent": "green",
+   "kicker_hint": "SO SÁNH"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "bignum",
+   "accent": "green",
+   "kicker_hint": "QUY MÔ"
+  },
+  {
+   "component": "badges",
+   "accent": "orange",
+   "kicker_hint": "ĐẶC ĐIỂM"
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "cta",
+   "accent": "blue",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
 }

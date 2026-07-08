@@ -48,11 +48,16 @@ def export(mp4, name=None, aspect="9:16", srt=None, drafts_dir=None):
         print("[capcut] CapCut drafts folder not found (is CapCut Desktop installed?).")
         return None
     name = name or ("SEOSONA - " + os.path.splitext(os.path.basename(mp4))[0])
-    W, H = (1080, 1920) if str(aspect).startswith("9") else (1920, 1080)
     try:
+        mat = cc.VideoMaterial(mp4)                       # MP4 carries its own baked audio
+        # Canvas = the video's ACTUAL pixel size, read from the material — not inferred from the `aspect`
+        # string. A wrong/omitted aspect otherwise sets a mismatched canvas (e.g. 1920×1080 for a 9:16
+        # video) → the video sits letterboxed in the CapCut draft. Fall back to aspect if dims are missing.
+        W, H = int(getattr(mat, "width", 0) or 0), int(getattr(mat, "height", 0) or 0)
+        if not (W and H):
+            W, H = (1080, 1920) if str(aspect).startswith("9") else (1920, 1080)
         folder = cc.DraftFolder(dd)
         script = folder.create_draft(name, W, H, allow_replace=True)
-        mat = cc.VideoMaterial(mp4)                       # MP4 carries its own baked audio
         script.add_track(cc.TrackType.video)
         script.add_segment(cc.VideoSegment(mat, trange(0, mat.duration)))
         if srt and os.path.exists(srt):                  # optional: editable caption track

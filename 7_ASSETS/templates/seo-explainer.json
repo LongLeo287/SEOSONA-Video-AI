@@ -1,51 +1,56 @@
 {
-  "name": "seo-explainer",
-  "title": "SEO Explainer / News",
-  "description": "Tin & kiến thức SEO/Marketing (Google update, SEO thời AI, GEO/AEO, ranking)",
-  "when_to_use": "",
-  "theme": "light",
-  "aspect": "9:16",
-  "scenes": [
-    {
-      "component": "bignum",
-      "accent": "orange",
-      "kicker_hint": "SEO",
-      "hero": true
-    },
-    {
-      "component": null,
-      "accent": "blue",
-      "kicker_hint": "BỐI CẢNH"
-    },
-    {
-      "component": "compare",
-      "accent": "blue",
-      "kicker_hint": "CŨ vs MỚI"
-    },
-    {
-      "component": "steps",
-      "accent": "green",
-      "kicker_hint": "CÁCH LÀM"
-    },
-    {
-      "component": "feature",
-      "accent": "orange",
-      "kicker_hint": "ĐIỂM CHÍNH"
-    },
-    {
-      "component": "tip",
-      "accent": "blue",
-      "kicker_hint": "GHI NHỚ"
-    },
-    {
-      "component": "bignum",
-      "accent": "green",
-      "kicker_hint": "TÁC ĐỘNG"
-    },
-    {
-      "component": "cta",
-      "accent": "blue",
-      "kicker_hint": "SEOSONA AI"
-    }
-  ]
+ "name": "seo-explainer",
+ "title": "SEO Explainer / News",
+ "description": "Tin & kiến thức SEO/Marketing (Google update, SEO thời AI, GEO/AEO, ranking)",
+ "when_to_use": "",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": "bignum",
+   "accent": "orange",
+   "kicker_hint": "SEO",
+   "hero": true
+  },
+  {
+   "component": null,
+   "accent": "blue",
+   "kicker_hint": "BỐI CẢNH"
+  },
+  {
+   "component": "compare",
+   "accent": "blue",
+   "kicker_hint": "CŨ vs MỚI"
+  },
+  {
+   "component": "steps",
+   "accent": "green",
+   "kicker_hint": "CÁCH LÀM"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "tip",
+   "accent": "blue",
+   "kicker_hint": "GHI NHỚ"
+  },
+  {
+   "component": "bignum",
+   "accent": "green",
+   "kicker_hint": "TÁC ĐỘNG"
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "cta",
+   "accent": "blue",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
 }

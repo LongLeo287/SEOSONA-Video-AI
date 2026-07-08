@@ -1,6 +1,6 @@
 # QA — Captions (RULE #1) & timing sync  ·  2026-06-29 (Phase 2, Task 4)
 
-Harness: `scripts/_qa_captions.py` (fast, no voice) + real renders + ASR probes.
+Harness: a one-off _qa_captions.py script (fast, no voice; since removed) + real renders + ASR probes.
 
 ## ✅ RULE #1 — SOLID (8/8 diverse scripts pass)
 Tested: numbers, English terms, `24/7` ratio, short, long-dense, punctuation,

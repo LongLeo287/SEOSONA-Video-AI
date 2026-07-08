@@ -1,0 +1,2781 @@
+{
+ "notes": [
+  {
+   "id": "kn_log_0",
+   "source": "INGESTION_LOG",
+   "title": "langgenius/dify",
+   "text": "**HARVESTED (clean-room)** — DAG node-taxonomy → tiny Python topo-sort runner — WHY: 147k★ visual LLM-app platform (Docker: Flask+Next+PG+Redis+Celery+vectorDB) — platform itself REFERENCE (duplicates OODA loop+cascade+library). Took only the SHAPE of `api/core/workflow/` (typed node registry + topology sort): stages are now DATA, rearrangeable in one place. No Dify code, no Docker. VERIFIED: `python 4_BRAIN/pipeline_dag.py list/graph/run` — WHERE: `4_BRAIN/pipeline_dag.py` (Node/Pipeline + Kahn topo-sort + to_graph; canonical stages discover→script→render→quality→publish; executors DELEGATE to topic_to_video/workflow_router, zero logic dup)",
+   "kind": "lesson",
+   "links": [
+    "b_pipeline_dag"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_1",
+   "source": "INGESTION_LOG",
+   "title": "simstudioai/sim",
+   "text": "**HARVESTED (clean-room)** — node-graph canvas UX → dashboard Pipeline view — WHY: 29k★ Figma-style agent-workflow canvas (TS/Next.js+Bun+PG/pgvector SaaS) — platform REFERENCE (redundant). Took only the interaction pattern (visual node-graph of the pipeline), realized in our existing vis-network — NO ReactFlow, no new dep. VERIFIED in-browser: 5 stages L→R, click opens inspector, no console errors — WHERE: `9_DASHBOARD` Pipeline view (`/api/pipeline` → `pipeline_dag.to_graph()`; vis-network hierarchical L→R DAG, click→stage inspector)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_2",
+   "source": "INGESTION_LOG",
+   "title": "langchain-ai/open-agent-platform",
+   "text": "**REFERENCE** (≈ignore — deprecated upstream) — WHY: No-code web UI (100% TS/Next.js, 0 .py) = thin client REQUIRING LangGraph Platform + LangConnect + Supabase = exactly the framework lock-in SEOSONA's hand-rolled resilient llm_engine rejects. Fully redundant + deprecated (README → LangSmith Agent Builder). Only idea worth remembering (concept-only) = the HITL \"agent-inbox\" approval pattern IF a human review gate is ever added to the OODA loop — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_3",
+   "source": "INGESTION_LOG",
+   "title": "Mintplex-Labs/anything-llm",
+   "text": "**HARVESTED (clean-room)** — chunk-provenance prepend — WHY: 62k★ all-Node doc-chat RAG app — platform REFERENCE (duplicates cascade+KG, zero Python). Took only the `server/utils/TextSplitter/index.js` idea (stamp each chunk with where it came from BEFORE the text) so an LLM grounding on recalled knowledge can cite {source,title,date} — reinforces the no-fabricated-numbers traceability gate. VERIFIED: cited recall block renders with dated provenance headers — WHERE: `4_BRAIN/knowledge_graph.py` new `recall_context()`+`_cite()` (each recalled chunk prefixed `[src: source - title - kind/verdict - date]`) + `recall(...)` now returns `date` + `gen_knowledge_notes.py` captures the INGESTION_LOG date + CLI `recall … --cite`",
+   "kind": "lesson",
+   "links": [
+    "b_knowledge_graph"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_4",
+   "source": "INGESTION_LOG",
+   "title": "HKUDS/AutoAgent",
+   "text": "**REFERENCE** (redundant, no harvest) — WHY: 9.4k★ zero-code NL→agent FRAMEWORK (Python but a Docker-sandboxed agent-CREATION platform, litellm, browser_env). Every capability exists lighter+purpose-built: orchestration=OODA loop+orchestrator persona; multi-provider+fallback=llm_engine cascade (MORE resilient — parse-or-continue tiering litellm lacks); research=researcher.py+deep-research; memory=knowledge graph; self-improvement=eval flywheel. Its unique angle (generate NEW agents from NL) solves a problem a fixed brand-locked video line doesn't have. Zero video/TTS/render overlap. No adopt, no harvest — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_5",
+   "source": "INGESTION_LOG",
+   "title": "f/prompts.chat",
+   "text": "**REFERENCE only** (CC0 = eligible, no gap) — WHY: \"Awesome ChatGPT Prompts\" — huge community collection of generic single-shot \"act as X\" chat prompts (164k★) + a self-host Next.js prompt platform. NOT tuned for a VN video-factory pipeline; SEOSONA already has 17 tuned domain SKILL.md (SEO/marketing/content/copywriting/CRO/design) + `9_PROMPTS` + per-stage LLM system-prompts — deeper + on-brand. Platform = overkill. CC0 so a handful of role prompts (SEO/storyteller/copywriter) could seed a NEW capability's prompt later, but no current gap → adopt nothing — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_6",
+   "source": "INGESTION_LOG",
+   "title": "mvanhorn/last30days-skill",
+   "text": "**HARVEST (clean-room)** — keyless recency+engagement topic discovery: HackerNews points + GitHub-stars(pushed>date) + arXiv, 30-day window, round-robin fused/deduped/on-domain — WHY: the FRESHNESS axis a tech-NEWS factory lives on (trends_vn/expand_keywords were recency-blind); fixes the known \"News RSS drifts off-subject\" risk with engagement + domain gate. VERIFIED. Only keyless tech subset; social/paid (X/TikTok/IG/Polymarket/Perplexity) SKIPPED as off-mission — WHERE: `4_BRAIN/researcher.py` new `recency_topics()` + `_hn_recent/_github_recent/_arxiv_recent`; wired into `demand_topics(recency=True, days=30)`",
+   "kind": "lesson",
+   "links": [
+    "b_researcher"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_7",
+   "source": "INGESTION_LOG",
+   "title": "RayVentura/ShortGPT",
+   "text": "**REFERENCE only** — WHY: older/weaker sibling of Pixelle-Video/Auto-Create-Video; MoviePy stock-footage-over-VO + burned captions — SEOSONA surpasses on render(HTML+GSAP)/captions(ASS karaoke)/ASR(PhoWhisper)/TTS(OmniVoice)/LLM(cascade). Footnote only: `getSpeechBlocks` 0.8s-silence sentence split; dub-to-slot atempo already in `dub_align.py` — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_8",
+   "source": "INGESTION_LOG",
+   "title": "nagisanzenin/engram",
+   "text": "**REFERENCE only** (out of domain) — WHY: NOT agent-memory — a human-learning FSRS spaced-repetition tutor for Claude Code (stdlib, no MCP/DB/embeddings); zero overlap with knowledge_graph.py. Harvestable IDEA (note only): \"blind assessor + append-only receipts / separation-of-powers\" for the eval flywheel — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_9",
+   "source": "INGESTION_LOG",
+   "title": "apify/fingerprint-suite",
+   "text": "**REFERENCE only** (don't adopt) — WHY: browser-fingerprint gen/inject for Playwright anti-bot evasion. researcher.py = urllib (no browser); capture_scroll.js targets CHOSEN pages not hostile sites → inapplicable + overkill + ToS/ethics liability. If ever blocked: real browser channel + honest UA + swap target, NOT evasion tooling — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_10",
+   "source": "INGESTION_LOG",
+   "title": "weaiw/trove-ai",
+   "text": "**REFERENCE only** (clean-room idea) — WHY: AGPL personal-knowledge-base web-app (Next.js+FastAPI+pgvector RAG); architectural twin of knowledge_graph + script_writer, no engine gap. AGPL = never vendor. One clean-room idea: explicit \"insufficient-evidence → flag\" critique gate for `script_writer.py` verify stage — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_11",
+   "source": "INGESTION_LOG",
+   "title": "internal (native 9:16 mockups)",
+   "text": "3 native MOCKUP components — `notification` (phone/OS notification card), `social` (social-post card, no fake followers), `phone` (phone device + app screen); light-brand, real scene data, `.ritem`, seek-safe — WHY: The achievable, render-verified answer to \"97 block thành kho mockup dùng được\" — fills the genuine gaps the demos pointed to (code/chart/terminal already native). Catalog 48 frames, 0 drift. Block-forge kept for future strong-LLM batch. — WHERE: `4_BRAIN/native_composer.py` (+CSS) · `frame_study.py` · `component_picker.py` · `spec_lint.py`",
+   "kind": "lesson",
+   "links": [
+    "b_native_composer"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_12",
+   "source": "INGESTION_LOG",
+   "title": "internal (block forge → 9:16 kho)",
+   "text": "`4_BRAIN/block_forge.py` — turns a 16:9 gallery block into a 9:16 light injectable template: dim-swap 1920×1080→1080×1920 + strip chrome + LLM re-layout to light+mustache-slots + render-validate + fake-data QC → `7_ASSETS/blocks_9x16/` kho; `render_filled(name,data,out)` bombs real scene data in at video time — WHY: User: 97 blocks must be 9:16 + auto-injected with real content = a usable mockup kho. Mechanism BUILT + proven: 9:16 render verified (1080×1920), QC refuses fake-data blocks, LLM re-layout clean on small mockup blocks (macos-notification). Honest yield: small html/css mockups convert; 40k-code/shaders don't (LLM output limit) + needs cloud LLM (was 429). Batch: `python 4_BRAIN/block_forge.py --all` when quota's up; kho reset empty pending that. — WHERE: `4_BRAIN/block_forge.py`",
+   "kind": "lesson",
+   "links": [
+    "b_block_forge"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_13",
+   "source": "INGESTION_LOG",
+   "title": "internal (image relevance + block vetting)",
+   "text": "(A) `image_sourcer._build_query` VN→EN lexicon + relevance gate — a scene gets a CORRECT photo or NONE, never a wrong one; (B) `plan_scenes` ≥60% visual-coverage governor + log; (C) `hf_blocks` demo-strip + fake-data QC (`render_block` REFUSES leaks) + `scripts/vet_blocks.py` → `BLOCK_VET_MANIFEST.json` — WHY: User: images must be accurate, ≥60% scenes visual, and the 97 blocks usable with REAL data. A+B done+verified. C: safety gate built + all 97 vetted (27 fx / 37 redundant / 33 fake) + RENDER-verified → blocks are DARK 16:9 gallery demos (not light 9:16 assets); static QC misses JS-generated fakes ($5,169). Verdict: blocks stay OFF; native richness (45 comps + relevance-gated images + effect_library + frame-synth) is the real path. — WHERE: `2_SKILLS/image_sourcer/image_sourcer.py` · `4_BRAIN/video_engine.py` · `4_BRAIN/hf_blocks.py` · `scripts/vet_blocks.py`",
+   "kind": "lesson",
+   "links": [
+    "b_hf_blocks",
+    "b_video_engine",
+    "sm_image_sourcer"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_14",
+   "source": "INGESTION_LOG",
+   "title": "internal (self-sufficient richness)",
+   "text": "**Factory enriches itself without an external LLM** — `component_picker.fill()` GUARANTEES a real non-fabricated visual per bare middle scene (cue `pick()` → rotating `photocard/quote/callout/tip`, varied, honest data only); wired into `video_engine.plan_scenes` as the richness floor; photocard fallback activates the image kho (Pexels auto-source at render) — WHY: Test news video was SPARSE because visual richness leaned on a LIVE LLM (`enrich_llm`) that was rate-limited to death. Proven fix: re-ran with `SEOSONA_LLM_COMPONENTS=0` → 7 scenes, 6 distinct visuals, 0 bare-text, photocard sourced a real photo, PASS 100/100. Block kho stays OFF (registry blocks = fake-data demos → would violate no-fakes). — WHERE: `4_BRAIN/component_picker.py` (`fill`, `_FILL_ROTATION`) + `video_engine.plan_scenes`",
+   "kind": "lesson",
+   "links": [
+    "b_component_picker"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_15",
+   "source": "INGESTION_LOG",
+   "title": "internal (frame-study self-grow)",
+   "text": "**Self-growing frame kho** — `4_BRAIN/frame_synth.py`: when a scene fits no built-in frame, the art-director LLM proposes a NEW frame (light-brand, seek-safe mustache HTML, no `<script>`) → `validate()` (no dark bg / no JS / no external URL / renders / balanced) → `register()` into `7_ASSETS/frames/generated_frames.json` → reused forever — WHY: Answers \"hyperframe tự sinh thêm nếu kho chưa có, gom vào kho làm giàu kho\" — the 45-frame kho is no longer fixed; it GROWS from real content need. Verified end-to-end: hand-authored `faq_flip` spec → registered → rendered through full HyperFrames pipeline (2 FAQ cards, light-brand, `.ritem` reveal) → kho reset clean (grows only from real runs). — WHERE: `frame_synth.py` + wired: `native_composer._component` fallback (`render_generated`) + `_reveal_count`; `frame_study._effective()` merges generated frames into menu/kinds/by_group/selfcheck; `component_picker._allowed()`/`_validate` accept them + `enrich_llm` `\"kind\":\"__new__\"` triggers `grow()`",
+   "kind": "lesson",
+   "links": [
+    "b_frame_synth"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-07-06"
+  },
+  {
+   "id": "kn_log_16",
+   "source": "INGESTION_LOG",
+   "title": "TMElyralab/MuseTalk",
+   "text": "ADOPTED as Engine #3b — mouth-inpaint lip-sync; **DWPose(mmpose+mmcv) swapped → MediaPipe FaceMesh** to kill the Windows mmcv blocker — WHY: real face/video + CQA voice → lip-sync; verified. Weights ~4GB (unet/sd-vae/whisper/face-parse) via `scripts/download_musetalk_weights.py` — WHERE: `2_KNOWLEDGE/external_toolkits/MuseTalk/` (patched) + `.venv-musetalk` + `scripts/lipsync_musetalk.py` + `6_SOP/LIPSYNC_ENGINE_MUSETALK.md`",
+   "kind": "lesson",
+   "links": [
+    "sop_LIPSYNC_ENGINE_MUSETALK"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-07-03"
+  },
+  {
+   "id": "kn_log_17",
+   "source": "INGESTION_LOG",
+   "title": "OpenMOSS/MOVA",
+   "text": "**REFERENCE only — NOT adopted** — WHY: Joint audio-visual *diffusion* (8s clips, ≥24GB GPU, Py3.12, flash-attn/NCCL → hostile to Windows/3060); wrong shape for long-form VN text-grounded news. Re-check only if a ≥24GB GPU + generative b-roll are both wanted. — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-07-03"
+  },
+  {
+   "id": "kn_log_18",
+   "source": "INGESTION_LOG",
+   "title": "jianchang512/pyvideotrans",
+   "text": "**REFERENCE / CLEAN-ROOM** — algorithm only, NO code copied (GPL would infect) — WHY: The \"fit dubbed audio to video timeline\" algorithm (timeline-extension → speed-audio / slow-video / split-deficit) — the missing organ for Engine #4 Localize (foreign video → VN dub in-sync). Skipped its GUI/ASR/TTS (we have better). — WHERE: studied `videotrans/task/_rate.py`, `docs/Synchronize.md` → own impl `4_BRAIN/dub_align.py`",
+   "kind": "lesson",
+   "links": [
+    "b_dub_align"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-07-03"
+  },
+  {
+   "id": "kn_log_19",
+   "source": "INGESTION_LOG",
+   "title": "DanielSWolf/rhubarb-lip-sync",
+   "text": "RE-ASSESSED (already Engine #4) → built **lip-sync QC** using its viseme timeline — WHY: untapped value: independent QC for the new MuseTalk engine (matched corr ~0.25-0.33 vs mismatched ~ −0.25); phonetic recognizer already VN-correct — WHERE: `scripts/lipsync_qc.py` (Rhubarb × MediaPipe desync detector)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-07-03"
+  },
+  {
+   "id": "kn_log_20",
+   "source": "INGESTION_LOG",
+   "title": "AIDC-AI/Pixelle-Video",
+   "text": "REFERENCE only — NOT adopted — WHY: Complete competing auto-video engine (topic→AI-image/video-per-sentence via ComfyUI/Wan/Seedream/Kling→TTS→BGM). SEOSONA already has a full brand-specific pipeline; AI-illustration imagery conflicts with the clean tech-editorial brand → don't recreate/over-build. Keep as reference for the API-media-provider abstraction IF AI b-roll is ever wanted. NOTE: REPO_INVENTORY tags it \"S-Core\" — downgrade to REFERENCE. (Clone had landed outside the repo via a relative-path UAP clone from wrong CWD; moved back in.) — WHERE: `2_KNOWLEDGE/external_toolkits/Pixelle-Video/` (gitignored)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_21",
+   "source": "INGESTION_LOG",
+   "title": "boraoztunc/skills",
+   "text": "13 domain SKILL.md (SEO, copywriting, content, CRO, design/UX) — WHY: ground video content in real SEO/marketing/design expertise — WHERE: `2_KNOWLEDGE/domain_skills/`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_22",
+   "source": "INGESTION_LOG",
+   "title": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "text": "4 design SKILL.md (design-system, brand, ui-styling, banner-design) — WHY: deeper on-screen/design + brand + thumbnail craft (non-dup with boraoztunc) — WHERE: `2_KNOWLEDGE/domain_skills/`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_23",
+   "source": "INGESTION_LOG",
+   "title": "VinAIResearch/PhoWhisper (vinai/PhoWhisper-medium)",
+   "text": "CT2 int8 convert → bundled model — WHY: best VN ASR (−40% WER vs Whisper); medium = ~2x faster/½ size of large, ~same WER — WHERE: 7_ASSETS/models/phowhisper-medium-ct2",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_24",
+   "source": "INGESTION_LOG",
+   "title": "D:\\SEOSONA AI ideo talking heads (4 reels)",
+   "text": "style references (caption/card/transition craft) — WHY: learn talking-head editing craft + new template ideas (SKILL.md was dup → skipped) — WHERE: 2_KNOWLEDGE/style_references/talking_head/",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_25",
+   "source": "INGESTION_LOG",
+   "title": "SEOSONA proposals (2 PDF, internal)",
+   "text": "extracted text (markitdown) → brand facts — WHY: learn the real SEOSONA brand (services/C.B.O/proof/CTA) — WHERE: 3_MEMORY/brand_memory/proposals_extracted/ + filled .claude/product-marketing-context.md",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_26",
+   "source": "INGESTION_LOG",
+   "title": "coderamp-labs/gitingest",
+   "text": "pip dependency (CLI repo→text digest) — WHY: SYSTEM: turn any repo into one text blob for fast analysis/vetting — WHERE: requirements.txt",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_27",
+   "source": "INGESTION_LOG",
+   "title": "facebook/astryx",
+   "text": "REFERENCE only (design-system/token patterns) — WHY: FACTORY: SEOSONA has DESIGN.md+craft; reference astryx for token/system ideas, don't vendor the React lib — WHERE: REPO_WATCHLIST.md",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_28",
+   "source": "INGESTION_LOG",
+   "title": "microsoft/markitdown",
+   "text": "pip dependency + wrapper — WHY: SYSTEM: turn any PDF/DOCX/URL → clean markdown to learn from (ingestion capability) — WHERE: `2_KNOWLEDGE/scripts/ingest_source.py` + requirements.txt",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_29",
+   "source": "INGESTION_LOG",
+   "title": "nexu-io/open-design",
+   "text": "HyperFrames craft (motion-principles, css-patterns, palettes, transitions) — WHY: richer, on-brand motion for the 14 components — WHERE: `2_KNOWLEDGE/hyperframes/craft/`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-27"
+  },
+  {
+   "id": "kn_log_30",
+   "source": "INGESTION_LOG",
+   "title": "digitalsamba/claude-code-video-toolkit",
+   "text": "WPM-pacing insight + ffmpeg/brand refs — WHY: fix voice pacing variance (ported into native_composer) — WHERE: `2_KNOWLEDGE/external_toolkits/claude-code-video-toolkit/`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-27"
+  },
+  {
+   "id": "kn_log_31",
+   "source": "INGESTION_LOG",
+   "title": "swivid/f5-tts",
+   "text": "F5 BACKUP voice path (gated, subprocess-isolated) — WHY: redundant clone-voice backup; DORMANT (base non-commercial; needs commercial VN ckpt) — WHERE: (planned `f5_backup.py` — NOT built/removed; voice_router is the live path)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_32",
+   "source": "INGESTION_LOG",
+   "title": "yt-dlp/yt-dlp",
+   "text": "(planned) footage-sourcing util — pin as tool — WHY: robust download for course footage — WHERE: (backlog) `scripts/source_footage.py`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_33",
+   "source": "INGESTION_LOG",
+   "title": "huytranvan2010/AI-auto-generate-video",
+   "text": "sync principle: audio=master clock, captions from real audio timings (not estimated) — WHY: fix karaoke-voice drift — WHERE: applied → ASR-anchored karaoke",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_34",
+   "source": "INGESTION_LOG",
+   "title": "hoquanghai/Auto-Create-Video",
+   "text": "(analyzed) confirms scene-level audio-master sync (HyperFrames, VN); port idea: 8ms boundary micro-fade + SFX-from-measured-starts — WHY: sync validation + anti-click — WHERE: (backlog)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_35",
+   "source": "INGESTION_LOG",
+   "title": "k2-fsa/OmniVoice",
+   "text": "(analyzed) VN TTS + clone YES but NO word-timestamps + torch2.8 conflict → not sync-friendly — WHY: future VN A/B only — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_36",
+   "source": "INGESTION_LOG",
+   "title": "(lineage note)",
+   "text": "AI-auto-generate-video = FORK of hoquanghai/Auto-Create-Video; both build on nexu-io/html-video (HTML→video) + use k2-fsa/OmniVoice (local VN TTS server :8123, NO SRT) — WHY: understand the repo family — WHERE: —",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-29"
+  },
+  {
+   "id": "kn_log_37",
+   "source": "INGESTION_LOG",
+   "title": "huytranvan2010/AI-auto-generate-video + loha-video-maker SKILL",
+   "text": "CRAFT adopted (re-skinned to brand, light-only): liquid brand-colour depth blobs (gsap), fitText auto-scale, semantic SFX override, REAL screenshot in mockup/repo scene (Playwright via system Edge), multi-screenshot (2 imgs/video), verify-gate wiring + ready-to-post sidecars (voice.mp3/script.txt/caption.txt) — WHY: FACTORY: design-led visuals + post-ready output. Their dark-neon palette + OmniVoice NOT taken — WHERE: `4_BRAIN/native_composer.py` · `make_video.py` · `scripts/capture_shot.js`",
+   "kind": "lesson",
+   "links": [
+    "b_native_composer"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_38",
+   "source": "INGESTION_LOG",
+   "title": "google/agents-cli",
+   "text": "(analyzed) PATTERN only — \"Quality Flywheel\" → built native `eval_judge.py` (Gemini-vision judge, 3-tier fallback) + `eval_run.py` + `1_CONFIG/eval_datasets/`. Skill-authoring patterns noted — WHY: SYSTEM/QA: qualitative judge metadata can't do. Google-Cloud/Vertex/BigQuery/GEPA REJECTED (paid/cloud, conflict free-local) — WHERE: `4_BRAIN/eval_judge.py` · `eval_run.py` · `6_SOP/EVAL_FLYWHEEL.md`",
+   "kind": "lesson",
+   "links": [
+    "b_eval_judge",
+    "sop_EVAL_FLYWHEEL"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_39",
+   "source": "INGESTION_LOG",
+   "title": "SEOSONA OS (~/.seosona/4_AGENTS/personas)",
+   "text": "PORTED + adapted 3 analysis agents to fill the analyze/learn gap (Video only had factory-strategist + video-discovery): `researcher`, `scout`, `security-auditor` → re-scoped to video + wired to Video paths (not OS refs). Built `.agents/skills/capability-analyst` (runs SELF_IMPROVEMENT_LOOP). — WHY: SYSTEM: dedicated analyze/learn agents+skill. SKIPPED (dup/over-engineer): content-strategist/creator (have domain_skills), analytics (have ledger), intent_router/ingest_skill/AAAK/YouTube-connectors. Bulk repo analysis DELEGATES to OS UAP — WHERE: `1_AGENTS/personas/{researcher,scout,security-auditor}.md` · `.agents/skills/capability-analyst/SKILL.md`",
+   "kind": "lesson",
+   "links": [
+    "sk_capability-analyst"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_40",
+   "source": "INGESTION_LOG",
+   "title": "greensock/gsap-skills",
+   "text": "(PART-B batch1) REFERENCE — GSAP agent-instruction set, ~90% dup with our `hyperframes/craft/motion-recipes-seosona.md` (same upstream). Kept cloned for pattern lookup. Verified the immediateRender first-frame-flash risk is N/A here (scene-0 uses tl.set, later scenes opacity-gated; frame-0 correct). — WHY: no rebuild — dedup — WHERE: (reference only)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_41",
+   "source": "INGESTION_LOG",
+   "title": "feicaiclub/video-spec-builder",
+   "text": "(PART-B batch1) REFERENCE — interactive Claude/Cursor spec skill (5-phase Q&A) ≠ our autonomous factory. Idea-backlog (not built, no-bloat): finer component subtypes, per-scene validate checklist (component ≤4×), 9:16 layout rules, audio-timeline. — WHY: no rebuild — different paradigm — WHERE: (reference only)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_42",
+   "source": "INGESTION_LOG",
+   "title": "every-app/open-seo",
+   "text": "(PART-B batch2) PATTERN adopted — its keyword/rank/SERP tools all need PAID DataForSEO → SKIPPED (free/local rule). Built native free/local `.agents/skills/video-seo-metadata` (topic→title/desc/tags/hashtags) from its workflow shape. Fills a real gap (no video-SEO metadata before). — WHY: SEO: publish-ready metadata, no paid API — WHERE: `.agents/skills/video-seo-metadata/SKILL.md`",
+   "kind": "lesson",
+   "links": [
+    "sk_video-seo-metadata"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_43",
+   "source": "INGESTION_LOG",
+   "title": "shanraisshan/claude-code-best-practice",
+   "text": "(PART-B batch2) PATTERN adopted — REFERENCE (SIL more mature). Took \"Execution Contract + Fail-Closed Guardrail\" + when_to_use routing → hardened the 3 personas + capability-analyst. Skipped over-reach (new SOPs/templates/hooks). — WHY: SYSTEM: agents no longer improvise/silent-fail — WHERE: `1_AGENTS/personas/{researcher,scout,security-auditor}.md` · `.agents/skills/capability-analyst/SKILL.md`",
+   "kind": "lesson",
+   "links": [
+    "sk_capability-analyst"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_44",
+   "source": "INGESTION_LOG",
+   "title": "(DEEP RE-DIG of batch 1&2 — user: \"repos hide a lot\")",
+   "text": "Re-analyzed the 4 REFERENCE repos with the new SIL stage-2b DEEP-EXTRACTION. Real gems harvested: video-spec-builder → scene-tag vocab + pacing archetypes + validation rules + tag→component → `2_KNOWLEDGE/VIDEO_CRAFT_RULES.md`. gsap-skills → easing menu + CustomEase presets + stagger choreography + gsap.utils data-motion → same doc. open-seo → keyword-intent taxonomy + discovery workflow + title/desc/tags formulas → enriched `video-seo-metadata` skill. cc-best-practice → frontmatter fields (when_to_use/paths/model/context:fork) + safety-hook ideas = BACKLOG (harness-config, no-bloat). — WHY: confirms: dig deeper finds 5–15% hidden gold even in \"REFERENCE\" repos — WHERE: `2_KNOWLEDGE/VIDEO_CRAFT_RULES.md` · `.agents/skills/video-seo-metadata/SKILL.md`",
+   "kind": "lesson",
+   "links": [
+    "sk_video-seo-metadata"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_45",
+   "source": "INGESTION_LOG",
+   "title": "multica-ai/andrej-karpathy-skills",
+   "text": "(PART-B batch3) ADOPTED — Karpathy's 4 LLM-coding principles (think-before-coding, simplicity-first, surgical-changes, goal-driven) → `6_SOP/LLM_CODING_DISCIPLINE.md`. Fixed the rule: \"no LICENSE file\" ≠ no license (check manifest); no-license blocks vendor, NOT analysis — never skip without looking. — WHY: SYSTEM: agent discipline, reinforces no-bloat/surgical/verify — WHERE: `6_SOP/LLM_CODING_DISCIPLINE.md`",
+   "kind": "lesson",
+   "links": [
+    "sop_LLM_CODING_DISCIPLINE"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_46",
+   "source": "INGESTION_LOG",
+   "title": "nidhinjs/prompt-master",
+   "text": "(PART-B batch3, 5/5 files) ADOPTED — hardened `_gemini_script` with explicit role + GROUNDING (no fabricated stats/features) + brand-tone lock (Gemini hallucinates/drifts). Other gems (template library, prompt SOPs) = backlog. — WHY: CONTENT: cleaner, grounded scripts — WHERE: `4_BRAIN/make_video.py` (_gemini_script)",
+   "kind": "lesson",
+   "links": [
+    "b_make_video"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_47",
+   "source": "INGESTION_LOG",
+   "title": "nicobailon/visual-explainer",
+   "text": "(PART-B batch3, 100% skill) ADOPTED knowledge → VIDEO_CRAFT_RULES §6: depth tiers, min-width:0 overflow guard, scene-tag label (static CSS = seek-safe). REJECTED its `--i` CSS-@keyframes stagger (agent mislabelled seek-safe — wall-clock, desyncs our GSAP-seek). Mermaid/slide-engine = backlog. — WHY: FACTORY: card hierarchy + overflow safety — WHERE: `2_KNOWLEDGE/VIDEO_CRAFT_RULES.md`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_48",
+   "source": "INGESTION_LOG",
+   "title": "EverMind-AI/EverOS",
+   "text": "(PART-B batch4, 42/614 files, core memory paths) ADOPT-as-knowledge: its **Reflect & Consolidate** memory pattern → new SIL stage 10. **observability → BUILT-light batch10** (`4_BRAIN/factory_metrics.py` flight-recorder: 1 JSONL row/video, pass-rate/duration/size; `npm run factory:metrics`). Cascade-daemon / prompt-slots = still BACKLOG (heavy). #4 3-tier-fallback = SKIP-DUP (we have it). — WHY: SYSTEM: self-improvement loop — WHERE: `6_SOP/SELF_IMPROVEMENT_LOOP.md` (stage 10 + backlog note)",
+   "kind": "lesson",
+   "links": [
+    "b_factory_metrics",
+    "sop_SELF_IMPROVEMENT_LOOP"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_49",
+   "source": "INGESTION_LOG",
+   "title": "tuanminhhole/openclaw-skill-learning-memory",
+   "text": "(PART-B batch4, 8/8 files = 100%) SKIP-DUP — a thinner version of our SIL (no vetting/security/dedup/audit). 1 gem extracted: **session-close reflection** → folded into SIL stage 10a. No code vendored. — WHY: SYSTEM: learn-loop habit — WHERE: `6_SOP/SELF_IMPROVEMENT_LOOP.md` (stage 10a)",
+   "kind": "lesson",
+   "links": [
+    "sop_SELF_IMPROVEMENT_LOOP"
+   ],
+   "verdict": "SKIP",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_50",
+   "source": "INGESTION_LOG",
+   "title": "datalab-to/lift",
+   "text": "(PART-B batch4, 18/18 modules = 100%) SKIP-DUP — markitdown+gitingest already cover doc/repo ingestion. Unique = schema-driven PDF→JSON, but no current use-case + model-license risk for a commercial factory. BACKLOG: revisit only if data-viz content needs structured PDF extraction (HF backend, isolated skill). — WHY: flagged license risk — WHERE: (none — not adopted)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "SKIP",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_51",
+   "source": "INGESTION_LOG",
+   "title": "ArcReel/ArcReel",
+   "text": "(PART-B batch5, ~70% targeted) REFERENCE-pattern. Most patterns (reference-image consistency, character design-sheets, cross-shot image anchoring, dialogue) = N/A to our faceless HTML engine → SKIP. The ONE transferable gem (CONVERGES with Toonflow): **two-stage script — plan the arc, then write scenes**. Re-implemented natively. — WHY: CONTENT: coherent, non-repetitive scenes — WHERE: `4_BRAIN/make_video.py` (`_gemini_outline`)",
+   "kind": "lesson",
+   "links": [
+    "b_make_video"
+   ],
+   "verdict": "SKIP",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_52",
+   "source": "INGESTION_LOG",
+   "title": "HBAI-Ltd/Toonflow-app",
+   "text": "(PART-B batch5, targeted brain: scriptAgent+productionAgent, skipped 282MB Electron/assets) ADOPT-pattern: **two-stage decomposition** (director-plan → storyboard) → built native `_gemini_outline` (Stage 1 arc) feeding the existing scene writer (Stage 2). Emotion-0-10 / continuity-locks / mode-routing / multi-char dialogue = N/A or BACKLOG (our engine ≠ image-gen drama). — WHY: CONTENT: arc-driven script — WHERE: `4_BRAIN/make_video.py` (two-stage `_gemini_script`)",
+   "kind": "lesson",
+   "links": [
+    "b_make_video"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_53",
+   "source": "INGESTION_LOG",
+   "title": "DietrichGebert/ponytail",
+   "text": "(PART-B batch6/skills) REFERENCE — its \"lazy/reuse-ladder\" philosophy = what we already adopted via [[Karpathy LLM_CODING_DISCIPLINE]]. 1 micro-gem: **tagged-shortcut comments** (`# TODO(seosona):`) → LLM_CODING_DISCIPLINE §3. Its review/debt skills = DUP (capability-analyst + UPGRADE_BACKLOG) → not built. — WHY: SYSTEM: debt not silent — WHERE: `6_SOP/LLM_CODING_DISCIPLINE.md`",
+   "kind": "lesson",
+   "links": [
+    "sop_LLM_CODING_DISCIPLINE"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_54",
+   "source": "INGESTION_LOG",
+   "title": "yaojingang/yao-meta-skill",
+   "text": "(PART-B batch6/skills) REFERENCE — a full enterprise \"skill-OS\" (maturity tiers, governance scoring, blind A/B, Skill-IR, telemetry) = over-built for our ~20-skill solo factory. 1 lightweight gem: **skill-qualification gate** (\"is this even a skill?\") → capability-analyst BUILD pre-check. Heavy machinery revisit only at 100+ skills. — WHY: SYSTEM: anti skill-bloat — WHERE: `.agents/skills/capability-analyst/SKILL.md`",
+   "kind": "lesson",
+   "links": [
+    "sk_capability-analyst"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_55",
+   "source": "INGESTION_LOG",
+   "title": "github/spec-kit",
+   "text": "(PART-B batch6/skills) REFERENCE — spec→plan→tasks + constitution + test-first is a heavyweight SDD methodology; its disciplines are ALREADY covered by our SIL + LLM_CODING_DISCIPLINE (think→simplest→surgical→verify). Building its 3 template SOPs = bloat for a solo factory → declined. — WHY: discipline already covered — WHERE: (none — REFERENCE)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_56",
+   "source": "INGESTION_LOG",
+   "title": "calesthio/OpenMontage",
+   "text": "(PART-B batch7, user-flagged \"trending\" — FAN-OUT 3-agent deep dig: architecture+render+prompts, ~150 files, coverage stated per slice) **ADOPT-pattern**: enriched `_gemini_outline` with **hook patterns + narrative-structure variety + climax marking** (kills \"video giống nhau\") + VIDEO_CRAFT_RULES §7. **REFERENCE/BACKLOG** (over-build for solo 1-pipeline): declarative pipeline-manifests, stage-director skills, tool-registry/selector, checkpoint-resume, executable-playbook YAML, 5-aspect grammar, CHAI oversight, hero_moment render-flag. Image/character/Remotion/avatar = N/A (faceless HTML). Security clean. — WHY: CONTENT: varied non-formulaic arcs — WHERE: `4_BRAIN/make_video.py` (_gemini_outline), `2_KNOWLEDGE/VIDEO_CRAFT_RULES.md` §7",
+   "kind": "lesson",
+   "links": [
+    "b_make_video"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_57",
+   "source": "INGESTION_LOG",
+   "title": "headroomlabs-ai/headroom",
+   "text": "(PART-B batch4-extra) REFERENCE — token-compression middleware; agent hyped \"huge cost savings\" but N/A to us NOW: our news prompts are small + we moved to FREE local Ollama (token-cost=0). +60MB onnxruntime/ModernBERT to compress small free prompts = bloat. Micro-gem (must-keep regex for keyword prune) = BACKLOG, no dep. — WHY: not needed (small prompts, free-local) — WHERE: (none — REFERENCE)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_58",
+   "source": "INGESTION_LOG",
+   "title": "DeusData/codebase-memory-mcp",
+   "text": "(PART-B batch4-extra) SKIP — codebase knowledge-graph for IDEs/agents; wrong domain (we're a video factory, not a code-nav assistant). gitingest+markitdown already cover repo ingestion. — WHY: wrong domain — WHERE: (none)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "SKIP",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_59",
+   "source": "INGESTION_LOG",
+   "title": "mvanhorn/last30days-skill",
+   "text": "(PART-B batch6 → BUILT batch10) **ADOPTED & WIRED**: entity-resolution + multi-source recency ranking → `discovery._fetch_github_trending()` — auto-queries `gh` per AI/dev topic for repos created in last N days, sorted by stars → self-feeds the queue (no static list). Verified live: found 9 fresh trending repos. Toggle SEOSONA_TREND. — WHY: FACTORY: autonomous content discovery — WHERE: `4_BRAIN/discovery.py` (`_fetch_github_trending`)",
+   "kind": "lesson",
+   "links": [
+    "b_discovery"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_60",
+   "source": "INGESTION_LOG",
+   "title": "RAG/PDF-infra group (chroma · MinerU · chunkr · PixelRAG · Hyper-Extract · opendataloader-pdf)",
+   "text": "(PART-B batch4) **all REFERENCE/SKIP** — vector-RAG / semantic-chunk / knowledge-graph / visual-retrieval / PDF-OCR infra that a faceless video factory doesn't use; markitdown+gitingest cover ingestion. Conditional backlog: MinerU OCR + opendataloader bounding-boxes IF we ever do infographics-from-PDF. No additive gem now. — WHY: ingestion already covered — WHERE: (none — REFERENCE)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "SKIP",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_61",
+   "source": "INGESTION_LOG",
+   "title": "AIDC-AI/Pixelle-Video",
+   "text": "(PART-B batch8 \"full sweep\" — user \"làm full, biết đâu mỏ vàng\"; full-stack short-video engine) ~65% DUP w/ ours (two-stage, audio-sync, FFmpeg-concat, HTML-render, LLM-fallback) = confirms our architecture is sound. 1 cheap gem: **opening-diversity** (forbid same opening word ≥2×) → `_gemini_script` prompt. PipelineContext/Storyboard/FrameProcessor refactors = BACKLOG (don't refactor working code). Image-gen/ComfyUI/Streamlit = N/A. — WHY: CONTENT: less repetitive openings — WHERE: `4_BRAIN/make_video.py` (_gemini_script)",
+   "kind": "lesson",
+   "links": [
+    "b_make_video"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_62",
+   "source": "INGESTION_LOG",
+   "title": "voocel/ainovel-cli",
+   "text": "(PART-B batch8 → BUILT batch10) 2 gems built: (1) deterministic **`_lint_script`** (CTA·length·forbidden·English-leak·opening-diversity·visual-monotony·**placeholder-echo**); (2) **critic-correct loop** — draft trips serious lint → regenerate ONCE with feedback, keep cleaner (bounded, keep-best guards bad retries). Coordinator/episodic-memory = still BACKLOG. — WHY: CONTENT: self-correcting quality gate — WHERE: `4_BRAIN/make_video.py` (_lint_script + corrective loop)",
+   "kind": "lesson",
+   "links": [
+    "b_make_video"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_63",
+   "source": "INGESTION_LOG",
+   "title": "ComposioHQ/awesome-claude-skills + garrytan/gstack",
+   "text": "(PART-B batch8 catalog scan) REFERENCE — gstack patterns (sprint-loop/review/investigate) mostly DUP w/ our LLM_CODING_DISCIPLINE+SIL+capability-analyst+loop_guard; nothing to build now. Pointers noted for later: rampstackco Brand-Build SEO skills + Content-Research-Writer (fact-check) → future video-seo-metadata/news-maker upgrade. No vendoring (gstack 108MB, NO-LICENSE catalog). — WHY: discipline already covered — WHERE: (none — REFERENCE)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_64",
+   "source": "INGESTION_LOG",
+   "title": "alexchan197611/ai_media_assistant",
+   "text": "(user-flagged, 7-step gate) **REFERENCE — NOT adopted.** Closest sibling yet: local script→short-video for creators, **same voice engines (OmniVoice + Qwen3-TTS)**, FastAPI + separate render-worker + SQLite (UUID-per-sentence segment) + **FFmpeg** render. ~high DUP w/ our pipeline → confirms architecture sound; don't recreate (same call as [[Pixelle-Video]]). NOTE our HTML→browser render is a deliberate different path from their FFmpeg-concat. Gems: (1) **Qwen3-TTS** = a VN voice A/B candidate we don't have → REPO_WATCHLIST; (2) **per-sentence local-image-library matching** (emotion-based, no-repeat within project) + 4 caption styles (centered/scrolling/ancient/emotional) → IDEA-BACKLOG for a possible image-backed template archetype, GATED by brand (clean tech-editorial — same caution that rejected Pixelle's imagery). Impl internals not deep-read (README user-facing/Chinese); adoption unlikely per brand precedent — revisit only if image-backed template ever wanted. No code vendored. — WHY: closest competitor; validate architecture + harvest voice/caption ideas — WHERE: (none — REFERENCE; watchlist for Qwen3-TTS)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-07-01"
+  },
+  {
+   "id": "kn_log_65",
+   "source": "INGESTION_LOG",
+   "title": "nexu-io/html-video (STUDIO)",
+   "text": "(user-flagged, screenshot of studio v0.7) **REFERENCE-pattern for a future dashboard \"Studio/Create\" view.** The render ENGINE lineage (hyperframes) is already OWNED (5_FRAMEWORK/hf_engine); what's NEW here is the browser STUDIO UI (`project-studio/`, served :3071): template gallery filterable by intent, frame-by-frame storyboard editor w/ inline per-frame KICKER/HEADLINE/SUB text binding, CLI-agent router, dual-audio panel (BGM mood-prompt + narration TTS), Export MP4, pluggable `render(input,ctx)` engine contract + content-graph IR. Same family + same engine + Apache-2.0 = the ideal UI blueprint. TENSION: faceless-autonomous vs human-frame-editing → adopt as an OPTIONAL human-oversight/create mode on the dashboard, not the autonomous default. Don't vendor the TS monorepo. — WHY: best-fit UI blueprint for create/preview/edit — WHERE: (none — REFERENCE; dashboard \"Studio\" view backlog)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-02"
+  },
+  {
+   "id": "kn_log_66",
+   "source": "INGESTION_LOG",
+   "title": "nexu-io/html-anything",
+   "text": "(user-flagged) REFERENCE — agentic HTML editor, sibling to html-video. Mineable: (1) 75 HTML skill-templates across 9 surfaces (incl. office: OKR/finance/kanban/runbook) → candidates for the component/template library + dashboard card layouts; (2) 8-CLI-agent auto-detection pattern; (3) export-to-social (WeChat/X/Zhihu/PNG/HTML). Overlaps our library system → mine patterns by hand, don't vendor Next.js. — WHY: template + agent-detection patterns — WHERE: (none — REFERENCE)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-02"
+  },
+  {
+   "id": "kn_log_67",
+   "source": "INGESTION_LOG",
+   "title": "vanloctech/youwee",
+   "text": "(user-flagged) REFERENCE / mostly-SKIP — yt-dlp GUI (Tauri) + AI summarize + Whisper subs + Telegram + plugins. ~DUP with what we already have: [[video-pipeline-upgrades]] yt_downloader + source_footage + PhoWhisper asr_router + hermes telegram_remote. Only possible gem = its 1800-site source list. Nothing to build. — WHY: download+ASR already covered — WHERE: (none — SKIP-DUP)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "SKIP",
+   "date": "2026-07-02"
+  },
+  {
+   "id": "kn_log_68",
+   "source": "INGESTION_LOG",
+   "title": "OpenTalker/SadTalker",
+   "text": "(user-requested) **ADOPTED → Engine #3: Portrait Avatar** (still photo + audio → lip-synced talking head). Audio-driven (correct for photo+voice; LivePortrait rejected = video-driven). Installed in ISOLATED venv `2_KNOWLEDGE/external_toolkits/.venv-sadtalker` (torch2.5+cu121, does NOT touch hermes env). Wrapper: `scripts/portrait_avatar.py` (photo+audio→clip, --still/--enhance/--size, auto 16k-wav). VERIFIED: art_10 photo + tabfm voice → 8s lip-synced clip (mouth+head animate, identity preserved). Weights ~1.2GB (256 model + mappings + gfpgan/facexlib) in SadTalker/checkpoints (gitignored). **Windows-modern-numpy fix chain (reusable):** (1) basicsr `torchvision.transforms.functional_tensor`→`functional`; (2) SadTalker src `np.float/np.int/np.bool`→`float/int/bool`; (3) coherent numpy<1.24 stack `numpy==1.23.5 scipy==1.10.1 scikit-image==0.21.0 (0.19.3 has no py3.11 wheel) scikit-learn==1.2.2 numba==0.57.1 llvmlite==0.40.1`. — WHY: photo→lipsync talking-head (lecturer avatar) — WHERE: `2_KNOWLEDGE/external_toolkits/SadTalker/` + `.venv-sadtalker/` + `scripts/portrait_avatar.py`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-07-02"
+  },
+  {
+   "id": "kn_log_69",
+   "source": "INGESTION_LOG",
+   "title": "DanielSWolf/rhubarb-lip-sync",
+   "text": "(user-requested) **ADOPTED → Engine #4: Talking Mascot** (2D brand mascot lip-syncs to a SEOSONA voice, NO GPU). Rhubarb CLI (`-r phonetic` = language-independent → VN-safe) → viseme timings → Pillow paints a viseme-driven mouth over the mascot's covered smile → frames+voice → mp4. Wrapper `scripts/mascot_talk.py`. VERIFIED: Chi Quyet mascot + tabfm voice → 8s talking clip (mouth opens/closes in sync, on brand-light bg). Fits faceless brand better than a photorealistic stranger. Rhubarb binary in `2_KNOWLEDGE/external_toolkits/rhubarb/` (88MB, gitignored). GOTCHA: rhubarb `-o` needs the output DIR to exist first (\"ios_base::failbit\" = can't write output). — WHY: GPU-free talking brand mascot — WHERE: `scripts/mascot_talk.py` + `2_KNOWLEDGE/external_toolkits/rhubarb/`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-07-02"
+  },
+  {
+   "id": "kn_log_70",
+   "source": "INGESTION_LOG",
+   "title": "TMElyralab/MuseTalk",
+   "text": "(user-requested, ATTEMPTED — **BLOCKED on Windows toolchain**) higher-quality/faster lip-sync than SadTalker (MIT, 4GB VRAM, 256px, Windows). Deps install OK (diffusers/transformers) but **mmcv (needed by mmpose/DWPose) has NO prebuilt wheel for torch2.5+cu121 → source build needs MSVC (not available)**. Unblock path = dedicated venv with torch2.1+cu121 (where mmcv 2.1 wheels exist) + MuseTalk weights (~several GB) + wrapper. DEFERRED — the 2 working engines (SadTalker photoreal + Rhubarb mascot) already cover both needs; MuseTalk = marginal upgrade, revisit if sharper lips wanted. — WHY: blocked: mmcv/Windows — WHERE: (repo cloned; not wired)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-07-02"
+  },
+  {
+   "id": "kn_log_71",
+   "source": "INGESTION_LOG",
+   "title": "facefusion/facefusion · lipku/LiveTalking · hecomi/uLipSync",
+   "text": "(6-repo lip-sync analysis) all NOT adopted. **facefusion** = face swap/enhance; OpenRAIL-AS use-restrictions = risk for commercial factory; GFPGAN (in SadTalker) already covers face-enhance → SKIP. **LiveTalking** = real-time STREAMING digital human; SEOSONA is batch pre-render, not livestream → SKIP (revisit for live/interactive). **uLipSync** = Unity-only (C#), wrong stack → SKIP. — WHY: analysis of 6 avatar repos — WHERE: (none — REFERENCE/SKIP)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-07-02"
+  },
+  {
+   "id": "kn_log_72",
+   "source": "INGESTION_LOG",
+   "title": "KwaiVGI/LivePortrait",
+   "text": "REJECTED for this use — **video-driven** (needs a driving performance video), not audio-driven → wrong fit for photo+voice→lipsync. Revisit only if we want video-to-video face reenactment. — WHY: wrong modality — WHERE: (none)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-02"
+  },
+  {
+   "id": "kn_log_73",
+   "source": "INGESTION_LOG",
+   "title": "nexu-io/open-design (re-dig)",
+   "text": "(user re-flagged) already INGESTED 2026-06-27 (HyperFrames craft → 2_KNOWLEDGE/hyperframes/craft/). Re-reference to harvest any NEW palettes/transitions/motion added upstream since. No new vendor. — WHY: craft source may have grown — WHERE: `2_KNOWLEDGE/hyperframes/craft/` (existing)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-02"
+  },
+  {
+   "id": "kn_log_74",
+   "source": "INGESTION_LOG",
+   "title": "(user-flagged batch: 4 more repos triaged, README-scout)",
+   "text": "**OmniRoute** (diegosouzapw, MIT, 8.9k★) = AI-gateway/router 236 providers + token-compression 15–95% + circuit-breaker. **BUILT the circuit-breaker gem** → `llm_engine._gemini_scenes` now skips a key that just hit 429/quota for a cooldown window (`SEOSONA_KEY_COOLDOWN_S`, default 300s) instead of re-hitting it first every call; ready keys tried first, tripped keys last-resort (never hard-fail). Test: `tests/test_llm_circuit_breaker.py` (4/4). Token-compression SKIPPED (small prompts + free Gemini/Ollama = cost ~0, same call as [[headroom]]). Gateway not vendored. **QwenPaw** (agentscope-ai, Apache-2.0, 20.4k★) = personal-agent platform; only gem = 3-layer memory (working/history/distilled) ≈ our memory → REFERENCE. **agency-agents** (msitarzewski, MIT, 122k★) = 232 personas; already in watchlist + made a video angle → REFERENCE (known). **local-coding-agent** (LongNgn204, **AGPL-3.0**, 11★) = MCP coding-agent for ChatGPT Web; wrong domain + copyleft → SKIP. — WHY: triage of user-shared links — WHERE: (none — all REFERENCE/SKIP)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-07-01"
+  },
+  {
+   "id": "kn_log_75",
+   "source": "INGESTION_LOG",
+   "title": "batch8 MAP-skips (daily-news-broadcast · NVIDIA/vid2vid · NVIDIA VSS · cjpais/handy · nano-banana-prompts · openwolf · looper · x-harness)",
+   "text": "SKIP/REFERENCE by-MAP (no agent spent): empty(0MB/4★) · GAN-video-gen off-domain · enterprise VSS NOASSERTION · STT (have PhoWhisper) · image-gen prompts 330MB · token-compress (decided N/A) · small verify-loops (have). — WHY: filtered at MAP — WHERE: (none)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "SKIP",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_76",
+   "source": "INGESTION_LOG",
+   "title": "ant-design/ant-design",
+   "text": "(PART-B batch6→batch8 CORRECTED — user: \"video là HTML, design áp dụng được chứ?\") React RUNTIME N/A, BUT design-CRAFT IS (components = HTML/CSS strings). MINED + ADOPTED (re-skinned brand, frame-verified): **layered 3-tier shadows** + **tabular-nums** + **star-pill shadow** → native_composer. Token-scale (radius/shadow/spacing seeds) = BACKLOG. Earlier \"SKIP wrong-stack\" was wrong. — WHY: FACTORY: premium card depth — WHERE: `4_BRAIN/native_composer.py` (_css design-craft block)",
+   "kind": "lesson",
+   "links": [
+    "b_native_composer"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_77",
+   "source": "INGESTION_LOG",
+   "title": "NVIDIA/SkillSpector",
+   "text": "(PART-B batch9 \"full S+A sweep\" — THE gold of the sweep) ADOPT-pattern: skill/repo security scanner (68 patterns/17 cats). Re-implemented the cheap high-signal subset NATIVE (regex + simple AST, ~120 LOC, no-dep, offline) → **`scripts/security_scan.py`** (`npm run security:scan`). Catches prompt-injection · hidden-instruction (HTML/zero-width/unicode-tag) · secret-harvest · curl\\ — WHY: `scripts/security_scan.py`, SIL stage-3, capability-analyst — WHERE: bash · b64-exec · os.system/subprocess · credential-access → score+SAFE/CAUTION/DO_NOT_ADOPT. Tested (bad=100/DO_NOT_ADOPT 9 findings, clean=SAFE). Full framework (MCP/Docker/LangGraph/YARA/taint) = BACKLOG. Wired into SIL stage-3 + capability-analyst.",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_78",
+   "source": "INGESTION_LOG",
+   "title": "thedotmack/claude-mem",
+   "text": "(PART-B batch9) SKIP-DUP/REFERENCE — Claude-Code IDE session-memory PLUGIN (hooks+daemon+Postgres+Chroma); over-build for headless factory. Core reflect/consolidate = already adopted from EverOS (stage-10); its \"type taxonomy\" = we already have (`type:` frontmatter). No new gem (85k★ ≠ fit). — WHY: IDE plugin, not headless — WHERE: (none — REFERENCE)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_79",
+   "source": "INGESTION_LOG",
+   "title": "anthropics/claude-plugins-official + sickn33/antigravity-awesome-skills",
+   "text": "(PART-B batch9 catalog scan) REFERENCE — official dir = IDE/LSP/dev tools (not video). antigravity 1700 skills: most DUP (eval/seo/content we have) or paid-service deps (Apify, Memories.ai, TranscriptAPI). Pointers noted for publish/discovery phase: youtube-seo-optimizer, seek-and-analyze-video, prompt-caching. No build now. — WHY: pointers for publish phase — WHERE: (none — REFERENCE)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_80",
+   "source": "INGESTION_LOG",
+   "title": "batch9 MAP-skips (OmniClaw/NemoClaw/goclaw/hermes-agent etc. = agent-runtimes · skill-generator VN no-license · playwright-mcp · omni-agent · Vietnam_basemaps/timesfm/IPTV/games)",
+   "text": "SKIP/REFERENCE by-MAP — agent-harness alternatives (we run on Claude Code, not adopting another runtime) + off-domain (geo/forecasting/IPTV/games). ~95 of 103 S+A off-domain filtered without spending agents. — WHY: off-domain / runtime-dup — WHERE: (none)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "SKIP",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_81",
+   "source": "INGESTION_LOG",
+   "title": "yusufkaraaslan/Skill_Seekers",
+   "text": "(PART-B B-tier batch11) docs/repo→skill generator — mostly DUP (gitingest+markitdown+capability-analyst cover extraction). 1 cheap gem BUILT: **skill-quality linter** → `scripts/skill_lint.py` (`npm run skill:lint`) validates OUR skills' frontmatter/name/description/body. Tested: 43 skills all OK. Scan→bootstrap + AgentClient = REFERENCE/BACKLOG. — WHY: SYSTEM: skill-library gate — WHERE: `scripts/skill_lint.py`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_82",
+   "source": "INGESTION_LOG",
+   "title": "Upload-Post/skill-autoshorts",
+   "text": "(PART-B B-tier batch11) daily viral-clip pipeline (Whisper+Gemini+Upload-Post) — thinner than ours, NO-LICENSE→pattern-only. HOT.md learning-flywheel → **BUILT FREE** (`4_BRAIN/learn_flywheel.py`, `npm run factory:learn`): uses free per-render signals (verify-pass + lint-warns) not publish-analytics → ranks templates, `_rot` auto-drops weak ones. OODA loop closed; cycle-pick ≈ our processed-ledger (DUP); hook-overlay = DUP (HTML captions); inline frame-QA = we have eval_judge/evaluator. No cheap gem to build. — WHY: thinner/DUP, no-license — WHERE: (none — REFERENCE)",
+   "kind": "lesson",
+   "links": [
+    "b_learn_flywheel"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_83",
+   "source": "INGESTION_LOG",
+   "title": "Unclecheng-li/AI-Animation-Skill",
+   "text": "(PART-B B-tier batch11) REFERENCE/SKIP — HTML presentation SLIDES via CSS @keyframes (wall-clock) → NOT seek-safe for our paused-GSAP render. Motion patterns (orb-float≈our scblob, pulse-glow≈our scglow, explode/shake=off-brand for pro tech-news) = DUP/off-brand. No buildable gem. — WHY: CSS-keyframes slides, not seek-safe — WHERE: (none — REFERENCE)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "SKIP",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_84",
+   "source": "INGESTION_LOG",
+   "title": "C-tier sweep (741 repos, lowest 'Backlog' tier)",
+   "text": "(PART-B final) **DRY** — top-25 relevant scouted: 15 off-domain (medical/tax/git-config/scrapers/TV-clients), 5 DUP (TTS/voice we have), 5 marginal (China-centric kits). 0 genuine gems. 1 marginal REFERENCE: **Huanshere/VideoLingo** (17k★, subtitle/translate/dub pipeline) — revisit ONLY if multilingual/dubbing expansion. Inventory mining CLOSED. — WHY: vein exhausted after S+A+B — WHERE: (none)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_85",
+   "source": "INGESTION_LOG",
+   "title": "nateherkai/hyperframes-student-kit",
+   "text": "(PART-B final keyword-sweep — last repo with any video-domain keyword) REFERENCE — HyperFrames learning kit; we already OWN the canonical engine (5_FRAMEWORK/hf_engine) + 97-block registry + open-design craft library. Derivative examples, can't-vendor (no-license), C-tier. Skim only if we ever want more template samples. — WHY: we own the source engine — WHERE: (none)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_86",
+   "source": "INGESTION_LOG",
+   "title": "GuanYixuan/pyCapCut + pyJianYingDraft",
+   "text": "(user-led: \"CapCut có nhiều SFX/transition/text-effect\") **ADOPTED+BUILT** `4_BRAIN/capcut_export.py` (`npm run capcut:export`, opt-in `SEOSONA_CAPCUT_EXPORT=1`): SEOSONA MP4 → editable **CapCut draft** so user embellishes with CapCut's native effect library. Uses pyCapCut (intl CapCut; pyJianYingDraft = China-only, skipped). Verified: generates valid draft (format version 360000 = matches machine's CapCut 8.9; clean schema-subset). CAVEAT: GUI-open in CapCut 8.9 NOT visually confirmed (computer-use was declined) — static evidence strong. — WHY: FACTORY: hand off CapCut project, not just MP4 — WHERE: `4_BRAIN/capcut_export.py`",
+   "kind": "lesson",
+   "links": [
+    "b_capcut_export"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_87",
+   "source": "INGESTION_LOG",
+   "title": "CapCut ecosystem deep-dig (6 repos) — capcut-cli (MIT 124★), VectCutAPI (Apache 2k★), capcut-mate (Apache 1.3k★), opencut (MIT 60k★), capcut-ai-editor (MIT MCP), pyJianYingDraft",
+   "text": "(user-led: \"đào vàng kỹ hơn\") **Hard finding: NO free+headless CapCut-effect render exists** — every path = CapCut GUI (manual/RPA-Windows-fragile) or PAID cloud (VectCutAPI license-gated). So harvest *knowledge*, apply natively. **ADOPTED+BUILT:** (1) SFX de-click (afade in/out, ffprobe-cached); (2) **scene-entrance transition variety** — `_entrance_tweens` rotates 4 brand-fit recipes/scene (slide-up / from-right / zoom-dissolve+headline-clip-wipe / from-left), mirrors the existing `_EXITS` rotation, seek-safe GSAP, frame-verified (5-scene render: all resolve to rest, text fully visible, no black frames). Done in the seek-render — NOT ffmpeg xfade (our render is one continuous seek-render, not concatenated clips). Both in `native_composer`, free/headless, **no CapCut**. **BACKLOG:** SFX sidechain-duck; more text-effect variety (word stagger / scale-pop); subtle flash accent; 6 re-skinned text templates; talking-head silence/dupe-detect + translate. **SKIP-DUP:** caption/karaoke (ours is Vietnamese-grammar smarter). **SKIP:** ~85% of effect catalog (anime/neon/retro/cute/dark = off-brand). capcut-cli verified on machine (doctor: detects CapCut 8.9 drafts + ffmpeg + whisper; tested ",
+   "kind": "lesson",
+   "links": [
+    "b_native_composer"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-06-30"
+  },
+  {
+   "id": "kn_log_88",
+   "source": "INGESTION_LOG",
+   "title": "Knowledge-graph/\"second brain\" scan (user-led) — AgriciDaniel/claude-obsidian (Karpathy's \"LLM Wiki\" pattern), breferrari/obsidian-mind, tirth8205/code-review-graph, mmethodz/dreamgraph, kepano/obsidian-skills, safishamsi/graphify, Lum1104/Understand-Anything, abhigyanpatwari/GitNexus",
+   "text": "(user: \"Second Brain không còn chỉ lưu trữ mà thành hệ thống AI làm việc cùng bạn — Obsidian, Karpathy Method\") REFERENCE-pattern only (license mixed/unclear, none free-local-fit as-is) — the SHARED insight across all of them: a knowledge graph should be QUERYABLE DATA an agent reads to work faster (code-review-graph claims 6.8–49× fewer tokens), not just a picture for humans. **ADOPT-pattern → BUILT natively**: `scripts/gen_knowledge_graph.py` (scans the real repo: SOPs/4_BRAIN modules/agents/skills/templates/components/effects → emits `2_KNOWLEDGE/knowledge_graph.json`) + `4_BRAIN/knowledge_graph.py` (query API: `find/neighbors/related_to/stats`) so capability-analyst/factory-strategist can traverse system structure instead of re-reading the whole repo each time. Fixes the earlier gap (SYSTEM_MAP.html graph was a hand-written static snapshot). **Extended (content layer):** `scripts/gen_knowledge_notes.py` → `2_KNOWLEDGE/knowledge_notes.json` (134 notes from INGESTION_LOG lessons + VIDEO_CRAFT_RULES + domain_skills + SOPs + flywheel) + `knowledge_graph.recall(query)` — agent retrieves what SEOSONA has LEARNED + WHY (in our own words), cross-linked to structure nodes. This is the \"",
+   "kind": "lesson",
+   "links": [
+    "b_knowledge_graph"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-07-01"
+  },
+  {
+   "id": "kn_rej_89",
+   "source": "INGESTION_LOG",
+   "title": "fishaudio/fish-speech",
+   "text": "REJECTED: non-commercial license + torch 2.8 (breaks env)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_90",
+   "source": "INGESTION_LOG",
+   "title": "coqui-ai/TTS",
+   "text": "REJECTED: unmaintained (shut down) + no Vietnamese",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_91",
+   "source": "INGESTION_LOG",
+   "title": "RVC-Boss/GPT-SoVITS, OpenMOSS/MOSS-TTSD, voice-pro, voicebox",
+   "text": "REJECTED: no Vietnamese",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_92",
+   "source": "INGESTION_LOG",
+   "title": "K07VN/capcut-tts-api",
+   "text": "REJECTED: no LICENSE + reverse-engineered cloud API",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_93",
+   "source": "INGESTION_LOG",
+   "title": "WEIFENG2333/VideoCaptioner",
+   "text": "REJECTED: GPL-3.0",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_94",
+   "source": "INGESTION_LOG",
+   "title": "social-auto-upload, opencut, palmier-pro, capcut-cli, openreel",
+   "text": "REJECTED: whole apps/editors or no license — reference only",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_95",
+   "source": "INGESTION_LOG",
+   "title": "ToolJet, Prometheus",
+   "text": "REJECTED: whole low-code/monitoring platforms — over-engineer a local log dashboard",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_96",
+   "source": "INGESTION_LOG",
+   "title": "firecrawl, browser-use, Scrapling",
+   "text": "REJECTED: heavy crawl/browser frameworks — native RSS fetch (requests+xml) is the right size",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_97",
+   "source": "INGESTION_LOG",
+   "title": "MoneyPrinterTurbo, KrillinAI, autoshorts",
+   "text": "REJECTED: full video pipelines — would conflict with native_composer (don't rebuild)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_98",
+   "source": "INGESTION_LOG",
+   "title": "gsap/anime/lottie skills (boraoztunc)",
+   "text": "REJECTED: duplicate — SEOSONA already has the HyperFrames craft library",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_99",
+   "source": "INGESTION_LOG",
+   "title": "awesome-seo (awesomelistsio/teles), awesome-ui (kevindeasis), awesome-digital-marketing (paulbradish)",
+   "text": "REJECTED: **no LICENSE file** → not vendored (SOP step 2); referenced by link in `domain_skills/INDEX.md`",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_100",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: coreyhaines31/marketingskills",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_101",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: nidhinjs/prompt-master (re-dig)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_102",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: Souvic/videodubber · HITsz-TMG/VideoClaw · nazdridoy/kokoro-tts · google-research/tabfm",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_103",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: nexu-io/html-video · vanloctech/youwee (re-flagged)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_104",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: nazdridoy/kokoro-tts (deep re-dig)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_105",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: GSAP SplitText (greensock/GSAP)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_106",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: AgriciDaniel/claude-youtube",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_107",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: zeropointnine/tts-audiobook-tool · loserbcc/open-unified-tts · benbrandt/text-splitter",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_108",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: dashed/whisperx-subtitles · ozten/CaptionsPlease · HITsz-TMG/VideoClaw",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_109",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: nghimestudio/vietnormalizer",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_110",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: amplifying-ai/awesome-generative-engine-optimization",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_111",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: stroke-dashoffset chart strategy (react-minimal-pie-chart MIT · Peity MIT · CSS-Tricks progress-ring)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_112",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: Pixabay API (video+music) · Openverse (MIT) · trungtv/pyvi (MIT)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_113",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: NVIDIA NIM API (build.nvidia.com) — user key",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_114",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: Pixabay (user key)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_115",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: stroke-dashoffset ring (react-minimal-pie-chart MIT · CSS-Tricks)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_116",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: publishing (gitroomhq/postiz AGPL · XavierZambrano/facebook-reels-api MIT)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_117",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: Google Trends \"Trending Now\" RSS + Autocomplete (keyless)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_118",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: GSAP SplitText mask API + kinetic recipes (zarazhangrui templates MIT = REFERENCE)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_119",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: stroke-dashoffset timeline (react-minimal-pie-chart pattern)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_120",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: Netflix/BBC timed-text standards + chetan-prime/subfixer (REF)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_121",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: section-card `divider` component",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_122",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-02",
+   "text": "REJECTED: keplerlab/katna (MIT) + YouTube-Analytics own-channel + bgalbraith/bandits (Apache)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_123",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: hoquanghai/Auto-Create-Video (HyperFrames VN sibling)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_124",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: kadevin/ilab-gpt-conjure (GPT-image-2 WebUI)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_125",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: topviewai/ai-video-editor",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_126",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: topviewai/skill",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_127",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: topviewai/1000-AI-collection-tools",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_128",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: LingyiChen-AI/AIComicBuilder",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_129",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: alexmacarthur/typeit",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_130",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: aagarwal1012/Animated-Text-Kit",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_131",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: timoncool/videosos",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_132",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: CameronFoxly/Ascii-Motion",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_133",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: hans1801/hans-n8n · workflows/videos-stickman",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_134",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: heygen-com/hyperframes (OUR render engine)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_135",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: remotion-dev/remotion + remotion-dev/skills + docs/assets",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_136",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: heygen-com/hyperframes — DEEP dive (core engine, user-requested \"đào thật kỹ\")",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_137",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: Remotion portability — SETTLED via remotion-to-hyperframes skill",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_138",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: heygen-com/hyperframes — DEEPER dive (read primary sources, user: \"bạn có thực sự hiểu?\")",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_139",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: greensock/gsap + greensock/gsap-skills",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_140",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: ray-project/ray + heygen-com/ray",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_141",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: HyperFrames music-to-video + GSAP MotionPath → BUILT (user-requested 3)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_142",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: remotion-dev/remotion + skills — DEEP re-dig (user: \"rất hay và rất cần\")",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_143",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: Remotion backlog + MotionPath — BUILT 4 (user picked all)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_144",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: Spring presets → auto-directed entrances (user request)",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_145",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: D:\\SEOSONA AI\\Video Template — FRAME-BY-FRAME (user: \"phân tích kỹ, rất nhiều tài nguyên quý\")",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_146",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: Frame-study consolidation (user: \"gom tất cả thành 1 frame-study pipeline dùng được\")",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_147",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: Video-Template coverage close-out (user: \"làm 1-3, không dark mode, dark→light\")",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_rej_148",
+   "source": "INGESTION_LOG",
+   "title": "2026-07-03",
+   "text": "REJECTED: Video-Template TRUE frame-by-frame (user: \"phân tích thật kỹ từng frame — element/card/motion/effect/animation/text/bố cục\")",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REJECTED"
+  },
+  {
+   "id": "kn_craft_0",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "1. Scene tags (vocabulary for what each scene DOES)",
+   "text": "`hook` (grab, ≤3s, must be scene-0/1) · `data` (number/stat/rank) · `concept` (define/explain) · `versus` (A vs B / before-after) · `demo` (steps/how) · `flow` (sequence) · `emotion` (story/value) · `structure` (hierarchy) · `cta` (follow/try) · `bridge` (transition, ≤15% of scenes) · `summary`. → Tag each scene; drives pacing + component choice.",
+   "kind": "craft",
+   "links": []
+  },
+  {
+   "id": "kn_craft_1",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "2. Pacing archetypes (pick by platform/length)",
+   "text": "| Archetype | sec/scene | scenes/min | whitespace | use | |---|---|---|---|---| | **hook** (Shorts/TikTok 30–60s) | 0.8–2.0 | 30–60 | <5% | news/hype | | **tutorial** (YouTube) | 2.0–5.0 | 15–30 | 10–15% | how-to/explainer | | **doc** (brand/long) | 3.0–8.0 | 8–15 | 20–30% | story/depth | Hook must land in the first 3s; never open on a logo-only / >1s black fade.",
+   "kind": "craft",
+   "links": []
+  },
+  {
+   "id": "kn_craft_2",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "3. Validation rules (cheap quality guards)",
+   "text": "- **Visual variety:** same component used **≥4×** in one video → monotony warning (vary it). - **Hook first:** a `hook`-tag scene within the first 3s. - **bridge ≤15%** of scenes (don't dilute density). - One idea per title/scene; numbers spoken phonetically (voice layer), displayed normally. - (We already enforce display≠spoken via the nvs lexicon + script_schema.)",
+   "kind": "craft",
+   "links": []
+  },
+  {
+   "id": "kn_craft_3",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "4. Tag → component (suggestion)",
+   "text": "hook→bignum/poster · data→chart/stats/bignum · concept→compare/feature · versus→compare · demo/flow→steps/terminal · structure→steps · cta→cta · summary→badges/quote.",
+   "kind": "craft",
+   "links": []
+  },
+  {
+   "id": "kn_craft_4",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "5. Motion / easing (GSAP, seek-safe only)",
+   "text": "Our render seeks a PAUSED gsap timeline → only deterministic tweens (`tl.to/from/fromTo/set`, stagger, ease, transform/opacity). NO ScrollTrigger / matchMedia / tl.call / CSS @keyframes. **Easing menu (when to use):** - entrances: `power2.out` / `power3.out` / `back.out(1.4–1.7)` - exits: `power2.in` (snappy, don't linger) - continuous (glow/blob breathe): `sine.inOut` - impact (number lands): `expo.out` (≤1×/scene) - AVOID: `elastic`, `bounce` (dated/playful — off-brand for news). - ≤3 unique eases per scene (variety ≠ chaos). **Brand CustomEase presets** (register once; cubic-bezier, not gimmicky): `pop-brand .25,.46,.45,.94` · `glide-editorial .13,.27,.80,.98` · `whoosh .34,.1,.68,.55` · `settle .68,.55,.265,.55`. **Stagger choreography** (instead of uniform): `from:\"center\"` = editorial (eye lands center→out) · `from:\"edges\"` = architectural (fill→center) · `from:\"start\"` = default. (`from:\"random\"` only for playful, NOT news.) **Data-driven motion** (`gsap.utils`, pure/seek-safe): `mapRange` (value→scale/hue), `snap` (discrete steps), `distribute({from:\"center\"})` (weight by position), `clamp`. Use only on data components (stats/compare), never captions.",
+   "kind": "craft",
+   "links": []
+  },
+  {
+   "id": "kn_craft_5",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "6. Static-CSS craft (from nicobailon/visual-explainer, MIT — SEEK-SAFE picks only)",
+   "text": "Static CSS = always seek-safe (no animation timing). Adoptable: - **Depth tiers** for component cards (light-mode shadows): `elevated` (0 2px 8px) for primary, `hero` (0 4px 20px + faint brand tint) for the focal stat, flat for reference. Improves hierarchy with zero new components. - **Overflow guard:** add `min-width:0` to grid/flex children (stops content-overflow on narrow layouts) — a cheap base-reset win. - **Scene-tag label:** small uppercase mono label + colored dot (`::before`) to badge a scene's tag (hook/data/...) using the scene-tag colors. ⚠️ **REJECTED (agent mislabelled it \"seek-safe\"):** the `--i` staggered fade via **CSS @keyframes + animation-delay**. CSS @keyframes run in WALL-CLOCK, NOT synced to our paused-GSAP seek → would flicker/desync per captured frame. Our stagger MUST stay GSAP tweens. (Same reason we use gsap, not CSS @keyframes, for the blobs.) Mermaid zoom / slide-engine = backlog (interactive, not for render).",
+   "kind": "craft",
+   "links": []
+  },
+  {
+   "id": "kn_craft_6",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "7. Hooks & narrative structure (from calesthio/OpenMontage, AGPL — patterns learned, not vendored)",
+   "text": "Used by `_gemini_outline` (Stage 1) to vary the arc per topic instead of one fixed template. **Hook patterns (scene 1 — pick the one the facts support):** - **Số liệu bất ngờ** — \"[con số phản trực giác]. Vì sao?\" - **Lật ngộ nhận** — \"Bạn nghĩ [X]. Thực ra [Y].\" - **Tính mới** — \"[Thứ này] vừa thay đổi [lĩnh vực].\" - **Câu hỏi tò mò** — \"Vì sao [điều ai cũng gặp] lại xảy ra?\" - **So sánh tương phản** — \"[A] mất [nhiều]. [B] chỉ [ít].\" - **Góc nhìn ít ai nói** — \"Điều về [chủ đề] mà không ai giải thích.\" - NEVER: \"trong video này…\", chào mở màn dài, logo-only >1s. **Narrative structures (pick by topic, don't always use the same):** giới-thiệu-dự-án · vấn-đề→giải-pháp · kể-bằng-số-liệu (stat-heavy) · so-sánh A/B · tiến-trình/timeline. → Mỗi video chọn 1 cho hợp → tránh cảm giác công thức (đúng than phiền \"video giống nhau\"). **Climax/điểm-nhấn:** mark 1 hero scene (giữa-cuối) → giữ lâu hơn + 1 hiệu ứng nhấn (chưa wire vào render — BACKLOG: `hero_moment` flag trong native_composer). **From OpenMontage = REFERENCE/BACKLOG (not built — over-build for a solo 1-pipeline factory):** declarative pipeline-manifests + stage-director skills + tool-registry/selector + checkpoint-resume + execu",
+   "kind": "craft",
+   "links": []
+  },
+  {
+   "id": "kn_craft_7",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "8. CapCut ecosystem — harvested craft (6 repos vetted; patterns learned, NOT vendored)",
+   "text": "Repos examined (clones in `2_KNOWLEDGE/external_toolkits/`): renezander030/capcut-cli (MIT), GuanYixuan/pyJianYingDraft + pyCapCut (Apache-2.0), sun-guannan/VectCutAPI (2k★), Hommy-master/capcut-mate (1.3k★), opencut-app/opencut (60k★), mrbuslov/capcut-ai-editor (MCP). **Hard finding: there is NO free + headless way to render CapCut's effect library** — every render path needs the CapCut/JianYing GUI (manual or fragile RPA, Windows-only) or a PAID cloud (VectCutAPI → `open.capcutapi.top`, license-gated). So we do NOT route renders through CapCut; we harvest the *knowledge* and apply it natively in our free/headless engine. **ADOPTED (built):** - **SFX de-click (afade)** — every SFX cue now gets `afade=t=in:st=0:d=0.03` (kills the hard-attack click) + a tail `afade=t=out` (no abrupt cut-off), durations via cached ffprobe. `native_composer._audio_dur` + the mix loop. Technique from capcut-cli's render filtergraph; free, headless, frame-verified (ffmpeg rc=0). - **TEXT-EFFECT layer** — `effect_library.TEXT_EFFECTS`: **5 headline treatments** (rise · word-up · clip-wipe · word-pop · drop) rotated on a DIFFERENT seed phase than transitions, so transition×text-effect form fresh COMBINATI",
+   "kind": "craft",
+   "links": [
+    "b_effect_library"
+   ]
+  },
+  {
+   "id": "kn_craft_8",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "9. Vertical safe-zone & alignment (9:16)",
+   "text": "Single source of truth = the `SAFE_*` constants in `native_composer` (base 1080×1920, scaled by `vs/hs` for other aspects via the `--sz-*` CSS vars): - **`SAFE_SIDE=100`** · **`SAFE_TITLE_TOP=560`** (title anchor line) · **`SAFE_CONTENT_BOTTOM=1500`** (content must stay above the caption band; kara caption top ≈ 1544, footer ≈ 1690). - **Content is TOP-ANCHORED** (`.scene{justify-content:flex-start}`): the kicker/title sits on the SAME line every scene → it never \"jumps\" between cuts. (Bug fixed 2026-07-01: center-anchoring made the head bounce ~224px scene-to-scene because the centred block's height varied; measured head-top range went 224px→46px.) - Content sits a touch ABOVE the true frame-centre ON PURPOSE — short-form platforms (TikTok/Reels/Shorts) overlay their own caption + right-side button column over the bottom ~26%, so the usable stage is the upper- centre. Don't \"fix\" it to dead-centre. - Components flow directly below the title and must not cross `SAFE_CONTENT_BOTTOM` (verified: tallest test scene bottom = 1394 < 1544). If a very tall component is added, cap its item count, don't lower the title. - **Never** re-introduce a hard-coded `.scene` padding string that must ",
+   "kind": "craft",
+   "links": []
+  },
+  {
+   "id": "kn_craft_9",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "10. SKILL AUTO adoption — components + timing + non-negotiables (2026-07-03, WIRED)",
+   "text": "Learned from `SKILL AUTO` (Remotion edit skill); ported native/free/light-brand. See `2_KNOWLEDGE/hyperframes/craft/SKILL-AUTO-ADOPTION-2026-07.md` for the full plan. **New scene components** (in `native_composer._component` + `component_picker` menu/validator + `spec_lint._REQUIRED`): `concept_build` (VO-synced explainer canvas) · `comparison_grid` · `split_reveal` · `annotated_screenshot` · `stat_grid` (multi-stat grid) · `ratio_dots` (X/Y proportion dots) · `layer_stack` (stacked slabs) · `ticker_feed` (activity feed) · `org_diagram` (parent + kept/dim children). All `.ritem` seek-safe, render-verified. **Timing passes** (`4_BRAIN/beat_timing.py`, VN-adapted): `close_gaps` (bridge sub-1.5s flicker gaps) · `sync_list_items` (reveal each row WHEN spoken — wired into talking-head bullets) · `zoom_plan` (score punchy words → emphasis; wired to auto-highlight captions). ASR brand fix = `4_BRAIN/transcript_fix.py`. **Non-negotiable lint rules** (`spec_lint.py`, advisory): coverage ≥70% · hook-visual@0.0s · beat ceiling ≤5s · icon safe-zone Y≤80% · flicker gap. Live: safe-zone→`lint_elements`, ceiling+flicker→talking-head b-roll track, hook/ending/density/reason/blank-risk→`lint_scenes",
+   "kind": "craft",
+   "links": [
+    "b_beat_timing",
+    "b_transcript_fix"
+   ]
+  },
+  {
+   "id": "kn_craft_10",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "11. HyperFrames engine capability map (v0.7.24, mined 2026-07-03)",
+   "text": "Our render engine (`node_modules/hyperframes`, driven by `native_composer` → `node cli render`). What we tap vs what's available — so we don't re-mine and know what's on tap. **We USE:** `lint` (pre-render) + `render --format mp4`; our own HTML + GSAP seek-safe timeline + scene components + karaoke; light-brand; voice.mp3 audio. **Render knobs NOW wired (env, default = current behaviour):** `SEOSONA_RENDER_QUALITY` = draft|standard|high · `SEOSONA_RENDER_GPU=1` (NVENC, off by default) · `SEOSONA_RENDER_WORKERS` = N|auto. Also real (unused): `--resolution portrait-4k` (supersample), `--crf`, `--video-bitrate`, `--fps`. **Available but NOT adopted (with why):** - `beats` — detects music beats → `beats/<audio>.json`. Music-sync visual cuts. NOT adopted: our reveals are SPEECH-synced (informational content), and we pick BGM at mix-time AFTER the visual render → beat-sync would need a pipeline restructure + competes with speech-sync. Reference for future rhythm-driven content. - `validate` — runtime headless check (JS errors, missing assets, **contrast**). We run `lint` (static) only. Could add as a pre-render gate (+~10s Chrome pass) to catch light-on-light contrast; deferred (our rend",
+   "kind": "craft",
+   "links": []
+  },
+  {
+   "id": "kn_dk_0",
+   "source": "domain_skills",
+   "title": "banner-design",
+   "text": "\"Design banners for social media, ads, website heroes, creative assets, and print. Multiple art direction options with AI-generated visuals. Actions: design, create, generate banner. Platforms: Facebook, Twitter/X, LinkedIn, YouTube, Instagram, Google Display, website hero, print. Styles: minimalist, gradient, bold typography, photo-based, illustrated, geometric, retro, glassmorphism, 3D, neon, duotone, editorial, collage. Uses ui-ux-pro-max, frontend-design, ai-artist, ai-multimodal skills.\" argument-hint: \"[platform] [style] [dimensions]\" # Banner Design - Multi-Format Creative Banner System Design banners across social, ads, web, and print formats. Generates multiple art direction options per request with AI-powered visual elements. This skill handles banner design only. Does NOT handle video editing, full website design, or print production. ## When to Activate - User requests banner, cover, or header design - Social media cover/header creation - Ad banner or display ad design - Website hero section visual design - Event/print banner design - Creative asset generation for campaigns ## Prerequisites **Python:** This ski",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_1",
+   "source": "domain_skills",
+   "title": "brand",
+   "text": "Brand voice, visual identity, messaging frameworks, asset management, brand consistency. Activate for branded content, tone of voice, marketing assets, brand compliance, style guides. argument-hint: \"[update|review|create] [args]\" # Brand Brand identity, voice, messaging, asset management, and consistency frameworks. ## When to Use - Brand voice definition and content tone guidance - Visual identity standards and style guide development - Messaging framework creation - Brand consistency review and audit - Asset organization, naming, and approval - Color palette management and typography specs ## Quick Start **Inject brand context into prompts:** ```bash node scripts/inject-brand-context.cjs node scripts/inject-brand-context.cjs --json ``` **Validate an asset:** ```bash node scripts/validate-asset.cjs <asset-path",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_2",
+   "source": "domain_skills",
+   "title": "competitor-alternatives",
+   "text": "\"When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when the user mentions 'alternative page,' 'vs page,' 'competitor comparison,' 'comparison page,' '[Product] vs [Product],' '[Product] alternative,' or 'competitive landing pages.' Covers four formats: singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. Emphasizes deep research, modular content architecture, and varied section types beyond feature tables.\" # Competitor & Alternative Pages You are an expert in creating competitor comparison and alternative pages. Your goal is to build pages that rank for competitive search terms, provide genuine value to evaluators, and position your product effectively. ## Initial Assessment **Check for product marketing context first:** If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task. Before creating competitor pages, understand: 1. **Your Product** - Core value proposition",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_3",
+   "source": "domain_skills",
+   "title": "content-strategy",
+   "text": "When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also use when the user mentions \"content strategy,\" \"what should I write about,\" \"content ideas,\" \"blog strategy,\" \"topic clusters,\" or \"content planning.\" For writing individual pieces, see copywriting. For SEO-specific audits, see seo-audit. # Content Strategy You are a content strategist. Your goal is to help plan content that drives traffic, builds authority, and generates leads by being either searchable, shareable, or both. ## Before Planning **Check for product marketing context first:** If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task. Gather this context (ask if not provided): ### 1. Business Context - What does the company do? - Who is the ideal customer? - What's the primary goal for content?",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_4",
+   "source": "domain_skills",
+   "title": "copy-editing",
+   "text": "\"When the user wants to edit, review, or improve existing marketing copy. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' or 'copy sweep.' This skill provides a systematic approach to editing marketing copy through multiple focused passes.\" # Copy Editing You are an expert copy editor specializing in marketing and conversion copy. Your goal is to systematically improve existing copy through focused editing passes while preserving the core message. ## Core Philosophy **Check for product marketing context first:** If `.claude/product-marketing-context.md` exists, read it before editing. Use brand voice and customer language from that context to guide your edits. Good copy editing isn't about rewriting—it's about enhancing. Each pass focuses on one dimension, catching issues that get missed when you try to fix everything at on",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_5",
+   "source": "domain_skills",
+   "title": "copywriting",
+   "text": "When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says \"write copy for,\" \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline help,\" or \"CTA copy.\" For email copy, see email-sequence. For popup copy, see popup-cro. # Copywriting You are an expert conversion copywriter. Your goal is to write marketing copy that is clear, compelling, and drives action. ## Before Writing **Check for product marketing context first:** If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task. Gather this context (ask if not provided): ### 1. Page Purpose - What type of page? (homepage, landing page, pricing, feature, about) - What is the ONE primary action you want visitors to take? ### 2. Audience - Wh",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_6",
+   "source": "domain_skills",
+   "title": "design-system",
+   "text": "Token architecture, component specifications, and slide generation. Three-layer tokens (primitive→semantic→component), CSS variables, spacing/typography scales, component specs, strategic slide creation. Use for design tokens, systematic design, brand-compliant presentations. argument-hint: \"[component or token]\" # Design System Token architecture, component specifications, systematic design, slide generation. ## When to Use - Design token creation - Component state definitions - CSS variable systems - Spacing/typography scales - Design-to-code handoff - Tailwind theme configuration - **Slide/presentation generation** ## Token Architecture Load: `references/token-architecture.md` ### Three-Layer Structure ``` Primitive (raw values) ↓ Semantic (purpose aliases) ↓ Component (component-specific) ``` **Example:** ```css /* Primitive */ --color-blue-600: #2563EB; /* Semantic */ --co",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_7",
+   "source": "domain_skills",
+   "title": "frontend-design",
+   "text": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics. This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic \"AI slop\" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices. The user provides frontend requirements: a component, page, application, or interface to build. They may include context about the purpose, audience, or technical constraints. ## Design Thinking Before coding, understand the context and commit to a BOLD aesthetic direction: - **Purpose**: What problem does this interface solve? Who uses it? - **Tone**: Pick an extreme: brut",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_8",
+   "source": "domain_skills",
+   "title": "geo-aeo",
+   "text": "Generative-Engine / Answer-Engine Optimization — getting a brand CITED by AI answers (ChatGPT, Gemini, Google AI Overviews, Perplexity). The 2026 discipline our older seo-audit/programmatic-seo skills predate. Grounds SEOSONA videos that teach \"SEO for the AI-search era\". # GEO / AEO — optimizing to be CITED by AI answers **The shift:** classic SEO wins a ranked link on a results page. **GEO/AEO wins a CITATION inside the AI's answer** (ChatGPT, Gemini, Perplexity, Google AI Overviews). Users increasingly read the AI answer and never click a blue link — so if the AI doesn't cite you, you're invisible even when you rank #1. ## Why it matters now (real 2026 signals — cite these in videos) - **Google AI Overviews** appear on a large and growing share of queries (~half of informational searches). - **Wikipedia ≈ the single most-cited source** in ChatGPT answers",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_9",
+   "source": "domain_skills",
+   "title": "make-interfaces-feel-better",
+   "text": "Design engineering principles for making interfaces feel polished. Use when building UI components, reviewing frontend code, implementing animations, hover states, shadows, borders, typography, micro-interactions, enter/exit animations, or any visual detail work. Triggers on UI polish, design details, \"make it feel better\", \"feels off\", stagger animations, border radius, optical alignment, font smoothing, tabular numbers, image outlines, box shadows. # Details that make interfaces feel better Great interfaces rarely come from a single thing. It's usually a collection of small details that compound into a great experience. Apply these principles when building or reviewing UI code. ## Quick Reference | Category | When to Use | | --- | --- | | [Typography](typography.md) | Text wrapping, font smoothing, tabular numbers | | [Surfaces](surfaces.md) | Border radius, optical alignment, shadows, image outlines, hit areas | | [Animations](animations.md) | Interruptible animations, enter/exit transitions, icon animations, scale on press | | [Pe",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_10",
+   "source": "domain_skills",
+   "title": "marketing-psychology",
+   "text": "Named persuasion levers (cognitive biases + mental models) for a 45–60s SEOSONA short video — pick ONE lever for the HOOK and ONE for the CTA. Distilled + re-skinned for faceless SEO/marketing video. # Marketing Psychology — persuasion levers for a short video A short video has ~2s to hook and ~4s to close. You can't use many levers — pick **ONE lever for the HOOK** and **ONE for the CTA**, and make the whole script serve them. Below are the highest-leverage principles from the full 78-item library, kept only if they work inside 45–60 seconds of faceless SEO/ marketing video. Each is a *tool for honest persuasion* — never fabricate the number/proof it leverages (the traceability gate will reject invented data). ## HOOK levers (open the loop in the first 2 seconds) - **Curiosity Gap** —",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_11",
+   "source": "domain_skills",
+   "title": "ogilvy",
+   "text": "Apply David Ogilvy's advertising principles when writing or reviewing copy, headlines, product descriptions, landing pages, ads, emails, or any persuasive text. Use when the goal is copy that sells, not copy that wins awards. Covers positioning, headlines, promises, brand voice, long-form copy, and visual logic. Source: How to Create Advertising That Sells (1972) + Ogilvy on Advertising. # Ogilvy Copywriting Skill Apply these principles when writing, reviewing, or critiquing any copy with a sales or persuasion goal. Advertising is not art. It is information in service of selling. Every decision should serve that end. --- ## The Hierarchy: What Matters Most Ogilvy's framework operates in order of priority. Later decisions only matter if earlier ones are correct. ### 1. Positioning (the most important decision) Positioning is not a tagline. It is the answer to two questions: **what does this product do, and who is it for?** The entire campaign depends on this decision b",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_12",
+   "source": "domain_skills",
+   "title": "page-cro",
+   "text": "When the user wants to optimize, improve, or increase conversions on any marketing page — including homepage, landing pages, pricing pages, feature pages, or blog posts. Also use when the user says \"CRO,\" \"conversion rate optimization,\" \"this page isn't converting,\" \"improve conversions,\" or \"why isn't this page working.\" For signup/registration flows, see signup-flow-cro. For post-signup activation, see onboarding-cro. For forms outside of signup, see form-cro. For popups/modals, see popup-cro. # Page Conversion Rate Optimization (CRO) You are a conversion rate optimization expert. Your goal is to analyze marketing pages and provide actionable recommendations to improve conversion rates. ## Initial Assessment **Check for product marketing context first:** If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task. Before providing recommendations, identify: 1. **Page Type**: Homepage, landing page, pricing, feature, blog, about, other 2. **Primary Conversion Goal*",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_13",
+   "source": "domain_skills",
+   "title": "programmatic-seo",
+   "text": "When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions \"programmatic SEO,\" \"template pages,\" \"pages at scale,\" \"directory pages,\" \"location pages,\" \"[keyword] + [city] pages,\" \"comparison pages,\" \"integration pages,\" or \"building many pages for SEO.\" For auditing existing SEO issues, see seo-audit. # Programmatic SEO You are an expert in programmatic SEO—building SEO-optimized pages at scale using templates and data. Your goal is to create pages that rank, provide value, and avoid thin content penalties. ## Initial Assessment **Check for product marketing context first:** If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task. Before designing a programmatic SEO strategy, understand: 1. **Business Context** - What's the product/service? - Who is the target a",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_14",
+   "source": "domain_skills",
+   "title": "schema-markup",
+   "text": "When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions \"schema markup,\" \"structured data,\" \"JSON-LD,\" \"rich snippets,\" \"schema.org,\" \"FAQ schema,\" \"product schema,\" \"review schema,\" or \"breadcrumb schema.\" For broader SEO issues, see seo-audit. # Schema Markup You are an expert in structured data and schema markup. Your goal is to implement schema.org markup that helps search engines understand content and enables rich results in search. ## Initial Assessment **Check for product marketing context first:** If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task. Before implementing schema, understand: 1. **Page Type** - What kind of page? What's the primary content? What rich results are possible? 2. **Current",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_15",
+   "source": "domain_skills",
+   "title": "seo-audit",
+   "text": "When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions \"SEO audit,\" \"technical SEO,\" \"why am I not ranking,\" \"SEO issues,\" \"on-page SEO,\" \"meta tags review,\" or \"SEO health check.\" For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema-markup. # SEO Audit You are an expert in search engine optimization. Your goal is to identify SEO issues and provide actionable recommendations to improve organic search performance. ## Initial Assessment **Check for product marketing context first:** If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task. Before auditing, understand: 1. **Site Context** - What type of site? (SaaS, e-commerce, blog, etc.) - What's the primary business goal for SEO? - What keywords/topi",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_16",
+   "source": "domain_skills",
+   "title": "stop-slop",
+   "text": "Remove AI writing patterns from prose. Use when drafting, editing, or reviewing text to eliminate predictable AI tells and produce more human-like writing. # Stop Slop Eliminate predictable AI writing patterns from prose. ## Core Rules 1. **Cut filler phrases.** Remove throat-clearing openers, emphasis crutches, and all adverbs. See Phrases to Remove below. 2. **Break formulaic structures.** Avoid binary contrasts, negative listings, dramatic fragmentation, rhetorical setups, false agency. See Structures to Avoid below. 3. **Use active voice.** Every sentence needs a human subject doing something. No passive constructions. No inanimate objects performing human actions (\"the complaint becomes a fix\"). 4. **Be specific.** No vague declarati",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_17",
+   "source": "domain_skills",
+   "title": "ui-styling",
+   "text": "Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS utility-first styling, and canvas-based visual designs. Use when building user interfaces, implementing design systems, creating responsive layouts, adding accessible components (dialogs, dropdowns, forms, tables), customizing themes and colors, implementing dark mode, generating visual designs and posters, or establishing consistent styling patterns across applications. argument-hint: \"[component or layout]\" # UI Styling Skill Comprehensive skill for creating beautiful, accessible user interfaces combining shadcn/ui components, Tailwind CSS utility styling, and canvas-based visual design systems. ## Reference - shadcn/ui: https://ui.shadcn.com/llms.txt - Tailwind CSS: https://tailwindcss.com/docs ## When to Use This Skill Use when: - Building UI with React-based frameworks (Next.js, Vite, Remix, Astro) - Implementing accessible components (dialogs, forms, tables, navigation) - Styling with utility-first CSS approach - Creating responsive, mobile-first layouts - Implementing dark mode and th",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_dk_18",
+   "source": "domain_skills",
+   "title": "web-design-guidelines",
+   "text": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site against best practices\". argument-hint: <file-or-pattern> # Web Interface Guidelines Review files for compliance with Web Interface Guidelines. ## How It Works 1. Fetch the latest guidelines from the source URL below 2. Read the specified files (or prompt user for files/pattern) 3. Check against all rules in the fetched guidelines 4. Output findings in the terse `file:line` format ## Guidelines Source Fetch fresh guidelines before each review: ``` https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md ``` Use WebFetch to retrieve the latest rules. The fetched content contains all the rules and output format in",
+   "kind": "domain",
+   "links": []
+  },
+  {
+   "id": "kn_sop_AUTONOMOUS_FACTORY_LOOP",
+   "source": "6_SOP/AUTONOMOUS_FACTORY_LOOP",
+   "title": "🏭 SEOSONA Video — Autonomous Self-Improving Factory (NORTH-STAR)",
+   "text": "*Created 2026-06-29. The single blueprint for turning SEOSONA Video from a video **tool** into a video **factory** that runs unattended and gets better over time.*",
+   "kind": "sop",
+   "links": [
+    "sop_AUTONOMOUS_FACTORY_LOOP"
+   ]
+  },
+  {
+   "id": "kn_sop_CHIQUYET_VOICE_STYLE",
+   "source": "6_SOP/CHIQUYET_VOICE_STYLE",
+   "title": "Chí Quyết Voice & Style Profile (CQA branch)",
+   "text": "Derived from **47 real lectures (~19.6 hours)** in `D:\\SRT` (timing-based — the transcripts have wrong/extra words + gaps, so this captures RHYTHM + STYLE, not exact wording). Use this for the **CQA branch only** (courses / lectures / knowledge) — the the OmniVoice CQA clone + the script style. Both brands now use the OmniVoice CQA clone (VieNeu = backup only).",
+   "kind": "sop",
+   "links": [
+    "sop_CHIQUYET_VOICE_STYLE"
+   ]
+  },
+  {
+   "id": "kn_sop_COURSE_VIDEO_SOP",
+   "source": "6_SOP/COURSE_VIDEO_SOP",
+   "title": "SOP — Course / knowledge video (repurpose, talking-head)",
+   "text": "Course/knowledge videos are **fundamentally different from news**. News is *generated* from text (native_composer animated scenes). A course video **repurposes real lecture footage** — we keep the expert on camera (real voice), just cut it tight and add captions. Never generate a fake course video.",
+   "kind": "sop",
+   "links": [
+    "sop_COURSE_VIDEO_SOP"
+   ]
+  },
+  {
+   "id": "kn_sop_DASHBOARD_BUILD_PLAN",
+   "source": "6_SOP/DASHBOARD_BUILD_PLAN",
+   "title": "SEOSONA Video — Management Dashboard: phased build plan",
+   "text": "**Goal (user):** One dashboard to MANAGE all of SEOSONA Video — embed `docs/SYSTEM_MAP.html` (graph/second-brain), surface every data source, add management actions. **Foundation for a future app.** Big task → strict phases, each shippable + verified in the browser before the next (to avoid errors).",
+   "kind": "sop",
+   "links": [
+    "sop_DASHBOARD_BUILD_PLAN"
+   ]
+  },
+  {
+   "id": "kn_sop_DASHBOARD_SYSTEM_DESIGN",
+   "source": "6_SOP/DASHBOARD_SYSTEM_DESIGN",
+   "title": "SEOSONA Video — Dashboard System Design (v2.0)",
+   "text": "**Status:** current-state design + forward architecture. Companion to `DASHBOARD_BUILD_PLAN.md` (phase history). **Scope:** the whole `9_DASHBOARD` app — 19 views, ~27 endpoints, data flow, state, the Studio/Create path, reliability. **One-line:** a local-first, read-mostly **control plane** over the autonomous video factory — observe everything, act on a few guarded things, and (next) *create* videos.",
+   "kind": "sop",
+   "links": [
+    "sop_DASHBOARD_SYSTEM_DESIGN"
+   ]
+  },
+  {
+   "id": "kn_sop_DEPENDENCIES",
+   "source": "6_SOP/DEPENDENCIES",
+   "title": "SEOSONA Video — Dependencies & APIs status · 2026-06-29",
+   "text": "SEOSONA Video — Dependencies & APIs status · 2026-06-29",
+   "kind": "sop",
+   "links": [
+    "sop_DEPENDENCIES"
+   ]
+  },
+  {
+   "id": "kn_sop_EFFECT_LIBRARY_PLAN",
+   "source": "6_SOP/EFFECT_LIBRARY_PLAN",
+   "title": "Effect Library — build plan (tiếp tục mai 2026-07-01)",
+   "text": "**Mục tiêu (user):** Build FULL một **thư viện effect lưu trữ** cho SEOSONA Video — text-effect, effect, SFX, transition — **tái dùng across nhiều video để phong phú, KHÔNG nhàm/lặp**. **Tuyệt đối không phụ thuộc CapCut** (lấy *kiến thức* effect, dựng *native*). Tất cả: free · headless · seek-safe GSAP · brand-fit (light-only, blue #2A5BDA / coral #E2724D) · no-bloat · frame-verify từng cái.",
+   "kind": "sop",
+   "links": [
+    "sop_EFFECT_LIBRARY_PLAN"
+   ]
+  },
+  {
+   "id": "kn_sop_EVAL_FLYWHEEL",
+   "source": "6_SOP/EVAL_FLYWHEEL",
+   "title": "Eval Flywheel — qualitative QA for videos (Gemini-as-judge)",
+   "text": "Adopted from **google/agents-cli**'s \"Quality Flywheel\" (free/local-only). It adds the **qualitative** QA layer the metadata gates can't do: `quality_scorer.py` checks ffprobe metadata (duration, bitrate, captions) and `evaluator.py` checks behaviour (audio not silent, frames not blank). Neither can hear *\"the Vietnamese is awkward\"* or see *\"the scenes all look the same\"*. The judge does — with Gemini vision, for free.",
+   "kind": "sop",
+   "links": [
+    "sop_EVAL_FLYWHEEL"
+   ]
+  },
+  {
+   "id": "kn_sop_GOOGLE_DRIVE_SHEETS_LAYER",
+   "source": "6_SOP/GOOGLE_DRIVE_SHEETS_LAYER",
+   "title": "Google Drive / Sheets Management Layer (task #15)",
+   "text": "The plan to manage the whole factory on Google Drive/Sheets/Docs. The TOOLING now exists in-repo; the only blocker is **credentials** (the user must supply them). This SOP defines the architecture so it connects cleanly — and clarifies the TWO Drive paths so they don't overlap.",
+   "kind": "sop",
+   "links": [
+    "sop_GOOGLE_DRIVE_SHEETS_LAYER"
+   ]
+  },
+  {
+   "id": "kn_sop_HYPERFRAMES_INTEGRATION",
+   "source": "6_SOP/HYPERFRAMES_INTEGRATION",
+   "title": "HyperFrames Integration SOP",
+   "text": "SEOSONA Video uses HyperFrames as the primary HTML-to-video renderer for template-driven vertical video, motion graphics, caption effects, and reusable visual blocks.",
+   "kind": "sop",
+   "links": [
+    "sop_HYPERFRAMES_INTEGRATION"
+   ]
+  },
+  {
+   "id": "kn_sop_LIPSYNC_ENGINE_MUSETALK",
+   "source": "6_SOP/LIPSYNC_ENGINE_MUSETALK",
+   "title": "Engine #3b — MuseTalk lip-sync (mmcv-free)",
+   "text": "**What it is.** A high-quality lip-sync engine: a face **image OR real video** + an audio track → a clip where the mouth is re-drawn to match the audio. Unlike SadTalker (Engine #3, which *synthesizes the whole head* from a still photo), MuseTalk does **latent-space inpainting of the mouth region on the source pixels** — it keeps the real face and only redraws the lips, so it is sharper and works on real footage, not just a portrait.",
+   "kind": "sop",
+   "links": [
+    "sop_LIPSYNC_ENGINE_MUSETALK"
+   ]
+  },
+  {
+   "id": "kn_sop_LLM_CODING_DISCIPLINE",
+   "source": "6_SOP/LLM_CODING_DISCIPLINE",
+   "title": "LLM Coding Discipline — how the agent works on SEOSONA",
+   "text": "Behavioral guardrails for any LLM (Claude here, or an agent) writing/editing SEOSONA code or docs. Adopted from **multica-ai/andrej-karpathy-skills** (MIT), itself from Andrej Karpathy's notes on LLM coding pitfalls. Reinforces the rules the team already enforces (no-bloat, no-fakes, verify, surgical). Trades speed for caution — for trivial edits, use judgment.",
+   "kind": "sop",
+   "links": [
+    "sop_LLM_CODING_DISCIPLINE"
+   ]
+  },
+  {
+   "id": "kn_sop_LOOP_OPERATING_SOP",
+   "source": "6_SOP/LOOP_OPERATING_SOP",
+   "title": "SOP — Operating the SEOSONA Video loop safely",
+   "text": "Applies Loop Engineering's three disciplines + first-loop checklist to SEOSONA's queue → daily → feedback loop. Knowledge: `2_KNOWLEDGE/loop-engineering/README.md`. Goal: run unattended **without letting the loop amplify errors**.",
+   "kind": "sop",
+   "links": [
+    "sop_LOOP_OPERATING_SOP"
+   ]
+  },
+  {
+   "id": "kn_sop_MASCOT_LIVE2D_RIG_SPEC",
+   "source": "6_SOP/MASCOT_LIVE2D_RIG_SPEC",
+   "title": "Mascot Live2D / Spine Rig — Specification",
+   "text": "Goal: a fully-smooth, tween-animated SEOSONA mascot (Chí Quyết) that talks + gestures + emotes, driven by our audio/script. Live2D Cubism (free tier exists) or Esoteric Spine. This spec is what the rigging artist needs; the factory then plays the rig via its runtime (integration notes at the end).",
+   "kind": "sop",
+   "links": [
+    "sop_MASCOT_LIVE2D_RIG_SPEC"
+   ]
+  },
+  {
+   "id": "kn_sop_MASTER_OPERATION",
+   "source": "6_SOP/MASTER_OPERATION",
+   "title": "STANDARD OPERATION DOCUMENTS (MASTER OPERATION)",
+   "text": "The system runs on a **unified engine**: Router (`4_BRAIN/workflow_router.py`) → `4_BRAIN/video_engine.py` (entry + quality gate) → `4_BRAIN/native_composer.py` (render). The heavyweight `pipeline_manager` engine was **retired** in that migration. `workflow_router` still wraps `video_engine` in a *lightweight* `graph_executor.SuperGraph` (`MAIN_PIPELINE` → check → `EVALUATE`) — that `EVALUATE` node still runs the feedback agent for the `video:news`/`video:course` paths. It is a thin quality-gate wrapper, NOT the old retired pipeline.",
+   "kind": "sop",
+   "links": [
+    "sop_MASTER_OPERATION"
+   ]
+  },
+  {
+   "id": "kn_sop_MOTION_EFFECT_PLAN",
+   "source": "6_SOP/MOTION_EFFECT_PLAN",
+   "title": "Talking-head MOTION & EFFECT — capability plan (2026-07)",
+   "text": "The reels' appeal is the MOTION/EFFECT on icons·emoji·text·b-roll — pop/bounce/kinetic/particle, not static overlays. Plan to level the talking-head element layer up, with the repos vetted for each track. Brand law unchanged: LIGHT, seek-safe, headless, free for OUR render; CapCut export is an editable handoff.",
+   "kind": "sop",
+   "links": [
+    "sop_MOTION_EFFECT_PLAN"
+   ]
+  },
+  {
+   "id": "kn_sop_PRODUCT_ROADMAP",
+   "source": "6_SOP/PRODUCT_ROADMAP",
+   "title": "SEOSONA Video — Product Roadmap (the path to product)",
+   "text": "_Updated: 2026-06-27 · status after the engine consolidation + system-wide cleanup pass._",
+   "kind": "sop",
+   "links": [
+    "sop_PRODUCT_ROADMAP"
+   ]
+  },
+  {
+   "id": "kn_sop_QA_CAPTIONS_FINDINGS",
+   "source": "6_SOP/QA_CAPTIONS_FINDINGS",
+   "title": "QA — Captions (RULE #1) & timing sync · 2026-06-29 (Phase 2, Task 4)",
+   "text": "Harness: a one-off _qa_captions.py script (fast, no voice; since removed) + real renders + ASR probes.",
+   "kind": "sop",
+   "links": [
+    "sop_QA_CAPTIONS_FINDINGS"
+   ]
+  },
+  {
+   "id": "kn_sop_REFERENCE_TO_VIDEO_SOP",
+   "source": "6_SOP/REFERENCE_TO_VIDEO_SOP",
+   "title": "SOP: REFERENCE → VIDEO (clone a reference video's style into a SEOSONA HyperFrames video)",
+   "text": "Turn a reference video (e.g. a competitor's faceless scene-slide video) into a new SEOSONA-brand video in the **same style/structure**, rendered by HyperFrames.",
+   "kind": "sop",
+   "links": [
+    "sop_REFERENCE_TO_VIDEO_SOP"
+   ]
+  },
+  {
+   "id": "kn_sop_RENDER_ENGINE_DECISION",
+   "source": "6_SOP/RENDER_ENGINE_DECISION",
+   "title": "Render Engine Decision — HyperFrames (2026-06-23)",
+   "text": "**Decision: HyperFrames is the SOLE render engine. Remotion is ELIMINATED.**",
+   "kind": "sop",
+   "links": [
+    "sop_RENDER_ENGINE_DECISION"
+   ]
+  },
+  {
+   "id": "kn_sop_REPO_VETTING_SOP",
+   "source": "6_SOP/REPO_VETTING_SOP",
+   "title": "SOP — Repo vetting before ingesting into SEOSONA Video",
+   "text": "There are many candidate repos. Do NOT ad-hoc clone-and-copy. Every repo passes this gate first. Aligned with SEOSONA OS's UAP pipeline (`~/.seosona/docs/03_uap_pipeline.md`: finder → auditor → security → assimilator → creator; factual source analysis; STAR_THRESHOLD 500; tier/route) but lightweight for a single project.",
+   "kind": "sop",
+   "links": [
+    "sop_REPO_VETTING_SOP"
+   ]
+  },
+  {
+   "id": "kn_sop_SCRIPT_WRITING_PIPELINE",
+   "source": "6_SOP/SCRIPT_WRITING_PIPELINE",
+   "title": "SCRIPT WRITING PIPELINE — the ONE path all video narration goes through",
+   "text": "**Read this first.** Every SEOSONA video script (news, course, agent-written) flows through the same six stages with the same rules and the same verification. One rulebook, one writer, one gate — so nothing ships fabricated, off-brand, or repetitive. This doc is the map; the code is `4_BRAIN/script_writer.py`.",
+   "kind": "sop",
+   "links": [
+    "sop_SCRIPT_WRITING_PIPELINE"
+   ]
+  },
+  {
+   "id": "kn_sop_SELF_IMPROVEMENT_LOOP",
+   "source": "6_SOP/SELF_IMPROVEMENT_LOOP",
+   "title": "🔄 SEOSONA Self-Improvement Loop (SIL) — how the system learns & upgrades itself",
+   "text": "The ONE governing loop for **analyzing → learning → ingesting → creating → upgrading** the SEOSONA Video **system + factory**. This is the **umbrella** that ties the existing pieces together — it does **NOT** duplicate them. Each stage links to the doc/tool that already owns the detail.",
+   "kind": "sop",
+   "links": [
+    "sop_SELF_IMPROVEMENT_LOOP"
+   ]
+  },
+  {
+   "id": "kn_sop_SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY",
+   "source": "6_SOP/SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY",
+   "title": "SEOSONA Video Autonomous Template Factory SOP",
+   "text": "Created: 2026-06-21",
+   "kind": "sop",
+   "links": [
+    "sop_SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY"
+   ]
+  },
+  {
+   "id": "kn_sop_SEOSONA_VIDEO_RECONNECTION_MAP",
+   "source": "6_SOP/SEOSONA_VIDEO_RECONNECTION_MAP",
+   "title": "SEOSONA Video Reconnection Map",
+   "text": "Created: 2026-06-22",
+   "kind": "sop",
+   "links": [
+    "sop_SEOSONA_VIDEO_RECONNECTION_MAP"
+   ]
+  },
+  {
+   "id": "kn_sop_SEOSONA_WORKFLOW_BOUNDARY_MAP",
+   "source": "6_SOP/SEOSONA_WORKFLOW_BOUNDARY_MAP",
+   "title": "SEOSONA Workflow Boundary Map",
+   "text": "Updated: 2026-06-21",
+   "kind": "sop",
+   "links": [
+    "sop_SEOSONA_WORKFLOW_BOUNDARY_MAP"
+   ]
+  },
+  {
+   "id": "kn_sop_SEO_CONTENT_STRATEGY",
+   "source": "6_SOP/SEO_CONTENT_STRATEGY",
+   "title": "SEOSONA Video: SEO & Content Strategy",
+   "text": "SEOSONA Video: SEO & Content Strategy",
+   "kind": "sop",
+   "links": [
+    "sop_SEO_CONTENT_STRATEGY"
+   ]
+  },
+  {
+   "id": "kn_sop_TEMPLATE_MAP",
+   "source": "6_SOP/TEMPLATE_MAP",
+   "title": "Template Map — 30 sample videos → 6 archetypes",
+   "text": "The current library has **10 template JSON files** (`7_ASSETS/templates/*.json`): `ai-news-flash`, `benchmark-news`, `data-news`, `insight-explainer`, `opinion-insight`, `repo-showcase`, `resource-list`, `seo-explainer`, `tool-walkthrough`, `tutorial-gittree`. *(2026-06-30 — verified two \"look-alike\" pairs are actually DISTINCT scene arcs, so all are kept and their descriptions sharpened: `insight-explainer` = analytical (compare + steps) vs `opinion-insight` = opinion with quotes (quote + feature + tip); `repo-showcase` = introduce a project vs `tool-walkthrough` = teach using a CLI/tool (has `steps`).)*",
+   "kind": "sop",
+   "links": [
+    "sop_TEMPLATE_MAP"
+   ]
+  },
+  {
+   "id": "kn_sop_UPGRADE_BACKLOG",
+   "source": "6_SOP/UPGRADE_BACKLOG",
+   "title": "Upgrade backlog — from the REPO VIDEO.txt vetting (2026-06-29)",
+   "text": "~50 repos analysed (4 parallel subagents, clone→study→delete per `REPO_VETTING_SOP.md`). Most are SKIP (whole apps/pipelines that conflict with native_composer, or no/incompatible license). The items below passed vetting and are worth building — prioritized by ROI ÷ risk. Done items struck.",
+   "kind": "sop",
+   "links": [
+    "sop_UPGRADE_BACKLOG"
+   ]
+  },
+  {
+   "id": "kn_sop_UX_UI_DESIGN_GUIDELINES",
+   "source": "6_SOP/UX_UI_DESIGN_GUIDELINES",
+   "title": "SEOSONA Video: UX/UI Design Guidelines",
+   "text": "SEOSONA Video: UX/UI Design Guidelines",
+   "kind": "sop",
+   "links": [
+    "sop_UX_UI_DESIGN_GUIDELINES"
+   ]
+  },
+  {
+   "id": "kn_sop_VIDEO_ARCHITECTURE",
+   "source": "6_SOP/VIDEO_ARCHITECTURE",
+   "title": "VIDEO ARCHITECTURE — one shared spine, two specialised branches",
+   "text": "SEOSONA makes two visually different kinds of video from **one shared foundation**. This is the map of what is SHARED (never duplicate it) vs what is BRANCH-SPECIFIC (specialise it). The rule: add to the shared spine when both branches benefit; add to a branch only for its medium.",
+   "kind": "sop",
+   "links": [
+    "sop_VIDEO_ARCHITECTURE"
+   ]
+  },
+  {
+   "id": "kn_sop_VOICE_TTS_ENGINE_ROUTING",
+   "source": "6_SOP/VOICE_TTS_ENGINE_ROUTING",
+   "title": "Voice and TTS Engine Routing",
+   "text": "Created: 2026-06-19",
+   "kind": "sop",
+   "links": [
+    "sop_VOICE_TTS_ENGINE_ROUTING"
+   ]
+  },
+  {
+   "id": "kn_sop_YOUTUBE_CHANNEL_OPERATIONS_MCP",
+   "source": "6_SOP/YOUTUBE_CHANNEL_OPERATIONS_MCP",
+   "title": "YouTube Channel Operations MCP SOP",
+   "text": "This SOP connects SEOSONA Video publishing workflows to the `yutu` repository and the SEOSONA OS `youtube-channel-operations-mcp` skill.",
+   "kind": "sop",
+   "links": [
+    "sop_YOUTUBE_CHANNEL_OPERATIONS_MCP"
+   ]
+  },
+  {
+   "id": "kn_sop_brand_voice_sop",
+   "source": "6_SOP/brand_voice_sop",
+   "title": "SOP: Brand Voice Guidelines",
+   "text": "---",
+   "kind": "sop",
+   "links": [
+    "sop_brand_voice_sop"
+   ]
+  },
+  {
+   "id": "kn_sop_carousel_sop",
+   "source": "6_SOP/carousel_sop",
+   "title": "SOP: SEOSONA Carousel Design",
+   "text": "*Aligned with SEOSONA Tech-Editorial Brand Identity*",
+   "kind": "sop",
+   "links": [
+    "sop_carousel_sop"
+   ]
+  },
+  {
+   "id": "kn_sop_publishing_checklist",
+   "source": "6_SOP/publishing_checklist",
+   "title": "SOP: Publishing Checklist",
+   "text": "- [ ] Video passed Quality Scorer (score >= 70/100) - [ ] Thumbnail generated with correct aspect ratio - [ ] SRT file exported in standard .srt format - [ ] File names match project name (no special characters) - [ ] 100% Light Mode — no dark backgrounds - [ ] Brand logo watermarked in video - [ ] SFX variety (no repeated single sound) - [ ] **Verified `Bao_cao_chat_luong.md`**: Reviewed Machine Learning feedback and quality score before publishing.",
+   "kind": "sop",
+   "links": [
+    "sop_publishing_checklist"
+   ]
+  },
+  {
+   "id": "kn_sop_repurposer_sop",
+   "source": "6_SOP/repurposer_sop",
+   "title": "SOP: Long-to-Short Video Repurposer",
+   "text": "*Inherited from SEOSONA OS Skill: `seo_marketing/video_content` — \"1 Video → 10 Content Pieces\"*",
+   "kind": "sop",
+   "links": [
+    "sop_repurposer_sop"
+   ]
+  },
+  {
+   "id": "kn_sop_talking_head_sop",
+   "source": "6_SOP/talking_head_sop",
+   "title": "Talking-Head Video SOP (Engine #2 — footage-based, REAL voice)",
+   "text": "SEOSONA Video has **two** production engines. This SOP covers the **footage** engine (the synthesized engine is `video_production_sop.md` / `tech_news_faceless_sop.md`).",
+   "kind": "sop",
+   "links": [
+    "sop_talking_head_sop"
+   ]
+  },
+  {
+   "id": "kn_sop_tech_news_faceless_sop",
+   "source": "6_SOP/tech_news_faceless_sop",
+   "title": "SOP: Tech-News Faceless Video Production",
+   "text": "Mandatory standard operating procedure for all AI Agents and Human Editors producing \"Faceless Tech-News\" videos for SEOSONA / Chi Quyet Academy.",
+   "kind": "sop",
+   "links": [
+    "sop_tech_news_faceless_sop"
+   ]
+  },
+  {
+   "id": "kn_sop_thumbnail_sop",
+   "source": "6_SOP/thumbnail_sop",
+   "title": "SOP: SEOSONA Thumbnail Design (9:16 & 16:9)",
+   "text": "*Updated to align with SEOSONA Tech-Editorial Brand Identity*",
+   "kind": "sop",
+   "links": [
+    "sop_thumbnail_sop"
+   ]
+  },
+  {
+   "id": "kn_sop_video_production_sop",
+   "source": "6_SOP/video_production_sop",
+   "title": "📜 Standard Procedure (SOP): SEOSONA VIDEO CREATION",
+   "text": "This document specifies the standard data processing flow (Input/Output) for the entire SEOSONA Video System, strictly following the SEOSONA OS operating system philosophy.",
+   "kind": "sop",
+   "links": [
+    "sop_video_production_sop"
+   ]
+  },
+  {
+   "id": "kn_sop_voice_cloning_tts_sop",
+   "source": "6_SOP/voice_cloning_tts_sop",
+   "title": "SOP: Voice Cloning & TTS Pipeline",
+   "text": "End-to-end procedure for generating branded voice audio from text scripts. **OmniVoice (k2-fsa) is the primary engine** — local, Apache-2.0, Vietnamese-native (8482h), cloning the Chí Quyết (CQA) voice as THE brand voice for BOTH brands. VieNeu is the backup.",
+   "kind": "sop",
+   "links": [
+    "sop_voice_cloning_tts_sop"
+   ]
+  },
+  {
+   "id": "kn_sop_youtube_seo_sop",
+   "source": "6_SOP/youtube_seo_sop",
+   "title": "SOP: YouTube SEO Optimization",
+   "text": "*Inherited from SEOSONA OS Skill: `seo_marketing/video_content` — YouTube SEO section*",
+   "kind": "sop",
+   "links": [
+    "sop_youtube_seo_sop"
+   ]
+  },
+  {
+   "id": "kn_hot",
+   "source": "HOT_LEARNINGS",
+   "title": "Factory self-learned (flywheel)",
+   "text": "# HOT Learnings — what the factory learned from its own output _30 renders analyzed. Auto-generated by `npm run factory:learn`._ ## Templates (pass-rate · avg lint-warnings · samples) - **_auto_tabfm** — pass 100% · lint 1.4 · n=5 - **benchmark-news** — pass 100% · lint 1.9 · n=10 - **launch** — pass 100% · lint 2.3 · n=3 - **tool-walkthrough** — pass 80% · lint 5.2 · n=5 - **quick-tip** — pass 67% · lint 7.3 · n=3 ⚠️ WEAK (dropped from rotation) - **insight-explainer** — pass 100% · lint 0.0 · n=1 _(few samples)_ - **_auto_agency-agents** — pass 100% · lint 3.0 · n=1 _(few samples)_ - **_auto_gemini-watermark-remover** — pass 100% · lint 3.5 · n=2 _(few samples)_ ## Script source - deterministic: 100% pass (n=8) - llm: 90% pass (n=22) **Action:** `make_video._rot` now skips ['quick-tip'] (empirically <70% pass).",
+   "kind": "flywheel",
+   "links": []
+  },
+  {
+   "id": "mod_2_SKILLS_bgm_sourcer_bgm_sourcer",
+   "source": "2_SKILLS/bgm_sourcer/bgm_sourcer.py",
+   "title": "bgm_sourcer",
+   "text": "Module 2_SKILLS/bgm_sourcer/bgm_sourcer.py. BGM sourcer — grow the background-music library with REAL royalty-free tracks by mood, FREE + keyless. The built-in library ships one track per mood (tech/news/insight/upbeat), so every video of a mood reuses the identical music. This sources fresh full-length tracks from Openverse (→ Jamendo CC music), downloads them into `7_ASSETS/audio/bgm/` as `bgm_<mood>_<id>.mp3`, and records attribution so the CC-BY obligation is honoured. `native_composer._bgm(mood)` then rotates across the whole mood pool for variety. python 2_SKILLS/bgm_sourcer/bgm_sourcer.py --mood tech --n 2 python 2_SKILLS/bgm_sourcer/bgm_sourcer.py --all --n 2 # top up every mood Openverse audio is keyless (light rate limit). License: we take `cc0` + `by` (CC-BY needs attribution — recorded in ATTRIBUTION.json; the publisher puts it in the video description). Best-effort; never raises.",
+   "kind": "module",
+   "links": [
+    "sm_bgm_sourcer"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_broll_sourcer_broll_sourcer",
+   "source": "2_SKILLS/broll_sourcer/broll_sourcer.py",
+   "title": "broll_sourcer",
+   "text": "Module 2_SKILLS/broll_sourcer/broll_sourcer.py. SEOSONA b-roll sourcer — auto-supply a real background VIDEO clip per scene (the video sibling of `image_sourcer`, which only sourced photos). Source: **Pixabay video API** (free key, Pixabay Content License = commercial + NO attribution). Search by concept → download the clip → center-crop to 9:16 via ffmpeg → cache + LEARN the concept→clip mapping so the kho grows as the factory runs. Reuses `image_sourcer.IMG_QUERY` (VN→English stock query) so both sourcers share one concept vocabulary. Best-effort with a 429 backoff — never blocks a render. from broll_sourcer import source_broll clip = source_broll(\"làm việc\") # → 7_ASSETS/brand/broll/…mp4 (Pixabay, cropped 9:16, cached)",
+   "kind": "module",
+   "links": [
+    "sm_broll_sourcer"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_carousel_maker_carousel_generator",
+   "source": "2_SKILLS/carousel_maker/carousel_generator.py",
+   "title": "carousel_generator",
+   "text": "Module 2_SKILLS/carousel_maker/carousel_generator.py. SEOSONA Carousel Generator v2.1 (Dynamic Layouts) ================================================== Generates pixel-accurate Facebook Carousel slides matching the SEOSONA & CQA brand design system. Supports 8 slide archetypes: cover, comparison, numbered_content, process, feature_cards, grid, image_split, mockup_showcase. Includes dynamic layout variations (randomized flips/alignments) based on slide index.",
+   "kind": "module",
+   "links": [
+    "sm_carousel_maker"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_element_maker_element_maker",
+   "source": "2_SKILLS/element_maker/element_maker.py",
+   "title": "element_maker",
+   "text": "Module 2_SKILLS/element_maker/element_maker.py. SEOSONA element library — render one on-brand visual ELEMENT to a transparent PNG. The talking-head reels are dense with small visual elements popped over the footage: glassy icon-tiles, chips, ✓/✕ badges, sparkles, hand-drawn arrows, proof-rings. ASS text can't draw those, so we render each element as an HTML/CSS + inline-SVG card on a TRANSPARENT background (Playwright/Chromium, the same engine as native_composer/thumbnail_maker) → a PNG that `talking_head_edit` composites over the footage at the right beat (and the faceless engine can embed inline). LIGHT brand only: white/frosted glass, soft shadow, one semantic role colour (never neon). Icons = the vendored Lucide set in `7_ASSETS/brand/icons/` (single-colour → tinted to the element's role via `currentColor`). from element_maker import render_element render_element({\"type\":\"icon_tile\",\"icon\":\"clock\",\"role\":\"caution\",\"badge\":\"x\", \"label\":\"Mất thời gian\"}, \"out.png\") One public function: `render_element(spec, out_png)` (+ `render_many` for a batch in one browser). Element types: icon_tile · chip · badge · sparkle · arrow · ring · big_stat. `icon` accepts a Lucide file name OR a con",
+   "kind": "module",
+   "links": [
+    "sm_element_maker"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_element_maker_element_picker",
+   "source": "2_SKILLS/element_maker/element_picker.py",
+   "title": "element_picker",
+   "text": "Module 2_SKILLS/element_maker/element_picker.py. Auto-place ELEMENTS from the narration — the loop that makes the element library actually USED. Given the word-level transcript (what the talking-head engine already produces), this scans the spoken words for concepts we can illustrate and emits a timed `elements:[...]` plan — an icon-tile / emoji / stat popped in a safe zone exactly when that word is spoken, with the role + badge inferred from nearby cues (a \"not X\" phrase → coral ✕ tile; a \"free/fast/auto\" phrase → green ✓ tile). So a plain talking-head auto-gets the dense element layer, no hand-authoring. Deterministic + alias-driven (reliable, no LLM); unknown concepts still resolve via `element_resolver` at render time. from element_picker import pick_elements els = pick_elements(words, W=1080, H=1920) # → [{type,icon,role,badge,label,t,dur,x,y,w}, ...]",
+   "kind": "module",
+   "links": [
+    "sm_element_maker"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_element_maker_element_resolver",
+   "source": "2_SKILLS/element_maker/element_resolver.py",
+   "title": "element_resolver",
+   "text": "Module 2_SKILLS/element_maker/element_resolver.py. Self-growing resolver for the SEOSONA element library. When the factory hits a NEW word/concept that has no element yet, this resolves it to an on-brand icon (or emoji) — and GROWS the library to cover it: it picks the best Lucide icon (alias → learned cache → name match → local LLM), **auto-fetches that SVG** into `7_ASSETS/brand/icons/` if it isn't vendored, and **learns** the concept→icon mapping so next time it's instant. So the resource pool enriches itself as the factory runs. Fully offline-degradable (LLM optional; falls back to fuzzy name-matching then a neutral dot). Each concept is resolved ONCE then cached → negligible GPU. from element_resolver import resolve_icon, resolve_emoji name, is_new = resolve_icon(\"nam châm\") # → (\"magnet\", True), magnet.svg fetched + learned emoji = resolve_emoji(\"ăn mừng\") # → \"🎉\" (learned)",
+   "kind": "module",
+   "links": [
+    "sm_element_maker"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_image_sourcer_image_sourcer",
+   "source": "2_SKILLS/image_sourcer/image_sourcer.py",
+   "title": "image_sourcer",
+   "text": "Module 2_SKILLS/image_sourcer/image_sourcer.py. SEOSONA image sourcer — auto-supply a real illustrative PHOTO for every scene. The missing input layer: a talking-head/card scene needs a background photo, but the factory had none (b-roll was user-supplied only). This sources one on demand — **Pexels/Unsplash search** by concept (free stock, needs an API key) or **scrapes images from a source URL** (og:image + gallery <img>, no key) — crops to 9:16, caches it, and LEARNS the concept→photo mapping so the photo kho grows as the factory runs. So `input link/topic → storyboard → a real photo per scene` works with no human supplying images. The element/motion layer then composites ON TOP of these photos. from image_sourcer import source_for_concept, scrape_url_images p = source_for_concept(\"ống kính tele\") # → 7_ASSETS/brand/photos/…jpg (Pexels, cached) ps = scrape_url_images(\"https://…\") # → [paths] scraped from the page",
+   "kind": "module",
+   "links": [
+    "sm_image_sourcer"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_srt_maker_asr_router",
+   "source": "2_SKILLS/srt_maker/asr_router.py",
+   "title": "asr_router",
+   "text": "Module 2_SKILLS/srt_maker/asr_router.py. SEOSONA Video — ASR Router (single switchable path for speech → word timestamps). Mirrors voice_router: a primary engine with automatic backups, switch flow instantly via the SEOSONA_ASR env var. Every engine returns the SAME shape so the pipeline never changes: [{\"word\": str, \"start\": float, \"end\": float}, ...] Engines (primary first, rest are fallbacks): - phowhisper : VinAI PhoWhisper (Vietnamese-specialised, lowest WER on VI). [primary] - faster_whisper : CTranslate2 generic Whisper (fast, int8). [backup] - openai_whisper : reference openai-whisper (word_timestamps native). [backup] Switch: SEOSONA_ASR=faster_whisper (default: phowhisper) Model: SEOSONA_PHOWHISPER_MODEL=<CT2 PhoWhisper repo> · SEOSONA_ASR_DEVICE=cpu|cuda",
+   "kind": "module",
+   "links": [
+    "sm_srt_maker"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_thumbnail_maker_frame_scorer",
+   "source": "2_SKILLS/thumbnail_maker/frame_scorer.py",
+   "title": "frame_scorer",
+   "text": "Module 2_SKILLS/thumbnail_maker/frame_scorer.py. Best cover-frame scorer — pick the SHARPEST, best-exposed, most-informative frame of a video for a poster/thumbnail, instead of grabbing one blindly at a fixed timestamp (which often lands on a blurry crossfade or a near-black transition frame). Native re-implementation of Katna's frame-scoring idea (blur = variance-of-Laplacian, plus brightness + entropy), using ONLY ffmpeg (already required) + Pillow. Katna itself is avoided: it pins OpenCV and caps at Python 3.6-3.9. This stays dependency-light and Py3.10+ safe. from frame_scorer import best_frame best_frame(\"out.mp4\", \"Thumbnail/cover.png\") # → path to the chosen frame, or None Best-effort: any failure returns None so the caller can fall back to a plain grab. Never raises.",
+   "kind": "module",
+   "links": [
+    "sm_thumbnail_maker"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_thumbnail_maker_thumbnail_maker",
+   "source": "2_SKILLS/thumbnail_maker/thumbnail_maker.py",
+   "title": "thumbnail_maker",
+   "text": "Module 2_SKILLS/thumbnail_maker/thumbnail_maker.py. SEOSONA THUMBNAIL — one module, one pipeline, one public entry point. ===================================================================== make_thumbnail(content, output_path, aspect_ratio, brand, ...) content text → NLP variables (key-normalized) → highlight tuples → HTML render → PNG Everything thumbnail-related lives here: the brand palettes, the NLP wiring, the keyword/highlight logic, and the Playwright HTML render. The two HTML files under `templates/` are layout *assets* (portrait 9:16 + landscape 16:9), selected by aspect. Callers (video_engine, course_video, workflow_thumbnail) call ONLY `make_thumbnail`. Everything else in this module is private (`_`-prefixed). See 6_SOP/thumbnail_sop.md.",
+   "kind": "module",
+   "links": [
+    "sm_thumbnail_maker",
+    "sop_thumbnail_sop"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_voice_cloner_omnivoice_engine",
+   "source": "2_SKILLS/voice_cloner/omnivoice_engine.py",
+   "title": "omnivoice_engine",
+   "text": "Module 2_SKILLS/voice_cloner/omnivoice_engine.py. OmniVoice engine — the SEOSONA + CQA brand voice (k2-fsa/OmniVoice, local, VN-trained 8482h). Runs OmniVoice in its isolated torch-2.8 venv (`7_ASSETS/voice/.venv-omnivoice`) via subprocess — the main render venv is torch 2.5, so this mirrors the LoRA bridge pattern. Default clone reference = the cleaned Chí Quyết (CQA) voice; the SAME voice is used for both brands per the brand decision. Output is post-processed to read cleanly: internal long silences trimmed (no dead gaps) and loudness normalized. Returns the wav path, or None to let voice_router fall back to VieNeu.",
+   "kind": "module",
+   "links": [
+    "sm_voice_cloner"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_voice_cloner_voice_router",
+   "source": "2_SKILLS/voice_cloner/voice_router.py",
+   "title": "voice_router",
+   "text": "Module 2_SKILLS/voice_cloner/voice_router.py. SEOSONA Video — Voice Router (single source of truth for TTS). ONE brand-voice policy (2026-06-29, user decision): 1. OmniVoice (PRIMARY) — k2-fsa/OmniVoice, local, Apache-2.0, Vietnamese-native (8482h). The Chí Quyết (CQA) cloned voice is THE brand voice for BOTH SEOSONA and CQA. Runs in its isolated torch-2.8 venv via subprocess; output is gap-trimmed + loudness-normalized to read cleanly. 2. VieNeu (BACKUP) — used only when OmniVoice can't run. Stable male preset. ALL other voice engines removed (F5-TTS, edge-tts, LoRA, parallel/best-take, fish/cosyvoice/kokoro). OmniVoice + VieNeu are the only two paths.",
+   "kind": "module",
+   "links": [
+    "sm_voice_cloner"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_yt_downloader_yt_dlp_engine",
+   "source": "2_SKILLS/yt_downloader/yt_dlp_engine.py",
+   "title": "yt_dlp_engine",
+   "text": "Module 2_SKILLS/yt_downloader/yt_dlp_engine.py. YouTube Downloader Skill — Uses yt-dlp for media ingestion. Inherited from SEOSONA OS Skill: multimedia_production/video_audio_ingestion.",
+   "kind": "module",
+   "links": [
+    "sm_yt_downloader"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_angle_finder",
+   "source": "4_BRAIN/angle_finder.py",
+   "title": "angle_finder",
+   "text": "Module 4_BRAIN/angle_finder.py. 4-angle topic ideation (pattern from Agent-Field/reels-af, Apache-2.0). Most video topics get a cliché treatment. This generates 4 DIVERSE angles for a topic — each from a different lens — rejects clichés, and recommends the strongest. Fills the \"variant / angle discovery\" gap in the autonomous-factory north-star (mine the SRT/repo corpus for non-obvious angles). REAL-LLM only (free Ollama or a key) — returns None without one, so callers keep their default flow. Output: {\"angles\": [{lens, headline, hook, why}], \"recommended\": <index>}.",
+   "kind": "module",
+   "links": [
+    "b_angle_finder"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_beat_timing",
+   "source": "4_BRAIN/beat_timing.py",
+   "title": "beat_timing",
+   "text": "Module 4_BRAIN/beat_timing.py. Deterministic beat-timing passes ported from SKILL AUTO (close_gaps / sync_list_items / zoom_plan). The SKILL-AUTO doctrine: the LLM authors WHAT + WHY, Python owns all TIMING. Three passes: • close_gaps(beats) — bridge sub-1.5s flicker gaps (or leave a real breather); fix overlaps. • sync_list_items(beats,w) — reveal each list row the moment the speaker says it (no spoiling). • zoom_plan(words) — SCORE which spoken word deserves an emphasis zoom-punch (numbers, brands, pivots, loaded pauses), not fixed N-second intervals. VN-adapted: brand + pivot lexicons and list-stopwords are re-authored for Vietnamese (algorithms transfer, lexicons do NOT). Operates on plain dict beats — engine-agnostic (talking-head or scenes).",
+   "kind": "module",
+   "links": [
+    "b_beat_timing"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_block_forge",
+   "source": "4_BRAIN/block_forge.py",
+   "title": "block_forge",
+   "text": "Module 4_BRAIN/block_forge.py. BLOCK FORGE — turn the 97 HyperFrames registry blocks (16:9 dark gallery DEMOS) into a real 9:16, light-brand, CONTENT-INJECTABLE template kho the factory can drop into videos. Per block: 1. swap 1920×1080 → 1080×1920 everywhere (the blocks use the pair consistently, incl. shader aspect math `1920.0/1080.0`, so the flip yields true 9:16), 2. strip the gallery preview-chrome (`.bp-*` / `.scene-label`) + brand-skin colours, 3. (LLM, best-effort) re-layout for portrait + light brand + replace the demo CONTENT with mustache slots ({{title}} / {{sub}} / {{#items}}{{.text}}{{/items}}) so the SCENE's real data fills it, 4. RENDER-VALIDATE at 1080×1920 + demo-leak QC → only a clean render enters the kho, 5. register to `7_ASSETS/blocks_9x16/<name>.html` + `manifest.json` (name→schema). At video time: `render_filled(name, data, out)` fills the slots with the scene's real content and renders the clip. This is the block-equivalent of [[frame-synth]] — the kho grows from real assets, never ships the demo's fake data (the QC refuses any leak).",
+   "kind": "module",
+   "links": [
+    "b_block_forge"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_block_picker",
+   "source": "4_BRAIN/block_picker.py",
+   "title": "block_picker",
+   "text": "Module 4_BRAIN/block_picker.py. Pick a HyperFrames registry block to ENRICH a scene by content — automatically + on-brand. Design split: the 14 hand-built components (bignum/stats/steps/compare/tip/…) are a CASE LIBRARY — each is a proven pattern for a content case, the default scaffold for every scene, and the place to add a NEW case when one shows up. The 97 registry blocks are the BEAUTY layer on top: rendered through `hf_blocks` which AUTO-BRAND-SKINS them to the SEOSONA palette (blue #2A5BDA / coral #E2724D), so they match the brand instead of fighting it. This picker chooses a block automatically when a scene's content clearly calls for one the components can't do as well (real code, a UI mockup, a cinematic beat). ON by default (auto); opt OUT with `SEOSONA_USE_BLOCKS=0`. Conservative (strong keyword match only) and the caller caps how many blocks a single video may use. See `2_KNOWLEDGE/hyperframes/FACTORY_BLOCK_PALETTE.md`.",
+   "kind": "module",
+   "links": [
+    "b_block_picker"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_brand_kit",
+   "source": "4_BRAIN/brand_kit.py",
+   "title": "brand_kit",
+   "text": "Module 4_BRAIN/brand_kit.py. Single source of truth for the SEOSONA brand palette + CTA copy. Mirrors the human brand contract `7_ASSETS/brand/SEOSONA/DESIGN.md` §2. ALL render code (`native_composer`, `hf_blocks`, `talking_head_edit`, `video_engine`) imports its colours and call-to-action copy from HERE, so each brand value lives in exactly ONE place. Change a colour here and every pipeline (news + course/talking-head) follows. Light-mode brand law only.",
+   "kind": "module",
+   "links": [
+    "b_brand_kit"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_capcut_export",
+   "source": "4_BRAIN/capcut_export.py",
+   "title": "capcut_export",
+   "text": "Module 4_BRAIN/capcut_export.py. Export a finished SEOSONA video into an EDITABLE CapCut project (draft). Why: CapCut ships a huge library of SFX, transitions, text-effects and stickers. Instead of shipping only a flat MP4, SEOSONA can hand the user a CapCut project that opens with the video already on the timeline — the user then embellishes it with CapCut's native effects and re-exports. Built on GuanYixuan/pyCapCut (Apache-2.0) — international CapCut. The draft format version on this machine (CapCut 8.9) matches what pyCapCut emits (draft `version` 360000); CapCut itself stamps drafts with a 6.x app_version, so the lib's 6.7 stamp is fine. NOTE: pyCapCut emits a minimal (subset) segment schema — CapCut's reader fills missing fields with defaults; if a future CapCut rejects it, regenerate from a fresh CapCut draft as the template. python 4_BRAIN/capcut_export.py \"8_WORKSPACE/<name>/<name> - SEOSONA.mp4\" npm run capcut:export -- \"<path-to-mp4>\"",
+   "kind": "module",
+   "links": [
+    "b_capcut_export"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_caption_segment",
+   "source": "4_BRAIN/caption_segment.py",
+   "title": "caption_segment",
+   "text": "Module 4_BRAIN/caption_segment.py. Caption segmentation — break long Vietnamese caption text at NATURAL points, not mid-phrase. Ported (re-implemented, no import) from Huanshere/VideoLingo (Apache-2.0): split a long line at sentence boundaries / conjunctions, then enforce a single-line max length. Keeps captions readable (\"Netflix\" ~42 chars/line) without dragging in VideoLingo's spaCy/pandas/streamlit stack. Standalone + safe: nothing calls it unless opted in (talking_head_edit `smart_chunk`), so it can't break the working fixed-N karaoke chunking.",
+   "kind": "module",
+   "links": [
+    "b_caption_segment"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_component_picker",
+   "source": "4_BRAIN/component_picker.py",
+   "title": "component_picker",
+   "text": "Module 4_BRAIN/component_picker.py. Component picker — choose a native_composer scene component (kind, data) from a scene's narration text. The single place the scene→component VOCABULARY lives (the sibling of `block_picker` for hf_blocks). This is how the craft-study components (alert, chiprow, bignum-strike, …) actually appear in videos: `video_engine.plan_scenes` calls `pick()` per middle scene before its own bignum/stats/tip/quote fallbacks. Deterministic + import-light (no LLM). Data shapes match `2_KNOWLEDGE/hyperframes/craft/template-study-2026-07.md` §7. Grow the vocabulary HERE.",
+   "kind": "module",
+   "links": [
+    "b_component_picker"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_content_moderation",
+   "source": "4_BRAIN/content_moderation.py",
+   "title": "content_moderation",
+   "text": "Module 4_BRAIN/content_moderation.py. SEOSONA Video — Content Moderation (pre-render gate). A skeptical CONTENT checker that runs on the Vietnamese script BEFORE rendering, distinct from the output Evaluator (which checks the finished MP4). It enforces the brand rule \"real data only — no fabricated numbers/stars\" and brand safety: - BLOCK: unsafe terms (profanity / guarantees that are legally risky); off-platform CTAs (a bare external domain in the CTA scene / after a \"visit/download\" verb) — the single CTA must be \"follow SEOSONA\", never send viewers off-platform. - FLAG (review): absolute/superlative marketing claims, unattributed statistics, and fabricated social-proof patterns (\"X triệu view\", \"X sao\") with no cited source. The off-platform-CTA detector (`off_platform_domain`) is the SINGLE source of truth shared by both video paths — the topic/discover path (via script_writer.verify Gate 3 → moderate) and the GitHub-showcase path (make_video._lint_script imports it) — so the rule is defined in one place. Note: the PATTERN strings below are Vietnamese because they match Vietnamese video CONTENT (like the pronunciation lexicon) — they are data, not documentation. The module itse",
+   "kind": "module",
+   "links": [
+    "b_content_moderation"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_course_planner",
+   "source": "4_BRAIN/course_planner.py",
+   "title": "course_planner",
+   "text": "Module 4_BRAIN/course_planner.py. SEOSONA Video — Course cut-planner (repurpose long course footage → tight lesson). Knowledge/course videos are NOT generated like news; they REPURPOSE real footage. This plans WHICH parts of a long course video to keep and IN WHAT ORDER. The BRAIN is the user's proven prompt `9_PROMPTS/COURSE_SPLICE_PROMPT.md` — non-linear splicing into a 5-act high-retention short (HOOK → NỖI ĐAU → TIP/TRICK → CASE STUDY → ĐÚC KẾT), 100% raw text preserved (Ctrl+F audio match), captions corrected separately, SFX at splice points, one SRT isolated per script. Three ways to produce the cut-plan: • LLM (auto) — `plan_course(srt)`: sends the prompt+SRT to an LLM (Ollama/key), parses JSON. • Manual bridge — `build_prompt(srt)` emits the filled prompt to run on ChatGPT/Gemini, then `parse_matrix(text)` parses the pasted-back JSON/table → segments. • Deterministic — fallback filler-trim (in-order) so the pipeline never blocks. Output: {title, segments:[{part?, start, end, raw?, display?, value?}], n_cues, source}. Kept separate from srt_analyzer (viral HOOKS for news) — different job.",
+   "kind": "module",
+   "links": [
+    "b_course_planner"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_director",
+   "source": "4_BRAIN/director.py",
+   "title": "director",
+   "text": "Module 4_BRAIN/director.py. SEOSONA Director — the stage BETWEEN scriptwriter and factory (user's 5-role pipeline: thu-thập → viết-kịch-bản → ĐẠO DIỄN → nhà-máy → kiểm-duyệt). The scriptwriter decides WHAT each scene says; the DIRECTOR decides HOW it is shown — the demonstrative MOTION and the action-matched SFX per scene — and writes that into the scene spec so the factory (native_composer) renders EXACTLY the directed plan instead of a generic default. `direct(scenes, segments, gh)` annotates each scene in place with: sc[\"direction\"] = {\"motion\": <how it animates>, \"sfx\": <action SFX>, \"why\": <content cue>} sc[\"fx\"][\"sfx\"] = <SFX key> # the hook native_composer._sfx_cues already reads (writer override) and returns a printable SHOT LIST (bảng phân cảnh) for logging / QC. Deterministic + dependency-free: it reads the component the archetype chose + the scene's content and picks the treatment. Motions themselves live in native_composer (count-up, chart-grow, terminal typing, mockup Ken Burns, list reveal); the director's job is to make the CHOICE explicit + author the SFX intent so nothing is left to a generic fallback. An LLM director (opt-in) refines icon+chips.",
+   "kind": "module",
+   "links": [
+    "b_director"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_discovery",
+   "source": "4_BRAIN/discovery.py",
+   "title": "discovery",
+   "text": "Module 4_BRAIN/discovery.py. SEOSONA Video — Discovery (Loop Engineering move #2). The fix for the \"blind loop\": the loop should identify its own work, not have a human hand-pick each item. Discovery reads a maintained source list, drops anything already done (the processed-ledger) or already queued, and appends the NEW items to the production queue — so a scheduled run picks up fresh work by itself. Source = `0_INPUT_INBOX/sources.txt` (one per line; GitHub URL or a Vietnamese topic; `#` lines ignored). Free/local; no network needed for the source list itself. python 4_BRAIN/discovery.py # discover + enqueue new items python 4_BRAIN/discovery.py --dry-run # show what would be added, change nothing Called at the start of scripts/daily_production.py so each batch self-discovers.",
+   "kind": "module",
+   "links": [
+    "b_discovery"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_dub_align",
+   "source": "4_BRAIN/dub_align.py",
+   "title": "dub_align",
+   "text": "Module 4_BRAIN/dub_align.py. dub_align — fit per-line dubbed TTS audio onto an existing video timeline (Engine #4 keystone). The problem: translating a 3.0s source line often yields 4.2s of TTS; naive concatenation drifts the whole video out of sync. This module reconciles each subtitle slot's dub against its slot length. CLEAN-ROOM NOTE: this is an independent implementation of the well-known \"dub-to-timeline\" strategy (timeline-extension first, then speed audio / slow video / split-the-deficit). It was written from the documented ALGORITHM, not from any GPL source — no code was copied from pyvideotrans (GPL-3.0), which is logged as a REFERENCE study only. Keep it that way. Two strategies: align_fit() preserve the original timeline, fit each dub into its (gap-extended) slot. align_natural() don't time-stretch; concat dubs back-to-back (optionally dropping mid silence) and RETURN the new per-line timings so captions can be re-synced. Segments in: list of {\"start\": sec, \"end\": sec, \"wav\": path}. Uses ffmpeg only (no new deps).",
+   "kind": "module",
+   "links": [
+    "b_dub_align"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_effect_library",
+   "source": "4_BRAIN/effect_library.py",
+   "title": "effect_library",
+   "text": "Module 4_BRAIN/effect_library.py. Effect Library — the 4th SEOSONA library layer (transition · text-effect · effect · SFX · motion). A STORED, extensible catalog of seek-safe GSAP recipes that `native_composer` draws from, with deterministic SELECTORS that ROTATE each dimension per-video + per-scene. Rotation is seeded by the VIDEO (topic/output), so two different videos get DIFFERENT recipe sequences → the factory's output stays varied at scale. The dimensions rotate on DIFFERENT phases, so a scene is a fresh COMBINATION (transition × text-effect × exit) — multiplicative variety, never \"every video looks the same\". Grow it like the other libraries (template · component · block, see `scripts/grow_library.py`): add a recipe to a registry below → it enters rotation automatically. No CapCut, ever — this is the brand-fit subset of CapCut's transition/text-effect catalog, re-built native. INVARIANTS (every recipe): seek-safe GSAP `fromTo`/`from` only (NO @keyframes, NO random, deterministic) · resolves to the resting pose · brand-fit (light-only, NO horizontal drift — SEOSONA content never slides sideways; recipes move on y / scale / opacity / clip-path only). clipPath wipes use the pat",
+   "kind": "module",
+   "links": [
+    "b_effect_library"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_eval_judge",
+   "source": "4_BRAIN/eval_judge.py",
+   "title": "eval_judge",
+   "text": "Module 4_BRAIN/eval_judge.py. SEOSONA Video — Gemini-as-judge qualitative QA. Adopted from google/agents-cli's \"Quality Flywheel\" eval (free/local-only, via Gemini vision). Scores what ffprobe / quality_scorer / evaluator CANNOT: Vietnamese narration quality, brand fit, visual variety, coherence, on-screen readability. It extracts a few REAL frames + the narration and asks Gemini to grade against a rubric. from eval_judge import judge v = judge(\"8_WORKSPACE/n8n/n8n - SEOSONA.mp4\") # -> {\"overall\": 4.2, \"pass\": True, \"scores\": {...}, \"notes\": [...], \"weak\": [...]} Degrades gracefully: no GEMINI_API_KEY / vision error → {\"skipped\": True, ...} (never blocks a render — it's an extra QUALITATIVE dimension beside the metadata gate, not a hard gate). CLI: python 4_BRAIN/eval_judge.py \"<video.mp4>\"",
+   "kind": "module",
+   "links": [
+    "b_eval_judge"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_eval_run",
+   "source": "4_BRAIN/eval_run.py",
+   "title": "eval_run",
+   "text": "Module 4_BRAIN/eval_run.py. SEOSONA Video — Eval Flywheel runner (regression harness). Adopted from google/agents-cli's eval loop: run a FIXED set of repos through the factory, grade each with the Gemini judge (eval_judge), and write a timestamped results file. Run it after changing the pipeline to catch regressions (\"did my change make narration/brand/visuals worse?\") that the metadata gate can't see. By default it JUDGES videos that already exist under 8_WORKSPACE/<name> (cheap, no GPU). Pass --render to (re)render any missing one first (uses the GPU + Gemini script path). python 4_BRAIN/eval_run.py # judge existing videos in the eval set python 4_BRAIN/eval_run.py --render # render missing ones, then judge all Results → 3_MEMORY/eval_results/results_<ts>.json (+ a printed summary).",
+   "kind": "module",
+   "links": [
+    "b_eval_run"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_evaluator",
+   "source": "4_BRAIN/evaluator.py",
+   "title": "evaluator",
+   "text": "Module 4_BRAIN/evaluator.py. SEOSONA Video — independent Evaluator (Loop Engineering maker-checker). The renderer is the GENERATOR; this is the EVALUATOR — an independent, skeptical gate that assumes the output is BROKEN until proven otherwise and judges BEHAVIOR by inspecting the real MP4 (frames + audio), not just file metadata. It complements `quality_scorer` (which scores ffprobe metadata) by catching what metadata can't: - audio is actually present (not silent) and 48 kHz (the \"mất voice\" class of bug) - frames are not blank/black (the empty-component / black-render class of bug) - duration is within a sane band Verdict gates publishing (`video_engine.maybe_publish` calls this first) and is recorded to the observability hub. Free/local — only ffmpeg/ffprobe + PIL. from evaluator import evaluate v = evaluate(\"out.mp4\") # {\"ok\": bool, \"reasons\": [...], \"score\": int, ...}",
+   "kind": "module",
+   "links": [
+    "b_evaluator"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_factory_brain",
+   "source": "4_BRAIN/factory_brain.py",
+   "title": "factory_brain",
+   "text": "Module 4_BRAIN/factory_brain.py. SEOSONA Video — Factory Brain (the autonomous loop orchestrator). Runs ONE turn of the self-improving factory, unattended and guard-railed: PLAN ──▶ PRODUCE ──▶ RECORD ──▶ QA-GATE ──▶ (PUBLISH) ──▶ LEARN ──▶ report It does NOT reimplement any stage — it conducts the pieces that already exist: • PRODUCE → scripts/queue_processor.py (crash-isolated batch) • RECORD → 4_BRAIN/production_manifest.py (variant tagging) • QA-GATE → 4_BRAIN/quality_scorer.py (via the manifest) • PUBLISH → 1_AGENTS/publisher_agent (behind the approval gate; off until creds) • LEARN → 4_BRAIN/factory_ledger.py + analytics_feedback_agent Guardrails come from 1_CONFIG/factory_policy.yaml (kill switch, QA min, caps, level). This is the orchestrator of 6_SOP/AUTONOMOUS_FACTORY_LOOP.md. Cron it for full autonomy; run it by hand to do one supervised turn. python 4_BRAIN/factory_brain.py # one loop turn (honours policy) python 4_BRAIN/factory_brain.py --dry-run # plan only, produce nothing python 4_BRAIN/factory_brain.py --learn-only # just rebuild the ledger",
+   "kind": "module",
+   "links": [
+    "b_factory_brain",
+    "b_factory_ledger",
+    "b_production_manifest",
+    "b_quality_scorer",
+    "sop_AUTONOMOUS_FACTORY_LOOP"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_factory_ledger",
+   "source": "4_BRAIN/factory_ledger.py",
+   "title": "factory_ledger",
+   "text": "Module 4_BRAIN/factory_ledger.py. SEOSONA Video — Learning Ledger (ORIENT stage of the factory loop). Aggregates every production_manifest into a memory of \"what works\", keyed by variant dimension (template / brand / aspect / voice / topic / length). Produces: - 3_MEMORY/learning/ledger.json — full per-dimension stats (human + audit) - 7_ASSETS/templates/_performance.json — template selection WEIGHTS (machine) Today it scores on the QA signal (quality score + pass-rate). The moment real metrics land in each manifest's `performance` block (views/CTR/retention via analytics_feedback_agent.performance_ingest), the SAME aggregation upgrades to a true market score with NO code change — `_score_row` just starts seeing them. This is the ORIENT step of 6_SOP/AUTONOMOUS_FACTORY_LOOP.md.",
+   "kind": "module",
+   "links": [
+    "b_factory_ledger",
+    "sop_AUTONOMOUS_FACTORY_LOOP"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_factory_metrics",
+   "source": "4_BRAIN/factory_metrics.py",
+   "title": "factory_metrics",
+   "text": "Module 4_BRAIN/factory_metrics.py. Factory flight-recorder — observability-light (the useful slice of EverOS observability + Pixelle progress-events, WITHOUT the daemon/Prometheus weight). Appends ONE JSON line per produced video to `3_MEMORY/factory_metrics.jsonl`. Cheap, offline, zero-dependency, never raises into a render. Now that the factory is autonomous (discovery -> corrective script gate), this is its health signal: pass-rate, durations, sizes, script source over time. python 4_BRAIN/factory_metrics.py # print a summary (count, pass-rate, avg duration)",
+   "kind": "module",
+   "links": [
+    "b_factory_metrics"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_frame_study",
+   "source": "4_BRAIN/frame_study.py",
+   "title": "frame_study",
+   "text": "Module 4_BRAIN/frame_study.py. FRAME STUDY — the single canonical catalog of every SEOSONA scene \"frame\" (component). Distilled from the 56-reel Video-Template frame-by-frame study + every component built into `native_composer._component`. ONE source of truth so the whole pipeline draws from the FULL library (richer, more varied videos): `component_picker` builds its LLM menu from `menu()`, the planner/director can browse `by_group()`, and `selfcheck()` catches drift between this catalog and the render engine. Each entry: (group, title, when — the content cue that should trigger it, schema — the data shape, guard — an optional \"only use when…\" constraint). Keep this in lock-step with native_composer._component.",
+   "kind": "module",
+   "links": [
+    "b_frame_study"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_frame_synth",
+   "source": "4_BRAIN/frame_synth.py",
+   "title": "frame_synth",
+   "text": "Module 4_BRAIN/frame_synth.py. FRAME SYNTH — the frame kho GROWS ITSELF. When a scene's content fits none of the built-in frames (`frame_study.CATALOG`), an LLM synthesises a NEW frame (light-brand, seek-safe HTML template), it is VALIDATED (renders, no JS, no dark, balanced), then REGISTERED into the kho so every future video can use it. A generated frame = {kind, group, title, when, schema, html} where `html` is a tiny-mustache template: {{key}} → scalar field (HTML-escaped) {{acc}} → the scene accent colour {{#items}}..{{.field}}..{{/items}} → repeat over data.items (dicts or strings via {{.}}) No <script> is allowed (motion comes from the shared `.ritem` reveal the engine applies to any element with class `ritem`), so generated frames are automatically seek-safe. native_composer._component falls back here for any kind it doesn't hard-code; frame_study merges these into the catalog + menu + selfcheck.",
+   "kind": "module",
+   "links": [
+    "b_frame_synth"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_graph_executor",
+   "source": "4_BRAIN/graph_executor.py",
+   "title": "graph_executor",
+   "text": "Module 4_BRAIN/graph_executor.py. Supergraph Engine - Replaces Linear Pipeline A lightweight, LangGraph-inspired directed graph state machine for Video Pipeline. Allows loops, dynamic fallback, and conditional routing.",
+   "kind": "module",
+   "links": [
+    "b_graph_executor"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_hf_blocks",
+   "source": "4_BRAIN/hf_blocks.py",
+   "title": "hf_blocks",
+   "text": "Module 4_BRAIN/hf_blocks.py. HyperFrames block bridge — make the 97-block registry USABLE by the factory. The vendored library at `5_FRAMEWORK/hf_engine/registry/blocks` (cinematic-zoom, code-snippet-*, liquid-glass-*, …) was catalogued but unused: `native_composer` renders only ~14 hand-built components. This module renders ANY registry block to a standalone clip the factory can drop in as a b-roll / cutaway / transition (e.g. course_video's b-roll overlay, or a news cutaway). Reuses the same HyperFrames CLI + ffmpeg that native_composer renders with. See `2_KNOWLEDGE/hyperframes/FACTORY_BLOCK_PALETTE.md`. from hf_blocks import list_blocks, render_block render_block(\"cinematic-zoom\", \"out.mp4\") # → a clip you can overlay",
+   "kind": "module",
+   "links": [
+    "b_hf_blocks"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_image_gen",
+   "source": "4_BRAIN/image_gen.py",
+   "title": "image_gen",
+   "text": "Module 4_BRAIN/image_gen.py. SEOSONA image generation — synthetic backgrounds + thumbnail art via NVIDIA NIM FLUX (free). Fills the \"no image-gen\" gap: `image_sourcer` (Pexels) and `broll_sourcer` (Pixabay) give REAL stock media; this generates SYNTHETIC/abstract art for scenes/thumbnails where no stock photo fits. Model = `black-forest-labs/flux.1-schnell` (1–4 steps, fast). NIM-native endpoint (NOT OpenAI-compatible): the image returns base64 under `artifacts[0].base64`. Free NVIDIA tier = ~40 RPM + finite credits → CACHE HARD (1 credit/image); use for thumbnails (1/video) + hero backgrounds, NOT every scene. Best-effort: returns None (→ caller falls back to stock/solid) so a render never depends on it. from image_gen import generate, for_concept p = generate(\"SEO dashboard analytics\") # → 7_ASSETS/brand/photos/gen/…png (brand-styled, cached)",
+   "kind": "module",
+   "links": [
+    "b_image_gen"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_knowledge_graph",
+   "source": "4_BRAIN/knowledge_graph.py",
+   "title": "knowledge_graph",
+   "text": "Module 4_BRAIN/knowledge_graph.py. SEOSONA's queryable knowledge graph — the \"second brain\" agents traverse instead of re-reading the whole repo. Pattern harvested (REFERENCE-only) from Karpathy's \"LLM Wiki\" idea + tirth8205/code-review-graph (claims 6.8-49x fewer tokens by giving an agent a local graph instead of re-scanning the codebase) — see 2_KNOWLEDGE/INGESTION_LOG.md 2026-07-01. Reads `2_KNOWLEDGE/knowledge_graph.json` (built by `scripts/gen_knowledge_graph.py` — re-run that after any structural change; this module is READ-ONLY, it never edits the graph). from knowledge_graph import find, neighbors, related_to, stats find(\"effect_library\") # -> matching nodes (id, label, group) neighbors(\"b_effect_library\") # -> directly-connected nodes related_to(\"b_effect_library\", depth=2) # -> everything within 2 hops (what touches this, transitively) stats() # -> counts per group CLI: python 4_BRAIN/knowledge_graph.py find effect_library python 4_BRAIN/knowledge_graph.py neighbors b_effect_library python 4_BRAIN/knowledge_graph.py stats",
+   "kind": "module",
+   "links": [
+    "b_knowledge_graph"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_learn_flywheel",
+   "source": "4_BRAIN/learn_flywheel.py",
+   "title": "learn_flywheel",
+   "text": "Module 4_BRAIN/learn_flywheel.py. Learning flywheel — the factory learns from its OWN output quality (closes the OODA loop). Reads the flight-recorder (3_MEMORY/factory_metrics.jsonl, written per render by factory_metrics) and aggregates by TEMPLATE + script-source using the FREE per-render signals we already produce (verify-pass + script-lint warnings — no Gemini/publish/analytics needed). Emits: • 3_MEMORY/template_scores.json — machine-readable {template: {n, pass_rate, avg_lint}}; make_video._weak_templates() reads it and DROPS empirically-weak templates from rotation. • 3_MEMORY/HOT_LEARNINGS.md — human-readable ranking + lessons. Run periodically (after a batch): python 4_BRAIN/learn_flywheel.py / npm run factory:learn Pattern adopted from Upload-Post/skill-autoshorts HOT.md flywheel, re-implemented native + free.",
+   "kind": "module",
+   "links": [
+    "b_learn_flywheel"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_lipsync_service",
+   "source": "4_BRAIN/lipsync_service.py",
+   "title": "lipsync_service",
+   "text": "Module 4_BRAIN/lipsync_service.py. Unified lip-sync service (HeyGen-shaped) — one API over BOTH avatar types. Modeled on HeyGen's lipsync API (developers.heygen.com): a job has a status lifecycle (pending -> running -> completed | failed) and, when done, a video + an SRT caption. Two quality modes trade latency for fidelity, exactly like HeyGen's speed vs precision. avatar_type = \"expert\" -> MuseTalk (Engine #3b): real photo/video, mouth-inpaint lip-sync. avatar_type = \"mascot\" -> Rhubarb (Engine #4): 2D cartoon viseme mouth. mode = \"speed\" -> fast draft | \"precision\" -> higher fidelity (expert: fp32 + speech-enhance). Each engine runs in its OWN interpreter (MuseTalk in .venv-musetalk, mascot in base python) via subprocess, so this orchestrator stays dependency-light. Jobs persist as JSON so a caller can poll list()/get() like HeyGen's List Lipsyncs. Expert jobs are auto-QC'd (scripts/lipsync_qc.py) and the score is attached to the job. from lipsync_service import create, get, list_jobs job = create(source=\"expert.png\", audio=\"voice.mp3\", avatar_type=\"expert\", mode=\"precision\") CLI: python 4_BRAIN/lipsync_service.py --source face.png --audio voice.mp3 --type expert --mode precisio",
+   "kind": "module",
+   "links": [
+    "b_lipsync_service"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_llm_engine",
+   "source": "4_BRAIN/llm_engine.py",
+   "title": "llm_engine",
+   "text": "Module 4_BRAIN/llm_engine.py. SEOSONA LLM Engine v2.0 — Smart Offline NLP Fallback ===================================================== Priority: 1. GEMINI_API_KEY → Google Gemini 2. OPENAI_API_KEY → OpenAI GPT 3. OFFLINE NLP → Template-driven extraction (no key needed, production-quality) The offline engine performs REAL content analysis: - Keyword extraction (TF-IDF style frequency + stopword filter) - Sentence ranking (position-biased extractive summarization) - Intent classification (SEO, AI, business, marketing, tech…) - Vietnamese PAS copywriting template generation - Carousel slide JSON generation from raw text",
+   "kind": "module",
+   "links": [
+    "b_llm_engine"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_make_video",
+   "source": "4_BRAIN/make_video.py",
+   "title": "make_video",
+   "text": "Module 4_BRAIN/make_video.py. SEOSONA one-shot — `make_video <github-url>`. Fetch real GitHub data → classify the repo → auto-pick a template (+theme) → auto-fill content (REAL data in the data slots; templated Vietnamese prose) → render a finished SEOSONA video. No paid APIs. python 4_BRAIN/make_video.py https://github.com/owner/name python 4_BRAIN/make_video.py owner/name --template tool-walkthrough python 4_BRAIN/make_video.py --news urls.txt # batch news rotation The deterministic auto-content is an honest DRAFT: it only uses real fields (name, desc, stars, language, license, topics) — never invents numbers. The Scene-Composer agent can still author richer prose; this command exists so a news batch can be produced with one call.",
+   "kind": "module",
+   "links": [
+    "b_make_video"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_native_composer",
+   "source": "4_BRAIN/native_composer.py",
+   "title": "native_composer",
+   "text": "Module 4_BRAIN/native_composer.py. SEOSONA Native Composer — the brand video engine (HyperFrames-native). Replaces the old hand-built `_write_hyperframes_render_project`. Given a list of display `segments` (script) + `scenes` (kicker / 2-tone heading / component+data), it: generates the VieNeu male voice, times captions to DISPLAY words (SOP RULE #1), builds a SEOSONA-brand HyperFrames composition (persistent logo, kicker pill, 2-tone heading, rich components, footer, karaoke pill, CTA outro), renders natively, then mixes SFX + normalises loudness. Reuses the existing, working stack: voice_router/vieneu_engine, srt_maker.asr_router, news_video_standards (display↔pronunciation + RULE #1 alignment).",
+   "kind": "module",
+   "links": [
+    "b_native_composer"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_pipeline_dag",
+   "source": "4_BRAIN/pipeline_dag.py",
+   "title": "pipeline_dag",
+   "text": "Module 4_BRAIN/pipeline_dag.py. Data-defined pipeline graph — the factory's stages as DATA, not hardcoded call order. Clean-room of the ONE durable idea from Dify's `api/core/workflow/` (INGESTION_LOG 2026-07-06, REFERENCE): a typed node registry + topological-sort execution, so the production stages (discover -> script -> render -> quality -> publish) are described as a rearrangeable graph instead of a fixed sequence buried in code. No Dify code, no Flask, no Docker, no new deps — ~1 file of plain Python. Two payoffs: 1. `default_pipeline().to_graph()` feeds the dashboard's Pipeline view (an interactive node graph of the OODA loop — the ReactFlow-canvas UX nugget from Sim, realized in our vis-network). 2. `run(ctx, enable=...)` executes stages in dependency order, DELEGATING to the existing entrypoints (topic_to_video, workflow_router) — this is a thin orchestration description, NOT a reimplementation of the pipeline. render/publish are opt-in so a bare run is a dry plan. python 4_BRAIN/pipeline_dag.py graph # emit vis-network {nodes,edges} JSON python 4_BRAIN/pipeline_dag.py list # print the stage table (topo order) python 4_BRAIN/pipeline_dag.py run --seed AI --hot # discover + ",
+   "kind": "module",
+   "links": [
+    "b_pipeline_dag"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_production_manifest",
+   "source": "4_BRAIN/production_manifest.py",
+   "title": "production_manifest",
+   "text": "Module 4_BRAIN/production_manifest.py. SEOSONA Video — Production Manifest (the factory's variant-tagging keystone). Every produced video gets ONE manifest: `<project_dir>/production_manifest.json`. It ties the finished file to the *variant* that made it — template, brand, aspect, voice, topic, length — plus its QA score and (later) real-world performance. Without this, the factory can produce but can NEVER learn: there is nothing to join \"what we made\" to \"how it did\". This is Step A of 6_SOP/AUTONOMOUS_FACTORY_LOOP.md. Non-invasive by design: the orchestrator (factory_brain) calls `record()` AFTER a project is produced — the render engines are not modified.",
+   "kind": "module",
+   "links": [
+    "b_production_manifest",
+    "sop_AUTONOMOUS_FACTORY_LOOP"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_quality_scorer",
+   "source": "4_BRAIN/quality_scorer.py",
+   "title": "quality_scorer",
+   "text": "Module 4_BRAIN/quality_scorer.py. Quality Scorer — Pre-publish video quality gate. Checks output video for technical integrity before delivery.",
+   "kind": "module",
+   "links": [
+    "b_quality_scorer"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_researcher",
+   "source": "4_BRAIN/researcher.py",
+   "title": "researcher",
+   "text": "Module 4_BRAIN/researcher.py. Web RESEARCH for the FETCH stage — topic → REAL facts from multiple sources, FREE (no API key). The factory is given a TOPIC (e.g. \"SEO 2026 ở TP.HCM\"), not data. This gathers real, recent Vietnamese information to ground the script on: Google News RSS for discovery + a best-effort fetch of a few article bodies (markitdown → clean text). The writer then may ONLY use what's gathered here, and the traceability gate rejects any number/name that isn't in it. Pattern adopted from the RSS/news-pipeline repos in the inventory (dantech0xff/daily-news-broadcast, RSSNext/Folo). firecrawl/crawl4ai are NOT vendored — they need keys / are heavy; RSS + stdlib is free. Network is always best-effort with short timeouts — research never hangs a render.",
+   "kind": "module",
+   "links": [
+    "b_researcher"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_scene_composer",
+   "source": "4_BRAIN/scene_composer.py",
+   "title": "scene_composer",
+   "text": "Module 4_BRAIN/scene_composer.py. SEOSONA Scene-Composer (step 2/ADAPT) — turn a topic into `content` for a template. The factory's content brain. It does the DETERMINISTIC plumbing automatically: - fetch_github(repo) → real stars/desc/lang/license/topics (free GitHub API) - build the data slots (repo card, ★ stat, license badges) from that data The CREATIVE parts (Vietnamese script segments + 2-tone headings + terminal lines + compare points) are supplied by the caller — the Scene-Composer AGENT (an LLM, e.g. Claude in the agent loop) writes them per `.agents/skills/scene-composer/SKILL.md`. This keeps real data accurate (no hallucinated stars) while the prose stays natural. Output `content` feeds native_composer.make_video_from_template(template, content, dir). No voice config here — the engine uses the locked brand voice. No paid APIs.",
+   "kind": "module",
+   "links": [
+    "b_scene_composer",
+    "sk_scene-composer"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_scene_writer",
+   "source": "4_BRAIN/scene_writer.py",
+   "title": "scene_writer",
+   "text": "Module 4_BRAIN/scene_writer.py. SEOSONA Video — LLM scene writer (copywriting-aware). The high-quality path for turning a topic/script into scenes, applying the craft from `2_KNOWLEDGE/domain_skills/` (Ogilvy headlines, conversion copywriting, SEO intent, no AI-slop). Kept SEPARATE from video_engine so neither file gets overloaded. Runs on whatever LLM `llm_engine` can reach — FREE local Ollama (set SEOSONA_OLLAMA_MODEL) or a cloud key — and returns None if none is available, so the caller falls back to the deterministic planner. Vietnamese output (video content language). from scene_writer import write_scenes scenes = write_scenes(\"Lộ trình làm SEO thời AI\") # [{seg,h1,h2}] or None",
+   "kind": "module",
+   "links": [
+    "b_scene_writer"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_script_schema",
+   "source": "4_BRAIN/script_schema.py",
+   "title": "script_schema",
+   "text": "Module 4_BRAIN/script_schema.py. SEOSONA Video — Script & Template schema validation. Borrowed from huytranvan2010/AI-auto-generate-video's zod contract (analysed 2026-06-29): validate the content BEFORE rendering so bad input fails fast with a clear message instead of producing a broken video. Pure pydantic (already a dep) + a soft \"lint\" pass for poster discipline (char limits) and RULE #1 (no emoji/URLs in the spoken text). Two shapes: • CONTENT — what scene_composer.compose() returns / native_composer consumes: {segments: [str], scenes: [{h1, h2, kicker?, data?}], lexicon?: {}} • TEMPLATE — a 7_ASSETS/templates/*.json file: {name, aspect, scenes: [{component, accent, kicker_hint, hero}], ...} `validate_content` / `validate_template` return {ok, errors, warnings}. Structural problems are ERRORS (block render); poster-discipline char limits are WARNINGS (the char budgets live in 7_ASSETS/templates/CATALOG.md).",
+   "kind": "module",
+   "links": [
+    "b_script_schema"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_script_writer",
+   "source": "4_BRAIN/script_writer.py",
+   "title": "script_writer",
+   "text": "Module 4_BRAIN/script_writer.py. SEOSONA — UNIFIED script-writing pipeline (the ONE path all video narration goes through). Six stages, each with a clear input/output + a gate, so every pipeline (news, course, agent) writes to the SAME rules and NOTHING skips verification: [1] FETCH input → SourceData (gate: must have a source_url OR raw_text; else UNSOURCED) [2] ANALYZE SourceData → KeyFacts (gate: every claim/number traces to the source text/fields) [3] REASON KeyFacts → Angle (angle_finder — pick a lens grounded in the facts) [4] PLAN Angle → Outline (gate: no two scenes share a focus; each maps to a fact) [5] WRITE Outline+KeyFacts → Script (grounded prompt; MASTER_VIDEO_SPEC loaded at runtime) [6] VERIFY Script → VerifyResult (5 gates incl. FULL TRACEABILITY — reject → rewrite) Rules live in `9_PROMPTS/MASTER_VIDEO_SPEC.md` (loaded here, NOT hardcoded) + the domain skills. This module ADDS the pipeline; it delegates to existing modules (angle_finder, spec_lint, news_video_standards, content_moderation, llm_engine) — no logic is duplicated. See `6_SOP/SCRIPT_WRITING_PIPELINE.md`.",
+   "kind": "module",
+   "links": [
+    "b_script_writer",
+    "sop_SCRIPT_WRITING_PIPELINE"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_skill_registry",
+   "source": "4_BRAIN/skill_registry.py",
+   "title": "skill_registry",
+   "text": "Module 4_BRAIN/skill_registry.py. Skill Registry - Dynamic Skill Discovery & Execution Implements the Claude-code-skill-manager Tier 1 Concept.",
+   "kind": "module",
+   "links": [
+    "b_skill_registry"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_spec_lint",
+   "source": "4_BRAIN/spec_lint.py",
+   "title": "spec_lint",
+   "text": "Module 4_BRAIN/spec_lint.py. Pre-render edit-spec lint (ideas from feicaiclub/video-spec-builder, MIT). Checkable discipline rules on a video's plan BEFORE rendering — catches retention/readability problems cheaply (no render). Advisory by default (returns warnings), like content_moderation. Two entry points: `lint_course(plan)` for the talking-head cut-plan, `lint_scenes(scenes)` for the news/native_composer scene list. Wire as a gate before render; it never blocks unless strict.",
+   "kind": "module",
+   "links": [
+    "b_spec_lint"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_template_generator",
+   "source": "4_BRAIN/template_generator.py",
+   "title": "template_generator",
+   "text": "Module 4_BRAIN/template_generator.py. Auto-grow the template library — generate a NEW archetype (scene-arc plan) from a brief (Phase 3). Deterministic by default: assembles a scene arc from the 17 `native_composer` components by matching content cues in the brief, always book-ended by a HOOK and a CTA. The output is a valid template JSON (same schema as `7_ASSETS/templates/*.json`) that `native_composer` + `template_picker` can use immediately. python 4_BRAIN/template_generator.py \"Top 7 lỗi SEO khiến tụt hạng\" --scenes 7 Validates every component against the real set, so a generated template never references a non-existent component. (Hook for an LLM proposer can be added later; the deterministic arc already ships usable plans.)",
+   "kind": "module",
+   "links": [
+    "b_template_generator"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_template_picker",
+   "source": "4_BRAIN/template_picker.py",
+   "title": "template_picker",
+   "text": "Module 4_BRAIN/template_picker.py. Pick the best video TEMPLATE (scene-arc archetype) for a content brief by keyword. The library `7_ASSETS/templates/*.json` now has 20 archetypes. This maps a title/topic/brief → the archetype whose scene arc fits it, so auto-generated videos vary their STRUCTURE (not one fixed arc). First match wins → most specific rules first. Returns a template name, or `fallback` if nothing matches. Mirror of `block_picker`, one level up (template = the whole plan; block = one enriching scene).",
+   "kind": "module",
+   "links": [
+    "b_template_picker"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_transcript_fix",
+   "source": "4_BRAIN/transcript_fix.py",
+   "title": "transcript_fix",
+   "text": "Module 4_BRAIN/transcript_fix.py. Deterministic transcription-correction memory (SKILL AUTO transcribe.py + align_transcript_to_script). VN ASR mishears English brand/tech names (\"Claude\"→\"cờ lâu\", \"ChatGPT\"→\"chat gbt\"). Fixing them in a TABLE at the transcript layer means a mistranscription is corrected once, for ALL future videos — not per-caption. `fix_brands(text)` applies the table; `fix_against_script(words, script)` additionally repairs brand-like tokens using OUR canonical `script_writer` output as truth (audio stays the truth for everything else). The channel's correction memory — grow `_BRAND_FIX` as new mishearings appear.",
+   "kind": "module",
+   "links": [
+    "b_transcript_fix"
+   ]
+  },
+  {
+   "id": "mod_4_BRAIN_video_engine",
+   "source": "4_BRAIN/video_engine.py",
+   "title": "video_engine",
+   "text": "Module 4_BRAIN/video_engine.py. SEOSONA unified video engine — the single render brain (native_composer path). Replaces the legacy `pipeline_manager.py` (HTML render-project engine). One entry, `run_pipeline(...)`, handles every input mode and produces a finished SEOSONA video: - create : a text/script OR a GitHub repo URL → synthesized branded video - scrape : a website URL → scrape + SEO script → synthesized branded video - repurpose: a long MP4/SRT → transcript → hook analysis → vertical shorts - download : (handled by the router) YouTube/Drive → file → repurpose Synthesis is rendered by `native_composer` (voice + RULE #1 captions + HyperFrames native render + ducked-BGM/SFX mix). Repurpose reuses the proven clipper skill. GitHub one-shots reuse `make_video.make` (real stars/desc, no hallucinated data). The deterministic text→scenes planner is an honest DRAFT: it uses the real script text for narration + captions and derives 2-tone headings from keywords. The Scene-Composer agent (an LLM) produces richer scenes via `.agents/skills/scene-composer`; this module guarantees a valid video with no human in the loop. No paid APIs required.",
+   "kind": "module",
+   "links": [
+    "b_video_engine",
+    "sk_scene-composer"
+   ]
+  }
+ ],
+ "meta": {
+  "generated": "2026-07-06T16:34:38",
+  "count": 281
+ }
+}

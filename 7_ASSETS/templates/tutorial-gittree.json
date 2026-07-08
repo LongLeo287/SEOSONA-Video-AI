@@ -1,51 +1,56 @@
 {
-  "name": "tutorial-gittree",
-  "title": "Tutorial / Visual git tool",
-  "description": "Giới thiệu công cụ học/trực quan (vd học Git, Skills, tool)",
-  "when_to_use": "Công cụ học/git: hook → intro → git log graph → repo → terminal → tính năng → stat → CTA",
-  "theme": "light",
-  "aspect": "9:16",
-  "scenes": [
-    {
-      "component": null,
-      "accent": "green",
-      "kicker_hint": "CÔNG CỤ HỌC TẬP",
-      "hero": true
-    },
-    {
-      "component": null,
-      "accent": "blue",
-      "kicker_hint": "GIẢI PHÁP"
-    },
-    {
-      "component": "gittree",
-      "accent": "blue",
-      "kicker_hint": "CÁCH HOẠT ĐỘNG"
-    },
-    {
-      "component": "repo",
-      "accent": "green",
-      "kicker_hint": "DỰ ÁN MÃ NGUỒN MỞ"
-    },
-    {
-      "component": "terminal",
-      "accent": "orange",
-      "kicker_hint": "BẮT ĐẦU"
-    },
-    {
-      "component": "steps",
-      "accent": "blue",
-      "kicker_hint": "TÍNH NĂNG"
-    },
-    {
-      "component": "bignum",
-      "accent": "orange",
-      "kicker_hint": "CỘNG ĐỒNG"
-    },
-    {
-      "component": "cta",
-      "accent": "blue",
-      "kicker_hint": "SEOSONA AI"
-    }
-  ]
+ "name": "tutorial-gittree",
+ "title": "Tutorial / Visual git tool",
+ "description": "Giới thiệu công cụ học/trực quan (vd học Git, Skills, tool)",
+ "when_to_use": "Công cụ học/git: hook → intro → git log graph → repo → terminal → tính năng → stat → CTA",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "green",
+   "kicker_hint": "CÔNG CỤ HỌC TẬP",
+   "hero": true
+  },
+  {
+   "component": null,
+   "accent": "blue",
+   "kicker_hint": "GIẢI PHÁP"
+  },
+  {
+   "component": "gittree",
+   "accent": "blue",
+   "kicker_hint": "CÁCH HOẠT ĐỘNG"
+  },
+  {
+   "component": "repo",
+   "accent": "green",
+   "kicker_hint": "DỰ ÁN MÃ NGUỒN MỞ"
+  },
+  {
+   "component": "terminal",
+   "accent": "orange",
+   "kicker_hint": "BẮT ĐẦU"
+  },
+  {
+   "component": "steps",
+   "accent": "blue",
+   "kicker_hint": "TÍNH NĂNG"
+  },
+  {
+   "component": "bignum",
+   "accent": "orange",
+   "kicker_hint": "CỘNG ĐỒNG"
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "cta",
+   "accent": "blue",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
 }

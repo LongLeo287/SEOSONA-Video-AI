@@ -1,0 +1,66 @@
+{
+  "name": "_auto_agency-agents",
+  "title": "agency-agents. A complete AI agency at y",
+  "description": "agency-agents. A complete AI agency at your fingertips - From frontend wizards to Reddit community.",
+  "when_to_use": "Auto-generated per-video arc — agency-agents. A complete AI agency at your fingertips - Fro",
+  "theme": "light",
+  "aspect": "9:16",
+  "scenes": [
+    {
+      "component": null,
+      "accent": "orange",
+      "kicker_hint": "HOOK",
+      "hero": true
+    },
+    {
+      "component": null,
+      "accent": "blue",
+      "kicker_hint": "BỐI CẢNH"
+    },
+    {
+      "component": "quote",
+      "accent": "green",
+      "kicker_hint": "QUOTE"
+    },
+    {
+      "component": "terminal",
+      "accent": "orange",
+      "kicker_hint": "TERMINAL"
+    },
+    {
+      "component": "feature",
+      "accent": "blue",
+      "kicker_hint": "FEATURE"
+    },
+    {
+      "component": "stats",
+      "accent": "green",
+      "kicker_hint": "STATS"
+    },
+    {
+      "component": "bignum",
+      "accent": "orange",
+      "kicker_hint": "BIGNUM"
+    },
+    {
+      "component": "compare",
+      "accent": "blue",
+      "kicker_hint": "COMPARE"
+    },
+    {
+      "component": "tip",
+      "accent": "green",
+      "kicker_hint": "TIP"
+    },
+    {
+      "component": "mockup",
+      "accent": "orange",
+      "kicker_hint": "MOCKUP"
+    },
+    {
+      "component": "cta",
+      "accent": "blue",
+      "kicker_hint": "SEOSONA AI"
+    }
+  ]
+}

@@ -38,6 +38,16 @@
    "kicker_hint": "KẾT QUẢ"
   },
   {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "blue",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
    "component": "cta",
    "accent": "orange",
    "kicker_hint": "SEOSONA AI"

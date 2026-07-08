@@ -1,0 +1,66 @@
+{
+  "name": "_auto_tabfm",
+  "title": "tabfm. .",
+  "description": "tabfm. .",
+  "when_to_use": "Auto-generated per-video arc — tabfm. .",
+  "theme": "light",
+  "aspect": "9:16",
+  "scenes": [
+    {
+      "component": null,
+      "accent": "orange",
+      "kicker_hint": "HOOK",
+      "hero": true
+    },
+    {
+      "component": null,
+      "accent": "blue",
+      "kicker_hint": "BỐI CẢNH"
+    },
+    {
+      "component": "bignum",
+      "accent": "green",
+      "kicker_hint": "BIGNUM"
+    },
+    {
+      "component": "compare",
+      "accent": "orange",
+      "kicker_hint": "COMPARE"
+    },
+    {
+      "component": "tip",
+      "accent": "blue",
+      "kicker_hint": "TIP"
+    },
+    {
+      "component": "mockup",
+      "accent": "green",
+      "kicker_hint": "MOCKUP"
+    },
+    {
+      "component": "chart",
+      "accent": "orange",
+      "kicker_hint": "CHART"
+    },
+    {
+      "component": "badges",
+      "accent": "blue",
+      "kicker_hint": "BADGES"
+    },
+    {
+      "component": "quote",
+      "accent": "green",
+      "kicker_hint": "QUOTE"
+    },
+    {
+      "component": "terminal",
+      "accent": "orange",
+      "kicker_hint": "TERMINAL"
+    },
+    {
+      "component": "cta",
+      "accent": "blue",
+      "kicker_hint": "SEOSONA AI"
+    }
+  ]
+}

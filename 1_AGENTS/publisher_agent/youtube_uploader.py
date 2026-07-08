@@ -59,6 +59,10 @@ class YouTubePublisherAgent:
                 text=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
+                # A stalled upload (network hang, or yutu blocking on an unexpected prompt) would
+                # otherwise hang the whole publish step forever. Bound it — matches the 600s the
+                # sibling HTTP uploaders (facebook/telegram) use. run() kills the child on timeout.
+                timeout=600,
                 creationflags=(getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0),
             )
 
@@ -71,6 +75,9 @@ class YouTubePublisherAgent:
             print("[YouTubePublisher] Upload completed.")
             return True
 
+        except subprocess.TimeoutExpired:
+            print("[YouTubePublisher] Upload timed out after 600s — aborted.")
+            return False
         except FileNotFoundError:
             print(f"[YouTubePublisher] yutu binary not found: {self.yutu_bin}")
             return False

@@ -17,6 +17,16 @@ template, you produce a `content` dict that `native_composer.make_video_from_tem
 renders into a finished SEOSONA video. You write the CREATIVE parts; the helper fetches
 the REAL data so numbers are never invented.
 
+## 🔴 FOLLOW THE ONE RULEBOOK (do not write from memory)
+You are **path A** of the unified script pipeline (`6_SOP/SCRIPT_WRITING_PIPELINE.md`). Write to the
+SAME rules as every automated path — do not improvise your own:
+1. **Rules** = `9_PROMPTS/MASTER_VIDEO_SPEC.md` (arc, hard rules, how-to-write). Read it before writing.
+2. **Craft** = `2_KNOWLEDGE/domain_skills/{copywriting, ogilvy, stop-slop, seo-audit, content-strategy}`
+   (Ogilvy hook, anti-AI-slop, SEO intent). Apply the knowledge; don't invent your own rules.
+3. **Grounding** = only state numbers/names that come from the REAL fetched data. No fabrication.
+4. **VERIFY before render** — run `script_writer.verify(script, script_writer.analyze(script_writer.fetch(url)))`
+   and fix any fabricated number/name or repeated line it reports (see the SOP for the one-liner).
+
 ## Inputs
 - A **topic/brief**: a GitHub repo URL, a news story, a tool, a concept.
 - A **template name** (`native_composer.list_templates()` — e.g. `repo-showcase`,

@@ -2,6 +2,11 @@
 
 *Aligned with SEOSONA Tech-Editorial Brand Identity*
 
+> **Related, deliberately SEPARATE:** [`thumbnail_sop.md`](thumbnail_sop.md) shares the SAME brand palette
+> (navy #1A2DB5 · blue #1565C0 · yellow #FFD54F · Be Vietnam Pro) but is a DISTINCT deliverable: carousel
+> = multi-slide post (cover + content slides, `carousel_maker`); thumbnail = single video-cover image
+> (`thumbnail_maker.make_thumbnail`). Shared palette ≠ duplicate; not merged.
+
 ## 1. Specifications
 - **Size Options**: 1080×1080 (Square) OR 1080×1920 (Vertical for TikTok/Reels) — stick to one per carousel.
 - **Style**: Minimalist, Professional, Tech-editorial, emphasizing white space.

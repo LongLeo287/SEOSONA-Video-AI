@@ -27,7 +27,9 @@
     "manifest": "npm run seosona:manifest",
     "audit": "npm run seosona:audit",
     "run": "npm run video:run --",
-    "lint": "python -m flake8 ."
+    "lint": "python -m flake8 .",
+    "typecheck": "python -m flake8 .",
+    "build": "npm run seosona:manifest"
   },
   "workflows": [
     "autonomous-capability-activation",

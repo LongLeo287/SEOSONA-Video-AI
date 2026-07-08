@@ -51,3 +51,6 @@ Ingested 2026-06-24 from the official docs (`hyperframes.heygen.com`, 206-page
 - **Pipeline** (`4_BRAIN/video_engine.py` → `native_composer.py`) builds an HTML scene project and renders via the CLI local binary (or Producer API with `SEOSONA_HF_PRODUCER=1`).
 - **Blocks/components** are pulled from the catalog with `npx hyperframes add <name>` into a project's `compositions/`.
 - Decision + render-config: see `6_SOP/RENDER_ENGINE_DECISION.md`.
+
+## Factory block palette
+- [FACTORY_BLOCK_PALETTE.md](FACTORY_BLOCK_PALETTE.md) — the 97-block + 25-component library mapped to our video types + how the factory pulls a block (`npx hyperframes add`). Bridges the rich registry to native_composer (which currently uses ~14 hand-built components).

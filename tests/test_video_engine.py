@@ -16,10 +16,19 @@ import video_engine as ve  # noqa: E402
 import native_composer as nc  # noqa: E402
 import make_video as mv  # noqa: E402
 
+# Classic template-only components (chart/gittree/repo/mockup/cta aren't LLM-assignable) PLUS the
+# LLM-assignable set from the SOURCE OF TRUTH (component_picker._allowed) — so this stays current as
+# valid components enter templates (e.g. 'checklist', 'hub') instead of going stale and failing on every
+# legitimate addition. A genuinely-unknown component (typo) is still caught (not in either set).
 KNOWN_COMPONENTS = {
     "bignum", "repo", "compare", "terminal", "steps", "badges", "stats",
     "quote", "tip", "feature", "chart", "mockup", "cta", "gittree", None,
 }
+try:
+    import component_picker as _cp
+    KNOWN_COMPONENTS |= _cp._allowed()
+except Exception:
+    pass
 
 
 class InputDetectionTests(unittest.TestCase):
@@ -41,10 +50,67 @@ class InputDetectionTests(unittest.TestCase):
         self.assertEqual(ve.detect_input_type("https://example.com/article")[0], "scrape")
 
 
+class SalientNumberTests(unittest.TestCase):
+    """The bignum HERO number is traceability-critical — the wrong pick puts a wrong figure on screen."""
+
+    def test_percentage_wins(self):
+        self.assertEqual(ve._salient_num(["3", "47%"]), "47%")           # the result %, not '3 tháng'
+
+    def test_year_deprioritized(self):
+        self.assertEqual(ve._salient_num(["2026", "12"]), "12")          # year is context, not the stat
+
+    def test_lone_year_kept(self):
+        self.assertEqual(ve._salient_num(["2026"]), "2026")             # sole number → keep it
+
+    def test_most_digits_wins(self):
+        self.assertEqual(ve._salient_num(["1,000,000", "5"]), "1,000,000")
+
+    def test_empty_is_none(self):
+        self.assertIsNone(ve._salient_num([]))
+
+
+class BignumLabelTests(unittest.TestCase):
+    def test_label_names_the_subject_after_number(self):
+        self.assertEqual(ve._bignum_label("22 website cờ bạc bị chặn", "22"), "WEBSITE CỜ")
+
+    def test_counter_unit_skipped(self):
+        # '10 lần hiệu suất' measures HIỆU SUẤT (×10), not LẦN.
+        self.assertEqual(ve._bignum_label("10 lần hiệu suất", "10"), "HIỆU SUẤT")
+
+    def test_caption_is_at_most_two_words(self):
+        lab = ve._bignum_label("năm 2026 có 12 công cụ AI hỗ trợ marketing", "12")
+        self.assertLessEqual(len(lab.split()), 2)
+
+
 class ScenePlannerTests(unittest.TestCase):
     SCRIPT = ("SEOSONA tự động sản xuất video tiếng Việt bằng AI. "
               "Công cụ này rất mạnh và dễ dùng. Nó đã đạt 38000 sao trên GitHub. "
               "Cộng đồng đang phát triển nhanh chóng. Hãy thử ngay hôm nay.")
+
+    def setUp(self):
+        # HERMETIC: force the DETERMINISTIC offline planner. plan_scenes otherwise delegates to
+        # scene_writer→script_writer→angle_finder AND component_picker.enrich_llm, both of which make
+        # real LLM network calls whenever ambient API keys are present (auto-loaded from .env) — the
+        # test box has them, so the suite would hang up to 90s per cascade tier (urlopen timeout).
+        # These tests assert the offline planner's STRUCTURAL guarantees (alignment, hero/cta, known
+        # components, no-crash), so bypass the LLM path entirely. Belt-and-suspenders: patch both
+        # decision points and set the supported SEOSONA_LLM_COMPONENTS=0 flag.
+        import component_picker as cp
+        self._saved_llm_plan = ve._llm_plan
+        self._saved_real_llm = cp._real_llm
+        self._saved_env = os.environ.get("SEOSONA_LLM_COMPONENTS")
+        ve._llm_plan = lambda *a, **k: None
+        cp._real_llm = lambda: False
+        os.environ["SEOSONA_LLM_COMPONENTS"] = "0"
+
+    def tearDown(self):
+        import component_picker as cp
+        ve._llm_plan = self._saved_llm_plan
+        cp._real_llm = self._saved_real_llm
+        if self._saved_env is None:
+            os.environ.pop("SEOSONA_LLM_COMPONENTS", None)
+        else:
+            os.environ["SEOSONA_LLM_COMPONENTS"] = self._saved_env
 
     def test_plan_returns_aligned_segments_and_scenes(self):
         segments, scenes = ve.plan_scenes(self.SCRIPT)

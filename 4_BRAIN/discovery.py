@@ -15,6 +15,7 @@ Source = `0_INPUT_INBOX/sources.txt` (one per line; GitHub URL or a Vietnamese t
 Called at the start of scripts/daily_production.py so each batch self-discovers.
 """
 import os
+import re
 import sys
 import argparse
 from pathlib import Path
@@ -34,8 +35,13 @@ LEDGER = INBOX / ".processed_ledger.txt"
 CATEGORY = "news_videos"     # discovered items become news videos
 
 # Relevance filter for auto-fetched feed items (SEOSONA domain = SEO / AI / marketing).
-DOMAIN_KW = ["seo", "ai ", " ai", "search", "google", "marketing", "content", "llm",
-             "gpt", "gemini", "claude", "agent", "rag", "prompt", "chatgpt", "ranking",
+# Short keywords that are SUBSTRINGS of common (usually Vietnamese) words — match only as WHOLE WORDS.
+# As bare substrings, 'ai ' caught hai/sai/tai/vai/mai/chai (two/wrong/ear/role/tomorrow/bottle) and 'rag'
+# caught storage/fragment — flooding the unattended feed with off-domain news (5/6 crime/traffic headlines
+# tripped it). \b (re.UNICODE) treats Vietnamese diacritics as word chars, so 'hai' no longer matches 'ai'.
+_WORD_KW = re.compile(r"\b(?:ai|seo|llm|gpt|rag)\b", re.IGNORECASE | re.UNICODE)
+DOMAIN_KW = ["search", "google", "marketing", "content", "gemini", "claude", "agent",
+             "prompt", "chatgpt", "ranking",
              "tìm kiếm", "nội dung", "từ khoá", "thương hiệu", "trí tuệ", "công nghệ",
              "chuyển đổi số", "quảng cáo", "website", "tiếp thị"]
 # Hard cap on items enqueued per run (circuit-breaker mindset for an unattended feed).
@@ -76,7 +82,7 @@ def _relevant(title):
     t = (title or "").lower()
     if any(x in t for x in EXCLUDE_KW):
         return False
-    return any(k in t for k in DOMAIN_KW)
+    return bool(_WORD_KW.search(t)) or any(k in t for k in DOMAIN_KW)
 
 
 def _fetch_feed(url, top=FEED_TOP):

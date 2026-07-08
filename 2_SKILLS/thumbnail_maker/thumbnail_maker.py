@@ -14,8 +14,10 @@ Callers (video_engine, course_video, workflow_thumbnail) call ONLY `make_thumbna
 Everything else in this module is private (`_`-prefixed). See 6_SOP/thumbnail_sop.md.
 """
 import os
+import re
 import sys
 import importlib
+from html import escape as _hesc            # aliased: the render fn uses a local `html` var for the template
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -128,16 +130,37 @@ def _nlp_variables(content, brand="seosona"):
 
 
 # ── Text / highlight helpers ─────────────────────────────────────────────────
+# Function words that must NOT win the highlight — the bare longest-token heuristic otherwise picks
+# "Những"/"Trong" etc. (a stopword makes a weak, off-message highlight).
+_THUMB_STOP = {
+    "và", "của", "trong", "cho", "để", "là", "các", "những", "một", "khi", "nếu", "với", "từ", "hay",
+    "này", "đó", "thì", "mà", "ở", "về", "đã", "sẽ", "đang", "bạn", "tôi", "chúng", "ta", "nó", "bị",
+    "được", "có", "không", "nên", "cần", "phải", "rất", "quá", "cũng", "đều", "chỉ", "còn", "đến",
+    "theo", "trên", "dưới", "sau", "trước", "giữa", "cùng", "như", "bởi", "vì", "do", "điều", "cách",
+    "the", "a", "an", "and", "or", "of", "to", "for", "in", "on", "is", "are", "your", "you",
+}
+
+
 def _extract_keyword(text):
-    """Pick the most prominent word as the highlight keyword. Returns (prefix, kw, suffix)."""
+    """Pick the most prominent word as the highlight keyword. Returns (prefix, kw, suffix).
+    Prefers an ALL-CAPS acronym (SEO/AI/API/TOP — almost always the key term), else the longest CONTENT
+    word (a bare longest token can be a stopword like 'Những', which makes a weak highlight)."""
     words = text.split()
     if not words:
         return "", "", ""
     if len(words) <= 2:
         return "", " ".join(words), ""
-    longest = max(words, key=len)
-    idx = words.index(longest)
-    return " ".join(words[:idx]), longest, " ".join(words[idx + 1:])
+
+    def _clean(w):
+        return w.lower().strip(".,!?:;\"'()")
+    caps = [w for w in words if len(w) >= 2 and w.isalpha() and w.isupper()]   # acronyms: SEO, AI, TOP
+    if caps:
+        pick = max(caps, key=len)
+    else:
+        content = [w for w in words if _clean(w) not in _THUMB_STOP]           # skip function words
+        pick = max(content or words, key=len)
+    idx = words.index(pick)
+    return " ".join(words[:idx]), pick, " ".join(words[idx + 1:])
 
 
 def _split_highlight(text, keyword):
@@ -147,13 +170,39 @@ def _split_highlight(text, keyword):
         return ("", "", "")
     if keyword:
         kw = str(keyword).strip()
-        i = text.upper().find(kw.upper())
-        if i >= 0:
-            return (text[:i].strip(), text[i:i + len(kw)].strip(), text[i + len(kw):].strip())
+        if kw:
+            # WHOLE-WORD, case-insensitive. A plain substring find (text.upper().find) lands the highlight
+            # INSIDE another word: kw "AI" → "Em[AI]l", "SEO" → "[SEO]ul", breaking the word on the thumbnail
+            # (the CTR-critical asset). \b uses Unicode \w, so it respects Vietnamese diacritics. If the
+            # keyword isn't a standalone word, fall back to the content-word heuristic (never a bad substring).
+            m = re.search(r"\b" + re.escape(kw) + r"\b", text, re.IGNORECASE)
+            if m:
+                return (text[:m.start()].strip(), text[m.start():m.end()].strip(), text[m.end():].strip())
     return _extract_keyword(text)
 
 
+def _cap_title(title, max_words=12, max_chars=72):
+    """The title renders at a FIXED large font (105-130px) inside an overflow:hidden box, so a long title —
+    e.g. the raw-content fallback, which can be a whole paragraph — is CLIPPED mid-word on the thumbnail.
+    Cap it to a title-length AT A WORD BOUNDARY: a clean short title beats an arbitrarily-clipped one. The
+    design target is 4-8 words, so a normal title is never touched; this only catches over-long input."""
+    t = " ".join(str(title or "").split())            # normalise whitespace
+    words = t.split(" ")
+    if len(words) > max_words:
+        t = " ".join(words[:max_words])
+    if len(t) > max_chars:                             # guard a run of very long words too
+        t = (t[:max_chars].rsplit(" ", 1)[0] or t[:max_chars])
+    return t.strip()
+
+
 # ── HTML render (private) ─────────────────────────────────────────────────────
+def _temp_html_path(output_path):
+    """Temp HTML path keyed to the UNIQUE output — never a shared fixed name — so concurrent renders
+    into the same directory (a video's 9:16 + 16:9, or batch) can't clobber each other's temp file."""
+    return os.path.join(os.path.dirname(output_path),
+                        "_temp_" + os.path.splitext(os.path.basename(output_path))[0] + ".html")
+
+
 def _render_html(output_path, top_label, main_title, hook, cta, portrait_path,
                  manual_title, manual_cta, aspect_ratio, brand, subtext_italic, layout_type):
     """Render the chosen template to PNG via Playwright. Internal — go through make_thumbnail."""
@@ -176,6 +225,11 @@ def _render_html(output_path, top_label, main_title, hook, cta, portrait_path,
 
     title_1, title_kw, title_2 = manual_title if manual_title else _extract_keyword(main_title)
     cta_1, cta_kw, cta_2 = manual_cta if manual_cta else _extract_keyword(cta)
+    # HTML-escape user text before it goes into the template — a title/cta with '<'/'>' would break the
+    # render (malformed tags) and '&' should be an entity. Structural tokens (colours/classes/paths) below
+    # are trusted and left as-is. Escapes here + top_label/subtext/hook in the map cover every text token.
+    title_1, title_kw, title_2 = _hesc(str(title_1)), _hesc(str(title_kw)), _hesc(str(title_2))
+    cta_1, cta_kw, cta_2 = _hesc(str(cta_1)), _hesc(str(cta_kw)), _hesc(str(cta_2))
 
     if layout_type == "auto":
         layout_type = "portrait" if (portrait_path and os.path.exists(portrait_path)) else "text_only"
@@ -205,13 +259,13 @@ def _render_html(output_path, top_label, main_title, hook, cta, portrait_path,
         "{{LOGO_PATH}}": logo_uri, "{{PORTRAIT_PATH}}": portrait_uri,
         "{{WATERMARK}}": palette["watermark"], "{{BRAND_NAME}}": palette["brand_name"],
         "{{BRAND_TAGLINE}}": palette["brand_tagline"], "{{BRAND_TAGLINE_UPPER}}": palette["brand_tagline_upper"],
-        "{{TOP_LABEL}}": top_label, "{{MAIN_TITLE_1}}": title_1, "{{MAIN_TITLE_KW}}": title_kw,
+        "{{TOP_LABEL}}": _hesc(str(top_label)), "{{MAIN_TITLE_1}}": title_1, "{{MAIN_TITLE_KW}}": title_kw,
         "{{MAIN_TITLE_2}}": title_2, "{{CTA_1}}": cta_1, "{{CTA_KW}}": cta_kw, "{{CTA_2}}": cta_2,
-        "{{SUBTEXT_ITALIC}}": subtext_italic, "{{HOOK}}": hook,
+        "{{SUBTEXT_ITALIC}}": _hesc(str(subtext_italic)), "{{HOOK}}": _hesc(str(hook)),
     }.items():
-        html = html.replace(token, value)
+        html = html.replace(token, str(value))   # coerce: a non-str NLP value (e.g. a number) must not crash replace()
 
-    temp_html = os.path.join(os.path.dirname(output_path), "_temp_thumbnail.html")
+    temp_html = _temp_html_path(output_path)   # unique per output — no cross-render collision (see helper)
     with open(temp_html, "w", encoding="utf-8") as f:
         f.write(html)
 
@@ -258,7 +312,7 @@ def make_thumbnail(content, output_path, *, aspect_ratio="9:16", brand="seosona"
             print(f"[thumbnail] NLP skipped ({e}); using content + defaults.")
 
     top = top_label or nlp.get("top_label") or ("SEOSONA" if brand == "seosona" else brand.upper())
-    title = (main_title or nlp.get("main_title") or content or "SEOSONA").strip()
+    title = _cap_title(main_title or nlp.get("main_title") or content or "SEOSONA")
     cta_text = cta or nlp.get("cta") or "XEM NGAY"
     hook_str = hook if hook is not None else nlp.get("hook", "")
     sub = subtext_italic if subtext_italic is not None else (nlp.get("subtext_italic") or "")

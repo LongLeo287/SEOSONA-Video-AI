@@ -1,0 +1,1247 @@
+{
+ "total": 97,
+ "buckets": {
+  "reject_fakedata": [
+   "app-showcase",
+   "code-diff",
+   "code-snippet-dark-modern",
+   "data-chart",
+   "flowchart",
+   "flowchart-vertical",
+   "instagram-follow",
+   "ios26-liquid-glass",
+   "liquid-glass-widgets",
+   "logo-outro",
+   "macos-notification",
+   "macos-tahoe-liquid-glass",
+   "reddit-post",
+   "spotify-card",
+   "tiktok-follow",
+   "transitions-3d",
+   "transitions-blur",
+   "transitions-cover",
+   "transitions-destruction",
+   "transitions-dissolve",
+   "transitions-distortion",
+   "transitions-grid",
+   "transitions-light",
+   "transitions-mechanical",
+   "transitions-other",
+   "transitions-push",
+   "transitions-radial",
+   "transitions-scale",
+   "ui-3d-reveal",
+   "us-map",
+   "us-map-bubble",
+   "us-map-hex",
+   "vfx-iphone-device"
+  ],
+  "redundant_native": [
+   "apple-money-count",
+   "code-3d-extrude",
+   "code-highlight",
+   "code-morph",
+   "code-particle-assemble",
+   "code-scroll",
+   "code-shader-dissolve",
+   "code-snippet-apple-terminal-basic",
+   "code-snippet-apple-terminal-clear-dark",
+   "code-snippet-apple-terminal-clear-light",
+   "code-snippet-apple-terminal-grass",
+   "code-snippet-apple-terminal-homebrew",
+   "code-snippet-apple-terminal-man-page",
+   "code-snippet-apple-terminal-novel",
+   "code-snippet-apple-terminal-ocean",
+   "code-snippet-apple-terminal-pro",
+   "code-snippet-apple-terminal-red-sands",
+   "code-snippet-apple-terminal-silver-aerogel",
+   "code-snippet-apple-terminal-solid-colors",
+   "code-snippet-dark-2026",
+   "code-snippet-dark-plus",
+   "code-snippet-flight",
+   "code-snippet-high-contrast",
+   "code-snippet-high-contrast-light",
+   "code-snippet-light-2026",
+   "code-snippet-light-modern",
+   "code-snippet-light-plus",
+   "code-snippet-monokai",
+   "code-snippet-solarized-light",
+   "code-snippet-visual-studio-dark",
+   "code-snippet-visual-studio-light",
+   "code-typing",
+   "north-korea-locked-down",
+   "nyc-paris-flight",
+   "spain-map",
+   "us-map-flow",
+   "world-map"
+  ],
+  "ambient_fx": [
+   "blue-sweater-intro-video",
+   "chromatic-radial-split",
+   "cinematic-zoom",
+   "cross-warp-morph",
+   "domain-warp-dissolve",
+   "flash-through-white",
+   "glitch",
+   "gravitational-lens",
+   "light-leak",
+   "liquid-glass-context-menu",
+   "liquid-glass-media-controls",
+   "liquid-glass-notification",
+   "ridged-burn",
+   "ripple-waves",
+   "sdf-iris",
+   "swirl-vortex",
+   "thermal-distortion",
+   "vfx-liquid-background",
+   "vfx-liquid-glass",
+   "vfx-magnetic",
+   "vfx-portal",
+   "vfx-shatter",
+   "vfx-text-cursor",
+   "vpn-youtube-spot",
+   "whip-pan",
+   "x-post",
+   "yt-lower-third"
+  ]
+ },
+ "rows": [
+  {
+   "name": "app-showcase",
+   "tags": [
+    "showcase",
+    "app",
+    "3d"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "12.8 km",
+    "45 min"
+   ]
+  },
+  {
+   "name": "apple-money-count",
+   "tags": [
+    "showcase",
+    "finance",
+    "kinetic",
+    "youtube",
+    "sfx"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "blue-sweater-intro-video",
+   "tags": [
+    "showcase",
+    "ai",
+    "creator",
+    "sfx"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "chromatic-radial-split",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "cinematic-zoom",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "code-3d-extrude",
+   "tags": [
+    "code",
+    "code-animation",
+    "3d",
+    "webgl",
+    "developer"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-diff",
+   "tags": [
+    "code",
+    "code-animation",
+    "diff",
+    "developer"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "greet.js",
+    "code diff"
+   ]
+  },
+  {
+   "name": "code-highlight",
+   "tags": [
+    "code",
+    "code-animation",
+    "highlight",
+    "developer"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-morph",
+   "tags": [
+    "code",
+    "code-animation",
+    "morph",
+    "refactor",
+    "developer"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-particle-assemble",
+   "tags": [
+    "code",
+    "code-animation",
+    "particles",
+    "gpu",
+    "webgl",
+    "developer"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-scroll",
+   "tags": [
+    "code",
+    "code-animation",
+    "scroll",
+    "developer"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-shader-dissolve",
+   "tags": [
+    "code",
+    "code-animation",
+    "shader",
+    "webgl",
+    "developer"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-basic",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-clear-dark",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-clear-light",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-grass",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-homebrew",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-man-page",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-novel",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-ocean",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-pro",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-red-sands",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-silver-aerogel",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-apple-terminal-solid-colors",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "terminal",
+    "apple",
+    "apple-terminal"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-dark-2026",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-dark-modern",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "dark modern vs code"
+   ]
+  },
+  {
+   "name": "code-snippet-dark-plus",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-flight",
+   "tags": [
+    "code",
+    "code-animation",
+    "flight",
+    "developer"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-high-contrast",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-high-contrast-light",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-light-2026",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-light-modern",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-light-plus",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-monokai",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-solarized-light",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-visual-studio-dark",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-snippet-visual-studio-light",
+   "tags": [
+    "code",
+    "developer",
+    "showcase",
+    "vscode"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "code-typing",
+   "tags": [
+    "code",
+    "code-animation",
+    "typing",
+    "developer"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "cross-warp-morph",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "data-chart",
+   "tags": [
+    "data",
+    "chart",
+    "statistics"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "monthly revenue",
+    "conversion rate",
+    "jan–jun"
+   ]
+  },
+  {
+   "name": "domain-warp-dissolve",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "flash-through-white",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "flowchart",
+   "tags": [
+    "diagram",
+    "flowchart",
+    "interactive"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "pythom",
+    "flowchart"
+   ]
+  },
+  {
+   "name": "flowchart-vertical",
+   "tags": [
+    "diagram",
+    "flowchart",
+    "interactive",
+    "portrait"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "pythom",
+    "flowchart"
+   ]
+  },
+  {
+   "name": "glitch",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "gravitational-lens",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "instagram-follow",
+   "tags": [
+    "social",
+    "overlay",
+    "instagram"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "followers",
+    "follower",
+    "instagram"
+   ]
+  },
+  {
+   "name": "ios26-liquid-glass",
+   "tags": [
+    "liquid-glass-html-in-canvas",
+    "webgpu",
+    "3d",
+    "iphone",
+    "ios26",
+    "notifications",
+    "gltf",
+    "html-in-canvas"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "spotify",
+    "instagram"
+   ]
+  },
+  {
+   "name": "light-leak",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "liquid-glass-context-menu",
+   "tags": [
+    "html-in-canvas",
+    "liquid-glass-html-in-canvas",
+    "webgpu"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "liquid-glass-media-controls",
+   "tags": [
+    "html-in-canvas",
+    "liquid-glass-html-in-canvas",
+    "webgpu"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "liquid-glass-notification",
+   "tags": [
+    "html-in-canvas",
+    "liquid-glass-html-in-canvas",
+    "webgpu"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "liquid-glass-widgets",
+   "tags": [
+    "html-in-canvas",
+    "liquid-glass-html-in-canvas",
+    "webgpu"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "8.2k"
+   ]
+  },
+  {
+   "name": "logo-outro",
+   "tags": [
+    "branding",
+    "outro",
+    "logo"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "figma.com",
+    "logo outro"
+   ]
+  },
+  {
+   "name": "macos-notification",
+   "tags": [
+    "social",
+    "overlay",
+    "notification"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "prompt to change"
+   ]
+  },
+  {
+   "name": "macos-tahoe-liquid-glass",
+   "tags": [
+    "html-in-canvas",
+    "3d",
+    "macos",
+    "tahoe",
+    "gltf"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "spotify",
+    "now playing"
+   ]
+  },
+  {
+   "name": "north-korea-locked-down",
+   "tags": [
+    "showcase",
+    "map",
+    "annotation",
+    "youtube",
+    "kinetic"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "nyc-paris-flight",
+   "tags": [
+    "showcase",
+    "travel",
+    "map",
+    "youtube",
+    "sfx"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "reddit-post",
+   "tags": [
+    "social",
+    "overlay",
+    "reddit"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "prompt to change",
+    "reddit"
+   ]
+  },
+  {
+   "name": "ridged-burn",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "ripple-waves",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "sdf-iris",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "spain-map",
+   "tags": [
+    "data",
+    "map",
+    "geography",
+    "spain",
+    "europe",
+    "choropleth"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "spotify-card",
+   "tags": [
+    "social",
+    "overlay",
+    "spotify"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "spotify"
+   ]
+  },
+  {
+   "name": "swirl-vortex",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "thermal-distortion",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "tiktok-follow",
+   "tags": [
+    "social",
+    "overlay",
+    "tiktok"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "followers",
+    "follower"
+   ]
+  },
+  {
+   "name": "transitions-3d",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-blur",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-cover",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-destruction",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-dissolve",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-distortion",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-grid",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-light",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-mechanical",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-other",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-push",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-radial",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "transitions-scale",
+   "tags": [
+    "transition",
+    "showcase"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "scene a",
+    "scene b"
+   ]
+  },
+  {
+   "name": "ui-3d-reveal",
+   "tags": [
+    "showcase",
+    "3d",
+    "reveal"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "figma.com"
+   ]
+  },
+  {
+   "name": "us-map",
+   "tags": [
+    "data",
+    "map",
+    "geography",
+    "usa",
+    "choropleth"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "population density",
+    "u.s. census",
+    "census"
+   ]
+  },
+  {
+   "name": "us-map-bubble",
+   "tags": [
+    "data",
+    "map",
+    "geography",
+    "usa",
+    "bubble",
+    "cities"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "u.s. census",
+    "census"
+   ]
+  },
+  {
+   "name": "us-map-flow",
+   "tags": [
+    "data",
+    "map",
+    "geography",
+    "usa",
+    "flow",
+    "connections",
+    "arcs"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "us-map-hex",
+   "tags": [
+    "data",
+    "map",
+    "geography",
+    "usa",
+    "hexgrid",
+    "tilegrid"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "u.s. census",
+    "census"
+   ]
+  },
+  {
+   "name": "vfx-iphone-device",
+   "tags": [
+    "html-in-canvas",
+    "3d",
+    "device",
+    "iphone",
+    "macbook",
+    "gltf"
+   ],
+   "class": "reject_fakedata",
+   "leaks": [
+    "spotify"
+   ]
+  },
+  {
+   "name": "vfx-liquid-background",
+   "tags": [
+    "html-in-canvas",
+    "liquid",
+    "webgl",
+    "displacement",
+    "background"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "vfx-liquid-glass",
+   "tags": [
+    "html-in-canvas",
+    "webgl"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "vfx-magnetic",
+   "tags": [
+    "html-in-canvas",
+    "webgl"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "vfx-portal",
+   "tags": [
+    "html-in-canvas",
+    "webgl"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "vfx-shatter",
+   "tags": [
+    "html-in-canvas",
+    "webgl"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "vfx-text-cursor",
+   "tags": [
+    "html-in-canvas",
+    "text",
+    "shader",
+    "cursor",
+    "chromatic"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "vpn-youtube-spot",
+   "tags": [
+    "app",
+    "showcase",
+    "youtube",
+    "sfx"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "whip-pan",
+   "tags": [
+    "transition",
+    "shader"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "world-map",
+   "tags": [
+    "data",
+    "map",
+    "geography",
+    "world",
+    "choropleth"
+   ],
+   "class": "redundant_native",
+   "leaks": []
+  },
+  {
+   "name": "x-post",
+   "tags": [
+    "social",
+    "overlay",
+    "twitter"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  },
+  {
+   "name": "yt-lower-third",
+   "tags": [
+    "social",
+    "overlay",
+    "youtube"
+   ],
+   "class": "ambient_fx",
+   "leaks": []
+  }
+ ]
+}

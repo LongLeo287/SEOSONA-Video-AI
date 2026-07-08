@@ -9,7 +9,7 @@
 - [ ] 100% Light Mode — no dark backgrounds
 - [ ] Brand logo watermarked in video
 - [ ] SFX variety (no repeated single sound)
-- [ ] **Verified `Báo_cáo_chất_lượng.md`**: Reviewed Machine Learning feedback and quality score before publishing.
+- [ ] **Verified `Bao_cao_chat_luong.md`**: Reviewed Machine Learning feedback and quality score before publishing.
 
 ---
 

@@ -20,6 +20,14 @@
     "riser": {
       "use": "Short lift into the hook / a major reveal.",
       "cues": ["riser/riser_short.mp3", "riser/riser_long.mp3"]
+    },
+    "tick": {
+      "use": "Urgency/deadline tension — triggered by countdown/deadline keywords (_SEMANTIC_SFX).",
+      "cues": ["tick/tick.mp3", "tick/countdown.mp3"]
+    },
+    "shutter": {
+      "use": "Camera-shutter snapshot on a screenshot/capture/proof reveal (_SEMANTIC_SFX).",
+      "cues": ["shutter/shutter.mp3"]
     }
   },
   "source": "D:/SEOSONA AI/Sound Effects Pack",
@@ -34,6 +42,9 @@
     "ui/click.mp3": "Clicks/Button, Generic UI Click x2.mp3",
     "typing/keyboard.mp3": "Typing/Keyboard, Apple Magic, Typing, Short Phrases.mp3",
     "riser/riser_short.mp3": "Riser/Bass, Sharp Detail Riser.mp3",
-    "riser/riser_long.mp3": "Riser/Epic Sunrise Riser.mp3"
+    "riser/riser_long.mp3": "Riser/Epic Sunrise Riser.mp3",
+    "tick/tick.mp3": "Clocks/Tick Tock.mp3",
+    "tick/countdown.mp3": "Clocks/Ticking Clock, Classic, Countdown.mp3",
+    "shutter/shutter.mp3": "Camera Shutter/Digital, Take Picture, Shutter 02.mp3"
   }
 }

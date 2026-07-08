@@ -17,6 +17,7 @@ import os
 import re
 import json
 import math
+import time
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -104,13 +105,39 @@ def _classify_intent(text: str) -> str:
     }
     scores = {}
     for topic, keywords in topics.items():
-        scores[topic] = sum(1 for kw in keywords if kw in text_lower)
+        # WHOLE-WORD match, not substring: 'top'∈laptop, 'api'∈therapist, 'app'∈apply, 'cost'∈costume,
+        # 'code'∈decode all mis-scored the intent. \b with re.UNICODE treats VN diacritics as word chars,
+        # so multi-word VN phrases ("từ khóa") still match as a whole.
+        scores[topic] = sum(1 for kw in keywords
+                            if re.search(r'\b' + re.escape(kw) + r'\b', text_lower))
 
     best = max(scores.items(), key=lambda x: x[1])
     return best[0] if best[1] > 0 else "GENERAL"
 
-def _make_title(keywords: list, intent: str) -> str:
-    """Generate compelling Vietnamese title from keywords."""
+def _leading_phrase(text: str, n: int = 3, maxlen: int = 28) -> str:
+    """A leading CONTENT phrase (words in READING ORDER) from the source. Vietnamese is multi-syllable,
+    so a contiguous phrase keeps compounds intact ('Nghiên cứu từ khóa') where a single top-frequency
+    syllable breaks them (title 'Bí quyết SEO: Nghiên' instead of '… Nghiên Cứu Từ Khóa')."""
+    words = re.findall(r"[\wÀ-ỹ]+", str(text or ""))
+    while words and words[0].lower() in VI_STOPWORDS:      # start on a content word
+        words = words[1:]
+    take = words[:n]
+    while take and take[-1].lower() in VI_STOPWORDS:       # don't end on a connector
+        take.pop()
+    return " ".join(take)[:maxlen]
+
+
+def _smart_title(s):
+    """Title-case for on-screen display while PRESERVING acronym/brand casing. str.title() downcases
+    acronyms — 'SEO'→'Seo', 'AI'→'Ai', 'API'→'Api' — which mangles the keyword in the video's own
+    text (headings/bullets/cover). Only all-lowercase words are capitalised; anything already carrying
+    an uppercase letter (SEO, ChatGPT, iPhone) is left untouched."""
+    return " ".join(w if any(c.isupper() for c in w) else w.capitalize() for w in str(s).split())
+
+
+def _make_title(keywords: list, intent: str, text: str = "") -> str:
+    """Generate compelling Vietnamese title. Prefers a leading CONTENT PHRASE from the source text (keeps
+    compounds) over a lone top-frequency keyword syllable; falls back to keywords[0] when no text."""
     intros = {
         "SEO": ["Bí quyết SEO", "Chiến lược SEO", "Sai lầm SEO"],
         "AI_AGENT": ["AI Agent thực chiến", "Sức mạnh AI Agent", "AI Agent biến đổi"],
@@ -123,16 +150,17 @@ def _make_title(keywords: list, intent: str) -> str:
     prefix = intros.get(intent, intros["GENERAL"])
     import random
     pre = prefix[0]  # deterministic
-    if keywords:
-        return f"{pre}: {keywords[0].title()}"
-    return pre
+    tail = _leading_phrase(text, n=3) if text else (keywords[0] if keywords else "")
+    return f"{pre}: {_smart_title(tail)}" if tail else pre
 
 def _make_hook(text: str, intent: str) -> str:
     """Generate strong Vietnamese hook sentence."""
     numbers = _extract_numbers(text)
     hooks = {
         "SEO": [
-            f"80% doanh nghiệp đang làm SEO sai — và họ không biết tại sao.",
+            # NO fabricated statistic — the old "80% doanh nghiệp làm SEO sai" invented a number that
+            # isn't sourced (violates "không làm giả" + hook-must-be-true). Keep the punch, drop the fake %.
+            f"Nhiều doanh nghiệp đang làm SEO sai cách — mà không hề hay biết.",
             f"Google thay đổi tất cả. SEO cũ không còn hiệu quả nữa.",
         ],
         "AI_AGENT": [
@@ -176,7 +204,7 @@ def _generate_carousel_offline(user_prompt: str) -> list:
     sentences = _extract_sentences(text, n=8)
     numbers = _extract_numbers(text)
     intent = _classify_intent(text)
-    title = _make_title(keywords, intent)
+    title = _make_title(keywords, intent, text)
     hook = _make_hook(text, intent)
 
     # Build highlight: second keyword or first keyword variation
@@ -212,7 +240,7 @@ def _generate_carousel_offline(user_prompt: str) -> list:
 
     # Cover items from keywords
     icons = ["document", "chart", "trend", "database", "refresh", "zap", "shield", "clock", "globe", "lock"]
-    cover_items = [{"text": kw.title(), "icon": icons[i % len(icons)]} for i, kw in enumerate(keywords[:3])]
+    cover_items = [{"text": _smart_title(kw), "icon": icons[i % len(icons)]} for i, kw in enumerate(keywords[:3])]
 
     slides = []
 
@@ -264,9 +292,11 @@ def _generate_carousel_offline(user_prompt: str) -> list:
         "heading": "Hệ thống hoạt động như thế nào?",
         "heading_highlight": "Hệ thống",
         "steps": steps,
+        # Fallback stats (no real numbers extracted) must be QUALITATIVE — never invent a metric like
+        # "3x nhanh hơn" / "60% tiết kiệm" for an unknown topic (fabrication that ships in the carousel).
         "stats": stats if stats else [
-            {"value": "3x", "label": "NHANH HƠN"},
-            {"value": "60%", "label": "TIẾT KIỆM"},
+            {"value": "TỰ ĐỘNG", "label": "QUY TRÌNH"},
+            {"value": "NHẤT QUÁN", "label": "CHẤT LƯỢNG"},
             {"value": "24/7", "label": "VẬN HÀNH"},
         ]
     })
@@ -277,11 +307,11 @@ def _generate_carousel_offline(user_prompt: str) -> list:
         "type": "numbered_content",
         "slide_number": "01",
         "label": "NGUYÊN TẮC CỐT LÕI",
-        "heading": f"3 điều bạn phải hiểu rõ về {keywords[0].title() if keywords else 'chủ đề này'}",
-        "heading_highlight": keywords[0].title() if keywords else "",
+        "heading": f"3 điều bạn phải hiểu rõ về {_smart_title(keywords[0]) if keywords else 'chủ đề này'}",
+        "heading_highlight": _smart_title(keywords[0]) if keywords else "",
         "desc": f"Đây là nền tảng — không có nền tảng này, mọi chiến thuật đều vô nghĩa.",
         "body": body_items[:3],
-        "closing": f"Áp dụng đúng {closing_kw} — kết quả sẽ đến trong 30 ngày.",
+        "closing": f"Áp dụng đúng {closing_kw} — và bạn sẽ thấy sự khác biệt rõ rệt.",
         "closing_highlight": closing_kw,
         "closing_icon": "zap"
     })
@@ -292,7 +322,7 @@ def _generate_carousel_offline(user_prompt: str) -> list:
     features = [
         {
             "icon": feat_icons[i % len(feat_icons)],
-            "title": kw.title(),
+            "title": _smart_title(kw),
             "desc": f"Tối ưu {kw} để đạt kết quả vượt trội trong thời gian ngắn nhất."
         }
         for i, kw in enumerate(feat_keywords[:3])
@@ -321,7 +351,7 @@ def _generate_carousel_offline(user_prompt: str) -> list:
 
     if not grid_items:
         grid_items = [
-            f"Kết quả từ {keywords[0].title() if keywords else 'hệ thống'}",
+            f"Kết quả từ {_smart_title(keywords[0]) if keywords else 'hệ thống'}",
             "Tự động hóa quy trình",
             "Tiết kiệm chi phí vận hành",
             "Tăng năng suất đội nhóm",
@@ -376,7 +406,7 @@ def _generate_social_post_offline(user_prompt: str) -> dict:
 
     if len(solution_points) < 2:
         solution_points = [
-            f"Xây dựng hệ thống {keywords[0].title() if keywords else 'tự động'} chuẩn hóa từ A-Z",
+            f"Xây dựng hệ thống {_smart_title(keywords[0]) if keywords else 'tự động'} chuẩn hóa từ A-Z",
             "Đo lường kết quả bằng số liệu thực tế thay vì cảm tính",
             "Tối ưu liên tục các điểm chạm dựa trên phản hồi của thị trường",
         ]
@@ -448,12 +478,15 @@ def _generate_thumbnail_offline(user_prompt: str) -> dict:
     # silently discarded. thumbnail_maker._normalize_nlp still accepts both spellings.)
     return {
         "top_label": intent.replace("_", " "),
-        "main_title": _make_title(keywords, intent).upper(),
+        "main_title": _make_title(keywords, intent, content).upper(),
         "title_highlight": title_kw,
-        "hook": f"Tại sao {numbers[0] if numbers else '80%'} doanh nghiệp bỏ lỡ điều này?",
+        # use a REAL number from the source if present; else a QUALITATIVE hook — never invent "80%"
+        # (the old fallback fabricated that stat on every number-less input; violates "không làm giả").
+        "hook": (f"Tại sao {numbers[0]} doanh nghiệp bỏ lỡ điều này?" if numbers
+                 else "Điều mà nhiều doanh nghiệp vẫn đang bỏ lỡ"),
         "cta": "KHÁM PHÁ NGAY",
         "cta_highlight": "NGAY",
-        "subtext_italic": f"Dùng {keywords[0].title() if keywords else 'AI'} đúng cách — không phải để thay thế, mà để nhân lên",
+        "subtext_italic": f"Dùng {_smart_title(keywords[0]) if keywords else 'AI'} đúng cách — không phải để thay thế, mà để nhân lên",
         "layout_type": "text_only"
     }
 
@@ -464,7 +497,12 @@ def _generate_script_offline(user_prompt: str) -> dict:
     Target: 150-200 words narrator text → 45-90s video.
     Scenes: 8-10 scenes minimum → rich HyperFrames animation.
     """
-    text = re.sub(r'Analyze.*?:\n\n', '', user_prompt, flags=re.DOTALL)
+    # Strip the leading INSTRUCTION line so the prompt's directive never leaks into the Vietnamese
+    # narration. The old regex ONLY matched "Analyze …:" — but the directive can be "Write a video
+    # script." / "Generate …" / a period-terminated "… Post." → those leaked ("Chào mừng SEOSONA! Write a
+    # video script Nghiên cứu…"). Match any common verb up to the first ':' or '.' then the blank line.
+    text = re.sub(r'^\s*(?:Analyze|Write|Generate|Create|Compose|Produce|Viết|Tạo|Phân tích)\b[^\n]*?[:.]\s*\n+',
+                  '', user_prompt, count=1, flags=re.IGNORECASE)
     keywords = _tfidf_keywords(text, top_n=12)
     sentences = _extract_sentences(text, n=10)
     numbers  = _extract_numbers(text)
@@ -499,7 +537,7 @@ def _generate_script_offline(user_prompt: str) -> dict:
 
     if is_english:
         # Build a rich, long Vietnamese narrator text (150+ words)
-        feature_keywords = [kw.title() for kw in keywords[:6] if len(kw) > 2]
+        feature_keywords = [_smart_title(kw) for kw in keywords[:6] if len(kw) > 2]
         features_text = ", ".join(feature_keywords[:4]) if feature_keywords else "nhiều tính năng nổi bật"
 
         body_text = (
@@ -507,8 +545,8 @@ def _generate_script_offline(user_prompt: str) -> dict:
             f"Dự án này tập trung vào việc giải quyết các bài toán phức tạp với {features_text}. "
             f"Điểm nổi bật lớn nhất của {project_name} chính là khả năng tối ưu hóa hiệu suất làm việc, "
             f"giúp các nhóm phát triển tiết kiệm đáng kể thời gian và nguồn lực. "
-            f"Theo dữ liệu mới nhất, dự án đã nhận được hàng nghìn lượt đánh giá tích cực trên nền tảng mã nguồn mở. "
-            f"Một trong những lý do khiến {project_name} được đánh giá cao là kiến trúc module hóa, "
+            f"Là một dự án mã nguồn mở, {project_name} được chia sẻ công khai để cộng đồng cùng sử dụng, thử nghiệm và đóng góp. "
+            f"Một trong những lý do khiến {project_name} được chú ý là kiến trúc module hóa, "
             f"cho phép người dùng dễ dàng mở rộng và tùy biến theo nhu cầu riêng. "
             f"Hệ thống còn hỗ trợ tích hợp linh hoạt với nhiều nền tảng và công cụ phổ biến khác nhau. "
             f"Với khả năng mở rộng không giới hạn, {project_name} đang trở thành lựa chọn hàng đầu "
@@ -521,7 +559,7 @@ def _generate_script_offline(user_prompt: str) -> dict:
             f"Điểm nổi bật lớn nhất là khả năng tối ưu hóa hiệu suất làm việc cho nhóm phát triển.",
             f"Kiến trúc module hóa cho phép mở rộng và tùy biến theo nhu cầu riêng.",
             f"Hệ thống hỗ trợ tích hợp linh hoạt với nhiều nền tảng và công cụ phổ biến.",
-            f"Dự án đã nhận được hàng nghìn lượt đánh giá tích cực trên nền tảng mã nguồn mở.",
+            f"Là dự án mã nguồn mở, {project_name} được cộng đồng cùng sử dụng và đóng góp công khai.",
             f"{project_name} đang trở thành lựa chọn hàng đầu cho doanh nghiệp muốn tăng tốc phát triển.",
             f"Khả năng mở rộng không giới hạn giúp doanh nghiệp scale hệ thống dễ dàng.",
             f"Cộng đồng developer đánh giá đây là một trong những dự án đáng theo dõi nhất năm nay.",
@@ -532,7 +570,7 @@ def _generate_script_offline(user_prompt: str) -> dict:
         if len(sentences) < 8:
             # Pad with keyword-based sentences
             for kw in keywords[len(sentences):]:
-                sentences.append(f"Yếu tố {kw.title()} đóng vai trò quan trọng trong chiến lược tổng thể.")
+                sentences.append(f"Yếu tố {_smart_title(kw)} đóng vai trò quan trọng trong chiến lược tổng thể.")
                 if len(sentences) >= 10:
                     break
         body_text = " ".join(sentences[:8])
@@ -581,14 +619,14 @@ def _generate_script_offline(user_prompt: str) -> dict:
 
         # All scenes get bullets for richer visual
         kws = keywords[i*1: i*1+3] if len(keywords) > i+2 else keywords[:3]
-        scene["bullet_1"] = kws[0].title() if kws else ""
-        scene["bullet_2"] = kws[1].title() if len(kws) > 1 else ""
-        scene["bullet_3"] = kws[2].title() if len(kws) > 2 else ""
+        scene["bullet_1"] = _smart_title(kws[0]) if kws else ""
+        scene["bullet_2"] = _smart_title(kws[1]) if len(kws) > 1 else ""
+        scene["bullet_3"] = _smart_title(kws[2]) if len(kws) > 2 else ""
 
         scenes.append(scene)
 
     return {
-        "title": _make_title(keywords, intent),
+        "title": _make_title(keywords, intent, text),
         "narrator_text": narrator,
         "scenes": scenes,
         "hashtags": f"#SEOSONA #{intent.replace('_', '')} #Vietnam #AI #Marketing"
@@ -626,9 +664,66 @@ def _smart_offline_router(system_prompt: str, user_prompt: str, model_name: str)
 
 # ─── Public API ────────────────────────────────────────────────────
 
+def _extract_json_block(t):
+    """First BALANCED {...} or [...] in `t` — recovers JSON the model wrapped in prose/fences despite the
+    'output ONLY JSON' instruction. Respects strings + nesting; the EARLIEST of { or [ is the outer
+    structure, so an array of objects returns the whole array (not just the first object)."""
+    t = t or ""
+    starts = [(t.find(c), c, cl) for c, cl in (("{", "}"), ("[", "]")) if t.find(c) >= 0]
+    if not starts:
+        return None
+    i, oc, cc = min(starts)
+    depth, in_str, esc = 0, False, False
+    for j in range(i, len(t)):
+        c = t[j]
+        if in_str:
+            if esc:
+                esc = False
+            elif c == "\\":
+                esc = True
+            elif c == '"':
+                in_str = False
+        elif c == '"':
+            in_str = True
+        elif c == oc:
+            depth += 1
+        elif c == cc:
+            depth -= 1
+            if depth == 0:
+                return t[i:j + 1]
+    return None
+
+
+def _parse_json_or_none(text):
+    """Strip markdown fences + json.loads → dict/list, or None on failure. Unlike `_clean_and_parse`
+    this does NOT fall to offline — so a caller can try the NEXT real tier when one returns bad JSON."""
+    t = (text or "").strip()
+    t2 = t
+    for m in ("```json", "```"):
+        if t2.startswith(m):
+            t2 = t2[len(m):]
+    if t2.endswith("```"):
+        t2 = t2[:-3]
+    try:
+        return json.loads(t2.strip())
+    except Exception:
+        pass
+    # the model often wraps JSON in prose despite instructions ("Here is the JSON: … Hope this helps!") —
+    # recover the first balanced block instead of discarding a good response and falling through the cascade.
+    block = _extract_json_block(t)
+    if block:
+        try:
+            return json.loads(block)
+        except Exception:
+            pass
+    return None
+
+
 def generate_json_from_prompt(system_prompt: str, user_prompt: str, model_name: str = "gemini-2.5-flash") -> dict:
     """
-    Main LLM interface. Falls back to Smart Offline NLP if no API key.
+    Main LLM interface. Tries every real tier (Gemini→OpenAI→Z.ai→NVIDIA→Ollama), each PARSE-OR-CONTINUE
+    (a tier's bad JSON tries the next tier, not offline), and only falls to Smart Offline NLP when ALL of
+    them fail — so a single 429/503/bad-JSON never collapses straight to deterministic.
     """
     gemini_key = os.getenv("GEMINI_API_KEY")
     openai_key = os.getenv("OPENAI_API_KEY")
@@ -647,7 +742,7 @@ def generate_json_from_prompt(system_prompt: str, user_prompt: str, model_name: 
         from google.genai import types
         client = genai.Client(api_key=gemini_key)
         _chain, _seen = [], set()
-        for m in (model_name, "gemini-2.0-flash", "gemini-2.5-flash-lite", "gemini-1.5-flash"):
+        for m in (model_name, "gemini-2.0-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash-lite"):
             if m not in _seen:
                 _seen.add(m); _chain.append(m)
 
@@ -662,10 +757,12 @@ def generate_json_from_prompt(system_prompt: str, user_prompt: str, model_name: 
         last_err = None
         for m in _chain:
             try:
-                out = _gem(m)
-                if m != model_name:
-                    print(f"[LLM Engine] Gemini backup model '{m}' succeeded.")
-                return _clean_and_parse(out, system_prompt, user_prompt, model_name)
+                _p = _parse_json_or_none(_gem(m))      # parse-or-continue: bad JSON → try next tier, not offline
+                if _p is not None:
+                    if m != model_name:
+                        print(f"[LLM Engine] Gemini backup model '{m}' succeeded.")
+                    return _p
+                print(f"[LLM Engine] Gemini '{m}' returned unparseable JSON — next.")
             except Exception as e:
                 last_err = e
                 rate = any(s in str(e).lower() for s in ("429", "quota", "rate", "resource_exhausted", "exhausted"))
@@ -675,7 +772,9 @@ def generate_json_from_prompt(system_prompt: str, user_prompt: str, model_name: 
             print("[LLM Engine] Gemini chain exhausted — backoff 15s then 1 retry on primary…")
             _t.sleep(15)
             try:
-                return _clean_and_parse(_gem(model_name), system_prompt, user_prompt, model_name)
+                _p = _parse_json_or_none(_gem(model_name))
+                if _p is not None:
+                    return _p
             except Exception as e:
                 print(f"[LLM Engine] Gemini retry failed: {str(e)[:120]}. Trying next backup.")
         # fall through (NOT elif) to OpenAI / Ollama / offline below.
@@ -694,16 +793,31 @@ def generate_json_from_prompt(system_prompt: str, user_prompt: str, model_name: 
                     {"role": "user", "content": user_prompt}
                 ]
             )
-            text_response = response.choices[0].message.content.strip()
-            return _clean_and_parse(text_response, system_prompt, user_prompt, model_name)
+            _p = _parse_json_or_none(response.choices[0].message.content)
+            if _p is not None:
+                return _p
+            print("[LLM Engine] OpenAI returned unparseable JSON — trying next tier.")
         except Exception as e:
-            print(f"[LLM Engine] OpenAI error: {e}. Falling back to offline NLP.")
+            print(f"[LLM Engine] OpenAI error: {e}. Trying next tier.")
+
+    # --- Try Z.ai GLM + NVIDIA NIM (free cloud tiers) BEFORE local Ollama / deterministic, so the
+    # non-script tasks (thumbnail / carousel / social post) get the SAME resilient cascade the script
+    # path has (generate_json_strict). Otherwise a Gemini 503/quota drops straight to deterministic —
+    # exactly what "không hạ deterministic" forbids. Each returns raw JSON text or None. ---
+    for _name, _fn in (("Z.ai", _zai_scenes), ("NVIDIA", _nvidia_scenes)):
+        try:
+            _p = _parse_json_or_none(_fn(full_system_prompt, user_prompt))
+            if _p is not None:
+                print(f"[LLM Engine] {_name} tier succeeded (after Gemini/OpenAI).")
+                return _p
+        except Exception as _e:
+            print(f"[LLM Engine] {_name} tier error: {str(_e)[:80]}")
 
     # --- Try Ollama (FREE, local — run `ollama serve` + pull a model). Default path when no
     # cloud key is set; gated on a reachable daemon so it never blocks if Ollama is off. ---
-    ollama_out = _try_ollama_json(full_system_prompt, user_prompt)
-    if ollama_out is not None:
-        return _clean_and_parse(ollama_out, system_prompt, user_prompt, model_name)
+    _p = _parse_json_or_none(_try_ollama_json(full_system_prompt, user_prompt))
+    if _p is not None:
+        return _p
 
     # --- Smart Offline NLP Fallback ---
     print(f"[LLM Offline] No API key / Ollama. Running Smart NLP Engine...")
@@ -720,8 +834,13 @@ def _try_ollama_json(system_prompt: str, user_prompt: str):
     host = os.getenv("OLLAMA_HOST", "http://localhost:11434").rstrip("/")
     try:
         import requests
-        r = requests.post(f"{host}/api/chat", timeout=120, json={
-            "model": model, "stream": False, "format": "json",
+        # 300s covers a cold gemma3:12b load (~8GB) on first call; keep_alive holds it warm 30 min so
+        # subsequent scenes don't reload — makes Ollama a reliable floor, not a flaky one.
+        r = requests.post(f"{host}/api/chat", timeout=300, json={
+            "model": model, "stream": False, "format": "json", "keep_alive": "30m",
+            # num_predict lifts the output-token cap (default ~128 truncated the scenes JSON mid-array →
+            # parse failure → false "LLM failed"); num_ctx gives room for the spec + few-shot prompt.
+            "options": {"num_predict": 2048, "num_ctx": 8192, "temperature": 0.7},
             "messages": [{"role": "system", "content": system_prompt},
                          {"role": "user", "content": user_prompt}],
         })
@@ -732,6 +851,230 @@ def _try_ollama_json(system_prompt: str, user_prompt: str):
     except Exception as e:
         print(f"[LLM Engine] Ollama unavailable ({type(e).__name__}); falling back.")
     return None
+
+
+# ── Script-writing LLM cascade — REAL LLMs ONLY, never the offline NLP router ──────────────────
+# The generic generate_json_from_prompt() drops to a social/thumbnail NLP router on any hiccup, which
+# can't write scenes → the pipeline then falls to the deterministic template writer (formulaic, "mất tự
+# nhiên"). For SCRIPT writing we want the opposite: walk EVERY real LLM in the owner's preferred order
+# (Gemini → OpenAI → Ollama → Claude), validate each returns scenes-shaped JSON, retry the NEXT tier on
+# failure/bad-shape, and return None ONLY when all real LLMs are down — so deterministic is a true last
+# resort that almost never triggers (Ollama gemma3:12b alone keeps a natural-language model always on).
+def _strip_fences(t):
+    t = (t or "").strip()
+    if t.startswith("```"):
+        t = t[t.find("\n") + 1:] if "\n" in t else t.strip("`")
+        if t.endswith("```"):
+            t = t[:-3]
+    return t.strip()
+
+
+def _loads_block_or_none(txt):
+    """json.loads the first balanced JSON block in `txt` (prose-wrapped recovery), or None."""
+    block = _extract_json_block(txt or "")
+    if not block:
+        return None
+    try:
+        return json.loads(block)
+    except Exception:
+        return None
+
+
+def _scenes_ok(txt):
+    """Parse + shape-check: must be a dict with a non-empty 'scenes' list."""
+    try:
+        d = json.loads(_strip_fences(txt))
+    except Exception:
+        d = _loads_block_or_none(txt)          # recover prose-wrapped JSON before giving up on this tier
+    return d if isinstance(d, dict) and isinstance(d.get("scenes"), list) and d["scenes"] else None
+
+
+# ─── Circuit-breaker for API keys (pattern mined from OmniRoute, 2026-07-01) ───────
+# A key that just returned 429/quota/rate is "tripped" and skipped for a cooldown window
+# instead of being re-tried first on every call (which wastes a round-trip getting 429 again).
+# In-memory, process-scoped — enough for the long-lived loop/queue-processor + a single run.
+_KEY_COOLDOWN = {}                                            # api_key -> epoch when usable again
+_KEY_COOLDOWN_S = int(os.getenv("SEOSONA_KEY_COOLDOWN_S", "300"))   # default 5 min
+
+def _key_ready(key: str) -> bool:
+    return time.time() >= _KEY_COOLDOWN.get(key, 0)
+
+def _trip_key(key: str, seconds: int = None):
+    _KEY_COOLDOWN[key] = time.time() + (seconds or _KEY_COOLDOWN_S)
+
+
+def _gemini_keys():
+    """All configured Gemini keys, in order: GEMINI_API_KEY, then GEMINI_API_KEY_2..N, plus any in a
+    comma-separated GEMINI_API_KEYS. Rotating keys multiplies the free per-key quota (429 → next key)."""
+    keys = [os.getenv("GEMINI_API_KEY")]
+    for i in range(2, 11):
+        keys.append(os.getenv(f"GEMINI_API_KEY_{i}"))
+    keys += (os.getenv("GEMINI_API_KEYS", "").split(","))
+    seen, out = set(), []
+    for k in keys:
+        k = (k or "").strip()
+        if k and k not in seen:
+            seen.add(k); out.append(k)
+    return out
+
+
+def _gemini_scenes(sysp, userp):
+    keys = _gemini_keys()
+    if not keys:
+        return None
+    try:
+        from google import genai
+        from google.genai import types
+    except Exception:
+        return None
+    models = ("gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash-lite")
+    # circuit-breaker order: keys not cooling-down FIRST; tripped keys only as a last resort
+    # (so we skip re-hitting a known-exhausted key, but never hard-fail while a key might have reset).
+    order = [k for k in keys if _key_ready(k)] + [k for k in keys if not _key_ready(k)]
+    for key in order:
+        ki = keys.index(key)                              # original position, for the log line
+        try:
+            c = genai.Client(api_key=key)
+        except Exception:
+            continue
+        rate_limited = False
+        for m in models:                                  # try every model on this key before rotating
+            try:
+                r = c.models.generate_content(model=m, contents=userp,
+                    config=types.GenerateContentConfig(system_instruction=sysp,
+                                                       response_mime_type="application/json"))
+                if r.text:
+                    if ki:
+                        print(f"[LLM scenes] Gemini key #{ki + 1} used (earlier keys exhausted).")
+                    return r.text
+            except Exception as e:
+                if any(s in str(e).lower() for s in ("429", "quota", "rate", "exhausted", "resource")):
+                    rate_limited = True                    # note it, keep trying other models
+                else:
+                    print(f"[LLM scenes] Gemini {m} (key#{ki + 1}): {str(e)[:70]}")
+        if rate_limited:                                  # every model on this key hit quota → cool it down
+            _trip_key(key)
+            print(f"[LLM scenes] key #{ki + 1} tripped (cooldown {_KEY_COOLDOWN_S}s).")
+    return None
+
+
+def _openai_scenes(sysp, userp):
+    key = os.getenv("OPENAI_API_KEY")
+    if not key:
+        return None
+    try:
+        import openai
+        c = openai.OpenAI(api_key=key)
+        r = c.chat.completions.create(model="gpt-4o-mini", response_format={"type": "json_object"},
+            messages=[{"role": "system", "content": sysp}, {"role": "user", "content": userp}])
+        return r.choices[0].message.content
+    except Exception as e:
+        print(f"[LLM scenes] OpenAI: {str(e)[:80]}")
+        return None
+
+
+def _zai_scenes(sysp, userp):
+    """Z.ai GLM free tier (GLM-4.5-Flash / GLM-4.7-Flash) — OpenAI-compatible cloud, $0 (rate ~1 QPS).
+    Uses urllib (no openai-version coupling); JSON is forced by the prompt, validated by _scenes_ok."""
+    key = os.getenv("ZAI_API_KEY")
+    if not key:
+        return None
+    model = os.getenv("SEOSONA_ZAI_MODEL", "glm-4.5-flash")
+    try:
+        import urllib.request
+        body = json.dumps({"model": model, "messages": [
+            {"role": "system", "content": sysp}, {"role": "user", "content": userp}]}).encode()
+        req = urllib.request.Request("https://api.z.ai/api/paas/v4/chat/completions", data=body,
+            headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=90) as r:
+            j = json.loads(r.read())
+        return j["choices"][0]["message"]["content"]
+    except Exception as e:
+        print(f"[LLM scenes] Z.ai: {str(e)[:80]}")
+        return None
+
+
+def _nvidia_scenes(sysp, userp):
+    """NVIDIA NIM free tier (Llama-3.3-70B / Qwen2.5-72B) — OpenAI-compatible cloud, $0 (~40 RPM, finite
+    credits → a FALLBACK, not primary). Better Vietnamese than the local Ollama floor. urllib, no dep."""
+    key = os.getenv("NVIDIA_API_KEY")
+    if not key:
+        return None
+    model = os.getenv("SEOSONA_NVIDIA_MODEL", "meta/llama-3.3-70b-instruct")
+    try:
+        import urllib.request
+        body = json.dumps({"model": model, "temperature": 0.7, "messages": [
+            {"role": "system", "content": sysp}, {"role": "user", "content": userp}]}).encode()
+        req = urllib.request.Request("https://integrate.api.nvidia.com/v1/chat/completions", data=body,
+            headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=150) as r:   # 70B can cold-start slow; it's a fallback tier
+            j = json.loads(r.read())
+        return j["choices"][0]["message"]["content"]
+    except Exception as e:
+        print(f"[LLM scenes] NVIDIA: {str(e)[:80]}")
+        return None
+
+
+def _anthropic_scenes(sysp, userp):
+    """Claude tier ('bạn'). Dormant until ANTHROPIC_API_KEY is set; then it's an automated tier."""
+    key = os.getenv("ANTHROPIC_API_KEY")
+    if not key:
+        return None
+    try:
+        import anthropic
+        c = anthropic.Anthropic(api_key=key)
+        r = c.messages.create(model=os.getenv("SEOSONA_ANTHROPIC_MODEL", "claude-sonnet-5"),
+            max_tokens=2000, system=sysp, messages=[{"role": "user", "content": userp}])
+        return "".join(b.text for b in r.content if getattr(b, "type", "") == "text")
+    except Exception as e:
+        print(f"[LLM scenes] Claude: {str(e)[:80]}")
+        return None
+
+
+def _json_ok(txt, require_key=None):
+    """Parse + optional shape-check: a dict, and (if given) `require_key` present + truthy."""
+    try:
+        d = json.loads(_strip_fences(txt))
+    except Exception:
+        d = _loads_block_or_none(txt)          # recover prose-wrapped JSON before giving up on this tier
+    if not isinstance(d, dict):
+        return None
+    return d if (not require_key or d.get(require_key)) else None
+
+
+def generate_json_strict(system_prompt, user_prompt, require_key=None):
+    """Robust REAL-LLM JSON cascade shared by EVERY generative video path (news scenes AND course
+    cut-plans). Order = Gemini (keys rotated) → Z.ai GLM (free cloud) → OpenAI → Ollama (local free) →
+    Claude, each shape-validated on `require_key`, retrying the NEXT tier on failure/bad-shape. NEVER
+    the offline social/thumbnail NLP router. Returns the dict, or None if ALL real LLMs fail (→ the
+    caller's deterministic fallback). `SEOSONA_REQUIRE_LLM=1` aborts instead of returning None."""
+    tiers = (("Gemini", _gemini_scenes), ("Z.ai", _zai_scenes), ("NVIDIA", _nvidia_scenes),
+             ("OpenAI", _openai_scenes), ("Ollama", lambda s, u: _try_ollama_json(s, u)),
+             ("Claude", _anthropic_scenes))
+    for name, fn in tiers:
+        try:
+            out = fn(system_prompt, user_prompt)
+        except Exception as e:
+            print(f"[LLM json] {name} raised: {str(e)[:80]}")
+            continue
+        d = _json_ok(out, require_key) if out else None
+        if d:
+            print(f"[LLM json] ✓ {name}" + (f" (key='{require_key}')" if require_key else ""))
+            return d
+    if os.getenv("SEOSONA_REQUIRE_LLM") == "1":
+        raise RuntimeError("SEOSONA_REQUIRE_LLM=1: mọi LLM thật đều lỗi — dừng thay vì deterministic")
+    print("[LLM json] ⚠ TẤT CẢ LLM thật đều lỗi → caller dùng deterministic (bật Ollama/thêm key để tránh)")
+    return None
+
+
+def generate_scenes_json(system_prompt, user_prompt):
+    """Write video scenes with a REAL LLM or return None. Thin wrapper over generate_json_strict."""
+    js = ("\n\nCRITICAL: xuất DUY NHẤT JSON hợp lệ dạng "
+          '{"scenes":[{"text_vi":"...","h1":"...","h2":"..."}]}. Bắt đầu bằng {.')
+    d = generate_json_strict((system_prompt or "") + js, user_prompt, require_key="scenes")
+    if d:
+        print(f"[LLM scenes] ✓ {len(d['scenes'])} cảnh")
+    return d
 
 
 def _clean_and_parse(text: str, sys_p: str, user_p: str, model: str) -> dict:

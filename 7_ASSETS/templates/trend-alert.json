@@ -1,0 +1,56 @@
+{
+ "name": "trend-alert",
+ "title": "Cảnh báo xu hướng",
+ "description": "Xu hướng mới nổi — số liệu + vì sao + cách đón đầu (GEO/AEO, AI agents).",
+ "when_to_use": "Khi đưa tin một XU HƯỚNG đang lên, cần thuyết phục bằng dữ liệu + lời khuyên hành động.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": "bignum",
+   "accent": "orange",
+   "kicker_hint": "XU HƯỚNG",
+   "hero": true
+  },
+  {
+   "component": null,
+   "accent": "blue",
+   "kicker_hint": "BỐI CẢNH"
+  },
+  {
+   "component": "stats",
+   "accent": "green",
+   "kicker_hint": "SỐ LIỆU"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "VÌ SAO"
+  },
+  {
+   "component": "steps",
+   "accent": "blue",
+   "kicker_hint": "ĐÓN ĐẦU"
+  },
+  {
+   "component": "tip",
+   "accent": "green",
+   "kicker_hint": "HÀNH ĐỘNG"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "blue",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "cta",
+   "accent": "orange",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

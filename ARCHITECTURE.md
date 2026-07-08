@@ -4,6 +4,29 @@
 
 SEOSONA Video Factory is a multi-brand automated video production system connected to SEOSONA OS through `~/.seosona`. It supports scripted video creation, URL-based research, YouTube download/repurpose flows, subtitle generation, thumbnail generation, and HyperFrames rendering.
 
+## Two-part model (system vs factory)
+
+SEOSONA Video is **two parts** sharing one codebase. Adopt every repo/knowledge into the part it serves.
+
+1. **THE SYSTEM** — brain & infrastructure: how it learns, decides, vets, schedules, guards,
+   observes, improves. *Tiers:* `1_AGENTS` · `2_KNOWLEDGE` (knowledge + ingestion + REPO_VETTING_SOP
+   + INGESTION_LOG + REPO_WATCHLIST) · `3_MEMORY` · `6_SOP` · `9_DASHBOARD` (obs + feedback) ·
+   `scripts/` loop infra (queue_processor · loop_guard · discovery · daily_production) ·
+   `4_BRAIN/llm_engine` routing · `1_CONFIG` + publisher · SEOSONA-OS/UAP integration.
+   **Fitting repos:** ingestion tools (markitdown, gitingest), agent/skill catalogs, RAG/knowledge,
+   model routers, observability.
+
+2. **THE FACTORY** — the video production line: topic → script → voice + captions → render →
+   SFX/BGM → evaluate → output → publish. *Tiers:* `0_INPUT_INBOX` · `4_BRAIN` engine
+   (video_engine · native_composer · scene_writer) · `2_SKILLS` (voice/srt/clipper/thumbnail) ·
+   `5_FRAMEWORK` HyperFrames · `7_ASSETS` (DESIGN.md/fonts/sfx/bgm) · `2_KNOWLEDGE/domain_skills`
+   + `hyperframes/craft` (content/motion craft) · `8_WORKSPACE` outputs.
+   **Fitting repos:** video/motion craft, TTS, SEO/copywriting/design knowledge, templates,
+   infographic/thumbnail craft. (Full video pipelines = SKIP; they'd replace the engine.)
+
+> Rule of thumb: *does it make the SYSTEM smarter, or the FACTORY's videos better?* → put it
+> there, via `6_SOP/REPO_VETTING_SOP.md`, logged in `INGESTION_LOG.md`. See `REPO_WATCHLIST.md`.
+
 ## Architecture Diagram
 
 ```mermaid

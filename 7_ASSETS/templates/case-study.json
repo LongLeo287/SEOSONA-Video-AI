@@ -1,0 +1,56 @@
+{
+ "name": "case-study",
+ "title": "Case Study / Câu chuyện",
+ "description": "Câu chuyện vấn đề → hành động → kết quả (1 thương hiệu tăng X% nhờ Y).",
+ "when_to_use": "Khi có một CASE thật: nỗi đau cụ thể → giải pháp → con số kết quả.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "orange",
+   "kicker_hint": "VẤN ĐỀ",
+   "hero": true
+  },
+  {
+   "component": "quote",
+   "accent": "blue",
+   "kicker_hint": "NỖI ĐAU"
+  },
+  {
+   "component": "steps",
+   "accent": "green",
+   "kicker_hint": "GIẢI PHÁP"
+  },
+  {
+   "component": "compare",
+   "accent": "orange",
+   "kicker_hint": "TRƯỚC / SAU"
+  },
+  {
+   "component": "bignum",
+   "accent": "blue",
+   "kicker_hint": "KẾT QUẢ"
+  },
+  {
+   "component": "tip",
+   "accent": "green",
+   "kicker_hint": "BÀI HỌC"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "blue",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "cta",
+   "accent": "orange",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

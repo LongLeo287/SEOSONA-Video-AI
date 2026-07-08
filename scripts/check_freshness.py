@@ -18,7 +18,7 @@ import json, sys, subprocess, urllib.request
 # The engines/libraries that define the system. Keep this list curated, not noisy.
 NPM = ["hyperframes", "@hyperframes/producer", "@hyperframes/shader-transitions"]
 PY = ["vieneu", "faster-whisper", "transformers", "torch", "demucs", "librosa",
-      "soundfile", "edge-tts", "playwright", "openai", "google-genai", "neucodec",
+      "soundfile", "playwright", "openai", "google-genai", "neucodec",
       "peft", "sea-g2p"]
 
 

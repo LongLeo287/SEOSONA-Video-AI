@@ -245,5 +245,29 @@
         </div>
     </div>
 
+    <script>
+    /* Auto-fit: the title font-size is fixed, so a long (but ≤12-word, Python-capped) headline can wrap to
+       too many lines or overflow its width. Shrink each visible .main-title until it fits ≤4 lines and no
+       horizontal overflow, floored so it never gets tiny. Runs synchronously before the screenshot. */
+    (function () {
+      document.querySelectorAll('.canvas').forEach(function (cv) {
+        if (getComputedStyle(cv).display === 'none') return;
+        cv.querySelectorAll('.main-title').forEach(function (el) {
+          var floor = 46, maxLines = 4, guard = 40;
+          function lineCount() {
+            var lh = parseFloat(getComputedStyle(el).lineHeight);
+            if (!lh || isNaN(lh)) lh = parseFloat(getComputedStyle(el).fontSize) * 1.1;
+            return Math.round(el.offsetHeight / lh);
+          }
+          while (guard-- > 0) {
+            var fs = parseFloat(getComputedStyle(el).fontSize);
+            var fits = lineCount() <= maxLines && el.scrollWidth <= el.clientWidth + 1;
+            if (fits || fs <= floor) break;
+            el.style.fontSize = Math.max(floor, fs * 0.93) + 'px';
+          }
+        });
+      });
+    })();
+    </script>
 </body>
 </html>

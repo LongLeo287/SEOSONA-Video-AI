@@ -20,6 +20,15 @@ from importlib import import_module
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if ROOT not in sys.path: sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.dirname(__file__))
+
+# Load .env NOW (before fetch_github's `gh api`) so GITHUB_TOKEN authenticates the repo fetch
+# (60→5000 req/hr) and OPENAI_API_KEY is available as the LLM fallback. Best-effort.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(ROOT, ".env"))
+except Exception:
+    pass
+
 from scene_composer import fetch_github, repo_data_slots, compose
 import native_composer as nc
 
@@ -36,6 +45,17 @@ def _weak_templates():
         return {t for t, v in s.items() if v.get("n", 0) >= 3 and v.get("pass_rate", 1) < 0.7}
     except Exception:
         return set()
+
+# Curated archetype LIBRARY (7_ASSETS/templates) — each is a DISTINCT structure with content-specific
+# VN kickers (LẦM TƯỞNG / CÀI ĐẶT / ĐỐI ĐẦU…). The news pipeline rotates across these for real variety
+# instead of one fixed dynamic skeleton (user 2026-07-03: "sao không random template").
+_NEWS_ARCHETYPES = [
+    "ai-news-flash", "benchmark-news", "case-study", "data-news", "deep-tutorial", "faq",
+    "insight-explainer", "launch", "listicle-top5", "myth-buster", "opinion-insight", "quick-tip",
+    "repo-showcase", "resource-list", "seo-explainer", "tool-walkthrough", "transformation",
+    "trend-alert", "tutorial-gittree", "versus-deep",
+]
+
 
 # ---------------------------------------------------------------- classify
 def classify(gh):
@@ -95,7 +115,7 @@ _INSTALL = {"python": "pip install", "go": "go install", "rust": "cargo install"
 def _clean(s, maxlen=90):
     """Strip emoji/symbols + trailing punctuation; truncate at a word boundary.
     Keeps spoken/display prose clean (descs often start with an emoji or end '.')."""
-    s = re.sub(r"[^\w\sÀ-ỹ.,:;/+&()-]", "", str(s or "")).strip()
+    s = re.sub(r"[^\w\sÀ-ỹ.,:;/+&()%#-]", "", str(s or "")).strip()  # keep % (100%) and # (C#)
     s = re.sub(r"\s+", " ", s).rstrip(" .")
     if len(s) > maxlen:
         s = s[:maxlen].rsplit(" ", 1)[0]
@@ -144,7 +164,10 @@ def _mockup(gh):
     # browser chrome — real visuals beat synthetic tiles. Else fall back to the data tiles.
     shots = gh.get("_shots") or []
     if shots:
-        return {"img": shots[0]["img"], "url": shots[0]["url"], "title": gh.get("name", "")}
+        # `scroll` = a real page-scroll recording (native_composer overlays it as live footage over the
+        # static screenshot). None if capture failed → static screenshot only.
+        return {"img": shots[0]["img"], "url": shots[0]["url"], "title": gh.get("name", ""),
+                "scroll": gh.get("_scroll")}
     return {"url": gh.get("full") or gh.get("url", "github.com"),
             "tiles": [(gh.get("stars_h", "0"), "Sao"),
                       (gh.get("lang") or "Đa nền", "Ngôn ngữ"),
@@ -199,6 +222,28 @@ def _record_opening(repo, opening):
 
 
 # ---------------------------------------------------------------- Gemini prose
+def _grounding(gh):
+    """The REAL knowledge block (from the README digest) that both the outline + script are built on —
+    so scenes state true facts (what it is, real features, real install) instead of fabricating."""
+    f = gh.get("readme_facts") or {}
+    if not f:
+        return ""
+    parts = ["=== KIẾN THỨC THẬT (từ README — CHỈ dùng dữ kiện trong đây, KHÔNG bịa ngoài) ==="]
+    if f.get("overview"):
+        parts.append(f"• Nó là gì / làm gì: {f['overview']}")
+    if f.get("features"):
+        parts.append("• Điểm/tính năng thật:\n  - " + "\n  - ".join(f["features"][:8]))
+    if f.get("usage"):
+        parts.append("• Cách dùng / cách hoạt động THẬT:\n  - " + "\n  - ".join(f["usage"][:6]))
+    if f.get("install"):
+        parts.append("• Lệnh cài THẬT (dùng đúng, đừng bịa 'pip install <tên>'):\n  " + "\n  ".join(f["install"][:4]))
+    if f.get("use_cases"):
+        parts.append("• Dùng để làm gì / ai dùng:\n  - " + "\n  - ".join(f["use_cases"][:4]))
+    if f.get("sections"):
+        parts.append("• Các phần trong tài liệu: " + ", ".join(f["sections"][:10]))
+    return "\n".join(parts) + "\n"
+
+
 def _gemini_outline(gh, kinds):
     """Stage 1 of a two-stage script (pattern adopted from ArcReel/Toonflow, re-implemented
     natively — their image/character/storyboard machinery is N/A to our faceless HTML engine,
@@ -232,12 +277,13 @@ def _gemini_outline(gh, kinds):
     userp = (f"Repo: {name}\nMô tả (tiếng Anh): {desc}\n"
              f"Sao: {gh.get('stars_h')}, ngôn ngữ: {gh.get('lang')}, "
              f"chủ đề: {', '.join((gh.get('topics') or [])[:6])}\n"
+             f"{_grounding(gh)}"
              f"Số cảnh: {n}. Vai trò trực quan từng cảnh: {kinds}\n"
              f"{avoid}"
              f"Trả JSON: {{\"focus\":[\"trọng tâm cảnh 1 (3-8 từ)\", ...]}} đúng {n} phần tử; "
              f"cảnh cuối = kêu gọi theo dõi SEOSONA.")
     try:
-        out = llm_engine.generate_json_from_prompt(sysp, userp, model_name="gemini-2.5-flash")
+        out = llm_engine.generate_json_strict(sysp, userp, require_key="focus")   # robust cascade
         foci = out.get("focus") if isinstance(out, dict) else (out if isinstance(out, list) else None)
         if not foci or len(foci) < n:
             return None
@@ -246,7 +292,7 @@ def _gemini_outline(gh, kinds):
         return None
 
 
-def _gemini_script(gh, scenes, feedback=None):
+def _gemini_script(gh, scenes, feedback=None, fallback=None):
     """Write clean Vietnamese segments + 2-tone headings via the LLM (Gemini free tier
     when GEMINI_API_KEY is set; offline → returns None so the deterministic path runs).
     Fixes 'voice lỗi tiếng Việt': the LLM TRANSLATES the English desc and never dumps raw
@@ -259,19 +305,28 @@ def _gemini_script(gh, scenes, feedback=None):
         return None  # cloud Gemini OR local Ollama; offline NLP can't translate/ground well
     kinds = [sc.get("component") or "text" for sc in scenes]
     name, desc = gh.get("name", ""), (gh.get("desc") or "")
-    # Prompt hardened with prompt-master gems (MIT): explicit role + GROUNDING (no fabrication)
-    # + Gemini-specific guard (it hallucinates stats / drifts format). Brand tone locked.
-    sysp = ("Bạn là biên kịch video tin tức công nghệ tiếng Việt cho kênh SEOSONA "
-            "(thương hiệu: xanh #2A5BDA / cam #E2724D, tông chuyên nghiệp, khán giả VN). "
-            "Viết kịch bản NGẮN, tự nhiên, thuần Việt. TUYỆT ĐỐI KHÔNG chèn nguyên câu "
-            "tiếng Anh vào lời đọc; DỊCH mô tả sang tiếng Việt. Tên repo đọc tự nhiên, "
-            "lần đầu nêu tên rồi sau gọi 'dự án này' / 'công cụ này' (đừng lặp slug). "
-            "Mỗi cảnh 1 ý nhưng KHAI TRIỂN ĐỦ Ý — ~30-42 từ/cảnh (mục tiêu video ~90 giây, đừng viết quá ngắn). "
-            "Số đọc bình thường. "
-            "ĐA DẠNG MỞ ĐẦU (rất quan trọng, từ OpenMontage): mỗi cảnh mở đầu bằng từ/cấu trúc KHÁC nhau "
-            "— KHÔNG từ mở đầu nào lặp ≥2 lần (đừng cảnh nào cũng 'Với', 'Đây', 'Ngoài ra'); tự kiểm lại trước khi trả. "
-            "GROUNDING: CHỈ dùng dữ kiện được cung cấp (tên/mô tả/sao/ngôn ngữ/chủ đề); "
-            "TUYỆT ĐỐI KHÔNG bịa số liệu, tính năng, hay khẳng định không có trong dữ kiện.")
+    # Build on the ONE canonical rulebook (script_writer._system_prompt → MASTER_VIDEO_SPEC + grounding),
+    # not a second inline copy of the grounding rules. Only the GitHub-specific delta stays here (repo-slug
+    # handling, word-count target, seg-JSON shape). Falls back to a compact base if script_writer is absent.
+    try:
+        _base = import_module("script_writer")._system_prompt()
+    except Exception:
+        _base = ("Bạn là biên kịch video ngắn tiếng Việt cho SEOSONA. Viết thuần Việt, súc tích; "
+                 "CHỈ dùng dữ kiện được cấp, KHÔNG bịa số/tên; KHÔNG chèn câu tiếng Anh; mỗi cảnh mở đầu khác nhau.")
+    sysp = (_base + "\n\n=== BỔ SUNG (video tin tức từ GitHub) ===\n"
+            "- DỊCH mô tả tiếng Anh sang tiếng Việt; tên repo: lần đầu nêu tên, sau gọi 'dự án này'/'công cụ này' (đừng lặp slug).\n"
+            "- ĐỘ DÀI MỖI CẢNH: TỐI THIỂU 30 từ, lý tưởng 35-45 từ. Cảnh DƯỚI 30 từ là LỖI (trôi quá nhanh, "
+            "người xem chưa kịp đọc/hiểu) — phải giải thích TRỌN Ý, thêm chi tiết cụ thể từ grounding, đừng "
+            "viết cụt kiểu tiêu đề. Tổng cả video ~230-280 từ (~85-95 giây). Số đọc bình thường.\n"
+            "- NỘI DUNG PHẢI CỤ THỂ, CẤM lý thuyết suông / marketing rỗng ('mạnh mẽ', 'nổi bật', 'tuyệt vời' "
+            "mà không nói RÕ làm được gì). Xem xong người xem phải BIẾT ĐỦ: (1) chính xác NÓ LÀ GÌ + giải "
+            "quyết vấn đề gì; (2) TÍNH NĂNG cụ thể — nói rõ làm được ĐIỀU GÌ; (3) CÁCH DÙNG/CÀI ĐẶT thật "
+            "(bước/lệnh thật trong grounding); (4) DÙNG ĐỂ LÀM GÌ / ứng dụng thực tế. Mỗi ý phải bám dữ kiện "
+            "grounding, KHÔNG chế thêm.\n"
+            "- CHÍNH XÁC SỐ LIỆU (nhất là ở HOOK): số 'Sao' là LƯỢT SAO GitHub (người quan tâm/đánh dấu) — "
+            "chỉ mô tả đúng vậy ('X lượt sao', 'X sao trên GitHub', 'được X người quan tâm'). TUYỆT ĐỐI KHÔNG "
+            "phóng đại thành 'X lập trình viên/người dùng TIN TƯỞNG / TIN DÙNG / đang dùng' — sao ≠ số người "
+            "dùng và ≠ sự tin tưởng. Giữ đúng Ý NGHĨA gốc của mọi con số, đừng đổi thành tuyên bố mạnh hơn.")
     # Stage 1: plan a coherent arc first (graceful — None → write without it = old behavior).
     plan = _gemini_outline(gh, kinds)
     plan_txt = ""
@@ -281,23 +336,34 @@ def _gemini_script(gh, scenes, feedback=None):
     userp = (f"Repo GitHub: {name}\nMô tả (tiếng Anh, hãy DỊCH): {desc}\n"
              f"Sao: {gh.get('stars_h')}, ngôn ngữ: {gh.get('lang')}, "
              f"chủ đề: {', '.join((gh.get('topics') or [])[:6])}\n"
+             f"{_grounding(gh)}"
              f"Số cảnh: {len(scenes)}. Vai trò từng cảnh: {kinds}\n"
              f"{plan_txt}"
              f"{('BẢN TRƯỚC BỊ LỖI, hãy SỬA hết: ' + feedback + chr(10)) if feedback else ''}"
              f"Trả JSON: {{\"scenes\":[{{\"seg\":\"lời đọc\",\"h1\":\"dòng 1 (≤22)\","
-             f"\"h2\":\"từ nhấn (≤22)\"}}]}} đúng {len(scenes)} phần tử, cảnh cuối là CTA theo dõi SEOSONA.")
+             f"\"h2\":\"từ nhấn (≤22)\"}}]}} đúng {len(scenes)} phần tử. Cảnh cuối CHỈ có MỘT CTA: theo dõi "
+             f"SEOSONA — TUYỆT ĐỐI KHÔNG kêu gọi truy cập/ghé/tải tại trang web hay tên miền ngoài "
+             f"(vd '...io', '...com'); được nêu TÊN dự án như dữ kiện trung tính nhưng KHÔNG dẫn người xem rời kênh.")
     try:
-        out = llm_engine.generate_json_from_prompt(sysp, userp, model_name="gemini-2.5-flash")
+        out = llm_engine.generate_json_strict(sysp, userp, require_key="scenes")   # robust cascade
         rows = out.get("scenes") if isinstance(out, dict) else (out if isinstance(out, list) else None)
-        if not rows or len(rows) < len(scenes):
+        n = len(scenes)
+        # Only give up (→ deterministic) if the LLM gave WAY too few. If it wrote most scenes, KEEP them
+        # and pad the tail from the deterministic draft — don't discard good LLM prose over a count mismatch.
+        if not rows or len(rows) < max(3, n - 3):
             return None
         import re as _re
         def _clean_voice(s):
             s = _re.sub(r"[\U0001F000-\U0001FAFF\U00002600-\U000027BF]", "", str(s))  # emoji
             s = _re.sub(r"https?://\S+|[→&%$#=]", " ", s)                              # urls/symbols
             return _re.sub(r"\s+", " ", s).strip()
-        SEG = [_clean_voice(r.get("seg", "")) for r in rows[:len(scenes)]]
-        HEAD = [(str(r.get("h1", name)).strip(), str(r.get("h2", "")).strip()) for r in rows[:len(scenes)]]
+        SEG = [_clean_voice(r.get("seg", "")) for r in rows[:n]]
+        HEAD = [(str(r.get("h1", name)).strip(), str(r.get("h2", "")).strip()) for r in rows[:n]]
+        if fallback and len(SEG) < n:                    # pad missing tail from the deterministic draft
+            fSEG, fHEAD = fallback
+            for i in range(len(SEG), n):
+                SEG.append(fSEG[i] if i < len(fSEG) else "")
+                HEAD.append(fHEAD[i] if i < len(fHEAD) else (name, ""))
         if any(not s for s in SEG):
             return None
         return SEG, HEAD
@@ -311,12 +377,42 @@ def _gemini_script(gh, scenes, feedback=None):
 # rules a model often misses — cheap, deterministic, no LLM call. Warns (non-blocking).
 _LINT_FORBIDDEN = ("trong video này", "hôm nay mình", "như các bạn đã biết", "kính thưa")
 _LINT_EN_OK = {"ai", "github", "python", "api", "seo", "app", "web", "ios", "css", "html",
-               "js", "go", "rust", "sql", "llm", "ui", "ux", "pdf", "cli", "gpu", "open", "source"}
+               "js", "go", "rust", "sql", "llm", "ui", "ux", "pdf", "cli", "gpu", "open", "source",
+               # tech loanwords standard in Vietnamese dev speech — flagging these as English-leak
+               # forced a needless corrective-rewrite on ~every tech-showcase render (burned free quota)
+               "import", "export", "backend", "frontend", "repository", "repo", "framework", "database",
+               "server", "client", "dataset", "plugin", "template", "widget", "docker", "javascript",
+               "typescript", "watermark", "browser", "script", "folder", "upload", "download", "online",
+               "offline", "classification", "agents", "output", "prompt", "reddit", "server", "zero"}
+# Off-platform-CTA guard lives in ONE place — content_moderation.off_platform_domain (also used by the
+# topic/discover path via verify Gate 3) — so both video paths share a single source of truth. A bare
+# domain (no scheme, slips past _clean_voice's `https?://` strip) in the CTA scene or after a visit-verb
+# sends viewers OFF SEOSONA; neutral platform names WITHOUT a domain ("mã nguồn trên GitHub") don't trip.
+# English-SENTENCE guard: the per-token English-leak check only fires on LONG (6+) lowercase words and
+# skips Title-case — so a full English CTA built from short/Title words ("Go to X to try it now. Follow
+# SEOSONA for more tips.") evades it. These are unambiguous English function words with NO Vietnamese
+# syllable collision (deliberately excludes VN-colliding shorts like to/go/it/can/may/in/so/co/do); ≥2 in
+# one segment ⇒ the segment is English, not Vietnamese (voice MUST be Vietnamese).
+_EN_STOP = {"the", "for", "your", "you", "with", "and", "now", "try", "more", "follow", "get", "click",
+            "here", "this", "that", "how", "why", "our", "free", "download", "watch", "subscribe", "tips",
+            "best", "new", "from", "are", "will", "about", "just", "only", "also", "what", "when", "where",
+            "which", "their", "them", "have", "has", "who", "been", "does", "not", "but", "out", "own"}
+# Stars-inflation guard: the ONLY big count a GitHub showcase is given is the STAR count, so a segment
+# that turns "N stars" into "N (users/developers) TRUST it" is a meaning-inflation (a star ≠ a user, ≠
+# trust). Tell = a ≥1000 number + a user/dev noun + a TRUST verb specifically (not generic "sử dụng",
+# so a real "supports N concurrent users" capacity fact does NOT false-trip). Prompt rule alone was
+# advisory; the loop kept producing it ("4665 người dùng đã tin tưởng"), so enforce it via the rewrite.
+_INFLATE_BIGNUM = __import__("re").compile(r"\b\d[\d.,]{3,}\b")
+_INFLATE_USER = ("người dùng", "lập trình viên", "nhà phát triển", "thành viên", "developer")
+_INFLATE_TRUST = ("tin tưởng", "tin dùng", "tin cậy")
 
 def _lint_script(SEG, HEAD, kinds, name="", label=""):
     import re as _re
     from collections import Counter
     warn = []
+    # a hyphenated repo name ("agency-agents") splits into parts ("agency","agents") that the per-token
+    # English-leak check would otherwise flag — the project's OWN name is never an English leak.
+    _name_parts = {p for p in _re.split(r"[-_ ]+", name.lower()) if len(p) >= 2}
     if SEG:
         last = SEG[-1].lower()
         if "seosona" not in last and "theo dõi" not in last:
@@ -334,11 +430,24 @@ def _lint_script(SEG, HEAD, kinds, name="", label=""):
         for ph in _LINT_FORBIDDEN:
             if ph in s.lower():
                 warn.append(f"cảnh {i}: cụm cấm '{ph}'")
-        for tok in _re.findall(r"[A-Za-z][A-Za-z]{5,}", s):       # English-leak suspect
+        try:                                                       # off-platform CTA (brand-safety, shared gate)
+            _dm = import_module("content_moderation").off_platform_domain(s, is_cta_scene=(i == len(SEG) - 1))
+        except Exception:
+            _dm = None
+        if _dm:
+            warn.append(f"cảnh {i}: CTA ngoài kênh '{_dm}' (chỉ 1 CTA: theo dõi SEOSONA, không dẫn rời kênh)")
+        _sll = s.lower()                                            # stars → "N users TRUST it" inflation
+        if _INFLATE_BIGNUM.search(s) and any(u in _sll for u in _INFLATE_USER) and any(t in _sll for t in _INFLATE_TRUST):
+            warn.append(f"cảnh {i}: SỐ phóng đại — số sao GitHub mô tả thành 'người dùng tin tưởng' (sao ≠ người dùng ≠ tin tưởng; nói đúng 'lượt sao')")
+        for tok in _re.findall(r"[A-Za-z][A-Za-z]{5,}", s):       # English-leak suspect (long lowercase word)
             tl = tok.lower()
-            if tl not in _LINT_EN_OK and tl != name.lower() and tl != "seosona" and not tok.istitle():
+            if (tl not in _LINT_EN_OK and tl != name.lower() and tl not in _name_parts
+                    and tl != "seosona" and not tok.istitle()):
                 warn.append(f"cảnh {i}: nghi lọt tiếng Anh '{tok}'")   # skip Proper Nouns (Title-case)
                 break
+        _enw = [t for t in _re.findall(r"[A-Za-z]+", s.lower()) if t in _EN_STOP]  # English SENTENCE (short-word CTA)
+        if len(_enw) >= 2:
+            warn.append(f"cảnh {i}: nghi lọt tiếng Anh — câu tiếng Anh ({' '.join(_enw[:5])})")
         fw = (s.split() or [""])[0].lower().strip(".,!?:")
         if fw:
             firsts[fw] += 1
@@ -361,25 +470,29 @@ def _enrich_seg(seg, gh, i):
     """Append a rotating REAL-data clause so deterministic scenes carry ~2× the words → the video reaches
     the ~90s target without fabricating anything (every clause comes from a real GitHub field). The hook
     scene (i==0) stays punchy. Different fact per scene → no repetition."""
-    if i == 0:
-        return seg
+    # NO stars fact here — the hook + stats scene already say the star count; repeating it across
+    # scenes is the "trùng cảnh" the brand owner flagged. Each scene gets a DIFFERENT real fact +
+    # a ROTATING connector so no two reads sound the same.
+    # NOTE: the GitHub `desc` is English prose — NEVER speak it (it leaks English into the VN voice).
+    # Only use short, safe real fields (language, license, topics) that read cleanly in Vietnamese.
     facts = []
-    d = _clean(gh.get("desc", ""), 120)
-    if d:
-        facts.append(f"nói ngắn gọn thì đây là {d.lower()}")
     if gh.get("lang"):
-        facts.append(f"dự án được viết bằng {gh['lang']}")
-    if gh.get("stars_h"):
-        facts.append(f"và hiện đã chạm mốc {gh['stars_h']} sao trên GitHub")
+        facts.append(f"được viết bằng {gh['lang']}, hiện đại và dễ mở rộng")
     if gh.get("license"):
         facts.append(f"phát hành theo giấy phép {gh['license']} nên hoàn toàn mở")
     tps = [t.replace("-", " ") for t in (gh.get("topics") or [])[:3]]
     if tps:
         facts.append("xoay quanh các chủ đề " + ", ".join(tps))
-    if not facts:
+    if gh.get("homepage"):
+        facts.append("và có cả trang giới thiệu riêng để tìm hiểu thêm")
+    # Use each fact AT MOST ONCE across the whole video — NO wrap-around. A thin repo has few real
+    # facts, so scenes past the fact count keep their clean base line instead of REPEATING a fact
+    # (repetition is worse than a shorter video). This is the deterministic FALLBACK; the primary LLM
+    # path writes a fully varied, spec-driven script.
+    if i >= len(facts):
         return seg
-    tail = facts[i % len(facts)]
-    return f"{seg} Đáng chú ý, {tail}."
+    connectors = ["Đáng chú ý,", "Bên cạnh đó,", "Đặc biệt,", "Thú vị là", "Ngoài ra,", "Một điểm cộng:"]
+    return f"{seg} {connectors[i % len(connectors)]} {facts[i]}."
 
 
 def auto_content(gh, template):
@@ -407,10 +520,13 @@ def auto_content(gh, template):
                 used_bignum = True
                 seg = f"{name} đã đạt hơn {stars} sao trên GitHub."
                 h1, h2 = name, f"{stars}★"
+                data = {"big": stars, "label": "★  GITHUB STARS"}
             else:
-                seg = f"Cộng đồng {name} đang lớn rất nhanh với {stars} sao."
+                # 2nd number scene: DON'T restate the star count (voice + label differ) so it doesn't
+                # feel like a duplicate of the hook. Frame it as adoption/trust instead.
+                seg = "Mức độ tin dùng tăng đều, ngày càng nhiều lập trình viên chọn dự án này."
                 h1, h2 = "Được tin dùng bởi", "cộng đồng dev"
-            data = {"big": stars, "label": "★  GITHUB STARS"}
+                data = {"big": stars, "label": "LẬP TRÌNH VIÊN TIN DÙNG"}
         elif kind == "repo":
             # NEVER speak the raw English desc — VieNeu mangles it. Voice = Vietnamese;
             # the English desc still shows on the repo CARD (display), not in narration.
@@ -441,6 +557,16 @@ def auto_content(gh, template):
             seg = f"{name} giúp bạn hình dung mọi thứ một cách trực quan."
             h1, h2 = "Trực quan hóa", "dễ hiểu"
             data = _gittree()
+        elif kind == "hub":
+            # orbit/hub hero (density study 2026-07: the most common reference hero — centre node +
+            # satellites on a ring). Nodes = real features/topics so it's grounded, not decorative.
+            seg = f"{name} kết nối nhiều thành phần lại trong một hệ thống liền mạch."
+            h1, h2 = "Hệ sinh thái", name
+            _raw = ((gh.get("readme_facts") or {}).get("features") or gh.get("topics") or [])
+            _nodes = [re.sub(r"^[^0-9A-Za-zÀ-ỹ]+", "", str(x)).split(",")[0].strip()[:16]
+                      for x in _raw if str(x).strip()][:6]
+            data = {"center": _clean(name, 14) or "CORE", "nodes": _nodes or ["Core", "API", "CLI", "UI"],
+                    "line": True}
         elif kind == "stats":
             seg = f"Vài con số nói lên sức hút của {name}."
             h1, h2 = "Những con số", "biết nói"
@@ -450,9 +576,14 @@ def auto_content(gh, template):
             h1, h2 = "Trọng tâm", "dự án"
             data = _chart(gh)
         elif kind == "mockup":
-            seg = f"Mọi thông tin quan trọng của {name} gói gọn trong một chỗ."
-            h1, h2 = "Tổng quan", "dự án"
             data = _mockup(gh)
+            # Frame by what the shot ACTUALLY is: a real homepage = the app interface; a github page = code.
+            if "github" in (data.get("url", "") or "").lower():
+                seg = f"Toàn bộ mã nguồn của {name} được công khai, ai cũng xem được."
+                h1, h2 = "Mã nguồn", "công khai"
+            else:
+                seg = f"Đây là giao diện thực tế của {name}, trực quan và dễ dùng."
+                h1, h2 = "Giao diện", "thực tế"
         elif kind == "feature":
             seg = f"Những tính năng nổi bật khiến {name} đáng chú ý."
             h1, h2 = "Tính năng", "nổi bật"
@@ -479,23 +610,55 @@ def auto_content(gh, template):
     # Prefer clean Gemini-written Vietnamese prose (translates the English desc, no slug
     # spam) — the deterministic SEG/HEAD above is the offline fallback. DATA (real repo
     # card / stars / badges) is kept either way.
-    g = _gemini_script(gh, scenes)
+    # KeyFacts (real numbers/entities) for the UNIFIED traceability gate — the same verify() the whole
+    # factory uses, so make_video's script can no longer ship a fabricated number/name un-caught.
+    try:
+        import script_writer as _sw
+        _kf = _sw.analyze(_sw.fetch(gh))
+    except Exception:
+        _sw, _kf = None, None
+
+    def _traced(seg_list):
+        """Traceability errors for a SEG list (numbers/entities not in KeyFacts)."""
+        if not (_sw and _kf):
+            return []
+        vr = _sw.verify(_sw.Script(scenes=[{"idx": i, "text_vi": s, "h1": "", "h2": ""}
+                                           for i, s in enumerate(seg_list)]), _kf)
+        return [e for e in vr.errors if ("nghi bịa" in e or "lặp câu" in e)]
+
+    g = _gemini_script(gh, scenes, fallback=(SEG, HEAD))    # pad tail from the deterministic draft
     if g:
         SEG, HEAD = g
         print("[make_video] script: LLM (clean Vietnamese)")
-        # Corrective loop (adopted from ainovel-cli critic idea): if the LLM draft trips SERIOUS
-        # lint warnings, regenerate ONCE with them fed back, keep whichever is cleaner. Bounded
-        # (1 retry, only on serious issues) → no runaway, no extra call on a clean draft.
+        # Corrective loop: SERIOUS lint warnings OR a traceability failure (fabricated number/name) →
+        # regenerate ONCE with them fed back, keep whichever is cleaner. Bounded (1 retry).
         _k = [sc.get("component") or "text" for sc in scenes]
         w1 = _lint_script(SEG, HEAD, _k, name, label="draft")
-        serious = [x for x in w1 if ("lọt tiếng Anh" in x or "thiếu CTA" in x or "quá ngắn" in x or "quá dài" in x)]
+        # Rewrite-trigger = only HARD problems. A single English WORD ("nghi lọt tiếng Anh 'watermark'") is a
+        # loanword, not a translation failure — informational, NOT serious (flagging it forced a needless
+        # rewrite on ~every tech render, burning free quota). A whole English SENTENCE ("câu tiếng Anh",
+        # e.g. an English CTA) IS a real failure → serious. CTA/length/off-platform stay serious too.
+        _SERIOUS = ("câu tiếng Anh", "thiếu CTA", "quá ngắn", "quá dài", "CTA ngoài kênh", "SỐ phóng đại")
+
+        def _serious_of(warns, seg):                    # HARD problems only (+ fabrication) — must not ship
+            return [x for x in warns if any(k in x for k in _SERIOUS)] + _traced(seg)
+        serious = _serious_of(w1, SEG)
         if serious:
-            g2 = _gemini_script(gh, scenes, feedback="; ".join(serious[:6]))
-            if g2 and len(_lint_script(g2[0], g2[1], _k, name, label="retry")) < len(w1):
-                SEG, HEAD = g2
-                print("[make_video] script: regenerated cleaner after lint feedback")
+            g2 = _gemini_script(gh, scenes, feedback="; ".join(serious[:6]), fallback=(SEG, HEAD))
+            if g2:
+                w2 = _lint_script(g2[0], g2[1], _k, name, label="retry")
+                # Accept the retry when it has FEWER SERIOUS problems (the ones that must not ship); total
+                # warnings — which include SOFT loanword noise — are only a tiebreaker. Comparing totals ALONE
+                # (the old check) would reject a valid serious-fix that happens to add a loanword, so the
+                # serious problem (English/off-platform CTA, stat-inflation, fabrication) would ship anyway.
+                if (len(_serious_of(w2, g2[0])), len(w2)) < (len(serious), len(w1)):
+                    SEG, HEAD = g2
+                    print("[make_video] script: regenerated cleaner after lint feedback")
     else:
         print("[make_video] script: deterministic template (LLM unavailable)")
+    _final_bad = _traced(SEG)                           # final gate — applies to BOTH LLM + deterministic
+    if _final_bad:
+        print("[make_video] ⚠ VERIFY: " + " | ".join(_final_bad[:5]))
 
     # Cap repo-slug repetition in the SPOKEN text — DETERMINISTIC PATH ONLY. A hyphenated
     # slug said 8× is what VieNeu mangles, and the deterministic template repeats {name}
@@ -526,12 +689,60 @@ def auto_content(gh, template):
             s = shots[used]
             DATA[i] = {"img": s["img"], "url": s["url"], "title": name}
             comp_overrides[i] = "mockup"
-            SEG[i] = f"Đây là giao diện thực tế của {name if used == 0 else 'dự án này'}."
-            HEAD[i] = ("Giao diện", "thực tế")
+            # HONEST framing by shot SOURCE (user 2026-07-03: "giao diện thực tế phải là web/app,
+            # KHÔNG phải github"). A github.com screenshot is the CODE page, not the app interface.
+            if "github" in (s.get("url", "").lower()):
+                SEG[i] = f"Toàn bộ mã nguồn của {name if used == 0 else 'dự án này'} được công khai trên GitHub."
+                HEAD[i] = ("Mã nguồn", "công khai")
+            else:
+                SEG[i] = f"Đây là giao diện thực tế của {name if used == 0 else 'dự án này'}."
+                HEAD[i] = ("Giao diện", "thực tế")
             placed.add(i); used += 1
         if used > 1:
             print(f"[make_video] multi-shot: {used} real screenshots placed across scenes")
 
+    # AUTO source-credit (auto-select wiring for the lower-third component): put a lower-third with
+    # the REAL repo attribution (name • stars • language) on one spare text-only scene, so the source
+    # is always credited AND the new component is actually used by the factory. Conservative: real
+    # fields only, one scene, never the hook/CTA/screenshot/data scenes. Gated off with SEOSONA_NO_CREDIT=1.
+    if gh and (gh.get("full") or gh.get("name")) and os.environ.get("SEOSONA_NO_CREDIT") != "1":
+        for i, sc in enumerate(scenes):
+            if i == 0 or i == len(scenes) - 1 or i in comp_overrides or i in DATA or sc.get("component"):
+                continue
+            bits = [b for b in [f"{gh['stars_h']} sao" if gh.get("stars_h") else None,
+                                gh.get("lang"), gh.get("license")] if b][:3]
+            DATA[i] = {"title": gh.get("full") or gh.get("name"), "sub": " • ".join(bits)}
+            comp_overrides[i] = "lower-third"
+            SEG[i] = f"{gh.get('name','Dự án')} là dự án mã nguồn mở trên GitHub."
+            HEAD[i] = ("Nguồn", "dự án")
+            break
+
+    # PACING: cap each scene's VOICE to ~26 words (~7-8s) so scenes stay PUNCHY, not 60-word paragraphs
+    # (the slideshow root cause: long segments → 12-18s/scene). Keeps whole sentences up to the cap.
+    def _cap_seg(t, mx=26):
+        ws = str(t or "").split()
+        if len(ws) <= mx:
+            return t
+        out, c = [], 0
+        for s in re.split(r'(?<=[.!?…])\s+', str(t)):
+            n = len(s.split())
+            if out and c + n > mx:
+                break
+            out.append(s); c += n
+            if c >= mx:
+                break
+        return " ".join(out) if out else " ".join(ws[:mx])
+    SEG = [_cap_seg(s) for s in SEG]
+    # GUARANTEE non-empty headings (the pacing template-pad grew scene counts and exposed empty h1/h2 on the
+    # CTA / padded scenes → scene_composer rejects them). Fill any blank from the scene's own keywords.
+    for i in range(len(SEG)):
+        _h = HEAD[i] if i < len(HEAD) and HEAD[i] else ("", "")
+        _h1, _h2 = (str(_h[0]).strip(), str(_h[1]).strip()) if len(_h) >= 2 else ("", "")
+        if not _h1 or not _h2:
+            _kw = [w for w in re.findall(r"[\wÀ-ỹ]+", SEG[i] if i < len(SEG) else "") if len(w) > 2][:3]
+            _h1 = _h1 or (" ".join(_kw[:2]).capitalize() if _kw else (name or "SEOSONA"))
+            _h2 = _h2 or (_kw[2] if len(_kw) > 2 else "chi tiết")
+            HEAD[i] = (_h1, _h2)
     eff_kinds = [comp_overrides.get(i) or (scenes[i].get("component") or "text")
                  for i in range(len(SEG))]
     _w = _lint_script(SEG, HEAD, eff_kinds, name)
@@ -578,6 +789,26 @@ def _capture_shots(gh, project_dir):
         else:
             print(f"[make_video] shot skipped: {u}")
     return shots
+
+
+def _capture_scroll(gh, project_dir):
+    """Record a REAL page-scroll (webm) of the project homepage (or the GitHub page) → live footage the
+    mockup scene overlays over its static shot. Best-effort: returns the webm path or None."""
+    script = os.path.join(ROOT, "scripts", "capture_scroll.js")
+    if not os.path.exists(script):
+        return None
+    hp = (gh.get("homepage") or "").strip()
+    url = hp if hp.startswith("http") else (gh.get("url") or f"https://github.com/{gh.get('full','')}")
+    out = os.path.join(project_dir, "_scroll.webm")
+    try:
+        r = subprocess.run(["node", script, url, out, "6"], capture_output=True, text=True,
+                           encoding="utf-8", errors="replace", timeout=110)
+        if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 10000:
+            print(f"[make_video] scroll video captured: {url}")
+            return out
+    except Exception as e:
+        print(f"[make_video] scroll capture skipped: {e}")
+    return None
 
 def _finalize_outputs(gh, project_dir, output, name):
     """Ready-to-post sidecars + behavioral verify (adopted from AI-auto-generate-video /
@@ -634,14 +865,45 @@ def make(url, *, template=None, theme=None, output=None, project_dir=None, aspec
     if gh.get("error"):
         raise SystemExit(f"GitHub fetch failed for {url}: {gh['error']}")
     pick_t, pick_theme, reason = classify(gh)
-    template = template or pick_t
     theme = theme or pick_theme
+    # DYNAMIC SCENE-ARC (default): compose a bespoke arc from the component library per video, matched
+    # to this repo's content — instead of always reusing 1 of the 20 fixed templates. Set
+    # SEOSONA_DYNAMIC_SCENES=0 to fall back to curated templates. A forced --template always wins.
+    # STRUCTURAL VARIETY: rotate across the curated archetype LIBRARY (distinct structures + content-
+    # specific VN tags), seeded by repo so different repos get different STRUCTURES — not one dynamic
+    # skeleton every time. classify()'s content match is preferred (weighted first); the bespoke dynamic
+    # arc stays in the mix as one option. SEOSONA_DYNAMIC_SCENES=0 → curated-only (no dynamic).
+    if template is None:
+        seed = sum(ord(c) for c in (gh.get("name") or "x")[:24])
+        pool = list(dict.fromkeys([pick_t] + _NEWS_ARCHETYPES))   # content-pick first, then all (dedup)
+        if os.environ.get("SEOSONA_DYNAMIC_SCENES", "1") != "0":
+            pool.append("_dynamic")
+        pick = pool[seed % len(pool)]
+        if pick == "_dynamic":
+            try:
+                import template_generator as _tg
+                topics = " ".join(gh.get("topics") or [])
+                brief = f"{gh.get('name','')}. {_clean(gh.get('desc')) or ''}. {topics}".strip()
+                gen_name = "_auto_" + re.sub(r"[^a-z0-9]+", "-", (gh.get("name", "x")).lower()).strip("-")[:30]
+                tpl = _tg.build_template(brief, name=gen_name, n=int(os.environ.get("SEOSONA_SCENES", "11")), seed=gh.get("name", ""))
+                nc.save_template(gen_name, tpl)
+                template = gen_name
+                reason = "dynamic arc: " + ">".join((s["component"] or "hook") for s in tpl["scenes"])
+            except Exception as e:
+                print(f"[make_video] dynamic scene-gen failed ({e}); using curated template")
+                template = pick_t
+        else:
+            template = pick
+            reason = f"archetype rotation {seed % len(pool) + 1}/{len(pool)}: {pick}"
+    template = template or pick_t
     name = gh["name"]
     # Output folder = the project name directly under 8_WORKSPACE (no "auto" wrapper).
     project_dir = project_dir or os.path.join(ROOT, "8_WORKSPACE", name)
     output = output or os.path.join(project_dir, f"{name} - SEOSONA.mp4")
     print(f"[make_video] {gh['full']} → template={template} theme={theme} aspect={aspect or 'template'}  ({reason})")
     gh["_shots"] = _capture_shots(gh, project_dir)     # up to 2 real screenshots (homepage + GitHub), best-effort
+    if os.environ.get("SEOSONA_SCROLL_VIDEO", "1") != "0":
+        gh["_scroll"] = _capture_scroll(gh, project_dir)   # real page-scroll footage for the mockup scene
     _LAST_RENDER.clear(); _LAST_RENDER["template"] = template   # flywheel: record which template was used
     content = auto_content(gh, template)
     kw = {"aspect": aspect} if aspect else {}   # else use the template's aspect
@@ -684,8 +946,12 @@ def news_rotation(urls, *, out_dir=None):
         name = gh["name"]
         out = os.path.join(out_dir, f"{name} - SEOSONA.mp4")
         print(f"\n=== {gh['full']} → {t} / {theme}  ({reason}) ===")
-        content = auto_content(gh, t)
-        nc.make_video_from_template(t, content, os.path.join(out_dir, name), output=out, theme=theme)
+        try:                                   # one video's render failure must NOT abort the whole batch
+            content = auto_content(gh, t)
+            nc.make_video_from_template(t, content, os.path.join(out_dir, name), output=out, theme=theme)
+        except Exception as _re:
+            print(f"  [news_rotation] {name} render FAILED ({type(_re).__name__}: {_re}) — skipping, batch continues.")
+            results.append((u, None)); continue
         try:                                   # quality gate + optional publish per video
             from video_engine import score_output, maybe_publish
             score_output(out, "seosona")

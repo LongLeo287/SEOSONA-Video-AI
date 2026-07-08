@@ -1,51 +1,56 @@
 {
-  "name": "tool-walkthrough",
-  "title": "Tool Walkthrough",
-  "description": "Giới thiệu + hướng dẫn dùng 1 tool (Prettier, cc-switch, Voicebox...)",
-  "when_to_use": "",
-  "theme": "light",
-  "aspect": "9:16",
-  "scenes": [
-    {
-      "component": "bignum",
-      "accent": "orange",
-      "kicker_hint": "VẤN ĐỀ",
-      "hero": true
-    },
-    {
-      "component": null,
-      "accent": "blue",
-      "kicker_hint": "GIẢI PHÁP"
-    },
-    {
-      "component": "repo",
-      "accent": "green",
-      "kicker_hint": "DỰ ÁN"
-    },
-    {
-      "component": "terminal",
-      "accent": "blue",
-      "kicker_hint": "CÀI ĐẶT"
-    },
-    {
-      "component": "steps",
-      "accent": "orange",
-      "kicker_hint": "CÁCH DÙNG"
-    },
-    {
-      "component": "compare",
-      "accent": "green",
-      "kicker_hint": "TRƯỚC & SAU"
-    },
-    {
-      "component": "badges",
-      "accent": "orange",
-      "kicker_hint": "ƯU ĐIỂM"
-    },
-    {
-      "component": "cta",
-      "accent": "blue",
-      "kicker_hint": "SEOSONA AI"
-    }
-  ]
+ "name": "tool-walkthrough",
+ "title": "Tool Walkthrough",
+ "description": "Hướng dẫn DÙNG 1 CLI/tool — có bước steps (cách dùng). Khác repo-showcase (chỉ giới thiệu, không steps).",
+ "when_to_use": "",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": "bignum",
+   "accent": "orange",
+   "kicker_hint": "VẤN ĐỀ",
+   "hero": true
+  },
+  {
+   "component": null,
+   "accent": "blue",
+   "kicker_hint": "GIẢI PHÁP"
+  },
+  {
+   "component": "repo",
+   "accent": "green",
+   "kicker_hint": "DỰ ÁN"
+  },
+  {
+   "component": "terminal",
+   "accent": "blue",
+   "kicker_hint": "CÀI ĐẶT"
+  },
+  {
+   "component": "steps",
+   "accent": "orange",
+   "kicker_hint": "CÁCH DÙNG"
+  },
+  {
+   "component": "compare",
+   "accent": "green",
+   "kicker_hint": "TRƯỚC & SAU"
+  },
+  {
+   "component": "badges",
+   "accent": "orange",
+   "kicker_hint": "ƯU ĐIỂM"
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "cta",
+   "accent": "blue",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
 }

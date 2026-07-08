@@ -10,16 +10,16 @@ metadata:
 # SEOSONA Video Operator
 
 Use this skill when a task asks to audit, improve, clone, template, or produce videos inside SEOSONA Video.
-**This is the TỔNG / master entry** — it routes to the right engine + workflow skill below.
+**This is the MAIN / master entry** — it routes to the right engine + workflow skill below.
 
 ## Two video engines (pick by input)
 
 | Engine | Input | Output | Voice | Entry skill / command |
 |---|---|---|---|---|
-| **Synthesized** (`4_BRAIN/video_engine.py` → `native_composer.py`) | text / GitHub repo / website / news brief | dựng cảnh từ template JSON (9:16 + 16:9) | AI (VieNeu) | `/seosona-news-maker`, `/faceless-explainer`, `/pr-to-video`, `/product-launch-video`, `/website-to-video`, `/general-video` + `/scene-composer` (soạn content). Lệnh: `npm run make:video` / `video:news` |
-| **Footage** (`scripts/talking_head_*`) | video tự quay / screen-rec | edit + karaoke caption + card (9:16 + 16:9) | giọng THẬT | `/talking-head-video-editor`. Lệnh: `npm run talkinghead:transcribe` → `talkinghead:edit` |
+| **Synthesized** (`4_BRAIN/video_engine.py` → `native_composer.py`) | text / GitHub repo / website / news brief | build scenes from JSON template (9:16 + 16:9) | AI (VieNeu) | `/seosona-news-maker`, `/faceless-explainer`, `/pr-to-video`, `/product-launch-video`, `/website-to-video`, `/general-video` + `/scene-composer` (compose content). Commands: `npm run make:video` / `video:news` |
+| **Footage** (`scripts/talking_head_*`) | self-shot video / screen-rec | edit + karaoke caption + card (9:16 + 16:9) | REAL voice | `/talking-head-video-editor`. Commands: `npm run talkinghead:transcribe` → `talkinghead:edit` |
 
-Edit/overlay video có sẵn: `/embedded-captions`, `/graphic-overlays`. Avatar (trả phí, tương lai): `/heygen-native-api`.
+Edit/overlay an existing video: `/embedded-captions`, `/graphic-overlays`. Avatar (paid, future): `/heygen-native-api`.
 
 ## Operating Contract
 

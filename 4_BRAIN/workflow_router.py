@@ -4,14 +4,20 @@ Workflow Router - Smart video entry point.
 import os
 import sys
 from importlib import import_module
+
+# This module's dir (4_BRAIN) must be importable BEFORE the sibling imports below —
+# when launched via scripts/ (import_module) only the project ROOT is on sys.path, not
+# 4_BRAIN, so `from skill_registry import ...` would raise ModuleNotFoundError. Fix the
+# path first (this also covers the bootstrap import).
+brain_dir = os.path.dirname(os.path.abspath(__file__))
+if brain_dir not in sys.path:
+    sys.path.insert(0, brain_dir)
+
 from skill_registry import get_skill
 from graph_executor import SuperGraph
 
 # --- SEOSONA AUTO-BOOTSTRAP ---
 try:
-    brain_dir = os.path.dirname(os.path.abspath(__file__))
-    if brain_dir not in sys.path:
-        sys.path.insert(0, brain_dir)
     bootstrap = import_module("seosona_bootstrap")
     bootstrap.bootstrap()
 except Exception as e:
@@ -31,6 +37,21 @@ def detect_input_type(input_value):
     return import_module("video_engine").detect_input_type(input_value)
 
 
+def _pick_scored_video(output, project_dir):
+    """The mp4 the quality gate should score = the pipeline's OWN returned path when it's a real file.
+    Only when that's missing, scan the project dir — preferring a FINAL video over an intermediate
+    (`_raw.mp4` has no captions/BGM, `.temp` is scratch), so the learning-loop signal isn't poisoned by
+    scoring the wrong file. Returns a path or None."""
+    if isinstance(output, str) and output.lower().endswith(".mp4") and os.path.isfile(output):
+        return output
+    if os.path.isdir(project_dir):
+        cand = [os.path.join(rd, fn) for rd, _, files in os.walk(project_dir)
+                for fn in files if fn.lower().endswith(".mp4")]
+        finals = [c for c in cand if "_raw" not in os.path.basename(c).lower() and ".temp" not in c.lower()]
+        return (finals or cand or [None])[0]
+    return None
+
+
 def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
     """
     Routes only video workflows. Image and carousel workflows use dedicated
@@ -48,6 +69,10 @@ def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
     if mode == "download":
         print("[Router] -> Step 1: yt-dlp Download")
         yt_engine = get_skill("yt_downloader")
+        if not yt_engine or not hasattr(yt_engine, "download_video"):
+            # skill missing / failed to import (e.g. yt-dlp absent) → clean abort, not an AttributeError crash
+            print("[Router] yt_downloader skill unavailable — cannot process a download input. Aborting.")
+            return None
         download_dir = os.path.join(project_root, "8_WORKSPACE", project_name or "yt_download", ".temp")
         yt_engine.download_video(processed_input, download_dir)
 
@@ -123,16 +148,10 @@ def route(input_value, brand="seosona", aspect_ratio="9:16", project_name=None):
 
     def evaluate_node(state):
         print("[Graph] Executing Evaluate Node (Quality Review & Feedback)...")
-        # Run the REAL quality gate on the rendered video (was a hardcoded 85).
-        video = None
-        if os.path.isdir(final_project_dir):
-            for root_d, _, files in os.walk(final_project_dir):
-                for fn in files:
-                    if fn.lower().endswith(".mp4"):
-                        video = os.path.join(root_d, fn)
-                        break
-                if video:
-                    break
+        # Run the REAL quality gate on the rendered video (was a hardcoded 85). Prefer the pipeline's OWN
+        # returned path — scanning the dir picks the first .mp4 in walk order, which can be an intermediate
+        # (`_raw.mp4` has no captions/BGM) → scoring the WRONG file poisons the learning-loop quality signal.
+        video = _pick_scored_video(state.get("output"), final_project_dir)
         if video:
             try:
                 qs = import_module("4_BRAIN.quality_scorer")

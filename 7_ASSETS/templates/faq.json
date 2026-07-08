@@ -1,0 +1,56 @@
+{
+ "name": "faq",
+ "title": "Hỏi đáp / Q&A",
+ "description": "Trả lời nhanh 3 câu hỏi thường gặp về một chủ đề.",
+ "when_to_use": "Khi nội dung là các CÂU HỎI THƯỜNG GẶP, mỗi câu một đáp án ngắn.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "orange",
+   "kicker_hint": "CÂU HỎI",
+   "hero": true
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "CÂU 1"
+  },
+  {
+   "component": "feature",
+   "accent": "green",
+   "kicker_hint": "CÂU 2"
+  },
+  {
+   "component": "tip",
+   "accent": "orange",
+   "kicker_hint": "CÂU 3"
+  },
+  {
+   "component": "bignum",
+   "accent": "blue",
+   "kicker_hint": "CHỐT LẠI"
+  },
+  {
+   "component": "feature",
+   "accent": "green",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "orange",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "compare",
+   "accent": "blue",
+   "kicker_hint": "SO SÁNH"
+  },
+  {
+   "component": "cta",
+   "accent": "green",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

@@ -19,9 +19,20 @@ _DEVICE = os.environ.get("SEOSONA_ASR_DEVICE", "cpu")
 _COMPUTE = "int8" if _DEVICE == "cpu" else "float16"
 
 
+def _default_phowhisper():
+    """Prefer the bundled PhoWhisper-medium CT2 (int8 — ~2x faster & ~½ size of large, ~same WER)
+    when present in the project; else the hub large CT2."""
+    local = os.path.join(os.path.dirname(__file__), "..", "..", "7_ASSETS", "models",
+                         "phowhisper-medium-ct2")
+    local = os.path.abspath(local)
+    if os.path.isdir(local) and os.path.exists(os.path.join(local, "model.bin")):
+        return local
+    return "kiendt/PhoWhisper-large-ct2"
+
+
 def _phowhisper(audio_path, language):
     """VinAI PhoWhisper via faster-whisper (CTranslate2). Vietnamese-specialised."""
-    model_id = os.environ.get("SEOSONA_PHOWHISPER_MODEL", "kiendt/PhoWhisper-large-ct2")
+    model_id = os.environ.get("SEOSONA_PHOWHISPER_MODEL", _default_phowhisper())
     try:
         from faster_whisper import WhisperModel
     except ImportError:
@@ -72,8 +83,14 @@ def _collect_fw(segments):
     for seg in segments:
         for w in (seg.words or []):
             t = (w.word or "").strip()
-            if t:
+            if not t:
+                continue
+            try:
+                # whisper/faster-whisper can return None timestamps for an unaligned word; skip just THAT
+                # word — a single bad timestamp must not discard the whole transcription (→ empty captions).
                 words.append({"word": t, "start": float(w.start), "end": float(w.end)})
+            except (TypeError, ValueError):
+                continue
     return words or None
 
 

@@ -1,0 +1,66 @@
+{
+  "name": "_auto_gemini-watermark-remover",
+  "title": "gemini-watermark-remover. A high-perform",
+  "description": "gemini-watermark-remover. A high-performance, 100% client-side tool for removing Gemini AI image & video. chrome-extension gemini gemini-video-watermark-remover gemini-watermark-remover skills userscript watermark-remover",
+  "when_to_use": "Auto-generated per-video arc — gemini-watermark-remover. A high-performance, 100% client-si",
+  "theme": "light",
+  "aspect": "9:16",
+  "scenes": [
+    {
+      "component": null,
+      "accent": "orange",
+      "kicker_hint": "TIN NÓNG",
+      "hero": true
+    },
+    {
+      "component": null,
+      "accent": "blue",
+      "kicker_hint": "BỐI CẢNH"
+    },
+    {
+      "component": "bignum",
+      "accent": "green",
+      "kicker_hint": "QUY MÔ"
+    },
+    {
+      "component": "mockup",
+      "accent": "orange",
+      "kicker_hint": "GIAO DIỆN"
+    },
+    {
+      "component": "chart",
+      "accent": "blue",
+      "kicker_hint": "TRỌNG TÂM"
+    },
+    {
+      "component": "badges",
+      "accent": "green",
+      "kicker_hint": "NỔI BẬT"
+    },
+    {
+      "component": "quote",
+      "accent": "orange",
+      "kicker_hint": "TÓM LẠI"
+    },
+    {
+      "component": "terminal",
+      "accent": "blue",
+      "kicker_hint": "CÀI ĐẶT"
+    },
+    {
+      "component": "feature",
+      "accent": "green",
+      "kicker_hint": "TÍNH NĂNG"
+    },
+    {
+      "component": "stats",
+      "accent": "orange",
+      "kicker_hint": "CON SỐ"
+    },
+    {
+      "component": "cta",
+      "accent": "blue",
+      "kicker_hint": "SEOSONA AI"
+    }
+  ]
+}

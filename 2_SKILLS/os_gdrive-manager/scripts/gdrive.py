@@ -125,7 +125,7 @@ def fmt_size(b):
             if b < 1024: return f"{b:.1f} {u}"
             b /= 1024
         return f"{b:.1f} TB"
-    except: return "—"
+    except Exception: return "—"   # a non-numeric size shouldn't format; not bare `except:`
 
 def fmt_time(iso):
     if not iso: return "—"

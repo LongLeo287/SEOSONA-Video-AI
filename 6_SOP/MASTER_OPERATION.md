@@ -29,8 +29,8 @@ npm run post:image -- <text_or_file>
 npm run thumbnail:create -- <title_or_hook>
 npm run video:news -- <script_or_file_or_url> [project_name] [aspect_ratio]
 npm run video:course -- <script_or_file> [project_name] [aspect_ratio]
-npm run start:queue      # Tự động xử lý hàng đợi từ 0_INPUT_INBOX/production_queue.yaml
-npm run start:dashboard  # Khởi chạy Nightingale Dashboard UI tại localhost:5050
+npm run start:queue      # Automatically process the queue from 0_INPUT_INBOX/production_queue.yaml
+npm run start:dashboard  # Launch the Nightingale Dashboard UI at localhost:5050
 ```
 
 The router automatically detects the input:
@@ -51,8 +51,8 @@ The router automatically detects the input:
 ### STEP 2: VOICE SYNTHESIS (TTS)
 - **Display/Pronunciation Split:** `4_BRAIN/news_video_standards.py` keeps the visible script and subtitles unchanged while creating a separate pronunciation script for TTS.
 - **English Term Pronunciation:** Approved terms such as `AI`, `SEO`, `GitHub`, `Obscura`, `OpenAI`, and `YouTube` are pronounced via lexicon, but remain correctly spelled on screen.
-- **Required Voice:** News videos require a male Southern Vietnamese profile. Use an approved VieNeu reference/preset when configured; otherwise fallback to Edge-TTS `vi-VN-NamMinhNeural`.
-- **Engine:** `2_SKILLS/voice_cloner/voice_router.py` (`synthesize_voice`) — VieNeu primary (clone > preset) with an honest edge-tts fallback. Single source of truth.
+- **Required Voice:** the SEOSONA brand voice = the OmniVoice-cloned Chí Quyết (CQA) voice, for BOTH brands.
+- **Engine:** `2_SKILLS/voice_cloner/voice_router.py` (`synthesize_voice`) — **OmniVoice PRIMARY → VieNeu BACKUP** (only when OmniVoice can't run). Single source of truth. F5-TTS / edge-tts / LoRA / fish all REMOVED (2026-06-29).
 - **Output:** `8_WORKSPACE/<ProjectName>/.temp/voice.mp3`
 
 ### STEP 3: IDENTIFY TIMESTAMPS
@@ -75,7 +75,7 @@ The router automatically detects the input:
 - **Frame 0 Hook:** Kicker + H1 always at 100% opacity at second 0.
 
 ### STEP 6: THUMBNAIL
-- `2_SKILLS/thumbnail_maker/thumbnail_generator.py` → HTML → Playwright → PNG.
+- `2_SKILLS/thumbnail_maker/thumbnail_maker.py` → `make_thumbnail()` → NLP copy director → HTML → Playwright → PNG.
 - Text takes the verb `script_text`, not hardcode.
 - **Output:** `8_WORKSPACE/<ProjectName>/Thumbnail/<ProjectName>_Thumbnail.png`
 - Thumbnail generation is part of the production gate. Do not set `SEOSONA_SKIP_THUMBNAIL=1` for final delivery.
@@ -101,7 +101,7 @@ The router automatically detects the input:
 ├── <ProjectName>.mp4 → Main video
 ├── SRT/<ProjectName>.srt → Subtitles
 ├── Thumbnail/<ProjectName>_Thumbnail.png → Cover image
-├── Báo_cáo_chất_lượng.md → Quality score and ML feedback
+├── Bao_cao_chat_luong.md → Quality score and ML feedback
 └── .temp/ → Temp file (voice, hf_render/)
 ```
 

@@ -2,6 +2,11 @@
 
 Mandatory standard operating procedure for all AI Agents and Human Editors producing "Faceless Tech-News" videos for SEOSONA / Chi Quyet Academy.
 
+> **Related, deliberately SEPARATE:** [`COURSE_VIDEO_SOP.md`](COURSE_VIDEO_SOP.md) shares the brand
+> boilerplate (light-mode iron rule · 9:16 · Male-Southern voice) but is a DISTINCT mode: news = fast
+> multi-scene + **karaoke word-level captions (65-75%)**; course = slow + **anchor captions (bottom
+> 15-20%, no karaoke)** + light-theme code. Not merged (would lose the caption/pacing distinction).
+
 ## 1. Iron Rule: 100% LIGHT MODE (No Dark Backgrounds)
 
 - **USE LIGHT COLORS ONLY.** Dark Mode is strictly prohibited.
@@ -27,9 +32,9 @@ Mandatory standard operating procedure for all AI Agents and Human Editors produ
 
 ## 3.1 Voice Standard
 
-- **Required Voice:** Default is Male Southern Vietnamese target profile.
-- **Primary:** VieNeu with an approved male Southern reference/preset.
-- **Fallback:** Edge-TTS `vi-VN-NamMinhNeural` only when no approved VieNeu reference/preset is available.
+- **Required Voice:** the OmniVoice-cloned Chí Quyết (CQA) brand voice (same voice for both brands).
+- **Primary:** OmniVoice (k2-fsa, local, VN-native) via `voice_router.synthesize_voice`.
+- **Backup:** VieNeu, used only when OmniVoice can't run. (edge-tts/F5/LoRA/fish all removed 2026-06-29.)
 - **No Female Fallback:** Do not use female presets for news videos.
 
 ## 4. Motion & Animation

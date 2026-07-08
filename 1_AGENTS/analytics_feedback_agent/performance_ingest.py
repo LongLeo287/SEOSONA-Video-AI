@@ -53,7 +53,8 @@ def ingest(workspace_dir=None, inject=None):
     """Merge available metrics into manifests. Returns a summary dict."""
     workspace_dir = workspace_dir or os.path.join(ROOT, "8_WORKSPACE")
     manifests = pm.scan(workspace_dir)
-    by_id = {m["video_id"]: m for m in manifests}
+    # skip a manifest that lacks video_id rather than KeyError-crash the whole OBSERVE stage on one bad file
+    by_id = {vid: m for m in manifests if (vid := m.get("video_id"))}
     updated, skipped = [], []
 
     if inject:  # manual metrics for testing the loop without live APIs

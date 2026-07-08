@@ -15,6 +15,12 @@ def check_and_install_ffmpeg(project_root):
     except (subprocess.CalledProcessError, FileNotFoundError):
         pass
 
+    # Prefer the bundled node ffmpeg-static (what the render already uses) — no separate ffmpeg/ needed.
+    ffstatic = os.path.join(project_root, "node_modules", "ffmpeg-static")
+    if os.path.exists(os.path.join(ffstatic, "ffmpeg.exe")) or os.path.exists(os.path.join(ffstatic, "ffmpeg")):
+        os.environ["PATH"] = ffstatic + os.pathsep + os.environ.get("PATH", "")
+        return
+
     ffmpeg_dir = os.path.join(project_root, "ffmpeg")
     ffmpeg_bin = os.path.join(ffmpeg_dir, "ffmpeg-8.1.1-essentials_build", "bin")
     
@@ -27,7 +33,12 @@ def check_and_install_ffmpeg(project_root):
     zip_path = os.path.join(ffmpeg_dir, "ffmpeg.zip")
     
     try:
-        urllib.request.urlretrieve("https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip", zip_path)
+        # per-call timeout (not socket.setdefaulttimeout, which would globally cap later LLM/researcher
+        # sockets) — a stalled fetch must not hang startup forever.
+        with urllib.request.urlopen(
+                "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip", timeout=60) as _r, \
+                open(zip_path, "wb") as _f:
+            shutil.copyfileobj(_r, _f)
         print("[BOOTSTRAP] Extracting FFmpeg...")
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             zip_ref.extractall(ffmpeg_dir)

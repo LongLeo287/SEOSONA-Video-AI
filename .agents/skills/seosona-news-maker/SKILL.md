@@ -1,73 +1,73 @@
 ---
 name: seosona-news-maker
 description: >
-  Làm video SEOSONA dạng SYNTHESIZED (tự sinh) — tin tức, giải thích kiến thức, repo/tool
-  showcase — 9:16 (mặc định) hoặc 16:9, light-mode, giọng AI (VieNeu clone), phụ đề karaoke (RULE #1),
-  component (bignum/repo/compare/terminal/steps/badges/stats/quote/tip/feature/chart/mockup/
-  gittree/cta), SFX + BGM ducked. Dùng khi user nói "làm video tin tức / giải thích /
-  giới thiệu repo / làm video từ link GitHub / từ kịch bản". Engine: video_engine → native_composer.
-  (Edit footage tự quay / talking-head → dùng skill `talking-head-video-editor`.)
+  Make SYNTHESIZED SEOSONA videos (auto-generated) — news, knowledge explainers, repo/tool
+  showcase — 9:16 (default) or 16:9, light-mode, AI voice (VieNeu clone), karaoke captions (RULE #1),
+  components (bignum/repo/compare/terminal/steps/badges/stats/quote/tip/feature/chart/mockup/
+  gittree/cta), SFX + BGM ducked. Use when the user says "make a news video / explainer /
+  introduce a repo / make a video from a GitHub link / from a script". Engine: video_engine → native_composer.
+  (To edit self-shot footage / talking-head → use the `talking-head-video-editor` skill.)
 metadata:
   type: skill
   author: SEOSONA AI
   version: "2.0"
 ---
 
-# 🎬 seosona-news-maker — video SEOSONA tự sinh (synthesized)
+# 🎬 seosona-news-maker — auto-generated (synthesized) SEOSONA video
 
-Skill cho **engine synthesized**: sinh cảnh từ nội dung (text / GitHub repo / news brief),
-giọng AI VieNeu, render brand-native bằng HyperFrames. Đây là 1 trong 2 engine làm video:
+Skill for the **synthesized engine**: generate scenes from content (text / GitHub repo / news brief),
+VieNeu AI voice, render brand-native with HyperFrames. This is 1 of 2 video-making engines:
 
-- **Skill này (synthesized)** — máy tự dựng cảnh + giọng AI. → tin tức, giải thích, showcase.
-- **`talking-head-video-editor`** — edit footage tự quay/screen-rec, giọng THẬT. → review/hướng dẫn/giới thiệu bằng người quay.
+- **This skill (synthesized)** — the machine builds scenes + AI voice. → news, explainers, showcase.
+- **`talking-head-video-editor`** — edit self-shot/screen-rec footage, REAL voice. → reviews/tutorials/intros filmed by a person.
 
-## 0. Engine + lệnh (đã verify chạy thật)
+## 0. Engine + commands (verified to actually run)
 
-| Việc | Lệnh |
+| Task | Command |
 |---|---|
 | GitHub repo → video (auto template) | `npm run make:video -- <github_url_or_owner/name>` |
-| Ngang 16:9 (YouTube) | `npm run make:video -- <url> --aspect 16:9` |
-| Batch news (nhiều repo, xoay template) | `python 4_BRAIN/make_video.py --news urls.txt` |
-| Từ kịch bản tiếng Việt / website URL | `npm run video:news -- "<script_or_url>" [project] [ratio]` |
+| Landscape 16:9 (YouTube) | `npm run make:video -- <url> --aspect 16:9` |
+| Batch news (multiple repos, rotating templates) | `python 4_BRAIN/make_video.py --news urls.txt` |
+| From a Vietnamese script / website URL | `npm run video:news -- "<script_or_url>" [project] [ratio]` |
 
-**Tỉ lệ:** mặc định 9:16; đặt `"aspect":"16:9"` trong template JSON hoặc `--aspect 16:9` (CLI) để ra ngang (1920×1080). Hỗ trợ `9:16` · `16:9` · `1:1`.
+**Aspect ratio:** default 9:16; set `"aspect":"16:9"` in the template JSON or `--aspect 16:9` (CLI) for landscape (1920×1080). Supports `9:16` · `16:9` · `1:1`.
 
-**Đầu ra** (`8_WORKSPACE/<project>/`): `*.mp4` + `*.srt` (trong `_captions_upload/`, tránh player auto-load đè karaoke) + `Thumbnail/thumbnail.png` + `publish_report.json` (nếu bật `SEOSONA_PUBLISH`) → tất cả qua quality gate.
+**Output** (`8_WORKSPACE/<project>/`): `*.mp4` + `*.srt` (in `_captions_upload/`, to keep the player from auto-loading and overriding the karaoke) + `Thumbnail/thumbnail.png` + `publish_report.json` (if `SEOSONA_PUBLISH` is enabled) → all pass through the quality gate.
 
-**Lõi:** `4_BRAIN/video_engine.py` (định tuyến + quality gate) → `4_BRAIN/native_composer.py`
-(voice qua `voice_router` VieNeu, timing qua `srt_maker/asr_router`, render HyperFrames CLI,
-mix SFX+BGM). Profile brand/giọng/logo đọc từ `system_config.yaml`.
+**Core:** `4_BRAIN/video_engine.py` (routing + quality gate) → `4_BRAIN/native_composer.py`
+(voice via `voice_router` VieNeu, timing via `srt_maker/asr_router`, render with HyperFrames CLI,
+mix SFX+BGM). Brand/voice/logo profiles are read from `system_config.yaml`.
 
-## 1. Nội dung (content) — 2 cách
+## 1. Content — 2 ways
 
-- **Tự động (1 lệnh):** `make_video.py` tự lấy data GitHub thật + điền prose tiếng Việt theo template.
-- **Chất lượng cao (agent):** dùng skill **`scene-composer`** để soạn `content` (segments + 2-tone heading + scene_data) rồi gọi:
-  - `native_composer.make_video_from_template(template, content, project_dir)` — theo 1 trong các template JSON.
-  - `native_composer.make_video_custom(project_dir, scenes_spec)` — tự lắp cảnh tự do từ 14 component.
+- **Automatic (1 command):** `make_video.py` automatically fetches real GitHub data + fills in Vietnamese prose per the template.
+- **High quality (agent):** use the **`scene-composer`** skill to compose `content` (segments + 2-tone heading + scene_data) then call:
+  - `native_composer.make_video_from_template(template, content, project_dir)` — based on one of the JSON templates.
+  - `native_composer.make_video_custom(project_dir, scenes_spec)` — freely assemble scenes from the 14 components.
 
-## 2. Template JSON (`7_ASSETS/templates/*.json`) — cấu trúc cảnh (component + accent + kicker)
+## 2. Template JSON (`7_ASSETS/templates/*.json`) — scene structure (component + accent + kicker)
 
-`ai-news-flash` · `benchmark-news` · `data-news` (tin/số liệu) · `insight-explainer` ·
-`opinion-insight` · `seo-explainer` · `tutorial-gittree` (kiến thức/giải thích) ·
-`repo-showcase` · `tool-walkthrough` · `resource-list` (repo/tool/kho).
-Lưu render đẹp thành template mới: `native_composer.extract_template(...)`.
+`ai-news-flash` · `benchmark-news` · `data-news` (news/figures) · `insight-explainer` ·
+`opinion-insight` · `seo-explainer` · `tutorial-gittree` (knowledge/explainers) ·
+`repo-showcase` · `tool-walkthrough` · `resource-list` (repo/tool/library).
+Save a good render as a new template: `native_composer.extract_template(...)`.
 
-## 3. Component (14) cho mỗi cảnh
-`bignum` (số to) · `repo` (repo card) · `compare` (2 cột) · `terminal` (lệnh) · `steps` (bước) ·
-`badges` · `stats` (3 thẻ số) · `quote` · `tip` (💡) · `feature` · `chart` (bar) · `mockup` (browser) ·
-`gittree` (git log) · `cta`. Accent: `blue` `green` `orange` (light-mode, palette brand).
+## 3. Components (14) for each scene
+`bignum` (big number) · `repo` (repo card) · `compare` (2 columns) · `terminal` (commands) · `steps` (steps) ·
+`badges` · `stats` (3 number cards) · `quote` · `tip` (💡) · `feature` · `chart` (bar) · `mockup` (browser) ·
+`gittree` (git log) · `cta`. Accent: `blue` `green` `orange` (light-mode, brand palette).
 
-## 🔴 RULE CỨNG
-1. **TEXT/PHỤ ĐỀ = DẠNG HIỂN THỊ, KHÔNG PHIÊN ÂM**: viết `AI` `24/7` `GitHub` đúng trên màn; cách ĐỌC xử lý riêng bằng `lexicon` (native_composer dùng `news_video_standards.PRONUNCIATION_LEXICON`). Caption hiển thị DISPLAY word, không phải âm.
-2. **HOOK ĐỦ Ở FRAME 0**: cảnh 0 hiện đủ kicker + heading ngay giây 0 (frame 0 = thumbnail nền tảng).
-3. **KARAOKE vùng an toàn**: từ đang nói tô vàng, keyword tô accent; không sát đáy.
-4. **LIGHT MODE ONLY**: không nền tối; palette brand (blue `#2A5BDA`, coral `#E2724D`, green `#16A34A`). Cảnh crossfade — không khung trắng.
-5. **GIỌNG**: VieNeu (clone > preset "Trọng Hữu") → fallback edge-tts; nam miền Nam. KHÔNG ghi phiên âm vào text.
-6. **SFX đa dạng** + **BGM ducked** dưới giọng (đã tự động trong native_composer).
-7. **VERIFY trước khi giao** (dữ liệu thật, không bịa): frame không đen (YAVG>12), loudness ~-16 LUFS, duration đúng brief, caption đúng chính tả brand/số liệu, component không rỗng.
+## 🔴 HARD RULES
+1. **TEXT/CAPTIONS = DISPLAY FORM, NOT PHONETIC**: write `AI` `24/7` `GitHub` correctly on screen; how it is READ is handled separately via the `lexicon` (native_composer uses `news_video_standards.PRONUNCIATION_LEXICON`). Captions show the DISPLAY word, not the sound.
+2. **FULL HOOK AT FRAME 0**: scene 0 shows the full kicker + heading right at second 0 (frame 0 = platform thumbnail).
+3. **KARAOKE in safe zone**: the word being spoken is highlighted yellow, keywords highlighted in accent; not flush against the bottom.
+4. **LIGHT MODE ONLY**: no dark background; brand palette (blue `#2A5BDA`, coral `#E2724D`, green `#16A34A`). Scenes crossfade — no white frames.
+5. **VOICE**: VieNeu (clone > "Trọng Hữu" preset) → fallback edge-tts; male, Southern Vietnamese. Do NOT write phonetics into the text.
+6. **Varied SFX** + **BGM ducked** under the voice (already automatic in native_composer).
+7. **VERIFY before delivery** (real data, no fabrication): no black frames (YAVG>12), loudness ~-16 LUFS, duration matches the brief, captions match brand spelling/figures, components not empty.
 
-## Không làm trong skill này
-- Không edit footage tự quay / talking-head ở đây → dùng skill `talking-head-video-editor`.
-- Engine DUY NHẤT là `native_composer` — đừng tạo lại pipeline render cũ.
+## Not done in this skill
+- Do not edit self-shot footage / talking-head here → use the `talking-head-video-editor` skill.
+- The ONLY engine is `native_composer` — do not recreate the old render pipeline.
 
-*Skill độc quyền SEOSONA AI. Engine: video_engine → native_composer (HyperFrames-native, không phụ thuộc pipeline ngoài).*
+*Skill exclusive to SEOSONA AI. Engine: video_engine → native_composer (HyperFrames-native, no external pipeline dependency).*

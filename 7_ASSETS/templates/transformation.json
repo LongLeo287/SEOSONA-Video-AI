@@ -1,0 +1,56 @@
+{
+ "name": "transformation",
+ "title": "Lột xác (Before/After)",
+ "description": "Hành trình thay đổi — trước → các bước → sau + cảm nhận.",
+ "when_to_use": "Khi nội dung là một BIẾN ĐỔI rõ rệt trước-sau (website, quy trình, kỹ năng).",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "orange",
+   "kicker_hint": "TRƯỚC",
+   "hero": true
+  },
+  {
+   "component": "compare",
+   "accent": "blue",
+   "kicker_hint": "BEFORE / AFTER"
+  },
+  {
+   "component": "steps",
+   "accent": "green",
+   "kicker_hint": "HÀNH TRÌNH"
+  },
+  {
+   "component": "bignum",
+   "accent": "orange",
+   "kicker_hint": "KẾT QUẢ"
+  },
+  {
+   "component": "quote",
+   "accent": "blue",
+   "kicker_hint": "CẢM NHẬN"
+  },
+  {
+   "component": "feature",
+   "accent": "green",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "orange",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "compare",
+   "accent": "blue",
+   "kicker_hint": "SO SÁNH"
+  },
+  {
+   "component": "cta",
+   "accent": "green",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

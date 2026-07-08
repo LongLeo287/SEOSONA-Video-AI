@@ -2,7 +2,7 @@
 
 Created: 2026-06-19
 
-This SOP maps external voice cloning and TTS repositories into SEOSONA Video without creating duplicate voice pipelines. All engines must route through the existing `tts_generator` and `voice_cloner` interfaces.
+This SOP maps external voice cloning and TTS repositories into SEOSONA Video without creating duplicate voice pipelines. All engines must route through the existing `voice_cloner` / `voice_router` interface (the old separate `tts_generator` was folded into the single router).
 
 > **ASR (speech→subtitles) — switchable router, added 2026-06-24.**
 > `2_SKILLS/srt_maker/asr_router.py` mirrors the voice router: a primary ASR engine with
@@ -13,22 +13,21 @@ This SOP maps external voice cloning and TTS repositories into SEOSONA Video wit
 > every engine, so the pipeline (STEP 2 alignment + repurpose SRT) never changes. VideoLingo's
 > single-line semantic subtitle cutting = `group_words_to_segments`.
 >
-> **REBUILT 2026-06-24.** The voice subsystem was rebuilt: a single router
-> (`2_SKILLS/voice_cloner/voice_router.py`) routes **VieNeu (clone > preset) → honest
-> edge-tts fallback** with no dead branches. The old `fish_audio_api.py` router +
-> duplicate/dead engines (2× VieNeu, 2× F5, OmniVoice-uninstalled, English Kokoro) are
-> removed. VieNeu is THE engine (local, Apache-2.0,
-> Vi+En code-switch). Adding another engine = new file + a probe branch in `voice_router.py`
-> (never a dead `if engine == …` that silently falls through).
+> **CURRENT POLICY (2026-06-29, supersedes the 2026-06-24 rebuild below).** A single router
+> (`2_SKILLS/voice_cloner/voice_router.py`) routes **OmniVoice (PRIMARY — k2-fsa, local, Apache-2.0,
+> VN-native, cloning the Chí Quyết voice for BOTH brands) → VieNeu (BACKUP, only when OmniVoice can't
+> run)**. ALL other engines are REMOVED: F5-TTS, edge-tts, LoRA, fish/cosyvoice/kokoro, the old
+> `fish_audio_api.py` router. OmniVoice + VieNeu are the only two paths. Adding another engine = new
+> file + a probe branch in `voice_router.py` (never a dead `if engine == …` that silently falls through).
 
 ## Canonical Role Locks
 
 | Layer | Canonical SEOSONA Video component | External repos allowed to influence it | Rule |
 |---|---|---|---|
-| Standard TTS | `2_SKILLS/tts_generator/tts_engine.py` | Edge-TTS, VieNeu-TTS, LuxTTS | Keep a simple standard TTS path for SEOSONA brand videos. |
-| Voice routing | `2_SKILLS/voice_cloner/voice_router.py` | VieNeu-TTS (active); others only if installed + given a real probe branch | Single router. VieNeu primary; edge-tts honest fallback. No dead branches. |
+| Standard TTS | `2_SKILLS/voice_cloner/voice_router.py` (unified — no separate tts_generator) | OmniVoice, VieNeu | Keep a simple standard TTS path for SEOSONA brand videos. |
+| Voice routing | `2_SKILLS/voice_cloner/voice_router.py` | OmniVoice (primary), VieNeu (backup) | Single router. **OmniVoice primary → VieNeu backup**. No dead branches; edge-tts/F5/LoRA/fish removed. |
 | Subtitle timing | `4_BRAIN/native_composer.py` (RULE #1 captions via `asr_router`) | engines with word timestamps, forced alignment, script-derived fallback | Prefer native word timestamps; otherwise use verified script-derived fallback or ASR. |
-| Long-form narration | future chunker under `2_SKILLS/tts_generator/` | ebook2audiobook, Coqui TTS | Extract chunking/retry/concat patterns, not full audiobook stack. |
+| Long-form narration | future chunker under `2_SKILLS/voice_cloner/` | ebook2audiobook, Coqui TTS | Extract chunking/retry/concat patterns, not full audiobook stack. |
 | Voice cleanup | _(quarantined: (removed))_ | voice-pro, Demucs patterns | Not wired. Restore only if a cleanup step is actually needed; use only for owned/rights-cleared audio. |
 | Voice dashboard | none yet | OmniVoice-Studio, voice-pro | Reference UI only. Do not embed full desktop/WebUI apps. |
 
@@ -91,9 +90,10 @@ Every enabled engine must expose the same return shape:
 
 | Adapter | Source inspiration | Target area | Purpose | Status |
 |---|---|---|---|---|
-| `vieneu_engine.py` | VieNeu-TTS | `2_SKILLS/voice_cloner/` | Primary Vietnamese TTS/cloning adapter with Edge fallback. | ✅ DONE |
-| `voice_router.py` | — | `2_SKILLS/voice_cloner/` | Single router: VieNeu (clone > preset) → honest edge-tts fallback. No dead branches. | ✅ DONE (replaces the planned `voice_engine_router.py`) |
-| `long_text_tts_chunker.py` | ebook2audiobook, Coqui TTS | `2_SKILLS/tts_generator/` | Split, synthesize, validate, and concatenate long scripts. | ⬜ Future |
+| `omnivoice_engine.py` | k2-fsa/OmniVoice | `2_SKILLS/voice_cloner/` | PRIMARY: clones the CQA brand voice (isolated torch-2.8 venv). | ✅ DONE |
+| `vieneu_engine.py` | VieNeu-TTS | `2_SKILLS/voice_cloner/` | BACKUP adapter, used only when OmniVoice can't run. | ✅ DONE |
+| `voice_router.py` | — | `2_SKILLS/voice_cloner/` | Single router: **OmniVoice primary → VieNeu backup**. No dead branches; edge-tts/F5/LoRA/fish removed. | ✅ DONE |
+| `long_text_tts_chunker.py` | ebook2audiobook, Coqui TTS | `2_SKILLS/voice_cloner/` | Split, synthesize, validate, and concatenate long scripts. | ⬜ Future |
 | `voice_reference_cleaner.py` | voice-pro, Demucs | (was `audio_cleaner`, now quarantined) | Clean owned reference audio before cloning — only if a real need arises. | ⬜ Deferred |
 
 ## Validation Checklist

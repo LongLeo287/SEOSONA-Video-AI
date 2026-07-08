@@ -81,8 +81,24 @@ class LedgerTests(unittest.TestCase):
             _write_manifest(ws, "b", "loser", 60)
             led = fl.rebuild(ws, write=False)
             w = led["template_weights"]
-            self.assertAlmostEqual(w["winner"], 1.0, places=2)
-            self.assertGreaterEqual(w["loser"], 0.15)  # exploration floor never zero
+            # Bayesian shrinkage maps the confidence-adjusted score onto [floor, 1] on a FIXED scale
+            # (NOT min-max), so a 1-sample winner is pulled toward the global mean instead of being
+            # pinned to 1.0 — it must still out-weight the loser and stay within (floor, 1].
+            self.assertGreater(w["winner"], w["loser"])   # winner still ranks higher
+            self.assertLessEqual(w["winner"], 1.0)        # fixed scale never exceeds 1
+            self.assertGreater(w["winner"], 0.5)          # a top template still earns a high weight
+            self.assertGreaterEqual(w["loser"], 0.15)     # exploration floor never zero
+
+    def test_shrinkage_favors_more_samples(self):
+        # A template proven over MANY high-scoring videos must out-weight a 1-video fluke of the same
+        # score — the whole point of the confidence adjustment (else the flywheel learns from noise).
+        with tempfile.TemporaryDirectory() as ws:
+            for k in range(6):
+                _write_manifest(ws, f"p{k}", "proven", 100)
+            _write_manifest(ws, "f", "fluke", 100)
+            _write_manifest(ws, "z", "baseline", 40)   # drags the global mean below 1.0 so shrinkage bites
+            w = fl.rebuild(ws, write=False)["template_weights"]
+            self.assertGreater(w["proven"], w["fluke"])
 
     def test_real_performance_upgrades_signal(self):
         with tempfile.TemporaryDirectory() as ws:

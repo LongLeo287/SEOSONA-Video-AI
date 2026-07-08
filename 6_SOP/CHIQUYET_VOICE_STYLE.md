@@ -3,7 +3,7 @@
 Derived from **47 real lectures (~19.6 hours)** in `D:\SRT` (timing-based — the
 transcripts have wrong/extra words + gaps, so this captures RHYTHM + STYLE, not exact
 wording). Use this for the **CQA branch only** (courses / lectures / knowledge) — the
-LoRA clone voice + the script style. The SEOSONA news branch stays formal + VieNeu.
+the OmniVoice CQA clone + the script style. Both brands now use the OmniVoice CQA clone (VieNeu = backup only).
 
 ## Rhythm / pacing (measured)
 | Metric | Value |

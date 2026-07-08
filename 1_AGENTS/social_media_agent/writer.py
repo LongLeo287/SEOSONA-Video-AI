@@ -95,6 +95,26 @@ class SocialMediaAgent:
 
         return raw_content[:600].strip()
 
+    @staticmethod
+    def _safety_review(text):
+        """Facebook captions are outward-facing but had NO content-safety gate — a caption could ship an
+        off-platform CTA / unsafe-or-absolute claim / fabricated social-proof uncaught. Run the SAME
+        content_moderation gate the video + carousel paths use; surface blocking issues before posting."""
+        try:
+            import sys as _sys, os as _os
+            _sys.path.insert(0, _os.path.join(_os.path.dirname(__file__), "..", "..", "4_BRAIN"))
+            cm = __import__("content_moderation")
+            v = cm.moderate(str(text or ""), record=False)
+            blocks = [f for f in v.get("flags", []) if f.get("severity") == "block"]
+            if blocks:
+                print("[Social Media Agent] ⛔ CONTENT-SAFETY — REVIEW BEFORE POSTING: "
+                      + "; ".join(f"{f.get('kind')}: {f.get('detail')}" for f in blocks))
+            elif v.get("flags"):
+                print("[Social Media Agent] ⚠ content-safety (advisory): "
+                      + ", ".join(f.get("kind") for f in v["flags"]))
+        except Exception as _e:
+            print(f"[Social Media Agent] content-safety check skipped ({_e})")
+
     def write_facebook_caption(self, raw_content: str, brand: str = "seosona") -> str:
         """
         Convenience method: returns the full caption string directly.
@@ -102,11 +122,10 @@ class SocialMediaAgent:
         """
         result = self.generate_post(raw_content)
         if not isinstance(result, dict):
-            return self._caption_from_unexpected_result(raw_content, result)
-
-        caption = result.get("caption", "")
-        if not caption:
-            caption = result.get("hook", raw_content[:200])
+            caption = self._caption_from_unexpected_result(raw_content, result)
+        else:
+            caption = result.get("caption", "") or result.get("hook", raw_content[:200])
+        self._safety_review(caption)                  # content-safety gate (outward-facing caption)
         return caption
 
     def write_multi_platform(self, raw_content: str, platforms: list = None) -> Dict:
@@ -128,10 +147,11 @@ class SocialMediaAgent:
             modified_prompt = f"{raw_content}\n\n[PLATFORM: {platform.upper()}]\n{modifier}"
             result = self.generate_post(modified_prompt)
             if isinstance(result, dict):
-                results[platform] = result.get("caption", "")
+                caption = result.get("caption", "")
             else:
-                results[platform] = self._caption_from_unexpected_result(modified_prompt, result)
-
+                caption = self._caption_from_unexpected_result(modified_prompt, result)
+            self._safety_review(caption)   # same outward-facing gate write_facebook_caption uses — every
+            results[platform] = caption    # platform caption is public, so none may skip content-safety
         return results
 
     def write_comment_thread(self, main_caption: str, num_comments: int = 3) -> list:

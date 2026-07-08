@@ -27,7 +27,9 @@ try:
 except Exception:
     creds = None
 
-ALL_DESTINATIONS = ["youtube", "tiktok", "facebook", "google_drive"]
+# Telegram first: it's the only FREE, instant destination (just a bot token from
+# @BotFather — no app review, no OAuth). The rest need approved apps / OAuth.
+ALL_DESTINATIONS = ["telegram", "google_drive", "youtube", "tiktok", "facebook"]
 
 
 def _skip(reason):
@@ -110,7 +112,46 @@ def _to_tiktok(product):
         return {"ok": False, "status": "upload_error", "detail": str(exc)}
 
 
+def _to_telegram(product):
+    """Send the finished video to a Telegram chat via the Bot API. FREE + instant — only
+    needs a bot token (@BotFather) and a chat_id; no app review, no OAuth. Bot API caps
+    uploads at 50MB (SEOSONA shorts are ~8MB, well within)."""
+    if not creds or not creds.has("telegram", "bot_token", "chat_id"):
+        return _skip("telegram.bot_token/chat_id not set (copy telegram.example.json)")
+    try:
+        import requests
+    except ImportError:
+        return {"ok": False, "status": "lib_missing", "detail": "pip install requests"}
+    token = creds.get("telegram", "bot_token")
+    chat = creds.get("telegram", "chat_id")
+    # Telegram's sendVideo multipart cap is 50MB. Shorts are ~8MB, but 16:9 / course / talking-head videos
+    # can exceed it — fail FAST with a clear message instead of pushing a doomed 50MB+ upload over the wire
+    # just to get a cryptic API error back.
+    try:
+        _sz = os.path.getsize(product["video"])
+        if _sz > 50 * 1024 * 1024:
+            return {"ok": False, "status": "too_large",
+                    "detail": f"{_sz // (1024 * 1024)}MB exceeds Telegram's 50MB sendVideo limit"}
+    except OSError:
+        pass
+    try:
+        caption = (f"{product.get('title','')}\n\n{product.get('description','')}").strip()[:1024]
+        with open(product["video"], "rb") as fh:
+            r = requests.post(
+                f"https://api.telegram.org/bot{token}/sendVideo",
+                data={"chat_id": chat, "caption": caption, "supports_streaming": True},
+                files={"video": fh}, timeout=600,
+            )
+        body = r.json() if r.headers.get("content-type", "").startswith("application/json") else {}
+        ok = r.status_code == 200 and body.get("ok")
+        return {"ok": bool(ok), "status": "uploaded" if ok else "upload_error",
+                "detail": (body.get("result", {}).get("message_id") if ok else r.text[:300])}
+    except Exception as exc:
+        return {"ok": False, "status": "upload_error", "detail": str(exc)}
+
+
 _ROUTES = {
+    "telegram": _to_telegram,
     "google_drive": _to_google_drive,
     "youtube": _to_youtube,
     "facebook": _to_facebook,
@@ -122,7 +163,29 @@ def publish(product, destinations=None, save_report_to=None):
     """Dispatch `product` to each destination. Returns {dest: result}."""
     if "video" not in product or not os.path.exists(product.get("video", "")):
         return {"_error": f"product['video'] missing or not found: {product.get('video')}"}
-    destinations = destinations or ALL_DESTINATIONS
+    # A title is REQUIRED by every platform — refuse BEFORE any dispatch rather than publish a titleless
+    # video (or let each platform error separately). Fail-safe on all required inputs, not just the file.
+    if not str(product.get("title", "")).strip():
+        return {"_error": "product['title'] is empty — refusing to publish a titleless video"}
+    # CC-BY: native_composer writes `<video>.credits.txt` beside the file when a sourced BGM track is used;
+    # the licence REQUIRES that attribution reach the platform. Append it HERE — the single dispatch choke
+    # point — so EVERY caller honours it (video_engine's publish step already does, but direct callers like
+    # telegram_remote and any future one would otherwise publish CC-BY music with no credit = a licence
+    # violation). Idempotent: skip if the credit is already in the description (no double-append).
+    try:
+        _cf = product.get("video", "") + ".credits.txt"
+        if os.path.exists(_cf):
+            _credit = open(_cf, encoding="utf-8").read().strip()
+            _desc = product.get("description", "")
+            if _credit and _credit not in _desc:
+                product = {**product, "description": (_desc.rstrip() + "\n\n" + _credit).strip()}
+                print("[publish] BGM CC-BY credit appended to description")
+    except Exception as _ce:
+        print(f"[publish] credit append skipped: {_ce}")
+    # None = "not specified" → default to all; but an EXPLICIT empty list means "publish NOWHERE" and must
+    # NOT fall back to all (the old `destinations or ALL` did, so a filtered-to-empty list would publish to
+    # EVERY platform — the opposite of intent, an outward-facing footgun).
+    destinations = ALL_DESTINATIONS if destinations is None else destinations
     report = {}
     for dest in destinations:
         fn = _ROUTES.get(dest)

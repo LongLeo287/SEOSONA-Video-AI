@@ -10,29 +10,29 @@
 
 | Tier | Meaning | Rule of thumb | Default action |
 |---|---|---|---|
-| S - Core | Tài sản lõi/chiến lược hoặc repo của bạn/được xem nhiều | Own repo, Visits rất cao, hoặc khớp trực tiếp AI/SEO/video/agent stack | Đưa vào workspace chính, đọc README, lập kế hoạch tích hợp |
-| A - High | Giá trị cao, nên đánh giá sớm | Visits >= 10 hoặc score cao theo category + interest | Shortlist và test nhanh |
-| B - Useful | Reference hữu ích | Visits 4-9 hoặc category có liên quan | Giữ tag; clone khi cần |
-| C - Backlog | Khám phá sau | Visits thấp, chưa rõ nhu cầu | Không ưu tiên |
-| D - Dead/Low | URL lỗi/không rõ/ít giá trị | Page not found hoặc context quá mỏng | Xác minh, sau đó archive |
-| Q - Quarantine | Rủi ro pháp lý/an toàn/chính sách | Bypass/crack/cheat/credential/leak/offensive rõ ràng | Không chạy; chỉ review pháp lý/an toàn hoặc xóa |
+| S - Core | Core/strategic asset, your own repo, or heavily viewed | Own repo, very high Visits, or a direct match to the AI/SEO/video/agent stack | Bring into the main workspace, read the README, plan integration |
+| A - High | High value, evaluate early | Visits >= 10 or high score by category + interest | Shortlist and test quickly |
+| B - Useful | Useful reference | Visits 4-9 or a related category | Keep the tag; clone when needed |
+| C - Backlog | Explore later | Low Visits, need still unclear | Not a priority |
+| D - Dead/Low | Broken/unclear URL / low value | Page not found or context too thin | Verify, then archive |
+| Q - Quarantine | Legal/safety/policy risk | Clearly bypass/crack/cheat/credential/leak/offensive | Do not run; only legal/safety review or delete |
 | Category | What it contains | Examples of keywords | Use |
-| AI Agent / Agent Harness | Nhóm repo/model theo use case chính | agent, agents, openclaw, claw, claude code, codex, opencode, antigravity | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Agent Skills / Prompt Ops | Nhóm repo/model theo use case chính | skill, skills, prompt, system prompt, claude-plugins, templates, bmad, method | Dùng để lọc nhanh trong sheet Repos_Classified |
-| LLM Infra / Inference / Routing | Nhóm repo/model theo use case chính | llm, model, inference, vllm, ollama, mlx, nexa, router | Dùng để lọc nhanh trong sheet Repos_Classified |
-| RAG / Knowledge / Memory / Search | Nhóm repo/model theo use case chính | rag, memory, mem, notebooklm, knowledge, index, document, graph | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Security / Pentest / OSINT / RE | Nhóm repo/model theo use case chính | security, pentest, osint, cve, exploit, vulnerability, vuln, hash | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Web Scraping / Browser Automation | Nhóm repo/model theo use case chính | scrap, crawl, browser, crawler, spider, shodan, download, yt-dlp | Dùng để lọc nhanh trong sheet Repos_Classified |
-| SEO / Marketing / Affiliate / Growth | Nhóm repo/model theo use case chính | seo, affiliate, marketing, ads, keyword, rank, content, growth | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Content / Video / Audio / Image AI | Nhóm repo/model theo use case chính | video, subtitle, caption, tts, voice, audio, whisper, sovits | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Frontend / UI / Design / Components | Nhóm repo/model theo use case chính | react, vue, next, nuxt, ui, design, component, portfolio | Dùng để lọc nhanh trong sheet Repos_Classified |
-| DevOps / Cloud / Database / Backup | Nhóm repo/model theo use case chính | devops, deploy, kubernetes, docker, cloud, backup, database, postgres | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Game / Anime / Arknights / Entertainment | Nhóm repo/model theo use case chính | arknights, endfield, anime, gacha, game, launcher, mihoyo, netflix | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Finance / Trading / Crypto | Nhóm repo/model theo use case chính | trading, finance, financial, crypto, quant, usdc, solana, payment | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Education / Awesome / Reference | Nhóm repo/model theo use case chính | awesome, course, learn, books, guide, tutorial, handbook, compendium | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Mobile / Desktop / OS Utility | Nhóm repo/model theo use case chính | windows, macos, ios, android, desktop, extension, vscode, chrome | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Geospatial / Maps | Nhóm repo/model theo use case chính | map, geo, basemap, geospatial, geojson, gis, cartographic | Dùng để lọc nhanh trong sheet Repos_Classified |
-| Data / Analytics / Visualization | Nhóm repo/model theo use case chính | data, analytics, dashboard, chart, visualization, table, sql, etl | Dùng để lọc nhanh trong sheet Repos_Classified |
+| AI Agent / Agent Harness | Group of repos/models by primary use case | agent, agents, openclaw, claw, claude code, codex, opencode, antigravity | Used for quick filtering in the Repos_Classified sheet |
+| Agent Skills / Prompt Ops | Group of repos/models by primary use case | skill, skills, prompt, system prompt, claude-plugins, templates, bmad, method | Used for quick filtering in the Repos_Classified sheet |
+| LLM Infra / Inference / Routing | Group of repos/models by primary use case | llm, model, inference, vllm, ollama, mlx, nexa, router | Used for quick filtering in the Repos_Classified sheet |
+| RAG / Knowledge / Memory / Search | Group of repos/models by primary use case | rag, memory, mem, notebooklm, knowledge, index, document, graph | Used for quick filtering in the Repos_Classified sheet |
+| Security / Pentest / OSINT / RE | Group of repos/models by primary use case | security, pentest, osint, cve, exploit, vulnerability, vuln, hash | Used for quick filtering in the Repos_Classified sheet |
+| Web Scraping / Browser Automation | Group of repos/models by primary use case | scrap, crawl, browser, crawler, spider, shodan, download, yt-dlp | Used for quick filtering in the Repos_Classified sheet |
+| SEO / Marketing / Affiliate / Growth | Group of repos/models by primary use case | seo, affiliate, marketing, ads, keyword, rank, content, growth | Used for quick filtering in the Repos_Classified sheet |
+| Content / Video / Audio / Image AI | Group of repos/models by primary use case | video, subtitle, caption, tts, voice, audio, whisper, sovits | Used for quick filtering in the Repos_Classified sheet |
+| Frontend / UI / Design / Components | Group of repos/models by primary use case | react, vue, next, nuxt, ui, design, component, portfolio | Used for quick filtering in the Repos_Classified sheet |
+| DevOps / Cloud / Database / Backup | Group of repos/models by primary use case | devops, deploy, kubernetes, docker, cloud, backup, database, postgres | Used for quick filtering in the Repos_Classified sheet |
+| Game / Anime / Arknights / Entertainment | Group of repos/models by primary use case | arknights, endfield, anime, gacha, game, launcher, mihoyo, netflix | Used for quick filtering in the Repos_Classified sheet |
+| Finance / Trading / Crypto | Group of repos/models by primary use case | trading, finance, financial, crypto, quant, usdc, solana, payment | Used for quick filtering in the Repos_Classified sheet |
+| Education / Awesome / Reference | Group of repos/models by primary use case | awesome, course, learn, books, guide, tutorial, handbook, compendium | Used for quick filtering in the Repos_Classified sheet |
+| Mobile / Desktop / OS Utility | Group of repos/models by primary use case | windows, macos, ios, android, desktop, extension, vscode, chrome | Used for quick filtering in the Repos_Classified sheet |
+| Geospatial / Maps | Group of repos/models by primary use case | map, geo, basemap, geospatial, geojson, gis, cartographic | Used for quick filtering in the Repos_Classified sheet |
+| Data / Analytics / Visualization | Group of repos/models by primary use case | data, analytics, dashboard, chart, visualization, table, sql, etl | Used for quick filtering in the Repos_Classified sheet |
 
 ## Category summary
 
@@ -105,36 +105,36 @@
 
 | Name | Tier | Risk | Recommended action |
 |---|---|---|---|
-| k2-fsa/OmniVoice | A - High | Voice cloning consent/license review | Đưa vào shortlist; đánh giá khả năng áp dụng trong 1-2 phiên làm việc. |
-| amruth-sn/kong | B - Useful | Exploit/CVE/offensive | Giữ làm reference; tag rõ use case, chỉ clone khi cần. |
-| mrexodia/ida-pro-mcp | B - Useful | Exploit/CVE/offensive | Giữ làm reference; tag rõ use case, chỉ clone khi cần. |
-| AngeloD2022/jsxer | B - Useful | Exploit/CVE/offensive | Giữ làm reference; tag rõ use case, chỉ clone khi cần. |
-| advisories/GHSA-p9ff-h696-f583 | B - Useful | Exploit/CVE/offensive | Giữ làm reference; tag rõ use case, chỉ clone khi cần. |
-| 0xBlackash/CVE-2026-21643 | B - Useful | Exploit/CVE/offensive | Giữ làm reference; tag rõ use case, chỉ clone khi cần. |
-| Adaptix-Framework/AdaptixC2 | B - Useful | Exploit/CVE/offensive | Giữ làm reference; tag rõ use case, chỉ clone khi cần. |
-| HackUnderway/cerberus | B - Useful | Exploit/CVE/offensive | Giữ làm reference; tag rõ use case, chỉ clone khi cần. |
-| skylot/jadx | B - Useful | Exploit/CVE/offensive | Giữ làm reference; tag rõ use case, chỉ clone khi cần. |
-| WangYihang/GitHacker | B - Useful | Exploit/CVE/offensive | Giữ làm reference; tag rõ use case, chỉ clone khi cần. |
-| jamiepine/voicebox | S - Core | Voice cloning consent/license review | Ưu tiên đọc README, star/fork/clone nếu cần, gắn vào workspace chính. |
-| elementalsouls/Claude-BugHunter | C - Backlog | Exploit/CVE/offensive | Để backlog; chỉ quay lại khi có dự án khớp. |
-| gadievron/raptor | C - Backlog | Exploit/CVE/offensive | Để backlog; chỉ quay lại khi có dự án khớp. |
-| P4nda0s/reverse-skills | C - Backlog | Exploit/CVE/offensive | Để backlog; chỉ quay lại khi có dự án khớp. |
-| staticpayload/oh-my-codex | C - Backlog | Exploit/CVE/offensive | Để backlog; chỉ quay lại khi có dự án khớp. |
-| zhaoxuya520/reverse-skill | Q - Quarantine | Reverse engineering/offensive security review | Không clone/chạy tự động. Chỉ giữ để audit, review pháp lý/an toàn trước khi dùng. |
-| JesseCHale/HaleHound-CYD | C - Backlog | Exploit/CVE/offensive | Để backlog; chỉ quay lại khi có dự án khớp. |
-| OpenAttackDefenseTools/tulip | C - Backlog | Exploit/CVE/offensive | Để backlog; chỉ quay lại khi có dự án khớp. |
-| Vuemony/vue-after-free | C - Backlog | Exploit/CVE/offensive | Để backlog; chỉ quay lại khi có dự án khớp. |
-| LongLeo287/JerrySFX | D - Dead/Low | Broken/Page not found | Xác minh lại URL; nếu không phục hồi thì archive khỏi danh sách chính. |
-| JuliusBrussee/caveman-claude | D - Dead/Low | Broken/Page not found | Xác minh lại URL; nếu không phục hồi thì archive khỏi danh sách chính. |
-| claudekit/claudekit-marketing | D - Dead/Low | Broken/Page not found | Xác minh lại URL; nếu không phục hồi thì archive khỏi danh sách chính. |
-| carsalgut/reverse-skills | D - Dead/Low | Broken/Page not found | Xác minh lại URL; nếu không phục hồi thì archive khỏi danh sách chính. |
-| dotanminh/nextjs-supabase-wms | D - Dead/Low | Broken/Page not found | Xác minh lại URL; nếu không phục hồi thì archive khỏi danh sách chính. |
-| COMMUNITY-SCRIPTS/PROXMOZVE | D - Dead/Low | Broken/Page not found | Xác minh lại URL; nếu không phục hồi thì archive khỏi danh sách chính. |
-| LongLeo287/bypass-rophim-vip | Q - Quarantine | Piracy/Bypass | Không clone/chạy. Chỉ giữ để audit, xóa hoặc review pháp lý/an toàn. |
-| LongLeo287/rophim-vip-2025 | Q - Quarantine | Piracy/Bypass | Không clone/chạy. Chỉ giữ để audit, xóa hoặc review pháp lý/an toàn. |
-| LongLeo287/RR_Crack-Extension | Q - Quarantine | Piracy/Bypass | Không clone/chạy. Chỉ giữ để audit, xóa hoặc review pháp lý/an toàn. |
-| AykutSarac/jsoncrack.com | Q - Quarantine | Piracy/Bypass | Không clone/chạy. Chỉ giữ để audit, xóa hoặc review pháp lý/an toàn. |
-| nghyane/ampcode-connector | Q - Quarantine | Credential/secret risk | Không clone/chạy. Chỉ giữ để audit, xóa hoặc review pháp lý/an toàn. |
+| k2-fsa/OmniVoice | A - High | Voice cloning consent/license review | Add to the shortlist; evaluate applicability within 1-2 work sessions. |
+| amruth-sn/kong | B - Useful | Exploit/CVE/offensive | Keep as a reference; tag the use case clearly, clone only when needed. |
+| mrexodia/ida-pro-mcp | B - Useful | Exploit/CVE/offensive | Keep as a reference; tag the use case clearly, clone only when needed. |
+| AngeloD2022/jsxer | B - Useful | Exploit/CVE/offensive | Keep as a reference; tag the use case clearly, clone only when needed. |
+| advisories/GHSA-p9ff-h696-f583 | B - Useful | Exploit/CVE/offensive | Keep as a reference; tag the use case clearly, clone only when needed. |
+| 0xBlackash/CVE-2026-21643 | B - Useful | Exploit/CVE/offensive | Keep as a reference; tag the use case clearly, clone only when needed. |
+| Adaptix-Framework/AdaptixC2 | B - Useful | Exploit/CVE/offensive | Keep as a reference; tag the use case clearly, clone only when needed. |
+| HackUnderway/cerberus | B - Useful | Exploit/CVE/offensive | Keep as a reference; tag the use case clearly, clone only when needed. |
+| skylot/jadx | B - Useful | Exploit/CVE/offensive | Keep as a reference; tag the use case clearly, clone only when needed. |
+| WangYihang/GitHacker | B - Useful | Exploit/CVE/offensive | Keep as a reference; tag the use case clearly, clone only when needed. |
+| jamiepine/voicebox | S - Core | Voice cloning consent/license review | Prioritize reading the README, star/fork/clone if needed, attach to the main workspace. |
+| elementalsouls/Claude-BugHunter | C - Backlog | Exploit/CVE/offensive | Leave in the backlog; return only when a matching project comes up. |
+| gadievron/raptor | C - Backlog | Exploit/CVE/offensive | Leave in the backlog; return only when a matching project comes up. |
+| P4nda0s/reverse-skills | C - Backlog | Exploit/CVE/offensive | Leave in the backlog; return only when a matching project comes up. |
+| staticpayload/oh-my-codex | C - Backlog | Exploit/CVE/offensive | Leave in the backlog; return only when a matching project comes up. |
+| zhaoxuya520/reverse-skill | Q - Quarantine | Reverse engineering/offensive security review | Do not auto-clone/run. Keep only for auditing; run a legal/safety review before use. |
+| JesseCHale/HaleHound-CYD | C - Backlog | Exploit/CVE/offensive | Leave in the backlog; return only when a matching project comes up. |
+| OpenAttackDefenseTools/tulip | C - Backlog | Exploit/CVE/offensive | Leave in the backlog; return only when a matching project comes up. |
+| Vuemony/vue-after-free | C - Backlog | Exploit/CVE/offensive | Leave in the backlog; return only when a matching project comes up. |
+| LongLeo287/JerrySFX | D - Dead/Low | Broken/Page not found | Re-verify the URL; if it cannot be recovered, archive it from the main list. |
+| JuliusBrussee/caveman-claude | D - Dead/Low | Broken/Page not found | Re-verify the URL; if it cannot be recovered, archive it from the main list. |
+| claudekit/claudekit-marketing | D - Dead/Low | Broken/Page not found | Re-verify the URL; if it cannot be recovered, archive it from the main list. |
+| carsalgut/reverse-skills | D - Dead/Low | Broken/Page not found | Re-verify the URL; if it cannot be recovered, archive it from the main list. |
+| dotanminh/nextjs-supabase-wms | D - Dead/Low | Broken/Page not found | Re-verify the URL; if it cannot be recovered, archive it from the main list. |
+| COMMUNITY-SCRIPTS/PROXMOZVE | D - Dead/Low | Broken/Page not found | Re-verify the URL; if it cannot be recovered, archive it from the main list. |
+| LongLeo287/bypass-rophim-vip | Q - Quarantine | Piracy/Bypass | Do not clone/run. Keep only for auditing; delete or run a legal/safety review. |
+| LongLeo287/rophim-vip-2025 | Q - Quarantine | Piracy/Bypass | Do not clone/run. Keep only for auditing; delete or run a legal/safety review. |
+| LongLeo287/RR_Crack-Extension | Q - Quarantine | Piracy/Bypass | Do not clone/run. Keep only for auditing; delete or run a legal/safety review. |
+| AykutSarac/jsoncrack.com | Q - Quarantine | Piracy/Bypass | Do not clone/run. Keep only for auditing; delete or run a legal/safety review. |
+| nghyane/ampcode-connector | Q - Quarantine | Credential/secret risk | Do not clone/run. Keep only for auditing; delete or run a legal/safety review. |
 
 _(+44 more in the xlsx)_
 

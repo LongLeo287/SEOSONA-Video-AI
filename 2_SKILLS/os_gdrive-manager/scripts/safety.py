@@ -37,8 +37,10 @@ def _audit(action: str, target_id: str, target_name: str, outcome: str, actor: s
         "target_name": target_name,
         "outcome":   outcome,
     }
-    with open(AUDIT_LOG, "a") as f:
-        f.write(json.dumps(entry) + "\n")
+    # explicit UTF-8 + ensure_ascii=False: gdrive file names can be Vietnamese; keep them human-readable in
+    # the audit trail (not \uXXXX) and avoid a Windows cp1252 crash writing/reading them.
+    with open(AUDIT_LOG, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 # ─── Warning Banner ───────────────────────────────────────────────────────────
 
@@ -191,7 +193,7 @@ def view_audit_log(last_n: int = 20):
     if not os.path.exists(AUDIT_LOG):
         print("_No audit log found._")
         return
-    with open(AUDIT_LOG) as f:
+    with open(AUDIT_LOG, encoding="utf-8") as f:
         entries = [json.loads(line) for line in f if line.strip()]
     entries = entries[-last_n:]
     print(f"| Timestamp | Action | Name | Outcome |")

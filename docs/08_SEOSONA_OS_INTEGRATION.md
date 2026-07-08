@@ -1,47 +1,47 @@
-# Tích hợp Hệ Điều Hành (SEOSONA OS Integration)
+# Operating System Integration (SEOSONA OS Integration)
 
-Repository này không phải là một ứng dụng trôi nổi độc lập. Nó được ràng buộc chặt chẽ và tuân theo mọi Mệnh lệnh từ "Trái tim" của Hệ điều hành **SEOSONA OS** (Định vị tại `~/.seosona` hoặc `D:/SEOSONA OS`).
+This repository is not a free-floating standalone application. It is tightly bound to and obeys every command from the "Heart" of the **SEOSONA OS** operating system (located at `~/.seosona` or `D:/SEOSONA OS`).
 
-## 🔗 1. Hệ thống Cầu nối (The Bridge Scripts)
-Nằm trong thư mục `scripts/`, đây là những "Sợi cáp" liên lạc giữa Video Factory và OS.
+## 🔗 1. The Bridge Scripts
+Located in the `scripts/` directory, these are the "cables" that communicate between the Video Factory and the OS.
 
 <details open>
-<summary><b>🔀 Mở rộng Sợi cáp Giao tiếp</b></summary>
+<summary><b>🔀 Expand the Communication Cables</b></summary>
 <br>
 
-- 🔌 **`seosona-project-bridge.cjs`**: Cáp mạng chính. Giúp OS nhận diện được Repository này có những Workflow gì và ra lệnh khởi chạy luồng Node.js tương ứng.
-- 🐍 **`seosona-python.cjs`**: Cáp Python. Giúp môi trường Node.js gọi các lệnh Python (Whisper, VieNeu-TTS) một cách trơn tru mà không bị lỗi biến môi trường.
-- 🏥 **`seosona_doctor.py` & `seosona-project-audit.cjs`**: Bộ đôi bác sĩ. Luôn chạy kiểm tra sức khỏe của dự án (Check xem thiếu thư viện không, Node version có chuẩn không) trước khi bấm nút Render.
-- 🏗️ **`4_BRAIN/native_composer.py`**: Engine render native — tự sinh HTML/CSS/GSAP, dựng cảnh + phụ đề karaoke và render HyperFrames cho luồng video synthesized (thay `build_news_project.mjs` cũ đã nghỉ hưu).
+- 🔌 **`seosona-project-bridge.cjs`**: The main network cable. Helps the OS recognize which Workflows this Repository has and command the launch of the corresponding Node.js flow.
+- 🐍 **`seosona-python.cjs`**: The Python cable. Helps the Node.js environment call Python commands (Whisper, VieNeu-TTS) smoothly without environment variable errors.
+- 🏥 **`seosona_doctor.py` & `seosona-project-audit.cjs`**: The doctor duo. Always run a health check of the project (check for missing libraries, verify the Node version) before hitting the Render button.
+- 🏗️ **`4_BRAIN/native_composer.py`**: The native render engine — auto-generates HTML/CSS/GSAP, builds scenes + karaoke subtitles, and renders HyperFrames for the synthesized video flow (replacing the old retired `build_news_project.mjs`).
 
 </details>
 
 > [!CAUTION]
-> **ĐỘC QUYỀN UAP (Universal Autonomous Process)**
-> 
-> Toàn bộ quy trình *Review Repo -> Clone Repo -> Phân tích, học hỏi -> Nạp, tạo, nâng cấp -> Clear Repo* là đặc quyền tối thượng của hệ điều hành SEOSONA OS dùng để tự tiến hóa. 
-> Dự án SEOSONA Video **bị cấm tuyệt đối** việc sở hữu, thực thi, hoặc mô phỏng quy trình này (như đặt tên thư mục `repo_analyzer`) nhằm tránh đụng độ và chồng chéo chức năng ở mức OS.
+> **UAP EXCLUSIVE (Universal Autonomous Process)**
+>
+> The entire *Review Repo -> Clone Repo -> Analyze, learn -> Ingest, create, upgrade -> Clear Repo* process is the supreme prerogative of the SEOSONA OS operating system, used for self-evolution.
+> The SEOSONA Video project is **absolutely forbidden** from owning, executing, or simulating this process (such as naming a directory `repo_analyzer`) in order to avoid collision and functional overlap at the OS level.
 
 ---
 
-## 📜 2. Khế ước Khởi động (Startup Contracts)
-Mỗi khi khởi động, hệ thống bắt buộc phải đọc và tuân thủ các file Hiến pháp Mẹ. 
+## 📜 2. Startup Contracts
+Every time it starts up, the system is required to read and comply with the Parent Constitution files.
 
 <details open>
-<summary><b>⚖️ Các Điều Luật Cốt Lõi</b></summary>
+<summary><b>⚖️ The Core Laws</b></summary>
 <br>
 
-- 🆔 **`seosona.project.json` (Project Manifest)**: 
-  Căn cước công dân của dự án. Khai báo rõ ràng: Không gian bộ nhớ thuộc về `seosona-video`, Mức độ tự chủ là `project_edit`. Việc đăng video lên nền tảng (Publish) bắt buộc phải có sự cho phép của User.
+- 🆔 **`seosona.project.json` (Project Manifest)**:
+  The project's citizen ID. Clearly declares: the memory space belongs to `seosona-video`, the autonomy level is `project_edit`. Publishing videos to platforms (Publish) requires the User's permission.
 - 🧠 **`AGENTS.md` (SEOSONA OS Rules)**:
-  Bản hợp đồng yêu cầu bất cứ AI Agent nào đi vào dự án này cũng phải trỏ về SEOSONA OS để đọc linh hồn (`1_CORE/SOUL.md`) và kiến thức (`2_KNOWLEDGE/MASTER_INDEX.md`) trước khi làm việc.
+  The contract requiring any AI Agent entering this project to point back to SEOSONA OS to read the soul (`~/.seosona/1_CORE/SOUL.md`) and the knowledge (`~/.seosona/2_KNOWLEDGE/MASTER_INDEX.md`) before working — these are SEOSONA **OS** paths (external), not this repo's.
 - ✨ **`GEMINI.md` / `.clauderules` / `.cursorrules`**:
-  Các bộ luật riêng biệt ép các mô hình AI (như Gemini, Claude, Cursor) khi code trong repo này phải tuân thủ nghiêm ngặt chuẩn mực của SEOSONA:
-  - Phải dùng skill `seosona-task-intake` khi nhận task.
-  - Phải tạo `implementation_plan.md` trước khi code.
-  - Phải viết `walkthrough.md` sau khi hoàn thành.
+  The separate rule sets that force AI models (such as Gemini, Claude, Cursor) coding in this repo to strictly comply with SEOSONA's standards:
+  - Must use the `seosona-task-intake` skill when receiving a task.
+  - Must create `implementation_plan.md` before coding.
+  - Must write `walkthrough.md` after completion.
 
 </details>
 
 > [!WARNING]
-> Bất cứ sửa đổi mã nguồn nào phá vỡ sự kết nối của các file `Bridge` hoặc vi phạm các `Khế Ước` trên, toàn bộ Nhà máy SEOSONA Video sẽ bị văng ra khỏi Hệ sinh thái SEOSONA OS và tê liệt hoàn toàn.
+> Any source code modification that breaks the connection of the `Bridge` files or violates the `Contracts` above will throw the entire SEOSONA Video Factory out of the SEOSONA OS ecosystem and paralyze it completely.

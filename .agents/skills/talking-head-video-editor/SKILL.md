@@ -1,76 +1,76 @@
 ---
 name: talking-head-video-editor
 description: >
-  dựng và edit video talking-head, video tự quay, screen-recording hoặc footage thô thành video dọc 9:16 hoặc ngang 16:9 với transcript đã căn chữ, phụ đề karaoke, caption style theo nền tảng, card neon, callout, mockup ui cutaway, nhạc nền, sfx và bước verify trước khi giao. dùng khi user nói edit video, dựng talking-head, làm caption video, thêm phụ đề karaoke, thêm card/callout, dựng video review, hướng dẫn, giới thiệu sản phẩm, app demo, hoặc chỉnh video tự quay bằng edit_footage.py, hyperframes và ffmpeg.
+  build and edit talking-head videos, self-shot videos, screen-recordings or raw footage into 9:16 vertical or 16:9 landscape videos with word-aligned transcript, karaoke captions, platform-specific caption styles, neon cards, callouts, mockup ui cutaways, background music, sfx and a verify step before delivery. use when the user says edit a video, build a talking-head, make video captions, add karaoke captions, add a card/callout, build a review video, tutorial, product intro, app demo, or edit self-shot video with edit_footage.py, hyperframes and ffmpeg.
 ---
 
 # Talking-head Video Editor
 
-## Mục tiêu
+## Goal
 
-Dùng skill này để biến footage tự quay hoặc screen-recording thành video hoàn chỉnh có caption, card, callout, mockup UI, nhạc nền và SFX. Không dùng workflow faceless scene-slides (đó là `seosona-news-maker`), không tự sinh giọng AI, dùng GIỌNG THẬT từ footage.
+Use this skill to turn self-shot footage or screen-recording into a finished video with captions, cards, callouts, mockup UI, background music and SFX. Do not use the faceless scene-slides workflow (that is `seosona-news-maker`), do not auto-generate an AI voice, use the REAL VOICE from the footage.
 
-## Engine thật (đã build trong project)
+## Real engine (already built in the project)
 
-- **2 script:** `scripts/talking_head_transcribe.py` (= `npm run talkinghead:transcribe`) và `scripts/talking_head_edit.py` (= `npm run talkinghead:edit`). Tái dùng `asr_router` (PhoWhisper) + `native_composer._ffmpeg_bin/_bgm/_sfx` + SFX library.
-- **Tỉ lệ:** GIỮ NGUYÊN độ phân giải của footage → tự hỗ trợ **9:16 lẫn 16:9** (không cần cấu hình).
-- **Caption:** karaoke `\k` + card render bằng **ASS subtitle**, burn bằng ffmpeg (không cần alpha-render).
-- **Đầu ra:** `final.mp4` + ASS bên cạnh. SFX trong `sfx_events.file` nhận **tên gợi nhớ** (`whoosh`/`pop`/`ding`/`success`/`notify`/`swipe`) → tự map vào SFX library; hoặc đường dẫn tuyệt đối.
-- Các trường `enter`/`width`/`duration` trong `cards.json` hiện được chấp nhận nhưng chưa dùng (để dành); `--composition` được chấp nhận nhưng bỏ qua.
+- **2 scripts:** `scripts/talking_head_transcribe.py` (= `npm run talkinghead:transcribe`) and `scripts/talking_head_edit.py` (= `npm run talkinghead:edit`). Reuses `asr_router` (PhoWhisper) + `native_composer._ffmpeg_bin/_bgm/_sfx` + the SFX library.
+- **Aspect ratio:** KEEP the footage's native resolution → automatically supports **both 9:16 and 16:9** (no config needed).
+- **Caption:** karaoke `\k` + card rendered with **ASS subtitle**, burned in with ffmpeg (no alpha-render needed).
+- **Output:** `final.mp4` + ASS alongside it. SFX in `sfx_events.file` accepts a **mnemonic name** (`whoosh`/`pop`/`ding`/`success`/`notify`/`swipe`) → auto-mapped to the SFX library; or an absolute path.
+- The `enter`/`width`/`duration` fields in `cards.json` are currently accepted but not yet used (reserved); `--composition` is accepted but ignored.
 
-## Đầu vào cần có
+## Required inputs
 
-- Footage chính: `.mp4`, ưu tiên 9:16 nếu đăng TikTok/Reels/Shorts; 16:9 nếu đăng YouTube hoặc demo dài.
-- Transcript word-level: tạo bằng `npm run talkinghead:transcribe`, sau đó sửa chính tả brand → `words_fixed.json`.
-- File cấu hình edit: `cards.json` (footage, caption_bottom, music, music_vol, keywords, cards, sfx_events).
-- Tùy chọn (NÂNG CAO, chưa wire sẵn trong repo): screenshot/mockup UI HyperFrames, `capture_shot.ps1` — bỏ qua phần Mục B mockup nếu chưa có công cụ.
+- Main footage: `.mp4`, prefer 9:16 if posting to TikTok/Reels/Shorts; 16:9 if posting to YouTube or a long demo.
+- Word-level transcript: create it with `npm run talkinghead:transcribe`, then fix brand spelling → `words_fixed.json`.
+- Edit config file: `cards.json` (footage, caption_bottom, music, music_vol, keywords, cards, sfx_events).
+- Optional (ADVANCED, not yet wired in the repo): UI screenshot/mockup HyperFrames, `capture_shot.ps1` — skip the Section B mockup part if you do not have the tooling.
 
-## Đầu vào cần có
+## Required inputs
 
-- Footage chính: `.mp4`, ưu tiên 9:16 nếu đăng TikTok/Reels/Shorts; 16:9 nếu đăng YouTube hoặc demo dài.
-- Transcript word-level: tạo từ footage bằng `transcribe_video.py`, sau đó sửa chính tả brand thành `words_fixed.json`.
-- File cấu hình edit: `cards.json`, chứa footage, duration, caption zone, music, keyword, cards và sfx_events.
-- Tùy chọn: screenshot thật, mockup UI HyperFrames, clip cutaway, logo, asset app, hoặc screen-recording phụ.
+- Main footage: `.mp4`, prefer 9:16 if posting to TikTok/Reels/Shorts; 16:9 if posting to YouTube or a long demo.
+- Word-level transcript: created from the footage with `transcribe_video.py`, then fix brand spelling into `words_fixed.json`.
+- Edit config file: `cards.json`, containing footage, duration, caption zone, music, keywords, cards and sfx_events.
+- Optional: real screenshots, UI mockup HyperFrames, cutaway clips, logos, app assets, or supplementary screen-recordings.
 
-## Workflow chuẩn
+## Standard workflow
 
-### 1. Transcribe và sửa transcript
+### 1. Transcribe and fix the transcript
 
-Chạy:
+Run:
 
 ```bash
 npm run talkinghead:transcribe -- --video <mp4> --out selfshot
 # (= python scripts/talking_head_transcribe.py --video <mp4> --out selfshot)
 ```
 
-Kết quả chính là `words.json`. Trước khi dựng, luôn tạo `words_fixed.json` bằng cách sửa các lỗi nhận diện phổ biến:
+The main result is `words.json`. Before building, always create `words_fixed.json` by fixing common recognition errors:
 
 - brand/app: `Cloud` -> `Claude`, `herme` -> `Hermes`, `Chat GBT` -> `ChatGPT`.
-- thuật ngữ: giữ dạng hiển thị đúng trên caption, ví dụ `AI`, `24/7`, `9Router`, `email`, `API`.
-- số liệu: giữ dạng ngắn, dễ đọc trên màn hình, ví dụ `40`, `24/7`, `3 bước`.
+- terminology: keep the correct display form in the caption, e.g. `AI`, `24/7`, `9Router`, `email`, `API`.
+- figures: keep them short and easy to read on screen, e.g. `40`, `24/7`, `3 bước`.
 
-### 2. Chọn style caption trước khi viết cards
+### 2. Choose a caption style before writing cards
 
-Chọn 1 style chính cho toàn video, rồi dùng card/callout để nhấn ý. Không trộn quá nhiều style trong một video ngắn.
+Pick 1 main style for the whole video, then use cards/callouts to emphasize points. Don't mix too many styles in one short video.
 
-| Style | Dùng khi | Quy tắc caption |
+| Style | Use when | Caption rule |
 |---|---|---|
-| `karaoke_neon` | video bán hàng, review app, giới thiệu tool, nội dung cần giữ retention | caption đáy, active word màu vàng, keyword màu accent, chunk 5-7 từ |
-| `clean_tutorial` | video hướng dẫn thao tác, demo màn hình, nội dung cần rõ ràng | caption gọn 1-2 dòng, ít hiệu ứng, ưu tiên không che UI |
-| `tiktok_bold` | hook mạnh, clip viral, short-form nhanh | chữ to, phrase ngắn 3-5 từ, nhấn động từ/số liệu, card xuất hiện sớm |
-| `authority_news` | tin tức, phân tích, cập nhật thị trường | caption chắc, ít bounce, dùng lower-third/card headline thay vì nhiều sticker |
-| `review_compare` | so sánh tool, pricing, tính năng, before-after | caption vừa phải, card dạng bullet/compare/stat đúng thời điểm nói |
-| `screen_demo` | video app/web có nhiều UI | caption đặt thấp hoặc lệch vùng an toàn, mockup/cutaway full màn, không để card đè UI quan trọng |
+| `karaoke_neon` | sales videos, app reviews, tool intros, content that needs retention | bottom caption, active word in yellow, keywords in accent color, chunks of 5-7 words |
+| `clean_tutorial` | how-to videos, screen demos, content that needs clarity | concise 1-2 line caption, few effects, prioritize not covering the UI |
+| `tiktok_bold` | strong hook, viral clips, fast short-form | large text, short 3-5 word phrases, emphasize verbs/figures, cards appear early |
+| `authority_news` | news, analysis, market updates | solid caption, little bounce, use a lower-third/headline card instead of many stickers |
+| `review_compare` | tool comparison, pricing, features, before-after | moderate caption, bullet/compare/stat cards at the right moment of speech |
+| `screen_demo` | app/web videos with a lot of UI | place the caption low or off the safe zone, full-screen mockup/cutaway, don't let cards cover important UI |
 
-Thiết lập mặc định an toàn:
+Safe default settings:
 
-- `caption_bottom`: `380` đến `390` cho 9:16.
-- `--caption-chunk`: `6` cho talking-head thường; `4-5` cho TikTok nhanh; `7-8` cho tutorial chậm.
-- Keyword trong caption phải khớp từ trong transcript để tô accent ổn định.
+- `caption_bottom`: `380` to `390` for 9:16.
+- `--caption-chunk`: `6` for typical talking-head; `4-5` for fast TikTok; `7-8` for slow tutorials.
+- Keywords in the caption must match words in the transcript so the accent highlighting is stable.
 
-### 3. Viết `cards.json`
+### 3. Write `cards.json`
 
-Template tối thiểu:
+Minimal template:
 
 ```json
 {
@@ -100,116 +100,187 @@ Template tối thiểu:
 }
 ```
 
-Card types chuẩn:
+Standard card types:
 
-- `term`: giải thích một thuật ngữ, tool, khái niệm hoặc tên brand.
-- `bullet`: liệt kê 2-4 ý; dùng `rows` và `cue` để đồng bộ theo từ khóa.
-- `stat`: nhấn số liệu, KPI, giá, thời gian, phần trăm, before/after.
+- `term`: explain a term, tool, concept or brand name.
+- `bullet`: list 2-4 points; use `rows` and `cue` to sync with keywords.
+- `stat`: emphasize a figure, KPI, price, time, percentage, before/after.
+- `steps`: numbered how-to rows (revealed in sequence).
+- `checklist`: a process/list whose rows carry a **completion STATE** and an optional **progress bar** — the primary "graphic" device in the reference reels (org panels, CEO-agent loop). Two INDEPENDENT axes: the card's **border = semantic role**, the **✓ / green fill = state**. Schema:
+  ```json
+  {"type":"checklist","role":"info","title":"CEO AGENT","t":2,"dur":11,"left":80,"top":300,"progress":true,
+   "rows":[{"text":"Phân tích mục tiêu","done_at":1.2},{"text":"Tạo ticket","done_at":3.2}]}
+  ```
+  - **Animated** (a `done_at` in seconds-from-`t` on each row): the row shows as *doing* (amber numbered badge) then flips to *done* (green ✓) at `done_at`; rows reveal as the previous one completes (a real state machine). With `progress:true` a bar fills in lockstep (fraction = done/total). Use for "how the loop runs" beats.
+  - **Static** (no `done_at`): give each row `"state":"done"|"doing"|"todo"` for a fixed snapshot; `progress` fills to done/total.
+  - Rows also support `"state":"affirm"` (green ✓ "do this") and `"state":"negate"` (coral ✕ "not this") — the negation/checklist motif; `kw` overrides a row's badge label (else the row number). Optional `bar_width`.
+- `badge`: a persistent corner STEP marker (ref "BƯỚC N") — `{label, sub?, role, done?, t, dur, left, top}`; set `done:true` to prefix a green ✓. Keep it dwelling for the whole step.
+- `section`: an eyebrow chapter pill (ref "● ① TƯ VẤN LUẬT") — `{label, num?, splash?, role, t, dur, left, top}`; `num` prepends a circled digit ①..⑨, `splash:true` shows a big centred number for ~1 s on entry then docks into the pill.
+- `reason`: a reasoning line "cause → effect" (ref) — `{cause, effect, role, t, dur, left, top}`. **NB:** the text fields are `cause`/`effect`, NOT `left`/`right` — `left`/`top` are the card's position.
 
-Accent chuẩn: `cyan`, `violet`, `gold`, `green`. Dùng 1 accent chính và tối đa 1 accent phụ trong một video để tránh rối.
+Colour: prefer a semantic **`role`** on any card (`emphasis`/`success`/`danger`/`caution`/`info`/`baseline` → the light-brand hue, from `brand_kit.ROLES`) so the border carries MEANING — e.g. a "cost/pain" card = `danger` (coral), a "solution" card = `success` (green), a topic = `emphasis` (blue). Legacy accents `cyan`/`violet`/`gold`/`green`/`blue`/`coral` still work. Use 1 main role + at most 1 secondary per video to avoid clutter. (Craft basis: `2_KNOWLEDGE/style_references/talking_head/CRAFT-STUDY-2026-07.md` + `per_video/`.)
 
-### 4. Đặt card/callout không đè mặt
+### 4. Place cards/callouts so they don't cover the face
 
-- Với talking-head: đặt card ở vùng trống đối diện mặt, thường phía trên vai hoặc bên còn trống của khung hình.
-- Mỗi card có một khung giờ riêng; không để nhiều card cùng lúc nếu video ngắn.
-- Không để card đè caption, mắt, miệng, UI quan trọng, hoặc sản phẩm chính.
-- Nếu dùng mockup/cutaway full màn, không hiện card cùng lúc.
-- Card đầu tiên nên xuất hiện trong 1-3 giây đầu nếu video có hook bán hàng hoặc viral.
+- For talking-head: place the card in the empty area opposite the face, usually above the shoulder or on the still-empty side of the frame.
+- Each card has its own time window; don't show multiple cards at once if the video is short.
+- Don't let a card cover the caption, eyes, mouth, important UI, or the main product.
+- If using a full-screen mockup/cutaway, don't show a card at the same time.
+- The first card should appear within the first 1-3 seconds if the video has a sales or viral hook.
 
-### 5. Dựng mockup UI động khi video cần demo app
+### 5. Build an animated UI mockup when the video needs an app demo
 
-Dùng mockup khi footage chỉ có talking-head nhưng nội dung đang nói về app/web/tool cần minh họa.
+Use a mockup when the footage is only talking-head but the content is talking about an app/web/tool that needs illustrating.
 
-Quy trình:
+Procedure:
 
-1. Chụp screenshot thật nếu có thể:
+1. Take a real screenshot if possible:
 
 ```powershell
 capture_shot.ps1 -Url <url> -Out <abs.png>
 ```
 
-Chụp trang chủ hoặc trang public; tránh login page. Nếu gặp 403, captcha, trắng màn, hãy đổi trang hoặc vẽ mockup.
+Capture the homepage or a public page; avoid the login page. If you hit a 403, captcha, or blank screen, switch pages or draw a mockup.
 
-2. Vẽ mỗi UI thành một file HTML HyperFrames riêng: 1080x1920, có `#stage` và `window.__timelines["main"]`.
-3. Animation chỉ dùng `tl.set()` và `tl.to()`. Không dùng `tl.call()` vì render-seek có thể không chạy.
-4. Hiệu ứng gõ chữ phải pre-bake từng `<span opacity="0">`, rồi bật bằng `tl.set(span,{opacity:1}, t)`.
-5. Render mỗi mockup thành clip, sau đó overlay cutaway đúng thời điểm bằng ffmpeg:
+2. Draw each UI as a separate HyperFrames HTML file: 1080x1920, with `#stage` and `window.__timelines["main"]`.
+3. Animation uses only `tl.set()` and `tl.to()`. Do not use `tl.call()` because render-seek may not run it.
+4. Typewriter effects must be pre-baked per `<span opacity="0">`, then enabled with `tl.set(span,{opacity:1}, t)`.
+5. Render each mockup into a clip, then overlay the cutaway at the right moment with ffmpeg:
 
 ```bash
 [i]setpts=PTS+START/TB[ci]
 overlay=enable='between(t,START,END)'
 ```
 
-6. Sau khi có `combined_visual`, mux lại giọng gốc rồi chạy `edit_footage.py` để thêm card, karaoke caption và SFX.
+6. After you have `combined_visual`, re-mux the original voice then run `edit_footage.py` to add cards, karaoke captions and SFX.
 
-Với video demo app, bắt buộc chuẩn bị ít nhất 2-3 mockup hoặc minh họa khác nhau, mỗi tính năng một màn. Không dùng một mockup duy nhất cho cả video.
+For app demo videos, you must prepare at least 2-3 different mockups or illustrations, one screen per feature. Don't use a single mockup for the whole video.
 
-### 6. Chạy edit footage
+### 6. Run edit footage
 
-Chạy:
+Run:
 
 ```bash
 npm run talkinghead:edit -- --spec cards.json --video <mp4> --words words_fixed.json --out final.mp4 --caption-chunk 6
 # (= python scripts/talking_head_edit.py --spec cards.json --video <mp4> --words words_fixed.json --out final.mp4 --caption-chunk 6)
 ```
 
-Không dùng `--post` của scene-slides cho workflow này. Nếu đổi caption/card nhưng không đổi footage, chỉ cần cập nhật `cards.json` hoặc `words_fixed.json` rồi chạy lại lệnh edit.
+Don't use the scene-slides `--post` for this workflow. If you change the caption/card but not the footage, just update `cards.json` or `words_fixed.json` and re-run the edit command.
 
-## Công thức style nhanh
+## Quick style recipes
 
-### Talking-head review app
+### Talking-head app review
 
-- Style: `karaoke_neon` hoặc `tiktok_bold`.
+- Style: `karaoke_neon` or `tiktok_bold`.
 - Caption: `caption_bottom: 380`, `--caption-chunk 5-6`.
-- Card: `term` ở hook, `bullet` cho 3 lợi ích, `stat` cho giá/tốc độ/kết quả.
-- SFX: `whoosh` cho card vào, `pop` cho bullet, `ding/success` cho kết quả.
+- Cards: `term` at the hook, `bullet` for 3 benefits, `stat` for price/speed/result.
+- SFX: `whoosh` for card entry, `pop` for bullets, `ding/success` for results.
 
 ### Tutorial screen-recording
 
-- Style: `clean_tutorial` hoặc `screen_demo`.
-- Caption: chunk 6-8 từ, tránh che thanh menu, nút bấm, terminal hoặc form.
-- Card: ít, dùng callout đúng chỗ thay vì card lớn.
-- Mockup: chỉ overlay khi cần zoom một thao tác quan trọng.
+- Style: `clean_tutorial` or `screen_demo`.
+- Caption: chunks of 6-8 words, avoid covering the menu bar, buttons, terminal or form.
+- Cards: few, use a callout in the right spot instead of a large card.
+- Mockup: only overlay when you need to zoom into an important action.
 
-### Video bán hàng/giới thiệu dịch vụ
+### Sales / service-intro video
 
-- Style: `tiktok_bold` cho hook, sau đó `karaoke_neon`.
-- Card: hook trong 1-2 giây đầu; card lợi ích xuất hiện khi người nói nhắc đúng ý.
-- Caption: keyword accent cho vấn đề, giải pháp, con số, CTA.
-- SFX: đa dạng nhưng không dày quá 1 hiệu ứng mỗi 2-4 giây.
+- Style: `tiktok_bold` for the hook, then `karaoke_neon`.
+- Cards: hook in the first 1-2 seconds; benefit cards appear when the speaker mentions the right point.
+- Caption: accent keywords for the problem, solution, numbers, CTA.
+- SFX: varied but no denser than 1 effect every 2-4 seconds.
 
-### Video phân tích/news
+### Analysis / news video
 
 - Style: `authority_news`.
-- Card: dùng headline/lower-third, ít chuyển động.
-- Caption: nhịp chắc, không dùng quá nhiều emoji hoặc bounce.
-- SFX: nhẹ, chủ yếu whoosh/ding ở chuyển ý.
+- Cards: use a headline/lower-third, little motion.
+- Caption: steady rhythm, don't use too many emojis or bounce.
+- SFX: light, mostly whoosh/ding at transitions.
 
-## Quy tắc bắt buộc
+## Mandatory rules
 
-1. Chữ trên caption/card phải là dạng hiển thị đúng, không viết phiên âm vào transcript hoặc text màn hình.
-2. `caption_bottom` luôn giữ vùng an toàn 380-390 cho 9:16, trừ khi UI bắt buộc phải né khu vực đó.
-3. Card, mockup và caption không được đè nhau; mockup cutaway full màn thì không để card cùng lúc.
-4. SFX phải đa dạng: `whoosh`, `pop`, `coin`, `ding`, `success`, `notify`, `swipe`; không lặp một tiếng cho mọi sự kiện.
-5. Video dài hơn 120 giây phải dùng caption gộp 1 clip nếu pipeline đã vá `build_captions`, để tránh rớt clip.
-6. Batch lớn nên chia 6-8 video mỗi session để tránh tràn context hoặc lỗi gateway.
-7. Tên file xuất nên là caption đăng có dấu kèm hashtag, ví dụ: `<hook tiếng việt có dấu> #seosonavideo #xuhuong #ai #tool #automation (9x16).mp4`. Không dùng ký tự cấm Windows: `< > : " / \ | ? *`.
+1. Text in the caption/card must be the correct display form, don't write phonetics into the transcript or on-screen text.
+2. `caption_bottom` always keeps the 380-390 safe zone for 9:16, unless the UI forces you to avoid that area.
+3. Cards, mockups and captions must not overlap each other; with a full-screen mockup cutaway, don't show a card at the same time.
+4. SFX must be varied: `whoosh`, `pop`, `coin`, `ding`, `success`, `notify`, `swipe`; don't repeat one sound for every event.
+5. Videos longer than 120 seconds must use merged single-clip captions if the pipeline has patched `build_captions`, to avoid dropping clips.
+6. Large batches should be split into 6-8 videos per session to avoid context overflow or gateway errors.
+7. The export filename should be the post caption with diacritics plus hashtags, e.g.: `<Vietnamese hook with diacritics> #seosonavideo #xuhuong #ai #tool #automation (9x16).mp4`. Don't use Windows-forbidden characters: `< > : " / \ | ? *`.
 
-## Checklist verify trước khi giao
+## Verify checklist before delivery
 
-Luôn verify bằng dữ liệu thật, không đoán:
+Always verify with real data, don't guess:
 
-- Trích frame ở nhiều mốc: đầu video, giữa video, đoạn có card, đoạn có mockup, gần cuối video.
-- Kiểm tra frame không đen; nếu đo bằng ffmpeg thì YAVG nên lớn hơn 12.
-- Đo loudness gần `-16 LUFS` nếu xuất cho social.
-- Xác nhận duration đúng brief và tối thiểu 45 giây nếu video dạng giới thiệu/review chuẩn.
-- Xem caption có đúng chính tả brand, số liệu, thuật ngữ và không bị rơi chữ.
-- Xem card/mockup không đè mặt, không đè caption, không che UI quan trọng.
-- Xác nhận SFX không quá lớn, không lặp đơn điệu và không che giọng nói.
+- Extract frames at multiple marks: video start, mid-video, a section with a card, a section with a mockup, near the end of the video.
+- Check that frames are not black; if measuring with ffmpeg, YAVG should be greater than 12.
+- Measure loudness near `-16 LUFS` if exporting for social.
+- Confirm the duration matches the brief and is at least 45 seconds for a standard intro/review video.
+- Check that the caption has the correct brand spelling, figures, terminology and no dropped words.
+- Check that cards/mockups don't cover the face, don't cover the caption, don't hide important UI.
+- Confirm SFX is not too loud, not monotonously repetitive and does not cover the speech.
 
-## Không làm trong skill này
+## Course / knowledge videos — 3-zone repurpose (SEOSONA, 9:16)
 
-- Không tạo faceless scene-slides bằng `build_scene_slides.py`.
-- Không tự sinh voice bằng VieNeu/F5 cho video này, trừ khi user yêu cầu workflow voice-over riêng.
-- Không dùng text phiên âm để sửa phát âm trong caption.
-- Không post-process scene-slides hoặc dùng lệnh dành cho scene-slides lên footage talking-head.
+Knowledge/course videos REPURPOSE a real lecture (don't generate). Standard layout cloned from the
+reference reels (`2_KNOWLEDGE/style_references/talking_head/`): **TOP = content cards** (header pill +
+icon bullet-chips + stat + b-roll) · **MIDDLE = speaker** · **BOTTOM = karaoke**. Always **9:16**
+(1080×1920); a 16:9 source is blurred-padded so the speaker sits in the middle band.
+
+Pipeline (`scripts/course_video.py`, npm `video:course`): video → SRT (PhoWhisper-medium) →
+**cut-plan** (`9_PROMPTS/COURSE_SPLICE_PROMPT.md` non-linear 5-act matrix → `4_BRAIN/course_planner.py`)
+→ splice 9:16 → captions+cards via this engine. Two caption engines: `--captions talkinghead` (ASS,
+default) or `--captions embedded` (the `embedded-captions` skill: rail + person-matting).
+
+**Card templates (spec `cards`)** — rendered as ASS pills (BorderStyle-3 box):
+- `header` — `{tag, title}`: accent tag pill + bold headline (top-band section header).
+- `bullet` — `{title?, rows:[{icon,kw,text}]}`: each row is its own rounded chip (icon ▸●✓★ + accent
+  keyword + text), revealed SEQUENTIALLY. Group-B's icon-bullet look.
+- `stat` — `{title,sub}`: big accent number + label. `term` — `{title,sub}`.
+- accents cyan/violet/gold/green; place in the TOP band (clear of the centered speaker).
+
+**B-roll / layout composites (spec `broll`)** — `[{src, mode, t, dur, top?, left?, width?}]`: overlay a real
+screenshot/screen-rec in the content zone for that beat. The "show the tool while I talk" pattern. Images
+loop; clips play once. Render preset via `SEOSONA_X264_PRESET` (default `veryfast`). Modes:
+- `full` — fills the content zone; add `"frame":true` for a blue-bordered **device-mockup** wrapper.
+- `pip` — small blue-framed corner picture-in-picture.
+- `split` — **presenter-top / screen-rec-below** demo layout: the b-roll fills the lower band, the speaker
+  stays in the top strip; `split_ratio` (default 0.36) sets the seam. Use for step-by-step tool demos.
+- `inset` — **Mode-B**: the footage is REPLACED by a light brand gradient (`bg`, default `0xEEF3FF`) and the
+  speaker becomes a rounded blue-bordered inset card (`width`/`height`/`left`/`top`); no `src` needed (reuses
+  the footage). Use for thesis/bridge beats where a header card sits above the speaker.
+
+Caption placement: `caption_bottom` sets the vertical offset; `caption_align` (2=bottom-centre default, 8=top,
+5=mid-float) lets a video float captions mid-frame over the chest (the reels' non-bottom convention).
+
+**Visual ELEMENTS (spec `elements`)** — the dense on-brand element layer (icon-tiles, emojis, badges,
+sparkles, arrows, chips, stat pops) popped over the footage synced to each phrase — the thing that makes a
+talking-head watch. `[{type, ..params.., t, dur, x, y, w?}]`; each is rendered to a transparent PNG by
+`2_SKILLS/element_maker/element_maker.py` and composited with a fade at its beat (top band / beside the face,
+never over the mouth). Types: `icon_tile` (glassy tile + line-icon + optional `badge` check/x/warn/q/number +
+`label`) · `chip` · `badge` · `emoji` · `sparkle` · `arrow` · `ring` · `big_stat` · `tile3d` (glossy pseudo-3D
+app-tile) · `phone` (device bezel, optional `src` screenshot) · `bracket` (HUD corners) · `marker` (highlight
+swipe). `icon` accepts a concept word (VN/EN, e.g. "thời gian"/"seo"/"bóng đèn") or a Lucide name; `role` =
+emphasis/success/danger/caution/info gives the colour. **Auto-grow:** an unknown concept is resolved on demand
+(`element_resolver`: alias → learned cache → fuzzy → local LLM), its Lucide SVG **auto-fetched** into
+`7_ASSETS/brand/icons/` and the mapping **learned** — so any new word/case gets an on-brand element and the pool
+enriches itself. Pattern: a **problem set** = icon_tiles with a coral `"badge":"x"`, the **solution** = a green
+`"badge":"check"` tile; accumulate them across beats. Full catalogue + icon/emoji aliases:
+`2_SKILLS/element_maker/element_library.json`; taxonomy: `2_KNOWLEDGE/style_references/talking_head/element_inventory/`.
+**Motion:** entrance rise/slide/drop+fade by default; `rich_motion:true` renders every element as an animated
+transparent-clip (pop/bounce/spin). **`count_up`** (number 0→value) and **`lottie`** (`src` = a LottieFiles
+animation in `7_ASSETS/brand/lottie/`, or a concept alias like "ăn mừng"→fireworks) are ALWAYS animated clips.
+**Auto (default, no authoring):** `element_picker` scans the narration and auto-places tiles/emoji + a **count_up
+on a spoken number** + a **lottie on a celebration beat** ("thành công/tuyệt vời/…") — a plain talking-head gets
+the whole dense, animated element layer for free. All NATIVE/headless (no CapCut).
+Example: `{"type":"icon_tile","icon":"thời gian","role":"caution","badge":"x","label":"Mất thời gian","t":2,"dur":6,"x":60,"y":240,"w":210}`.
+
+The cut-plan's matrix carries per-segment `topcard {tag,headline,bullets}` + `broll {src,mode}`;
+`course_video` auto-places them (header+bullets in the top band, b-roll over the speaker, karaoke at
+the bottom). See `6_SOP/COURSE_VIDEO_SOP.md`.
+
+## Not done in this skill
+
+- Do not create faceless scene-slides with `build_scene_slides.py`.
+- Do not auto-generate voice with VieNeu/F5 for this video, unless the user requests a separate voice-over workflow.
+- Do not use phonetic text to fix pronunciation in the caption.
+- Do not post-process scene-slides or use scene-slides commands on talking-head footage.

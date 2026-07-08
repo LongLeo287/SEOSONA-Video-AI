@@ -178,10 +178,13 @@ def learn(policy):
         recent = sorted([m for m in pm.scan(WORKSPACE)],
                         key=lambda m: m.get("created") or "", reverse=True)[:3]
         for m in recent:
+            pdir = m.get("project_dir")
+            if not pdir:                       # a manifest without project_dir → skip, don't KeyError-abort
+                continue
             try:
-                fg.generate_post_mortem(m["project_dir"])
-            except Exception as e:
-                print(f"[factory] post-mortem skipped for {m['video_id']}: {e}")
+                fg.generate_post_mortem(pdir)
+            except Exception as e:             # .get in the log too — never crash WHILE handling a crash
+                print(f"[factory] post-mortem skipped for {m.get('video_id', '?')}: {e}")
     except Exception as e:
         print(f"[factory] feedback agent unavailable: {e}")
     return led

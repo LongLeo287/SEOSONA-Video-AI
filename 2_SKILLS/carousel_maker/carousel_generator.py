@@ -21,15 +21,18 @@ def _html_escape(text: str) -> str:
 
 
 def _highlight(text: str, highlight: str, color: str) -> str:
-    if not highlight or not text:
-        escaped = _html_escape(text)
-    else:
-        escaped = _html_escape(text)
-        hl = _html_escape(highlight)
-        if hl in escaped:
-            escaped = escaped.replace(hl, f'<span style="color:{color}">{hl}</span>')
-    # Support strikethrough: ~~text~~ → <s>text</s>
     import re
+    escaped = _html_escape(text)
+    if highlight:
+        hl = _html_escape(highlight)
+        if hl:
+            # WHOLE-WORD highlight, NOT a bare substring: `escaped.replace(hl, …)` wrapped the keyword INSIDE
+            # another word — "AI" → "Em[AI]l", "SEO" → "[SEO]ul" — and hit ALL occurrences. \b uses Unicode
+            # \w so it respects VN diacritics; a function replacement stops re interpreting a '\' / backref in
+            # hl. If the keyword is never a standalone word, nothing is wrapped (better than breaking a word).
+            repl = f'<span style="color:{color}">{hl}</span>'
+            escaped = re.sub(r'\b' + re.escape(hl) + r'\b', lambda _m: repl, escaped)
+    # Support strikethrough: ~~text~~ → <s>text</s>
     escaped = re.sub(r'~~(.+?)~~', r'<s>\1</s>', escaped)
     return escaped
 
@@ -664,7 +667,11 @@ def generate_carousel_slides(slide_data: list, output_dir: str, logo_path: str =
     css = _build_css(p)
     total = len(slide_data)
     base_html = f"<!DOCTYPE html><html><head><style>{css}</style></head><body><div id=\"slide-container\"></div></body></html>"
-    temp_html_path = os.path.join(output_dir, "temp_carousel.html")
+    # UNIQUE temp name (atomic mkstemp) — a fixed "temp_carousel.html" would be clobbered when two carousel
+    # renders hit the same output_dir at once (the factory runs renders as parallel subprocesses) → corrupt slides.
+    import tempfile as _tf
+    _fd, temp_html_path = _tf.mkstemp(prefix="temp_carousel_", suffix=".html", dir=output_dir)
+    os.close(_fd)
     with open(temp_html_path, 'w', encoding='utf-8') as f: f.write(base_html)
 
     try:

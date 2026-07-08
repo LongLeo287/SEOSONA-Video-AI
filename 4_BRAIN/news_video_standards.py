@@ -122,9 +122,12 @@ VIETNAMESE_ASCII_ALLOWLIST = {
     "voi",
 }
 
+# English function words used to detect a DUMPED English sentence. Deliberately EXCLUDES "to"/"in"/"an" —
+# they are also common VIETNAMESE words (to=big, in=print, an=in "an toàn"/"an ninh"=safe/security), so
+# they false-flagged legitimate Vietnamese scripts as English leaks. Real English still trips plenty of
+# the remaining markers (the/is/for/and/with/of/…) plus the ≥10-consecutive-unknown-ASCII run.
 ENGLISH_PROSE_MARKERS = {
     "a",
-    "an",
     "and",
     "are",
     "as",
@@ -135,7 +138,6 @@ ENGLISH_PROSE_MARKERS = {
     "from",
     "has",
     "have",
-    "in",
     "is",
     "marketer",
     "marketers",
@@ -143,7 +145,6 @@ ENGLISH_PROSE_MARKERS = {
     "on",
     "the",
     "this",
-    "to",
     "with",
 }
 
@@ -265,6 +266,30 @@ def align_tts_boundaries_to_display_words(
     # them; spread display words smoothly over the real envelope instead.
     if len(boundaries) < 0.6 * max(1, len(plan.tts_words)):
         return _estimate_word_data(plan.display_words, duration, span=_span)
+
+    # 0.6 ≤ ratio < 1: ASR heard fewer words than were spoken. The index-based 1:1 map below
+    # assumes no dropped words — one missed ASR word shifts EVERY later index, so captions drift
+    # in the back half. Anchor each display word to the ASR word at its PROPORTIONAL position
+    # instead (robust to dropped words; still real ASR timing = audio-master, not an even guess).
+    if len(boundaries) < len(plan.tts_words):
+        n2, m2 = len(plan.display_words), len(boundaries)
+        anchored = []
+        for j, w in enumerate(plan.display_words):
+            si = min(m2 - 1, int(j * m2 / n2))
+            ei = max(si, min(m2 - 1, int((j + 1) * m2 / n2 - 1e-9)))
+            s, e = _b_start(boundaries[si]), _b_end(boundaries[ei])
+            anchored.append({"word": w, "start": max(0.0, s),
+                             "end": min(float(duration), max(s + 0.05, e))})
+        for i in range(1, len(anchored)):       # monotonic, non-overlapping
+            if anchored[i]["start"] < anchored[i - 1]["start"]:
+                anchored[i]["start"] = anchored[i - 1]["start"]
+            if anchored[i - 1]["end"] > anchored[i]["start"]:
+                anchored[i - 1]["end"] = anchored[i]["start"]
+            if anchored[i - 1]["end"] <= anchored[i - 1]["start"]:
+                anchored[i - 1]["end"] = anchored[i - 1]["start"] + 0.02
+            if anchored[i]["end"] <= anchored[i]["start"]:
+                anchored[i]["end"] = anchored[i]["start"] + 0.05
+        return anchored
 
     # Index-based grouping (ASR word i ↔ spoken word i ↔ display word mapping[i]).
     grouped: Dict[int, List[dict]] = {idx: [] for idx in range(n)}

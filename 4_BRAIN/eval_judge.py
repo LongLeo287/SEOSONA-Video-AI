@@ -45,7 +45,11 @@ DIMENSIONS = {
 
 
 def _frames(video, n=4):
-    """Extract n frames evenly across the clip (downscaled) for the judge."""
+    """Extract n REVEALED frames across the clip (downscaled) for the judge. Each of the n segments
+    is sampled at a few points in its LATER half (skipping the entrance, where reveal animations
+    aren't done yet) and the highest-CONTENT candidate is kept (frame_scorer sharp+entropy). This
+    fixes the judge catching a scene at its transition/pre-reveal moment (an entrance frame shows an
+    empty heading → the judge wrongly scored visual_variety/readability down for a fully-good scene)."""
     ffp, ffm = nc._ffprobe_bin(), nc._ffmpeg_bin()
     try:
         r = subprocess.run([ffp, "-v", "error", "-show_entries", "format=duration",
@@ -55,16 +59,32 @@ def _frames(video, n=4):
         dur = 0.0
     if dur < 1:
         return []
+    try:                                            # reuse the cover-frame scorer (no duplication)
+        sys.path.insert(0, os.path.join(ROOT, "2_SKILLS", "thumbnail_maker"))
+        import frame_scorer as _fs
+    except Exception:
+        _fs = None
     tmp = tempfile.mkdtemp(prefix="evaljudge_")
-    out = []
+    seg, out = dur / n, []
     for k in range(n):
-        t = dur * (k + 0.5) / n
-        p = os.path.join(tmp, f"f{k}.png")
-        subprocess.run([ffm, "-y", "-hide_banner", "-loglevel", "error", "-ss", f"{t:.2f}",
-                        "-i", video, "-frames:v", "1", "-vf", "scale=540:-1", p],
-                       capture_output=True, timeout=30)
-        if os.path.exists(p):
-            out.append(p)
+        best_p, best_s = None, -1.0
+        for j, frac in enumerate((0.5, 0.68, 0.85)):      # later half of the segment → past the entrance
+            t = seg * (k + frac)
+            p = os.path.join(tmp, f"f{k}_{j}.png")
+            subprocess.run([ffm, "-y", "-hide_banner", "-loglevel", "error", "-ss", f"{t:.2f}",
+                            "-i", video, "-frames:v", "1", "-vf", "scale=540:-1", p],
+                           capture_output=True, timeout=30)
+            if not os.path.exists(p):
+                continue
+            if _fs:
+                sc = _fs._scores(p)                        # (sharp, entropy, luma)
+                s = (sc[0] + sc[1]) if sc else 0.0         # content richness = sharp + entropy
+            else:
+                s = float(os.path.getsize(p))              # fallback: bigger PNG ≈ more content
+            if s > best_s:
+                best_s, best_p = s, p
+        if best_p:
+            out.append(best_p)
     return out
 
 
@@ -142,14 +162,39 @@ def _judge_ollama(frames, narration):
     return None
 
 
+def _agent_review_path(video_path):
+    """The stable per-video agent-review dir (frames dump + agent verdict live together)."""
+    return os.path.join(ROOT, "3_MEMORY", "eval_results", "agent_review",
+                        os.path.splitext(os.path.basename(video_path))[0])
+
+
+def record_agent_verdict(review_dir, scores, notes=None):
+    """Persist an AGENT-graded verdict (written when Gemini+Ollama are both down and the coding agent
+    grades the dumped frames in-session, per the user's rule). Saved as verdict.json IN the review dir
+    so a later judge()/eval_run consumes it — this is what CLOSES the flywheel OODA loop at the agent
+    tier (previously the dump was write-only, so an agent grade never fed back). Same schema as judge()."""
+    scores = {k: v for k, v in (scores or {}).items()}
+    nums = [v for v in scores.values() if isinstance(v, (int, float))]
+    overall = round(sum(nums) / len(nums), 2) if nums else 0.0
+    weak = [k for k, v in scores.items() if isinstance(v, (int, float)) and v <= 2]
+    verdict = {"overall": overall, "pass": bool(overall >= PASS_THRESHOLD and not weak),
+               "scores": scores, "notes": list(notes or []), "weak": weak, "by": "agent"}
+    try:
+        os.makedirs(review_dir, exist_ok=True)
+        json.dump(verdict, open(os.path.join(review_dir, "verdict.json"), "w", encoding="utf-8"),
+                  ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"[eval_judge] could not write agent verdict: {e}")
+    return verdict
+
+
 def _agent_review_dump(video_path, frames, narration):
     """Last resort when BOTH Gemini and local Ollama are unavailable: persist the frames +
     narration + rubric so the CODING AGENT (Claude) can grade them IN-SESSION (the user's
     standing rule: 'if Gemini is out of quota, you or a local LLM handle it'). Returns the
-    request dir. The agent then Reads the frames and writes the verdict."""
+    request dir. The agent then Reads the frames and writes the verdict (record_agent_verdict)."""
     import shutil
-    d = os.path.join(ROOT, "3_MEMORY", "eval_results", "agent_review",
-                     os.path.splitext(os.path.basename(video_path))[0])
+    d = _agent_review_path(video_path)
     os.makedirs(d, exist_ok=True)
     kept = []
     for i, f in enumerate(frames):
@@ -165,9 +210,29 @@ def _agent_review_dump(video_path, frames, narration):
     return d
 
 
+def _emit_quality(video_path, verdict):
+    """Feed the QUALITATIVE eval verdict into the observability hub (obs_metrics 'quality' event) so
+    feedback_loop / the OODA gate learn from it. Previously eval scores were ORPHANED — only the metadata
+    quality_scorer (video_engine) reached the gate, so the dashboard's avg_score stayed null despite real
+    eval verdicts. 0-5 → 0-100 to match video_engine's scale; verdict PASS/REVIEW. Best-effort, never raises."""
+    try:
+        ov = verdict.get("overall")
+        if not isinstance(ov, (int, float)):
+            return
+        from importlib import import_module as _im
+        sys.path.insert(0, os.path.join(ROOT, "9_DASHBOARD"))
+        _im("obs_metrics").record("quality", output=os.path.basename(video_path),
+                                  score=round(ov * 20, 1),
+                                  verdict="PASS" if verdict.get("pass") else "REVIEW",
+                                  source="eval_judge")
+    except Exception:
+        pass
+
+
 def judge(video_path):
     """Grade one rendered video qualitatively. Chain: Gemini vision → local Ollama vision →
-    agent-review dump (Claude grades in-session). Returns a verdict dict (always graceful)."""
+    agent-review dump (Claude grades in-session). Returns a verdict dict (always graceful).
+    A scored verdict (Gemini OR agent-consumed) also emits an obs_metrics 'quality' event → the gate."""
     if not video_path or not os.path.exists(video_path):
         return {"skipped": True, "reason": "file not found"}
     frames = _frames(video_path)
@@ -176,7 +241,24 @@ def judge(video_path):
     narration = _narration(video_path)
     res = _judge_gemini(frames, narration) or _judge_ollama(frames, narration)
     if not res or "scores" not in res:
-        # Both cloud + local LLM unavailable → hand to the coding agent (user's rule).
+        # Before re-dumping: an AGENT verdict from a prior in-session grading CLOSES the loop — use it.
+        _vp = os.path.join(_agent_review_path(video_path), "verdict.json")
+        if os.path.exists(_vp):
+            try:
+                _v = json.load(open(_vp, encoding="utf-8"))
+                if isinstance(_v, dict) and "scores" in _v:
+                    for f in frames:
+                        try:
+                            os.remove(f)
+                        except Exception:
+                            pass
+                    print(f"[eval_judge] ✅ using AGENT verdict — overall {_v.get('overall')}/5 "
+                          f"({'PASS' if _v.get('pass') else 'REVIEW'})")
+                    _emit_quality(video_path, _v)          # agent verdict → the gate (no longer orphaned)
+                    return _v
+            except Exception:
+                pass
+        # Both cloud + local LLM unavailable and no agent verdict yet → hand to the coding agent (user's rule).
         review_dir = _agent_review_dump(video_path, frames, narration)
         for f in frames:
             try:
@@ -202,6 +284,7 @@ def judge(video_path):
           + ", ".join(f"{k} {v}" for k, v in scores.items()))
     if out["notes"]:
         print("           notes: " + " | ".join(str(n) for n in out["notes"][:4]))
+    _emit_quality(video_path, out)                         # Gemini/Ollama verdict → the gate
     return out
 
 

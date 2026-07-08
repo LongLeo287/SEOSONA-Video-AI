@@ -1,0 +1,3555 @@
+{
+ "nodes": [
+  {
+   "id": "d_0inbox",
+   "label": "0_INPUT_INBOX",
+   "group": "dir",
+   "role": "input"
+  },
+  {
+   "id": "d_0setup",
+   "label": "0_SETUP",
+   "group": "dir",
+   "role": "meta"
+  },
+  {
+   "id": "d_1agents",
+   "label": "1_AGENTS",
+   "group": "dir",
+   "role": "processing"
+  },
+  {
+   "id": "d_1config",
+   "label": "1_CONFIG",
+   "group": "dir",
+   "role": "meta"
+  },
+  {
+   "id": "d_2knowledge",
+   "label": "2_KNOWLEDGE",
+   "group": "dir",
+   "role": "input"
+  },
+  {
+   "id": "d_2skills",
+   "label": "2_SKILLS",
+   "group": "dir",
+   "role": "processing"
+  },
+  {
+   "id": "d_3memory",
+   "label": "3_MEMORY",
+   "group": "dir",
+   "role": "feedback"
+  },
+  {
+   "id": "d_4brain",
+   "label": "4_BRAIN",
+   "group": "dir",
+   "role": "processing"
+  },
+  {
+   "id": "d_5framework",
+   "label": "5_FRAMEWORK",
+   "group": "dir",
+   "role": "processing"
+  },
+  {
+   "id": "d_6sop",
+   "label": "6_SOP",
+   "group": "dir",
+   "role": "meta"
+  },
+  {
+   "id": "d_7assets",
+   "label": "7_ASSETS",
+   "group": "dir",
+   "role": "input"
+  },
+  {
+   "id": "d_8workspace",
+   "label": "8_WORKSPACE",
+   "group": "dir",
+   "role": "output"
+  },
+  {
+   "id": "d_9dashboard",
+   "label": "9_DASHBOARD",
+   "group": "dir",
+   "role": "feedback"
+  },
+  {
+   "id": "d_9prompts",
+   "label": "9_PROMPTS",
+   "group": "dir",
+   "role": "input"
+  },
+  {
+   "id": "d_agentsskills",
+   "label": ".agents/skills",
+   "group": "dir",
+   "role": "processing"
+  },
+  {
+   "id": "d_scripts",
+   "label": "scripts/",
+   "group": "dir",
+   "role": "processing"
+  },
+  {
+   "id": "d_docs",
+   "label": "docs/",
+   "group": "dir",
+   "role": "meta"
+  },
+  {
+   "id": "cat_sopVideo",
+   "label": "Video Production",
+   "group": "sopcat"
+  },
+  {
+   "id": "cat_sopVoice",
+   "label": "Voice & Audio",
+   "group": "sopcat"
+  },
+  {
+   "id": "cat_sopRender",
+   "label": "Render & Framework",
+   "group": "sopcat"
+  },
+  {
+   "id": "cat_sopLearning",
+   "label": "Learning & QA",
+   "group": "sopcat"
+  },
+  {
+   "id": "cat_sopMaps",
+   "label": "Maps & Architecture",
+   "group": "sopcat"
+  },
+  {
+   "id": "cat_sopPublish",
+   "label": "Publishing & SEO",
+   "group": "sopcat"
+  },
+  {
+   "id": "cat_sopDesign",
+   "label": "Design",
+   "group": "sopcat"
+  },
+  {
+   "id": "cat_sopInfra",
+   "label": "Infra, Ops & Strategy",
+   "group": "sopcat"
+  },
+  {
+   "id": "sop_AUTONOMOUS_FACTORY_LOOP",
+   "label": "AUTONOMOUS_FACTORY_LOOP",
+   "group": "sopLearning"
+  },
+  {
+   "id": "sop_CHIQUYET_VOICE_STYLE",
+   "label": "CHIQUYET_VOICE_STYLE",
+   "group": "sopVoice"
+  },
+  {
+   "id": "sop_COURSE_VIDEO_SOP",
+   "label": "COURSE_VIDEO_SOP",
+   "group": "sopVideo"
+  },
+  {
+   "id": "sop_DASHBOARD_BUILD_PLAN",
+   "label": "DASHBOARD_BUILD_PLAN",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_DASHBOARD_SYSTEM_DESIGN",
+   "label": "DASHBOARD_SYSTEM_DESIGN",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_DEPENDENCIES",
+   "label": "DEPENDENCIES",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_EFFECT_LIBRARY_PLAN",
+   "label": "EFFECT_LIBRARY_PLAN",
+   "group": "sopRender"
+  },
+  {
+   "id": "sop_EVAL_FLYWHEEL",
+   "label": "EVAL_FLYWHEEL",
+   "group": "sopLearning"
+  },
+  {
+   "id": "sop_GOOGLE_DRIVE_SHEETS_LAYER",
+   "label": "GOOGLE_DRIVE_SHEETS_LAYER",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_HYPERFRAMES_INTEGRATION",
+   "label": "HYPERFRAMES_INTEGRATION",
+   "group": "sopRender"
+  },
+  {
+   "id": "sop_LIPSYNC_ENGINE_MUSETALK",
+   "label": "LIPSYNC_ENGINE_MUSETALK",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_LLM_CODING_DISCIPLINE",
+   "label": "LLM_CODING_DISCIPLINE",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_LOOP_OPERATING_SOP",
+   "label": "LOOP_OPERATING_SOP",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_MASCOT_LIVE2D_RIG_SPEC",
+   "label": "MASCOT_LIVE2D_RIG_SPEC",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_MASTER_OPERATION",
+   "label": "MASTER_OPERATION",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_MOTION_EFFECT_PLAN",
+   "label": "MOTION_EFFECT_PLAN",
+   "group": "sopRender"
+  },
+  {
+   "id": "sop_PRODUCT_ROADMAP",
+   "label": "PRODUCT_ROADMAP",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_QA_CAPTIONS_FINDINGS",
+   "label": "QA_CAPTIONS_FINDINGS",
+   "group": "sopLearning"
+  },
+  {
+   "id": "sop_REFERENCE_TO_VIDEO_SOP",
+   "label": "REFERENCE_TO_VIDEO_SOP",
+   "group": "sopVideo"
+  },
+  {
+   "id": "sop_RENDER_ENGINE_DECISION",
+   "label": "RENDER_ENGINE_DECISION",
+   "group": "sopRender"
+  },
+  {
+   "id": "sop_REPO_VETTING_SOP",
+   "label": "REPO_VETTING_SOP",
+   "group": "sopLearning"
+  },
+  {
+   "id": "sop_SCRIPT_WRITING_PIPELINE",
+   "label": "SCRIPT_WRITING_PIPELINE",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_SELF_IMPROVEMENT_LOOP",
+   "label": "SELF_IMPROVEMENT_LOOP",
+   "group": "sopLearning"
+  },
+  {
+   "id": "sop_SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY",
+   "label": "SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY",
+   "group": "sopVideo"
+  },
+  {
+   "id": "sop_SEOSONA_VIDEO_RECONNECTION_MAP",
+   "label": "SEOSONA_VIDEO_RECONNECTION_MAP",
+   "group": "sopMaps"
+  },
+  {
+   "id": "sop_SEOSONA_WORKFLOW_BOUNDARY_MAP",
+   "label": "SEOSONA_WORKFLOW_BOUNDARY_MAP",
+   "group": "sopMaps"
+  },
+  {
+   "id": "sop_SEO_CONTENT_STRATEGY",
+   "label": "SEO_CONTENT_STRATEGY",
+   "group": "sopPublish"
+  },
+  {
+   "id": "sop_TEMPLATE_MAP",
+   "label": "TEMPLATE_MAP",
+   "group": "sopDesign"
+  },
+  {
+   "id": "sop_UPGRADE_BACKLOG",
+   "label": "UPGRADE_BACKLOG",
+   "group": "sopInfra"
+  },
+  {
+   "id": "sop_UX_UI_DESIGN_GUIDELINES",
+   "label": "UX_UI_DESIGN_GUIDELINES",
+   "group": "sopDesign"
+  },
+  {
+   "id": "sop_VIDEO_ARCHITECTURE",
+   "label": "VIDEO_ARCHITECTURE",
+   "group": "sopMaps"
+  },
+  {
+   "id": "sop_VOICE_TTS_ENGINE_ROUTING",
+   "label": "VOICE_TTS_ENGINE_ROUTING",
+   "group": "sopVoice"
+  },
+  {
+   "id": "sop_YOUTUBE_CHANNEL_OPERATIONS_MCP",
+   "label": "YOUTUBE_CHANNEL_OPERATIONS_MCP",
+   "group": "sopPublish"
+  },
+  {
+   "id": "sop_brand_voice_sop",
+   "label": "brand_voice_sop",
+   "group": "sopVoice"
+  },
+  {
+   "id": "sop_carousel_sop",
+   "label": "carousel_sop",
+   "group": "sopDesign"
+  },
+  {
+   "id": "sop_publishing_checklist",
+   "label": "publishing_checklist",
+   "group": "sopPublish"
+  },
+  {
+   "id": "sop_repurposer_sop",
+   "label": "repurposer_sop",
+   "group": "sopVideo"
+  },
+  {
+   "id": "sop_talking_head_sop",
+   "label": "talking_head_sop",
+   "group": "sopVideo"
+  },
+  {
+   "id": "sop_tech_news_faceless_sop",
+   "label": "tech_news_faceless_sop",
+   "group": "sopVideo"
+  },
+  {
+   "id": "sop_thumbnail_sop",
+   "label": "thumbnail_sop",
+   "group": "sopDesign"
+  },
+  {
+   "id": "sop_video_production_sop",
+   "label": "video_production_sop",
+   "group": "sopVideo"
+  },
+  {
+   "id": "sop_voice_cloning_tts_sop",
+   "label": "voice_cloning_tts_sop",
+   "group": "sopVoice"
+  },
+  {
+   "id": "sop_youtube_seo_sop",
+   "label": "youtube_seo_sop",
+   "group": "sopPublish"
+  },
+  {
+   "id": "b_angle_finder",
+   "label": "angle_finder",
+   "group": "brain"
+  },
+  {
+   "id": "b_beat_timing",
+   "label": "beat_timing",
+   "group": "brain"
+  },
+  {
+   "id": "b_block_forge",
+   "label": "block_forge",
+   "group": "brain"
+  },
+  {
+   "id": "b_block_picker",
+   "label": "block_picker",
+   "group": "brain"
+  },
+  {
+   "id": "b_brand_kit",
+   "label": "brand_kit",
+   "group": "brain"
+  },
+  {
+   "id": "b_capcut_export",
+   "label": "capcut_export",
+   "group": "brain"
+  },
+  {
+   "id": "b_caption_segment",
+   "label": "caption_segment",
+   "group": "brain"
+  },
+  {
+   "id": "b_component_picker",
+   "label": "component_picker",
+   "group": "brain"
+  },
+  {
+   "id": "b_content_moderation",
+   "label": "content_moderation",
+   "group": "brain"
+  },
+  {
+   "id": "b_course_planner",
+   "label": "course_planner",
+   "group": "brain"
+  },
+  {
+   "id": "b_director",
+   "label": "director",
+   "group": "brain"
+  },
+  {
+   "id": "b_discovery",
+   "label": "discovery",
+   "group": "brain"
+  },
+  {
+   "id": "b_dub_align",
+   "label": "dub_align",
+   "group": "brain"
+  },
+  {
+   "id": "b_effect_library",
+   "label": "effect_library",
+   "group": "brain"
+  },
+  {
+   "id": "b_eval_judge",
+   "label": "eval_judge",
+   "group": "brain"
+  },
+  {
+   "id": "b_eval_run",
+   "label": "eval_run",
+   "group": "brain"
+  },
+  {
+   "id": "b_evaluator",
+   "label": "evaluator",
+   "group": "brain"
+  },
+  {
+   "id": "b_factory_brain",
+   "label": "factory_brain",
+   "group": "brain"
+  },
+  {
+   "id": "b_factory_ledger",
+   "label": "factory_ledger",
+   "group": "brain"
+  },
+  {
+   "id": "b_factory_metrics",
+   "label": "factory_metrics",
+   "group": "brain"
+  },
+  {
+   "id": "b_frame_study",
+   "label": "frame_study",
+   "group": "brain"
+  },
+  {
+   "id": "b_frame_synth",
+   "label": "frame_synth",
+   "group": "brain"
+  },
+  {
+   "id": "b_graph_executor",
+   "label": "graph_executor",
+   "group": "brain"
+  },
+  {
+   "id": "b_hf_blocks",
+   "label": "hf_blocks",
+   "group": "brain"
+  },
+  {
+   "id": "b_image_gen",
+   "label": "image_gen",
+   "group": "brain"
+  },
+  {
+   "id": "b_knowledge_graph",
+   "label": "knowledge_graph",
+   "group": "brain"
+  },
+  {
+   "id": "b_learn_flywheel",
+   "label": "learn_flywheel",
+   "group": "brain"
+  },
+  {
+   "id": "b_lipsync_service",
+   "label": "lipsync_service",
+   "group": "brain"
+  },
+  {
+   "id": "b_llm_engine",
+   "label": "llm_engine",
+   "group": "brain"
+  },
+  {
+   "id": "b_make_video",
+   "label": "make_video",
+   "group": "brain"
+  },
+  {
+   "id": "b_native_composer",
+   "label": "native_composer",
+   "group": "brain"
+  },
+  {
+   "id": "b_news_video_standards",
+   "label": "news_video_standards",
+   "group": "brain"
+  },
+  {
+   "id": "b_pipeline_dag",
+   "label": "pipeline_dag",
+   "group": "brain"
+  },
+  {
+   "id": "b_production_manifest",
+   "label": "production_manifest",
+   "group": "brain"
+  },
+  {
+   "id": "b_quality_scorer",
+   "label": "quality_scorer",
+   "group": "brain"
+  },
+  {
+   "id": "b_researcher",
+   "label": "researcher",
+   "group": "brain"
+  },
+  {
+   "id": "b_scene_composer",
+   "label": "scene_composer",
+   "group": "brain"
+  },
+  {
+   "id": "b_scene_writer",
+   "label": "scene_writer",
+   "group": "brain"
+  },
+  {
+   "id": "b_script_schema",
+   "label": "script_schema",
+   "group": "brain"
+  },
+  {
+   "id": "b_script_writer",
+   "label": "script_writer",
+   "group": "brain"
+  },
+  {
+   "id": "b_seosona_bootstrap",
+   "label": "seosona_bootstrap",
+   "group": "brain"
+  },
+  {
+   "id": "b_skill_registry",
+   "label": "skill_registry",
+   "group": "brain"
+  },
+  {
+   "id": "b_spec_lint",
+   "label": "spec_lint",
+   "group": "brain"
+  },
+  {
+   "id": "b_template_generator",
+   "label": "template_generator",
+   "group": "brain"
+  },
+  {
+   "id": "b_template_picker",
+   "label": "template_picker",
+   "group": "brain"
+  },
+  {
+   "id": "b_transcript_fix",
+   "label": "transcript_fix",
+   "group": "brain"
+  },
+  {
+   "id": "b_video_engine",
+   "label": "video_engine",
+   "group": "brain"
+  },
+  {
+   "id": "b_video_integration_audit",
+   "label": "video_integration_audit",
+   "group": "brain"
+  },
+  {
+   "id": "b_workflow_router",
+   "label": "workflow_router",
+   "group": "brain"
+  },
+  {
+   "id": "p_0",
+   "label": "Script Writing Pipeline",
+   "group": "pipeline"
+  },
+  {
+   "id": "p_1",
+   "label": "Master Operation",
+   "group": "pipeline"
+  },
+  {
+   "id": "p_2",
+   "label": "Effect Library Stack",
+   "group": "pipeline"
+  },
+  {
+   "id": "p_3",
+   "label": "Learning Loop (OODA)",
+   "group": "pipeline"
+  },
+  {
+   "id": "p_4",
+   "label": "Two-Engine Dispatch",
+   "group": "pipeline"
+  },
+  {
+   "id": "p_5",
+   "label": "Talking-Head Pipeline",
+   "group": "pipeline"
+  },
+  {
+   "id": "ag_analytics_feedback_agent",
+   "label": "analytics_feedback_agent",
+   "group": "agent"
+  },
+  {
+   "id": "ag_carousel_writer_agent",
+   "label": "carousel_writer_agent",
+   "group": "agent"
+  },
+  {
+   "id": "ag_hermes_agent",
+   "label": "hermes_agent",
+   "group": "agent"
+  },
+  {
+   "id": "ag_publisher_agent",
+   "label": "publisher_agent",
+   "group": "agent"
+  },
+  {
+   "id": "ag_repurposer_agent",
+   "label": "repurposer_agent",
+   "group": "agent"
+  },
+  {
+   "id": "ag_scraper_agent",
+   "label": "scraper_agent",
+   "group": "agent"
+  },
+  {
+   "id": "ag_seo_optimizer",
+   "label": "seo_optimizer",
+   "group": "agent"
+  },
+  {
+   "id": "ag_seo_writer_agent",
+   "label": "seo_writer_agent",
+   "group": "agent"
+  },
+  {
+   "id": "ag_social_media_agent",
+   "label": "social_media_agent",
+   "group": "agent"
+  },
+  {
+   "id": "ag_trend_jacking_agent",
+   "label": "trend_jacking_agent",
+   "group": "agent"
+  },
+  {
+   "id": "pe_orchestrator_agent",
+   "label": "orchestrator_agent",
+   "group": "persona"
+  },
+  {
+   "id": "pe_researcher",
+   "label": "researcher",
+   "group": "persona"
+  },
+  {
+   "id": "pe_scout",
+   "label": "scout",
+   "group": "persona"
+  },
+  {
+   "id": "pe_security-auditor",
+   "label": "security-auditor",
+   "group": "persona"
+  },
+  {
+   "id": "pe_visual_designer",
+   "label": "visual_designer",
+   "group": "persona"
+  },
+  {
+   "id": "sk_capability-analyst",
+   "label": "capability-analyst",
+   "group": "skill"
+  },
+  {
+   "id": "sk_embedded-captions",
+   "label": "embedded-captions",
+   "group": "skill"
+  },
+  {
+   "id": "sk_faceless-explainer",
+   "label": "faceless-explainer",
+   "group": "skill"
+  },
+  {
+   "id": "sk_factory-strategist",
+   "label": "factory-strategist",
+   "group": "skill"
+  },
+  {
+   "id": "sk_general-video",
+   "label": "general-video",
+   "group": "skill"
+  },
+  {
+   "id": "sk_graphic-overlays",
+   "label": "graphic-overlays",
+   "group": "skill"
+  },
+  {
+   "id": "sk_heygen-native-api",
+   "label": "heygen-native-api",
+   "group": "skill"
+  },
+  {
+   "id": "sk_heygen-skills",
+   "label": "heygen-skills",
+   "group": "skill"
+  },
+  {
+   "id": "sk_hyperframes",
+   "label": "hyperframes",
+   "group": "skill"
+  },
+  {
+   "id": "sk_hyperframes-animation",
+   "label": "hyperframes-animation",
+   "group": "skill"
+  },
+  {
+   "id": "sk_hyperframes-cli",
+   "label": "hyperframes-cli",
+   "group": "skill"
+  },
+  {
+   "id": "sk_hyperframes-core",
+   "label": "hyperframes-core",
+   "group": "skill"
+  },
+  {
+   "id": "sk_hyperframes-creative",
+   "label": "hyperframes-creative",
+   "group": "skill"
+  },
+  {
+   "id": "sk_hyperframes-media",
+   "label": "hyperframes-media",
+   "group": "skill"
+  },
+  {
+   "id": "sk_hyperframes-registry",
+   "label": "hyperframes-registry",
+   "group": "skill"
+  },
+  {
+   "id": "sk_motion-graphics",
+   "label": "motion-graphics",
+   "group": "skill"
+  },
+  {
+   "id": "sk_pr-to-video",
+   "label": "pr-to-video",
+   "group": "skill"
+  },
+  {
+   "id": "sk_product-launch-video",
+   "label": "product-launch-video",
+   "group": "skill"
+  },
+  {
+   "id": "sk_remotion-to-hyperframes",
+   "label": "remotion-to-hyperframes",
+   "group": "skill"
+  },
+  {
+   "id": "sk_scene-composer",
+   "label": "scene-composer",
+   "group": "skill"
+  },
+  {
+   "id": "sk_seosona-news-maker",
+   "label": "seosona-news-maker",
+   "group": "skill"
+  },
+  {
+   "id": "sk_seosona-video-operator",
+   "label": "seosona-video-operator",
+   "group": "skill"
+  },
+  {
+   "id": "sk_talking-head-video-editor",
+   "label": "talking-head-video-editor",
+   "group": "skill"
+  },
+  {
+   "id": "sk_video-discovery",
+   "label": "video-discovery",
+   "group": "skill"
+  },
+  {
+   "id": "sk_video-evaluator",
+   "label": "video-evaluator",
+   "group": "skill"
+  },
+  {
+   "id": "sk_video-seo-metadata",
+   "label": "video-seo-metadata",
+   "group": "skill"
+  },
+  {
+   "id": "sk_website-to-video",
+   "label": "website-to-video",
+   "group": "skill"
+  },
+  {
+   "id": "sm_bgm_sourcer",
+   "label": "bgm_sourcer",
+   "group": "skill-module"
+  },
+  {
+   "id": "sm_broll_sourcer",
+   "label": "broll_sourcer",
+   "group": "skill-module"
+  },
+  {
+   "id": "sm_carousel_maker",
+   "label": "carousel_maker",
+   "group": "skill-module"
+  },
+  {
+   "id": "sm_element_maker",
+   "label": "element_maker",
+   "group": "skill-module"
+  },
+  {
+   "id": "sm_image_sourcer",
+   "label": "image_sourcer",
+   "group": "skill-module"
+  },
+  {
+   "id": "sm_srt_maker",
+   "label": "srt_maker",
+   "group": "skill-module"
+  },
+  {
+   "id": "sm_thumbnail_maker",
+   "label": "thumbnail_maker",
+   "group": "skill-module"
+  },
+  {
+   "id": "sm_video_clipper",
+   "label": "video_clipper",
+   "group": "skill-module"
+  },
+  {
+   "id": "sm_voice_cloner",
+   "label": "voice_cloner",
+   "group": "skill-module"
+  },
+  {
+   "id": "sm_yt_downloader",
+   "label": "yt_downloader",
+   "group": "skill-module"
+  },
+  {
+   "id": "tp__auto_agency-agents",
+   "label": "_auto_agency-agents",
+   "group": "template"
+  },
+  {
+   "id": "tp__auto_gemini-watermark-remover",
+   "label": "_auto_gemini-watermark-remover",
+   "group": "template"
+  },
+  {
+   "id": "tp__auto_tabfm",
+   "label": "_auto_tabfm",
+   "group": "template"
+  },
+  {
+   "id": "tp_ai-news-flash",
+   "label": "ai-news-flash",
+   "group": "template"
+  },
+  {
+   "id": "tp_benchmark-news",
+   "label": "benchmark-news",
+   "group": "template"
+  },
+  {
+   "id": "tp_case-study",
+   "label": "case-study",
+   "group": "template"
+  },
+  {
+   "id": "tp_data-news",
+   "label": "data-news",
+   "group": "template"
+  },
+  {
+   "id": "tp_deep-tutorial",
+   "label": "deep-tutorial",
+   "group": "template"
+  },
+  {
+   "id": "tp_faq",
+   "label": "faq",
+   "group": "template"
+  },
+  {
+   "id": "tp_insight-explainer",
+   "label": "insight-explainer",
+   "group": "template"
+  },
+  {
+   "id": "tp_launch",
+   "label": "launch",
+   "group": "template"
+  },
+  {
+   "id": "tp_listicle-top5",
+   "label": "listicle-top5",
+   "group": "template"
+  },
+  {
+   "id": "tp_myth-buster",
+   "label": "myth-buster",
+   "group": "template"
+  },
+  {
+   "id": "tp_opinion-insight",
+   "label": "opinion-insight",
+   "group": "template"
+  },
+  {
+   "id": "tp_quick-tip",
+   "label": "quick-tip",
+   "group": "template"
+  },
+  {
+   "id": "tp_repo-showcase",
+   "label": "repo-showcase",
+   "group": "template"
+  },
+  {
+   "id": "tp_resource-list",
+   "label": "resource-list",
+   "group": "template"
+  },
+  {
+   "id": "tp_seo-explainer",
+   "label": "seo-explainer",
+   "group": "template"
+  },
+  {
+   "id": "tp_tool-walkthrough",
+   "label": "tool-walkthrough",
+   "group": "template"
+  },
+  {
+   "id": "tp_transformation",
+   "label": "transformation",
+   "group": "template"
+  },
+  {
+   "id": "tp_trend-alert",
+   "label": "trend-alert",
+   "group": "template"
+  },
+  {
+   "id": "tp_tutorial-gittree",
+   "label": "tutorial-gittree",
+   "group": "template"
+  },
+  {
+   "id": "tp_versus-deep",
+   "label": "versus-deep",
+   "group": "template"
+  },
+  {
+   "id": "co_alert",
+   "label": "alert",
+   "group": "component"
+  },
+  {
+   "id": "co_badges",
+   "label": "badges",
+   "group": "component"
+  },
+  {
+   "id": "co_bars",
+   "label": "bars",
+   "group": "component"
+  },
+  {
+   "id": "co_bignum",
+   "label": "bignum",
+   "group": "component"
+  },
+  {
+   "id": "co_callout",
+   "label": "callout",
+   "group": "component"
+  },
+  {
+   "id": "co_chart",
+   "label": "chart",
+   "group": "component"
+  },
+  {
+   "id": "co_chat",
+   "label": "chat",
+   "group": "component"
+  },
+  {
+   "id": "co_checklist",
+   "label": "checklist",
+   "group": "component"
+  },
+  {
+   "id": "co_chiprow",
+   "label": "chiprow",
+   "group": "component"
+  },
+  {
+   "id": "co_codecard",
+   "label": "codecard",
+   "group": "component"
+  },
+  {
+   "id": "co_compare",
+   "label": "compare",
+   "group": "component"
+  },
+  {
+   "id": "co_cta",
+   "label": "cta",
+   "group": "component"
+  },
+  {
+   "id": "co_divider",
+   "label": "divider",
+   "group": "component"
+  },
+  {
+   "id": "co_donut",
+   "label": "donut",
+   "group": "component"
+  },
+  {
+   "id": "co_feature",
+   "label": "feature",
+   "group": "component"
+  },
+  {
+   "id": "co_filetree",
+   "label": "filetree",
+   "group": "component"
+  },
+  {
+   "id": "co_gauge",
+   "label": "gauge",
+   "group": "component"
+  },
+  {
+   "id": "co_gittree",
+   "label": "gittree",
+   "group": "component"
+  },
+  {
+   "id": "co_hub",
+   "label": "hub",
+   "group": "component"
+  },
+  {
+   "id": "co_icongrid",
+   "label": "icongrid",
+   "group": "component"
+  },
+  {
+   "id": "co_linechart",
+   "label": "linechart",
+   "group": "component"
+  },
+  {
+   "id": "co_lower-third",
+   "label": "lower-third",
+   "group": "component"
+  },
+  {
+   "id": "co_mockup",
+   "label": "mockup",
+   "group": "component"
+  },
+  {
+   "id": "co_notification",
+   "label": "notification",
+   "group": "component"
+  },
+  {
+   "id": "co_people",
+   "label": "people",
+   "group": "component"
+  },
+  {
+   "id": "co_phone",
+   "label": "phone",
+   "group": "component"
+  },
+  {
+   "id": "co_photocard",
+   "label": "photocard",
+   "group": "component"
+  },
+  {
+   "id": "co_pie",
+   "label": "pie",
+   "group": "component"
+  },
+  {
+   "id": "co_quote",
+   "label": "quote",
+   "group": "component"
+  },
+  {
+   "id": "co_repo",
+   "label": "repo",
+   "group": "component"
+  },
+  {
+   "id": "co_ring",
+   "label": "ring",
+   "group": "component"
+  },
+  {
+   "id": "co_social",
+   "label": "social",
+   "group": "component"
+  },
+  {
+   "id": "co_stats",
+   "label": "stats",
+   "group": "component"
+  },
+  {
+   "id": "co_steps",
+   "label": "steps",
+   "group": "component"
+  },
+  {
+   "id": "co_tabs",
+   "label": "tabs",
+   "group": "component"
+  },
+  {
+   "id": "co_terminal",
+   "label": "terminal",
+   "group": "component"
+  },
+  {
+   "id": "co_timeline",
+   "label": "timeline",
+   "group": "component"
+  },
+  {
+   "id": "co_tip",
+   "label": "tip",
+   "group": "component"
+  },
+  {
+   "id": "fx_t_slide-up",
+   "label": "slide-up",
+   "group": "fxTransition"
+  },
+  {
+   "id": "fx_t_rise-fade",
+   "label": "rise-fade",
+   "group": "fxTransition"
+  },
+  {
+   "id": "fx_t_zoom",
+   "label": "zoom",
+   "group": "fxTransition"
+  },
+  {
+   "id": "fx_t_drop",
+   "label": "drop",
+   "group": "fxTransition"
+  },
+  {
+   "id": "fx_t_dissolve",
+   "label": "dissolve",
+   "group": "fxTransition"
+  },
+  {
+   "id": "fx_t_wipe-up",
+   "label": "wipe-up",
+   "group": "fxTransition"
+  },
+  {
+   "id": "fx_te_rise",
+   "label": "rise",
+   "group": "fxTextEffect"
+  },
+  {
+   "id": "fx_te_word-up",
+   "label": "word-up",
+   "group": "fxTextEffect"
+  },
+  {
+   "id": "fx_te_char-cascade",
+   "label": "char-cascade",
+   "group": "fxTextEffect"
+  },
+  {
+   "id": "fx_te_line-mask",
+   "label": "line-mask",
+   "group": "fxTextEffect"
+  },
+  {
+   "id": "fx_te_clip-wipe",
+   "label": "clip-wipe",
+   "group": "fxTextEffect"
+  },
+  {
+   "id": "fx_te_word-pop",
+   "label": "word-pop",
+   "group": "fxTextEffect"
+  },
+  {
+   "id": "fx_te_drop",
+   "label": "drop",
+   "group": "fxTextEffect"
+  },
+  {
+   "id": "fx_te_shimmer",
+   "label": "shimmer",
+   "group": "fxTextEffect"
+  },
+  {
+   "id": "fx_e_light-leak",
+   "label": "light-leak",
+   "group": "fxOverlay"
+  },
+  {
+   "id": "fx_e_bloom",
+   "label": "bloom",
+   "group": "fxOverlay"
+  },
+  {
+   "id": "fx_x_fade",
+   "label": "fade",
+   "group": "fxExit"
+  },
+  {
+   "id": "fx_x_slide-left",
+   "label": "slide-left",
+   "group": "fxExit"
+  },
+  {
+   "id": "fx_x_lift",
+   "label": "lift",
+   "group": "fxExit"
+  },
+  {
+   "id": "fx_x_shrink",
+   "label": "shrink",
+   "group": "fxExit"
+  },
+  {
+   "id": "fx_x_sink",
+   "label": "sink",
+   "group": "fxExit"
+  },
+  {
+   "id": "dk_banner-design",
+   "label": "banner-design",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_brand",
+   "label": "brand",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_competitor-alternatives",
+   "label": "competitor-alternatives",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_content-strategy",
+   "label": "content-strategy",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_copy-editing",
+   "label": "copy-editing",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_copywriting",
+   "label": "copywriting",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_design-system",
+   "label": "design-system",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_frontend-design",
+   "label": "frontend-design",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_geo-aeo",
+   "label": "geo-aeo",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_make-interfaces-feel-better",
+   "label": "make-interfaces-feel-better",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_marketing-psychology",
+   "label": "marketing-psychology",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_ogilvy",
+   "label": "ogilvy",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_page-cro",
+   "label": "page-cro",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_programmatic-seo",
+   "label": "programmatic-seo",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_schema-markup",
+   "label": "schema-markup",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_seo-audit",
+   "label": "seo-audit",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_stop-slop",
+   "label": "stop-slop",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_ui-styling",
+   "label": "ui-styling",
+   "group": "domainskill"
+  },
+  {
+   "id": "dk_web-design-guidelines",
+   "label": "web-design-guidelines",
+   "group": "domainskill"
+  },
+  {
+   "id": "as_sfx_impact",
+   "label": "SFX: impact",
+   "group": "asset"
+  },
+  {
+   "id": "as_sfx_pops",
+   "label": "SFX: pops",
+   "group": "asset"
+  },
+  {
+   "id": "as_sfx_riser",
+   "label": "SFX: riser",
+   "group": "asset"
+  },
+  {
+   "id": "as_sfx_shutter",
+   "label": "SFX: shutter",
+   "group": "asset"
+  },
+  {
+   "id": "as_sfx_tick",
+   "label": "SFX: tick",
+   "group": "asset"
+  },
+  {
+   "id": "as_sfx_transition",
+   "label": "SFX: transition",
+   "group": "asset"
+  },
+  {
+   "id": "as_sfx_transitions",
+   "label": "SFX: transitions",
+   "group": "asset"
+  },
+  {
+   "id": "as_sfx_typing",
+   "label": "SFX: typing",
+   "group": "asset"
+  },
+  {
+   "id": "as_sfx_ui",
+   "label": "SFX: ui",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight",
+   "label": "BGM: bgm_insight",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_0b27116c",
+   "label": "BGM: bgm_insight_0b27116c",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_0cbb2cb4",
+   "label": "BGM: bgm_insight_0cbb2cb4",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_0fb3904c",
+   "label": "BGM: bgm_insight_0fb3904c",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_1137771e",
+   "label": "BGM: bgm_insight_1137771e",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_1e9d835f",
+   "label": "BGM: bgm_insight_1e9d835f",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_23618b11",
+   "label": "BGM: bgm_insight_23618b11",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_721515fb",
+   "label": "BGM: bgm_insight_721515fb",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_85eec172",
+   "label": "BGM: bgm_insight_85eec172",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_9eab0e99",
+   "label": "BGM: bgm_insight_9eab0e99",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_b7ce88ce",
+   "label": "BGM: bgm_insight_b7ce88ce",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_d23b4e48",
+   "label": "BGM: bgm_insight_d23b4e48",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_efc48adc",
+   "label": "BGM: bgm_insight_efc48adc",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_f4b1002f",
+   "label": "BGM: bgm_insight_f4b1002f",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_insight_f64818a3",
+   "label": "BGM: bgm_insight_f64818a3",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news",
+   "label": "BGM: bgm_news",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_049dcb5a",
+   "label": "BGM: bgm_news_049dcb5a",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_088f75ba",
+   "label": "BGM: bgm_news_088f75ba",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_0a0c84cb",
+   "label": "BGM: bgm_news_0a0c84cb",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_0a5ed498",
+   "label": "BGM: bgm_news_0a5ed498",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_15cab838",
+   "label": "BGM: bgm_news_15cab838",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_1abeb440",
+   "label": "BGM: bgm_news_1abeb440",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_29b2e6c6",
+   "label": "BGM: bgm_news_29b2e6c6",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_2b7b5aba",
+   "label": "BGM: bgm_news_2b7b5aba",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_2cc6d3ac",
+   "label": "BGM: bgm_news_2cc6d3ac",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_2e2f4932",
+   "label": "BGM: bgm_news_2e2f4932",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_2ebea6a9",
+   "label": "BGM: bgm_news_2ebea6a9",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_415e8190",
+   "label": "BGM: bgm_news_415e8190",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_4b433fc1",
+   "label": "BGM: bgm_news_4b433fc1",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_4c3c4546",
+   "label": "BGM: bgm_news_4c3c4546",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_4f276363",
+   "label": "BGM: bgm_news_4f276363",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_51699ec3",
+   "label": "BGM: bgm_news_51699ec3",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_59124d0d",
+   "label": "BGM: bgm_news_59124d0d",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_613dcb6c",
+   "label": "BGM: bgm_news_613dcb6c",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_6250bd19",
+   "label": "BGM: bgm_news_6250bd19",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_674ec1ba",
+   "label": "BGM: bgm_news_674ec1ba",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_7d84687d",
+   "label": "BGM: bgm_news_7d84687d",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_81c3d828",
+   "label": "BGM: bgm_news_81c3d828",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_8339d9ae",
+   "label": "BGM: bgm_news_8339d9ae",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_837681e7",
+   "label": "BGM: bgm_news_837681e7",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_8b3a3b80",
+   "label": "BGM: bgm_news_8b3a3b80",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_8f9400e5",
+   "label": "BGM: bgm_news_8f9400e5",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_97fac48d",
+   "label": "BGM: bgm_news_97fac48d",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_9a70470f",
+   "label": "BGM: bgm_news_9a70470f",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_a469563d",
+   "label": "BGM: bgm_news_a469563d",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_a600ad13",
+   "label": "BGM: bgm_news_a600ad13",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_abe52d61",
+   "label": "BGM: bgm_news_abe52d61",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_b933b651",
+   "label": "BGM: bgm_news_b933b651",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_b95ef15c",
+   "label": "BGM: bgm_news_b95ef15c",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_ba0097d7",
+   "label": "BGM: bgm_news_ba0097d7",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_bae60905",
+   "label": "BGM: bgm_news_bae60905",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_c828896c",
+   "label": "BGM: bgm_news_c828896c",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_d7056ca9",
+   "label": "BGM: bgm_news_d7056ca9",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_d85bd288",
+   "label": "BGM: bgm_news_d85bd288",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_df5e356a",
+   "label": "BGM: bgm_news_df5e356a",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_e0874d31",
+   "label": "BGM: bgm_news_e0874d31",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_f47e89f2",
+   "label": "BGM: bgm_news_f47e89f2",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_f5ee93b7",
+   "label": "BGM: bgm_news_f5ee93b7",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_f6d9bdec",
+   "label": "BGM: bgm_news_f6d9bdec",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_f70a0c13",
+   "label": "BGM: bgm_news_f70a0c13",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_fbeb33c8",
+   "label": "BGM: bgm_news_fbeb33c8",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_news_ff3caf3a",
+   "label": "BGM: bgm_news_ff3caf3a",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_08afa539",
+   "label": "BGM: bgm_tech_08afa539",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_0ef3b8f6",
+   "label": "BGM: bgm_tech_0ef3b8f6",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_374e2f69",
+   "label": "BGM: bgm_tech_374e2f69",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_3a6e6cf4",
+   "label": "BGM: bgm_tech_3a6e6cf4",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_45bc4dac",
+   "label": "BGM: bgm_tech_45bc4dac",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_497641d1",
+   "label": "BGM: bgm_tech_497641d1",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_5f6d7c07",
+   "label": "BGM: bgm_tech_5f6d7c07",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_69777514",
+   "label": "BGM: bgm_tech_69777514",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_6b4da456",
+   "label": "BGM: bgm_tech_6b4da456",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_7a640600",
+   "label": "BGM: bgm_tech_7a640600",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_7c8230e7",
+   "label": "BGM: bgm_tech_7c8230e7",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_83c6500b",
+   "label": "BGM: bgm_tech_83c6500b",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_981ef495",
+   "label": "BGM: bgm_tech_981ef495",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_af014918",
+   "label": "BGM: bgm_tech_af014918",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_b88eafe0",
+   "label": "BGM: bgm_tech_b88eafe0",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_ba3f6b27",
+   "label": "BGM: bgm_tech_ba3f6b27",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_bea5df20",
+   "label": "BGM: bgm_tech_bea5df20",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_cd203141",
+   "label": "BGM: bgm_tech_cd203141",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_d23c911c",
+   "label": "BGM: bgm_tech_d23c911c",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_e65ea951",
+   "label": "BGM: bgm_tech_e65ea951",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_edcd5b7d",
+   "label": "BGM: bgm_tech_edcd5b7d",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_f0538fa8",
+   "label": "BGM: bgm_tech_f0538fa8",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_tech_f8e1d55b",
+   "label": "BGM: bgm_tech_f8e1d55b",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat",
+   "label": "BGM: bgm_upbeat",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_06e1ec65",
+   "label": "BGM: bgm_upbeat_06e1ec65",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_15d1c6de",
+   "label": "BGM: bgm_upbeat_15d1c6de",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_16e92a77",
+   "label": "BGM: bgm_upbeat_16e92a77",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_324d9ec8",
+   "label": "BGM: bgm_upbeat_324d9ec8",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_3ce4aefe",
+   "label": "BGM: bgm_upbeat_3ce4aefe",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_41dc2fb6",
+   "label": "BGM: bgm_upbeat_41dc2fb6",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_422af94d",
+   "label": "BGM: bgm_upbeat_422af94d",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_4321d16f",
+   "label": "BGM: bgm_upbeat_4321d16f",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_4414dcee",
+   "label": "BGM: bgm_upbeat_4414dcee",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_5282669e",
+   "label": "BGM: bgm_upbeat_5282669e",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_89a6a5c8",
+   "label": "BGM: bgm_upbeat_89a6a5c8",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_92833034",
+   "label": "BGM: bgm_upbeat_92833034",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_9e4855dd",
+   "label": "BGM: bgm_upbeat_9e4855dd",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_aa3a457d",
+   "label": "BGM: bgm_upbeat_aa3a457d",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_b695781a",
+   "label": "BGM: bgm_upbeat_b695781a",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_bae27a62",
+   "label": "BGM: bgm_upbeat_bae27a62",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_be7c413f",
+   "label": "BGM: bgm_upbeat_be7c413f",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_c76b4d71",
+   "label": "BGM: bgm_upbeat_c76b4d71",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_cfec4c3a",
+   "label": "BGM: bgm_upbeat_cfec4c3a",
+   "group": "asset"
+  },
+  {
+   "id": "as_bgm_bgm_upbeat_d93365c4",
+   "label": "BGM: bgm_upbeat_d93365c4",
+   "group": "asset"
+  }
+ ],
+ "edges": [
+  {
+   "from": "d_0inbox",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_0setup",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_1agents",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_4brain",
+   "to": "d_5framework"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_2skills",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_6sop",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_7assets",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_9prompts",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_1config",
+   "to": "d_1agents"
+  },
+  {
+   "from": "d_5framework",
+   "to": "d_8workspace"
+  },
+  {
+   "from": "d_8workspace",
+   "to": "d_3memory"
+  },
+  {
+   "from": "d_8workspace",
+   "to": "d_9dashboard"
+  },
+  {
+   "from": "d_3memory",
+   "to": "d_9dashboard"
+  },
+  {
+   "from": "d_3memory",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_scripts",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_docs",
+   "to": "d_6sop"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "d_1agents"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "d_4brain"
+  },
+  {
+   "from": "d_6sop",
+   "to": "cat_sopVideo"
+  },
+  {
+   "from": "d_6sop",
+   "to": "cat_sopVoice"
+  },
+  {
+   "from": "d_6sop",
+   "to": "cat_sopRender"
+  },
+  {
+   "from": "d_6sop",
+   "to": "cat_sopLearning"
+  },
+  {
+   "from": "d_6sop",
+   "to": "cat_sopMaps"
+  },
+  {
+   "from": "d_6sop",
+   "to": "cat_sopPublish"
+  },
+  {
+   "from": "d_6sop",
+   "to": "cat_sopDesign"
+  },
+  {
+   "from": "d_6sop",
+   "to": "cat_sopInfra"
+  },
+  {
+   "from": "cat_sopLearning",
+   "to": "sop_AUTONOMOUS_FACTORY_LOOP"
+  },
+  {
+   "from": "cat_sopVoice",
+   "to": "sop_CHIQUYET_VOICE_STYLE"
+  },
+  {
+   "from": "cat_sopVideo",
+   "to": "sop_COURSE_VIDEO_SOP"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_DASHBOARD_BUILD_PLAN"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_DASHBOARD_SYSTEM_DESIGN"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_DEPENDENCIES"
+  },
+  {
+   "from": "cat_sopRender",
+   "to": "sop_EFFECT_LIBRARY_PLAN"
+  },
+  {
+   "from": "cat_sopLearning",
+   "to": "sop_EVAL_FLYWHEEL"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_GOOGLE_DRIVE_SHEETS_LAYER"
+  },
+  {
+   "from": "cat_sopRender",
+   "to": "sop_HYPERFRAMES_INTEGRATION"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_LIPSYNC_ENGINE_MUSETALK"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_LLM_CODING_DISCIPLINE"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_LOOP_OPERATING_SOP"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_MASCOT_LIVE2D_RIG_SPEC"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_MASTER_OPERATION"
+  },
+  {
+   "from": "cat_sopRender",
+   "to": "sop_MOTION_EFFECT_PLAN"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_PRODUCT_ROADMAP"
+  },
+  {
+   "from": "cat_sopLearning",
+   "to": "sop_QA_CAPTIONS_FINDINGS"
+  },
+  {
+   "from": "cat_sopVideo",
+   "to": "sop_REFERENCE_TO_VIDEO_SOP"
+  },
+  {
+   "from": "cat_sopRender",
+   "to": "sop_RENDER_ENGINE_DECISION"
+  },
+  {
+   "from": "cat_sopLearning",
+   "to": "sop_REPO_VETTING_SOP"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_SCRIPT_WRITING_PIPELINE"
+  },
+  {
+   "from": "cat_sopLearning",
+   "to": "sop_SELF_IMPROVEMENT_LOOP"
+  },
+  {
+   "from": "cat_sopVideo",
+   "to": "sop_SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY"
+  },
+  {
+   "from": "cat_sopMaps",
+   "to": "sop_SEOSONA_VIDEO_RECONNECTION_MAP"
+  },
+  {
+   "from": "cat_sopMaps",
+   "to": "sop_SEOSONA_WORKFLOW_BOUNDARY_MAP"
+  },
+  {
+   "from": "cat_sopPublish",
+   "to": "sop_SEO_CONTENT_STRATEGY"
+  },
+  {
+   "from": "cat_sopDesign",
+   "to": "sop_TEMPLATE_MAP"
+  },
+  {
+   "from": "cat_sopInfra",
+   "to": "sop_UPGRADE_BACKLOG"
+  },
+  {
+   "from": "cat_sopDesign",
+   "to": "sop_UX_UI_DESIGN_GUIDELINES"
+  },
+  {
+   "from": "cat_sopMaps",
+   "to": "sop_VIDEO_ARCHITECTURE"
+  },
+  {
+   "from": "cat_sopVoice",
+   "to": "sop_VOICE_TTS_ENGINE_ROUTING"
+  },
+  {
+   "from": "cat_sopPublish",
+   "to": "sop_YOUTUBE_CHANNEL_OPERATIONS_MCP"
+  },
+  {
+   "from": "cat_sopVoice",
+   "to": "sop_brand_voice_sop"
+  },
+  {
+   "from": "cat_sopDesign",
+   "to": "sop_carousel_sop"
+  },
+  {
+   "from": "cat_sopPublish",
+   "to": "sop_publishing_checklist"
+  },
+  {
+   "from": "cat_sopVideo",
+   "to": "sop_repurposer_sop"
+  },
+  {
+   "from": "cat_sopVideo",
+   "to": "sop_talking_head_sop"
+  },
+  {
+   "from": "cat_sopVideo",
+   "to": "sop_tech_news_faceless_sop"
+  },
+  {
+   "from": "cat_sopDesign",
+   "to": "sop_thumbnail_sop"
+  },
+  {
+   "from": "cat_sopVideo",
+   "to": "sop_video_production_sop"
+  },
+  {
+   "from": "cat_sopVoice",
+   "to": "sop_voice_cloning_tts_sop"
+  },
+  {
+   "from": "cat_sopPublish",
+   "to": "sop_youtube_seo_sop"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_angle_finder"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_beat_timing"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_block_forge"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_block_picker"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_brand_kit"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_capcut_export"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_caption_segment"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_component_picker"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_content_moderation"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_course_planner"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_director"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_discovery"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_dub_align"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_effect_library"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_eval_judge"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_eval_run"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_evaluator"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_factory_brain"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_factory_ledger"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_factory_metrics"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_frame_study"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_frame_synth"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_graph_executor"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_hf_blocks"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_image_gen"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_knowledge_graph"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_learn_flywheel"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_lipsync_service"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_llm_engine"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_make_video"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_native_composer"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_news_video_standards"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_pipeline_dag"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_production_manifest"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_quality_scorer"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_researcher"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_scene_composer"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_scene_writer"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_script_schema"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_script_writer"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_seosona_bootstrap"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_skill_registry"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_spec_lint"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_template_generator"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_template_picker"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_transcript_fix"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_video_engine"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_video_integration_audit"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_workflow_router"
+  },
+  {
+   "from": "p_0",
+   "to": "b_script_writer"
+  },
+  {
+   "from": "p_1",
+   "to": "b_workflow_router"
+  },
+  {
+   "from": "p_2",
+   "to": "b_effect_library"
+  },
+  {
+   "from": "p_3",
+   "to": "b_factory_brain"
+  },
+  {
+   "from": "p_4",
+   "to": "b_video_engine"
+  },
+  {
+   "from": "p_5",
+   "to": "b_native_composer"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_analytics_feedback_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_carousel_writer_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_hermes_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_publisher_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_repurposer_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_scraper_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_seo_optimizer"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_seo_writer_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_social_media_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "ag_trend_jacking_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "pe_orchestrator_agent"
+  },
+  {
+   "from": "d_1agents",
+   "to": "pe_researcher"
+  },
+  {
+   "from": "d_1agents",
+   "to": "pe_scout"
+  },
+  {
+   "from": "d_1agents",
+   "to": "pe_security-auditor"
+  },
+  {
+   "from": "d_1agents",
+   "to": "pe_visual_designer"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_capability-analyst"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_embedded-captions"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_faceless-explainer"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_factory-strategist"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_general-video"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_graphic-overlays"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_heygen-native-api"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_heygen-skills"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_hyperframes"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_hyperframes-animation"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_hyperframes-cli"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_hyperframes-core"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_hyperframes-creative"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_hyperframes-media"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_hyperframes-registry"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_motion-graphics"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_pr-to-video"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_product-launch-video"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_remotion-to-hyperframes"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_scene-composer"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_seosona-news-maker"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_seosona-video-operator"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_talking-head-video-editor"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_video-discovery"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_video-evaluator"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_video-seo-metadata"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_website-to-video"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_bgm_sourcer"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_broll_sourcer"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_carousel_maker"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_element_maker"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_image_sourcer"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_srt_maker"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_thumbnail_maker"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_video_clipper"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_voice_cloner"
+  },
+  {
+   "from": "d_2skills",
+   "to": "sm_yt_downloader"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp__auto_agency-agents"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp__auto_gemini-watermark-remover"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp__auto_tabfm"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_ai-news-flash"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_benchmark-news"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_case-study"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_data-news"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_deep-tutorial"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_faq"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_insight-explainer"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_launch"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_listicle-top5"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_myth-buster"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_opinion-insight"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_quick-tip"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_repo-showcase"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_resource-list"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_seo-explainer"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_tool-walkthrough"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_transformation"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_trend-alert"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_tutorial-gittree"
+  },
+  {
+   "from": "d_7assets",
+   "to": "tp_versus-deep"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_alert"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_badges"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_bars"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_bignum"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_callout"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_chart"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_chat"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_checklist"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_chiprow"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_codecard"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_compare"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_cta"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_divider"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_donut"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_feature"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_filetree"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_gauge"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_gittree"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_hub"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_icongrid"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_linechart"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_lower-third"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_mockup"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_notification"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_people"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_phone"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_photocard"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_pie"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_quote"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_repo"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_ring"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_social"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_stats"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_steps"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_tabs"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_terminal"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_timeline"
+  },
+  {
+   "from": "b_native_composer",
+   "to": "co_tip"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_t_slide-up"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_t_rise-fade"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_t_zoom"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_t_drop"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_t_dissolve"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_t_wipe-up"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_te_rise"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_te_word-up"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_te_char-cascade"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_te_line-mask"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_te_clip-wipe"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_te_word-pop"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_te_drop"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_te_shimmer"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_e_light-leak"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_e_bloom"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_x_fade"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_x_slide-left"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_x_lift"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_x_shrink"
+  },
+  {
+   "from": "b_effect_library",
+   "to": "fx_x_sink"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_banner-design"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_brand"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_competitor-alternatives"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_content-strategy"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_copy-editing"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_copywriting"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_design-system"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_frontend-design"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_geo-aeo"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_make-interfaces-feel-better"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_marketing-psychology"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_ogilvy"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_page-cro"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_programmatic-seo"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_schema-markup"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_seo-audit"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_stop-slop"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_ui-styling"
+  },
+  {
+   "from": "d_2knowledge",
+   "to": "dk_web-design-guidelines"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_sfx_impact"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_sfx_pops"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_sfx_riser"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_sfx_shutter"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_sfx_tick"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_sfx_transition"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_sfx_transitions"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_sfx_typing"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_sfx_ui"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_0b27116c"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_0cbb2cb4"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_0fb3904c"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_1137771e"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_1e9d835f"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_23618b11"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_721515fb"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_85eec172"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_9eab0e99"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_b7ce88ce"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_d23b4e48"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_efc48adc"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_f4b1002f"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_insight_f64818a3"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_049dcb5a"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_088f75ba"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_0a0c84cb"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_0a5ed498"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_15cab838"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_1abeb440"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_29b2e6c6"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_2b7b5aba"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_2cc6d3ac"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_2e2f4932"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_2ebea6a9"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_415e8190"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_4b433fc1"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_4c3c4546"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_4f276363"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_51699ec3"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_59124d0d"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_613dcb6c"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_6250bd19"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_674ec1ba"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_7d84687d"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_81c3d828"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_8339d9ae"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_837681e7"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_8b3a3b80"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_8f9400e5"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_97fac48d"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_9a70470f"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_a469563d"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_a600ad13"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_abe52d61"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_b933b651"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_b95ef15c"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_ba0097d7"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_bae60905"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_c828896c"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_d7056ca9"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_d85bd288"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_df5e356a"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_e0874d31"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_f47e89f2"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_f5ee93b7"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_f6d9bdec"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_f70a0c13"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_fbeb33c8"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_news_ff3caf3a"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_08afa539"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_0ef3b8f6"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_374e2f69"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_3a6e6cf4"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_45bc4dac"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_497641d1"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_5f6d7c07"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_69777514"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_6b4da456"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_7a640600"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_7c8230e7"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_83c6500b"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_981ef495"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_af014918"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_b88eafe0"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_ba3f6b27"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_bea5df20"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_cd203141"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_d23c911c"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_e65ea951"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_edcd5b7d"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_f0538fa8"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_tech_f8e1d55b"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_06e1ec65"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_15d1c6de"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_16e92a77"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_324d9ec8"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_3ce4aefe"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_41dc2fb6"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_422af94d"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_4321d16f"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_4414dcee"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_5282669e"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_89a6a5c8"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_92833034"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_9e4855dd"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_aa3a457d"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_b695781a"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_bae27a62"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_be7c413f"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_c76b4d71"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_cfec4c3a"
+  },
+  {
+   "from": "d_7assets",
+   "to": "as_bgm_bgm_upbeat_d93365c4"
+  }
+ ],
+ "meta": {
+  "generated": "2026-07-06T16:34:37",
+  "node_count": 391,
+  "edge_count": 393
+ }
+}

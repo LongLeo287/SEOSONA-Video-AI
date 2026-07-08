@@ -1,51 +1,56 @@
 {
-  "name": "repo-showcase",
-  "title": "GitHub Repo Showcase",
-  "description": "Giới thiệu 1 dự án/tool mã nguồn mở GitHub",
-  "when_to_use": "Tin về 1 repo/tool: hook giá trị → repo-card (sao/tags) → so sánh → terminal cài đặt → stat sao → giấy phép → CTA",
-  "theme": "light",
-  "aspect": "9:16",
-  "scenes": [
-    {
-      "component": "bignum",
-      "accent": "orange",
-      "kicker_hint": "THỦ THUẬT CÔNG NGHỆ",
-      "hero": true
-    },
-    {
-      "component": null,
-      "accent": "blue",
-      "kicker_hint": "GIẢI PHÁP"
-    },
-    {
-      "component": "repo",
-      "accent": "green",
-      "kicker_hint": "DỰ ÁN MÃ NGUỒN MỞ"
-    },
-    {
-      "component": "compare",
-      "accent": "orange",
-      "kicker_hint": "TÍNH NĂNG"
-    },
-    {
-      "component": "terminal",
-      "accent": "blue",
-      "kicker_hint": "CÀI ĐẶT"
-    },
-    {
-      "component": "bignum",
-      "accent": "green",
-      "kicker_hint": "CỘNG ĐỒNG"
-    },
-    {
-      "component": "badges",
-      "accent": "orange",
-      "kicker_hint": "GIẤY PHÉP"
-    },
-    {
-      "component": "cta",
-      "accent": "blue",
-      "kicker_hint": "SEOSONA AI"
-    }
-  ]
+ "name": "repo-showcase",
+ "title": "GitHub Repo Showcase",
+ "description": "Showcase 1 dự án GitHub — sao/tags + so sánh + benchmark. Để GIỚI THIỆU dự án (không dạy cách dùng).",
+ "when_to_use": "Tin về 1 repo/tool: hook giá trị → repo-card (sao/tags) → so sánh → terminal cài đặt → stat sao → giấy phép → CTA",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": "bignum",
+   "accent": "orange",
+   "kicker_hint": "THỦ THUẬT CÔNG NGHỆ",
+   "hero": true
+  },
+  {
+   "component": null,
+   "accent": "blue",
+   "kicker_hint": "GIẢI PHÁP"
+  },
+  {
+   "component": "repo",
+   "accent": "green",
+   "kicker_hint": "DỰ ÁN MÃ NGUỒN MỞ"
+  },
+  {
+   "component": "compare",
+   "accent": "orange",
+   "kicker_hint": "TÍNH NĂNG"
+  },
+  {
+   "component": "terminal",
+   "accent": "blue",
+   "kicker_hint": "CÀI ĐẶT"
+  },
+  {
+   "component": "bignum",
+   "accent": "green",
+   "kicker_hint": "CỘNG ĐỒNG"
+  },
+  {
+   "component": "badges",
+   "accent": "orange",
+   "kicker_hint": "GIẤY PHÉP"
+  },
+  {
+   "component": "feature",
+   "accent": "blue",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "cta",
+   "accent": "blue",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
 }

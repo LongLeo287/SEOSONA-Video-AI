@@ -1,9 +1,13 @@
 # SEOSONA Video — Repo Ingestion Index
+# ⚠️ SUPERSEDED (2026-07-01): the CURRENT source of truth for what's ingested is `2_KNOWLEDGE/INGESTION_LOG.md`
+#   (append-per-repo, with verdict + where-built) — query it via `python 4_BRAIN/knowledge_graph.py recall "<topic>"`.
+#   This file is kept for historical batch-triage context only. Many links below point to
+#   `2_KNOWLEDGE/repos/*.md` digest notes that were intentionally DECLUTTERED (archived, gitignored) —
+#   those are expected-missing, NOT broken (knowledge_audit.py skips them). Don't rely on this as current.
+#
 # MASTER inventory (1445 repos, tiered + risk-flagged): see `2_KNOWLEDGE/REPO_INVENTORY.md`
-#   (summary) + `2_KNOWLEDGE/raw_data/repo_inventory.xlsx` (full, gitignored). This file
-#   tracks the video-relevant ingestion/integration status below.
-# This is the SINGLE SOURCE OF TRUTH for what has/hasn't been ingested.
-# RULE: Check this file BEFORE creating any new knowledge file.
+#   (summary) + `2_KNOWLEDGE/raw_data/repo_inventory.xlsx` (full, gitignored).
+# Historical: was the "single source of truth" until INGESTION_LOG took over.
 # Last updated: 2026-06-24 (11-repo triage: OmniVoice wired, OpenMontage patterns ingested)
 #
 # NOTE (2026-06-24): 2_KNOWLEDGE/repos/ was decluttered — 63 video/TTS/audio/render
@@ -43,7 +47,7 @@ drop TTS alternatives since VieNeu is chosen) → **2 ADOPT**:
 | gsap-skills (greensock) | A | animation | **ingested + WIRED (deep)** | MIT. Deep-analysed → 2_KNOWLEDGE/hyperframes/gsap-skills.md (techniques + seek-render gotchas) + hyperframes-animation skill. **9 free plugins vendored (gsap 3.13.0): SplitText/MorphSVG/DrawSVG/MotionPath/ScrambleText/CustomEase/EasePack/CustomBounce/CustomWiggle** auto-loaded+registered in every render; ScrollTrigger dropped (seek render). Brand ease `"seosona"` (CustomEase) pre-registered + applied to hero titles. Verified by render. |
 | openclaw-skill-infographic (tuanminhhole) | B | design-vi | **ingested** | MIT. 9_PROMPTS/design_assets/infographic_vn_presets.md (VN-safe fonts + 3 design strategies + aspect presets) → referenced by carousel_master_prompt. 9router creds added to 1_CONFIG for the optional Recraft/Flux/Ideogram image-gen backend. |
 | **PhoWhisper-large (VinAI)** | A | asr-vi | **ingested + WIRED** | BSD-3, local. Vietnamese ASR. Wired as the PRIMARY engine in `2_SKILLS/srt_maker/asr_router.py` (switchable `SEOSONA_ASR`, falls back to faster-whisper → openai-whisper). Set `SEOSONA_PHOWHISPER_MODEL` to a CT2 PhoWhisper repo to activate; until then the router auto-uses faster-whisper. Lower WER on Vietnamese for subtitles + repurposer hooks. |
-| **VideoLingo (Huanshere)** | A | subtitle/dub | **ingested + WIRED (full)** | Apache-2.0. (1) WhisperX single-line subtitle cutting = `group_words_to_segments`. (2) **Full translate→dub localizer built**: `1_AGENTS/repurposer_agent/localizer.py` `localize_video()` = ASR router (PhoWhisper) → translate router (LLM primary, Google backup, keeps EN tech terms) → VieNeu brand-voice dub (time-fit via ffmpeg atempo) → translated .srt + aligned dubbed .wav. New switchable `2_SKILLS/translator/`. |
+| **VideoLingo (Huanshere)** | A | subtitle/dub | **REFERENCE** (localize/dub stage was built then REMOVED in the lean-cleanup refactor) | Apache-2.0. Kept idea: (1) WhisperX single-line subtitle cutting (`group_words_to_segments` lives in caption_segment). The full translate→dub localizer (localizer.py + 2_SKILLS/translator) was built (commit 1f0721e) then dropped as unused during the engine-unify cleanup (f144a78) — NOT present now. Revisit only if a localize/dub pipeline is actually needed. |
 | F5-TTS | A | voice-clone | partial | 2_SKILLS/voice_cloner/ [needs full distillation] |
 | VieNeu-TTS | A | tts-vi | partial | 2_SKILLS/voice_cloner/voice_router.py (via 4_BRAIN/native_composer.py) [needs SOP update] |
 | VideoCaptioner | A | subtitle | partial | 2_SKILLS/srt_maker/ [needs full distillation] |

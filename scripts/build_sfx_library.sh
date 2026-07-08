@@ -45,4 +45,11 @@ echo "RISER (hook lift)"
 cue "Riser/Bass, Sharp Detail Riser.mp3"           "riser/riser_short.mp3" 0 0.95 0.2
 cue "Riser/Epic Sunrise Riser.mp3"                 "riser/riser_long.mp3"  8.0 3.0 0.5
 
+echo "TICK (urgency / deadline / countdown tension)"
+cue "Clocks/Tick Tock.mp3"                         "tick/tick.mp3"       0 0.9 0.25
+cue "Clocks/Ticking Clock, Classic, Countdown.mp3" "tick/countdown.mp3"  0 2.2 0.6
+
+echo "SHUTTER (screenshot / capture / snapshot reveal)"
+cue "Camera Shutter/Digital, Take Picture, Shutter 02.mp3" "shutter/shutter.mp3" 0 0.8 0.2
+
 echo "DONE."

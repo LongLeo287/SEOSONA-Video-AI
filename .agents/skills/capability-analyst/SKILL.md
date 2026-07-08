@@ -29,8 +29,23 @@ old ad-hoc "spin a generic Explore agent and eyeball it" habit. It is the execut
 | `2_KNOWLEDGE/INGESTION_LOG.md` | RECORD — where every verdict is logged |
 | `scripts/inject_os_capabilities.py` | DELEGATE bulk/unknown repos to SEOSONA OS UAP |
 | `~/.seosona/docs/03_uap_pipeline.md` | the OS pipeline this mirrors (finder→auditor→security→assimilator→creator) |
+| `4_BRAIN/knowledge_graph.py` | 0-CHECK — query what SEOSONA already has before re-reading the whole repo |
 
 ## Procedure (one repo/idea)
+
+### 0. CHECK THE GRAPH + RECALL — don't re-derive what's already known
+Before cloning/reading anything, query SEOSONA's "second brain" for what we already have + already
+LEARNED in this area — cheaper than re-scanning the repo, catches "we already built/decided this" early:
+```
+python 4_BRAIN/knowledge_graph.py recall "<topic>"      # ← what we've LEARNED + WHY (lessons, rationale,
+                                                        #   verdicts) in SEOSONA's own words — check FIRST
+python 4_BRAIN/knowledge_graph.py find <topic>          # structure: matching modules/SOPs/skills/effects
+python 4_BRAIN/knowledge_graph.py related b_<module> 2   # what's connected to a module, 2 hops out
+python 4_BRAIN/knowledge_graph.py stats                  # system-wide counts
+```
+`recall` is the key check: if a past INGESTION_LOG lesson already covers this repo/pattern (BUILT/SKIP/
+REJECTED + why), you may be done without re-analysing. If the brain looks stale (missing something you
+know exists), regenerate: `python scripts/gen_knowledge_graph.py && python scripts/gen_knowledge_notes.py`.
 
 ### 1. ANALYZE — factual, not marketing, and DEEP
 - **Clone + read the ACTUAL source** (entry points, configs, core modules). **Ignore the

@@ -1,0 +1,56 @@
+{
+ "name": "myth-buster",
+ "title": "Bóc trần lầm tưởng",
+ "description": "Lầm tưởng phổ biến → sự thật + bằng chứng (SEO đã chết? AI thay lập trình viên?).",
+ "when_to_use": "Khi muốn ĐÍNH CHÍNH một ngộ nhận: nêu lầm tưởng → phản bác bằng sự thật/số liệu.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "orange",
+   "kicker_hint": "LẦM TƯỞNG",
+   "hero": true
+  },
+  {
+   "component": "quote",
+   "accent": "blue",
+   "kicker_hint": "NGỘ NHẬN"
+  },
+  {
+   "component": "compare",
+   "accent": "green",
+   "kicker_hint": "SỰ THẬT"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "BẰNG CHỨNG"
+  },
+  {
+   "component": "tip",
+   "accent": "blue",
+   "kicker_hint": "GHI NHỚ"
+  },
+  {
+   "component": "bignum",
+   "accent": "green",
+   "kicker_hint": "TÁC ĐỘNG"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "blue",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "cta",
+   "accent": "orange",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

@@ -33,12 +33,16 @@ const cp = require("child_process");
 function hfCli() {
   const roots = [
     process.env.HYPERFRAMES_ROOT,
-    path.resolve(__dirname, "..", "..", ".."), // skills/embedded-captions/scripts → repo root if in-repo
+    path.resolve(__dirname, "..", "..", ".."),             // → .agents (in-repo skill)
+    path.resolve(__dirname, "..", "..", "..", ".."),        // → repo root (SEOSONA Video)
     path.join(os.homedir(), "Downloads", "hyperframes"),
   ].filter(Boolean);
   for (const root of roots) {
-    const cli = path.join(root, "packages", "cli", "dist", "cli.js");
-    if (fs.existsSync(cli)) return cli;
+    // built checkout layout OR npm-installed layout (node_modules/hyperframes)
+    for (const cli of [path.join(root, "packages", "cli", "dist", "cli.js"),
+                       path.join(root, "node_modules", "hyperframes", "dist", "cli.js")]) {
+      if (fs.existsSync(cli)) return cli;
+    }
   }
   console.error("[matte] cannot find hyperframes cli — set HYPERFRAMES_ROOT to a built checkout");
   process.exit(3);

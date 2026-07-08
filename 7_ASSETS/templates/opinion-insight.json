@@ -1,0 +1,56 @@
+{
+ "name": "opinion-insight",
+ "title": "Opinion / Insight (góc nhìn)",
+ "description": "Bài GÓC NHÌN có trích dẫn — quote + điểm chính + ghi nhớ (Khi AI lấy trí tuệ, LOOP là gì). Khác insight-explainer (phân tích: so sánh + các bước).",
+ "when_to_use": "Khi nội dung là một LẬP LUẬN/quan điểm cần nhấn bằng trích dẫn + đúc kết, KHÔNG phải giải thích cơ chế từng bước.",
+ "theme": "light",
+ "aspect": "9:16",
+ "scenes": [
+  {
+   "component": null,
+   "accent": "orange",
+   "kicker_hint": "GÓC NHÌN",
+   "hero": true
+  },
+  {
+   "component": null,
+   "accent": "blue",
+   "kicker_hint": "BỐI CẢNH"
+  },
+  {
+   "component": "quote",
+   "accent": "green",
+   "kicker_hint": "TRÍCH DẪN"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "tip",
+   "accent": "blue",
+   "kicker_hint": "GHI NHỚ"
+  },
+  {
+   "component": "bignum",
+   "accent": "green",
+   "kicker_hint": "TÁC ĐỘNG"
+  },
+  {
+   "component": "feature",
+   "accent": "orange",
+   "kicker_hint": "ĐIỂM CHÍNH"
+  },
+  {
+   "component": "checklist",
+   "accent": "blue",
+   "kicker_hint": "DANH SÁCH"
+  },
+  {
+   "component": "cta",
+   "accent": "blue",
+   "kicker_hint": "SEOSONA AI"
+  }
+ ]
+}

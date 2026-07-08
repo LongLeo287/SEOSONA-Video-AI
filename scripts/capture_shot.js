@@ -2,7 +2,7 @@
 // Best-effort: any failure (bad URL, 403, captcha, no browser) exits non-zero so the Python
 // caller gracefully falls back (homepage → GitHub page → synthetic tiles).
 // Uses Playwright with a SYSTEM browser channel (Edge/Chrome, always present on Win11) so no
-// browser download is needed; falls back to Playwright's bundled chromium, then puppeteer.
+// browser download is needed; falls back to Playwright's bundled chromium, then puppeteer-core.
 // Usage: node scripts/capture_shot.js <url> <out.png>
 const path = require("path");
 

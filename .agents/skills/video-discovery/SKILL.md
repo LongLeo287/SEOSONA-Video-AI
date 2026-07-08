@@ -14,8 +14,13 @@ by itself.
 `4_BRAIN/discovery.py` → `discover(dry_run)`. Free/local; PyYAML only.
 
 ## How it works
-- Source: `0_INPUT_INBOX/sources.txt` (one per line; a GitHub URL or a Vietnamese topic;
-  `#` lines ignored).
+- Static source: `0_INPUT_INBOX/sources.txt` (one per line; a GitHub URL or a Vietnamese
+  topic; `#` lines ignored).
+- **Fully-automatic feeds:** `0_INPUT_INBOX/feeds.txt` (RSS/Atom URLs). Each feed is fetched
+  natively (requests + xml — no extra dep), items are filtered to the SEO/AI/marketing domain,
+  and capped at `SEOSONA_DISCOVERY_MAX` (default 10) new items per run (circuit-breaker mindset).
+  Language note: feed titles are usually English — prefer Vietnamese feeds for clean VN videos,
+  or enable the LLM planner. Output is still gated by content_moderation + evaluator.
 - Dedup: skips an item whose key `news_videos::<item>` is in the processed-ledger
   (`0_INPUT_INBOX/.processed_ledger.txt`) or that is already in the queue (rule: avoid duplicates).
 - Enqueue: appends the new items to `0_INPUT_INBOX/production_queue.yaml` under `news_videos`,
