@@ -199,3 +199,6 @@ logs/publish/
 3_MEMORY/recent_angles.jsonl
 3_MEMORY/template_scores.json
 3_MEMORY/HOT_LEARNINGS.md
+.obsidian/
+test_carousel_v2/
+**/slide_*.png
