@@ -19,3 +19,5 @@ gitingest
 faster-whisper>=1.0.0
 ctranslate2>=4.0.0
 vietnormalizer>=0.2.3   # VN text-normalization for TTS (dates/%/currency/units→spoken) — native_composer.pron()
+sherpa-onnx>=1.12.0  # VN offline ASR engine (asr_router 'sherpa')
+underthesea>=6.8.0  # VN text front-end (TTS normalize + subtitle split)

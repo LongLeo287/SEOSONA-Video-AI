@@ -77,6 +77,18 @@ def _openai_whisper(audio_path, language):
         return None
 
 
+def _sherpa(audio_path, language):
+    """Vietnamese sherpa-onnx offline engine (ONNX/CPU, optional diarization + punctuation)."""
+    try:
+        from .sherpa_vn_engine import transcribe
+    except Exception:
+        try:
+            from sherpa_vn_engine import transcribe
+        except Exception:
+            return None
+    return transcribe(audio_path, language)
+
+
 def _collect_fw(segments):
     """faster-whisper segment generator → uniform word list."""
     words = []
@@ -98,6 +110,7 @@ _ENGINES = {
     "phowhisper": _phowhisper,
     "faster_whisper": _faster_whisper,
     "openai_whisper": _openai_whisper,
+    "sherpa": _sherpa,
 }
 
 
@@ -110,7 +123,7 @@ def transcribe_words(audio_path, language="vi"):
         print(f"[ASR Router] audio not found: {audio_path}")
         return []
     primary = os.environ.get("SEOSONA_ASR", "phowhisper")
-    chain = [primary] + [e for e in ("phowhisper", "faster_whisper", "openai_whisper") if e != primary]
+    chain = [primary] + [e for e in ("phowhisper", "faster_whisper", "openai_whisper", "sherpa") if e != primary]
     for engine in chain:
         fn = _ENGINES.get(engine)
         if not fn:
