@@ -70,12 +70,35 @@ def detect_duplicate_takes(words, win=6, min_run=4, sim=0.8, look_s=20.0):
     return dups
 
 
+# Pure disfluency tokens to drop (WHOLE-WORD normalized match — never substring, per the VN
+# substring-collision rule). Conservative on purpose: excludes ambiguous real words (VN "ạ"/"hả"/
+# "kiểu", EN "like"/"you know") that a filler-cut could wrongly remove.
+FILLER_WORDS = {
+    "um", "umm", "ummm", "uh", "uhh", "uhm", "uhmm", "er", "err", "erm", "ah", "ahh",
+    "hmm", "hmmm", "mm", "mmm", "eh",
+    # Vietnamese disfluencies
+    "ừ", "ừm", "ưm", "ừmm", "à", "ờ", "ờm", "ể", "hử", "ậ", "ừa",
+}
+
+
+def detect_fillers(words):
+    """Standalone filler/disfluency words to remove (umm/uh/ừ/à/ờ…). WHOLE-WORD normalized match."""
+    out = []
+    for i, w in enumerate(words):
+        if _norm(w.get("word", "")) in FILLER_WORDS:
+            out.append({"start": round(float(w["start"]), 2), "end": round(float(w["end"]), 2),
+                        "word": w.get("word", ""), "index": i})
+    return out
+
+
 def analyze(words, silence_s=1.0):
     sil = detect_silences(words, silence_s)
     dup = detect_duplicate_takes(words)
+    fil = detect_fillers(words)
     return {"n_words": len(words),
-            "silences": sil, "duplicate_takes": dup,
+            "silences": sil, "duplicate_takes": dup, "fillers": fil,
             "dead_air_total_s": round(sum(s["duration"] for s in sil), 2),
+            "filler_total_s": round(sum(f["end"] - f["start"] for f in fil), 2),
             "cut_suggestions": [d["take1"] for d in dup]}
 
 
@@ -88,9 +111,12 @@ def main():
     words = json.load(open(a.words, encoding="utf-8"))
     r = analyze(words, a.silence)
     print(f"[analyze] {r['n_words']} words | {len(r['silences'])} silences "
-          f"({r['dead_air_total_s']}s dead air) | {len(r['duplicate_takes'])} duplicate take(s)")
+          f"({r['dead_air_total_s']}s dead air) | {len(r['duplicate_takes'])} duplicate take(s) "
+          f"| {len(r['fillers'])} filler(s) ({r['filler_total_s']}s)")
     for s in r["silences"]:
         print(f"  · silence {s['duration']}s @ {s['start']}–{s['end']}  ('{s['after']}' … '{s['before']}')")
+    for f in r["fillers"]:
+        print(f"  · filler '{f['word']}' @ {f['start']}–{f['end']}")
     for d in r["duplicate_takes"]:
         print(f"  · dup take (sim {d['similarity']}): cut {d['take1']} keep {d['take2']}  — \"{d['text']}\"")
     if a.json:

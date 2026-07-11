@@ -446,7 +446,10 @@ def main():
     ap.add_argument("--composition", default="hf-demo")  # accepted for SKILL compatibility; unused
     ap.add_argument("--analyze", action="store_true",
                     help="report dead-air + duplicate takes (talking_head_analyze) before editing")
-    ap.add_argument("--silence", type=float, default=1.0, help="silence threshold for --analyze")
+    ap.add_argument("--silence", type=float, default=1.0, help="silence threshold for --analyze/--autocut")
+    ap.add_argument("--autocut", action="store_true",
+                    help="TIGHTEN footage first: remove silence + filler words + duplicate takes, re-time words")
+    ap.add_argument("--no-fillers", action="store_true", help="with --autocut, keep filler words")
     a = ap.parse_args()
 
     spec = json.load(open(a.spec, encoding="utf-8"))
@@ -462,6 +465,18 @@ def main():
     video = a.video if os.path.isabs(a.video) else os.path.abspath(a.video)
     out = a.out if os.path.isabs(a.out) else os.path.abspath(a.out)
     os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
+
+    # AUTO-CUT (opt-in): tighten the footage BEFORE captioning — drop silence/filler/dup-takes and
+    # re-time the word list so karaoke/cards sync on the shorter timeline (the wire talking_head_analyze
+    # always promised). Everything downstream then operates on the tightened video + words.
+    if a.autocut or spec.get("autocut"):
+        try:
+            import talking_head_autocut as _ac
+            tight = os.path.splitext(out)[0] + "_tight.mp4"
+            video, words, _acrep = _ac.autocut(video, words, tight, silence_s=a.silence,
+                                               drop_fillers=not a.no_fillers)
+        except Exception as _e:
+            print(f"[edit] autocut skipped ({_e})")
 
     W, H, dur = _probe(video)
     print(f"[edit] footage {W}x{H} {dur:.1f}s | {len(words)} words | {len(spec.get('cards',[]))} cards")
