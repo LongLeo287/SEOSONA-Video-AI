@@ -6,15 +6,24 @@ into a talking head. Seedance is different: it GENERATES cinematic b-roll/scene 
 prompt. `seedance_director.py` authors the prompts (the craft); THIS module runs them through a
 Seedance provider and stitches the clips into a reel.
 
-ACCESS-GATED, honestly. Seedance 2.0 is a paid model served via third-party hosts. This module ships
-real HTTP adapters for:
-  · fal.ai      — env FAL_KEY  or SEEDANCE_FAL_KEY        (model fal-ai/bytedance/seedance/v1/pro)
-  · Replicate   — env REPLICATE_API_TOKEN or SEEDANCE_REPLICATE_TOKEN  (bytedance/seedance-1-pro)
-  · BytePlus    — env ARK_API_KEY (+ ARK_SEEDANCE_ENDPOINT)  — official Volcengine ModelArk (stub)
+ACCESS-GATED, honestly. Seedance 2.0 is a PAID ByteDance model. Know who you are paying:
 
-With NO key configured, `available()` is empty and `make_reel()` degrades to writing the prompts +
-shotlist HTML and reporting exactly which env var to set — it never fakes a render. The moment a key
-is added, the SAME call generates real clips.
+  · BytePlus ModelArk / Volcengine — the OFFICIAL FIRST-PARTY ByteDance API (BytePlus = international/
+    USD, Volcengine = China/RMB). No reseller margin; needs a ByteDance-cloud account. env ARK_API_KEY
+    (+ ARK_SEEDANCE_ENDPOINT). Adapter is a stub (implement the ark client to use it).
+  · fal.ai / Replicate — REPUTABLE THIRD-PARTY HOSTS that resell Seedance behind their own API. Legit
+    and convenient, but you pay their margin and they see your prompts. env FAL_KEY / REPLICATE_API_TOKEN.
+    Model ids are env-overridable (SEEDANCE_FAL_MODEL / SEEDANCE_REPLICATE_MODEL) — CONFIRM the exact
+    current id on fal.ai/models or replicate.com/bytedance before adding a key; they change per version.
+
+SECURITY — do NOT buy "Seedance API keys" from unofficial marketplace/reseller sites (e.g. random
+"cheap Seedance API" aggregators). They may resell stolen/shared quota, harvest your key, overcharge,
+or vanish. Only use the official BytePlus/Volcengine, or fal.ai / Replicate, EACH WITH YOUR OWN account.
+This module only ever sends your key to `queue.fal.run` or `api.replicate.com` — nowhere else.
+
+With NO key configured, paid providers are inactive; the keyless local LTX engine is used if its weights
+are present, else `make_reel()` degrades to writing prompts + shotlist and reporting how to enable — it
+never fakes a render.
 
   python 4_BRAIN/seedance_engine.py --status
   python 4_BRAIN/seedance_engine.py --script beats.json --title "Toby Labs" --out out/reel.mp4
@@ -35,9 +44,9 @@ import seedance_director as director  # the prompt-authoring craft (Task 1)
 
 # Provider config: env var(s) that hold the key + a human label. Order = preference.
 _PROVIDERS = [
-    ("fal",       ("FAL_KEY", "SEEDANCE_FAL_KEY"),            "fal.ai (bytedance/seedance/v1/pro)"),
-    ("replicate", ("REPLICATE_API_TOKEN", "SEEDANCE_REPLICATE_TOKEN"), "Replicate (bytedance/seedance-1-pro)"),
-    ("byteplus",  ("ARK_API_KEY",),                            "BytePlus ModelArk (Doubao-Seedance)"),
+    ("byteplus",  ("ARK_API_KEY",),                            "BytePlus/Volcengine ModelArk — OFFICIAL first-party (stub)"),
+    ("fal",       ("FAL_KEY", "SEEDANCE_FAL_KEY"),            "fal.ai — third-party reseller (seedance-2.0)"),
+    ("replicate", ("REPLICATE_API_TOKEN", "SEEDANCE_REPLICATE_TOKEN"), "Replicate — third-party reseller (bytedance/seedance-*)"),
 ]
 
 
@@ -90,6 +99,8 @@ def available():
     _load_env()
     out = []
     for name, envs, label in _PROVIDERS:
+        if name == "byteplus":
+            continue                       # official but adapter is a stub → not runnable, don't auto-pick
         if _key_for(envs):
             out.append({"provider": name, "label": label, "env": envs[0]})
     if _ltx_ready():
@@ -124,10 +135,16 @@ def _requests():
 
 def _fal_generate(prompt, out_mp4, *, aspect, duration, resolution, image_url, key, timeout):
     rq = _requests()
-    url = "https://queue.fal.run/fal-ai/bytedance/seedance/v1/pro/text-to-video"
+    # Model path is env-configurable — the DEFAULT targets Seedance 2.0 (the older 1.0 id was
+    # `fal-ai/bytedance/seedance/v1/pro`). ALWAYS confirm the exact current id at fal.ai/models before
+    # adding a key — fal renames paths across versions. fal.ai is a reputable THIRD-PARTY host (reseller),
+    # not ByteDance first-party.
+    model = os.environ.get("SEEDANCE_FAL_MODEL", "fal-ai/bytedance/seedance-2.0")
+    base = f"https://queue.fal.run/{model}"
+    url = f"{base}/text-to-video"
     body = {"prompt": prompt, "aspect_ratio": aspect, "resolution": resolution, "duration": str(duration)}
     if image_url:
-        url = "https://queue.fal.run/fal-ai/bytedance/seedance/v1/pro/image-to-video"
+        url = f"{base}/image-to-video"
         body["image_url"] = image_url
     hdr = {"Authorization": f"Key {key}", "Content-Type": "application/json"}
     r = rq.post(url, json=body, headers=hdr, timeout=60); r.raise_for_status()
@@ -151,7 +168,10 @@ def _fal_generate(prompt, out_mp4, *, aspect, duration, resolution, image_url, k
 
 def _replicate_generate(prompt, out_mp4, *, aspect, duration, resolution, image_url, key, timeout):
     rq = _requests()
-    url = "https://api.replicate.com/v1/models/bytedance/seedance-1-pro/predictions"
+    # env-configurable model — default is Seedance 1.0 Pro (confirm/point to a 2.0 model at
+    # replicate.com/bytedance when available). Replicate is a reputable THIRD-PARTY host (reseller).
+    model = os.environ.get("SEEDANCE_REPLICATE_MODEL", "bytedance/seedance-1-pro")
+    url = f"https://api.replicate.com/v1/models/{model}/predictions"
     inp = {"prompt": prompt, "aspect_ratio": aspect, "duration": int(duration), "resolution": resolution}
     if image_url:
         inp["image"] = image_url
@@ -215,7 +235,7 @@ def _download(url, out_mp4, timeout):
 
 # ───────────────────────────── public generation API ─────────────────────────────
 
-def generate(prompt, out_mp4, *, aspect="16:9", duration=5, resolution="1080p",
+def generate(prompt, out_mp4, *, aspect="16:9", duration=5, resolution="720p",
              image_url=None, provider=None, timeout=600):
     """Generate ONE Seedance clip from a prompt. Raises a clear RuntimeError if no key is configured."""
     av = available()
@@ -261,7 +281,7 @@ def _concat(clips, out_mp4):
     return out_mp4
 
 
-def make_reel(title, beats, out_mp4, *, aspect="16:9", resolution="1080p", provider=None):
+def make_reel(title, beats, out_mp4, *, aspect="16:9", resolution="720p", provider=None):
     """Author prompts (director) → render each clip (if a key) → concat into a reel.
 
     NO KEY → PROMPT-ONLY: writes <out>.shotlist.html + <out>.prompts.txt next to out_mp4 and returns
