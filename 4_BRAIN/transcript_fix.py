@@ -20,7 +20,10 @@ _BRAND_FIX = {
     "sê ô": "SEO", "ét cần bố": "Search Console", "ây pi ai": "API", "sê mờ rớt": "SEMrush",
     "a rép": "Ahrefs", "a hờ rép": "Ahrefs", "nô sần": "Notion", "hớt mét": "Hotmail",
     "cen va": "Canva", "rê mốt sần": "Remotion", "hai pơ phrêm": "HyperFrames",
-    "sê ô sô na": "SEOSONA", "sê ô sô nà": "SEOSONA",
+    "sê ô sô na": "SEOSONA", "sê ô sô nà": "SEOSONA", "celsona": "SEOSONA",
+    "xen sô na": "SEOSONA", "sen sô na": "SEOSONA", "sếu sô na": "SEOSONA",
+    "bốt kem": "bootcamp", "bốt cam": "bootcamp", "bút cam": "bootcamp",
+    "bút kem": "bootcamp", "bốt-camp": "bootcamp",
 }
 _BRAND_ITEMS = sorted(_BRAND_FIX.items(), key=lambda kv: -len(kv[0]))
 
