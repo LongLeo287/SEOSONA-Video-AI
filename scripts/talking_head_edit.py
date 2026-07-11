@@ -94,6 +94,7 @@ def _chunks(words, n):
 def build_ass(words, spec, W, H, chunk):
     cap_bottom = int(spec.get("caption_bottom", 380))
     cap_align = int(spec.get("caption_align", 2))     # 2=bottom-centre (default); 8=top, 5=mid-float
+    chunk = int(spec.get("caption_chunk", chunk))     # a spec can force ≤2-word captions (Seedance craft)
     keywords = set(k.lower() for k in spec.get("keywords", []))
     if spec.get("auto_emphasis", True):               # SKILL-AUTO zoom_plan scoring → auto-highlight
         try:                                          # punchy words (numbers/brands/pivots) in captions
@@ -122,6 +123,10 @@ def build_ass(words, spec, W, H, chunk):
         f"Style: Card,Be Vietnam Pro,{card_size},{WHITE},{WHITE},{NAVY},{NAVY},-1,0,0,0,100,100,0,0,3,3,2,7,0,0,0,1",
         # Bar: BorderStyle 1 + Outline/Shadow 0 → a plain \p1-drawn rectangle (progress bar), no box.
         f"Style: Bar,Be Vietnam Pro,20,{WHITE},{WHITE},{WHITE},{WHITE},0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1",
+        # Big: layered background typography — a LARGE faint keyword plate behind the captions/cards
+        # (the Seedance "bold cinematic typography, keyword becomes a large design element, foreground/
+        # background layers" craft). No box (BorderStyle 1), thin outline, centre-anchored (an5).
+        f"Style: Big,Be Vietnam Pro,{int(H*0.11)},{acc1},{acc1},{NAVY},{NAVY},-1,0,0,0,100,100,2,0,1,3,0,5,0,0,0,1",
         "", "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
     ]
@@ -162,6 +167,39 @@ def build_ass(words, spec, W, H, chunk):
             seg = (f"{{\\c{col}}}" if col else "") + f"{{\\k{kcs}}}{tok} "
             parts.append(seg)
         events.append(f"Dialogue: 0,{_ts(start)},{_ts(end + 0.4)},Cap,,0,0,0,,{''.join(parts).strip()}")
+
+    # --- layered BIG-KEYWORD typography plate (Seedance craft, opt-in `bigword`) -----------------
+    # When the speaker hits an emphasis word, a LARGE faint keyword rises in the upper-third BEHIND the
+    # captions/cards → the "keyword becomes a big design element, foreground/background layers, depth"
+    # look from the reference edit spec. Dependency-free (pure ASS): the plate is on Layer 0 and is
+    # PREPENDED (drawn first → sits behind everything), lives in the upper zone away from the bottom
+    # caption, and is translucent so the speaker reads as being in front of it.
+    #   NOTE: TRUE silhouette-occlusion (text masked by the speaker's outline) needs a per-frame person
+    #   matte (mediapipe/rembg) — not available in this env; that is a documented upgrade, not faked here.
+    if spec.get("bigword") and keywords:
+        big_y = int(H * float(spec.get("bigword_y", 0.30)))
+        hold = float(spec.get("bigword_hold", 0.30))
+        alpha = spec.get("bigword_alpha", "&H70&")     # ~56% transparent → a background plate, not a title
+        big_ev, last_end, shown = [], -1.0, 0
+        cap_max = int(spec.get("bigword_max", 14))     # don't paper the whole video with plates
+        for w in words:
+            tok = str(w.get("word", "")).strip()
+            key = tok.lower().strip(".,!?:;\"'")
+            if len(key) < 2 or key not in keywords:
+                continue
+            s, e = float(w["start"]), float(w["end"])
+            if s - last_end < 0.6 or shown >= cap_max:  # space them out; cap the count
+                continue
+            last_end = e
+            shown += 1
+            big = _esc(tok).upper()
+            # subtle cinematic grow on entry (\t scale) — reads as the word "arriving" behind the speaker
+            big_ev.append(
+                f"Dialogue: 0,{_ts(s)},{_ts(e + hold)},Big,,0,0,0,,"
+                f"{{\\an5\\pos({W//2},{big_y})\\alpha{alpha}\\b1"
+                f"\\fscx104\\fscy104\\t(0,200,\\fscx112\\fscy112)\\fad(120,160)}}{big}")
+        events = big_ev + events                        # prepend → the plate renders BEHIND captions/cards
+        print(f"[edit] bigword: {shown} layered keyword plate(s) behind the speaker")
 
     # --- cards (header / bullet / term / stat) — templates cloned from the reference reels ---
     # Each Dialogue gets its own rounded pill box (Card style BorderStyle 3), so stacked rows read

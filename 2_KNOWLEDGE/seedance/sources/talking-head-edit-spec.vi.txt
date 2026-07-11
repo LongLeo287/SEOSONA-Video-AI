@@ -1,0 +1,33 @@
+Biến clip talking-head này thành một video ngắn (reel) trên mạng xã hội có chất lượng cao cấp, dễ lan truyền (viral-quality) với phong cách chỉnh sửa có tính giữ chân người xem cao (high-retention), đồ họa chuyển động đậm chất điện ảnh (cinematic motion graphics) và hình ảnh mang phong cách của các nhà sáng tạo nội dung hiện đại. Hãy giữ nguyên hoàn toàn người nói gốc, âm thanh gốc và màu áo gốc - tuyệt đối không thay đổi, đổi màu hoặc chỉnh sửa ngoại hình, trang phục hoặc tông da của chủ thể, các chi tiết background dưới bất kỳ hình thức nào. Bảo toàn nguyên vẹn cảnh quay video gốc hiện có và chỉ thêm các lớp chỉnh sửa (editing layers) lên phía trên.
+
+Thoại nhân vật nói: “ Viết hook mở đầu vào”
+
+- Tự động nhận diện lời thoại tiếng Việt chính xác theo audio gốc.
+- Mỗi lần hiển thị tối đa 2 từ và khớp theo thoại.
+- Chia phụ đề theo nhịp nói và ý nghĩa, không để dòng chữ dài.
+- Chữ có shadow nhẹ hoặc viền tối mỏng để luôn dễ đọc trên nền studio.
+- Hiển thị ở vùng 1/3 dưới khung hình, tránh che miệng, micro hoặc các chi tiết quan trọng.
+
+- Không hiển thị quá 2 từ trên cùng một thời điểm.
+- Đồng bộ tuyệt đối với lời nói.
+
+Hãy sử dụng nghệ thuật chữ điện ảnh in đậm (bold cinematic typography) - nơi các từ quan trọng sẽ biến thành các yếu tố thiết kế có kích thước lớn trên màn hình. Tạo các bố cục văn bản phân lớp với chữ nằm ở tiền cảnh (foreground) và hậu cảnh (background). Các cụm từ khóa chính có thể xuất hiện phía sau người nói, được che phủ một phần (partially masked) bởi chủ thể để tạo chiều sâu và mang lại hiệu ứng 3D cao cấp. Mỗi lần hiển thị tối đa 2 từ.
+
+Phong cách nghệ thuật chữ (Typography Style): Sử dụng phông chữ lớn phong cách biên tập (editorial fonts), chữ điện ảnh sang trọng (luxury cinematic typography), kết hợp nhiều độ dày mỏng của chữ (mixed font weights), bố cục văn bản phân lớp, chữ 
+động (kinetic typography), hiệu ứng chiều sâu và thị sai (depth and parallax effects), cùng các xử lý chữ 3D cao cấp. Mỗi lần hiển thị tối đa 2 từ.
+
+Phong cách màu sắc (Color Style): Trích xuất màu sắc trực tiếp từ cảnh quay video và xây dựng toàn bộ bảng màu cho chữ và đồ họa xoay quanh cảnh đó. Sử dụng các tông màu [MÀU] xuất hiện trên [LOGO, ÁO, BACKGROUND,...] làm màu nhấn chủ đạo. Xây dựng các dải màu (gradient) gốc [TÊN MÀU] chuyển tiếp mượt mà với [NHỮNG MÀU PHỤ LIÊN QUAN TỚI MÀU CHÍNH] và các vùng bắt sáng ấm áp (warm highlights). Tất cả màu sắc của văn bản phải tạo cảm giác tích hợp tự nhiên vào bảng màu hiện có của video. Các từ khóa quan trọng cần có hiệu ứng dải màu (gradient) độc đáo và hiệu ứng phát sáng cao cấp (premium glow effects) để tôn lên - chứ không xung đột với màu sắc thực tế của cảnh quay.
+
+Mỗi khi người nói nhấn mạnh một quan điểm hoặc đưa ra một luận điểm mạnh mẽ, hãy tạo ra những khoảnh khắc chữ điện ảnh kích thước lớn, kèm với duy nhất một motion graphic mô tả để các từ khóa chiếm lĩnh màn hình, sử dụng chữ phân lớp phía sau người nói, thêm các hiệu ứng chuyển động thu phóng (scale animations), tạo chiều sâu, đổ bóng (shadows), hiệu ứng ánh sáng (lighting effects) và chuyển động tinh tế.
+
+Thêm thiết kế âm thanh chuyên nghiệp bao gồm tiếng gió vụt (whooshes), tiếng va chạm (impacts), tiếng lướt (swipes), tiếng click, âm thanh tăng tiến (risers), âm thanh chuyển cảnh và cải thiện âm thanh điện ảnh tinh tế, tất cả phải được đồng bộ hóa hoàn hảo với phần âm thanh nói gốc.
+
+Duy trì nhịp độ nhanh với những thay đổi hình ảnh có ý nghĩa sau mỗi vài giây để tối đa hóa tỷ lệ giữ chân người xem.
+
+Yêu cầu chất lượng:
+
+- Hình ảnh sắc nét, chuyển động tự nhiên.
+- Không làm lệch khẩu hình hoặc thay đổi nội dung lời thoại.
+- Không tạo phụ đề sai chính tả.
+- Không để graphic hoặc chữ che mắt, miệng, mic.
+- Tổng thể phải tối giản, hiện đại, có nhịp nhanh và cảm giác video hướng dẫn công nghệ chuyên nghiệp.
