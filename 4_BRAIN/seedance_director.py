@@ -212,6 +212,32 @@ def build_prompt(scene, *, style_prefix=None):
     return "\n".join(out).strip() + "\n"
 
 
+def build_prose(scene):
+    """A single natural-language descriptive prompt for prose-style video models (LTX-Video etc.).
+
+    Seedance 2.0 wants the structured block prompt (build_prompt); LTX and most open t2v models want a
+    plain descriptive sentence — the block directives (SUBJECT:/CAMERA:/CONSTRAINTS:) are noise to them.
+    This distils the same scene into one vivid description + cinematic tail.
+    """
+    subj = str(scene.get("subject", "")).strip()
+    loc = str(scene.get("location", "")).strip()
+    shots = scene.get("shots", [])
+    action = ""
+    if shots:
+        action = str(shots[0].get("beat", "")).strip()
+        action = action.split("—")[-1].strip() if "—" in action else action
+    # dedupe near-identical fragments (author_from_script sets subject == first-shot text → avoid repeat)
+    parts, seen = [], []
+    for p in [subj, loc, action]:
+        pl = p.lower().strip()
+        if p and not any(pl in s or s in pl for s in seen):
+            parts.append(p); seen.append(pl)
+    body = ", ".join(parts) if parts else str(scene.get("intent", "a cinematic scene"))
+    tail = ("cinematic, photorealistic, natural light, shallow depth of field, "
+            "slow gentle camera push-in, highly detailed, sharp focus")
+    return f"{body}. {tail}."
+
+
 def split_long(scene, total_seconds):
     """Split a >15s scene into standalone 15s sub-scenes (Na/Nb/Nc), each carrying continuity."""
     if total_seconds <= 15:

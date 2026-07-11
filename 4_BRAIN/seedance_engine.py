@@ -283,13 +283,18 @@ def make_reel(title, beats, out_mp4, *, aspect="16:9", resolution="1080p", provi
 
     clips, work = [], base + "_clips"
     os.makedirs(work, exist_ok=True)
+    use_local = av[0]["provider"] == "local" and (provider in (None, "local"))
     for sc in scenes:
         total = float(sc.get("duration", len(sc.get("shots", [])) * 5 or 15))
         for k, sub in enumerate(director.split_long(sc, total) if total > 15 else [sc]):
             lbl = f"{sc.get('label','')}{chr(97+k)}" if total > 15 else sc.get("label", "")
-            prompt = director.build_prompt(sub)
+            # local LTX wants natural prose (structured Seedance blocks are noise to it); paid Seedance
+            # wants the full structured prompt.
+            prompt = director.build_prose(sub) if use_local else director.build_prompt(sub)
             clip = os.path.join(work, f"scene_{lbl}.mp4")
-            generate(prompt, clip, aspect=aspect, duration=int(sub.get("clip_seconds", 5)),
+            # LTX on a 12GB card decodes all frames at once → cap clip length so the VAE fits (no tiling).
+            dur = int(sub.get("clip_seconds", 3 if use_local else 5))
+            generate(prompt, clip, aspect=aspect, duration=dur,
                      resolution=resolution, provider=provider)
             clips.append(clip)
     reel = _concat(clips, out_mp4) if len(clips) > 1 else (clips and __import__("shutil").copy(clips[0], out_mp4))
