@@ -237,32 +237,9 @@ def recall(query, limit=6, kind=None):
         pos = min([low.find(t) for t in qtoks if low.find(t) >= 0] or [0])
         snippet = note["text"][max(0, pos - 60):pos + 200].strip()
         out.append({"title": note["title"], "source": note["source"], "kind": note.get("kind"),
-                    "verdict": note.get("verdict"), "date": note.get("date"),
-                    "links": note.get("links", []), "score": score, "snippet": snippet})
+                    "verdict": note.get("verdict"), "links": note.get("links", []),
+                    "score": score, "snippet": snippet})
     return out
-
-
-def _cite(r):
-    """Compact provenance header for one recalled chunk: [src: <source> - <title> - <kind>/<verdict> - <date>].
-    The anything-llm 'chunk-header prepend' idea (INGESTION_LOG 2026-07-06): stamp each chunk with where it
-    came from BEFORE the text, so an LLM answering from recalled knowledge can cite {source,title,date}
-    instead of asserting it bare — reinforcing the no-fabricated-claims traceability gate."""
-    bits = [r.get("source") or "?", r.get("title") or "?"]
-    kv = "/".join(x for x in (r.get("kind"), r.get("verdict")) if x)
-    if kv:
-        bits.append(kv)
-    if r.get("date"):
-        bits.append(r["date"])
-    return "[src: " + " - ".join(bits) + "]"
-
-
-def recall_context(query, limit=6, kind=None):
-    """LLM-ready cited context block for `query`: each recalled chunk is prefixed with its provenance
-    header (see `_cite`) then its snippet, joined by blank lines. Feed this straight into a prompt when
-    grounding generation on accumulated knowledge — the model then has a real citation for every claim.
-    Returns "" if nothing matched (caller can fall back to un-grounded generation)."""
-    hits = recall(query, limit=limit, kind=kind)
-    return "\n\n".join(f"{_cite(r)}\n{r['snippet']}" for r in hits)
 
 
 def _cli():
@@ -303,9 +280,6 @@ def _cli():
         for name, v in sorted(r["effects"].items(), key=lambda kv: -kv[1]["avg_score"]):
             flag = "" if v["confident"] else "  (few samples — not confident yet)"
             print(f"  {name:16} n={v['n']:3}  avg_score={v['avg_score']}{flag}")
-    elif cmd == "recall" and "--cite" in sys.argv:
-        q = " ".join(a for a in sys.argv[2:] if a != "--cite")
-        print(recall_context(q) or "(no matching knowledge)")
     elif cmd == "recall":
         for r in recall(" ".join(sys.argv[2:])):
             links = ("  → " + ", ".join(r["links"])) if r["links"] else ""

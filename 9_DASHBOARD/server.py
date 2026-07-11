@@ -110,17 +110,6 @@ def api_graph():
     return jsonify(_read_json(KNOW_DIR / "knowledge_graph.json", {"nodes": [], "edges": []}))
 
 
-@app.route("/api/pipeline")
-def api_pipeline():
-    """The production pipeline as a DAG (4_BRAIN/pipeline_dag) → nodes+edges for the Pipeline view.
-    Same {nodes,edges} contract as /api/graph so the frontend renderer is reused."""
-    try:
-        import pipeline_dag
-        return jsonify(pipeline_dag.default_pipeline().to_graph())
-    except Exception as e:
-        return jsonify({"nodes": [], "edges": [], "error": str(e)})
-
-
 @app.route("/api/graph-stats")
 def api_graph_stats():
     if not kg:

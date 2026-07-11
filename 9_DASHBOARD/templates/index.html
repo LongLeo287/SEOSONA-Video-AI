@@ -73,9 +73,6 @@
         <span class="sb-icon">🎬</span><span class="sb-label">Studio</span>
         <span class="sb-badge" id="studioBadge">＋</span>
       </div>
-      <div class="sb-navlink" data-view="pipeline" data-tip="Pipeline — production DAG">
-        <span class="sb-icon">🔀</span><span class="sb-label">Pipeline</span>
-      </div>
       <div class="sb-navlink" data-view="analytics" data-tip="Analytics">
         <span class="sb-icon">📊</span><span class="sb-label">Analytics</span>
       </div>
@@ -371,33 +368,6 @@
       </div>
 
       <!-- ════════════════ VIEW: SYSTEM MAP ════════════════ -->
-      <!-- ════════════════ VIEW: PIPELINE (production DAG) ════════════════ -->
-      <div class="view" id="view-pipeline">
-        <div class="section-head">
-          <div class="section-title">Production Pipeline</div>
-          <div class="section-sub">Dây chuyền sản xuất mô tả bằng DATA (4_BRAIN/pipeline_dag) — mỗi node một stage, chạy theo thứ tự phụ thuộc. Click để xem chi tiết.</div>
-        </div>
-        <div class="map-canvas-container">
-          <div class="graph-floating-toolbar">
-            <button class="btn sm" id="btnFitPipeline">Fit View</button>
-            <span id="pipelineStats" class="hint ml-8" style="font-size:11px;"></span>
-          </div>
-          <div id="pipelineGraph" style="width:100%;height:100%"></div>
-          <div class="node-inspector" id="pipeInspector">
-            <div class="ni-header">
-              <div>
-                <div class="ni-title" id="pipTitle">Stage</div>
-                <div class="ni-group" id="pipKind">KIND</div>
-              </div>
-              <div class="ni-close" id="pipClose" title="Đóng">✕</div>
-            </div>
-            <div class="ni-body">
-              <div class="ni-section-title">Mô tả</div>
-              <div id="pipNote" class="muted small" style="line-height:1.5;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="view" id="view-systemmap">
         <div class="section-head">
@@ -808,7 +778,6 @@ function addNotif(msg,kind='info'){
 const VIEW_META={
   overview:  {title:'Overview',     sub:'Toàn cảnh nhà máy',              ic:'▦'},
   studio:    {title:'Studio',       sub:'Tạo video mới từ GitHub repo',   ic:'🎬'},
-  pipeline:  {title:'Pipeline',     sub:'Dây chuyền sản xuất (DAG stages)', ic:'🔀'},
   analytics: {title:'Analytics',    sub:'Thống kê sản xuất',              ic:'📊'},
   factory:   {title:'Factory',      sub:'Sản xuất & template scores',     ic:'🏭'},
   library:   {title:'Library',      sub:'Video đã render',                ic:'🎞'},
@@ -874,7 +843,6 @@ $('#btnStartPreview')?.addEventListener('click', async () => {
 let openTabs=['overview'];
 let currentView='overview';
 let graphBuilt=false;
-let pipelineBuilt=false, pNet=null, pNodesDS=null;   // hoisted: activateView reads pipelineBuilt on initial load
 
 function renderTabs(){
   const tabsEl=$('#panelTabs');
@@ -930,7 +898,6 @@ function activateView(v){
   if(v==='projects') loadProjects();
   if(v==='preview') loadPreviewProjects();
   if(v==='studio') loadStudio();
-  if(v==='pipeline'&&!pipelineBuilt) buildPipeline();
   // statusbar
   updateSBCrumb(v);
 }
@@ -1551,59 +1518,6 @@ async function buildGraph(){
   $('#graphStats').textContent=`${d.nodes.length} nodes · ${d.edges.length} edges`+(s.generated?` · ${s.generated.replace('T',' ')}`:'');
   graphBuilt=true;
 }
-
-/* ─── Pipeline DAG view (production stages, hierarchical L→R) ─────────── */
-const PKIND={research:'#2A5BDA',write:'#5EEAD4',render:'#E2724D',gate:'#F59E0B',publish:'#16A34A'};
-// last-run status → {border color, glyph, human label}. `error:*` maps by prefix.
-function pipeStatus(s){
-  if(!s) return {c:null, g:'', t:'chưa chạy'};
-  if(s==='ok') return {c:'#16A34A', g:' ✓', t:'ok'};
-  if(s==='skipped') return {c:'#94A3B8', g:' ⏭', t:'bỏ qua'};
-  if(s==='descriptive') return {c:null, g:'', t:'mô tả (chạy trong stage khác)'};
-  if(s.startsWith('error')) return {c:'#DC2626', g:' ✗', t:s};
-  return {c:'#94A3B8', g:'', t:s};
-}
-async function buildPipeline(){
-  const d=await J('/api/pipeline');
-  if(d.error){$('#pipelineStats').textContent='Lỗi: '+d.error;return;}
-  if(!d.nodes?.length){$('#pipelineStats').textContent='Pipeline trống';return;}
-  const th=getGraphTheme();
-  const nodes=d.nodes.map(n=>{
-    const st=pipeStatus(n.status);              // border shows LAST-RUN outcome, background = stage kind
-    const border=st.c||th.border, bw=st.c?3:(n.runnable?2:1);
-    return {
-      id:n.id, label:n.label+st.g, rawData:n,
-      color:{background:PKIND[n.kind]||'#CBD5E1', border:border,
-             highlight:{background:'#E2724D',border:'#c55a3a'}, hover:{background:'#93A9F5',border:'#2A5BDA'}},
-      font:{face:'Be Vietnam Pro', size:13, color:(n.kind==='write'||n.kind==='gate')?'#0b1220':'#fff', multi:false},
-      shape:n.runnable?'box':'ellipse', margin:10,
-      borderWidth:bw, shapeProperties:{borderDashes:n.runnable?false:[4,4]},
-      shadow:{enabled:true,color:th.shadow,size:4,x:0,y:2}
-    };
-  });
-  pNodesDS=new vis.DataSet(nodes);
-  pNet=new vis.Network($('#pipelineGraph'),{nodes:pNodesDS,edges:new vis.DataSet(d.edges)},{
-    layout:{hierarchical:{enabled:true,direction:'LR',sortMethod:'directed',levelSeparation:210,nodeSpacing:120}},
-    edges:{arrows:'to',color:{color:th.edge,highlight:'#2A5BDA'},width:1.5,smooth:{type:'cubicBezier',forceDirection:'horizontal',roundness:.4}},
-    physics:false, interaction:{hover:true,tooltipDelay:120,dragNodes:false}
-  });
-  pNet.on('click',params=>{
-    if(params.nodes.length){
-      const n=pNodesDS.get(params.nodes[0]).rawData; const st=pipeStatus(n.status);
-      $('#pipTitle').textContent=n.label;
-      $('#pipKind').textContent=n.kind+(n.runnable?' · run':' · mô tả');
-      $('#pipKind').style.background=PKIND[n.kind]||'#888'; $('#pipKind').style.color='#fff';
-      $('#pipNote').innerHTML=`<div style="margin-bottom:8px;"><b>Lần chạy gần nhất:</b> <span style="color:${st.c||'var(--muted,#64748b)'}">${esc(st.t)}</span></div>${esc(n.note||'—')}`;
-      $('#pipeInspector').classList.add('open');
-    } else $('#pipeInspector').classList.remove('open');
-  });
-  const lr=d.last_run;
-  const lrTxt=lr?` · chạy gần nhất ${(''+lr.ts).replace('T',' ')}${lr.topic?` → “${esc(lr.topic)}”`:''}`:' · chưa chạy lần nào';
-  $('#pipelineStats').innerHTML=`${d.nodes.length} stages · ${d.edges.length} bước${lrTxt}`;
-  pipelineBuilt=true;
-}
-$('#pipClose')?.addEventListener('click',()=>$('#pipeInspector').classList.remove('open'));
-$('#btnFitPipeline')?.addEventListener('click',()=>pNet?.fit({animation:{duration:400}}));
 
 function updateGraphTheme() {
   if(!gNet || !gNodes) return;
