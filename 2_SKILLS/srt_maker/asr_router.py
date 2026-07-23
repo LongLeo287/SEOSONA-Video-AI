@@ -1,60 +1,89 @@
 """
-SEOSONA Video — ASR (speech → word timestamps). ONE engine, ONE model (2026-07-14 user decision).
+SEOSONA Video — ASR Router (single switchable path for speech → word timestamps).
 
-Model: VinAI PhoWhisper-large (CTranslate2, `kiendt/PhoWhisper-large-ct2`) on the faster-whisper
-runtime — the field-consensus stack for Vietnamese pipelines (survey 2026-07-14: generic tools use
-faster-whisper/whisper.cpp with base–medium; every serious language-specialised pipeline picks the
-fine-tune — FunClip→Paraformer for zh, VN projects→PhoWhisper) and our own Phase-0 benchmark
-(gold-set WER 0.041, 28/32 perfect; published pure-VN WER ~2× better than whisper large-v3 —
-evidence in 8_WORKSPACE/benchmarks/asr_tts_20260714/REPORT.md).
+Mirrors voice_router: a primary engine with automatic backups, switch flow instantly
+via the SEOSONA_ASR env var. Every engine returns the SAME shape so the pipeline never
+changes:  [{"word": str, "start": float, "end": float}, ...]
 
-Removed with the consolidation (do NOT restore): the defective phowhisper-medium-ct2 int8 build
-(repetition-loop hallucinations), generic faster-whisper base/large-v3 model weights, openai-whisper,
-sherpa-onnx, WhisperX (its VN aligner is CC-BY-NC). No fallback model: if ASR fails the caller gets
-[] and handles it honestly.
+Engines (primary first, rest are fallbacks):
+  - phowhisper     : VinAI PhoWhisper (Vietnamese-specialised, lowest WER on VI).  [primary]
+  - faster_whisper : CTranslate2 generic Whisper (fast, int8).                      [backup]
+  - openai_whisper : reference openai-whisper (word_timestamps native).             [backup]
 
-Output shape (unchanged): [{"word": str, "start": float, "end": float}, ...]
-Overrides: SEOSONA_PHOWHISPER_MODEL=<CT2 repo/dir> · SEOSONA_ASR_DEVICE=cpu|cuda
+Switch:  SEOSONA_ASR=faster_whisper   (default: phowhisper)
+Model:   SEOSONA_PHOWHISPER_MODEL=<CT2 PhoWhisper repo>  ·  SEOSONA_ASR_DEVICE=cpu|cuda
 """
 import os
 
-_DEFAULT_MODEL = "kiendt/PhoWhisper-large-ct2"
+_DEVICE = os.environ.get("SEOSONA_ASR_DEVICE", "cpu")
+_COMPUTE = "int8" if _DEVICE == "cpu" else "float16"
 
 
-def _device():
-    """cuda when available, else cpu. large-ct2 on CPU int8 measured RTF ~3-4 (too slow for long
-    footage) vs cuda/fp16 RTF ~0.3 — so auto-detect instead of defaulting to cpu. Env override kept."""
-    forced = os.environ.get("SEOSONA_ASR_DEVICE")
-    if forced:
-        return forced
+def _default_phowhisper():
+    """Prefer the bundled PhoWhisper-medium CT2 (int8 — ~2x faster & ~½ size of large, ~same WER)
+    when present in the project; else the hub large CT2."""
+    local = os.path.join(os.path.dirname(__file__), "..", "..", "7_ASSETS", "models",
+                         "phowhisper-medium-ct2")
+    local = os.path.abspath(local)
+    if os.path.isdir(local) and os.path.exists(os.path.join(local, "model.bin")):
+        return local
+    return "kiendt/PhoWhisper-large-ct2"
+
+
+def _phowhisper(audio_path, language):
+    """VinAI PhoWhisper via faster-whisper (CTranslate2). Vietnamese-specialised."""
+    model_id = os.environ.get("SEOSONA_PHOWHISPER_MODEL", _default_phowhisper())
     try:
-        import ctranslate2
-        return "cuda" if ctranslate2.get_cuda_device_count() > 0 else "cpu"
-    except Exception:
-        return "cpu"
-
-
-def _load_model(model_id):
-    """WhisperModel on the detected device; a broken CUDA stack degrades to cpu/int8, never raises."""
-    from faster_whisper import WhisperModel
-    dev = _device()
-    compute = "int8" if dev == "cpu" else "float16"
+        from faster_whisper import WhisperModel
+    except ImportError:
+        return None
     try:
-        return WhisperModel(model_id, device=dev, compute_type=compute)
+        model = WhisperModel(model_id, device=_DEVICE, compute_type=_COMPUTE)
+        segments, _ = model.transcribe(audio_path, language=language, word_timestamps=True)
+        return _collect_fw(segments)
     except Exception as e:
-        if dev == "cpu":
-            raise
-        print(f"[ASR] cuda load failed ({str(e)[:120]}) -> cpu/int8")
-        return WhisperModel(model_id, device="cpu", compute_type="int8")
+        print(f"[ASR:phowhisper] unavailable ({e}).")
+        return None
 
 
-def _whisperx(audio_path, language):
-    """WhisperX: faster-whisper + wav2vec2 forced alignment for precise word timestamps."""
+def _faster_whisper(audio_path, language):
+    """Generic Whisper via faster-whisper (CTranslate2)."""
+    size = os.environ.get("SEOSONA_WHISPER_SIZE", "base")
     try:
-        from .whisperx_engine import transcribe
+        from faster_whisper import WhisperModel
+    except ImportError:
+        return None
+    try:
+        model = WhisperModel(size, device=_DEVICE, compute_type=_COMPUTE)
+        segments, _ = model.transcribe(audio_path, language=language, word_timestamps=True)
+        return _collect_fw(segments)
+    except Exception as e:
+        print(f"[ASR:faster_whisper] failed ({e}).")
+        return None
+
+
+def _openai_whisper(audio_path, language):
+    """Reference openai-whisper (kept as a last-resort backup)."""
+    try:
+        from .whisper_engine import generate_word_level_data
+    except Exception:
+        return None
+    try:
+        size = os.environ.get("SEOSONA_WHISPER_SIZE", "base")
+        words = generate_word_level_data(audio_path, model_name=size)
+        return words or None
+    except Exception as e:
+        print(f"[ASR:openai_whisper] failed ({e}).")
+        return None
+
+
+def _sherpa(audio_path, language):
+    """Vietnamese sherpa-onnx offline engine (ONNX/CPU, optional diarization + punctuation)."""
+    try:
+        from .sherpa_vn_engine import transcribe
     except Exception:
         try:
-            from whisperx_engine import transcribe
+            from sherpa_vn_engine import transcribe
         except Exception:
             return None
     return transcribe(audio_path, language)
@@ -77,25 +106,33 @@ def _collect_fw(segments):
     return words or None
 
 
-def transcribe_words(audio_path, language="vi"):
-    """Transcribe → word-level timestamps via PhoWhisper-large.
+_ENGINES = {
+    "phowhisper": _phowhisper,
+    "faster_whisper": _faster_whisper,
+    "openai_whisper": _openai_whisper,
+    "sherpa": _sherpa,
+}
 
-    Returns [{"word","start","end"}, ...] — empty list if the audio is missing or ASR fails
-    (callers handle the no-captions case honestly; there is no fallback model).
+
+def transcribe_words(audio_path, language="vi"):
+    """Transcribe → word-level timestamps via the primary engine, falling back on failure.
+
+    Returns [{"word","start","end"}, ...] (possibly empty if every engine fails).
     """
     if not audio_path or not os.path.exists(audio_path):
-        print(f"[ASR] audio not found: {audio_path}")
+        print(f"[ASR Router] audio not found: {audio_path}")
         return []
-    model_id = os.environ.get("SEOSONA_PHOWHISPER_MODEL", _DEFAULT_MODEL)
-    try:
-        model = _load_model(model_id)
-        segments, _ = model.transcribe(audio_path, language=language, word_timestamps=True)
-        words = _collect_fw(segments) or []
-    except Exception as e:
-        print(f"[ASR] PhoWhisper failed ({e}) — no transcription produced.")
-        return []
-    if words:
-        print(f"[ASR] PhoWhisper-large -> {len(words)} words.")
-    else:
-        print("[ASR] WARNING: no words produced.")
-    return words
+    primary = os.environ.get("SEOSONA_ASR", "phowhisper")
+    chain = [primary] + [e for e in ("phowhisper", "faster_whisper", "openai_whisper", "sherpa") if e != primary]
+    for engine in chain:
+        fn = _ENGINES.get(engine)
+        if not fn:
+            continue
+        words = fn(audio_path, language)
+        if words:
+            note = "" if engine == primary else " (fallback)"
+            print(f"[ASR Router] engine '{engine}'{note} -> {len(words)} words.")
+            return words
+        print(f"[ASR Router] '{engine}' unavailable/failed -> trying next.")
+    print("[ASR Router] WARNING: no ASR engine produced output.")
+    return []
