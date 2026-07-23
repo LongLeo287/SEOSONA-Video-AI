@@ -528,7 +528,7 @@ def auto_content(gh, template):
                 h1, h2 = "Được tin dùng bởi", "cộng đồng dev"
                 data = {"big": stars, "label": "LẬP TRÌNH VIÊN TIN DÙNG"}
         elif kind == "repo":
-            # NEVER speak the raw English desc — VieNeu mangles it. Voice = Vietnamese;
+            # NEVER speak the raw English desc — the VN TTS mangles it. Voice = Vietnamese;
             # the English desc still shows on the repo CARD (display), not in narration.
             seg = f"{name} là một dự án mã nguồn mở đang được giới công nghệ chú ý."
             h1, h2 = name, "trên GitHub"
@@ -661,7 +661,7 @@ def auto_content(gh, template):
         print("[make_video] ⚠ VERIFY: " + " | ".join(_final_bad[:5]))
 
     # Cap repo-slug repetition in the SPOKEN text — DETERMINISTIC PATH ONLY. A hyphenated
-    # slug said 8× is what VieNeu mangles, and the deterministic template repeats {name}
+    # slug said 8× is what the VN TTS mangles, and the deterministic template repeats {name}
     # every segment. Gemini already varies it naturally (its prompt says "name once, then
     # 'dự án này'"), so forcing this on Gemini output produced awkward 'Dự án "công cụ này"'.
     if not g:

@@ -27,7 +27,7 @@ To add a new SOP, drop it here and add a line to the right group below.
 | SOP | Use for |
 |-----|---------|
 | `voice_cloning_tts_sop.md` | voice cloning / TTS procedure |
-| `VOICE_TTS_ENGINE_ROUTING.md` | which TTS engine to use (**OmniVoice primary → VieNeu backup**; single router, no dead branches; edge-tts/F5/LoRA/fish removed) |
+| `VOICE_TTS_ENGINE_ROUTING.md` | which TTS/ASR engine to use (**OmniVoice ONLY** voice, **PhoWhisper-large ONLY** ASR — 2026-07-14 consolidation, no backups, fail honest) |
 | `brand_voice_sop.md` | SEOSONA brand voice rules |
 | `CHIQUYET_VOICE_STYLE.md` | CQA branch: Chí Quyết rhythm/style profile (from 19.6h lectures) + LoRA clone voice (brand=cqa only) |
 

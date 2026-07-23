@@ -33,8 +33,8 @@ Mandatory standard operating procedure for all AI Agents and Human Editors produ
 ## 3.1 Voice Standard
 
 - **Required Voice:** the OmniVoice-cloned Chí Quyết (CQA) brand voice (same voice for both brands).
-- **Primary:** OmniVoice (k2-fsa, local, VN-native) via `voice_router.synthesize_voice`.
-- **Backup:** VieNeu, used only when OmniVoice can't run. (edge-tts/F5/LoRA/fish all removed 2026-06-29.)
+- **Engine:** OmniVoice (k2-fsa, local, VN-native) via `voice_router.synthesize_voice` — the ONLY engine.
+- **No Backup:** a failed synth returns None honestly. (VieNeu/edge-tts/F5/LoRA/fish/kokoro/sherpa all removed as of 2026-07-14.)
 - **No Female Fallback:** Do not use female presets for news videos.
 
 ## 4. Motion & Animation

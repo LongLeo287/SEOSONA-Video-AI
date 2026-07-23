@@ -208,6 +208,11 @@
    "group": "sopInfra"
   },
   {
+   "id": "sop_LTX_BROLL_PLAN",
+   "label": "LTX_BROLL_PLAN",
+   "group": "sopInfra"
+  },
+  {
    "id": "sop_MASCOT_LIVE2D_RIG_SPEC",
    "label": "MASCOT_LIVE2D_RIG_SPEC",
    "group": "sopInfra"
@@ -493,11 +498,6 @@
    "group": "brain"
   },
   {
-   "id": "b_lipsync_service",
-   "label": "lipsync_service",
-   "group": "brain"
-  },
-  {
    "id": "b_llm_engine",
    "label": "llm_engine",
    "group": "brain"
@@ -515,11 +515,6 @@
   {
    "id": "b_news_video_standards",
    "label": "news_video_standards",
-   "group": "brain"
-  },
-  {
-   "id": "b_pipeline_dag",
-   "label": "pipeline_dag",
    "group": "brain"
   },
   {
@@ -555,6 +550,16 @@
   {
    "id": "b_script_writer",
    "label": "script_writer",
+   "group": "brain"
+  },
+  {
+   "id": "b_seedance_director",
+   "label": "seedance_director",
+   "group": "brain"
+  },
+  {
+   "id": "b_seedance_engine",
+   "label": "seedance_engine",
    "group": "brain"
   },
   {
@@ -805,6 +810,11 @@
   {
    "id": "sk_scene-composer",
    "label": "scene-composer",
+   "group": "skill"
+  },
+  {
+   "id": "sk_seedance-prompt-director",
+   "label": "seedance-prompt-director",
    "group": "skill"
   },
   {
@@ -2136,6 +2146,10 @@
   },
   {
    "from": "cat_sopInfra",
+   "to": "sop_LTX_BROLL_PLAN"
+  },
+  {
+   "from": "cat_sopInfra",
    "to": "sop_MASCOT_LIVE2D_RIG_SPEC"
   },
   {
@@ -2364,10 +2378,6 @@
   },
   {
    "from": "d_4brain",
-   "to": "b_lipsync_service"
-  },
-  {
-   "from": "d_4brain",
    "to": "b_llm_engine"
   },
   {
@@ -2381,10 +2391,6 @@
   {
    "from": "d_4brain",
    "to": "b_news_video_standards"
-  },
-  {
-   "from": "d_4brain",
-   "to": "b_pipeline_dag"
   },
   {
    "from": "d_4brain",
@@ -2413,6 +2419,14 @@
   {
    "from": "d_4brain",
    "to": "b_script_writer"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_seedance_director"
+  },
+  {
+   "from": "d_4brain",
+   "to": "b_seedance_engine"
   },
   {
    "from": "d_4brain",
@@ -2613,6 +2627,10 @@
   {
    "from": "d_agentsskills",
    "to": "sk_scene-composer"
+  },
+  {
+   "from": "d_agentsskills",
+   "to": "sk_seedance-prompt-director"
   },
   {
    "from": "d_agentsskills",
@@ -3548,8 +3566,8 @@
   }
  ],
  "meta": {
-  "generated": "2026-07-06T16:34:37",
-  "node_count": 391,
-  "edge_count": 393
+  "generated": "2026-07-15T00:49:19",
+  "node_count": 393,
+  "edge_count": 395
  }
 }

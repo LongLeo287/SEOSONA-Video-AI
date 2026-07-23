@@ -13,9 +13,8 @@ google-genai>=1.0.0   # Gemini path in llm_engine (FREE tier: Flash models; repl
 flask>=3.0.0          # 9_DASHBOARD/server.py
 playwright>=1.40.0    # scrape screenshots + thumbnail_maker (headless capture)
 
-vieneu>=3.0.0
 deep-translator
 markitdown>=0.1.6
 gitingest
 faster-whisper>=1.0.0
-ctranslate2>=4.0.0
+ctranslate2>=4.8.1   # 4.8.1 fixes the Whisper align() integer-division bug (word timestamps)

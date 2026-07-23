@@ -8,7 +8,7 @@ words) into a real EDL: it drops the regions, re-encodes a tightened clip, and R
 karaoke captions / cards stay perfectly in sync on the new shorter timeline.
 
 Clean-room of the idea from browser-use/video-use (MIT): remove umm/uh/false-starts + silence gaps.
-Uses the factory's OWN local transcript (sherpa-onnx, keyless) — NOT ElevenLabs.
+Uses the factory's OWN local transcript (asr_router / faster-whisper, keyless) — NOT ElevenLabs.
 
 Pipeline: analyze(words) -> plan_cuts -> keep_segments -> ffmpeg select/aselect concat + retime_words.
 

@@ -90,7 +90,10 @@ SOP_CATS = {
                    "publishing_checklist"],
     "sopDesign": ["UX_UI_DESIGN_GUIDELINES", "carousel_sop", "thumbnail_sop", "TEMPLATE_MAP"],
     "sopInfra": ["DEPENDENCIES", "GOOGLE_DRIVE_SHEETS_LAYER", "LOOP_OPERATING_SOP", "LLM_CODING_DISCIPLINE",
-                 "MASTER_OPERATION", "PRODUCT_ROADMAP", "SCRIPT_WRITING_PIPELINE", "UPGRADE_BACKLOG", "DASHBOARD_BUILD_PLAN"],
+                 "MASTER_OPERATION", "PRODUCT_ROADMAP", "SCRIPT_WRITING_PIPELINE", "UPGRADE_BACKLOG",
+                 "DASHBOARD_BUILD_PLAN", "DASHBOARD_SYSTEM_DESIGN",
+                 # tombstones + deferred lanes (kept so removals stay discoverable, 2026-07-14):
+                 "LIPSYNC_ENGINE_MUSETALK", "MASCOT_LIVE2D_RIG_SPEC", "LTX_BROLL_PLAN"],
 }
 CAT_LABEL = {"sopVideo": "Video Production", "sopVoice": "Voice & Audio", "sopRender": "Render & Framework",
              "sopLearning": "Learning & QA", "sopMaps": "Maps & Architecture", "sopPublish": "Publishing & SEO",

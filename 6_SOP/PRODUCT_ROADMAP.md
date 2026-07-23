@@ -6,6 +6,10 @@
 
 _Updated: 2026-06-27 · status after the engine consolidation + system-wide cleanup pass._
 
+> **2026-07-14 consolidation note:** voice references below have been updated — OmniVoice (k2-fsa)
+> is now the ONLY voice engine (VieNeu removed, no backup; a failed synth returns None), and ASR is
+> a single PhoWhisper-large-ct2 path via `asr_router.py`. Historical status text is otherwise kept as written.
+
 ---
 
 ## 0. Foundational decision: do NOT rebuild from scratch
@@ -16,7 +20,7 @@ face the exact same problems again. Reasons to keep and move forward:
 - **The engine is consolidated into ONE clean path**: `video_engine.py → native_composer.py
   (+ scene_composer, make_video)`. `workflow_router` has been rewired. **25/25 tests pass**,
   `seosona:audit` + `video:audit:integration` both **PASS**.
-- **The hard pieces are integrated & working**: VieNeu voice (local, free), ASR timing
+- **The hard pieces are integrated & working**: OmniVoice voice (local), ASR timing
   (caption RULE #1), HyperFrames native render, SFX + BGM ducking mix, GitHub data fetch,
   clipper (repurpose), scraper. A rewrite = redoing many months of integration.
 - **Full infrastructure**: 10 agents, 7 skills, 10 JSON templates, brand system, 23 SOPs, knowledge base.
@@ -36,7 +40,7 @@ is only: *has it actually rendered a real, complete video yet* — that is Phase
 | Scene planner from arbitrary text | ⚠️ Deterministic draft; high-quality agent/LLM path not enabled |
 | Publish (YouTube/TikTok/FB/Drive) | ⚠️ Code present — **no credentials yet, not tested** |
 | Dashboard / observability | ⚠️ Basic |
-| Environment | gh ✓ · vieneu ✓ · ffmpeg ✓ · hyperframes CLI (needs confirmation) |
+| Environment | gh ✓ · omnivoice ✓ · ffmpeg ✓ · hyperframes CLI (needs confirmation) |
 
 ---
 
@@ -46,12 +50,13 @@ is only: *has it actually rendered a real, complete video yet* — that is Phase
 actually produces a watchable video. Until you *watch* 1 real video, the rest is just theory.
 
 **What to do:**
-1. Confirm prereqs: `gh auth status`, `node -e "require('hyperframes')"`, ffmpeg, VieNeu.
+1. Confirm prereqs: `gh auth status`, `node -e "require('hyperframes')"`, ffmpeg, OmniVoice
+   (isolated venv at `7_ASSETS/voice/.venv-omnivoice`).
 2. Run the GitHub one-shot: `npm run make:video -- <github_url>` → check that `8_WORKSPACE/auto/<name>/`
    has `*.mp4` + `*.srt` + `Thumbnail/thumbnail.png`.
 3. Run create-from-text: `npm run video:news -- "<Vietnamese script>"`.
 4. **WATCH the video** and run through the quality checklist:
-   - Correct voice (male, southern accent, VieNeu — does not drop to the edge fallback).
+   - Correct voice (male, southern accent, the OmniVoice CQA clone — there is no fallback engine; a failed synth must fail loudly, not swap voices).
    - Caption = the DISPLAYED text (SEO/AI/24/7), NOT a transliteration (RULE #1).
    - Light mode, crossfade with no white frames.
    - Components render correctly (no empty boxes — bignum/repo/terminal/gittree...).

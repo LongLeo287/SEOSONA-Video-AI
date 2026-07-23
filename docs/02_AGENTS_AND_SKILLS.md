@@ -62,7 +62,7 @@ Each skill below is wired into the pipeline/workflow (`2_SKILLS.<name>.<module>`
 <summary><b>🔊 Audio & Voice (2 Skills)</b></summary>
 <br>
 
-- 🗣️ **`voice_cloner`**: the ONLY voice router (`voice_router.synthesize_voice`) — **OmniVoice PRIMARY** (k2-fsa, local, VN-native, clones the CQA brand voice) **→ VieNeu BACKUP** (only when OmniVoice can't run). edge-tts / F5 / LoRA / fish all removed (2026-06-29).
+- 🗣️ **`voice_cloner`**: the ONLY voice router (`voice_router.synthesize_voice`) — **OmniVoice, the ONLY engine** (k2-fsa, local, VN-native, clones the CQA brand voice; runs in `7_ASSETS/voice/.venv-omnivoice`). NO backup: a failed synth returns None honestly. VieNeu / edge-tts / F5 / kokoro / sherpa / LoRA / fish all removed (2026-07-14).
 
 </details>
 
@@ -70,7 +70,7 @@ Each skill below is wired into the pipeline/workflow (`2_SKILLS.<name>.<module>`
 <summary><b>📝 Subtitles (1 Skill)</b></summary>
 <br>
 
-- 📝 **`srt_maker`**: Generates SRT via faster-whisper / PhoWhisper (word-level timestamps for Karaoke).
+- 📝 **`srt_maker`**: Generates SRT via `asr_router.py` — ONE engine ONE model: PhoWhisper-large-ct2 on faster-whisper/CTranslate2, cuda auto-detect (word-level timestamps for Karaoke).
 
 </details>
 

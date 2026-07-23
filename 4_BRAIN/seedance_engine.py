@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Engine #6 — Seedance 2.0: text (+ optional image ref) → photoreal cinematic AI-video clips.
 
-The factory's other engines (portrait/musetalk/liveportrait/talking-head) turn a photo/voice/footage
+The factory's other engine (talking-head) turns real footage
 into a talking head. Seedance is different: it GENERATES cinematic b-roll/scene footage from a text
 prompt. `seedance_director.py` authors the prompts (the craft); THIS module runs them through a
 Seedance provider and stitches the clips into a reel.
@@ -21,9 +21,10 @@ SECURITY — do NOT buy "Seedance API keys" from unofficial marketplace/reseller
 or vanish. Only use the official BytePlus/Volcengine, or fal.ai / Replicate, EACH WITH YOUR OWN account.
 This module only ever sends your key to `queue.fal.run` or `api.replicate.com` — nowhere else.
 
-With NO key configured, paid providers are inactive; the keyless local LTX engine is used if its weights
-are present, else `make_reel()` degrades to writing prompts + shotlist and reporting how to enable — it
-never fakes a render.
+With NO key configured, `make_reel()` degrades to PROMPT-ONLY: it writes the prompts + shotlist and
+reports how to enable rendering — it never fakes a render. (The keyless local LTX-Video lane was
+REMOVED 2026-07-14 — local generation was too heavy for the fast-production goal; add a paid key
+to enable auto-render.)
 
   python 4_BRAIN/seedance_engine.py --status
   python 4_BRAIN/seedance_engine.py --script beats.json --title "Toby Labs" --out out/reel.mp4
@@ -83,19 +84,10 @@ def _key_for(env_names):
     return None
 
 
-def _ltx_ready():
-    """True if the local LTX-Video weights are downloaded (keyless local provider)."""
-    try:
-        sys.path.insert(0, os.path.join(ROOT, "scripts"))
-        import ltx_video
-        return ltx_video.ltx_ready()
-    except Exception:
-        return False
-
-
 def available():
-    """List of {provider,label} runnable now (empty = prompt-only mode). Paid keys first (higher
-    quality), then the keyless local LTX engine if its weights are present."""
+    """List of {provider,label} runnable now (empty = prompt-only mode). Paid providers only —
+    the keyless local LTX-Video lane was REMOVED 2026-07-14 (user decision: local gen too heavy
+    for the fast-production goal; paid API to be enabled later by adding a key)."""
     _load_env()
     out = []
     for name, envs, label in _PROVIDERS:
@@ -103,8 +95,6 @@ def available():
             continue                       # official but adapter is a stub → not runnable, don't auto-pick
         if _key_for(envs):
             out.append({"provider": name, "label": label, "env": envs[0]})
-    if _ltx_ready():
-        out.append({"provider": "local", "label": "LTX-Video (local, keyless)", "env": None})
     return out
 
 
@@ -116,10 +106,7 @@ def status():
         on = any(os.environ.get(e) for e in envs) or _key_for(envs) is not None
         mark = "READY" if on else "no key"
         lines.append(f"  · {name:9} [{mark:6}] {label}  (set env {envs[0]})")
-    ltx = _ltx_ready()
-    lines.append(f"  · {'local':9} [{'READY' if ltx else 'setup':6}] LTX-Video (local, keyless — no key)"
-                 f"  ({'weights cached' if ltx else 'run: python scripts/ltx_video.py --setup'})")
-    lines.append(f"  => {'render ENABLED via ' + av[0]['provider'] if av else 'PROMPT-ONLY — author prompts, run them manually in Seedance (or set up the local LTX engine)'}")
+    lines.append(f"  => {'render ENABLED via ' + av[0]['provider'] if av else 'PROMPT-ONLY — author prompts, run them manually in Seedance (paid API keys enable auto-render)'}")
     return "\n".join(lines)
 
 
@@ -199,27 +186,10 @@ def _byteplus_generate(*a, **k):
         "or implement the ark client here.")
 
 
-def _local_generate(prompt, out_mp4, *, aspect, duration, resolution, image_url, key, timeout):
-    """Local keyless render via the LTX-Video runner (subprocess, same env). No key/`key` unused."""
-    import subprocess
-    dims = {"16:9": (768, 512), "9:16": (512, 768), "1:1": (512, 512)}.get(aspect, (768, 512))
-    fps = 24
-    frames = max(25, int(float(duration) * fps) + 1)   # ltx_video re-rounds to 8k+1
-    runner = os.path.join(ROOT, "scripts", "ltx_video.py")
-    cmd = [sys.executable, runner, "--prompt", prompt, "--out", out_mp4,
-           "--width", str(dims[0]), "--height", str(dims[1]),
-           "--frames", str(frames), "--fps", str(fps),
-           "--steps", os.environ.get("SEOSONA_LTX_STEPS", "30"),
-           "--offload", os.environ.get("SEOSONA_LTX_OFFLOAD", "model")]
-    print(f"[seedance_engine] LTX local render {dims[0]}x{dims[1]} · {frames}f · ~{duration}s")
-    subprocess.run(cmd, check=True, timeout=timeout)
-    if not os.path.exists(out_mp4):
-        raise RuntimeError("LTX runner finished but produced no file")
-    return out_mp4
-
-
+# (the keyless local LTX-Video adapter was REMOVED 2026-07-14 — local gen too heavy for the
+#  fast-production goal; paid providers below are the render path once a key is added)
 _ADAPTERS = {"fal": _fal_generate, "replicate": _replicate_generate,
-             "byteplus": _byteplus_generate, "local": _local_generate}
+             "byteplus": _byteplus_generate}
 
 
 def _download(url, out_mp4, timeout):
@@ -245,14 +215,10 @@ def generate(prompt, out_mp4, *, aspect="16:9", duration=5, resolution="720p",
             "(Replicate) / ARK_API_KEY (BytePlus) in the environment or repo .env, then retry. "
             "Until then use PROMPT-ONLY mode (make_reel writes prompts + shotlist).")
     chosen = provider or av[0]["provider"]
-    if chosen == "local":                               # keyless local LTX engine
-        key = None
-        timeout = max(timeout, int(os.environ.get("SEOSONA_LTX_TIMEOUT", "1800")))
-    else:
-        envs = next((e for n, e, _ in _PROVIDERS if n == chosen), None)
-        key = _key_for(envs) if envs else None
-        if not key:
-            raise RuntimeError(f"provider '{chosen}' has no key (set env {envs[0] if envs else '?'})")
+    envs = next((e for n, e, _ in _PROVIDERS if n == chosen), None)
+    key = _key_for(envs) if envs else None
+    if not key:
+        raise RuntimeError(f"provider '{chosen}' has no key (set env {envs[0] if envs else '?'})")
     print(f"[seedance_engine] generating via {chosen} · {aspect} · {duration}s · {resolution}")
     return _ADAPTERS[chosen](prompt, out_mp4, aspect=aspect, duration=duration,
                              resolution=resolution, image_url=image_url, key=key, timeout=timeout)
@@ -303,17 +269,15 @@ def make_reel(title, beats, out_mp4, *, aspect="16:9", resolution="720p", provid
 
     clips, work = [], base + "_clips"
     os.makedirs(work, exist_ok=True)
-    use_local = av[0]["provider"] == "local" and (provider in (None, "local"))
     for sc in scenes:
         total = float(sc.get("duration", len(sc.get("shots", [])) * 5 or 15))
         for k, sub in enumerate(director.split_long(sc, total) if total > 15 else [sc]):
             lbl = f"{sc.get('label','')}{chr(97+k)}" if total > 15 else sc.get("label", "")
-            # local LTX wants natural prose (structured Seedance blocks are noise to it); paid Seedance
-            # wants the full structured prompt.
-            prompt = director.build_prose(sub) if use_local else director.build_prompt(sub)
+            # paid Seedance wants the full structured prompt (build_prose stays in the director
+            # for any future provider that prefers natural prose).
+            prompt = director.build_prompt(sub)
             clip = os.path.join(work, f"scene_{lbl}.mp4")
-            # LTX on a 12GB card decodes all frames at once → cap clip length so the VAE fits (no tiling).
-            dur = int(sub.get("clip_seconds", 3 if use_local else 5))
+            dur = int(sub.get("clip_seconds", 5))
             generate(prompt, clip, aspect=aspect, duration=dur,
                      resolution=resolution, provider=provider)
             clips.append(clip)

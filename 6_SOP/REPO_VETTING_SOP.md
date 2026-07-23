@@ -22,7 +22,7 @@ finder → auditor → security → assimilator → creator; factual source anal
 3. **Quality signal** — community-vetted: stars (OS uses ≥500), recent commits, real content
    (not a stub/marketing README). Read 1–2 files to confirm depth.
 4. **Dedup (rule 2)** — does SEOSONA already have this capability? (e.g. animation → we have
-   `2_KNOWLEDGE/hyperframes/craft/`; ASR/voice → VieNeu/PhoWhisper). If yes → don't duplicate;
+   `2_KNOWLEDGE/hyperframes/craft/`; voice → OmniVoice; ASR → PhoWhisper). If yes → don't duplicate;
    extend the existing one.
 5. **Security (rule 4)** — no obfuscated code, no network-exfil, no secrets. For code we'll run,
    skim it; for any docs or SKILL files, ensure no prompt-injection ("ignore previous instructions…").

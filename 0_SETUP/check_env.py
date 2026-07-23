@@ -48,8 +48,6 @@ def main():
     for label, venv, probe in [
         ("OmniVoice venv (torch CUDA)", os.path.join(ROOT, "7_ASSETS/voice/.venv-omnivoice"),
          "import torch,omnivoice;print('torch',torch.__version__,'cuda',torch.cuda.is_available())"),
-        ("training venv (OBSOLETE — LoRA removed)", os.path.join(ROOT, "7_ASSETS/voice/training/.venv-train"),
-         "import torch;print('torch',torch.__version__)"),
     ]:
         py = _py(venv)
         ok, v = _probe(py, probe)
@@ -58,7 +56,7 @@ def main():
 
     # ---- key Python packages (main venv) ----
     print("\nKEY PACKAGES (main venv)")
-    for pkg, imp in [("vieneu (backup TTS)", "vieneu"), ("faster-whisper (ASR)", "faster_whisper"),
+    for pkg, imp in [("faster-whisper (ASR)", "faster_whisper"),
                      ("ctranslate2", "ctranslate2"), ("moviepy (mux)", "moviepy"),
                      ("soundfile", "soundfile"), ("librosa", "librosa"),
                      ("markitdown (ingest)", "markitdown"), ("yt-dlp (sourcing)", "yt_dlp"),
@@ -69,9 +67,8 @@ def main():
     # ---- models ----
     print("\nMODELS")
     models = [
-        ("PhoWhisper-medium CT2 (ASR, in-project)", os.path.join(ROOT, "7_ASSETS/models/phowhisper-medium-ct2/model.bin")),
+        ("PhoWhisper-large CT2 (ASR, HF cache)", os.path.join(HOME, ".cache/huggingface/hub/models--kiendt--PhoWhisper-large-ct2")),
         ("OmniVoice (brand voice, HF cache)", os.path.join(HOME, ".cache/huggingface/hub/models--k2-fsa--OmniVoice")),
-        ("VieNeu v3-Turbo (backup, HF cache)", os.path.join(HOME, ".cache/huggingface/hub/models--pnnbao-ump--VieNeu-TTS-v3-Turbo")),
         ("CQA brand-voice reference", os.path.join(ROOT, "7_ASSETS/voice/profiles/cqa_omnivoice_ref.wav")),
     ]
     for name, p in models:

@@ -1,7 +1,7 @@
 {
   "name": "seosona-video",
   "version": "1.0.0",
-  "description": "SEOSONA Video Factory — autonomous Vietnamese video production (HyperFrames + VieNeu)",
+  "description": "SEOSONA Video Factory — autonomous Vietnamese video production (HyperFrames + OmniVoice)",
   "private": true,
   "scripts": {
     "seosona:resolve": "node scripts/seosona-project-bridge.cjs resolve",

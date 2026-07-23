@@ -18,8 +18,8 @@ graph LR
 ```
 
 1. **Ingestion:** `scraper_agent` pushes the raw data. `seo_writer_agent` reshapes it into a script (`script_text`) fed into `video_engine.run_pipeline`.
-2. **Generate Voice:** `native_composer` calls `voice_router.synthesize_voice` (**OmniVoice primary → VieNeu backup**). It outputs `voice.mp3` (paced + loudnorm).
-3. **Beat Matching:** The `.wav` file is passed through `asr_router` (`faster-whisper`). It returns `words.json` containing the millisecond coordinates of EVERY WORD, used for the RULE #1 subtitles.
+2. **Generate Voice:** `native_composer` calls `voice_router.synthesize_voice` (**OmniVoice — the ONLY engine**; a failed synth returns None, no fallback). It outputs `voice.mp3` (paced + loudnorm).
+3. **Beat Matching:** The `.wav` file is passed through `asr_router` (PhoWhisper-large-ct2 on `faster-whisper`, cuda auto-detect). It returns `words.json` containing the millisecond coordinates of EVERY WORD, used for the RULE #1 subtitles.
 4. **Initialize Graphics:** `scene_composer` picks a JSON template in `7_ASSETS/templates/`, and `native_composer.fill_template` pours the content into a 1080x1920 HyperFrames frame matched to `words.json`.
 5. **Render:** `native_composer` renders the HyperFrames natively (no need to screenshot each frame).
 6. **Mix & Merge:** `ffmpeg` combines the original audio, mixes the ducked BGM, and inserts SFX/"Woosh" transitions right inside `native_composer`.
@@ -34,7 +34,7 @@ graph LR
 For academic topics and in-depth technology, 3-5 minutes long.
 
 1. **Write script:** `seo_writer_agent` receives the topic and writes it into a 5-part script (`script_text`).
-2. **Music:** `voice_router` generates the voiceover (VieNeu). `native_composer` mixes the ducked background music (BGM).
+2. **Music:** `voice_router` generates the voiceover (OmniVoice). `native_composer` mixes the ducked background music (BGM).
 3. **Generate Graphics:** Activates `motion-graphics` to generate animated Typography, charts (Data-Viz), and particle loops from `news_loop_path_hyperframes`.
 4. **Assemble:** `scene_composer` + `native_composer` join these blocks together using `hf_core`. Renders the MP4 natively.
 <br>
@@ -83,7 +83,7 @@ Turns a dry block of code (Diff Text) into a visual explainer video. *(Note: Thi
 Packages graphics onto pre-recorded video (Talking head).
 
 1. **Receive raw video:** User pushes an MP4 file (recorded on a phone) into `8_WORKSPACE`.
-2. **Transcribe:** `asr_router` (`faster-whisper`) produces the Transcript.
+2. **Transcribe:** `asr_router` (PhoWhisper-large-ct2 on `faster-whisper`) produces the Transcript.
 3. **Activate cards:** Based on the Transcript, `srt_analyzer` sets timestamps. (e.g.: when the word "Tuyệt vời" is spoken, the system throws a 3D "Tuyệt Vời" text card flying across).
 4. **Merging:** `native_composer` uses FFmpeg to paste the transparent (Alpha-channel) layer of the graphic card on top of the original video.
 <br>

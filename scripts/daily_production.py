@@ -7,7 +7,7 @@ publishes if configured — all free/local by default; paid steps stay off unles
 their keys are set.
 
 Free by default:
-  - render = VieNeu (local) + HyperFrames (local) — no paid API
+  - render = OmniVoice (local) + HyperFrames (local) — no paid API
   - publish = whatever SEOSONA_PUBLISH lists; with no credentials every destination
     is skipped (never crashes). Telegram is the free instant target.
 

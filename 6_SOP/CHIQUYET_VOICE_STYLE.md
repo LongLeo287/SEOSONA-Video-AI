@@ -3,7 +3,7 @@
 Derived from **47 real lectures (~19.6 hours)** in `D:\SRT` (timing-based — the
 transcripts have wrong/extra words + gaps, so this captures RHYTHM + STYLE, not exact
 wording). Use this for the **CQA branch only** (courses / lectures / knowledge) — the
-the OmniVoice CQA clone + the script style. Both brands now use the OmniVoice CQA clone (VieNeu = backup only).
+the OmniVoice CQA clone + the script style. Both brands now use the OmniVoice CQA clone (the ONLY voice engine since 2026-07-14).
 
 ## Rhythm / pacing (measured)
 | Metric | Value |
@@ -31,9 +31,10 @@ the OmniVoice CQA clone + the script style. Both brands now use the OmniVoice CQ
 6. RULE #1 still holds: display text vs spoken; English terms pronounced via lexicon.
 
 ## Wiring
-- Voice: `2_SKILLS/voice_cloner/voice_router.py` = **OmniVoice (CQA clone) primary → VieNeu
-  'Gia Bảo' preset backup** (user decision 2026-06-30). The VieNeu-LoRA + F5 clone experiments
-  were REMOVED; voice cloning will be done via **OmniVoice** (k2-fsa, Apache-2.0, VN-native).
+- Voice: `2_SKILLS/voice_cloner/voice_router.py` = **OmniVoice (CQA clone) — the ONLY engine**
+  (user decision 2026-07-14; VieNeu removed, no backup — a failed synth returns None).
+  The VieNeu-LoRA + F5 clone experiments were REMOVED; voice cloning is done via **OmniVoice**
+  (k2-fsa, VN-native; weights CC-BY-NC, owner-accepted risk).
   This profile is engine-agnostic — it's the delivery STYLE (rhythm/markers), apply it to
   whatever engine voices CQA.
 - This profile should be injected into the Gemini system prompt for CQA course videos

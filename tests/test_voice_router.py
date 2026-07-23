@@ -1,10 +1,11 @@
 """Regression tests for voice_router.synthesize_voice's failure contract.
 
-Voice is on every video's critical path. The router promises 'audio_out on success, or None
-only if both fail' — so a RAISING backup (VieNeu model/GPU error) must degrade to None, never
-crash the render (native_composer relies on None to handle the no-voice case).
+Voice is on every video's critical path. Since the 2026-07-14 engine consolidation OmniVoice is the
+ONLY engine: the router promises 'audio_out on success, or None on failure' — a raising engine must
+degrade to None, never crash the render (native_composer relies on None for the no-voice case), and
+no other engine may be invoked (no silent fallback).
 
-Hermetic: the engine modules are stubbed via import_module — no real TTS / models.
+Hermetic: the engine module is stubbed via import_module — no real TTS / models.
 """
 import os
 import sys
@@ -26,34 +27,37 @@ def _mod(fn):
 class SynthesizeContractTests(unittest.TestCase):
     def setUp(self):
         self._imp = vr.import_module
-        self._has = vr._has_vieneu
 
     def tearDown(self):
         vr.import_module = self._imp
-        vr._has_vieneu = self._has
 
-    def _wire(self, ov_fn, vn_fn, has_vieneu=True):
-        vr.import_module = lambda name: _mod(ov_fn) if "omnivoice" in name else _mod(vn_fn)
-        vr._has_vieneu = lambda: has_vieneu
+    def _wire(self, ov_fn):
+        self.imported = []
+        def imp(name):
+            self.imported.append(name)
+            if "omnivoice" in name:
+                return _mod(ov_fn)
+            raise AssertionError(f"unexpected engine import: {name}")
+        vr.import_module = imp
 
     def test_omnivoice_success_returns_path(self):
-        self._wire(lambda t, o: o, lambda *a, **k: None)
+        self._wire(lambda t, o: o)
         self.assertEqual(vr.synthesize_voice("hi", "out.mp3"), "out.mp3")
 
-    def test_backup_used_when_omnivoice_fails(self):
-        def ov(t, o): raise RuntimeError("omnivoice down")
-        self._wire(ov, lambda t, o, **k: o)
-        self.assertEqual(vr.synthesize_voice("hi", "out.mp3"), "out.mp3")
+    def test_omnivoice_returns_none_passes_none_through(self):
+        self._wire(lambda t, o: None)
+        self.assertIsNone(vr.synthesize_voice("hi", "out.mp3"))
 
-    def test_both_fail_returns_none_not_crash(self):
+    def test_omnivoice_raises_degrades_to_none_not_crash(self):
         def boom(*a, **k): raise RuntimeError("model missing")
-        self._wire(boom, boom)
+        self._wire(boom)
         self.assertIsNone(vr.synthesize_voice("hi", "out.mp3"))   # must not raise
 
-    def test_vieneu_not_installed_returns_none(self):
-        def ov(t, o): raise RuntimeError("omnivoice down")
-        self._wire(ov, lambda *a, **k: None, has_vieneu=False)
-        self.assertIsNone(vr.synthesize_voice("hi", "out.mp3"))
+    def test_no_other_engine_is_imported(self):
+        self._wire(lambda t, o: o)
+        vr.synthesize_voice("hi", "out.mp3")
+        self.assertEqual(len(self.imported), 1)
+        self.assertIn("omnivoice", self.imported[0])
 
 
 if __name__ == "__main__":

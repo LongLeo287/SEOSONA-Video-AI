@@ -3,27 +3,29 @@
 ## Overview
 
 End-to-end procedure for generating branded voice audio from text scripts.
-**OmniVoice (k2-fsa) is the primary engine** — local, Apache-2.0, Vietnamese-native (8482h), cloning the
-Chí Quyết (CQA) voice as THE brand voice for BOTH brands. VieNeu is the backup.
+**OmniVoice (k2-fsa) is the ONLY voice engine** (user decision 2026-07-14) — local, Vietnamese-native
+(8482h), zero-shot + CQA voice clone, cloning the Chí Quyết (CQA) voice as THE brand voice for BOTH
+brands. There is **NO backup engine**: a failed synth returns `None` honestly (no silent fallback).
+License note: OmniVoice code is Apache-2.0 but the WEIGHTS are CC-BY-NC — owner-accepted risk,
+recorded in `voice_router.py` + `0_SETUP/MODELS.md`.
 
 ## Voice Profiles
 
-| Brand | Engine (Primary) | Backup | Voice Character |
-|:------|:----------------|:---------|:----------------|
-| SEOSONA | OmniVoice — CQA clone | VieNeu (preset, only if OmniVoice can't run) | the Chí Quyết brand voice |
-| CQA | OmniVoice — CQA clone | VieNeu | the Chí Quyết brand voice |
+| Brand | Engine | Voice Character |
+|:------|:-------|:----------------|
+| SEOSONA | OmniVoice — CQA clone | the Chí Quyết brand voice |
+| CQA | OmniVoice — CQA clone | the Chí Quyết brand voice |
 
-## Engine Priority
+## Engine
 
-Only two engines are wired through `2_SKILLS/voice_cloner/voice_router.py` — this is the
-single source of truth (policy 2026-06-29). **OmniVoice PRIMARY → VieNeu BACKUP**. F5-TTS / edge-tts /
-LoRA / CosyVoice / Fish-Audio / Kokoro were evaluated and **removed** (no dead branches); their knowledge
-cards remain in `2_KNOWLEDGE/` for reference only. See `VOICE_TTS_ENGINE_ROUTING.md`.
+ONE engine is wired through `2_SKILLS/voice_cloner/voice_router.py` — this is the single source of
+truth (policy 2026-07-14). VieNeu / F5-TTS / edge-tts / kokoro / sherpa / LoRA / CosyVoice /
+Fish-Audio were evaluated and **removed** (code + pip + model caches; no dead branches); their
+knowledge cards remain in `2_KNOWLEDGE/` for reference only. See `VOICE_TTS_ENGINE_ROUTING.md`.
 
-| Priority | Engine | Install | GPU? | Voice Clone? | Quality |
-|:---------|:-------|:--------|:-----|:-------------|:--------|
-| 1 (primary) | OmniVoice (k2-fsa) | isolated torch-2.8 venv | Yes (RTX 3060) | yes — the CQA clone | 48kHz, VN-native, gap-trimmed + loudnorm |
-| 2 (backup) | VieNeu-TTS | `pip install vieneu` | No (CPU/ONNX) | preset "Gia Bảo" | used ONLY when OmniVoice can't run |
+| Engine | Install | GPU? | Voice Clone? | Quality |
+|:-------|:--------|:-----|:-------------|:--------|
+| OmniVoice (k2-fsa) | isolated torch-2.8 venv at `7_ASSETS/voice/.venv-omnivoice` | Yes (RTX 3060) | yes — zero-shot + the CQA clone | 48kHz, VN-native, gap-trimmed + loudnorm |
 
 ## Pipeline Flow
 
@@ -36,7 +38,7 @@ Script Text
   |
 [3] OmniVoice available (isolated venv reachable)?
       YES -> OmniVoice clones the CQA brand voice
-      NO  -> VieNeu backup (preset "Gia Bảo"), logged loudly
+      NO  -> synth returns None honestly (NO backup engine); the pipeline fails loudly
   |
 [3] Output: voice.mp3 (48kHz mono)
   |
@@ -47,32 +49,19 @@ Script Text
 [5] Output: mixed_audio.mp3 -> passed to renderer
 ```
 
-## VieNeu-TTS Features
-
-### Emotion Cues (Experimental)
-Insert directly into script text:
-- `[cuoi]` — Laughing
-- `[tho dai]` — Sighing
-- `[hang giong]` — Clearing throat
+## TTS Text Handling
 
 ### Code-Switching (En-Vi)
 News-video code-switching is handled before TTS by `4_BRAIN/news_video_standards.py`.
 The visible script and subtitles keep correct spelling such as `AI`, `SEO`, `GitHub`, and `Obscura`; the TTS input receives a separate Vietnamese pronunciation string.
 
-### SDK Usage
+### Usage
+Always synthesize through the router (never call an engine module directly):
 ```python
-from vieneu import Vieneu
-tts = Vieneu()
+from voice_router import synthesize_voice  # 2_SKILLS/voice_cloner/voice_router.py
 
-# Default voice
-audio = tts.infer("Text here")
-tts.save(audio, "output.wav")
-
-# Voice cloning
-audio = tts.infer("Text", ref_audio="chiquyet_sample_30s.wav")
-
-# Emotion cues
-audio = tts.infer("[cuoi] Noi dung vui ve [hang giong] tiep tuc...")
+path = synthesize_voice("Text here", "voice.mp3", brand="seosona")
+# path is None if OmniVoice can't run — handle it; there is NO backup engine.
 ```
 
 ## Voice Sample Requirements
@@ -81,7 +70,7 @@ audio = tts.infer("[cuoi] Noi dung vui ve [hang giong] tiep tuc...")
 |:-----|:------|
 | Format | WAV, PCM 16-bit signed, mono |
 | Sample Rate | 22050 Hz |
-| Duration | 3-60 seconds (VieNeu: 3-5s minimum) |
+| Duration | 3-60 seconds |
 | Content | Clean speech, no background music/noise |
 | Extraction | `ffmpeg -i input.mp4 -vn -acodec pcm_s16le -ar 22050 -ac 1 output.wav` |
 
@@ -95,13 +84,12 @@ audio = tts.infer("[cuoi] Noi dung vui ve [hang giong] tiep tuc...")
 2. Add config in `system_config.yaml`:
    ```yaml
    voice:
-     engine: "vieneu"
+     engine: "omnivoice"
      model: "{name}_clone_v1"
      required_gender: "male"
      required_accent: "southern"
      reference_audio: "7_ASSETS/voice_profiles/{name}_sample_30s.wav"
-     fallback_engine: "edge-tts"
-     fallback_voice: "vi-VN-NamMinhNeural"
+     # No fallback engine — OmniVoice is the only engine (2026-07-14); a failed synth returns None.
    ```
 
 3. Test:
@@ -113,7 +101,6 @@ audio = tts.infer("[cuoi] Noi dung vui ve [hang giong] tiep tuc...")
 
 - [ ] Voice sounds natural with proper Vietnamese tone/intonation
 - [ ] Voice is male and matches the approved Southern Vietnamese target profile
-- [ ] Emotion cues render correctly (if used)
 - [ ] English/technical terms are spelled correctly on screen and pronounced via the lexicon
 - [ ] No robotic artifacts or glitches
 - [ ] Pacing matches video timing (not too fast/slow)

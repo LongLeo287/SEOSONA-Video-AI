@@ -90,22 +90,21 @@ def check_playwright(workspace_dir):
         print_error("Failed to install Playwright browsers.")
 
 def check_ai_models(workspace_dir):
+    """Voice = OmniVoice ONLY (2026-07-14 engine consolidation). Models auto-download from the HF
+    hub on first use, so this only reports presence — it must NOT re-download removed engines."""
     print_step("Checking AI Models & Weights...")
-    models_dir = os.path.join(workspace_dir, "7_ASSETS", "models")
-    kokoro_dir = os.path.join(models_dir, "kokoro")
-
-    # Check for a specific known model file
-    test_file = os.path.join(kokoro_dir, "kokoro-v1_0.pth")
-    if not os.path.exists(test_file):
-        print_warning(f"AI Models not found at {kokoro_dir}. Initiating download...")
-        script_path = os.path.join(workspace_dir, "scripts", "download_local_models.py")
-        if os.path.exists(script_path):
-            run_cmd([sys.executable, script_path], cwd=workspace_dir)
-            print_success("AI Models downloaded.")
+    hub = os.path.join(os.path.expanduser("~"), ".cache", "huggingface", "hub")
+    checks = [
+        ("OmniVoice (brand voice)", os.path.join(hub, "models--k2-fsa--OmniVoice")),
+        ("PhoWhisper-large CT2 (ASR)", os.path.join(hub, "models--kiendt--PhoWhisper-large-ct2")),
+        ("CQA voice reference", os.path.join(workspace_dir, "7_ASSETS", "voice", "profiles",
+                                             "cqa_omnivoice_ref.wav")),
+    ]
+    for name, path in checks:
+        if os.path.exists(path):
+            print_success(f"{name}: present.")
         else:
-            print_error("download_local_models.py script not found!")
-    else:
-        print_success("All AI Models are present. [SKIP]")
+            print_warning(f"{name}: missing (auto-downloads on first use; see 0_SETUP/MODELS.md).")
 
 def main():
     print(f"{Colors.HEADER}{Colors.BOLD}=================================================={Colors.ENDC}")

@@ -77,3 +77,22 @@ SEOSONA Video/
 - Reusable inputs live in `7_ASSETS/`; transient outputs in `8_WORKSPACE/`.
 - HyperFrames is the sole render engine (Apache-2.0) — see `6_SOP/RENDER_ENGINE_DECISION.md`.
 - Connected to SEOSONA OS via `~/.seosona` (`seosona.project.json`).
+
+## Output placement rules (anti-litter — enforced 2026-07-14)
+Every writer (script `__main__` demo, CLI default, agent, test) MUST follow these; two root-litter
+bugs were fixed the day this section was written (carousel demo `./test_carousel_v2`,
+talking_head_transcribe default `./selfshot`):
+1. **Job/video outputs** → `8_WORKSPACE/<job-name>/` only (gitignored). Never the repo root,
+   never the CWD.
+2. **Default `--out` values** must be ANCHORED to the repo root (`os.path.dirname(__file__)/..`),
+   never bare relative names — a bare name litters whatever directory the caller happens to be in
+   (this is the known stray-folder bug class: D:\d, D:\LongLeo, parent-level 2_KNOWLEDGE).
+3. **Demo/self-test outputs** → `8_WORKSPACE/_demo/<skill>/`.
+4. **Scratch/temp** → `tempfile.mkdtemp()` (system temp), cleaned or abandoned there — never
+   inside the repo. Per-job temp inside the job's own `8_WORKSPACE/<job>/` dir is OK if prefixed
+   `_` (e.g. `_captions_upload/`) so sweeps can identify it.
+5. **Evidence that must persist** (benchmarks, audits) → `8_WORKSPACE/benchmarks/<date>/` or a
+   dated root-level `audit_*/` dir with a REPORT.md.
+6. **Logs** → `logs/<area>/` only; rotate/clean freely — nothing may depend on them.
+7. **New model weights/caches** → HF hub cache or `7_ASSETS/models/` + an entry in
+   `0_SETUP/MODELS.md` (fetch + license + delete rules). No stray weight dirs.

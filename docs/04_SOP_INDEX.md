@@ -38,7 +38,7 @@ The secrets for keeping viewers and meeting multi-platform SEO standards.
 
 - 🎥 **`video_production_sop.md`**: Basic end-to-end production line.
 - 🧠 **`SEO_CONTENT_STRATEGY.md`**: Hook strategy and viewer retention.
-- 🗣️ **`VOICE_TTS_ENGINE_ROUTING.md`**: Voice routing law: **OmniVoice primary → VieNeu backup**. Single router, no dead branches; edge-tts/F5/LoRA/fish removed.
+- 🗣️ **`VOICE_TTS_ENGINE_ROUTING.md`**: Voice routing law: **OmniVoice is the ONLY engine** (2026-07-14) — no backup, a failed synth returns None. Single router, no dead branches; VieNeu/edge-tts/F5/kokoro/sherpa/LoRA/fish removed.
 - 🕵️‍♂️ **`tech_news_faceless_sop.md`**: Formula for repackaging tech news (faceless).
 - ✂️ **`repurposer_sop.md`**: Law for recycling a long video into 5 short videos.
 - 🏷️ **`youtube_seo_sop.md`**: Formula for stuffing Keywords into YouTube descriptions.

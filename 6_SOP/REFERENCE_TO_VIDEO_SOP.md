@@ -6,7 +6,7 @@ SEOSONA-brand video in the **same style/structure**, rendered by HyperFrames.
 > ⚠️ **"Clone" = style/structure, NOT a pixel-perfect copy.** The pipeline re-BUILDS the
 > video in HyperFrames: same scene structure, component types, kicker/heading/footer/
 > karaoke chrome, pacing, accent rhythm — re-rendered with SEOSONA brand + the locked
-> VieNeu voice. Bespoke illustrations (e.g. a git-commit-tree animation) are NOT copied;
+> OmniVoice CQA brand voice. Bespoke illustrations (e.g. a git-commit-tree animation) are NOT copied;
 > they need a new component (see "Custom components"). Think *re-skin the template*, not *photocopy*.
 
 ## Pipeline (5 steps)
@@ -21,7 +21,7 @@ SEOSONA-brand video in the **same style/structure**, rendered by HyperFrames.
         native_composer format. Pick component per scene from the available library.
 [3] (review)  human reviews the scenes spec (fix data, wording, components)
 [4] GENERATE  4_BRAIN/native_composer.make_video(segments, scenes)
-      → VieNeu voice (locked Trọng Hữu) → RULE #1 display captions → HyperFrames render
+      → OmniVoice voice (the locked CQA brand clone) → RULE #1 display captions → HyperFrames render
         → SFX + loudnorm. SEOSONA brand chrome (logo, footer, CTA) is built in.
 [5] VERIFY    RULE #8 — extract frames (YAVG>12), loudness ~-14..-16 LUFS, duration, captions.
 ```
@@ -57,7 +57,8 @@ to the closest existing component or a heading-only transition.
 - **Scene detection**: smooth-transition faceless videos have no hard cuts, so the analyzer
   falls back to transcript-pause segmentation (coarse). The vision step (2) sets the real
   scenes by looking at the frames — trust the contact sheet over the auto scene count.
-- **Voice**: single locked brand voice (`voice_router.APPROVED_VOICE`). No voice on poster/ads.
+- **Voice**: single locked brand voice — the OmniVoice CQA clone via `voice_router.synthesize_voice`
+  (the only engine, 2026-07-14). No voice on poster/ads.
 - **Brand**: SEOSONA logo (persistent), footer, CTA outro are built into native_composer.
 - **Aspect/loudness**: match the reference (`analysis.json.meta`) — e.g. 9:16, ~-14 LUFS.
 

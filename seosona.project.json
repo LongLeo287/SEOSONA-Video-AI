@@ -8,7 +8,7 @@
     "python",
     "ffmpeg",
     "whisper",
-    "vieneu",
+    "omnivoice",
     "hyperframes"
   ],
   "osRoot": "~/.seosona",

@@ -6,7 +6,7 @@ SEOSONA Video has **two** production engines. This SOP covers the **footage** en
 | | Synthesized (engine #1) | **Talking-head (engine #2 — this SOP)** |
 |---|---|---|
 | Source | text / GitHub / news brief | a real video the creator filmed / screen-recorded |
-| Voice | VieNeu AI voice | the creator's **REAL** voice (kept from the footage) |
+| Voice | OmniVoice AI voice (CQA clone) | the creator's **REAL** voice (kept from the footage) |
 | Visual | machine-built HyperFrames scenes | the original footage + burned captions/cards |
 | Use for | news, explainers, repo showcase | reviews, tutorials, personal intros, courses |
 | Skill | `seosona-news-maker` | `talking-head-video-editor` |
@@ -49,4 +49,4 @@ voice + SFX from `7_ASSETS/audio/sfx/`).
 
 ## Not this engine
 - Machine-narrated / text→video → use `seosona-news-maker` + `video_production_sop.md`.
-- This engine does NOT use VieNeu (no AI voice) — it edits existing footage only.
+- This engine does NOT use OmniVoice (no AI voice) — it edits existing footage only.

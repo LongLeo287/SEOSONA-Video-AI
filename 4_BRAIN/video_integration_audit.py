@@ -168,8 +168,8 @@ def run_integration_audit(
     voice = (((config.get("profiles") or {}).get("seosona") or {}).get("voice") or {})
     required_gender = str(voice.get("required_gender", "")).lower()
     required_accent = str(voice.get("required_accent", "")).lower()
-    # Voice arch (2026): OmniVoice (primary, clones CQA) -> VieNeu (backup). edge-tts + all other
-    # engines were removed (see voice_router.py) — so the backup is now backup_engine, not a fallback_voice.
+    # Voice arch (2026-07-14): OmniVoice is the ONLY engine (clones CQA); VieNeu + all other
+    # engines were removed (see voice_router.py) — a failed synth returns None honestly, no fallback.
     backup_engine = str(voice.get("backup_engine", "")).lower()
     reference_audio = str(voice.get("reference_audio", ""))
     check(
@@ -180,8 +180,8 @@ def run_integration_audit(
         "P1",
     )
     check(
-        "voice backup engine: VieNeu",
-        backup_engine == "vieneu",
+        "voice engine: OmniVoice only (no backup)",
+        backup_engine in ("none", ""),
         {"backup_engine": backup_engine},
         "SV-INT-VOICE-FALLBACK",
         "P1",

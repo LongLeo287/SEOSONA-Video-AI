@@ -39,13 +39,12 @@ profiles:
       size: 70
     voice:
       # BRAND VOICE = OmniVoice cloning the Chí Quyết (CQA) voice — same voice for BOTH brands
-      # (user decision 2026-06-29). Routed by voice_router (OmniVoice primary → VieNeu backup).
+      # (user decision 2026-06-29; 2026-07-14: OmniVoice is the ONLY engine, no backup).
       engine: "omnivoice"
       reference_audio: "7_ASSETS/voice/profiles/cqa_omnivoice_ref.wav"
       required_gender: "male"
       required_accent: "southern"
-      backup_engine: "vieneu"
-      backup_model: "Gia Bảo"
+      backup_engine: "none"
     logo: "Seosona_Logo.png"
     animation: "slide_up"
     brand_tone: "Professional, reputable, market-leading, sharp insights"
@@ -63,13 +62,12 @@ profiles:
       main: "BeVietnamPro-Black"
       size: 90
     voice:
-      # BRAND VOICE = OmniVoice cloning the Chí Quyết (CQA) voice (voice_router: OmniVoice → VieNeu backup).
+      # BRAND VOICE = OmniVoice cloning the Chí Quyết (CQA) voice (voice_router: OmniVoice ONLY, no backup).
       engine: "omnivoice"
       reference_audio: "7_ASSETS/voice/profiles/cqa_omnivoice_ref.wav"
       required_gender: "male"
       required_accent: "southern"
-      backup_engine: "vieneu"
-      backup_model: "Gia Bảo"
+      backup_engine: "none"
     logo: "Chi Quyet Academy Mascot Logo.png"
     animation: "elastic_pop"
     brand_tone: "Fun, approachable, inspiring, easy to understand"

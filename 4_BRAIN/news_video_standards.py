@@ -31,7 +31,7 @@ CORE_PRONUNCIATION_LEXICON: Dict[str, str] = {
     "24/7": "hai mươi tư trên bảy",
     "24h": "hai mươi tư giờ",
     # common English tech terms — Vietnamese phonetics so the male VN voice reads them
-    # acceptably (VieNeu is a VN TTS; raw English would be mispronounced).
+    # acceptably (the brand voice is a VN TTS; raw English would be mispronounced).
     "Claude": "clốt", "Codex": "cô đếch", "Cursor": "cơ sơ", "Docker": "đốc cơ",
     "Ollama": "âu la ma", "Gemini": "giê mi nai", "Kimi": "ki mi", "Grok": "grốc",
     "Anthropic": "ăn thro pic", "Microsoft": "mai cờ rô sốt", "Apple": "áp pồ",

@@ -3,6 +3,51 @@
   {
    "id": "kn_log_0",
    "source": "INGESTION_LOG",
+   "title": "salaheddinek/video-editing-py-script",
+   "text": "**HARVESTED (clean-room)** — 3 native techniques built + verified — WHY: ~10 native ffmpeg+PIL CLI utils (NO MoviePy — exact stack fit). Built the 3 real gaps clean-room (learned technique, no code copied): (1) **vid_transition** → `footage_transition.make_transition/splice` — warps tail-of-A/head-of-B into a rotation/zoom transition for the footage-concat path (talking_head_edit / Pexels b-roll, where GSAP can't re-run; HTML path already has GSAP entrances so gap was footage-ONLY). Brand rule honored: NO sideways slide → zoom+rotate only. (2) **mirror-padding** (`mirror_pad`, np.pad reflect) fills rotate/zoom edges by mirroring not black bars — reusable in Ken Burns/avatar_motion. (3) **svg_animator path-stroke reveal** → `svg_draw_on` = free stand-in for PAID GSAP DrawSVGPlugin (CSS stroke-dashoffset + getTotalLength, baked to a transparent qtrle .mov via playwright seek-render like element_maker, seek-safe, composites over footage). VERIFIED: transition blue→coral A→B + length-preserving splice; draw-on ink 1071→plateau. Everything else (text/compress/pic2vid/gif/downloader) already covered — WHERE: `4_BRAIN/footage_transition.py` (mirror_pad + rotation/zoom clip-to-clip transit",
+   "kind": "lesson",
+   "links": [
+    "b_footage_transition",
+    "b_svg_draw_on"
+   ],
+   "verdict": "BUILT",
+   "date": "2026-07-08"
+  },
+  {
+   "id": "kn_log_1",
+   "source": "INGESTION_LOG",
+   "title": "OpenTalker/video-retalking",
+   "text": "**REFERENCE** (do not adopt) — WHY: 7.3k★ SIGGRAPH-Asia-2022 audio-driven lip-sync EDITING of a real talking-head video (3-stage: DNet expression-neutralize → LNet Wav2Lip mouth → ENet+GPEN+GFPGAN enhance). Older/heavier sibling of MuseTalk which we already run VERIFIED on modern torch 2.5; retalking pins torch 1.9/cu111 (2021), frozen since 2024-08, 216 open issues, needs BFM/GPEN weight downloads. Nugget concept-only (moot for us — we generate our own source frames): STAGE-0 expression-neutralization (canonicalize source face to neutral BEFORE lip-sync). Keep MuseTalk+Rhubarb+LivePortrait — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "REFERENCE",
+   "date": "2026-07-08"
+  },
+  {
+   "id": "kn_log_2",
+   "source": "INGESTION_LOG",
+   "title": "bachdyon/video-automator-skills",
+   "text": "**REFERENCE** + **1 HARVEST** (subject-aware placement) — WHY: ~35 Vietnamese agent SKILL.md — but it's an ORCHESTRATION skill-pack (plan→paid asset-gen→map→**Remotion** render), NOT a local editing engine; both stacks (Remotion + paid clouds HeyGen/fal/Seedance/AusyncLab) SEOSONA avoids. Deep editing re-dig: every craft skill is covered/exceeded (overlay-video-preparer≈effect_library light-leak/bloom; subtitle-screen-splitter≈caption-seg; semantic-asset-mapper≈component_picker; typography-style-selector CONFLICTS with brand-lock). ONE genuine gap → HARVESTED clean-room: **`overlay-subject-placement`** (it calls a PAID vision-LLM per frame) → our `subject_zones.py` locates the subject OFFLINE by **temporal-variance motion energy** (ffmpeg+numpy, zero new deps), places overlays in real gaps (top + side gutters, never the caption band) + hard safe-area clamp — replaces element_picker's assume-centred top-band. Editorial notes kept (clean-room): \"PUNCH\" LLM-chosen emphasis phrase; shot-coverage repetition-threshold(3)+strategies — WHERE: `2_SKILLS/element_maker/subject_zones.py` + wired into talking_head_edit",
+   "kind": "lesson",
+   "links": [
+    "sm_element_maker"
+   ],
+   "verdict": "REFERENCE",
+   "date": "2026-07-08"
+  },
+  {
+   "id": "kn_log_3",
+   "source": "INGESTION_LOG",
+   "title": "KhanhTho3110/AutoGenVid",
+   "text": "**REFERENCE** (≈SKIP) — WHY: Single-commit (2025-08-24) personal Telegram-bot content-farm for Vietnamese Buddhist \"healing\" videos on paid Google clouds (Gemini + Vertex Imagen + Cloud TTS vi-VN-Wavenet); has a real bug (`base64.b6decode` typo crashes TTS) = untested WIP. SEOSONA surpasses on every axis: VN normalize (VietNormalizer) vs none, ASR-aligned ASS captions vs proportional estimate, voice CLONE vs generic cloud WaveNet, keyless/local vs 3 paid clouds. Zero VN nugget to harvest — just confirms the common \"Excel+Telegram+FFmpeg-drawtext+Google-TTS\" content-farm baseline our factory leapfrogs — WHERE: REPO_WATCHLIST",
+   "kind": "lesson",
+   "links": [],
+   "verdict": "SKIP",
+   "date": "2026-07-08"
+  },
+  {
+   "id": "kn_log_4",
+   "source": "INGESTION_LOG",
    "title": "langgenius/dify",
    "text": "**HARVESTED (clean-room)** — DAG node-taxonomy → tiny Python topo-sort runner — WHY: 147k★ visual LLM-app platform (Docker: Flask+Next+PG+Redis+Celery+vectorDB) — platform itself REFERENCE (duplicates OODA loop+cascade+library). Took only the SHAPE of `api/core/workflow/` (typed node registry + topology sort): stages are now DATA, rearrangeable in one place. No Dify code, no Docker. VERIFIED: `python 4_BRAIN/pipeline_dag.py list/graph/run` — WHERE: `4_BRAIN/pipeline_dag.py` (Node/Pipeline + Kahn topo-sort + to_graph; canonical stages discover→script→render→quality→publish; executors DELEGATE to topic_to_video/workflow_router, zero logic dup)",
    "kind": "lesson",
@@ -13,7 +58,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_1",
+   "id": "kn_log_5",
    "source": "INGESTION_LOG",
    "title": "simstudioai/sim",
    "text": "**HARVESTED (clean-room)** — node-graph canvas UX → dashboard Pipeline view — WHY: 29k★ Figma-style agent-workflow canvas (TS/Next.js+Bun+PG/pgvector SaaS) — platform REFERENCE (redundant). Took only the interaction pattern (visual node-graph of the pipeline), realized in our existing vis-network — NO ReactFlow, no new dep. VERIFIED in-browser: 5 stages L→R, click opens inspector, no console errors — WHERE: `9_DASHBOARD` Pipeline view (`/api/pipeline` → `pipeline_dag.to_graph()`; vis-network hierarchical L→R DAG, click→stage inspector)",
@@ -23,7 +68,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_2",
+   "id": "kn_log_6",
    "source": "INGESTION_LOG",
    "title": "langchain-ai/open-agent-platform",
    "text": "**REFERENCE** (≈ignore — deprecated upstream) — WHY: No-code web UI (100% TS/Next.js, 0 .py) = thin client REQUIRING LangGraph Platform + LangConnect + Supabase = exactly the framework lock-in SEOSONA's hand-rolled resilient llm_engine rejects. Fully redundant + deprecated (README → LangSmith Agent Builder). Only idea worth remembering (concept-only) = the HITL \"agent-inbox\" approval pattern IF a human review gate is ever added to the OODA loop — WHERE: REPO_WATCHLIST",
@@ -33,7 +78,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_3",
+   "id": "kn_log_7",
    "source": "INGESTION_LOG",
    "title": "Mintplex-Labs/anything-llm",
    "text": "**HARVESTED (clean-room)** — chunk-provenance prepend — WHY: 62k★ all-Node doc-chat RAG app — platform REFERENCE (duplicates cascade+KG, zero Python). Took only the `server/utils/TextSplitter/index.js` idea (stamp each chunk with where it came from BEFORE the text) so an LLM grounding on recalled knowledge can cite {source,title,date} — reinforces the no-fabricated-numbers traceability gate. VERIFIED: cited recall block renders with dated provenance headers — WHERE: `4_BRAIN/knowledge_graph.py` new `recall_context()`+`_cite()` (each recalled chunk prefixed `[src: source - title - kind/verdict - date]`) + `recall(...)` now returns `date` + `gen_knowledge_notes.py` captures the INGESTION_LOG date + CLI `recall … --cite`",
@@ -45,7 +90,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_4",
+   "id": "kn_log_8",
    "source": "INGESTION_LOG",
    "title": "HKUDS/AutoAgent",
    "text": "**REFERENCE** (redundant, no harvest) — WHY: 9.4k★ zero-code NL→agent FRAMEWORK (Python but a Docker-sandboxed agent-CREATION platform, litellm, browser_env). Every capability exists lighter+purpose-built: orchestration=OODA loop+orchestrator persona; multi-provider+fallback=llm_engine cascade (MORE resilient — parse-or-continue tiering litellm lacks); research=researcher.py+deep-research; memory=knowledge graph; self-improvement=eval flywheel. Its unique angle (generate NEW agents from NL) solves a problem a fixed brand-locked video line doesn't have. Zero video/TTS/render overlap. No adopt, no harvest — WHERE: REPO_WATCHLIST",
@@ -55,7 +100,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_5",
+   "id": "kn_log_9",
    "source": "INGESTION_LOG",
    "title": "f/prompts.chat",
    "text": "**REFERENCE only** (CC0 = eligible, no gap) — WHY: \"Awesome ChatGPT Prompts\" — huge community collection of generic single-shot \"act as X\" chat prompts (164k★) + a self-host Next.js prompt platform. NOT tuned for a VN video-factory pipeline; SEOSONA already has 17 tuned domain SKILL.md (SEO/marketing/content/copywriting/CRO/design) + `9_PROMPTS` + per-stage LLM system-prompts — deeper + on-brand. Platform = overkill. CC0 so a handful of role prompts (SEO/storyteller/copywriter) could seed a NEW capability's prompt later, but no current gap → adopt nothing — WHERE: REPO_WATCHLIST",
@@ -65,7 +110,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_6",
+   "id": "kn_log_10",
    "source": "INGESTION_LOG",
    "title": "mvanhorn/last30days-skill",
    "text": "**HARVEST (clean-room)** — keyless recency+engagement topic discovery: HackerNews points + GitHub-stars(pushed>date) + arXiv, 30-day window, round-robin fused/deduped/on-domain — WHY: the FRESHNESS axis a tech-NEWS factory lives on (trends_vn/expand_keywords were recency-blind); fixes the known \"News RSS drifts off-subject\" risk with engagement + domain gate. VERIFIED. Only keyless tech subset; social/paid (X/TikTok/IG/Polymarket/Perplexity) SKIPPED as off-mission — WHERE: `4_BRAIN/researcher.py` new `recency_topics()` + `_hn_recent/_github_recent/_arxiv_recent`; wired into `demand_topics(recency=True, days=30)`",
@@ -77,7 +122,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_7",
+   "id": "kn_log_11",
    "source": "INGESTION_LOG",
    "title": "RayVentura/ShortGPT",
    "text": "**REFERENCE only** — WHY: older/weaker sibling of Pixelle-Video/Auto-Create-Video; MoviePy stock-footage-over-VO + burned captions — SEOSONA surpasses on render(HTML+GSAP)/captions(ASS karaoke)/ASR(PhoWhisper)/TTS(OmniVoice)/LLM(cascade). Footnote only: `getSpeechBlocks` 0.8s-silence sentence split; dub-to-slot atempo already in `dub_align.py` — WHERE: REPO_WATCHLIST",
@@ -87,7 +132,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_8",
+   "id": "kn_log_12",
    "source": "INGESTION_LOG",
    "title": "nagisanzenin/engram",
    "text": "**REFERENCE only** (out of domain) — WHY: NOT agent-memory — a human-learning FSRS spaced-repetition tutor for Claude Code (stdlib, no MCP/DB/embeddings); zero overlap with knowledge_graph.py. Harvestable IDEA (note only): \"blind assessor + append-only receipts / separation-of-powers\" for the eval flywheel — WHERE: REPO_WATCHLIST",
@@ -97,7 +142,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_9",
+   "id": "kn_log_13",
    "source": "INGESTION_LOG",
    "title": "apify/fingerprint-suite",
    "text": "**REFERENCE only** (don't adopt) — WHY: browser-fingerprint gen/inject for Playwright anti-bot evasion. researcher.py = urllib (no browser); capture_scroll.js targets CHOSEN pages not hostile sites → inapplicable + overkill + ToS/ethics liability. If ever blocked: real browser channel + honest UA + swap target, NOT evasion tooling — WHERE: REPO_WATCHLIST",
@@ -107,7 +152,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_10",
+   "id": "kn_log_14",
    "source": "INGESTION_LOG",
    "title": "weaiw/trove-ai",
    "text": "**REFERENCE only** (clean-room idea) — WHY: AGPL personal-knowledge-base web-app (Next.js+FastAPI+pgvector RAG); architectural twin of knowledge_graph + script_writer, no engine gap. AGPL = never vendor. One clean-room idea: explicit \"insufficient-evidence → flag\" critique gate for `script_writer.py` verify stage — WHERE: REPO_WATCHLIST",
@@ -117,7 +162,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_11",
+   "id": "kn_log_15",
    "source": "INGESTION_LOG",
    "title": "internal (native 9:16 mockups)",
    "text": "3 native MOCKUP components — `notification` (phone/OS notification card), `social` (social-post card, no fake followers), `phone` (phone device + app screen); light-brand, real scene data, `.ritem`, seek-safe — WHY: The achievable, render-verified answer to \"97 block thành kho mockup dùng được\" — fills the genuine gaps the demos pointed to (code/chart/terminal already native). Catalog 48 frames, 0 drift. Block-forge kept for future strong-LLM batch. — WHERE: `4_BRAIN/native_composer.py` (+CSS) · `frame_study.py` · `component_picker.py` · `spec_lint.py`",
@@ -129,7 +174,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_12",
+   "id": "kn_log_16",
    "source": "INGESTION_LOG",
    "title": "internal (block forge → 9:16 kho)",
    "text": "`4_BRAIN/block_forge.py` — turns a 16:9 gallery block into a 9:16 light injectable template: dim-swap 1920×1080→1080×1920 + strip chrome + LLM re-layout to light+mustache-slots + render-validate + fake-data QC → `7_ASSETS/blocks_9x16/` kho; `render_filled(name,data,out)` bombs real scene data in at video time — WHY: User: 97 blocks must be 9:16 + auto-injected with real content = a usable mockup kho. Mechanism BUILT + proven: 9:16 render verified (1080×1920), QC refuses fake-data blocks, LLM re-layout clean on small mockup blocks (macos-notification). Honest yield: small html/css mockups convert; 40k-code/shaders don't (LLM output limit) + needs cloud LLM (was 429). Batch: `python 4_BRAIN/block_forge.py --all` when quota's up; kho reset empty pending that. — WHERE: `4_BRAIN/block_forge.py`",
@@ -141,7 +186,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_13",
+   "id": "kn_log_17",
    "source": "INGESTION_LOG",
    "title": "internal (image relevance + block vetting)",
    "text": "(A) `image_sourcer._build_query` VN→EN lexicon + relevance gate — a scene gets a CORRECT photo or NONE, never a wrong one; (B) `plan_scenes` ≥60% visual-coverage governor + log; (C) `hf_blocks` demo-strip + fake-data QC (`render_block` REFUSES leaks) + `scripts/vet_blocks.py` → `BLOCK_VET_MANIFEST.json` — WHY: User: images must be accurate, ≥60% scenes visual, and the 97 blocks usable with REAL data. A+B done+verified. C: safety gate built + all 97 vetted (27 fx / 37 redundant / 33 fake) + RENDER-verified → blocks are DARK 16:9 gallery demos (not light 9:16 assets); static QC misses JS-generated fakes ($5,169). Verdict: blocks stay OFF; native richness (45 comps + relevance-gated images + effect_library + frame-synth) is the real path. — WHERE: `2_SKILLS/image_sourcer/image_sourcer.py` · `4_BRAIN/video_engine.py` · `4_BRAIN/hf_blocks.py` · `scripts/vet_blocks.py`",
@@ -155,7 +200,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_14",
+   "id": "kn_log_18",
    "source": "INGESTION_LOG",
    "title": "internal (self-sufficient richness)",
    "text": "**Factory enriches itself without an external LLM** — `component_picker.fill()` GUARANTEES a real non-fabricated visual per bare middle scene (cue `pick()` → rotating `photocard/quote/callout/tip`, varied, honest data only); wired into `video_engine.plan_scenes` as the richness floor; photocard fallback activates the image kho (Pexels auto-source at render) — WHY: Test news video was SPARSE because visual richness leaned on a LIVE LLM (`enrich_llm`) that was rate-limited to death. Proven fix: re-ran with `SEOSONA_LLM_COMPONENTS=0` → 7 scenes, 6 distinct visuals, 0 bare-text, photocard sourced a real photo, PASS 100/100. Block kho stays OFF (registry blocks = fake-data demos → would violate no-fakes). — WHERE: `4_BRAIN/component_picker.py` (`fill`, `_FILL_ROTATION`) + `video_engine.plan_scenes`",
@@ -167,7 +212,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_15",
+   "id": "kn_log_19",
    "source": "INGESTION_LOG",
    "title": "internal (frame-study self-grow)",
    "text": "**Self-growing frame kho** — `4_BRAIN/frame_synth.py`: when a scene fits no built-in frame, the art-director LLM proposes a NEW frame (light-brand, seek-safe mustache HTML, no `<script>`) → `validate()` (no dark bg / no JS / no external URL / renders / balanced) → `register()` into `7_ASSETS/frames/generated_frames.json` → reused forever — WHY: Answers \"hyperframe tự sinh thêm nếu kho chưa có, gom vào kho làm giàu kho\" — the 45-frame kho is no longer fixed; it GROWS from real content need. Verified end-to-end: hand-authored `faq_flip` spec → registered → rendered through full HyperFrames pipeline (2 FAQ cards, light-brand, `.ritem` reveal) → kho reset clean (grows only from real runs). — WHERE: `frame_synth.py` + wired: `native_composer._component` fallback (`render_generated`) + `_reveal_count`; `frame_study._effective()` merges generated frames into menu/kinds/by_group/selfcheck; `component_picker._allowed()`/`_validate` accept them + `enrich_llm` `\"kind\":\"__new__\"` triggers `grow()`",
@@ -179,7 +224,7 @@
    "date": "2026-07-06"
   },
   {
-   "id": "kn_log_16",
+   "id": "kn_log_20",
    "source": "INGESTION_LOG",
    "title": "TMElyralab/MuseTalk",
    "text": "ADOPTED as Engine #3b — mouth-inpaint lip-sync; **DWPose(mmpose+mmcv) swapped → MediaPipe FaceMesh** to kill the Windows mmcv blocker — WHY: real face/video + CQA voice → lip-sync; verified. Weights ~4GB (unet/sd-vae/whisper/face-parse) via `scripts/download_musetalk_weights.py` — WHERE: `2_KNOWLEDGE/external_toolkits/MuseTalk/` (patched) + `.venv-musetalk` + `scripts/lipsync_musetalk.py` + `6_SOP/LIPSYNC_ENGINE_MUSETALK.md`",
@@ -191,7 +236,7 @@
    "date": "2026-07-03"
   },
   {
-   "id": "kn_log_17",
+   "id": "kn_log_21",
    "source": "INGESTION_LOG",
    "title": "OpenMOSS/MOVA",
    "text": "**REFERENCE only — NOT adopted** — WHY: Joint audio-visual *diffusion* (8s clips, ≥24GB GPU, Py3.12, flash-attn/NCCL → hostile to Windows/3060); wrong shape for long-form VN text-grounded news. Re-check only if a ≥24GB GPU + generative b-roll are both wanted. — WHERE: REPO_WATCHLIST",
@@ -201,7 +246,7 @@
    "date": "2026-07-03"
   },
   {
-   "id": "kn_log_18",
+   "id": "kn_log_22",
    "source": "INGESTION_LOG",
    "title": "jianchang512/pyvideotrans",
    "text": "**REFERENCE / CLEAN-ROOM** — algorithm only, NO code copied (GPL would infect) — WHY: The \"fit dubbed audio to video timeline\" algorithm (timeline-extension → speed-audio / slow-video / split-deficit) — the missing organ for Engine #4 Localize (foreign video → VN dub in-sync). Skipped its GUI/ASR/TTS (we have better). — WHERE: studied `videotrans/task/_rate.py`, `docs/Synchronize.md` → own impl `4_BRAIN/dub_align.py`",
@@ -213,7 +258,7 @@
    "date": "2026-07-03"
   },
   {
-   "id": "kn_log_19",
+   "id": "kn_log_23",
    "source": "INGESTION_LOG",
    "title": "DanielSWolf/rhubarb-lip-sync",
    "text": "RE-ASSESSED (already Engine #4) → built **lip-sync QC** using its viseme timeline — WHY: untapped value: independent QC for the new MuseTalk engine (matched corr ~0.25-0.33 vs mismatched ~ −0.25); phonetic recognizer already VN-correct — WHERE: `scripts/lipsync_qc.py` (Rhubarb × MediaPipe desync detector)",
@@ -223,7 +268,7 @@
    "date": "2026-07-03"
   },
   {
-   "id": "kn_log_20",
+   "id": "kn_log_24",
    "source": "INGESTION_LOG",
    "title": "AIDC-AI/Pixelle-Video",
    "text": "REFERENCE only — NOT adopted — WHY: Complete competing auto-video engine (topic→AI-image/video-per-sentence via ComfyUI/Wan/Seedream/Kling→TTS→BGM). SEOSONA already has a full brand-specific pipeline; AI-illustration imagery conflicts with the clean tech-editorial brand → don't recreate/over-build. Keep as reference for the API-media-provider abstraction IF AI b-roll is ever wanted. NOTE: REPO_INVENTORY tags it \"S-Core\" — downgrade to REFERENCE. (Clone had landed outside the repo via a relative-path UAP clone from wrong CWD; moved back in.) — WHERE: `2_KNOWLEDGE/external_toolkits/Pixelle-Video/` (gitignored)",
@@ -233,7 +278,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_21",
+   "id": "kn_log_25",
    "source": "INGESTION_LOG",
    "title": "boraoztunc/skills",
    "text": "13 domain SKILL.md (SEO, copywriting, content, CRO, design/UX) — WHY: ground video content in real SEO/marketing/design expertise — WHERE: `2_KNOWLEDGE/domain_skills/`",
@@ -243,7 +288,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_22",
+   "id": "kn_log_26",
    "source": "INGESTION_LOG",
    "title": "nextlevelbuilder/ui-ux-pro-max-skill",
    "text": "4 design SKILL.md (design-system, brand, ui-styling, banner-design) — WHY: deeper on-screen/design + brand + thumbnail craft (non-dup with boraoztunc) — WHERE: `2_KNOWLEDGE/domain_skills/`",
@@ -253,7 +298,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_23",
+   "id": "kn_log_27",
    "source": "INGESTION_LOG",
    "title": "VinAIResearch/PhoWhisper (vinai/PhoWhisper-medium)",
    "text": "CT2 int8 convert → bundled model — WHY: best VN ASR (−40% WER vs Whisper); medium = ~2x faster/½ size of large, ~same WER — WHERE: 7_ASSETS/models/phowhisper-medium-ct2",
@@ -263,7 +308,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_24",
+   "id": "kn_log_28",
    "source": "INGESTION_LOG",
    "title": "D:\\SEOSONA AI ideo talking heads (4 reels)",
    "text": "style references (caption/card/transition craft) — WHY: learn talking-head editing craft + new template ideas (SKILL.md was dup → skipped) — WHERE: 2_KNOWLEDGE/style_references/talking_head/",
@@ -273,7 +318,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_25",
+   "id": "kn_log_29",
    "source": "INGESTION_LOG",
    "title": "SEOSONA proposals (2 PDF, internal)",
    "text": "extracted text (markitdown) → brand facts — WHY: learn the real SEOSONA brand (services/C.B.O/proof/CTA) — WHERE: 3_MEMORY/brand_memory/proposals_extracted/ + filled .claude/product-marketing-context.md",
@@ -283,7 +328,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_26",
+   "id": "kn_log_30",
    "source": "INGESTION_LOG",
    "title": "coderamp-labs/gitingest",
    "text": "pip dependency (CLI repo→text digest) — WHY: SYSTEM: turn any repo into one text blob for fast analysis/vetting — WHERE: requirements.txt",
@@ -293,7 +338,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_27",
+   "id": "kn_log_31",
    "source": "INGESTION_LOG",
    "title": "facebook/astryx",
    "text": "REFERENCE only (design-system/token patterns) — WHY: FACTORY: SEOSONA has DESIGN.md+craft; reference astryx for token/system ideas, don't vendor the React lib — WHERE: REPO_WATCHLIST.md",
@@ -303,7 +348,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_28",
+   "id": "kn_log_32",
    "source": "INGESTION_LOG",
    "title": "microsoft/markitdown",
    "text": "pip dependency + wrapper — WHY: SYSTEM: turn any PDF/DOCX/URL → clean markdown to learn from (ingestion capability) — WHERE: `2_KNOWLEDGE/scripts/ingest_source.py` + requirements.txt",
@@ -313,7 +358,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_29",
+   "id": "kn_log_33",
    "source": "INGESTION_LOG",
    "title": "nexu-io/open-design",
    "text": "HyperFrames craft (motion-principles, css-patterns, palettes, transitions) — WHY: richer, on-brand motion for the 14 components — WHERE: `2_KNOWLEDGE/hyperframes/craft/`",
@@ -323,7 +368,7 @@
    "date": "2026-06-27"
   },
   {
-   "id": "kn_log_30",
+   "id": "kn_log_34",
    "source": "INGESTION_LOG",
    "title": "digitalsamba/claude-code-video-toolkit",
    "text": "WPM-pacing insight + ffmpeg/brand refs — WHY: fix voice pacing variance (ported into native_composer) — WHERE: `2_KNOWLEDGE/external_toolkits/claude-code-video-toolkit/`",
@@ -333,7 +378,7 @@
    "date": "2026-06-27"
   },
   {
-   "id": "kn_log_31",
+   "id": "kn_log_35",
    "source": "INGESTION_LOG",
    "title": "swivid/f5-tts",
    "text": "F5 BACKUP voice path (gated, subprocess-isolated) — WHY: redundant clone-voice backup; DORMANT (base non-commercial; needs commercial VN ckpt) — WHERE: (planned `f5_backup.py` — NOT built/removed; voice_router is the live path)",
@@ -343,7 +388,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_32",
+   "id": "kn_log_36",
    "source": "INGESTION_LOG",
    "title": "yt-dlp/yt-dlp",
    "text": "(planned) footage-sourcing util — pin as tool — WHY: robust download for course footage — WHERE: (backlog) `scripts/source_footage.py`",
@@ -353,7 +398,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_33",
+   "id": "kn_log_37",
    "source": "INGESTION_LOG",
    "title": "huytranvan2010/AI-auto-generate-video",
    "text": "sync principle: audio=master clock, captions from real audio timings (not estimated) — WHY: fix karaoke-voice drift — WHERE: applied → ASR-anchored karaoke",
@@ -363,7 +408,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_34",
+   "id": "kn_log_38",
    "source": "INGESTION_LOG",
    "title": "hoquanghai/Auto-Create-Video",
    "text": "(analyzed) confirms scene-level audio-master sync (HyperFrames, VN); port idea: 8ms boundary micro-fade + SFX-from-measured-starts — WHY: sync validation + anti-click — WHERE: (backlog)",
@@ -373,7 +418,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_35",
+   "id": "kn_log_39",
    "source": "INGESTION_LOG",
    "title": "k2-fsa/OmniVoice",
    "text": "(analyzed) VN TTS + clone YES but NO word-timestamps + torch2.8 conflict → not sync-friendly — WHY: future VN A/B only — WHERE: REPO_WATCHLIST",
@@ -383,7 +428,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_36",
+   "id": "kn_log_40",
    "source": "INGESTION_LOG",
    "title": "(lineage note)",
    "text": "AI-auto-generate-video = FORK of hoquanghai/Auto-Create-Video; both build on nexu-io/html-video (HTML→video) + use k2-fsa/OmniVoice (local VN TTS server :8123, NO SRT) — WHY: understand the repo family — WHERE: —",
@@ -393,7 +438,7 @@
    "date": "2026-06-29"
   },
   {
-   "id": "kn_log_37",
+   "id": "kn_log_41",
    "source": "INGESTION_LOG",
    "title": "huytranvan2010/AI-auto-generate-video + loha-video-maker SKILL",
    "text": "CRAFT adopted (re-skinned to brand, light-only): liquid brand-colour depth blobs (gsap), fitText auto-scale, semantic SFX override, REAL screenshot in mockup/repo scene (Playwright via system Edge), multi-screenshot (2 imgs/video), verify-gate wiring + ready-to-post sidecars (voice.mp3/script.txt/caption.txt) — WHY: FACTORY: design-led visuals + post-ready output. Their dark-neon palette + OmniVoice NOT taken — WHERE: `4_BRAIN/native_composer.py` · `make_video.py` · `scripts/capture_shot.js`",
@@ -405,7 +450,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_38",
+   "id": "kn_log_42",
    "source": "INGESTION_LOG",
    "title": "google/agents-cli",
    "text": "(analyzed) PATTERN only — \"Quality Flywheel\" → built native `eval_judge.py` (Gemini-vision judge, 3-tier fallback) + `eval_run.py` + `1_CONFIG/eval_datasets/`. Skill-authoring patterns noted — WHY: SYSTEM/QA: qualitative judge metadata can't do. Google-Cloud/Vertex/BigQuery/GEPA REJECTED (paid/cloud, conflict free-local) — WHERE: `4_BRAIN/eval_judge.py` · `eval_run.py` · `6_SOP/EVAL_FLYWHEEL.md`",
@@ -418,7 +463,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_39",
+   "id": "kn_log_43",
    "source": "INGESTION_LOG",
    "title": "SEOSONA OS (~/.seosona/4_AGENTS/personas)",
    "text": "PORTED + adapted 3 analysis agents to fill the analyze/learn gap (Video only had factory-strategist + video-discovery): `researcher`, `scout`, `security-auditor` → re-scoped to video + wired to Video paths (not OS refs). Built `.agents/skills/capability-analyst` (runs SELF_IMPROVEMENT_LOOP). — WHY: SYSTEM: dedicated analyze/learn agents+skill. SKIPPED (dup/over-engineer): content-strategist/creator (have domain_skills), analytics (have ledger), intent_router/ingest_skill/AAAK/YouTube-connectors. Bulk repo analysis DELEGATES to OS UAP — WHERE: `1_AGENTS/personas/{researcher,scout,security-auditor}.md` · `.agents/skills/capability-analyst/SKILL.md`",
@@ -430,7 +475,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_40",
+   "id": "kn_log_44",
    "source": "INGESTION_LOG",
    "title": "greensock/gsap-skills",
    "text": "(PART-B batch1) REFERENCE — GSAP agent-instruction set, ~90% dup with our `hyperframes/craft/motion-recipes-seosona.md` (same upstream). Kept cloned for pattern lookup. Verified the immediateRender first-frame-flash risk is N/A here (scene-0 uses tl.set, later scenes opacity-gated; frame-0 correct). — WHY: no rebuild — dedup — WHERE: (reference only)",
@@ -440,7 +485,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_41",
+   "id": "kn_log_45",
    "source": "INGESTION_LOG",
    "title": "feicaiclub/video-spec-builder",
    "text": "(PART-B batch1) REFERENCE — interactive Claude/Cursor spec skill (5-phase Q&A) ≠ our autonomous factory. Idea-backlog (not built, no-bloat): finer component subtypes, per-scene validate checklist (component ≤4×), 9:16 layout rules, audio-timeline. — WHY: no rebuild — different paradigm — WHERE: (reference only)",
@@ -450,7 +495,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_42",
+   "id": "kn_log_46",
    "source": "INGESTION_LOG",
    "title": "every-app/open-seo",
    "text": "(PART-B batch2) PATTERN adopted — its keyword/rank/SERP tools all need PAID DataForSEO → SKIPPED (free/local rule). Built native free/local `.agents/skills/video-seo-metadata` (topic→title/desc/tags/hashtags) from its workflow shape. Fills a real gap (no video-SEO metadata before). — WHY: SEO: publish-ready metadata, no paid API — WHERE: `.agents/skills/video-seo-metadata/SKILL.md`",
@@ -462,7 +507,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_43",
+   "id": "kn_log_47",
    "source": "INGESTION_LOG",
    "title": "shanraisshan/claude-code-best-practice",
    "text": "(PART-B batch2) PATTERN adopted — REFERENCE (SIL more mature). Took \"Execution Contract + Fail-Closed Guardrail\" + when_to_use routing → hardened the 3 personas + capability-analyst. Skipped over-reach (new SOPs/templates/hooks). — WHY: SYSTEM: agents no longer improvise/silent-fail — WHERE: `1_AGENTS/personas/{researcher,scout,security-auditor}.md` · `.agents/skills/capability-analyst/SKILL.md`",
@@ -474,7 +519,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_44",
+   "id": "kn_log_48",
    "source": "INGESTION_LOG",
    "title": "(DEEP RE-DIG of batch 1&2 — user: \"repos hide a lot\")",
    "text": "Re-analyzed the 4 REFERENCE repos with the new SIL stage-2b DEEP-EXTRACTION. Real gems harvested: video-spec-builder → scene-tag vocab + pacing archetypes + validation rules + tag→component → `2_KNOWLEDGE/VIDEO_CRAFT_RULES.md`. gsap-skills → easing menu + CustomEase presets + stagger choreography + gsap.utils data-motion → same doc. open-seo → keyword-intent taxonomy + discovery workflow + title/desc/tags formulas → enriched `video-seo-metadata` skill. cc-best-practice → frontmatter fields (when_to_use/paths/model/context:fork) + safety-hook ideas = BACKLOG (harness-config, no-bloat). — WHY: confirms: dig deeper finds 5–15% hidden gold even in \"REFERENCE\" repos — WHERE: `2_KNOWLEDGE/VIDEO_CRAFT_RULES.md` · `.agents/skills/video-seo-metadata/SKILL.md`",
@@ -486,7 +531,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_45",
+   "id": "kn_log_49",
    "source": "INGESTION_LOG",
    "title": "multica-ai/andrej-karpathy-skills",
    "text": "(PART-B batch3) ADOPTED — Karpathy's 4 LLM-coding principles (think-before-coding, simplicity-first, surgical-changes, goal-driven) → `6_SOP/LLM_CODING_DISCIPLINE.md`. Fixed the rule: \"no LICENSE file\" ≠ no license (check manifest); no-license blocks vendor, NOT analysis — never skip without looking. — WHY: SYSTEM: agent discipline, reinforces no-bloat/surgical/verify — WHERE: `6_SOP/LLM_CODING_DISCIPLINE.md`",
@@ -498,7 +543,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_46",
+   "id": "kn_log_50",
    "source": "INGESTION_LOG",
    "title": "nidhinjs/prompt-master",
    "text": "(PART-B batch3, 5/5 files) ADOPTED — hardened `_gemini_script` with explicit role + GROUNDING (no fabricated stats/features) + brand-tone lock (Gemini hallucinates/drifts). Other gems (template library, prompt SOPs) = backlog. — WHY: CONTENT: cleaner, grounded scripts — WHERE: `4_BRAIN/make_video.py` (_gemini_script)",
@@ -510,7 +555,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_47",
+   "id": "kn_log_51",
    "source": "INGESTION_LOG",
    "title": "nicobailon/visual-explainer",
    "text": "(PART-B batch3, 100% skill) ADOPTED knowledge → VIDEO_CRAFT_RULES §6: depth tiers, min-width:0 overflow guard, scene-tag label (static CSS = seek-safe). REJECTED its `--i` CSS-@keyframes stagger (agent mislabelled seek-safe — wall-clock, desyncs our GSAP-seek). Mermaid/slide-engine = backlog. — WHY: FACTORY: card hierarchy + overflow safety — WHERE: `2_KNOWLEDGE/VIDEO_CRAFT_RULES.md`",
@@ -520,7 +565,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_48",
+   "id": "kn_log_52",
    "source": "INGESTION_LOG",
    "title": "EverMind-AI/EverOS",
    "text": "(PART-B batch4, 42/614 files, core memory paths) ADOPT-as-knowledge: its **Reflect & Consolidate** memory pattern → new SIL stage 10. **observability → BUILT-light batch10** (`4_BRAIN/factory_metrics.py` flight-recorder: 1 JSONL row/video, pass-rate/duration/size; `npm run factory:metrics`). Cascade-daemon / prompt-slots = still BACKLOG (heavy). #4 3-tier-fallback = SKIP-DUP (we have it). — WHY: SYSTEM: self-improvement loop — WHERE: `6_SOP/SELF_IMPROVEMENT_LOOP.md` (stage 10 + backlog note)",
@@ -533,7 +578,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_49",
+   "id": "kn_log_53",
    "source": "INGESTION_LOG",
    "title": "tuanminhhole/openclaw-skill-learning-memory",
    "text": "(PART-B batch4, 8/8 files = 100%) SKIP-DUP — a thinner version of our SIL (no vetting/security/dedup/audit). 1 gem extracted: **session-close reflection** → folded into SIL stage 10a. No code vendored. — WHY: SYSTEM: learn-loop habit — WHERE: `6_SOP/SELF_IMPROVEMENT_LOOP.md` (stage 10a)",
@@ -545,7 +590,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_50",
+   "id": "kn_log_54",
    "source": "INGESTION_LOG",
    "title": "datalab-to/lift",
    "text": "(PART-B batch4, 18/18 modules = 100%) SKIP-DUP — markitdown+gitingest already cover doc/repo ingestion. Unique = schema-driven PDF→JSON, but no current use-case + model-license risk for a commercial factory. BACKLOG: revisit only if data-viz content needs structured PDF extraction (HF backend, isolated skill). — WHY: flagged license risk — WHERE: (none — not adopted)",
@@ -555,7 +600,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_51",
+   "id": "kn_log_55",
    "source": "INGESTION_LOG",
    "title": "ArcReel/ArcReel",
    "text": "(PART-B batch5, ~70% targeted) REFERENCE-pattern. Most patterns (reference-image consistency, character design-sheets, cross-shot image anchoring, dialogue) = N/A to our faceless HTML engine → SKIP. The ONE transferable gem (CONVERGES with Toonflow): **two-stage script — plan the arc, then write scenes**. Re-implemented natively. — WHY: CONTENT: coherent, non-repetitive scenes — WHERE: `4_BRAIN/make_video.py` (`_gemini_outline`)",
@@ -567,7 +612,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_52",
+   "id": "kn_log_56",
    "source": "INGESTION_LOG",
    "title": "HBAI-Ltd/Toonflow-app",
    "text": "(PART-B batch5, targeted brain: scriptAgent+productionAgent, skipped 282MB Electron/assets) ADOPT-pattern: **two-stage decomposition** (director-plan → storyboard) → built native `_gemini_outline` (Stage 1 arc) feeding the existing scene writer (Stage 2). Emotion-0-10 / continuity-locks / mode-routing / multi-char dialogue = N/A or BACKLOG (our engine ≠ image-gen drama). — WHY: CONTENT: arc-driven script — WHERE: `4_BRAIN/make_video.py` (two-stage `_gemini_script`)",
@@ -579,7 +624,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_53",
+   "id": "kn_log_57",
    "source": "INGESTION_LOG",
    "title": "DietrichGebert/ponytail",
    "text": "(PART-B batch6/skills) REFERENCE — its \"lazy/reuse-ladder\" philosophy = what we already adopted via [[Karpathy LLM_CODING_DISCIPLINE]]. 1 micro-gem: **tagged-shortcut comments** (`# TODO(seosona):`) → LLM_CODING_DISCIPLINE §3. Its review/debt skills = DUP (capability-analyst + UPGRADE_BACKLOG) → not built. — WHY: SYSTEM: debt not silent — WHERE: `6_SOP/LLM_CODING_DISCIPLINE.md`",
@@ -591,7 +636,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_54",
+   "id": "kn_log_58",
    "source": "INGESTION_LOG",
    "title": "yaojingang/yao-meta-skill",
    "text": "(PART-B batch6/skills) REFERENCE — a full enterprise \"skill-OS\" (maturity tiers, governance scoring, blind A/B, Skill-IR, telemetry) = over-built for our ~20-skill solo factory. 1 lightweight gem: **skill-qualification gate** (\"is this even a skill?\") → capability-analyst BUILD pre-check. Heavy machinery revisit only at 100+ skills. — WHY: SYSTEM: anti skill-bloat — WHERE: `.agents/skills/capability-analyst/SKILL.md`",
@@ -603,7 +648,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_55",
+   "id": "kn_log_59",
    "source": "INGESTION_LOG",
    "title": "github/spec-kit",
    "text": "(PART-B batch6/skills) REFERENCE — spec→plan→tasks + constitution + test-first is a heavyweight SDD methodology; its disciplines are ALREADY covered by our SIL + LLM_CODING_DISCIPLINE (think→simplest→surgical→verify). Building its 3 template SOPs = bloat for a solo factory → declined. — WHY: discipline already covered — WHERE: (none — REFERENCE)",
@@ -613,7 +658,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_56",
+   "id": "kn_log_60",
    "source": "INGESTION_LOG",
    "title": "calesthio/OpenMontage",
    "text": "(PART-B batch7, user-flagged \"trending\" — FAN-OUT 3-agent deep dig: architecture+render+prompts, ~150 files, coverage stated per slice) **ADOPT-pattern**: enriched `_gemini_outline` with **hook patterns + narrative-structure variety + climax marking** (kills \"video giống nhau\") + VIDEO_CRAFT_RULES §7. **REFERENCE/BACKLOG** (over-build for solo 1-pipeline): declarative pipeline-manifests, stage-director skills, tool-registry/selector, checkpoint-resume, executable-playbook YAML, 5-aspect grammar, CHAI oversight, hero_moment render-flag. Image/character/Remotion/avatar = N/A (faceless HTML). Security clean. — WHY: CONTENT: varied non-formulaic arcs — WHERE: `4_BRAIN/make_video.py` (_gemini_outline), `2_KNOWLEDGE/VIDEO_CRAFT_RULES.md` §7",
@@ -625,7 +670,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_57",
+   "id": "kn_log_61",
    "source": "INGESTION_LOG",
    "title": "headroomlabs-ai/headroom",
    "text": "(PART-B batch4-extra) REFERENCE — token-compression middleware; agent hyped \"huge cost savings\" but N/A to us NOW: our news prompts are small + we moved to FREE local Ollama (token-cost=0). +60MB onnxruntime/ModernBERT to compress small free prompts = bloat. Micro-gem (must-keep regex for keyword prune) = BACKLOG, no dep. — WHY: not needed (small prompts, free-local) — WHERE: (none — REFERENCE)",
@@ -635,7 +680,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_58",
+   "id": "kn_log_62",
    "source": "INGESTION_LOG",
    "title": "DeusData/codebase-memory-mcp",
    "text": "(PART-B batch4-extra) SKIP — codebase knowledge-graph for IDEs/agents; wrong domain (we're a video factory, not a code-nav assistant). gitingest+markitdown already cover repo ingestion. — WHY: wrong domain — WHERE: (none)",
@@ -645,7 +690,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_59",
+   "id": "kn_log_63",
    "source": "INGESTION_LOG",
    "title": "mvanhorn/last30days-skill",
    "text": "(PART-B batch6 → BUILT batch10) **ADOPTED & WIRED**: entity-resolution + multi-source recency ranking → `discovery._fetch_github_trending()` — auto-queries `gh` per AI/dev topic for repos created in last N days, sorted by stars → self-feeds the queue (no static list). Verified live: found 9 fresh trending repos. Toggle SEOSONA_TREND. — WHY: FACTORY: autonomous content discovery — WHERE: `4_BRAIN/discovery.py` (`_fetch_github_trending`)",
@@ -657,7 +702,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_60",
+   "id": "kn_log_64",
    "source": "INGESTION_LOG",
    "title": "RAG/PDF-infra group (chroma · MinerU · chunkr · PixelRAG · Hyper-Extract · opendataloader-pdf)",
    "text": "(PART-B batch4) **all REFERENCE/SKIP** — vector-RAG / semantic-chunk / knowledge-graph / visual-retrieval / PDF-OCR infra that a faceless video factory doesn't use; markitdown+gitingest cover ingestion. Conditional backlog: MinerU OCR + opendataloader bounding-boxes IF we ever do infographics-from-PDF. No additive gem now. — WHY: ingestion already covered — WHERE: (none — REFERENCE)",
@@ -667,7 +712,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_61",
+   "id": "kn_log_65",
    "source": "INGESTION_LOG",
    "title": "AIDC-AI/Pixelle-Video",
    "text": "(PART-B batch8 \"full sweep\" — user \"làm full, biết đâu mỏ vàng\"; full-stack short-video engine) ~65% DUP w/ ours (two-stage, audio-sync, FFmpeg-concat, HTML-render, LLM-fallback) = confirms our architecture is sound. 1 cheap gem: **opening-diversity** (forbid same opening word ≥2×) → `_gemini_script` prompt. PipelineContext/Storyboard/FrameProcessor refactors = BACKLOG (don't refactor working code). Image-gen/ComfyUI/Streamlit = N/A. — WHY: CONTENT: less repetitive openings — WHERE: `4_BRAIN/make_video.py` (_gemini_script)",
@@ -679,7 +724,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_62",
+   "id": "kn_log_66",
    "source": "INGESTION_LOG",
    "title": "voocel/ainovel-cli",
    "text": "(PART-B batch8 → BUILT batch10) 2 gems built: (1) deterministic **`_lint_script`** (CTA·length·forbidden·English-leak·opening-diversity·visual-monotony·**placeholder-echo**); (2) **critic-correct loop** — draft trips serious lint → regenerate ONCE with feedback, keep cleaner (bounded, keep-best guards bad retries). Coordinator/episodic-memory = still BACKLOG. — WHY: CONTENT: self-correcting quality gate — WHERE: `4_BRAIN/make_video.py` (_lint_script + corrective loop)",
@@ -691,7 +736,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_63",
+   "id": "kn_log_67",
    "source": "INGESTION_LOG",
    "title": "ComposioHQ/awesome-claude-skills + garrytan/gstack",
    "text": "(PART-B batch8 catalog scan) REFERENCE — gstack patterns (sprint-loop/review/investigate) mostly DUP w/ our LLM_CODING_DISCIPLINE+SIL+capability-analyst+loop_guard; nothing to build now. Pointers noted for later: rampstackco Brand-Build SEO skills + Content-Research-Writer (fact-check) → future video-seo-metadata/news-maker upgrade. No vendoring (gstack 108MB, NO-LICENSE catalog). — WHY: discipline already covered — WHERE: (none — REFERENCE)",
@@ -701,7 +746,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_64",
+   "id": "kn_log_68",
    "source": "INGESTION_LOG",
    "title": "alexchan197611/ai_media_assistant",
    "text": "(user-flagged, 7-step gate) **REFERENCE — NOT adopted.** Closest sibling yet: local script→short-video for creators, **same voice engines (OmniVoice + Qwen3-TTS)**, FastAPI + separate render-worker + SQLite (UUID-per-sentence segment) + **FFmpeg** render. ~high DUP w/ our pipeline → confirms architecture sound; don't recreate (same call as [[Pixelle-Video]]). NOTE our HTML→browser render is a deliberate different path from their FFmpeg-concat. Gems: (1) **Qwen3-TTS** = a VN voice A/B candidate we don't have → REPO_WATCHLIST; (2) **per-sentence local-image-library matching** (emotion-based, no-repeat within project) + 4 caption styles (centered/scrolling/ancient/emotional) → IDEA-BACKLOG for a possible image-backed template archetype, GATED by brand (clean tech-editorial — same caution that rejected Pixelle's imagery). Impl internals not deep-read (README user-facing/Chinese); adoption unlikely per brand precedent — revisit only if image-backed template ever wanted. No code vendored. — WHY: closest competitor; validate architecture + harvest voice/caption ideas — WHERE: (none — REFERENCE; watchlist for Qwen3-TTS)",
@@ -711,7 +756,7 @@
    "date": "2026-07-01"
   },
   {
-   "id": "kn_log_65",
+   "id": "kn_log_69",
    "source": "INGESTION_LOG",
    "title": "nexu-io/html-video (STUDIO)",
    "text": "(user-flagged, screenshot of studio v0.7) **REFERENCE-pattern for a future dashboard \"Studio/Create\" view.** The render ENGINE lineage (hyperframes) is already OWNED (5_FRAMEWORK/hf_engine); what's NEW here is the browser STUDIO UI (`project-studio/`, served :3071): template gallery filterable by intent, frame-by-frame storyboard editor w/ inline per-frame KICKER/HEADLINE/SUB text binding, CLI-agent router, dual-audio panel (BGM mood-prompt + narration TTS), Export MP4, pluggable `render(input,ctx)` engine contract + content-graph IR. Same family + same engine + Apache-2.0 = the ideal UI blueprint. TENSION: faceless-autonomous vs human-frame-editing → adopt as an OPTIONAL human-oversight/create mode on the dashboard, not the autonomous default. Don't vendor the TS monorepo. — WHY: best-fit UI blueprint for create/preview/edit — WHERE: (none — REFERENCE; dashboard \"Studio\" view backlog)",
@@ -721,7 +766,7 @@
    "date": "2026-07-02"
   },
   {
-   "id": "kn_log_66",
+   "id": "kn_log_70",
    "source": "INGESTION_LOG",
    "title": "nexu-io/html-anything",
    "text": "(user-flagged) REFERENCE — agentic HTML editor, sibling to html-video. Mineable: (1) 75 HTML skill-templates across 9 surfaces (incl. office: OKR/finance/kanban/runbook) → candidates for the component/template library + dashboard card layouts; (2) 8-CLI-agent auto-detection pattern; (3) export-to-social (WeChat/X/Zhihu/PNG/HTML). Overlaps our library system → mine patterns by hand, don't vendor Next.js. — WHY: template + agent-detection patterns — WHERE: (none — REFERENCE)",
@@ -731,7 +776,7 @@
    "date": "2026-07-02"
   },
   {
-   "id": "kn_log_67",
+   "id": "kn_log_71",
    "source": "INGESTION_LOG",
    "title": "vanloctech/youwee",
    "text": "(user-flagged) REFERENCE / mostly-SKIP — yt-dlp GUI (Tauri) + AI summarize + Whisper subs + Telegram + plugins. ~DUP with what we already have: [[video-pipeline-upgrades]] yt_downloader + source_footage + PhoWhisper asr_router + hermes telegram_remote. Only possible gem = its 1800-site source list. Nothing to build. — WHY: download+ASR already covered — WHERE: (none — SKIP-DUP)",
@@ -741,7 +786,7 @@
    "date": "2026-07-02"
   },
   {
-   "id": "kn_log_68",
+   "id": "kn_log_72",
    "source": "INGESTION_LOG",
    "title": "OpenTalker/SadTalker",
    "text": "(user-requested) **ADOPTED → Engine #3: Portrait Avatar** (still photo + audio → lip-synced talking head). Audio-driven (correct for photo+voice; LivePortrait rejected = video-driven). Installed in ISOLATED venv `2_KNOWLEDGE/external_toolkits/.venv-sadtalker` (torch2.5+cu121, does NOT touch hermes env). Wrapper: `scripts/portrait_avatar.py` (photo+audio→clip, --still/--enhance/--size, auto 16k-wav). VERIFIED: art_10 photo + tabfm voice → 8s lip-synced clip (mouth+head animate, identity preserved). Weights ~1.2GB (256 model + mappings + gfpgan/facexlib) in SadTalker/checkpoints (gitignored). **Windows-modern-numpy fix chain (reusable):** (1) basicsr `torchvision.transforms.functional_tensor`→`functional`; (2) SadTalker src `np.float/np.int/np.bool`→`float/int/bool`; (3) coherent numpy<1.24 stack `numpy==1.23.5 scipy==1.10.1 scikit-image==0.21.0 (0.19.3 has no py3.11 wheel) scikit-learn==1.2.2 numba==0.57.1 llvmlite==0.40.1`. — WHY: photo→lipsync talking-head (lecturer avatar) — WHERE: `2_KNOWLEDGE/external_toolkits/SadTalker/` + `.venv-sadtalker/` + `scripts/portrait_avatar.py`",
@@ -751,7 +796,7 @@
    "date": "2026-07-02"
   },
   {
-   "id": "kn_log_69",
+   "id": "kn_log_73",
    "source": "INGESTION_LOG",
    "title": "DanielSWolf/rhubarb-lip-sync",
    "text": "(user-requested) **ADOPTED → Engine #4: Talking Mascot** (2D brand mascot lip-syncs to a SEOSONA voice, NO GPU). Rhubarb CLI (`-r phonetic` = language-independent → VN-safe) → viseme timings → Pillow paints a viseme-driven mouth over the mascot's covered smile → frames+voice → mp4. Wrapper `scripts/mascot_talk.py`. VERIFIED: Chi Quyet mascot + tabfm voice → 8s talking clip (mouth opens/closes in sync, on brand-light bg). Fits faceless brand better than a photorealistic stranger. Rhubarb binary in `2_KNOWLEDGE/external_toolkits/rhubarb/` (88MB, gitignored). GOTCHA: rhubarb `-o` needs the output DIR to exist first (\"ios_base::failbit\" = can't write output). — WHY: GPU-free talking brand mascot — WHERE: `scripts/mascot_talk.py` + `2_KNOWLEDGE/external_toolkits/rhubarb/`",
@@ -761,7 +806,7 @@
    "date": "2026-07-02"
   },
   {
-   "id": "kn_log_70",
+   "id": "kn_log_74",
    "source": "INGESTION_LOG",
    "title": "TMElyralab/MuseTalk",
    "text": "(user-requested, ATTEMPTED — **BLOCKED on Windows toolchain**) higher-quality/faster lip-sync than SadTalker (MIT, 4GB VRAM, 256px, Windows). Deps install OK (diffusers/transformers) but **mmcv (needed by mmpose/DWPose) has NO prebuilt wheel for torch2.5+cu121 → source build needs MSVC (not available)**. Unblock path = dedicated venv with torch2.1+cu121 (where mmcv 2.1 wheels exist) + MuseTalk weights (~several GB) + wrapper. DEFERRED — the 2 working engines (SadTalker photoreal + Rhubarb mascot) already cover both needs; MuseTalk = marginal upgrade, revisit if sharper lips wanted. — WHY: blocked: mmcv/Windows — WHERE: (repo cloned; not wired)",
@@ -771,7 +816,7 @@
    "date": "2026-07-02"
   },
   {
-   "id": "kn_log_71",
+   "id": "kn_log_75",
    "source": "INGESTION_LOG",
    "title": "facefusion/facefusion · lipku/LiveTalking · hecomi/uLipSync",
    "text": "(6-repo lip-sync analysis) all NOT adopted. **facefusion** = face swap/enhance; OpenRAIL-AS use-restrictions = risk for commercial factory; GFPGAN (in SadTalker) already covers face-enhance → SKIP. **LiveTalking** = real-time STREAMING digital human; SEOSONA is batch pre-render, not livestream → SKIP (revisit for live/interactive). **uLipSync** = Unity-only (C#), wrong stack → SKIP. — WHY: analysis of 6 avatar repos — WHERE: (none — REFERENCE/SKIP)",
@@ -781,7 +826,7 @@
    "date": "2026-07-02"
   },
   {
-   "id": "kn_log_72",
+   "id": "kn_log_76",
    "source": "INGESTION_LOG",
    "title": "KwaiVGI/LivePortrait",
    "text": "REJECTED for this use — **video-driven** (needs a driving performance video), not audio-driven → wrong fit for photo+voice→lipsync. Revisit only if we want video-to-video face reenactment. — WHY: wrong modality — WHERE: (none)",
@@ -791,7 +836,7 @@
    "date": "2026-07-02"
   },
   {
-   "id": "kn_log_73",
+   "id": "kn_log_77",
    "source": "INGESTION_LOG",
    "title": "nexu-io/open-design (re-dig)",
    "text": "(user re-flagged) already INGESTED 2026-06-27 (HyperFrames craft → 2_KNOWLEDGE/hyperframes/craft/). Re-reference to harvest any NEW palettes/transitions/motion added upstream since. No new vendor. — WHY: craft source may have grown — WHERE: `2_KNOWLEDGE/hyperframes/craft/` (existing)",
@@ -801,7 +846,7 @@
    "date": "2026-07-02"
   },
   {
-   "id": "kn_log_74",
+   "id": "kn_log_78",
    "source": "INGESTION_LOG",
    "title": "(user-flagged batch: 4 more repos triaged, README-scout)",
    "text": "**OmniRoute** (diegosouzapw, MIT, 8.9k★) = AI-gateway/router 236 providers + token-compression 15–95% + circuit-breaker. **BUILT the circuit-breaker gem** → `llm_engine._gemini_scenes` now skips a key that just hit 429/quota for a cooldown window (`SEOSONA_KEY_COOLDOWN_S`, default 300s) instead of re-hitting it first every call; ready keys tried first, tripped keys last-resort (never hard-fail). Test: `tests/test_llm_circuit_breaker.py` (4/4). Token-compression SKIPPED (small prompts + free Gemini/Ollama = cost ~0, same call as [[headroom]]). Gateway not vendored. **QwenPaw** (agentscope-ai, Apache-2.0, 20.4k★) = personal-agent platform; only gem = 3-layer memory (working/history/distilled) ≈ our memory → REFERENCE. **agency-agents** (msitarzewski, MIT, 122k★) = 232 personas; already in watchlist + made a video angle → REFERENCE (known). **local-coding-agent** (LongNgn204, **AGPL-3.0**, 11★) = MCP coding-agent for ChatGPT Web; wrong domain + copyleft → SKIP. — WHY: triage of user-shared links — WHERE: (none — all REFERENCE/SKIP)",
@@ -811,7 +856,7 @@
    "date": "2026-07-01"
   },
   {
-   "id": "kn_log_75",
+   "id": "kn_log_79",
    "source": "INGESTION_LOG",
    "title": "batch8 MAP-skips (daily-news-broadcast · NVIDIA/vid2vid · NVIDIA VSS · cjpais/handy · nano-banana-prompts · openwolf · looper · x-harness)",
    "text": "SKIP/REFERENCE by-MAP (no agent spent): empty(0MB/4★) · GAN-video-gen off-domain · enterprise VSS NOASSERTION · STT (have PhoWhisper) · image-gen prompts 330MB · token-compress (decided N/A) · small verify-loops (have). — WHY: filtered at MAP — WHERE: (none)",
@@ -821,7 +866,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_76",
+   "id": "kn_log_80",
    "source": "INGESTION_LOG",
    "title": "ant-design/ant-design",
    "text": "(PART-B batch6→batch8 CORRECTED — user: \"video là HTML, design áp dụng được chứ?\") React RUNTIME N/A, BUT design-CRAFT IS (components = HTML/CSS strings). MINED + ADOPTED (re-skinned brand, frame-verified): **layered 3-tier shadows** + **tabular-nums** + **star-pill shadow** → native_composer. Token-scale (radius/shadow/spacing seeds) = BACKLOG. Earlier \"SKIP wrong-stack\" was wrong. — WHY: FACTORY: premium card depth — WHERE: `4_BRAIN/native_composer.py` (_css design-craft block)",
@@ -833,7 +878,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_77",
+   "id": "kn_log_81",
    "source": "INGESTION_LOG",
    "title": "NVIDIA/SkillSpector",
    "text": "(PART-B batch9 \"full S+A sweep\" — THE gold of the sweep) ADOPT-pattern: skill/repo security scanner (68 patterns/17 cats). Re-implemented the cheap high-signal subset NATIVE (regex + simple AST, ~120 LOC, no-dep, offline) → **`scripts/security_scan.py`** (`npm run security:scan`). Catches prompt-injection · hidden-instruction (HTML/zero-width/unicode-tag) · secret-harvest · curl\\ — WHY: `scripts/security_scan.py`, SIL stage-3, capability-analyst — WHERE: bash · b64-exec · os.system/subprocess · credential-access → score+SAFE/CAUTION/DO_NOT_ADOPT. Tested (bad=100/DO_NOT_ADOPT 9 findings, clean=SAFE). Full framework (MCP/Docker/LangGraph/YARA/taint) = BACKLOG. Wired into SIL stage-3 + capability-analyst.",
@@ -843,7 +888,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_78",
+   "id": "kn_log_82",
    "source": "INGESTION_LOG",
    "title": "thedotmack/claude-mem",
    "text": "(PART-B batch9) SKIP-DUP/REFERENCE — Claude-Code IDE session-memory PLUGIN (hooks+daemon+Postgres+Chroma); over-build for headless factory. Core reflect/consolidate = already adopted from EverOS (stage-10); its \"type taxonomy\" = we already have (`type:` frontmatter). No new gem (85k★ ≠ fit). — WHY: IDE plugin, not headless — WHERE: (none — REFERENCE)",
@@ -853,7 +898,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_79",
+   "id": "kn_log_83",
    "source": "INGESTION_LOG",
    "title": "anthropics/claude-plugins-official + sickn33/antigravity-awesome-skills",
    "text": "(PART-B batch9 catalog scan) REFERENCE — official dir = IDE/LSP/dev tools (not video). antigravity 1700 skills: most DUP (eval/seo/content we have) or paid-service deps (Apify, Memories.ai, TranscriptAPI). Pointers noted for publish/discovery phase: youtube-seo-optimizer, seek-and-analyze-video, prompt-caching. No build now. — WHY: pointers for publish phase — WHERE: (none — REFERENCE)",
@@ -863,7 +908,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_80",
+   "id": "kn_log_84",
    "source": "INGESTION_LOG",
    "title": "batch9 MAP-skips (OmniClaw/NemoClaw/goclaw/hermes-agent etc. = agent-runtimes · skill-generator VN no-license · playwright-mcp · omni-agent · Vietnam_basemaps/timesfm/IPTV/games)",
    "text": "SKIP/REFERENCE by-MAP — agent-harness alternatives (we run on Claude Code, not adopting another runtime) + off-domain (geo/forecasting/IPTV/games). ~95 of 103 S+A off-domain filtered without spending agents. — WHY: off-domain / runtime-dup — WHERE: (none)",
@@ -873,7 +918,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_81",
+   "id": "kn_log_85",
    "source": "INGESTION_LOG",
    "title": "yusufkaraaslan/Skill_Seekers",
    "text": "(PART-B B-tier batch11) docs/repo→skill generator — mostly DUP (gitingest+markitdown+capability-analyst cover extraction). 1 cheap gem BUILT: **skill-quality linter** → `scripts/skill_lint.py` (`npm run skill:lint`) validates OUR skills' frontmatter/name/description/body. Tested: 43 skills all OK. Scan→bootstrap + AgentClient = REFERENCE/BACKLOG. — WHY: SYSTEM: skill-library gate — WHERE: `scripts/skill_lint.py`",
@@ -883,7 +928,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_82",
+   "id": "kn_log_86",
    "source": "INGESTION_LOG",
    "title": "Upload-Post/skill-autoshorts",
    "text": "(PART-B B-tier batch11) daily viral-clip pipeline (Whisper+Gemini+Upload-Post) — thinner than ours, NO-LICENSE→pattern-only. HOT.md learning-flywheel → **BUILT FREE** (`4_BRAIN/learn_flywheel.py`, `npm run factory:learn`): uses free per-render signals (verify-pass + lint-warns) not publish-analytics → ranks templates, `_rot` auto-drops weak ones. OODA loop closed; cycle-pick ≈ our processed-ledger (DUP); hook-overlay = DUP (HTML captions); inline frame-QA = we have eval_judge/evaluator. No cheap gem to build. — WHY: thinner/DUP, no-license — WHERE: (none — REFERENCE)",
@@ -895,7 +940,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_83",
+   "id": "kn_log_87",
    "source": "INGESTION_LOG",
    "title": "Unclecheng-li/AI-Animation-Skill",
    "text": "(PART-B B-tier batch11) REFERENCE/SKIP — HTML presentation SLIDES via CSS @keyframes (wall-clock) → NOT seek-safe for our paused-GSAP render. Motion patterns (orb-float≈our scblob, pulse-glow≈our scglow, explode/shake=off-brand for pro tech-news) = DUP/off-brand. No buildable gem. — WHY: CSS-keyframes slides, not seek-safe — WHERE: (none — REFERENCE)",
@@ -905,7 +950,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_84",
+   "id": "kn_log_88",
    "source": "INGESTION_LOG",
    "title": "C-tier sweep (741 repos, lowest 'Backlog' tier)",
    "text": "(PART-B final) **DRY** — top-25 relevant scouted: 15 off-domain (medical/tax/git-config/scrapers/TV-clients), 5 DUP (TTS/voice we have), 5 marginal (China-centric kits). 0 genuine gems. 1 marginal REFERENCE: **Huanshere/VideoLingo** (17k★, subtitle/translate/dub pipeline) — revisit ONLY if multilingual/dubbing expansion. Inventory mining CLOSED. — WHY: vein exhausted after S+A+B — WHERE: (none)",
@@ -915,7 +960,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_85",
+   "id": "kn_log_89",
    "source": "INGESTION_LOG",
    "title": "nateherkai/hyperframes-student-kit",
    "text": "(PART-B final keyword-sweep — last repo with any video-domain keyword) REFERENCE — HyperFrames learning kit; we already OWN the canonical engine (5_FRAMEWORK/hf_engine) + 97-block registry + open-design craft library. Derivative examples, can't-vendor (no-license), C-tier. Skim only if we ever want more template samples. — WHY: we own the source engine — WHERE: (none)",
@@ -925,7 +970,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_86",
+   "id": "kn_log_90",
    "source": "INGESTION_LOG",
    "title": "GuanYixuan/pyCapCut + pyJianYingDraft",
    "text": "(user-led: \"CapCut có nhiều SFX/transition/text-effect\") **ADOPTED+BUILT** `4_BRAIN/capcut_export.py` (`npm run capcut:export`, opt-in `SEOSONA_CAPCUT_EXPORT=1`): SEOSONA MP4 → editable **CapCut draft** so user embellishes with CapCut's native effect library. Uses pyCapCut (intl CapCut; pyJianYingDraft = China-only, skipped). Verified: generates valid draft (format version 360000 = matches machine's CapCut 8.9; clean schema-subset). CAVEAT: GUI-open in CapCut 8.9 NOT visually confirmed (computer-use was declined) — static evidence strong. — WHY: FACTORY: hand off CapCut project, not just MP4 — WHERE: `4_BRAIN/capcut_export.py`",
@@ -937,7 +982,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_87",
+   "id": "kn_log_91",
    "source": "INGESTION_LOG",
    "title": "CapCut ecosystem deep-dig (6 repos) — capcut-cli (MIT 124★), VectCutAPI (Apache 2k★), capcut-mate (Apache 1.3k★), opencut (MIT 60k★), capcut-ai-editor (MIT MCP), pyJianYingDraft",
    "text": "(user-led: \"đào vàng kỹ hơn\") **Hard finding: NO free+headless CapCut-effect render exists** — every path = CapCut GUI (manual/RPA-Windows-fragile) or PAID cloud (VectCutAPI license-gated). So harvest *knowledge*, apply natively. **ADOPTED+BUILT:** (1) SFX de-click (afade in/out, ffprobe-cached); (2) **scene-entrance transition variety** — `_entrance_tweens` rotates 4 brand-fit recipes/scene (slide-up / from-right / zoom-dissolve+headline-clip-wipe / from-left), mirrors the existing `_EXITS` rotation, seek-safe GSAP, frame-verified (5-scene render: all resolve to rest, text fully visible, no black frames). Done in the seek-render — NOT ffmpeg xfade (our render is one continuous seek-render, not concatenated clips). Both in `native_composer`, free/headless, **no CapCut**. **BACKLOG:** SFX sidechain-duck; more text-effect variety (word stagger / scale-pop); subtle flash accent; 6 re-skinned text templates; talking-head silence/dupe-detect + translate. **SKIP-DUP:** caption/karaoke (ours is Vietnamese-grammar smarter). **SKIP:** ~85% of effect catalog (anime/neon/retro/cute/dark = off-brand). capcut-cli verified on machine (doctor: detects CapCut 8.9 drafts + ffmpeg + whisper; tested ",
@@ -949,7 +994,7 @@
    "date": "2026-06-30"
   },
   {
-   "id": "kn_log_88",
+   "id": "kn_log_92",
    "source": "INGESTION_LOG",
    "title": "Knowledge-graph/\"second brain\" scan (user-led) — AgriciDaniel/claude-obsidian (Karpathy's \"LLM Wiki\" pattern), breferrari/obsidian-mind, tirth8205/code-review-graph, mmethodz/dreamgraph, kepano/obsidian-skills, safishamsi/graphify, Lum1104/Understand-Anything, abhigyanpatwari/GitNexus",
    "text": "(user: \"Second Brain không còn chỉ lưu trữ mà thành hệ thống AI làm việc cùng bạn — Obsidian, Karpathy Method\") REFERENCE-pattern only (license mixed/unclear, none free-local-fit as-is) — the SHARED insight across all of them: a knowledge graph should be QUERYABLE DATA an agent reads to work faster (code-review-graph claims 6.8–49× fewer tokens), not just a picture for humans. **ADOPT-pattern → BUILT natively**: `scripts/gen_knowledge_graph.py` (scans the real repo: SOPs/4_BRAIN modules/agents/skills/templates/components/effects → emits `2_KNOWLEDGE/knowledge_graph.json`) + `4_BRAIN/knowledge_graph.py` (query API: `find/neighbors/related_to/stats`) so capability-analyst/factory-strategist can traverse system structure instead of re-reading the whole repo each time. Fixes the earlier gap (SYSTEM_MAP.html graph was a hand-written static snapshot). **Extended (content layer):** `scripts/gen_knowledge_notes.py` → `2_KNOWLEDGE/knowledge_notes.json` (134 notes from INGESTION_LOG lessons + VIDEO_CRAFT_RULES + domain_skills + SOPs + flywheel) + `knowledge_graph.recall(query)` — agent retrieves what SEOSONA has LEARNED + WHY (in our own words), cross-linked to structure nodes. This is the \"",
@@ -961,7 +1006,7 @@
    "date": "2026-07-01"
   },
   {
-   "id": "kn_rej_89",
+   "id": "kn_rej_93",
    "source": "INGESTION_LOG",
    "title": "fishaudio/fish-speech",
    "text": "REJECTED: non-commercial license + torch 2.8 (breaks env)",
@@ -970,7 +1015,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_90",
+   "id": "kn_rej_94",
    "source": "INGESTION_LOG",
    "title": "coqui-ai/TTS",
    "text": "REJECTED: unmaintained (shut down) + no Vietnamese",
@@ -979,7 +1024,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_91",
+   "id": "kn_rej_95",
    "source": "INGESTION_LOG",
    "title": "RVC-Boss/GPT-SoVITS, OpenMOSS/MOSS-TTSD, voice-pro, voicebox",
    "text": "REJECTED: no Vietnamese",
@@ -988,7 +1033,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_92",
+   "id": "kn_rej_96",
    "source": "INGESTION_LOG",
    "title": "K07VN/capcut-tts-api",
    "text": "REJECTED: no LICENSE + reverse-engineered cloud API",
@@ -997,7 +1042,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_93",
+   "id": "kn_rej_97",
    "source": "INGESTION_LOG",
    "title": "WEIFENG2333/VideoCaptioner",
    "text": "REJECTED: GPL-3.0",
@@ -1006,7 +1051,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_94",
+   "id": "kn_rej_98",
    "source": "INGESTION_LOG",
    "title": "social-auto-upload, opencut, palmier-pro, capcut-cli, openreel",
    "text": "REJECTED: whole apps/editors or no license — reference only",
@@ -1015,7 +1060,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_95",
+   "id": "kn_rej_99",
    "source": "INGESTION_LOG",
    "title": "ToolJet, Prometheus",
    "text": "REJECTED: whole low-code/monitoring platforms — over-engineer a local log dashboard",
@@ -1024,7 +1069,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_96",
+   "id": "kn_rej_100",
    "source": "INGESTION_LOG",
    "title": "firecrawl, browser-use, Scrapling",
    "text": "REJECTED: heavy crawl/browser frameworks — native RSS fetch (requests+xml) is the right size",
@@ -1033,7 +1078,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_97",
+   "id": "kn_rej_101",
    "source": "INGESTION_LOG",
    "title": "MoneyPrinterTurbo, KrillinAI, autoshorts",
    "text": "REJECTED: full video pipelines — would conflict with native_composer (don't rebuild)",
@@ -1042,7 +1087,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_98",
+   "id": "kn_rej_102",
    "source": "INGESTION_LOG",
    "title": "gsap/anime/lottie skills (boraoztunc)",
    "text": "REJECTED: duplicate — SEOSONA already has the HyperFrames craft library",
@@ -1051,7 +1096,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_99",
+   "id": "kn_rej_103",
    "source": "INGESTION_LOG",
    "title": "awesome-seo (awesomelistsio/teles), awesome-ui (kevindeasis), awesome-digital-marketing (paulbradish)",
    "text": "REJECTED: **no LICENSE file** → not vendored (SOP step 2); referenced by link in `domain_skills/INDEX.md`",
@@ -1060,7 +1105,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_100",
+   "id": "kn_rej_104",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: coreyhaines31/marketingskills",
@@ -1069,7 +1114,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_101",
+   "id": "kn_rej_105",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: nidhinjs/prompt-master (re-dig)",
@@ -1078,7 +1123,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_102",
+   "id": "kn_rej_106",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: Souvic/videodubber · HITsz-TMG/VideoClaw · nazdridoy/kokoro-tts · google-research/tabfm",
@@ -1087,7 +1132,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_103",
+   "id": "kn_rej_107",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: nexu-io/html-video · vanloctech/youwee (re-flagged)",
@@ -1096,7 +1141,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_104",
+   "id": "kn_rej_108",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: nazdridoy/kokoro-tts (deep re-dig)",
@@ -1105,7 +1150,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_105",
+   "id": "kn_rej_109",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: GSAP SplitText (greensock/GSAP)",
@@ -1114,7 +1159,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_106",
+   "id": "kn_rej_110",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: AgriciDaniel/claude-youtube",
@@ -1123,7 +1168,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_107",
+   "id": "kn_rej_111",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: zeropointnine/tts-audiobook-tool · loserbcc/open-unified-tts · benbrandt/text-splitter",
@@ -1132,7 +1177,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_108",
+   "id": "kn_rej_112",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: dashed/whisperx-subtitles · ozten/CaptionsPlease · HITsz-TMG/VideoClaw",
@@ -1141,7 +1186,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_109",
+   "id": "kn_rej_113",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: nghimestudio/vietnormalizer",
@@ -1150,7 +1195,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_110",
+   "id": "kn_rej_114",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: amplifying-ai/awesome-generative-engine-optimization",
@@ -1159,7 +1204,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_111",
+   "id": "kn_rej_115",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: stroke-dashoffset chart strategy (react-minimal-pie-chart MIT · Peity MIT · CSS-Tricks progress-ring)",
@@ -1168,7 +1213,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_112",
+   "id": "kn_rej_116",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: Pixabay API (video+music) · Openverse (MIT) · trungtv/pyvi (MIT)",
@@ -1177,7 +1222,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_113",
+   "id": "kn_rej_117",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: NVIDIA NIM API (build.nvidia.com) — user key",
@@ -1186,7 +1231,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_114",
+   "id": "kn_rej_118",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: Pixabay (user key)",
@@ -1195,7 +1240,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_115",
+   "id": "kn_rej_119",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: stroke-dashoffset ring (react-minimal-pie-chart MIT · CSS-Tricks)",
@@ -1204,7 +1249,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_116",
+   "id": "kn_rej_120",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: publishing (gitroomhq/postiz AGPL · XavierZambrano/facebook-reels-api MIT)",
@@ -1213,7 +1258,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_117",
+   "id": "kn_rej_121",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: Google Trends \"Trending Now\" RSS + Autocomplete (keyless)",
@@ -1222,7 +1267,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_118",
+   "id": "kn_rej_122",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: GSAP SplitText mask API + kinetic recipes (zarazhangrui templates MIT = REFERENCE)",
@@ -1231,7 +1276,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_119",
+   "id": "kn_rej_123",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: stroke-dashoffset timeline (react-minimal-pie-chart pattern)",
@@ -1240,7 +1285,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_120",
+   "id": "kn_rej_124",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: Netflix/BBC timed-text standards + chetan-prime/subfixer (REF)",
@@ -1249,7 +1294,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_121",
+   "id": "kn_rej_125",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: section-card `divider` component",
@@ -1258,7 +1303,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_122",
+   "id": "kn_rej_126",
    "source": "INGESTION_LOG",
    "title": "2026-07-02",
    "text": "REJECTED: keplerlab/katna (MIT) + YouTube-Analytics own-channel + bgalbraith/bandits (Apache)",
@@ -1267,7 +1312,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_123",
+   "id": "kn_rej_127",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: hoquanghai/Auto-Create-Video (HyperFrames VN sibling)",
@@ -1276,7 +1321,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_124",
+   "id": "kn_rej_128",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: kadevin/ilab-gpt-conjure (GPT-image-2 WebUI)",
@@ -1285,7 +1330,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_125",
+   "id": "kn_rej_129",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: topviewai/ai-video-editor",
@@ -1294,7 +1339,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_126",
+   "id": "kn_rej_130",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: topviewai/skill",
@@ -1303,7 +1348,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_127",
+   "id": "kn_rej_131",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: topviewai/1000-AI-collection-tools",
@@ -1312,7 +1357,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_128",
+   "id": "kn_rej_132",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: LingyiChen-AI/AIComicBuilder",
@@ -1321,7 +1366,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_129",
+   "id": "kn_rej_133",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: alexmacarthur/typeit",
@@ -1330,7 +1375,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_130",
+   "id": "kn_rej_134",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: aagarwal1012/Animated-Text-Kit",
@@ -1339,7 +1384,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_131",
+   "id": "kn_rej_135",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: timoncool/videosos",
@@ -1348,7 +1393,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_132",
+   "id": "kn_rej_136",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: CameronFoxly/Ascii-Motion",
@@ -1357,7 +1402,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_133",
+   "id": "kn_rej_137",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: hans1801/hans-n8n · workflows/videos-stickman",
@@ -1366,7 +1411,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_134",
+   "id": "kn_rej_138",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: heygen-com/hyperframes (OUR render engine)",
@@ -1375,7 +1420,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_135",
+   "id": "kn_rej_139",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: remotion-dev/remotion + remotion-dev/skills + docs/assets",
@@ -1384,7 +1429,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_136",
+   "id": "kn_rej_140",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: heygen-com/hyperframes — DEEP dive (core engine, user-requested \"đào thật kỹ\")",
@@ -1393,7 +1438,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_137",
+   "id": "kn_rej_141",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: Remotion portability — SETTLED via remotion-to-hyperframes skill",
@@ -1402,7 +1447,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_138",
+   "id": "kn_rej_142",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: heygen-com/hyperframes — DEEPER dive (read primary sources, user: \"bạn có thực sự hiểu?\")",
@@ -1411,7 +1456,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_139",
+   "id": "kn_rej_143",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: greensock/gsap + greensock/gsap-skills",
@@ -1420,7 +1465,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_140",
+   "id": "kn_rej_144",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: ray-project/ray + heygen-com/ray",
@@ -1429,7 +1474,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_141",
+   "id": "kn_rej_145",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: HyperFrames music-to-video + GSAP MotionPath → BUILT (user-requested 3)",
@@ -1438,7 +1483,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_142",
+   "id": "kn_rej_146",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: remotion-dev/remotion + skills — DEEP re-dig (user: \"rất hay và rất cần\")",
@@ -1447,7 +1492,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_143",
+   "id": "kn_rej_147",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: Remotion backlog + MotionPath — BUILT 4 (user picked all)",
@@ -1456,7 +1501,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_144",
+   "id": "kn_rej_148",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: Spring presets → auto-directed entrances (user request)",
@@ -1465,7 +1510,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_145",
+   "id": "kn_rej_149",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: D:\\SEOSONA AI\\Video Template — FRAME-BY-FRAME (user: \"phân tích kỹ, rất nhiều tài nguyên quý\")",
@@ -1474,7 +1519,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_146",
+   "id": "kn_rej_150",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: Frame-study consolidation (user: \"gom tất cả thành 1 frame-study pipeline dùng được\")",
@@ -1483,7 +1528,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_147",
+   "id": "kn_rej_151",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: Video-Template coverage close-out (user: \"làm 1-3, không dark mode, dark→light\")",
@@ -1492,7 +1537,7 @@
    "verdict": "REJECTED"
   },
   {
-   "id": "kn_rej_148",
+   "id": "kn_rej_152",
    "source": "INGESTION_LOG",
    "title": "2026-07-03",
    "text": "REJECTED: Video-Template TRUE frame-by-frame (user: \"phân tích thật kỹ từng frame — element/card/motion/effect/animation/text/bố cục\")",
@@ -1592,6 +1637,18 @@
    "text": "Our render engine (`node_modules/hyperframes`, driven by `native_composer` → `node cli render`). What we tap vs what's available — so we don't re-mine and know what's on tap. **We USE:** `lint` (pre-render) + `render --format mp4`; our own HTML + GSAP seek-safe timeline + scene components + karaoke; light-brand; voice.mp3 audio. **Render knobs NOW wired (env, default = current behaviour):** `SEOSONA_RENDER_QUALITY` = draft|standard|high · `SEOSONA_RENDER_GPU=1` (NVENC, off by default) · `SEOSONA_RENDER_WORKERS` = N|auto. Also real (unused): `--resolution portrait-4k` (supersample), `--crf`, `--video-bitrate`, `--fps`. **Available but NOT adopted (with why):** - `beats` — detects music beats → `beats/<audio>.json`. Music-sync visual cuts. NOT adopted: our reveals are SPEECH-synced (informational content), and we pick BGM at mix-time AFTER the visual render → beat-sync would need a pipeline restructure + competes with speech-sync. Reference for future rhythm-driven content. - `validate` — runtime headless check (JS errors, missing assets, **contrast**). We run `lint` (static) only. Could add as a pre-render gate (+~10s Chrome pass) to catch light-on-light contrast; deferred (our rend",
    "kind": "craft",
    "links": []
+  },
+  {
+   "id": "kn_craft_11",
+   "source": "VIDEO_CRAFT_RULES",
+   "title": "12. Footage transitions & draw-on reveal (2026-07-08, WIRED — BSD-3 clean-room from salaheddinek/video-editing-py-script)",
+   "text": "Two native techniques for the FOOTAGE path (not the HTML→mp4 path, which already has GSAP entrances). Clean-room, no vendored code, no new dependency (PIL+numpy+ffmpeg+playwright, all present). **Footage transitions — `4_BRAIN/footage_transition.py`.** Physical clip-to-clip transitions (`make_transition`, `splice`, `montage`) that warp the tail frames of clip A + head frames of clip B into a **rotation** or **zoom** push, filling rotate/zoom-exposed edges by MIRRORING the frame (`mirror_pad`, np.pad reflect) instead of black bars. **BRAND RULE (non-negotiable):** content never slides sideways → only `zoom` + `rotate` kinds exist (no translation). Use as an occasional accent, not every cut. - **Where it plugs in:** the talking-head b-roll path only. Author a b-roll entry with `\"montage\": [src1, src2, …]` → talking_head_edit resolves the sources, builds ONE dynamic montage clip (zoom/rotate joins, kinds alternate) via `footage_transition.montage`, and uses it as a single `full`-mode b-roll source. No filter-graph surgery — the montage is one clip that flows through the existing overlay. Optional `\"trans_frames\"` (default 15) per join. - `mirror_pad` is reusable for Ken Burns / avatar",
+   "kind": "craft",
+   "links": [
+    "b_footage_transition",
+    "b_svg_draw_on",
+    "sm_element_maker"
+   ]
   },
   {
    "id": "kn_dk_0",
@@ -2244,6 +2301,16 @@
    ]
   },
   {
+   "id": "mod_2_SKILLS_element_maker_subject_zones",
+   "source": "2_SKILLS/element_maker/subject_zones.py",
+   "title": "subject_zones",
+   "text": "Module 2_SKILLS/element_maker/subject_zones.py. Subject-aware overlay placement — put elements/b-roll where the SUBJECT ISN'T, + a hard safe-area clamp. Clean-room harvest of the IDEA behind bachdyon/video-automator-skills `overlay-subject-placement` (PolyForm Noncommercial → technique only, no code) — but where that skill calls a PAID vision-LLM per frame, this finds the subject with zero new deps: the speaker is WHERE THE MOTION IS, so per-pixel temporal variance across a handful of sampled frames locates the subject region offline (ffmpeg+numpy). Adapts to a non-centred subject; degrades to the fixed top-band when footage is static / unreadable. Replaces element_picker's assume-centred fixed top-band with real gaps, and clamps any hand/LLM-authored element into the safe-area (the repo's hard rule: 1080x1920 → top100/left100/right100/bottom200). from subject_zones import detect_subject_box, safe_zones, clamp_to_safe box = detect_subject_box(\"footage.mp4\", 1080, 1920) # (x,y,w,h) px, or None zones = safe_zones(1080, 1920, box, tile_w=216, tile_h=216)",
+   "kind": "module",
+   "links": [
+    "sm_element_maker"
+   ]
+  },
+  {
    "id": "mod_2_SKILLS_image_sourcer_image_sourcer",
    "source": "2_SKILLS/image_sourcer/image_sourcer.py",
    "title": "image_sourcer",
@@ -2258,6 +2325,16 @@
    "source": "2_SKILLS/srt_maker/asr_router.py",
    "title": "asr_router",
    "text": "Module 2_SKILLS/srt_maker/asr_router.py. SEOSONA Video — ASR Router (single switchable path for speech → word timestamps). Mirrors voice_router: a primary engine with automatic backups, switch flow instantly via the SEOSONA_ASR env var. Every engine returns the SAME shape so the pipeline never changes: [{\"word\": str, \"start\": float, \"end\": float}, ...] Engines (primary first, rest are fallbacks): - phowhisper : VinAI PhoWhisper (Vietnamese-specialised, lowest WER on VI). [primary] - faster_whisper : CTranslate2 generic Whisper (fast, int8). [backup] - openai_whisper : reference openai-whisper (word_timestamps native). [backup] Switch: SEOSONA_ASR=faster_whisper (default: phowhisper) Model: SEOSONA_PHOWHISPER_MODEL=<CT2 PhoWhisper repo> · SEOSONA_ASR_DEVICE=cpu|cuda",
+   "kind": "module",
+   "links": [
+    "sm_srt_maker"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_srt_maker_sherpa_vn_engine",
+   "source": "2_SKILLS/srt_maker/sherpa_vn_engine.py",
+   "title": "sherpa_vn_engine",
+   "text": "Module 2_SKILLS/srt_maker/sherpa_vn_engine.py. SEOSONA Video — sherpa-onnx Vietnamese ASR engine (offline, CPU/ONNX). Adopted from welcomyou/sherpa-vietnamese-asr. Adds what the Whisper family lacks: a fully offline ONNX path plus optional speaker DIARIZATION and PUNCTUATION restoration. Returns the same shape as every other asr_router engine — [{\"word\",\"start\",\"end\"}, ...] — so it drops straight into the router chain. Honest fallback: returns None (never fake output) when `sherpa-onnx` or the model dir is absent. Env: SEOSONA_SHERPA_MODEL dir with the sherpa-onnx VN model (or bundled 7_ASSETS/models/sherpa-vn) SEOSONA_SHERPA_TYPE sense_voice | paraformer | transducer (default: sense_voice) SEOSONA_SHERPA_PUNCT dir with a sherpa-onnx punctuation model (optional)",
    "kind": "module",
    "links": [
     "sm_srt_maker"
@@ -2289,6 +2366,16 @@
    "source": "2_SKILLS/voice_cloner/omnivoice_engine.py",
    "title": "omnivoice_engine",
    "text": "Module 2_SKILLS/voice_cloner/omnivoice_engine.py. OmniVoice engine — the SEOSONA + CQA brand voice (k2-fsa/OmniVoice, local, VN-trained 8482h). Runs OmniVoice in its isolated torch-2.8 venv (`7_ASSETS/voice/.venv-omnivoice`) via subprocess — the main render venv is torch 2.5, so this mirrors the LoRA bridge pattern. Default clone reference = the cleaned Chí Quyết (CQA) voice; the SAME voice is used for both brands per the brand decision. Output is post-processed to read cleanly: internal long silences trimmed (no dead gaps) and loudness normalized. Returns the wav path, or None to let voice_router fall back to VieNeu.",
+   "kind": "module",
+   "links": [
+    "sm_voice_cloner"
+   ]
+  },
+  {
+   "id": "mod_2_SKILLS_voice_cloner_vn_text_frontend",
+   "source": "2_SKILLS/voice_cloner/vn_text_frontend.py",
+   "title": "vn_text_frontend",
+   "text": "Module 2_SKILLS/voice_cloner/vn_text_frontend.py. SEOSONA Video — Vietnamese text front-end (undertheseanlp/underthesea). Two jobs the TTS + subtitle stages were missing a real VN-aware layer for: - normalize_for_tts(text) : clean + normalize VN text and expand digit runs to spoken words so the TTS reads \"2025\" / \"15%\" naturally, not digit-by-digit. - split_for_subtitle(text) : sentence/segment split for clean subtitle line breaks. Honest fallback: if `underthesea` is not installed, normalization degrades to light regex cleanup and splitting falls back to punctuation — never raises, never fabricates.",
    "kind": "module",
    "links": [
     "sm_voice_cloner"
@@ -2520,6 +2607,16 @@
    ]
   },
   {
+   "id": "mod_4_BRAIN_footage_transition",
+   "source": "4_BRAIN/footage_transition.py",
+   "title": "footage_transition",
+   "text": "Module 4_BRAIN/footage_transition.py. Physical clip-to-clip transitions for the FOOTAGE-concat path (rotation / zoom), with mirror-pad edges. Clean-room harvest (BSD-3, salaheddinek/video-editing-py-script → `vid_transition.py`; see INGESTION_LOG 2026-07-08). The HTML→mp4 path already has rich GSAP entrances; the gap is the FOOTAGE engines (talking_head_edit, sourced Pexels b-roll) that concatenate already-rendered video where GSAP can't re-run — there, scene joins were only an opacity crossfade / hard cut. This adds a real directional transition warped from the tail frames of clip A + the head frames of clip B. Technique (learned, not copied): decode the overlap frames to PIL, warp each per an easing curve (A warps OUT while B warps IN), and fill the edges exposed by rotate/zoom by MIRRORING the frame (np.pad reflect) instead of black bars. Native PIL+numpy+ffmpeg — no MoviePy, no new dependency. BRAND RULE ([[effect-library]]): content never slides sideways → only `zoom` and `rotate` kinds are offered (no translation). Keep it an occasional accent, not every cut. python 4_BRAIN/footage_transition.py trans A.mp4 B.mp4 out.mp4 --kind zoom --frames 15 python 4_BRAIN/footage_transiti",
+   "kind": "module",
+   "links": [
+    "b_footage_transition"
+   ]
+  },
+  {
    "id": "mod_4_BRAIN_frame_study",
    "source": "4_BRAIN/frame_study.py",
    "title": "frame_study",
@@ -2733,6 +2830,16 @@
    ]
   },
   {
+   "id": "mod_4_BRAIN_svg_draw_on",
+   "source": "4_BRAIN/svg_draw_on.py",
+   "title": "svg_draw_on",
+   "text": "Module 4_BRAIN/svg_draw_on.py. SVG path-stroke \"draw-on\" reveal — the free, native stand-in for the PAID GSAP DrawSVGPlugin. Clean-room harvest (BSD-3, salaheddinek/video-editing-py-script → `svg_animator.py`; INGESTION_LOG 2026-07-08). That script strokes an SVG path on progressively in PIL. SEOSONA gets the same reveal for free with CSS `stroke-dashoffset` + the browser's exact `getTotalLength()` — no DrawSVGPlugin license, no svg.path dependency. KEY ENGINE FIT: native_composer renders via hyperframes, which SEEKS the timeline per frame — a wall-clock CSS/GSAP animation is NOT captured. So this bakes the reveal to a TRANSPARENT clip the same way `element_maker.render_element_clip` does: a paused animation driven by a deterministic `window.__seek(ms)`, screenshot per frame with playwright (`omit_background`), encoded to a lossless-alpha `.mov` (qtrle) that composites over footage exactly like the element layer. Seek-safe by construction. Our Lucide icons (stroke-based, fill=\"none\") are the ideal input; any stroked SVG works. python 4_BRAIN/svg_draw_on.py render 7_ASSETS/brand/icons/alarm-clock.svg out.mov --stroke \"#2A5BDA\" python 4_BRAIN/svg_draw_on.py demo 7_ASSETS/brand/icons/",
+   "kind": "module",
+   "links": [
+    "b_svg_draw_on"
+   ]
+  },
+  {
    "id": "mod_4_BRAIN_template_generator",
    "source": "4_BRAIN/template_generator.py",
    "title": "template_generator",
@@ -2775,7 +2882,7 @@
   }
  ],
  "meta": {
-  "generated": "2026-07-06T16:34:38",
-  "count": 281
+  "generated": "2026-07-11T15:41:41",
+  "count": 291
  }
 }

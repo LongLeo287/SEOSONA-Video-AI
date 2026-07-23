@@ -16,9 +16,8 @@ The SEOSONA Video factory makes maximum use of open source and the most advanced
 
 | Model / Library | Category | Capability Assessment |
 | :--- | :--- | :--- |
-| 🇻🇳 **`OmniVoice` (k2-fsa)** | AI Voice (Local · **PRIMARY engine**) | Vietnamese-native voice model (Apache-2.0, 8482h), clones the CQA brand voice; runs GPU in an isolated torch-2.8 venv. THE brand voice for both brands, via `voice_router.py`. |
-| 🇻🇳 **`VieNeu-TTS`** | AI Voice (Local · **backup**) | Vietnamese TTS/clone (CPU/ONNX). Used ONLY when OmniVoice can't run. |
-| ⏱️ **`OpenAI-Whisper`** | AI Analysis (ASR) | The `faster-whisper` build. Most critical in the Forced-Alignment step to export the `words.json` file containing millisecond timestamps for Karaoke. |
+| 🇻🇳 **`OmniVoice` (k2-fsa)** | AI Voice (Local · **the ONLY engine**) | Vietnamese-native voice model (code Apache-2.0; weights CC-BY-NC — owner-accepted risk, see `0_SETUP/MODELS.md`; 8482h), zero-shot + clones the CQA brand voice; runs GPU in the isolated torch-2.8 venv `7_ASSETS/voice/.venv-omnivoice`. THE brand voice for both brands, via `voice_router.py`. NO backup engine (2026-07-14): a failed synth returns None honestly. VieNeu / F5-TTS / edge-tts / kokoro / sherpa were all removed. |
+| ⏱️ **`PhoWhisper-large-ct2`** | AI Analysis (ASR · **ONE engine ONE model**) | VinAI PhoWhisper-large (kiendt CTranslate2 build, float16) on `faster-whisper`/CTranslate2, cuda auto-detect, via `2_SKILLS/srt_maker/asr_router.py` (overrides: `SEOSONA_PHOWHISPER_MODEL` / `SEOSONA_ASR_DEVICE`). Most critical in the Forced-Alignment step to export the `words.json` file containing millisecond timestamps for Karaoke. openai-whisper + sherpa-onnx paths removed; the defective phowhisper-medium-ct2 was deleted (2026-07-14). |
 | 🎬 **`moviepy`** | Video Editor | Joins Video + Audio blocks using static Python code. Used in combination with FFmpeg. |
 | 🕵️ **`yt-dlp`** | Download Tool | A cross-platform super-grabber, extracting Video/Audio source from YouTube, TikTok, and X without being blocked. |
 | 🐍 **`Pillow` / `BeautifulSoup4`** | Data Manipulation | Processes Pixel Arrays and parses the HTML DOM tree. |

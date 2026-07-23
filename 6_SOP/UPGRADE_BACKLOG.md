@@ -8,6 +8,7 @@ items below passed vetting and are worth building — prioritized by ROI ÷ risk
 - **F5-TTS backup voice** ❌ NOT built / removed — planned as f5_backup.py but never kept (base weights
   are CC-BY-NC non-commercial). Voice arch is now OmniVoice (primary) → VieNeu (backup); edge-tts + F5
   both removed. (Answer to "is F5 better?": for Vietnamese, NO — VieNeu is the backup.)
+  *2026-07-14 update: VieNeu removed too — OmniVoice is the ONLY voice engine, no backup (failed synth returns None).*
 
 ## High ROI, low risk — build next
 1. ✅ **Caption segmentation port** → `4_BRAIN/caption_segment.py` (talking_head_edit `smart_chunk`)
@@ -22,6 +23,7 @@ items below passed vetting and are worth building — prioritized by ROI ÷ risk
 4. ◻ **Multi-take pick** → NOT built (planned: a best_take.py under voice_cloner; ref-prep already = build_voice_ref.py)
    segment for the VieNeu reference; generate N takes, auto-pick best by speaker-embedding cosine
    (the metric that scored seosona_ref13 at 0.944). Reduces bad-take variance. Engine-agnostic.
+   *2026-07-14: VieNeu removed — if built, this applies to OmniVoice takes (still engine-agnostic).*
 
 ## Medium — build when the phase comes
 5. ✅ **Auto-publish framework** → `5_FRAMEWORK/publish/publisher.py` (gated, human-in-loop)
@@ -37,9 +39,10 @@ items below passed vetting and are worth building — prioritized by ROI ÷ risk
 ## Low / reference-only
 8. ✅ **License-first template manifest** → `2_KNOWLEDGE/scripts/template_manifest.py`
    component (input JSON-schema + SPDX/provenance) — makes components agent-readable + attribution clean.
-9. **sherpa-onnx VN ASR** (MIT engine): DEFER — 30M is ~10× lighter than PhoWhisper but no word
+9. ~~**sherpa-onnx VN ASR** (MIT engine): DEFER — 30M is ~10× lighter than PhoWhisper but no word
    timestamps + accuracy downgrade. Add as the LAST `asr_router` fallback only if a no-GPU/streaming
-   need appears. PhoWhisper stays primary.
+   need appears. PhoWhisper stays primary.~~ *2026-07-14: CLOSED — sherpa path removed; ASR is a
+   single PhoWhisper-large-ct2 engine with no fallback tiers.*
 
 ## Rejected (see INGESTION_LOG "Rejected")
 fish-speech (non-commercial + torch2.8) · coqui (dead, no VN) · GPT-SoVITS/MOSS/voice-pro/voicebox

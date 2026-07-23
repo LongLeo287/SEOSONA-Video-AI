@@ -107,4 +107,4 @@ To clone a video style safely:
 
 ## Current Gate State
 
-`SV-INT-VOICE-REFERENCE` is closed. The brand voice = the OmniVoice CQA clone (primary); **VieNeu is the only backup** when OmniVoice can't run. edge-tts / F5 / fish were removed (2026-06-29) — no external fallback.
+`SV-INT-VOICE-REFERENCE` is closed. The brand voice = the OmniVoice CQA clone — **the ONLY voice engine** (user decision 2026-07-14). VieNeu / edge-tts / F5 / kokoro / sherpa / fish were all removed — there is NO backup or fallback; a failed synth returns None honestly.

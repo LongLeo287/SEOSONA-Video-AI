@@ -52,12 +52,14 @@ The router automatically detects the input:
 - **Display/Pronunciation Split:** `4_BRAIN/news_video_standards.py` keeps the visible script and subtitles unchanged while creating a separate pronunciation script for TTS.
 - **English Term Pronunciation:** Approved terms such as `AI`, `SEO`, `GitHub`, `Obscura`, `OpenAI`, and `YouTube` are pronounced via lexicon, but remain correctly spelled on screen.
 - **Required Voice:** the SEOSONA brand voice = the OmniVoice-cloned Chí Quyết (CQA) voice, for BOTH brands.
-- **Engine:** `2_SKILLS/voice_cloner/voice_router.py` (`synthesize_voice`) — **OmniVoice PRIMARY → VieNeu BACKUP** (only when OmniVoice can't run). Single source of truth. F5-TTS / edge-tts / LoRA / fish all REMOVED (2026-06-29).
+- **Engine:** `2_SKILLS/voice_cloner/voice_router.py` (`synthesize_voice`) — **OmniVoice, the ONLY engine** (2026-07-14). NO backup: a failed synth returns None honestly. Single source of truth. VieNeu / F5-TTS / edge-tts / kokoro / sherpa / LoRA / fish all REMOVED.
 - **Output:** `8_WORKSPACE/<ProjectName>/.temp/voice.mp3`
 
 ### STEP 3: IDENTIFY TIMESTAMPS
-- Priority: VieNeu native word boundaries remapped to exact DISPLAY words (RULE #1).
-- ASR: `2_SKILLS/srt_maker/asr_router.py` (PhoWhisper → faster/openai-whisper) → word timing,
+- ASR word boundaries remapped to exact DISPLAY words (RULE #1).
+- ASR: `2_SKILLS/srt_maker/asr_router.py` — ONE engine ONE model: PhoWhisper-large-ct2
+  (kiendt, float16) on faster-whisper/CTranslate2, cuda auto-detect (overrides:
+  `SEOSONA_PHOWHISPER_MODEL` / `SEOSONA_ASR_DEVICE` only) → word timing,
   then `news_video_standards.align_tts_boundaries_to_display_words()`.
 - **Output:** sidecar `.srt` written next to the final mp4 by `native_composer`.
 

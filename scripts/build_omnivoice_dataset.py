@@ -167,12 +167,12 @@ def main():
 
     terms = [] if args.no_fix_terms else _load_terms(args.terms_map)
 
-    # Bilingual: PhoWhisper (primary) is Vietnamese-fine-tuned → it garbles English tech terms.
-    # For non-VI clips auto-route to the GENERIC multilingual Whisper (unless caller pinned SEOSONA_ASR).
-    if args.language != "vi" and "SEOSONA_ASR" not in os.environ:
-        os.environ["SEOSONA_ASR"] = "faster_whisper"
-        os.environ.setdefault("SEOSONA_WHISPER_SIZE", "small")  # better on EN tech terms than 'base'
-        print(f"[dataset] language={args.language} → ASR=faster_whisper (size={os.environ['SEOSONA_WHISPER_SIZE']})")
+    # 2026-07-14 single-ASR consolidation: PhoWhisper-large is the ONLY model. For a non-VI dataset
+    # build, transcripts may degrade on English speech — pin SEOSONA_PHOWHISPER_MODEL to a generic
+    # Whisper CT2 repo for that one run instead of keeping a second engine wired in.
+    if args.language != "vi":
+        print(f"[dataset] language={args.language}: single-ASR is PhoWhisper-large (VN-tuned). "
+              "For EN sources, set SEOSONA_PHOWHISPER_MODEL to a generic Whisper CT2 repo for this run.")
 
     import soundfile as sf
     out = os.path.abspath(args.out)

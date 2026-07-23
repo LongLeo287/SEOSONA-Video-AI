@@ -6,7 +6,11 @@ the main render venv is torch 2.5, so this mirrors the LoRA bridge pattern. Defa
 the cleaned Chí Quyết (CQA) voice; the SAME voice is used for both brands per the brand decision.
 
 Output is post-processed to read cleanly: internal long silences trimmed (no dead gaps) and loudness
-normalized. Returns the wav path, or None to let voice_router fall back to VieNeu.
+normalized. Returns the wav path, or None — OmniVoice is the ONLY voice engine (2026-07-14 decision),
+so None means the render handles the no-voice case honestly (no fallback).
+
+LICENSE NOTE: OmniVoice code is Apache-2.0 but the WEIGHTS are CC-BY-NC (Emilia training data — see
+the k2-fsa/OmniVoice model card); the owner accepted this risk for voice quality (Phase-0 benchmark).
 """
 import os
 import sys
@@ -169,7 +173,7 @@ def synthesize(text, audio_out, *, reference_audio=None, ref_text=None, language
             # ADAPTIVE SHRINK (kokoro-tts idea): a chunk that overflowed → re-split ~60% and retry. EVERY
             # sub-piece must succeed — check THIS chunk's own output, not the global `wavs` (the old check
             # `if not wavs` only tripped when the FIRST chunk failed, so a failed MIDDLE chunk was silently
-            # dropped → a missing narration section desynced from the captions). Fail over to VieNeu instead.
+            # dropped → a missing narration section desynced from the captions). Fail the synth instead.
             got = []
             for j, s in enumerate(_chunk_text(ch, max_chars=max(200, int(len(ch) * 0.6)))):
                 sw = os.path.join(_work, f"chunk_{i:03d}_{j:02d}.wav")

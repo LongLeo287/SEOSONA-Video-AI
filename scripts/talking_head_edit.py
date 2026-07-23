@@ -91,13 +91,13 @@ def _chunks(words, n):
     return [words[i:i + n] for i in range(0, len(words), max(1, n))]
 
 
-def build_ass(words, spec, W, H, chunk):
-    cap_bottom = int(spec.get("caption_bottom", 380))
-    cap_align = int(spec.get("caption_align", 2))     # 2=bottom-centre (default); 8=top, 5=mid-float
-    chunk = int(spec.get("caption_chunk", chunk))     # a spec can force ≤2-word captions (Seedance craft)
+def _collect_keywords(words, spec):
+    """The emphasis keyword set (spec.keywords ∪ auto_emphasis zoom_plan triggers), lower-cased.
+    Shared by the caption highlighter, the ASS bigword plate, AND the silhouette-occlusion path so
+    all three light up on exactly the same beats."""
     keywords = set(k.lower() for k in spec.get("keywords", []))
     if spec.get("auto_emphasis", True):               # SKILL-AUTO zoom_plan scoring → auto-highlight
-        try:                                          # punchy words (numbers/brands/pivots) in captions
+        try:                                          # punchy words (numbers/brands/pivots)
             import os as _os, sys as _sys
             _sys.path.insert(0, _os.path.join(ROOT, "4_BRAIN"))
             import beat_timing as _bt
@@ -107,6 +107,33 @@ def build_ass(words, spec, W, H, chunk):
                     keywords.add(trg)
         except Exception:
             pass
+    return keywords
+
+
+def _bigword_hits(words, spec, keywords):
+    """The emphasis-word occurrences the bigword layer fires on → list of (token, start, end+hold),
+    spaced ≥0.6s apart and capped. Shared by the ASS plate and the occlusion path so they agree."""
+    hold = float(spec.get("bigword_hold", 0.30))
+    cap = int(spec.get("bigword_max", 14))
+    hits, last_end, shown = [], -1.0, 0
+    for w in words:
+        tok = str(w.get("word", "")).strip()
+        key = tok.lower().strip(".,!?:;\"'")
+        if len(key) < 2 or key not in keywords:
+            continue
+        s, e = float(w["start"]), float(w["end"])
+        if s - last_end < 0.6 or shown >= cap:
+            continue
+        last_end = e; shown += 1
+        hits.append((tok, s, e + hold))
+    return hits
+
+
+def build_ass(words, spec, W, H, chunk):
+    cap_bottom = int(spec.get("caption_bottom", 380))
+    cap_align = int(spec.get("caption_align", 2))     # 2=bottom-centre (default); 8=top, 5=mid-float
+    chunk = int(spec.get("caption_chunk", chunk))     # a spec can force ≤2-word captions (Seedance craft)
+    keywords = _collect_keywords(words, spec)
     acc1 = ACCENT.get((spec.get("accent") or "cyan"), ACCENT["cyan"])
     cap_size = int(H * 0.030)        # ~58px on a 1920-tall frame
     card_size = int(H * 0.026)
@@ -174,32 +201,24 @@ def build_ass(words, spec, W, H, chunk):
     # look from the reference edit spec. Dependency-free (pure ASS): the plate is on Layer 0 and is
     # PREPENDED (drawn first → sits behind everything), lives in the upper zone away from the bottom
     # caption, and is translucent so the speaker reads as being in front of it.
-    #   NOTE: TRUE silhouette-occlusion (text masked by the speaker's outline) needs a per-frame person
-    #   matte (mediapipe/rembg) — not available in this env; that is a documented upgrade, not faked here.
-    if spec.get("bigword") and keywords:
+    #   TRUE silhouette-occlusion (the plate masked by the speaker's OUTLINE, so the word passes behind
+    #   the body) needs a per-frame subject matte — that is the opt-in `bigword_occlude` path in main()
+    #   (rembg). When it is active, `_bigword_occluded` is set and THIS flat ASS plate is suppressed so
+    #   the two don't double-draw. Otherwise the flat translucent plate below is the honest fallback.
+    if spec.get("bigword") and keywords and not spec.get("_bigword_occluded"):
         big_y = int(H * float(spec.get("bigword_y", 0.30)))
-        hold = float(spec.get("bigword_hold", 0.30))
         alpha = spec.get("bigword_alpha", "&H70&")     # ~56% transparent → a background plate, not a title
-        big_ev, last_end, shown = [], -1.0, 0
-        cap_max = int(spec.get("bigword_max", 14))     # don't paper the whole video with plates
-        for w in words:
-            tok = str(w.get("word", "")).strip()
-            key = tok.lower().strip(".,!?:;\"'")
-            if len(key) < 2 or key not in keywords:
-                continue
-            s, e = float(w["start"]), float(w["end"])
-            if s - last_end < 0.6 or shown >= cap_max:  # space them out; cap the count
-                continue
-            last_end = e
-            shown += 1
+        hits = _bigword_hits(words, spec, keywords)
+        big_ev = []
+        for tok, s, e in hits:
             big = _esc(tok).upper()
             # subtle cinematic grow on entry (\t scale) — reads as the word "arriving" behind the speaker
             big_ev.append(
-                f"Dialogue: 0,{_ts(s)},{_ts(e + hold)},Big,,0,0,0,,"
+                f"Dialogue: 0,{_ts(s)},{_ts(e)},Big,,0,0,0,,"
                 f"{{\\an5\\pos({W//2},{big_y})\\alpha{alpha}\\b1"
                 f"\\fscx104\\fscy104\\t(0,200,\\fscx112\\fscy112)\\fad(120,160)}}{big}")
         events = big_ev + events                        # prepend → the plate renders BEHIND captions/cards
-        print(f"[edit] bigword: {shown} layered keyword plate(s) behind the speaker")
+        print(f"[edit] bigword: {len(big_ev)} flat keyword plate(s) behind the captions (no matte)")
 
     # --- cards (header / bullet / term / stat) — templates cloned from the reference reels ---
     # Each Dialogue gets its own rounded pill box (Card style BorderStyle 3), so stacked rows read
@@ -436,6 +455,162 @@ def _resolve_broll(src):
     return None
 
 
+# --- STUDIO-AUTO-SHRINK (Studio Mode) -------------------------------------------------------------
+# When a card is on screen, the SPEAKER FRAME shrinks itself to open clean space for the card, then
+# smoothly restores to full frame when the card ends (LoHa "Studio Mode" craft). Pure geometry — the
+# whole footage frame is scaled UNIFORMLY (aspect preserved, the face is NEVER cropped) and anchored
+# to the face side; the freed zone opposite the face becomes the card zone. Works for 9:16 (speaker
+# up top, card below) AND 16:9 (speaker to one side, card opposite). Opt-in via spec.studio.auto_shrink
+# so specs that don't ask for it render exactly as before (backward compatible).
+def _studio_layout(spec, W, H):
+    """Return the studio geometry dict, or None when the feature is off.
+
+    Keys: layout('top'|'side'), s(uniform scale), sw/sh(scaled speaker px, even), sx/sy(anchor),
+    content_left/content_top(default card origin in the freed zone), bg, fade, radius."""
+    st = spec.get("studio") or {}
+    if not st.get("auto_shrink"):
+        return None
+    portrait = H >= W
+    layout = st.get("layout", "auto")
+    if layout == "auto":
+        layout = "top" if portrait else "side"
+    # how much of the frame the CARD zone claims (opposite the face) → the speaker keeps the rest
+    card_frac = min(0.6, max(0.25, float(st.get("card_frac", 0.40 if layout == "top" else 0.42))))
+    s = round(1.0 - card_frac, 4)                     # uniform scale of the WHOLE speaker frame
+    sw, sh = int(W * s), int(H * s)
+    sw -= sw % 2; sh -= sh % 2                         # even dims (yuv420p friendly)
+    m = int(min(W, H) * 0.03)                          # inner margin for the card origin
+    if layout == "top":                                # portrait: speaker top-centre, card BELOW
+        sx, sy = (W - sw) // 2, 0
+        content_left, content_top = int(W * 0.08), sh + m
+    else:                                              # landscape: speaker one side, card OPPOSITE
+        face_side = st.get("face_side", "left")
+        sy = (H - sh) // 2
+        if face_side == "right":
+            sx = W - sw
+            content_left, content_top = int(W * 0.06), int(H * 0.14)
+        else:
+            sx = 0
+            content_left, content_top = sw + m, int(H * 0.14)
+    return {"layout": layout, "s": s, "sw": sw, "sh": sh, "sx": sx, "sy": sy,
+            "content_left": content_left, "content_top": content_top,
+            "bg": st.get("bg", "0xEEF3FF"), "fade": float(st.get("fade", 0.3)),
+            "radius": int(st.get("radius", 0))}
+
+
+def _studio_windows(spec, dur):
+    """Merge the card time windows into the intervals where the speaker should be shrunk. A window
+    fully inside an INSET b-roll (which already reframes the speaker) is dropped to avoid double
+    treatment. Returns a list of (t0, t1)."""
+    st = spec.get("studio") or {}
+    wins = []
+    for c in spec.get("cards", []) or []:
+        t0 = max(0.0, float(c.get("t", 0)))
+        t1 = min(dur, t0 + float(c.get("dur", 6)))
+        if t1 > t0:
+            wins.append([t0, t1])
+    wins.sort()
+    gap = float(st.get("merge_gap", 0.6))
+    merged = []
+    for w in wins:
+        if merged and w[0] - merged[-1][1] <= gap:
+            merged[-1][1] = max(merged[-1][1], w[1])
+        else:
+            merged.append([w[0], w[1]])
+    inset_wins = [(float(b.get("t", 0)), float(b.get("t", 0)) + float(b.get("dur", 5)))
+                  for b in (spec.get("broll") or []) if b.get("mode") == "inset"]
+    out = []
+    for t0, t1 in merged:
+        if any(bt0 <= t0 and t1 <= bt1 for bt0, bt1 in inset_wins):
+            continue
+        out.append((round(t0, 2), round(t1, 2)))
+    return out
+
+
+# --- BIGWORD SILHOUETTE OCCLUSION (premium depth) -------------------------------------------------
+# The keyword plate sits BEHIND the speaker, masked by the subject's OUTLINE (text passes behind the
+# body → real 3D depth) instead of the flat ASS plate that floats over everything. This needs a
+# per-frame subject matte, produced by rembg. Layering: footage → keyword PNG → subject-cutout (matte
+# of the SAME footage, background transparent) → the cutout re-covers the speaker so the word is only
+# visible AROUND them. Opt-in via spec.bigword_occlude; if rembg is missing the caller keeps the flat
+# ASS plate (honest degrade — never faked).
+def _rembg_ok():
+    try:
+        import rembg  # noqa: F401
+        return True
+    except Exception:
+        return False
+
+
+def _render_bigword_png(text, out_png, W, H, hex_color="#2A5BDA", alpha=235):
+    """Render one large brand-coloured keyword to a transparent PNG (Be Vietnam Pro Black) for the
+    behind-speaker occlusion layer. Returns (path, (w, h)) or None on failure."""
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except Exception:
+        return None
+    txt = str(text).upper()
+    size = int(H * 0.12)
+    fpath = os.path.join(ROOT, "7_ASSETS", "brand", "fonts", "BeVietnamPro-Black.ttf")
+    try:
+        font = ImageFont.truetype(fpath, size)
+    except Exception:
+        try:
+            font = ImageFont.load_default()
+        except Exception:
+            return None
+    probe = ImageDraw.Draw(Image.new("RGBA", (8, 8)))
+    l, t, r, b = probe.textbbox((0, 0), txt, font=font)
+    tw, th = max(1, r - l), max(1, b - t)
+    pad = int(size * 0.30)
+    img = Image.new("RGBA", (tw + pad * 2, th + pad * 2), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    hx = hex_color.lstrip("#")
+    rgb = tuple(int(hx[i:i + 2], 16) for i in (0, 2, 4))
+    d.text((pad - l, pad - t), txt, font=font, fill=rgb + (int(alpha),))
+    try:
+        img.save(out_png)
+    except Exception:
+        return None
+    return out_png, img.size
+
+
+def _subject_cutout_clip(video, out_mov, span_start, span_end, fps):
+    """rembg per-frame subject matte over [span_start, span_end] → an ARGB .mov (qtrle) whose frame 0
+    aligns to span_start. Returns the path, or None on any failure. REAL occlusion enabler — CPU cost
+    is ~0.25s/frame, hence gated behind bigword_occlude + a frame cap by the caller."""
+    import tempfile, glob, shutil
+    try:
+        from PIL import Image
+        from rembg import remove, new_session
+    except Exception as e:
+        print(f"[edit] occlusion: rembg/PIL import failed ({e})")
+        return None
+    ff = nc._ffmpeg_bin()
+    dur = max(0.1, span_end - span_start)
+    tmp = tempfile.mkdtemp(prefix="thocc_")
+    try:
+        fpat = os.path.join(tmp, "f_%05d.png")
+        subprocess.run([ff, "-y", "-hide_banner", "-loglevel", "error", "-ss", f"{span_start:.3f}",
+                        "-t", f"{dur:.3f}", "-i", video, "-vf", f"fps={fps}", fpat],
+                       check=True, timeout=600)
+        frames = sorted(glob.glob(os.path.join(tmp, "f_*.png")))
+        if not frames:
+            return None
+        sess = new_session("u2net")
+        for fp in frames:
+            remove(Image.open(fp).convert("RGB"), session=sess).save(fp)   # overwrite → RGBA matte
+        subprocess.run([ff, "-y", "-hide_banner", "-loglevel", "error", "-framerate", f"{fps:.3f}",
+                        "-i", fpat, "-c:v", "qtrle", "-pix_fmt", "argb", out_mov],
+                       check=True, timeout=600)
+        return out_mov if os.path.exists(out_mov) else None
+    except Exception as e:
+        print(f"[edit] occlusion: cutout generation failed ({e})")
+        return None
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     ap = argparse.ArgumentParser(description="Footage + words + cards → finished talking-head video")
     ap.add_argument("--spec", required=True, help="cards.json")
@@ -480,6 +655,62 @@ def main():
 
     W, H, dur = _probe(video)
     print(f"[edit] footage {W}x{H} {dur:.1f}s | {len(words)} words | {len(spec.get('cards',[]))} cards")
+
+    # STUDIO-AUTO-SHRINK: compute the layout ONCE (needs W/H). When on, steer cards that don't set an
+    # explicit position into the freed zone so the card never lands on the shrunk speaker. Cards that
+    # DO set left/top keep them (manual override). No-op when spec.studio.auto_shrink is absent.
+    studio_geo = _studio_layout(spec, W, H)
+    if studio_geo:
+        for c in spec.get("cards", []) or []:
+            c.setdefault("left", studio_geo["content_left"])
+            c.setdefault("top", studio_geo["content_top"])
+
+    # BIGWORD SILHOUETTE OCCLUSION — resolve the WHOLE thing NOW (before build_ass) so the flat ASS
+    # plate is suppressed ONLY when the real behind-speaker matte actually succeeded. Needs rembg; any
+    # failure reverts to the flat plate (honest degrade — no fake depth). The heavy rembg matting runs
+    # here; the inputs section below only registers the already-produced cutout + keyword PNGs.
+    occ = {"active": False, "hits": [], "cut": None, "span0": 0.0}
+    if spec.get("bigword") and spec.get("bigword_occlude"):
+        if not _rembg_ok():
+            print("[edit] bigword_occlude requested but rembg NOT importable → keeping flat ASS plate "
+                  "(honest degrade, no fake depth)")
+        else:
+            try:
+                kw_occ = _collect_keywords(words, spec)
+                hits = _bigword_hits(words, spec, kw_occ)
+                if not hits:
+                    print("[edit] occlusion: no emphasis keyword hits → nothing to occlude (flat plate)")
+                else:
+                    span0 = max(0.0, min(h[1] for h in hits) - 0.2)
+                    span1 = min(dur, max(h[2] for h in hits) + 0.2)
+                    fps = 25.0
+                    cap = int(spec.get("occlude_frame_cap", 600))   # cost guard (~0.25s/frame CPU)
+                    if (span1 - span0) * fps > cap:
+                        fps = max(6.0, cap / max(0.1, span1 - span0))
+                    occdir = os.path.join(os.path.dirname(out), "_occ")
+                    os.makedirs(occdir, exist_ok=True)
+                    cutp = os.path.join(occdir, "subject_cut.mov")
+                    print(f"[edit] bigword_occlude ON — rembg present. Matting speaker "
+                          f"{span0:.1f}-{span1:.1f}s @ {fps:.0f}fps (~{int((span1-span0)*fps)} frames)…")
+                    cut = _subject_cutout_clip(video, cutp, span0, span1, fps)
+                    if not cut:
+                        print("[edit] occlusion: cutout failed → flat ASS plate (honest degrade)")
+                    else:
+                        big_hex = bk.BLUE if hasattr(bk, "BLUE") else "#2A5BDA"
+                        for hi, (tok, s, e) in enumerate(hits):
+                            png = os.path.join(occdir, f"big_{hi:02d}.png")
+                            r = _render_bigword_png(tok, png, W, H, big_hex)
+                            if r:
+                                _, (pw, ph) = r
+                                occ["hits"].append({"png": png, "t0": s, "t1": e, "x": (W - pw) // 2,
+                                                    "y": int(H * float(spec.get("bigword_y", 0.30))) - ph // 2})
+                        if occ["hits"]:
+                            occ.update({"active": True, "cut": cut, "span0": span0})
+                            spec["_bigword_occluded"] = True   # build_ass skips its flat plate
+                            print(f"[edit] REAL silhouette occlusion: {len(occ['hits'])} keyword(s) "
+                                  f"will pass BEHIND the speaker")
+            except Exception as _oe:
+                print(f"[edit] occlusion skipped ({_oe}) → flat ASS plate")
 
     # Optional pre-edit analysis: surface dead-air + duplicate takes so the operator can trim them.
     # (Advisory report — actual region-removal + re-timing is a separate step, not done here.)
@@ -626,15 +857,71 @@ def main():
         except Exception as _ee:
             print(f"[edit] elements skipped ({_ee})")
 
+    # BIGWORD SILHOUETTE OCCLUSION inputs: register the pre-produced ARGB subject cutout (offset to its
+    # span) + one keyword PNG per hit. The graph (below) overlays PNG-then-cutout so each keyword sits
+    # BEHIND the subject. All matting already happened before build_ass, so ASS suppression is accurate.
+    if occ["active"]:
+        occ["cut_idx"] = inputs.count("-i")
+        inputs += ["-itsoffset", f"{occ['span0']:.3f}", "-i", occ["cut"]]
+        for h in occ["hits"]:
+            h["idx"] = inputs.count("-i")
+            inputs += ["-loop", "1", "-i", h["png"]]
+
     # video chain: footage → b-roll/layout overlays → ass (cards/captions render ON TOP)
     ass_f = ass_path.replace("\\", "/").replace(":", "\\:")
     vparts = []
     n_inset = sum(1 for b in broll if b.get("_inset"))
-    if n_inset:                                       # pre-split the base so inset can reuse the speaker
-        vparts.append(f"[0:v]split={n_inset+1}[vbase]" + "".join(f"[insrc{k}]" for k in range(n_inset)))
+    studio_wins = _studio_windows(spec, dur) if studio_geo else []
+    n_studio = len(studio_wins)
+    n_split = n_inset + n_studio
+    if n_split:                                       # pre-split base: insets + studio panels reuse speaker
+        labels = "".join(f"[insrc{k}]" for k in range(n_inset)) + \
+                 "".join(f"[stsrc{k}]" for k in range(n_studio))
+        vparts.append(f"[0:v]split={n_split+1}[vbase]" + labels)
         cur = "vbase"
     else:
         cur = "0:v"
+
+    # STUDIO panels at the BASE level (cards/elements/b-roll composite ON TOP). For each card window
+    # the base cross-dissolves to a shrunk speaker (aspect preserved, no crop) anchored to the face
+    # side over a brand bg, opening the card zone, then dissolves back to full frame at the window end.
+    if studio_geo and studio_wins:
+        g = studio_geo
+        for k, (t0, t1) in enumerate(studio_wins):
+            fade = min(g["fade"], max(0.05, (t1 - t0) / 2 - 0.02))
+            vparts.append(f"color=c={g['bg']}:s={W}x{H}:r=25:d={dur:.2f}[sbg{k}]")
+            vparts.append(f"[stsrc{k}]scale={g['sw']}:{g['sh']}[ssp{k}]")
+            vparts.append(f"[sbg{k}][ssp{k}]overlay={g['sx']}:{g['sy']}[spanel{k}]")
+            vparts.append(f"[spanel{k}]format=rgba,"
+                          f"fade=t=in:st={t0:.2f}:d={fade:.2f}:alpha=1,"
+                          f"fade=t=out:st={max(t0, t1-fade):.2f}:d={fade:.2f}:alpha=1[spf{k}]")
+            vparts.append(f"[{cur}][spf{k}]overlay=0:0:"
+                          f"enable='between(t,{t0:.2f},{t1+0.05:.2f})'[sbo{k}]")
+            cur = f"sbo{k}"
+        print(f"[edit] studio-auto-shrink: {len(studio_wins)} window(s) "
+              f"layout={g['layout']} scale={g['s']:.2f} → speaker {g['sw']}x{g['sh']} @ ({g['sx']},{g['sy']})")
+
+    # BIGWORD SILHOUETTE OCCLUSION overlays (real depth): for each keyword window, draw the keyword PNG
+    # over the footage, then draw the ARGB subject cutout on top so the subject re-covers the word →
+    # the keyword passes BEHIND the speaker's outline. The cutout is a matte of the SAME footage so it
+    # stays in sync (input carries -itsoffset span0). Enabled only in the windows → matte edge-fringe is
+    # confined to the brief bigword beats. Placed at the base, under b-roll/elements/captions.
+    if occ["active"]:
+        nh = len(occ["hits"])
+        # the ONE cutout input is reused once per window → split it into N labelled copies first
+        vparts.append(f"[{occ['cut_idx']}:v]format=rgba,split={nh}" +
+                      "".join(f"[cut{j}]" for j in range(nh)))
+        for j, h in enumerate(occ["hits"]):
+            t0, t1 = h["t0"], h["t1"]
+            en = f"enable='between(t,{t0:.2f},{t1:.2f})'"
+            vparts.append(f"[{h['idx']}:v]format=rgba,"
+                          f"fade=t=in:st={t0:.2f}:d=0.16:alpha=1,"
+                          f"fade=t=out:st={max(t0, t1-0.18):.2f}:d=0.18:alpha=1[bw{j}]")
+            vparts.append(f"[{cur}][bw{j}]overlay={h['x']}:{h['y']}:{en}[bwo{j}]")
+            # subject cutout re-covers the speaker → the keyword sits behind the body
+            vparts.append(f"[bwo{j}][cut{j}]overlay=0:0:{en}[occ{j}]")
+            cur = f"occ{j}"
+        print(f"[edit] bigword occlusion composited: {nh} keyword(s) behind the speaker")
     ik = 0
     for i, b in enumerate(broll):
         t0 = float(b.get("t", 0)); t1 = t0 + float(b.get("dur", 5))

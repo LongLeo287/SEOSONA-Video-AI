@@ -3,7 +3,7 @@
 
     python scripts/talking_head_transcribe.py --video <mp4> --out <dir>
 
-Reuses the project ASR router (PhoWhisper primary → faster-whisper/openai-whisper).
+Reuses the project ASR router (PhoWhisper-large primary → generic faster-whisper backup).
 Writes <out>/words.json = [{"word","start","end"}, ...]. Then hand-edit brand spelling
 into <out>/words_fixed.json before running edit_footage (see the talking-head SKILL).
 """
@@ -26,13 +26,20 @@ def extract_audio(video, out_wav):
 def main():
     ap = argparse.ArgumentParser(description="Footage → word-level transcript (words.json)")
     ap.add_argument("--video", required=True, help="input footage .mp4")
-    ap.add_argument("--out", default="selfshot", help="output dir (gets words.json)")
+    ap.add_argument("--out", default=None,
+                    help="output dir (gets words.json); default = 8_WORKSPACE/<video-name>")
     ap.add_argument("--lang", default="vi")
     a = ap.parse_args()
 
     if not os.path.isfile(a.video):
         raise SystemExit(f"video not found: {a.video}")
-    out_dir = a.out if os.path.isabs(a.out) else os.path.join(os.getcwd(), a.out)
+    # Anchor the default under 8_WORKSPACE (repo-root-relative, NOT CWD) — a bare relative default
+    # ("selfshot") littered stray dirs wherever the script happened to be invoked from.
+    root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    default_out = os.path.join(root, "8_WORKSPACE",
+                               os.path.splitext(os.path.basename(a.video))[0])
+    out_dir = (a.out if os.path.isabs(a.out) else os.path.join(os.getcwd(), a.out)) if a.out \
+        else default_out
     os.makedirs(out_dir, exist_ok=True)
 
     wav = os.path.join(out_dir, "_audio.wav")

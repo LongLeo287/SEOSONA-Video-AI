@@ -8,7 +8,7 @@
 ## ✅ Engines (all present, free/local)
 | Engine | Role | Status |
 |--------|------|--------|
-| VieNeu (v3turbo) | Vietnamese TTS + voice clone | ✅ |
+| OmniVoice (k2-fsa, .venv-omnivoice) | Vietnamese TTS + CQA voice clone (the ONLY voice engine, 2026-07-14) | ✅ |
 | HyperFrames (node, `node_modules/hyperframes`) | HTML/CSS+GSAP → MP4 render | ✅ CLI present |
 | ffmpeg / ffprobe | mux, mix, atempo, encode | ✅ (bundled binaries) |
 | faster-whisper / PhoWhisper | ASR word timing (caption sync) | ✅ |

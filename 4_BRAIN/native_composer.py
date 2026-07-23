@@ -3,12 +3,12 @@
 
 Replaces the old hand-built `_write_hyperframes_render_project`. Given a list of
 display `segments` (script) + `scenes` (kicker / 2-tone heading / component+data),
-it: generates the VieNeu male voice, times captions to DISPLAY words (SOP RULE #1),
+it: generates the OmniVoice brand voice, times captions to DISPLAY words (SOP RULE #1),
 builds a SEOSONA-brand HyperFrames composition (persistent logo, kicker pill,
 2-tone heading, rich components, footer, karaoke pill, CTA outro), renders natively,
 then mixes SFX + normalises loudness.
 
-Reuses the existing, working stack: voice_router/vieneu_engine, srt_maker.asr_router,
+Reuses the existing, working stack: voice_router/omnivoice_engine, srt_maker.asr_router,
 news_video_standards (display↔pronunciation + RULE #1 alignment).
 """
 import os, sys, json, shutil, subprocess, html, re, time
@@ -119,10 +119,9 @@ def _load_profile(brand="seosona"):
     Falls back to a SEOSONA-shaped default if the file/brand is missing — the
     engine must never crash on a config gap."""
     default = {"logo": "Seosona_Logo.png",
-               "voice": {"engine": "vieneu", "model": "Gia Bảo",
-                         "reference_audio": "",  # news = stable preset, NOT a clone (clone = CQA only)
-                         "required_gender": "male", "required_accent": "southern",
-                         "fallback_voice": "vi-VN-NamMinhNeural"}}
+               "voice": {"engine": "omnivoice",
+                         "reference_audio": "7_ASSETS/voice/profiles/cqa_omnivoice_ref.wav",
+                         "required_gender": "male", "required_accent": "southern"}}
     try:
         import yaml
         with open(os.path.join(ROOT, "system_config.yaml"), encoding="utf-8") as f:
@@ -2384,7 +2383,7 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
             except Exception as _e:
                 print(f"[{comp[0]}] image source skipped ({_e})")
 
-    # 1) voice (pronunciation form) via VieNeu male
+    # 1) voice (pronunciation form) via OmniVoice (CQA brand clone)
     lex = dict(nvs.PRONUNCIATION_LEXICON); lex.update(lexicon or {})
     import re
     def pron(s):
@@ -2416,10 +2415,10 @@ def make_video(project_dir, segments, scenes, *, lexicon=None, output=None,
         vr.synthesize_voice(
             " ".join(pron(s) for s in segments), voice_path,
             brand=brand,
-            engine=vcfg.get("engine", "vieneu"),
+            engine=vcfg.get("engine", "omnivoice"),
             preset_voice=vcfg.get("model") or voice,
             reference_audio=ref,
-            fallback_voice=vcfg.get("fallback_voice", "vi-VN-NamMinhNeural"),
+            fallback_voice=vcfg.get("fallback_voice"),
             require_male_southern=(str(vcfg.get("required_gender", "")).lower() == "male"
                                    and str(vcfg.get("required_accent", "")).lower() == "southern"),
         )

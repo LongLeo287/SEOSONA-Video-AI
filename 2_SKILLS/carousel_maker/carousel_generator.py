@@ -727,4 +727,7 @@ if __name__ == "__main__":
             "image": ""
         }
     ]
-    generate_carousel_slides(demo_slides, "./test_carousel_v2", brand="seosona")
+    # Demo output goes under 8_WORKSPACE (anchored to the repo root, NOT the CWD) — a relative
+    # "./..." here littered a test_carousel_v2 dir at the repo root (stray-output bug class).
+    _demo_out = os.path.join(os.path.dirname(__file__), "..", "..", "8_WORKSPACE", "_demo", "carousel")
+    generate_carousel_slides(demo_slides, os.path.abspath(_demo_out), brand="seosona")

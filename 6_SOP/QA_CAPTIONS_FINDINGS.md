@@ -1,5 +1,10 @@
 # QA — Captions (RULE #1) & timing sync  ·  2026-06-29 (Phase 2, Task 4)
 
+> **2026-07-14 note:** the VieNeu engine referenced below has since been REMOVED — OmniVoice is now
+> the ONLY voice engine (no backup), and ASR is a single PhoWhisper-large-ct2 path via `asr_router.py`
+> (openai-whisper removed). The VieNeu clone-instability findings are kept as history; the robust
+> alignment fixes below are voice-engine-independent and remain in force.
+
 Harness: a one-off _qa_captions.py script (fast, no voice; since removed) + real renders + ASR probes.
 
 ## ✅ RULE #1 — SOLID (8/8 diverse scripts pass)

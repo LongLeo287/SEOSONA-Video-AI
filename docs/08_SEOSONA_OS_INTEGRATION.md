@@ -10,7 +10,7 @@ Located in the `scripts/` directory, these are the "cables" that communicate bet
 <br>
 
 - 🔌 **`seosona-project-bridge.cjs`**: The main network cable. Helps the OS recognize which Workflows this Repository has and command the launch of the corresponding Node.js flow.
-- 🐍 **`seosona-python.cjs`**: The Python cable. Helps the Node.js environment call Python commands (Whisper, VieNeu-TTS) smoothly without environment variable errors.
+- 🐍 **`seosona-python.cjs`**: The Python cable. Helps the Node.js environment call Python commands (PhoWhisper ASR, OmniVoice TTS) smoothly without environment variable errors.
 - 🏥 **`seosona_doctor.py` & `seosona-project-audit.cjs`**: The doctor duo. Always run a health check of the project (check for missing libraries, verify the Node version) before hitting the Render button.
 - 🏗️ **`4_BRAIN/native_composer.py`**: The native render engine — auto-generates HTML/CSS/GSAP, builds scenes + karaoke subtitles, and renders HyperFrames for the synthesized video flow (replacing the old retired `build_news_project.mjs`).
 

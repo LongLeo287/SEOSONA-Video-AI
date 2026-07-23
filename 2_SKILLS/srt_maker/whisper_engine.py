@@ -1,34 +1,6 @@
-import os
-import json
-try:
-    import whisper
-except ImportError:
-    print("Warning: openai-whisper not installed. Subtitle generation will fail.")
-
-def generate_word_level_data(audio_path, model_name="base"):
-    """
-    Generate word-level timestamp data using OpenAI Whisper.
-    Returns a list of dicts: [{"word": "Hello", "start": 0.0, "end": 0.5}, ...]
-    """
-    print(f"Loading Whisper model '{model_name}'...")
-    model = whisper.load_model(model_name)
-    
-    print(f"Transcribing {audio_path}...")
-    result = model.transcribe(audio_path, language="vi", word_timestamps=True)
-    
-    word_level_data = []
-    for segment in result.get("segments", []):
-        for word in segment.get("words", []):
-            word_info = {
-                "word": word["word"].strip(),
-                "start": word["start"],
-                "end": word["end"]
-            }
-            if word_info["word"]: # Filter empty words
-                word_level_data.append(word_info)
-            
-    print(f"Extracted {len(word_level_data)} words with timestamps.")
-    return word_level_data
+# NOTE (2026-07-14 engine consolidation): the openai-whisper ASR path (generate_word_level_data)
+# was removed — asr_router (faster-whisper/CT2) is the only transcription path. This module keeps
+# only the caption-segmentation util shared by the pipeline.
 
 def group_words_to_segments(word_level_data, max_words=7, max_duration=2.5):
     """
