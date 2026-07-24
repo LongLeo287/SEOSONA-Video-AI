@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SEOSONA Video — System Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+<style>
+:root{
+  --blue:#2A5BDA; --blue-ink:#1E4CC4; --coral:#E2724D; --green:#16A34A;
+  --ink:#0F172A; --ink2:#475569; --muted:#94A3B8; --bg:#F7F9FE; --card:#FFFFFF;
+  --cardb:#E4E9F5; --pale:#EEF2FF;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Be Vietnam Pro",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- header ---------- */
+header{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-ink) 100%);color:#fff;padding:56px 32px 42px}
+header .wrap{max-width:1180px;margin:0 auto}
+header h1{margin:0 0 8px;font-size:38px;font-weight:900;letter-spacing:-0.5px}
+header p.sub{margin:0 0 22px;font-size:17px;color:#DCE6FF;max-width:820px}
+.stats{display:flex;flex-wrap:wrap;gap:12px}
+.stat{background:#ffffff1f;border:1px solid #ffffff33;border-radius:14px;padding:12px 20px;min-width:120px}
+.stat b{display:block;font-size:26px;font-weight:900}
+.stat span{font-size:12px;color:#C9D8FF;text-transform:uppercase;letter-spacing:1px}
+
+/* ---------- nav ---------- */
+nav.toc{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--cardb);
+  box-shadow:0 2px 12px rgba(20,40,90,.06);overflow-x:auto;white-space:nowrap}
+nav.toc .wrap{max-width:1180px;margin:0 auto;padding:0 32px;display:flex;gap:4px}
+nav.toc a{display:inline-block;padding:14px 14px;font-size:13.5px;font-weight:700;color:var(--ink2);
+  border-bottom:3px solid transparent}
+nav.toc a:hover{color:var(--blue);text-decoration:none;border-bottom-color:var(--cardb)}
+
+/* ---------- layout ---------- */
+main{max-width:1180px;margin:0 auto;padding:8px 32px 80px}
+section{padding:44px 0;border-bottom:1px solid var(--cardb)}
+section:last-child{border-bottom:none}
+h2{font-size:26px;font-weight:900;margin:0 0 6px;letter-spacing:-0.3px}
+h2 .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  color:var(--blue);background:var(--pale);padding:4px 10px;border-radius:999px;margin-left:10px;vertical-align:middle}
+p.lede{color:var(--ink2);font-size:15.5px;max-width:840px;margin:0 0 22px}
+.card{background:var(--card);border:1px solid var(--cardb);border-radius:18px;padding:26px;box-shadow:0 10px 30px rgba(20,40,90,.05)}
+.mermaid{display:flex;justify-content:center}
+
+/* ---------- grid / tables ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.grid2,.grid3{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{background:var(--pale);color:var(--blue-ink);text-align:left;padding:10px 12px;font-weight:800;
+  position:sticky;top:0}
+td{padding:9px 12px;border-bottom:1px solid var(--cardb);vertical-align:top}
+tr:hover td{background:#FAFBFF}
+code{background:var(--pale);color:var(--blue-ink);padding:1px 6px;border-radius:6px;font-size:12.5px;
+  font-family:"SFMono-Regular",Consolas,monospace}
+.pill{display:inline-block;font-size:11px;font-weight:800;padding:2px 10px;border-radius:999px;letter-spacing:.3px}
+.pill.core{background:#FFE9E1;color:#C2410C}
+.pill.proc{background:#E1EBFF;color:var(--blue-ink)}
+.pill.feed{background:#DCFCE7;color:#15803D}
+.pill.meta{background:#F1F5F9;color:var(--ink2)}
+
+/* ---------- SOP accordions ---------- */
+details.cat{background:var(--card);border:1px solid var(--cardb);border-radius:14px;margin-bottom:12px;overflow:hidden}
+details.cat summary{cursor:pointer;padding:16px 20px;font-weight:800;font-size:15px;list-style:none;
+  display:flex;align-items:center;justify-content:space-between}
+details.cat summary::-webkit-details-marker{display:none}
+details.cat summary::after{content:"▾";color:var(--muted);transition:transform .2s}
+details.cat[open] summary::after{transform:rotate(180deg)}
+details.cat summary .count{font-size:12px;color:var(--muted);font-weight:600}
+details.cat .body{padding:0 20px 16px}
+
+/* ---------- dir cards ---------- */
+.dirgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
+.dircard{background:var(--card);border:1px solid var(--cardb);border-radius:14px;padding:16px 18px}
+.dircard h4{margin:0 0 4px;font-size:14.5px;font-weight:900;color:var(--blue-ink)}
+.dircard .role{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;
+  padding:2px 8px;border-radius:999px;margin-bottom:8px}
+.dircard p{margin:0;font-size:12.8px;color:var(--ink2)}
+.role.input{background:#E1EBFF;color:var(--blue-ink)}
+.role.processing{background:#FFE9E1;color:#C2410C}
+.role.output{background:#DCFCE7;color:#15803D}
+.role.feedback{background:#FEF3C7;color:#92400E}
+.role.meta{background:#F1F5F9;color:var(--ink2)}
+
+/* ---------- graph view ---------- */
+.graphbar{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.graphbar input{flex:1;min-width:220px;padding:10px 16px;border:1px solid var(--cardb);border-radius:999px;
+  font-family:inherit;font-size:14px;background:#fff}
+.graphbar input:focus{outline:2px solid var(--blue);outline-offset:1px}
+.graphbar button{padding:10px 18px;border:1px solid var(--cardb);border-radius:999px;background:#fff;
+  font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink2)}
+.graphbar button:hover{border-color:var(--blue);color:var(--blue)}
+#graphwrap{position:relative;border:1px solid var(--cardb);border-radius:18px;overflow:hidden;
+  background:#fff;box-shadow:0 10px 30px rgba(20,40,90,.05)}
+#graph{width:100%;height:720px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px;font-size:12px;color:var(--ink2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.graphhint{font-size:12px;color:var(--muted);margin-top:8px}
+
+footer{text-align:center;padding:30px;color:var(--muted);font-size:12.5px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>SEOSONA Video — System Map</h1>
+    <p class="sub">Bản đồ toàn cảnh nhà máy video tự động: cấu trúc thư mục, 2 render engine, script pipeline,
+      thư viện effect, vòng lặp học, và toàn bộ SOP/agent/skill hiện có. Dùng trang này để định vị module/SOP/pipeline
+      nào thuộc về đâu khi gom hệ thống cho gọn.</p>
+    <div class="stats">
+      <div class="stat"><b>10</b><span>Numbered dirs (0-9)</span></div>
+      <div class="stat"><b>2</b><span>Render engines</span></div>
+      <div class="stat"><b>39</b><span>SOP documents</span></div>
+      <div class="stat"><b>4</b><span>Library layers</span></div>
+      <div class="stat"><b>~40</b><span>4_BRAIN modules</span></div>
+      <div class="stat"><b>10+27</b><span>Agents + skills</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#bigpicture">Big Picture</a>
+    <a href="#engines">Render Engines</a>
+    <a href="#script">Script Pipeline</a>
+    <a href="#masterop">Master Operation</a>
+    <a href="#effectlib">Effect Library</a>
+    <a href="#loop">Learning Loop</a>
+    <a href="#agents">Agents &amp; Skills</a>
+    <a href="#catalog">Content Catalog</a>
+    <a href="#repoinv">Repo Inventory</a>
+    <a href="#sop">SOP Index</a>
+    <a href="#npm">NPM Entry Points</a>
+    <a href="#dirs">Directory Reference</a>
+    <a href="#graph-section" style="color:var(--coral)">🕸 Graph View</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= BIG PICTURE ================= -->
+<section id="bigpicture">
+  <h2>Big Picture <span class="tag">data flow</span></h2>
+  <p class="lede">10 thư mục đánh số (0-9) chia theo VAI TRÒ: input → xử lý (brain) → kiến thức hỗ trợ (đọc-only) →
+    output → feedback/học. Học vòng lại vào brain — đây là "nhà máy tự cải thiện".</p>
+  <div class="card">
+    <div class="mermaid">
+flowchart TD
+    subgraph INPUT["📥 INPUT"]
+        A0["0_INPUT_INBOX<br/>queue . feeds . sources"]
+        A1["0_SETUP<br/>bootstrap . env check"]
+    end
+    subgraph BRAINL["🧠 PROCESSING — THE BRAIN"]
+        B1["1_AGENTS<br/>10 agents (scrape/write/publish/...)"]
+        B4["4_BRAIN<br/>core engine — ~40 modules"]
+        B5["5_FRAMEWORK<br/>HyperFrames render (97 blocks)"]
+    end
+    subgraph SUPPORT["📚 SUPPORTING (read-only inputs)"]
+        C2K["2_KNOWLEDGE<br/>ingested knowledge + craft"]
+        C2S["2_SKILLS<br/>11 python skills"]
+        C6["6_SOP<br/>39 SOPs (rules)"]
+        C7["7_ASSETS<br/>templates . voice . audio . brand"]
+        C9P["9_PROMPTS<br/>MASTER_VIDEO_SPEC"]
+        C1C["1_CONFIG<br/>credentials . policy"]
+    end
+    subgraph OUT["📤 OUTPUT"]
+        D8["8_WORKSPACE<br/>per-video MP4 + SRT + thumb"]
+    end
+    subgraph FEEDBACK["🔁 FEEDBACK / LEARNING"]
+        E3["3_MEMORY<br/>metrics . learnings . state"]
+        E9D["9_DASHBOARD<br/>observability hub"]
+    end
+
+    A0 --> B4
+    A1 -.->|validates env| B4
+    B1 <--> B4
+    B4 --> B5
+    C2K -.-> B4
+    C2S -.-> B4
+    C6 -.-> B4
+    C7 -.-> B4
+    C9P -.-> B4
+    C1C -.-> B1
+    B5 --> D8
+    D8 --> E3
+    D8 --> E9D
+    E3 --> E9D
+    E3 ==>|learn and improve| B4
+    </div>
+  </div>
+</section>
+
+<!-- ================= ENGINES ================= -->
+<section id="engines">
+  <h2>Two Render Engines <span class="tag">dispatch</span></h2>
+  <p class="lede">Mọi input hội tụ về <code>workflow_router → video_engine</code>, rồi rẽ vào 1 trong 2 engine render.
+    Engine 1 (native_composer, TTS-based) là con đường chính cho mọi mode tự động; Engine 2 (talking-head) là
+    quy trình thủ công 2 bước cho footage giọng thật.</p>
+  <div class="card">
+    <div class="mermaid">
+flowchart LR
+    IN["Input: URL / text / file"] --> WR["workflow_router.py<br/>detect input type"]
+    WR --> VE["video_engine.py<br/>unified orchestrator"]
+    VE -->|create / scrape / repurpose / download| NC["native_composer.py<br/>ENGINE 1 — PRIMARY<br/>TTS + HyperFrames render"]
+    IN2["Real footage (manual)"] --> THT["talking_head_transcribe.py"]
+    THT --> THE["talking_head_edit.py<br/>ENGINE 2 — SECONDARY<br/>real voice + ASS captions"]
+    NC --> QS["quality_scorer.py"]
+    THE --> QS
+    QS --> EV["evaluator.py<br/>maker-checker (independent QA)"]
+    EV --> OUT["8_WORKSPACE / project /<br/>FINAL.mp4"]
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCRIPT PIPELINE ================= -->
+<section id="script">
+  <h2>Script Writing Pipeline <span class="tag">6 stages · all paths</span></h2>
+  <p class="lede">Đường viết kịch bản DUY NHẤT mà mọi path (Agent / GitHub one-shot / freeform / course) phải đi qua.
+    Không path nào được bỏ qua VERIFY (5 gate cứng).</p>
+  <div class="card">
+    <div class="mermaid">
+flowchart LR
+    S1["1. FETCH<br/>url/topic to SourceData"] --> S2["2. ANALYZE<br/>to KeyFacts"]
+    S2 --> S3["3. REASON<br/>to Angle"]
+    S3 --> S4["4. PLAN<br/>to Outline 5-9 scenes"]
+    S4 --> S5["5. WRITE<br/>to Script"]
+    S5 --> S6{"6. VERIFY<br/>5 hard gates"}
+    S6 -->|fail: rewrite| S5
+    S6 -->|pass| REN["to Render"]
+    </div>
+  </div>
+  <div class="grid2" style="margin-top:20px">
+    <div class="card">
+      <b>5 VERIFY gates (mọi path)</b>
+      <table style="margin-top:10px">
+        <tr><td>1</td><td>English leak</td><td class="pill meta">news_video_standards</td></tr>
+        <tr><td>2</td><td>Fact traceability (số/tên)</td><td class="pill meta">so KeyFacts</td></tr>
+        <tr><td>3</td><td>Fabricated / unsafe claim</td><td class="pill meta">content_moderation</td></tr>
+        <tr><td>4</td><td>Structure / busy heading</td><td class="pill meta">spec_lint</td></tr>
+        <tr><td>5</td><td>Repeated scene line</td><td class="pill meta">dup check</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <b>Ai chạy pipeline này</b>
+      <table style="margin-top:10px">
+        <tr><td><b>A</b></td><td>Scene-Composer (Claude agent) — chất lượng cao nhất</td></tr>
+        <tr><td><b>B</b></td><td>make_video.py &lt;github&gt; — one-shot</td></tr>
+        <tr><td><b>C</b></td><td>video_engine._create_from_text — freeform</td></tr>
+        <tr><td><b>D</b></td><td>course_planner — khoá học (SRT thật giữ nguyên)</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MASTER OPERATION ================= -->
+<section id="masterop">
+  <h2>Master Operation <span class="tag">end-to-end · 7 steps</span></h2>
+  <p class="lede">Luồng vận hành tổng của MỘT video, từ script đến học lại — đây là "sơ đồ nhà máy" cấp cao nhất
+    (<code>6_SOP/MASTER_OPERATION.md</code>).</p>
+  <div class="card">
+    <div class="mermaid">
+flowchart TD
+    M1["STEP 1 — Scripting / data intake"] --> M2["STEP 2 — Voice synthesis (TTS)"]
+    M2 --> M3["STEP 3 — Identify timestamps (ASR align)"]
+    M3 --> M4["STEP 4 — Scene generation (components + SFX)"]
+    M4 --> M5["STEP 5 — Video render (HyperFrames)"]
+    M5 --> M6["STEP 6 — Thumbnail"]
+    M6 --> M7["STEP 7 — Evaluate and Learn"]
+    M7 -.->|feeds back into| M1
+    </div>
+  </div>
+</section>
+
+<!-- ================= EFFECT LIBRARY ================= -->
+<section id="effectlib">
+  <h2>Effect Library Stack <span class="tag">4 layers</span></h2>
+  <p class="lede">Hệ thống thư viện tái sử dụng cho variety — mỗi lớp có selector riêng, xoay theo video để
+    không nhàm (<code>scripts/grow_library.py status</code>).</p>
+  <div class="card">
+    <div class="mermaid">
+flowchart TD
+    L1["Layer 1 — TEMPLATE<br/>20 archetypes . selector template_picker"] --> L2["Layer 2 — COMPONENT<br/>25 components (16 caption + 9 effect)"]
+    L2 --> L3["Layer 3 — BLOCK<br/>97 HyperFrames blocks . selector block_picker"]
+    L3 --> L4["Layer 4 — EFFECT<br/>6 transitions . 5 text-effects . 2 overlays<br/>5 exits . 3 motion-profiles . 8 sfx-categories<br/>selector effect_library, rotated per-video"]
+    </div>
+  </div>
+</section>
+
+<!-- ================= LEARNING LOOP ================= -->
+<section id="loop">
+  <h2>Learning Loop <span class="tag">OODA · closes the factory</span></h2>
+  <p class="lede">Nhà máy tự quan sát chất lượng đầu ra của chính nó và điều chỉnh rotation/template — đây là điều
+    khiến nó "tự cải thiện" thay vì chỉ lặp lại.</p>
+  <div class="card">
+    <div class="mermaid">
+flowchart LR
+    O["OBSERVE<br/>factory_metrics.jsonl"] --> R["ORIENT<br/>learn_flywheel + factory_ledger"]
+    R --> D["DECIDE<br/>factory_brain.py"]
+    D --> A["ACT<br/>drop weak templates / adjust rotation"]
+    A --> O
+    R -.->|visual_variety, brand_fit| EJ["eval_judge (Gemini/Ollama/agent)"]
+    EJ -.-> R
+    </div>
+  </div>
+</section>
+
+<!-- ================= AGENTS & SKILLS ================= -->
+<section id="agents">
+  <h2>Agents &amp; Skills <span class="tag">who does what · full list</span></h2>
+  <p class="lede">Ba lớp riêng biệt: <b>1_AGENTS</b> (10 agent runtime, dispatch bởi video_engine) ·
+    <b>1_AGENTS/personas</b> (5 persona tham chiếu, không tự chạy runtime — dùng bởi capability-analyst) ·
+    <b>.agents/skills</b> (27 skill đầy đủ, định nghĩa qua SKILL.md, dùng bởi Claude agent).</p>
+  <div class="grid2">
+    <div class="card">
+      <b>1_AGENTS — 10 runtime agents</b>
+      <table style="margin-top:10px">
+        <tr><td>scraper_agent</td><td>web content extraction</td></tr>
+        <tr><td>seo_writer_agent</td><td>scraped data → script</td></tr>
+        <tr><td>repurposer_agent</td><td>long video/SRT → shorts</td></tr>
+        <tr><td>carousel_writer_agent</td><td>social carousel copy</td></tr>
+        <tr><td>social_media_agent</td><td>platform captions (PAS)</td></tr>
+        <tr><td>analytics_feedback_agent</td><td>post-mortem → factory feedback</td></tr>
+        <tr><td>publisher_agent</td><td>upload YT/TikTok/FB/Drive</td></tr>
+        <tr><td>hermes_agent</td><td>Telegram remote control</td></tr>
+        <tr><td>seo_optimizer</td><td>YouTube metadata + JSON-LD</td></tr>
+        <tr><td>trend_jacking_agent</td><td>RSS trend → auto news video</td></tr>
+      </table>
+      <b style="display:block;margin-top:16px">1_AGENTS/personas — 5 reference personas</b>
+      <table style="margin-top:10px">
+        <tr><td>orchestrator_agent</td><td>orchestration logic reference</td></tr>
+        <tr><td>researcher</td><td>web research (facts, free, no API key)</td></tr>
+        <tr><td>scout</td><td>discovery/scouting reference</td></tr>
+        <tr><td>security-auditor</td><td>security audit reference</td></tr>
+        <tr><td>visual_designer</td><td>design/visual reference</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <b>.agents/skills — 27 skills (đầy đủ)</b>
+      <table style="margin-top:10px">
+        <tr><td>capability-analyst</td><td>chạy SELF_IMPROVEMENT_LOOP</td></tr>
+        <tr><td>embedded-captions</td><td>caption nhúng (rail/matting)</td></tr>
+        <tr><td>faceless-explainer</td><td>video giải thích không mặt</td></tr>
+        <tr><td>factory-strategist</td><td>chiến lược tối ưu nhà máy</td></tr>
+        <tr><td>general-video</td><td>fallback khả năng chung</td></tr>
+        <tr><td>graphic-overlays</td><td>ghép overlay đồ hoạ</td></tr>
+        <tr><td>heygen-native-api</td><td>tích hợp avatar HeyGen (paid, optional)</td></tr>
+        <tr><td>heygen-skills</td><td>skill riêng cho HeyGen</td></tr>
+        <tr><td>hyperframes / -animation / -cli / -core / -creative / -media / -registry</td><td>7 skill render/animation HyperFrames</td></tr>
+        <tr><td>motion-graphics</td><td>motion graphics composition</td></tr>
+        <tr><td>pr-to-video</td><td>Pull Request → video trực quan</td></tr>
+        <tr><td>product-launch-video</td><td>template video ra mắt sản phẩm</td></tr>
+        <tr><td>remotion-to-hyperframes</td><td>chuyển đổi Remotion → HyperFrames</td></tr>
+        <tr><td>scene-composer</td><td>topic/brief → template content</td></tr>
+        <tr><td>seosona-news-maker</td><td>điều phối pipeline tin tức</td></tr>
+        <tr><td>seosona-video-operator</td><td>giao diện vận hành thủ công</td></tr>
+        <tr><td>talking-head-video-editor</td><td>engine #2 editor</td></tr>
+        <tr><td>video-discovery</td><td>tự nạp việc mới từ feeds/sources</td></tr>
+        <tr><td>video-evaluator</td><td>maker-checker QA gate</td></tr>
+        <tr><td>video-seo-metadata</td><td>SEO metadata làm giàu</td></tr>
+        <tr><td>website-to-video</td><td>website → video</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATALOG: TEMPLATE/COMPONENT/ASSET ================= -->
+<section id="catalog">
+  <h2>Content Catalog <span class="tag">templates · components · assets</span></h2>
+  <p class="lede">Kho nội dung tái sử dụng mà scene-composer / native_composer kéo vào mỗi video. Đây là phần hay
+    bị bỏ sót khi nhìn kiến trúc — nhưng là nơi thực sự quyết định video "phong phú" hay "nhàm".</p>
+  <div class="grid2">
+    <div class="card">
+      <b>7_ASSETS/templates — 20 archetypes (JSON, chỉ cấu trúc, không nội dung)</b>
+      <table style="margin-top:10px">
+        <tr><td>ai-news-flash</td><td>benchmark-news</td><td>case-study</td></tr>
+        <tr><td>data-news</td><td>deep-tutorial</td><td>faq</td></tr>
+        <tr><td>insight-explainer</td><td>launch</td><td>listicle-top5</td></tr>
+        <tr><td>myth-buster</td><td>opinion-insight</td><td>quick-tip</td></tr>
+        <tr><td>repo-showcase</td><td>resource-list</td><td>seo-explainer</td></tr>
+        <tr><td>tool-walkthrough</td><td>transformation</td><td>trend-alert</td></tr>
+        <tr><td>tutorial-gittree</td><td>versus-deep</td><td></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <b>native_composer — 23 scene component kinds</b>
+      <table style="margin-top:10px">
+        <tr><td>alert</td><td>badges</td><td>bars</td><td>bignum</td></tr>
+        <tr><td>callout</td><td>chart</td><td>checklist</td><td>chiprow</td></tr>
+        <tr><td>compare</td><td>cta</td><td>feature</td><td>filetree</td></tr>
+        <tr><td>gittree</td><td>hub</td><td>icongrid</td><td>lower-third</td></tr>
+        <tr><td>mockup</td><td>quote</td><td>repo</td><td>stats</td></tr>
+        <tr><td>steps</td><td>terminal</td><td>tip</td><td></td></tr>
+      </table>
+      <p style="margin-top:10px;font-size:12.5px;color:var(--ink2)">Khác với <b>HyperFrames registry</b>
+        (5_FRAMEWORK/hf_engine) — 97 block + 25 component riêng, dùng cho block-overlay (cinematic-zoom,
+        light-leak, data-chart...), không phải scene component của native_composer.</p>
+    </div>
+  </div>
+  <div class="grid3" style="margin-top:16px">
+    <div class="card">
+      <b>7_ASSETS/audio — SFX + BGM</b>
+      <table style="margin-top:10px">
+        <tr><td>SFX</td><td>17 file · 7 nhóm (impact/pops/riser/transition/transitions/typing/ui)</td></tr>
+        <tr><td>BGM</td><td>4 mood (tech_ambient/news/insight/upbeat)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <b>7_ASSETS/voice — reference/profile</b>
+      <table style="margin-top:10px">
+        <tr><td>seosona_ref13.wav</td><td>clone tốt nhất (0.944)</td></tr>
+        <tr><td>cqa_omnivoice_ref.wav</td><td>CQA brand voice</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <b>2_KNOWLEDGE/domain_skills — 17 SKILL.md</b>
+      <table style="margin-top:10px">
+        <tr><td colspan="2">ogilvy · copywriting · copy-editing · seo-audit · programmatic-seo · schema-markup ·
+          page-cro · competitor-alternatives · content-strategy · brand · design-system · ui-styling ·
+          frontend-design · web-design-guidelines · banner-design · make-interfaces-feel-better · stop-slop</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REPO INVENTORY (KNOWLEDGE/INGESTION MANAGEMENT) ================= -->
+<section id="repoinv">
+  <h2>Repo Inventory <span class="tag">1476 repos · knowledge/ingestion management</span></h2>
+  <p class="lede">Nguồn: <code>repo_inventory_classified_tiered_updated.xlsx</code> (1476 repo đã phân loại/tier) đối
+    chiếu với <code>2_KNOWLEDGE/INGESTION_LOG.md</code> — trả lời "đã khai thác gì từ ~1500 repo, còn gì giá trị
+    chưa đụng tới". Đây là lớp quản lý cho phía KIẾN THỨC của nhà máy (bổ sung cho kiến trúc/pipeline ở trên).</p>
+
+  <div class="card" style="background:linear-gradient(135deg,#FFF7ED,#FFFFFF);border-color:#FDBA74">
+    <b style="color:#C2410C">⚠ Phát hiện đáng chú ý — repo CỦA BẠN chưa khai thác</b>
+    <p style="margin:8px 0 0;font-size:13.5px;color:var(--ink2)">Trong Top-Priority (S-Core, chưa xử lý), owner
+      <code>LongLeo287</code> đứng ĐẦU bảng với 5 repo Priority Score 95–100: <code>OmniClaw</code> (100),
+      <code>SEOSONA</code>/<code>SEOSONA-OS</code>/<code>seo-tool</code>/<code>aios-local</code> (95). Đây khớp với
+      backlog đã ghi trong memory phiên trước ("mine the user's own LongLeo287 repos — needs access, may be private").
+      27 repo LongLeo287 tổng cộng đều Tier S-Core, gồm cả <code>SEOSONA-Video-AI</code> — có thể là bản khác của
+      chính project này. Đáng làm sớm.</p>
+  </div>
+
+  <div class="stats" style="margin:20px 0 0;flex-wrap:wrap">
+    <div class="stat" style="background:var(--pale);border-color:var(--cardb)"><b style="color:var(--ink)">1476</b><span style="color:var(--ink2)">Tổng repo</span></div>
+    <div class="stat" style="background:var(--pale);border-color:var(--cardb)"><b style="color:var(--ink)">57</b><span style="color:var(--ink2)">Đã xử lý (log)</span></div>
+    <div class="stat" style="background:var(--pale);border-color:var(--cardb)"><b style="color:#15803D">25</b><span style="color:var(--ink2)">BUILT</span></div>
+    <div class="stat" style="background:var(--pale);border-color:var(--cardb)"><b style="color:var(--blue-ink)">16</b><span style="color:var(--ink2)">REFERENCE</span></div>
+    <div class="stat" style="background:var(--pale);border-color:var(--cardb)"><b style="color:var(--muted)">11</b><span style="color:var(--ink2)">SKIP</span></div>
+    <div class="stat" style="background:var(--pale);border-color:var(--cardb)"><b style="color:#DC2626">5</b><span style="color:var(--ink2)">REJECTED</span></div>
+    <div class="stat" style="background:var(--pale);border-color:var(--cardb)"><b style="color:#C2410C">190</b><span style="color:var(--ink2)">Top-Priority chưa đụng</span></div>
+  </div>
+  <p class="graphhint">57 = match nghiêm ngặt owner+name với INGESTION_LOG (đã tự kiểm + sửa lỗi ghép nhầm tên
+    trùng, vd "boraoztunc/skills" ≠ 11 repo khác cũng tên "skills"). Ngoài ra ~103 repo được lướt nhanh (MAP-scout,
+    batch9) + 741 repo C-tier quét sơ (DRY, 0 gem) — không tính là "đã xử lý sâu". 13 ingestion thật khác đến từ
+    kênh ngoài file này (vd. boraoztunc/skills, google/agents-cli).</p>
+
+  <details class="cat" open style="margin-top:16px">
+    <summary>17 Category — tổng vs. đã xử lý <span class="count">coverage</span></summary>
+    <div class="body"><table>
+      <tr><th>Category</th><th>Tổng repo</th><th>S-Core</th></tr>
+      <tr><td>AI Agent / Agent Harness</td><td>451</td><td>20</td></tr>
+      <tr><td>Misc / Unclear</td><td>174</td><td>5</td></tr>
+      <tr><td>LLM Infra / Inference / Routing</td><td>141</td><td>2</td></tr>
+      <tr><td>Frontend / UI / Design</td><td>120</td><td>8</td></tr>
+      <tr><td>RAG / Knowledge / Memory</td><td>108</td><td>10</td></tr>
+      <tr><td>Content / Video / Audio / Image AI</td><td>87</td><td>31</td></tr>
+      <tr><td>Agent Skills / Prompt Ops</td><td>78</td><td>10</td></tr>
+      <tr><td>DevOps / Cloud / Database</td><td>65</td><td>0</td></tr>
+      <tr><td>Web Scraping / Browser Automation</td><td>48</td><td>2</td></tr>
+      <tr><td>Security / Pentest / OSINT</td><td>44</td><td>1</td></tr>
+      <tr><td>Mobile / Desktop / OS Utility</td><td>44</td><td>1</td></tr>
+      <tr><td>SEO / Marketing / Affiliate</td><td>33</td><td>4</td></tr>
+      <tr><td>Game / Anime / Entertainment</td><td>32</td><td>2</td></tr>
+      <tr><td>Education / Awesome / Reference</td><td>28</td><td>1</td></tr>
+      <tr><td>Data / Analytics / Visualization</td><td>12</td><td>1</td></tr>
+      <tr><td>Geospatial / Maps</td><td>6</td><td>1</td></tr>
+      <tr><td>Finance / Trading / Crypto</td><td>5</td><td>0</td></tr>
+    </table></div>
+  </details>
+
+  <details class="cat">
+    <summary>Top actionable backlog — S-tier chưa đụng, ưu tiên cao nhất <span class="count">top 15/190</span></summary>
+    <div class="body"><table>
+      <tr><th>Repo</th><th>Category</th><th>Priority</th></tr>
+      <tr style="background:#FFF7ED"><td><b>LongLeo287/OmniClaw</b> 👤 của bạn</td><td>AI Agent</td><td>100</td></tr>
+      <tr><td>cline/cline</td><td>AI Agent</td><td>97</td></tr>
+      <tr><td>comfy-org/comfyui</td><td>Content</td><td>96</td></tr>
+      <tr style="background:#FFF7ED"><td><b>LongLeo287/SEOSONA</b> 👤 của bạn</td><td>SEO</td><td>95</td></tr>
+      <tr style="background:#FFF7ED"><td><b>LongLeo287/seo-tool</b> 👤 của bạn</td><td>SEO</td><td>95</td></tr>
+      <tr style="background:#FFF7ED"><td><b>LongLeo287/aios-local</b> 👤 của bạn</td><td>AI Agent</td><td>95</td></tr>
+      <tr style="background:#FFF7ED"><td><b>LongLeo287/SEOSONA-OS</b> 👤 của bạn</td><td>SEO</td><td>95</td></tr>
+      <tr><td>addyosmani/agent-skills</td><td>Agent Skills</td><td>94</td></tr>
+      <tr><td>vercel/ai</td><td>LLM Infra</td><td>94</td></tr>
+      <tr><td>chroma-core/chroma</td><td>RAG</td><td>94</td></tr>
+      <tr><td>bytedance/deer-flow</td><td>AI Agent</td><td>94</td></tr>
+      <tr><td>microsoft/playwright-mcp</td><td>Web Scraping</td><td>93</td></tr>
+      <tr><td>langchain-ai/deepagents</td><td>AI Agent</td><td>93</td></tr>
+      <tr><td>anomalyco/opencode</td><td>AI Agent</td><td>93</td></tr>
+      <tr><td>BrianNguyen29/x-harness</td><td>Agent Skills</td><td>93</td></tr>
+    </table></div>
+  </details>
+
+  <details class="cat">
+    <summary>Đã xử lý — 57 repo (verdict theo INGESTION_LOG) <span class="count">BUILT/REFERENCE/SKIP/REJECTED</span></summary>
+    <div class="body"><table>
+      <tr><th>Repo</th><th>Category</th><th>Verdict</th></tr>
+      <tr><td>AIDC-AI/Pixelle-Video</td><td>Content</td><td class="pill core">BUILT</td></tr>
+      <tr><td>huytranvan2010/AI-auto-generate-video</td><td>Content</td><td class="pill core">BUILT</td></tr>
+      <tr><td>feicaiclub/video-spec-builder</td><td>Content</td><td class="pill core">BUILT</td></tr>
+      <tr><td>every-app/open-seo</td><td>SEO</td><td class="pill core">BUILT</td></tr>
+      <tr><td>calesthio/OpenMontage</td><td>Content</td><td class="pill core">BUILT</td></tr>
+      <tr><td>NVIDIA/SkillSpector</td><td>Security</td><td class="pill core">BUILT</td></tr>
+      <tr><td>mvanhorn/last30days-skill</td><td>Agent Skills</td><td class="pill core">BUILT</td></tr>
+      <tr><td>ant-design/ant-design</td><td>Frontend</td><td class="pill core">BUILT</td></tr>
+      <tr><td>… +17 khác (multica-ai/andrej-karpathy-skills, nidhinjs/prompt-master, nicobailon/visual-explainer, ArcReel, HBAI-Ltd/Toonflow-app, voocel/ainovel-cli…)</td><td>—</td><td class="pill core">BUILT (25 tổng)</td></tr>
+      <tr><td>SWivid/F5-TTS</td><td>Content</td><td class="pill proc">REFERENCE</td></tr>
+      <tr><td>k2-fsa/OmniVoice</td><td>Content</td><td class="pill proc">REFERENCE</td></tr>
+      <tr><td>GuanYixuan/pyJianYingDraft</td><td>Content</td><td class="pill proc">REFERENCE</td></tr>
+      <tr><td>renezander030/capcut-cli</td><td>Content</td><td class="pill proc">REFERENCE</td></tr>
+      <tr><td>mrbuslov/capcut-ai-editor</td><td>Content</td><td class="pill proc">REFERENCE</td></tr>
+      <tr><td>… +11 khác</td><td>—</td><td class="pill proc">REFERENCE (16 tổng)</td></tr>
+      <tr><td>EverMind-AI/EverOS</td><td>RAG</td><td class="pill meta">SKIP</td></tr>
+      <tr><td>sun-guannan/VectCutAPI</td><td>Content</td><td class="pill meta">SKIP</td></tr>
+      <tr><td>Hommy-master/capcut-mate</td><td>Content</td><td class="pill meta">SKIP</td></tr>
+      <tr><td>OpenCut-app/OpenCut</td><td>Content</td><td class="pill meta">SKIP</td></tr>
+      <tr><td>… +7 khác</td><td>—</td><td class="pill meta">SKIP (11 tổng)</td></tr>
+      <tr><td>fishaudio/fish-speech, coqui-ai/TTS, RVC-Boss/GPT-SoVITS, K07VN/capcut-tts-api, WEIFENG2333/VideoCaptioner</td><td>Content/RAG/LLM</td><td style="color:#DC2626;font-weight:800">REJECTED (5)</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ================= SOP INDEX ================= -->
+<section id="sop">
+  <h2>SOP Index <span class="tag">39 files · 38 operational + 1 index · 8 categories</span></h2>
+  <p class="lede">Toàn bộ SOP hiện có, nhóm theo domain (39 file trong <code>6_SOP/</code>, gồm 38 SOP vận hành
+    + <code>README.md</code> là mục lục điều hướng). Đây là danh sách để quyết định: cái nào giữ nguyên làm
+    pipeline-doc riêng, cái nào gộp vào 1 pipeline lớn hơn, cái nào hạ xuống reference.</p>
+
+  <details class="cat" open>
+    <summary>Video Production <span class="count">8 docs</span></summary>
+    <div class="body"><table>
+      <tr><td><code>video_production_sop.md</code></td><td>Core: workspace rule, auto-cleanup, input standards</td></tr>
+      <tr><td><code>tech_news_faceless_sop.md</code></td><td>Iron rule: 100% light mode, 9:16, ≤15s/scene</td></tr>
+      <tr><td><code>video_course_sop.md</code></td><td>B2B expert aesthetic, slower pacing, anchor captions</td></tr>
+      <tr><td><code>talking_head_sop.md</code></td><td>Engine #2: footage-based, real voice</td></tr>
+      <tr><td><code>COURSE_VIDEO_SOP.md</code></td><td>4-step pipeline: repurpose lecture footage</td></tr>
+      <tr><td><code>repurposer_sop.md</code></td><td>Long-to-short repurposing pipeline</td></tr>
+      <tr><td><code>REFERENCE_TO_VIDEO_SOP.md</code></td><td>Clone reference video's style</td></tr>
+      <tr><td><code>SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY.md</code></td><td>Template factory workflow</td></tr>
+    </table></div>
+  </details>
+
+  <details class="cat">
+    <summary>Voice &amp; Audio <span class="count">4 docs</span></summary>
+    <div class="body"><table>
+      <tr><td><code>voice_cloning_tts_sop.md</code></td><td>Engine priority: VieNeu → Edge-TTS fallback</td></tr>
+      <tr><td><code>VOICE_TTS_ENGINE_ROUTING.md</code></td><td>Single router design; ASR router chain</td></tr>
+      <tr><td><code>CHIQUYET_VOICE_STYLE.md</code></td><td>CQA voice profile (268 WPM, style markers)</td></tr>
+      <tr><td><code>brand_voice_sop.md</code></td><td>SEOSONA tone: professional, consultative</td></tr>
+    </table></div>
+  </details>
+
+  <details class="cat">
+    <summary>Render &amp; Framework <span class="count">3 docs</span></summary>
+    <div class="body"><table>
+      <tr><td><code>RENDER_ENGINE_DECISION.md</code></td><td>HyperFrames sole renderer; Remotion eliminated</td></tr>
+      <tr><td><code>HYPERFRAMES_INTEGRATION.md</code></td><td>Route HF skills/registry; no duplicate trees</td></tr>
+      <tr><td><code>EFFECT_LIBRARY_PLAN.md</code></td><td>4th library layer (transition/text-fx/sfx/motion)</td></tr>
+    </table></div>
+  </details>
+
+  <details class="cat">
+    <summary>Learning &amp; QA <span class="count">5 docs</span></summary>
+    <div class="body"><table>
+      <tr><td><code>AUTONOMOUS_FACTORY_LOOP.md</code></td><td>North-star: production self-improve loop (OODA)</td></tr>
+      <tr><td><code>SELF_IMPROVEMENT_LOOP.md</code></td><td>Capability growth loop (9+1 stages)</td></tr>
+      <tr><td><code>EVAL_FLYWHEEL.md</code></td><td>Gemini-vision judge, 5 quality dimensions</td></tr>
+      <tr><td><code>REPO_VETTING_SOP.md</code></td><td>External repo ingestion checklist (7 steps)</td></tr>
+      <tr><td><code>QA_CAPTIONS_FINDINGS.md</code></td><td>RULE #1 caption-sync verification findings</td></tr>
+    </table></div>
+  </details>
+
+  <details class="cat">
+    <summary>Maps &amp; Architecture <span class="count">2 docs</span></summary>
+    <div class="body"><table>
+      <tr><td><code>SEOSONA_VIDEO_RECONNECTION_MAP.md</code></td><td>Project connection map; 9 canonical entry points</td></tr>
+      <tr><td><code>SEOSONA_WORKFLOW_BOUNDARY_MAP.md</code></td><td>Hard boundaries; 6 canonical workflows</td></tr>
+    </table></div>
+  </details>
+
+  <details class="cat">
+    <summary>Publishing &amp; SEO <span class="count">4 docs</span></summary>
+    <div class="body"><table>
+      <tr><td><code>YOUTUBE_CHANNEL_OPERATIONS_MCP.md</code></td><td>YouTube upload/metadata routing via MCP</td></tr>
+      <tr><td><code>SEO_CONTENT_STRATEGY.md</code></td><td>AIDA model, title/description formula</td></tr>
+      <tr><td><code>youtube_seo_sop.md</code></td><td>Title/timestamp/tag optimization</td></tr>
+      <tr><td><code>publishing_checklist.md</code></td><td>Pre-publish gates (QA≥70, light mode, logo)</td></tr>
+    </table></div>
+  </details>
+
+  <details class="cat">
+    <summary>Design <span class="count">4 docs</span></summary>
+    <div class="body"><table>
+      <tr><td><code>UX_UI_DESIGN_GUIDELINES.md</code></td><td>B2B Premium aesthetic; light theme only</td></tr>
+      <tr><td><code>carousel_sop.md</code></td><td>Image carousel design (1080x1080/1920)</td></tr>
+      <tr><td><code>thumbnail_sop.md</code></td><td>make_thumbnail(): NLP director → brand palette → PNG</td></tr>
+      <tr><td><code>TEMPLATE_MAP.md</code></td><td>30 videos → 6 archetypes; rotation rules</td></tr>
+    </table></div>
+  </details>
+
+  <details class="cat">
+    <summary>Infra, Ops &amp; Strategy <span class="count">8 docs</span></summary>
+    <div class="body"><table>
+      <tr><td><code>DEPENDENCIES.md</code></td><td>Engine/API availability status</td></tr>
+      <tr><td><code>GOOGLE_DRIVE_SHEETS_LAYER.md</code></td><td>Drive publisher + manager roles</td></tr>
+      <tr><td><code>LOOP_OPERATING_SOP.md</code></td><td>Circuit-breaker ceilings for unattended runs</td></tr>
+      <tr><td><code>LLM_CODING_DISCIPLINE.md</code></td><td>Behavioral guardrails for code changes</td></tr>
+      <tr><td><code>MASTER_OPERATION.md</code></td><td>Master end-to-end 7-step flow</td></tr>
+      <tr><td><code>PRODUCT_ROADMAP.md</code></td><td>6-phase roadmap; consolidation decisions</td></tr>
+      <tr><td><code>SCRIPT_WRITING_PIPELINE.md</code></td><td>Unified 6-stage script pipeline</td></tr>
+      <tr><td><code>UPGRADE_BACKLOG.md</code></td><td>Tracked shortcuts from vetting</td></tr>
+    </table></div>
+  </details>
+</section>
+
+<!-- ================= NPM ================= -->
+<section id="npm">
+  <h2>NPM Entry Points <span class="tag">quick reference</span></h2>
+  <p class="lede">Toàn bộ lệnh vận hành factory qua <code>npm run</code>.</p>
+  <table>
+    <tr><th>Command</th><th>File</th><th>Purpose</th></tr>
+    <tr><td><code>make:video</code></td><td>4_BRAIN/make_video.py</td><td>GitHub URL → branded video (one-shot)</td></tr>
+    <tr><td><code>video:news</code></td><td>scripts/workflow_video_news.py</td><td>News script/URL → video</td></tr>
+    <tr><td><code>video:course</code></td><td>scripts/workflow_video_course.py</td><td>Course footage → 9:16 cut-plan</td></tr>
+    <tr><td><code>video:run</code></td><td>4_BRAIN/workflow_router.py</td><td>Main smart-routing entry</td></tr>
+    <tr><td><code>post:image</code></td><td>scripts/workflow_social_post.py</td><td>Text → social carousel + captions</td></tr>
+    <tr><td><code>thumbnail:create</code></td><td>scripts/workflow_thumbnail.py</td><td>Title/hook → thumbnail PNG</td></tr>
+    <tr><td><code>talkinghead:transcribe</code></td><td>scripts/talking_head_transcribe.py</td><td>Footage → words.json</td></tr>
+    <tr><td><code>talkinghead:edit</code></td><td>scripts/talking_head_edit.py</td><td>Footage+words+cards → final.mp4</td></tr>
+    <tr><td><code>talkinghead:analyze</code></td><td>scripts/talking_head_analyze.py</td><td>Silence + duplicate-take detect</td></tr>
+    <tr><td><code>library</code> / <code>library:status</code></td><td>scripts/grow_library.py</td><td>Grow template/block/component/effect libs</td></tr>
+    <tr><td><code>start:queue</code></td><td>scripts/queue_processor.py</td><td>Batch processor (crash-isolated)</td></tr>
+    <tr><td><code>daily</code></td><td>scripts/daily_production.py</td><td>Daily unattended run</td></tr>
+    <tr><td><code>start:dashboard</code></td><td>9_DASHBOARD/server.py</td><td>Observability hub UI (localhost:5050)</td></tr>
+    <tr><td><code>factory</code></td><td>4_BRAIN/factory_brain.py</td><td>Autonomous self-improving loop</td></tr>
+    <tr><td><code>factory:learn</code></td><td>4_BRAIN/learn_flywheel.py</td><td>Learning flywheel (ORIENT stage)</td></tr>
+    <tr><td><code>eval</code> / <code>eval:render</code></td><td>4_BRAIN/eval_run.py</td><td>Eval flywheel runner</td></tr>
+    <tr><td><code>security:scan</code></td><td>scripts/security_scan.py</td><td>Secrets/vuln audit</td></tr>
+    <tr><td><code>skill:lint</code></td><td>scripts/skill_lint.py</td><td>Validate SKILL.md format</td></tr>
+    <tr><td><code>capcut:export</code></td><td>4_BRAIN/capcut_export.py</td><td>MP4 → editable CapCut project</td></tr>
+    <tr><td><code>seosona:doctor</code> / <code>audit</code></td><td>scripts/seosona-project-bridge.cjs</td><td>Project health / full audit</td></tr>
+  </table>
+</section>
+
+<!-- ================= DIRECTORY REFERENCE ================= -->
+<section id="dirs">
+  <h2>Directory Reference <span class="tag">0–9 + supporting</span></h2>
+  <div class="dirgrid">
+    <div class="dircard"><span class="role input">Input</span><h4>0_INPUT_INBOX</h4><p>production_queue.yaml, feeds/sources, pending files — cổng vào của factory.</p></div>
+    <div class="dircard"><span class="role meta">Setup</span><h4>0_SETUP</h4><p>bootstrap.ps1, check_env.py — validate ffmpeg/node/python trước khi chạy.</p></div>
+    <div class="dircard"><span class="role processing">Processing</span><h4>1_AGENTS</h4><p>10 agent runtime + persona tham chiếu (orchestrator/researcher/scout/security-auditor).</p></div>
+    <div class="dircard"><span class="role meta">Config</span><h4>1_CONFIG</h4><p>credentials/ (gitignored), factory_policy.yaml, eval_datasets/.</p></div>
+    <div class="dircard"><span class="role input">Knowledge</span><h4>2_KNOWLEDGE</h4><p>Kiến thức ingest từ ~1500 repo, domain_skills, hyperframes craft, VIDEO_CRAFT_RULES.</p></div>
+    <div class="dircard"><span class="role processing">Skills</span><h4>2_SKILLS</h4><p>11 python skill: voice_cloner, srt_maker, thumbnail_maker, video_clipper, yt_downloader...</p></div>
+    <div class="dircard"><span class="role feedback">Memory</span><h4>3_MEMORY</h4><p>factory_metrics.jsonl, HOT_LEARNINGS, eval_results, template_scores — flight recorder.</p></div>
+    <div class="dircard"><span class="role processing">Core</span><h4>4_BRAIN</h4><p>~40 module: workflow_router, video_engine, native_composer, effect_library, factory_brain...</p></div>
+    <div class="dircard"><span class="role processing">Render</span><h4>5_FRAMEWORK</h4><p>HyperFrames engine (97 blocks, 25 components) — renderer duy nhất, Apache-2.0.</p></div>
+    <div class="dircard"><span class="role meta">Rules</span><h4>6_SOP</h4><p>39 SOP — quy tắc vận hành cho mọi domain (xem SOP Index ở trên).</p></div>
+    <div class="dircard"><span class="role input">Assets</span><h4>7_ASSETS</h4><p>20 template JSON, voice profiles, BGM/SFX, brand kit (logo/font/màu).</p></div>
+    <div class="dircard"><span class="role output">Output</span><h4>8_WORKSPACE</h4><p>Thư mục output mỗi video: MP4 + SRT + thumbnail + manifest.</p></div>
+    <div class="dircard"><span class="role feedback">Dashboard</span><h4>9_DASHBOARD</h4><p>server.py (localhost:5050), obs_metrics, feedback_loop — quan sát + đóng vòng học.</p></div>
+    <div class="dircard"><span class="role input">Prompts</span><h4>9_PROMPTS</h4><p>MASTER_VIDEO_SPEC.md (rulebook), 36 sample script, social/design prompts.</p></div>
+    <div class="dircard"><span class="role meta">Docs/Scripts</span><h4>docs / scripts / tests</h4><p>8 markdown doc tổng quan, CLI entry points, pytest suite (38 test).</p></div>
+  </div>
+</section>
+
+<!-- ================= GRAPH VIEW ================= -->
+<section id="graph-section">
+  <h2>Full System Graph <span class="tag">Obsidian-style · ~190 nodes</span></h2>
+  <p class="lede">Toàn bộ hệ thống (thư mục, engine, pipeline, 38 SOP, agent, persona, skill, template, component,
+    asset) dưới dạng đồ thị node-link kéo/thả được — giống Graph View của Obsidian. Node lớn = hub cấp cao;
+    node nhỏ = chi tiết. Gõ để tìm, click node để xem liên kết, kéo/zoom tự do.</p>
+  <div class="graphbar">
+    <input id="gsearch" type="text" placeholder="Tìm node… (vd: effect_library, SOP, skill, template)"/>
+    <button id="gfit">Fit view</button>
+    <button id="greset">Reset highlight</button>
+  </div>
+  <div id="graphwrap"><div id="graph"></div></div>
+  <div class="legend" id="glegend"></div>
+  <p class="graphhint">Vật lý (physics) tự sắp xếp — để yên vài giây cho graph "ổn định", hoặc kéo node ra để cố định.</p>
+</section>
+
+</main>
+<footer>SEOSONA Video — System Map · auto-generated 2026-07-01 from a full codebase survey · sống ở <code>docs/SYSTEM_MAP.html</code></footer>
+
+<script>
+  mermaid.initialize({
+    startOnLoad:true,
+    theme:'base',
+    themeVariables:{
+      primaryColor:'#EEF2FF', primaryBorderColor:'#2A5BDA', primaryTextColor:'#0F172A',
+      lineColor:'#94A3B8', secondaryColor:'#FFE9E1', tertiaryColor:'#DCFCE7',
+      fontFamily:'"Be Vietnam Pro",Arial,sans-serif', fontSize:'14px'
+    },
+    flowchart:{curve:'basis', htmlLabels:true, useMaxWidth:true}
+  });
+</script>
+
+<script>
+(function(){
+  // ===== KNOWLEDGE_GRAPH_DATA_START (auto-generated by scripts/gen_knowledge_graph.py — do not hand-edit) =====
+  const nodes = [{"id": "d_0inbox", "label": "0_INPUT_INBOX", "group": "dir", "role": "input"}, {"id": "d_0setup", "label": "0_SETUP", "group": "dir", "role": "meta"}, {"id": "d_1agents", "label": "1_AGENTS", "group": "dir", "role": "processing"}, {"id": "d_1config", "label": "1_CONFIG", "group": "dir", "role": "meta"}, {"id": "d_2knowledge", "label": "2_KNOWLEDGE", "group": "dir", "role": "input"}, {"id": "d_2skills", "label": "2_SKILLS", "group": "dir", "role": "processing"}, {"id": "d_3memory", "label": "3_MEMORY", "group": "dir", "role": "feedback"}, {"id": "d_4brain", "label": "4_BRAIN", "group": "dir", "role": "processing"}, {"id": "d_5framework", "label": "5_FRAMEWORK", "group": "dir", "role": "processing"}, {"id": "d_6sop", "label": "6_SOP", "group": "dir", "role": "meta"}, {"id": "d_7assets", "label": "7_ASSETS", "group": "dir", "role": "input"}, {"id": "d_8workspace", "label": "8_WORKSPACE", "group": "dir", "role": "output"}, {"id": "d_9dashboard", "label": "9_DASHBOARD", "group": "dir", "role": "feedback"}, {"id": "d_9prompts", "label": "9_PROMPTS", "group": "dir", "role": "input"}, {"id": "d_agentsskills", "label": ".agents/skills", "group": "dir", "role": "processing"}, {"id": "d_scripts", "label": "scripts/", "group": "dir", "role": "processing"}, {"id": "d_docs", "label": "docs/", "group": "dir", "role": "meta"}, {"id": "cat_sopVideo", "label": "Video Production", "group": "sopcat"}, {"id": "cat_sopVoice", "label": "Voice & Audio", "group": "sopcat"}, {"id": "cat_sopRender", "label": "Render & Framework", "group": "sopcat"}, {"id": "cat_sopLearning", "label": "Learning & QA", "group": "sopcat"}, {"id": "cat_sopMaps", "label": "Maps & Architecture", "group": "sopcat"}, {"id": "cat_sopPublish", "label": "Publishing & SEO", "group": "sopcat"}, {"id": "cat_sopDesign", "label": "Design", "group": "sopcat"}, {"id": "cat_sopInfra", "label": "Infra, Ops & Strategy", "group": "sopcat"}, {"id": "sop_AUTONOMOUS_FACTORY_LOOP", "label": "AUTONOMOUS_FACTORY_LOOP", "group": "sopLearning"}, {"id": "sop_CHIQUYET_VOICE_STYLE", "label": "CHIQUYET_VOICE_STYLE", "group": "sopVoice"}, {"id": "sop_COURSE_VIDEO_SOP", "label": "COURSE_VIDEO_SOP", "group": "sopVideo"}, {"id": "sop_DASHBOARD_BUILD_PLAN", "label": "DASHBOARD_BUILD_PLAN", "group": "sopInfra"}, {"id": "sop_DASHBOARD_SYSTEM_DESIGN", "label": "DASHBOARD_SYSTEM_DESIGN", "group": "sopInfra"}, {"id": "sop_DEPENDENCIES", "label": "DEPENDENCIES", "group": "sopInfra"}, {"id": "sop_EFFECT_LIBRARY_PLAN", "label": "EFFECT_LIBRARY_PLAN", "group": "sopRender"}, {"id": "sop_EVAL_FLYWHEEL", "label": "EVAL_FLYWHEEL", "group": "sopLearning"}, {"id": "sop_GOOGLE_DRIVE_SHEETS_LAYER", "label": "GOOGLE_DRIVE_SHEETS_LAYER", "group": "sopInfra"}, {"id": "sop_HYPERFRAMES_INTEGRATION", "label": "HYPERFRAMES_INTEGRATION", "group": "sopRender"}, {"id": "sop_LIPSYNC_ENGINE_MUSETALK", "label": "LIPSYNC_ENGINE_MUSETALK", "group": "sopInfra"}, {"id": "sop_LLM_CODING_DISCIPLINE", "label": "LLM_CODING_DISCIPLINE", "group": "sopInfra"}, {"id": "sop_LOOP_OPERATING_SOP", "label": "LOOP_OPERATING_SOP", "group": "sopInfra"}, {"id": "sop_LTX_BROLL_PLAN", "label": "LTX_BROLL_PLAN", "group": "sopInfra"}, {"id": "sop_MASCOT_LIVE2D_RIG_SPEC", "label": "MASCOT_LIVE2D_RIG_SPEC", "group": "sopInfra"}, {"id": "sop_MASTER_OPERATION", "label": "MASTER_OPERATION", "group": "sopInfra"}, {"id": "sop_MOTION_EFFECT_PLAN", "label": "MOTION_EFFECT_PLAN", "group": "sopRender"}, {"id": "sop_PRODUCT_ROADMAP", "label": "PRODUCT_ROADMAP", "group": "sopInfra"}, {"id": "sop_QA_CAPTIONS_FINDINGS", "label": "QA_CAPTIONS_FINDINGS", "group": "sopLearning"}, {"id": "sop_REFERENCE_TO_VIDEO_SOP", "label": "REFERENCE_TO_VIDEO_SOP", "group": "sopVideo"}, {"id": "sop_RENDER_ENGINE_DECISION", "label": "RENDER_ENGINE_DECISION", "group": "sopRender"}, {"id": "sop_REPO_VETTING_SOP", "label": "REPO_VETTING_SOP", "group": "sopLearning"}, {"id": "sop_SCRIPT_WRITING_PIPELINE", "label": "SCRIPT_WRITING_PIPELINE", "group": "sopInfra"}, {"id": "sop_SELF_IMPROVEMENT_LOOP", "label": "SELF_IMPROVEMENT_LOOP", "group": "sopLearning"}, {"id": "sop_SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY", "label": "SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY", "group": "sopVideo"}, {"id": "sop_SEOSONA_VIDEO_RECONNECTION_MAP", "label": "SEOSONA_VIDEO_RECONNECTION_MAP", "group": "sopMaps"}, {"id": "sop_SEOSONA_WORKFLOW_BOUNDARY_MAP", "label": "SEOSONA_WORKFLOW_BOUNDARY_MAP", "group": "sopMaps"}, {"id": "sop_SEO_CONTENT_STRATEGY", "label": "SEO_CONTENT_STRATEGY", "group": "sopPublish"}, {"id": "sop_TEMPLATE_MAP", "label": "TEMPLATE_MAP", "group": "sopDesign"}, {"id": "sop_UPGRADE_BACKLOG", "label": "UPGRADE_BACKLOG", "group": "sopInfra"}, {"id": "sop_UX_UI_DESIGN_GUIDELINES", "label": "UX_UI_DESIGN_GUIDELINES", "group": "sopDesign"}, {"id": "sop_VIDEO_ARCHITECTURE", "label": "VIDEO_ARCHITECTURE", "group": "sopMaps"}, {"id": "sop_VOICE_TTS_ENGINE_ROUTING", "label": "VOICE_TTS_ENGINE_ROUTING", "group": "sopVoice"}, {"id": "sop_YOUTUBE_CHANNEL_OPERATIONS_MCP", "label": "YOUTUBE_CHANNEL_OPERATIONS_MCP", "group": "sopPublish"}, {"id": "sop_brand_voice_sop", "label": "brand_voice_sop", "group": "sopVoice"}, {"id": "sop_carousel_sop", "label": "carousel_sop", "group": "sopDesign"}, {"id": "sop_publishing_checklist", "label": "publishing_checklist", "group": "sopPublish"}, {"id": "sop_repurposer_sop", "label": "repurposer_sop", "group": "sopVideo"}, {"id": "sop_talking_head_sop", "label": "talking_head_sop", "group": "sopVideo"}, {"id": "sop_tech_news_faceless_sop", "label": "tech_news_faceless_sop", "group": "sopVideo"}, {"id": "sop_thumbnail_sop", "label": "thumbnail_sop", "group": "sopDesign"}, {"id": "sop_video_production_sop", "label": "video_production_sop", "group": "sopVideo"}, {"id": "sop_voice_cloning_tts_sop", "label": "voice_cloning_tts_sop", "group": "sopVoice"}, {"id": "sop_youtube_seo_sop", "label": "youtube_seo_sop", "group": "sopPublish"}, {"id": "b_angle_finder", "label": "angle_finder", "group": "brain"}, {"id": "b_beat_timing", "label": "beat_timing", "group": "brain"}, {"id": "b_block_forge", "label": "block_forge", "group": "brain"}, {"id": "b_block_picker", "label": "block_picker", "group": "brain"}, {"id": "b_brand_kit", "label": "brand_kit", "group": "brain"}, {"id": "b_capcut_export", "label": "capcut_export", "group": "brain"}, {"id": "b_caption_segment", "label": "caption_segment", "group": "brain"}, {"id": "b_component_picker", "label": "component_picker", "group": "brain"}, {"id": "b_content_moderation", "label": "content_moderation", "group": "brain"}, {"id": "b_course_planner", "label": "course_planner", "group": "brain"}, {"id": "b_director", "label": "director", "group": "brain"}, {"id": "b_discovery", "label": "discovery", "group": "brain"}, {"id": "b_dub_align", "label": "dub_align", "group": "brain"}, {"id": "b_effect_library", "label": "effect_library", "group": "brain"}, {"id": "b_eval_judge", "label": "eval_judge", "group": "brain"}, {"id": "b_eval_run", "label": "eval_run", "group": "brain"}, {"id": "b_evaluator", "label": "evaluator", "group": "brain"}, {"id": "b_factory_brain", "label": "factory_brain", "group": "brain"}, {"id": "b_factory_ledger", "label": "factory_ledger", "group": "brain"}, {"id": "b_factory_metrics", "label": "factory_metrics", "group": "brain"}, {"id": "b_frame_study", "label": "frame_study", "group": "brain"}, {"id": "b_frame_synth", "label": "frame_synth", "group": "brain"}, {"id": "b_graph_executor", "label": "graph_executor", "group": "brain"}, {"id": "b_hf_blocks", "label": "hf_blocks", "group": "brain"}, {"id": "b_image_gen", "label": "image_gen", "group": "brain"}, {"id": "b_knowledge_graph", "label": "knowledge_graph", "group": "brain"}, {"id": "b_learn_flywheel", "label": "learn_flywheel", "group": "brain"}, {"id": "b_llm_engine", "label": "llm_engine", "group": "brain"}, {"id": "b_make_video", "label": "make_video", "group": "brain"}, {"id": "b_native_composer", "label": "native_composer", "group": "brain"}, {"id": "b_news_video_standards", "label": "news_video_standards", "group": "brain"}, {"id": "b_production_manifest", "label": "production_manifest", "group": "brain"}, {"id": "b_quality_scorer", "label": "quality_scorer", "group": "brain"}, {"id": "b_researcher", "label": "researcher", "group": "brain"}, {"id": "b_scene_composer", "label": "scene_composer", "group": "brain"}, {"id": "b_scene_writer", "label": "scene_writer", "group": "brain"}, {"id": "b_script_schema", "label": "script_schema", "group": "brain"}, {"id": "b_script_writer", "label": "script_writer", "group": "brain"}, {"id": "b_seedance_director", "label": "seedance_director", "group": "brain"}, {"id": "b_seedance_engine", "label": "seedance_engine", "group": "brain"}, {"id": "b_seosona_bootstrap", "label": "seosona_bootstrap", "group": "brain"}, {"id": "b_skill_registry", "label": "skill_registry", "group": "brain"}, {"id": "b_spec_lint", "label": "spec_lint", "group": "brain"}, {"id": "b_template_generator", "label": "template_generator", "group": "brain"}, {"id": "b_template_picker", "label": "template_picker", "group": "brain"}, {"id": "b_transcript_fix", "label": "transcript_fix", "group": "brain"}, {"id": "b_video_engine", "label": "video_engine", "group": "brain"}, {"id": "b_video_integration_audit", "label": "video_integration_audit", "group": "brain"}, {"id": "b_workflow_router", "label": "workflow_router", "group": "brain"}, {"id": "p_0", "label": "Script Writing Pipeline", "group": "pipeline"}, {"id": "p_1", "label": "Master Operation", "group": "pipeline"}, {"id": "p_2", "label": "Effect Library Stack", "group": "pipeline"}, {"id": "p_3", "label": "Learning Loop (OODA)", "group": "pipeline"}, {"id": "p_4", "label": "Two-Engine Dispatch", "group": "pipeline"}, {"id": "p_5", "label": "Talking-Head Pipeline", "group": "pipeline"}, {"id": "ag_analytics_feedback_agent", "label": "analytics_feedback_agent", "group": "agent"}, {"id": "ag_carousel_writer_agent", "label": "carousel_writer_agent", "group": "agent"}, {"id": "ag_hermes_agent", "label": "hermes_agent", "group": "agent"}, {"id": "ag_publisher_agent", "label": "publisher_agent", "group": "agent"}, {"id": "ag_repurposer_agent", "label": "repurposer_agent", "group": "agent"}, {"id": "ag_scraper_agent", "label": "scraper_agent", "group": "agent"}, {"id": "ag_seo_optimizer", "label": "seo_optimizer", "group": "agent"}, {"id": "ag_seo_writer_agent", "label": "seo_writer_agent", "group": "agent"}, {"id": "ag_social_media_agent", "label": "social_media_agent", "group": "agent"}, {"id": "ag_trend_jacking_agent", "label": "trend_jacking_agent", "group": "agent"}, {"id": "pe_orchestrator_agent", "label": "orchestrator_agent", "group": "persona"}, {"id": "pe_researcher", "label": "researcher", "group": "persona"}, {"id": "pe_scout", "label": "scout", "group": "persona"}, {"id": "pe_security-auditor", "label": "security-auditor", "group": "persona"}, {"id": "pe_visual_designer", "label": "visual_designer", "group": "persona"}, {"id": "sk_capability-analyst", "label": "capability-analyst", "group": "skill"}, {"id": "sk_embedded-captions", "label": "embedded-captions", "group": "skill"}, {"id": "sk_faceless-explainer", "label": "faceless-explainer", "group": "skill"}, {"id": "sk_factory-strategist", "label": "factory-strategist", "group": "skill"}, {"id": "sk_general-video", "label": "general-video", "group": "skill"}, {"id": "sk_graphic-overlays", "label": "graphic-overlays", "group": "skill"}, {"id": "sk_heygen-native-api", "label": "heygen-native-api", "group": "skill"}, {"id": "sk_heygen-skills", "label": "heygen-skills", "group": "skill"}, {"id": "sk_hyperframes", "label": "hyperframes", "group": "skill"}, {"id": "sk_hyperframes-animation", "label": "hyperframes-animation", "group": "skill"}, {"id": "sk_hyperframes-cli", "label": "hyperframes-cli", "group": "skill"}, {"id": "sk_hyperframes-core", "label": "hyperframes-core", "group": "skill"}, {"id": "sk_hyperframes-creative", "label": "hyperframes-creative", "group": "skill"}, {"id": "sk_hyperframes-media", "label": "hyperframes-media", "group": "skill"}, {"id": "sk_hyperframes-registry", "label": "hyperframes-registry", "group": "skill"}, {"id": "sk_motion-graphics", "label": "motion-graphics", "group": "skill"}, {"id": "sk_pr-to-video", "label": "pr-to-video", "group": "skill"}, {"id": "sk_product-launch-video", "label": "product-launch-video", "group": "skill"}, {"id": "sk_remotion-to-hyperframes", "label": "remotion-to-hyperframes", "group": "skill"}, {"id": "sk_scene-composer", "label": "scene-composer", "group": "skill"}, {"id": "sk_seedance-prompt-director", "label": "seedance-prompt-director", "group": "skill"}, {"id": "sk_seosona-news-maker", "label": "seosona-news-maker", "group": "skill"}, {"id": "sk_seosona-video-operator", "label": "seosona-video-operator", "group": "skill"}, {"id": "sk_talking-head-video-editor", "label": "talking-head-video-editor", "group": "skill"}, {"id": "sk_video-discovery", "label": "video-discovery", "group": "skill"}, {"id": "sk_video-evaluator", "label": "video-evaluator", "group": "skill"}, {"id": "sk_video-seo-metadata", "label": "video-seo-metadata", "group": "skill"}, {"id": "sk_website-to-video", "label": "website-to-video", "group": "skill"}, {"id": "sm_bgm_sourcer", "label": "bgm_sourcer", "group": "skill-module"}, {"id": "sm_broll_sourcer", "label": "broll_sourcer", "group": "skill-module"}, {"id": "sm_carousel_maker", "label": "carousel_maker", "group": "skill-module"}, {"id": "sm_element_maker", "label": "element_maker", "group": "skill-module"}, {"id": "sm_image_sourcer", "label": "image_sourcer", "group": "skill-module"}, {"id": "sm_srt_maker", "label": "srt_maker", "group": "skill-module"}, {"id": "sm_thumbnail_maker", "label": "thumbnail_maker", "group": "skill-module"}, {"id": "sm_video_clipper", "label": "video_clipper", "group": "skill-module"}, {"id": "sm_voice_cloner", "label": "voice_cloner", "group": "skill-module"}, {"id": "sm_yt_downloader", "label": "yt_downloader", "group": "skill-module"}, {"id": "tp__auto_agency-agents", "label": "_auto_agency-agents", "group": "template"}, {"id": "tp__auto_gemini-watermark-remover", "label": "_auto_gemini-watermark-remover", "group": "template"}, {"id": "tp__auto_tabfm", "label": "_auto_tabfm", "group": "template"}, {"id": "tp_ai-news-flash", "label": "ai-news-flash", "group": "template"}, {"id": "tp_benchmark-news", "label": "benchmark-news", "group": "template"}, {"id": "tp_case-study", "label": "case-study", "group": "template"}, {"id": "tp_data-news", "label": "data-news", "group": "template"}, {"id": "tp_deep-tutorial", "label": "deep-tutorial", "group": "template"}, {"id": "tp_faq", "label": "faq", "group": "template"}, {"id": "tp_insight-explainer", "label": "insight-explainer", "group": "template"}, {"id": "tp_launch", "label": "launch", "group": "template"}, {"id": "tp_listicle-top5", "label": "listicle-top5", "group": "template"}, {"id": "tp_myth-buster", "label": "myth-buster", "group": "template"}, {"id": "tp_opinion-insight", "label": "opinion-insight", "group": "template"}, {"id": "tp_quick-tip", "label": "quick-tip", "group": "template"}, {"id": "tp_repo-showcase", "label": "repo-showcase", "group": "template"}, {"id": "tp_resource-list", "label": "resource-list", "group": "template"}, {"id": "tp_seo-explainer", "label": "seo-explainer", "group": "template"}, {"id": "tp_tool-walkthrough", "label": "tool-walkthrough", "group": "template"}, {"id": "tp_transformation", "label": "transformation", "group": "template"}, {"id": "tp_trend-alert", "label": "trend-alert", "group": "template"}, {"id": "tp_tutorial-gittree", "label": "tutorial-gittree", "group": "template"}, {"id": "tp_versus-deep", "label": "versus-deep", "group": "template"}, {"id": "co_alert", "label": "alert", "group": "component"}, {"id": "co_badges", "label": "badges", "group": "component"}, {"id": "co_bars", "label": "bars", "group": "component"}, {"id": "co_bignum", "label": "bignum", "group": "component"}, {"id": "co_callout", "label": "callout", "group": "component"}, {"id": "co_chart", "label": "chart", "group": "component"}, {"id": "co_chat", "label": "chat", "group": "component"}, {"id": "co_checklist", "label": "checklist", "group": "component"}, {"id": "co_chiprow", "label": "chiprow", "group": "component"}, {"id": "co_codecard", "label": "codecard", "group": "component"}, {"id": "co_compare", "label": "compare", "group": "component"}, {"id": "co_cta", "label": "cta", "group": "component"}, {"id": "co_divider", "label": "divider", "group": "component"}, {"id": "co_donut", "label": "donut", "group": "component"}, {"id": "co_feature", "label": "feature", "group": "component"}, {"id": "co_filetree", "label": "filetree", "group": "component"}, {"id": "co_gauge", "label": "gauge", "group": "component"}, {"id": "co_gittree", "label": "gittree", "group": "component"}, {"id": "co_hub", "label": "hub", "group": "component"}, {"id": "co_icongrid", "label": "icongrid", "group": "component"}, {"id": "co_linechart", "label": "linechart", "group": "component"}, {"id": "co_lower-third", "label": "lower-third", "group": "component"}, {"id": "co_mockup", "label": "mockup", "group": "component"}, {"id": "co_notification", "label": "notification", "group": "component"}, {"id": "co_people", "label": "people", "group": "component"}, {"id": "co_phone", "label": "phone", "group": "component"}, {"id": "co_photocard", "label": "photocard", "group": "component"}, {"id": "co_pie", "label": "pie", "group": "component"}, {"id": "co_quote", "label": "quote", "group": "component"}, {"id": "co_repo", "label": "repo", "group": "component"}, {"id": "co_ring", "label": "ring", "group": "component"}, {"id": "co_social", "label": "social", "group": "component"}, {"id": "co_stats", "label": "stats", "group": "component"}, {"id": "co_steps", "label": "steps", "group": "component"}, {"id": "co_tabs", "label": "tabs", "group": "component"}, {"id": "co_terminal", "label": "terminal", "group": "component"}, {"id": "co_timeline", "label": "timeline", "group": "component"}, {"id": "co_tip", "label": "tip", "group": "component"}, {"id": "fx_t_slide-up", "label": "slide-up", "group": "fxTransition"}, {"id": "fx_t_rise-fade", "label": "rise-fade", "group": "fxTransition"}, {"id": "fx_t_zoom", "label": "zoom", "group": "fxTransition"}, {"id": "fx_t_drop", "label": "drop", "group": "fxTransition"}, {"id": "fx_t_dissolve", "label": "dissolve", "group": "fxTransition"}, {"id": "fx_t_wipe-up", "label": "wipe-up", "group": "fxTransition"}, {"id": "fx_te_rise", "label": "rise", "group": "fxTextEffect"}, {"id": "fx_te_word-up", "label": "word-up", "group": "fxTextEffect"}, {"id": "fx_te_char-cascade", "label": "char-cascade", "group": "fxTextEffect"}, {"id": "fx_te_line-mask", "label": "line-mask", "group": "fxTextEffect"}, {"id": "fx_te_clip-wipe", "label": "clip-wipe", "group": "fxTextEffect"}, {"id": "fx_te_word-pop", "label": "word-pop", "group": "fxTextEffect"}, {"id": "fx_te_drop", "label": "drop", "group": "fxTextEffect"}, {"id": "fx_te_shimmer", "label": "shimmer", "group": "fxTextEffect"}, {"id": "fx_e_light-leak", "label": "light-leak", "group": "fxOverlay"}, {"id": "fx_e_bloom", "label": "bloom", "group": "fxOverlay"}, {"id": "fx_x_fade", "label": "fade", "group": "fxExit"}, {"id": "fx_x_slide-left", "label": "slide-left", "group": "fxExit"}, {"id": "fx_x_lift", "label": "lift", "group": "fxExit"}, {"id": "fx_x_shrink", "label": "shrink", "group": "fxExit"}, {"id": "fx_x_sink", "label": "sink", "group": "fxExit"}, {"id": "dk_banner-design", "label": "banner-design", "group": "domainskill"}, {"id": "dk_brand", "label": "brand", "group": "domainskill"}, {"id": "dk_competitor-alternatives", "label": "competitor-alternatives", "group": "domainskill"}, {"id": "dk_content-strategy", "label": "content-strategy", "group": "domainskill"}, {"id": "dk_copy-editing", "label": "copy-editing", "group": "domainskill"}, {"id": "dk_copywriting", "label": "copywriting", "group": "domainskill"}, {"id": "dk_design-system", "label": "design-system", "group": "domainskill"}, {"id": "dk_frontend-design", "label": "frontend-design", "group": "domainskill"}, {"id": "dk_geo-aeo", "label": "geo-aeo", "group": "domainskill"}, {"id": "dk_make-interfaces-feel-better", "label": "make-interfaces-feel-better", "group": "domainskill"}, {"id": "dk_marketing-psychology", "label": "marketing-psychology", "group": "domainskill"}, {"id": "dk_ogilvy", "label": "ogilvy", "group": "domainskill"}, {"id": "dk_page-cro", "label": "page-cro", "group": "domainskill"}, {"id": "dk_programmatic-seo", "label": "programmatic-seo", "group": "domainskill"}, {"id": "dk_schema-markup", "label": "schema-markup", "group": "domainskill"}, {"id": "dk_seo-audit", "label": "seo-audit", "group": "domainskill"}, {"id": "dk_stop-slop", "label": "stop-slop", "group": "domainskill"}, {"id": "dk_ui-styling", "label": "ui-styling", "group": "domainskill"}, {"id": "dk_web-design-guidelines", "label": "web-design-guidelines", "group": "domainskill"}, {"id": "as_sfx_impact", "label": "SFX: impact", "group": "asset"}, {"id": "as_sfx_pops", "label": "SFX: pops", "group": "asset"}, {"id": "as_sfx_riser", "label": "SFX: riser", "group": "asset"}, {"id": "as_sfx_shutter", "label": "SFX: shutter", "group": "asset"}, {"id": "as_sfx_tick", "label": "SFX: tick", "group": "asset"}, {"id": "as_sfx_transition", "label": "SFX: transition", "group": "asset"}, {"id": "as_sfx_transitions", "label": "SFX: transitions", "group": "asset"}, {"id": "as_sfx_typing", "label": "SFX: typing", "group": "asset"}, {"id": "as_sfx_ui", "label": "SFX: ui", "group": "asset"}, {"id": "as_bgm_bgm_insight", "label": "BGM: bgm_insight", "group": "asset"}, {"id": "as_bgm_bgm_insight_0b27116c", "label": "BGM: bgm_insight_0b27116c", "group": "asset"}, {"id": "as_bgm_bgm_insight_0cbb2cb4", "label": "BGM: bgm_insight_0cbb2cb4", "group": "asset"}, {"id": "as_bgm_bgm_insight_0fb3904c", "label": "BGM: bgm_insight_0fb3904c", "group": "asset"}, {"id": "as_bgm_bgm_insight_1137771e", "label": "BGM: bgm_insight_1137771e", "group": "asset"}, {"id": "as_bgm_bgm_insight_1e9d835f", "label": "BGM: bgm_insight_1e9d835f", "group": "asset"}, {"id": "as_bgm_bgm_insight_23618b11", "label": "BGM: bgm_insight_23618b11", "group": "asset"}, {"id": "as_bgm_bgm_insight_721515fb", "label": "BGM: bgm_insight_721515fb", "group": "asset"}, {"id": "as_bgm_bgm_insight_85eec172", "label": "BGM: bgm_insight_85eec172", "group": "asset"}, {"id": "as_bgm_bgm_insight_9eab0e99", "label": "BGM: bgm_insight_9eab0e99", "group": "asset"}, {"id": "as_bgm_bgm_insight_b7ce88ce", "label": "BGM: bgm_insight_b7ce88ce", "group": "asset"}, {"id": "as_bgm_bgm_insight_d23b4e48", "label": "BGM: bgm_insight_d23b4e48", "group": "asset"}, {"id": "as_bgm_bgm_insight_efc48adc", "label": "BGM: bgm_insight_efc48adc", "group": "asset"}, {"id": "as_bgm_bgm_insight_f4b1002f", "label": "BGM: bgm_insight_f4b1002f", "group": "asset"}, {"id": "as_bgm_bgm_insight_f64818a3", "label": "BGM: bgm_insight_f64818a3", "group": "asset"}, {"id": "as_bgm_bgm_news", "label": "BGM: bgm_news", "group": "asset"}, {"id": "as_bgm_bgm_news_049dcb5a", "label": "BGM: bgm_news_049dcb5a", "group": "asset"}, {"id": "as_bgm_bgm_news_088f75ba", "label": "BGM: bgm_news_088f75ba", "group": "asset"}, {"id": "as_bgm_bgm_news_0a0c84cb", "label": "BGM: bgm_news_0a0c84cb", "group": "asset"}, {"id": "as_bgm_bgm_news_0a5ed498", "label": "BGM: bgm_news_0a5ed498", "group": "asset"}, {"id": "as_bgm_bgm_news_15cab838", "label": "BGM: bgm_news_15cab838", "group": "asset"}, {"id": "as_bgm_bgm_news_1abeb440", "label": "BGM: bgm_news_1abeb440", "group": "asset"}, {"id": "as_bgm_bgm_news_29b2e6c6", "label": "BGM: bgm_news_29b2e6c6", "group": "asset"}, {"id": "as_bgm_bgm_news_2b7b5aba", "label": "BGM: bgm_news_2b7b5aba", "group": "asset"}, {"id": "as_bgm_bgm_news_2cc6d3ac", "label": "BGM: bgm_news_2cc6d3ac", "group": "asset"}, {"id": "as_bgm_bgm_news_2e2f4932", "label": "BGM: bgm_news_2e2f4932", "group": "asset"}, {"id": "as_bgm_bgm_news_2ebea6a9", "label": "BGM: bgm_news_2ebea6a9", "group": "asset"}, {"id": "as_bgm_bgm_news_415e8190", "label": "BGM: bgm_news_415e8190", "group": "asset"}, {"id": "as_bgm_bgm_news_4b433fc1", "label": "BGM: bgm_news_4b433fc1", "group": "asset"}, {"id": "as_bgm_bgm_news_4c3c4546", "label": "BGM: bgm_news_4c3c4546", "group": "asset"}, {"id": "as_bgm_bgm_news_4f276363", "label": "BGM: bgm_news_4f276363", "group": "asset"}, {"id": "as_bgm_bgm_news_51699ec3", "label": "BGM: bgm_news_51699ec3", "group": "asset"}, {"id": "as_bgm_bgm_news_59124d0d", "label": "BGM: bgm_news_59124d0d", "group": "asset"}, {"id": "as_bgm_bgm_news_613dcb6c", "label": "BGM: bgm_news_613dcb6c", "group": "asset"}, {"id": "as_bgm_bgm_news_6250bd19", "label": "BGM: bgm_news_6250bd19", "group": "asset"}, {"id": "as_bgm_bgm_news_674ec1ba", "label": "BGM: bgm_news_674ec1ba", "group": "asset"}, {"id": "as_bgm_bgm_news_7d84687d", "label": "BGM: bgm_news_7d84687d", "group": "asset"}, {"id": "as_bgm_bgm_news_81c3d828", "label": "BGM: bgm_news_81c3d828", "group": "asset"}, {"id": "as_bgm_bgm_news_8339d9ae", "label": "BGM: bgm_news_8339d9ae", "group": "asset"}, {"id": "as_bgm_bgm_news_837681e7", "label": "BGM: bgm_news_837681e7", "group": "asset"}, {"id": "as_bgm_bgm_news_8b3a3b80", "label": "BGM: bgm_news_8b3a3b80", "group": "asset"}, {"id": "as_bgm_bgm_news_8f9400e5", "label": "BGM: bgm_news_8f9400e5", "group": "asset"}, {"id": "as_bgm_bgm_news_97fac48d", "label": "BGM: bgm_news_97fac48d", "group": "asset"}, {"id": "as_bgm_bgm_news_9a70470f", "label": "BGM: bgm_news_9a70470f", "group": "asset"}, {"id": "as_bgm_bgm_news_a469563d", "label": "BGM: bgm_news_a469563d", "group": "asset"}, {"id": "as_bgm_bgm_news_a600ad13", "label": "BGM: bgm_news_a600ad13", "group": "asset"}, {"id": "as_bgm_bgm_news_abe52d61", "label": "BGM: bgm_news_abe52d61", "group": "asset"}, {"id": "as_bgm_bgm_news_b933b651", "label": "BGM: bgm_news_b933b651", "group": "asset"}, {"id": "as_bgm_bgm_news_b95ef15c", "label": "BGM: bgm_news_b95ef15c", "group": "asset"}, {"id": "as_bgm_bgm_news_ba0097d7", "label": "BGM: bgm_news_ba0097d7", "group": "asset"}, {"id": "as_bgm_bgm_news_bae60905", "label": "BGM: bgm_news_bae60905", "group": "asset"}, {"id": "as_bgm_bgm_news_c828896c", "label": "BGM: bgm_news_c828896c", "group": "asset"}, {"id": "as_bgm_bgm_news_d7056ca9", "label": "BGM: bgm_news_d7056ca9", "group": "asset"}, {"id": "as_bgm_bgm_news_d85bd288", "label": "BGM: bgm_news_d85bd288", "group": "asset"}, {"id": "as_bgm_bgm_news_df5e356a", "label": "BGM: bgm_news_df5e356a", "group": "asset"}, {"id": "as_bgm_bgm_news_e0874d31", "label": "BGM: bgm_news_e0874d31", "group": "asset"}, {"id": "as_bgm_bgm_news_f47e89f2", "label": "BGM: bgm_news_f47e89f2", "group": "asset"}, {"id": "as_bgm_bgm_news_f5ee93b7", "label": "BGM: bgm_news_f5ee93b7", "group": "asset"}, {"id": "as_bgm_bgm_news_f6d9bdec", "label": "BGM: bgm_news_f6d9bdec", "group": "asset"}, {"id": "as_bgm_bgm_news_f70a0c13", "label": "BGM: bgm_news_f70a0c13", "group": "asset"}, {"id": "as_bgm_bgm_news_fbeb33c8", "label": "BGM: bgm_news_fbeb33c8", "group": "asset"}, {"id": "as_bgm_bgm_news_ff3caf3a", "label": "BGM: bgm_news_ff3caf3a", "group": "asset"}, {"id": "as_bgm_bgm_tech_08afa539", "label": "BGM: bgm_tech_08afa539", "group": "asset"}, {"id": "as_bgm_bgm_tech_0ef3b8f6", "label": "BGM: bgm_tech_0ef3b8f6", "group": "asset"}, {"id": "as_bgm_bgm_tech_374e2f69", "label": "BGM: bgm_tech_374e2f69", "group": "asset"}, {"id": "as_bgm_bgm_tech_3a6e6cf4", "label": "BGM: bgm_tech_3a6e6cf4", "group": "asset"}, {"id": "as_bgm_bgm_tech_45bc4dac", "label": "BGM: bgm_tech_45bc4dac", "group": "asset"}, {"id": "as_bgm_bgm_tech_497641d1", "label": "BGM: bgm_tech_497641d1", "group": "asset"}, {"id": "as_bgm_bgm_tech_5f6d7c07", "label": "BGM: bgm_tech_5f6d7c07", "group": "asset"}, {"id": "as_bgm_bgm_tech_69777514", "label": "BGM: bgm_tech_69777514", "group": "asset"}, {"id": "as_bgm_bgm_tech_6b4da456", "label": "BGM: bgm_tech_6b4da456", "group": "asset"}, {"id": "as_bgm_bgm_tech_7a640600", "label": "BGM: bgm_tech_7a640600", "group": "asset"}, {"id": "as_bgm_bgm_tech_7c8230e7", "label": "BGM: bgm_tech_7c8230e7", "group": "asset"}, {"id": "as_bgm_bgm_tech_83c6500b", "label": "BGM: bgm_tech_83c6500b", "group": "asset"}, {"id": "as_bgm_bgm_tech_981ef495", "label": "BGM: bgm_tech_981ef495", "group": "asset"}, {"id": "as_bgm_bgm_tech_af014918", "label": "BGM: bgm_tech_af014918", "group": "asset"}, {"id": "as_bgm_bgm_tech_b88eafe0", "label": "BGM: bgm_tech_b88eafe0", "group": "asset"}, {"id": "as_bgm_bgm_tech_ba3f6b27", "label": "BGM: bgm_tech_ba3f6b27", "group": "asset"}, {"id": "as_bgm_bgm_tech_bea5df20", "label": "BGM: bgm_tech_bea5df20", "group": "asset"}, {"id": "as_bgm_bgm_tech_cd203141", "label": "BGM: bgm_tech_cd203141", "group": "asset"}, {"id": "as_bgm_bgm_tech_d23c911c", "label": "BGM: bgm_tech_d23c911c", "group": "asset"}, {"id": "as_bgm_bgm_tech_e65ea951", "label": "BGM: bgm_tech_e65ea951", "group": "asset"}, {"id": "as_bgm_bgm_tech_edcd5b7d", "label": "BGM: bgm_tech_edcd5b7d", "group": "asset"}, {"id": "as_bgm_bgm_tech_f0538fa8", "label": "BGM: bgm_tech_f0538fa8", "group": "asset"}, {"id": "as_bgm_bgm_tech_f8e1d55b", "label": "BGM: bgm_tech_f8e1d55b", "group": "asset"}, {"id": "as_bgm_bgm_upbeat", "label": "BGM: bgm_upbeat", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_06e1ec65", "label": "BGM: bgm_upbeat_06e1ec65", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_15d1c6de", "label": "BGM: bgm_upbeat_15d1c6de", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_16e92a77", "label": "BGM: bgm_upbeat_16e92a77", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_324d9ec8", "label": "BGM: bgm_upbeat_324d9ec8", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_3ce4aefe", "label": "BGM: bgm_upbeat_3ce4aefe", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_41dc2fb6", "label": "BGM: bgm_upbeat_41dc2fb6", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_422af94d", "label": "BGM: bgm_upbeat_422af94d", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_4321d16f", "label": "BGM: bgm_upbeat_4321d16f", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_4414dcee", "label": "BGM: bgm_upbeat_4414dcee", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_5282669e", "label": "BGM: bgm_upbeat_5282669e", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_89a6a5c8", "label": "BGM: bgm_upbeat_89a6a5c8", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_92833034", "label": "BGM: bgm_upbeat_92833034", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_9e4855dd", "label": "BGM: bgm_upbeat_9e4855dd", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_aa3a457d", "label": "BGM: bgm_upbeat_aa3a457d", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_b695781a", "label": "BGM: bgm_upbeat_b695781a", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_bae27a62", "label": "BGM: bgm_upbeat_bae27a62", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_be7c413f", "label": "BGM: bgm_upbeat_be7c413f", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_c76b4d71", "label": "BGM: bgm_upbeat_c76b4d71", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_cfec4c3a", "label": "BGM: bgm_upbeat_cfec4c3a", "group": "asset"}, {"id": "as_bgm_bgm_upbeat_d93365c4", "label": "BGM: bgm_upbeat_d93365c4", "group": "asset"}];
+  const edges = [{"from": "d_0inbox", "to": "d_4brain"}, {"from": "d_0setup", "to": "d_4brain"}, {"from": "d_1agents", "to": "d_4brain"}, {"from": "d_4brain", "to": "d_5framework"}, {"from": "d_2knowledge", "to": "d_4brain"}, {"from": "d_2skills", "to": "d_4brain"}, {"from": "d_6sop", "to": "d_4brain"}, {"from": "d_7assets", "to": "d_4brain"}, {"from": "d_9prompts", "to": "d_4brain"}, {"from": "d_1config", "to": "d_1agents"}, {"from": "d_5framework", "to": "d_8workspace"}, {"from": "d_8workspace", "to": "d_3memory"}, {"from": "d_8workspace", "to": "d_9dashboard"}, {"from": "d_3memory", "to": "d_9dashboard"}, {"from": "d_3memory", "to": "d_4brain"}, {"from": "d_scripts", "to": "d_4brain"}, {"from": "d_docs", "to": "d_6sop"}, {"from": "d_agentsskills", "to": "d_1agents"}, {"from": "d_agentsskills", "to": "d_4brain"}, {"from": "d_6sop", "to": "cat_sopVideo"}, {"from": "d_6sop", "to": "cat_sopVoice"}, {"from": "d_6sop", "to": "cat_sopRender"}, {"from": "d_6sop", "to": "cat_sopLearning"}, {"from": "d_6sop", "to": "cat_sopMaps"}, {"from": "d_6sop", "to": "cat_sopPublish"}, {"from": "d_6sop", "to": "cat_sopDesign"}, {"from": "d_6sop", "to": "cat_sopInfra"}, {"from": "cat_sopLearning", "to": "sop_AUTONOMOUS_FACTORY_LOOP"}, {"from": "cat_sopVoice", "to": "sop_CHIQUYET_VOICE_STYLE"}, {"from": "cat_sopVideo", "to": "sop_COURSE_VIDEO_SOP"}, {"from": "cat_sopInfra", "to": "sop_DASHBOARD_BUILD_PLAN"}, {"from": "cat_sopInfra", "to": "sop_DASHBOARD_SYSTEM_DESIGN"}, {"from": "cat_sopInfra", "to": "sop_DEPENDENCIES"}, {"from": "cat_sopRender", "to": "sop_EFFECT_LIBRARY_PLAN"}, {"from": "cat_sopLearning", "to": "sop_EVAL_FLYWHEEL"}, {"from": "cat_sopInfra", "to": "sop_GOOGLE_DRIVE_SHEETS_LAYER"}, {"from": "cat_sopRender", "to": "sop_HYPERFRAMES_INTEGRATION"}, {"from": "cat_sopInfra", "to": "sop_LIPSYNC_ENGINE_MUSETALK"}, {"from": "cat_sopInfra", "to": "sop_LLM_CODING_DISCIPLINE"}, {"from": "cat_sopInfra", "to": "sop_LOOP_OPERATING_SOP"}, {"from": "cat_sopInfra", "to": "sop_LTX_BROLL_PLAN"}, {"from": "cat_sopInfra", "to": "sop_MASCOT_LIVE2D_RIG_SPEC"}, {"from": "cat_sopInfra", "to": "sop_MASTER_OPERATION"}, {"from": "cat_sopRender", "to": "sop_MOTION_EFFECT_PLAN"}, {"from": "cat_sopInfra", "to": "sop_PRODUCT_ROADMAP"}, {"from": "cat_sopLearning", "to": "sop_QA_CAPTIONS_FINDINGS"}, {"from": "cat_sopVideo", "to": "sop_REFERENCE_TO_VIDEO_SOP"}, {"from": "cat_sopRender", "to": "sop_RENDER_ENGINE_DECISION"}, {"from": "cat_sopLearning", "to": "sop_REPO_VETTING_SOP"}, {"from": "cat_sopInfra", "to": "sop_SCRIPT_WRITING_PIPELINE"}, {"from": "cat_sopLearning", "to": "sop_SELF_IMPROVEMENT_LOOP"}, {"from": "cat_sopVideo", "to": "sop_SEOSONA_VIDEO_AUTONOMOUS_TEMPLATE_FACTORY"}, {"from": "cat_sopMaps", "to": "sop_SEOSONA_VIDEO_RECONNECTION_MAP"}, {"from": "cat_sopMaps", "to": "sop_SEOSONA_WORKFLOW_BOUNDARY_MAP"}, {"from": "cat_sopPublish", "to": "sop_SEO_CONTENT_STRATEGY"}, {"from": "cat_sopDesign", "to": "sop_TEMPLATE_MAP"}, {"from": "cat_sopInfra", "to": "sop_UPGRADE_BACKLOG"}, {"from": "cat_sopDesign", "to": "sop_UX_UI_DESIGN_GUIDELINES"}, {"from": "cat_sopMaps", "to": "sop_VIDEO_ARCHITECTURE"}, {"from": "cat_sopVoice", "to": "sop_VOICE_TTS_ENGINE_ROUTING"}, {"from": "cat_sopPublish", "to": "sop_YOUTUBE_CHANNEL_OPERATIONS_MCP"}, {"from": "cat_sopVoice", "to": "sop_brand_voice_sop"}, {"from": "cat_sopDesign", "to": "sop_carousel_sop"}, {"from": "cat_sopPublish", "to": "sop_publishing_checklist"}, {"from": "cat_sopVideo", "to": "sop_repurposer_sop"}, {"from": "cat_sopVideo", "to": "sop_talking_head_sop"}, {"from": "cat_sopVideo", "to": "sop_tech_news_faceless_sop"}, {"from": "cat_sopDesign", "to": "sop_thumbnail_sop"}, {"from": "cat_sopVideo", "to": "sop_video_production_sop"}, {"from": "cat_sopVoice", "to": "sop_voice_cloning_tts_sop"}, {"from": "cat_sopPublish", "to": "sop_youtube_seo_sop"}, {"from": "d_4brain", "to": "b_angle_finder"}, {"from": "d_4brain", "to": "b_beat_timing"}, {"from": "d_4brain", "to": "b_block_forge"}, {"from": "d_4brain", "to": "b_block_picker"}, {"from": "d_4brain", "to": "b_brand_kit"}, {"from": "d_4brain", "to": "b_capcut_export"}, {"from": "d_4brain", "to": "b_caption_segment"}, {"from": "d_4brain", "to": "b_component_picker"}, {"from": "d_4brain", "to": "b_content_moderation"}, {"from": "d_4brain", "to": "b_course_planner"}, {"from": "d_4brain", "to": "b_director"}, {"from": "d_4brain", "to": "b_discovery"}, {"from": "d_4brain", "to": "b_dub_align"}, {"from": "d_4brain", "to": "b_effect_library"}, {"from": "d_4brain", "to": "b_eval_judge"}, {"from": "d_4brain", "to": "b_eval_run"}, {"from": "d_4brain", "to": "b_evaluator"}, {"from": "d_4brain", "to": "b_factory_brain"}, {"from": "d_4brain", "to": "b_factory_ledger"}, {"from": "d_4brain", "to": "b_factory_metrics"}, {"from": "d_4brain", "to": "b_frame_study"}, {"from": "d_4brain", "to": "b_frame_synth"}, {"from": "d_4brain", "to": "b_graph_executor"}, {"from": "d_4brain", "to": "b_hf_blocks"}, {"from": "d_4brain", "to": "b_image_gen"}, {"from": "d_4brain", "to": "b_knowledge_graph"}, {"from": "d_4brain", "to": "b_learn_flywheel"}, {"from": "d_4brain", "to": "b_llm_engine"}, {"from": "d_4brain", "to": "b_make_video"}, {"from": "d_4brain", "to": "b_native_composer"}, {"from": "d_4brain", "to": "b_news_video_standards"}, {"from": "d_4brain", "to": "b_production_manifest"}, {"from": "d_4brain", "to": "b_quality_scorer"}, {"from": "d_4brain", "to": "b_researcher"}, {"from": "d_4brain", "to": "b_scene_composer"}, {"from": "d_4brain", "to": "b_scene_writer"}, {"from": "d_4brain", "to": "b_script_schema"}, {"from": "d_4brain", "to": "b_script_writer"}, {"from": "d_4brain", "to": "b_seedance_director"}, {"from": "d_4brain", "to": "b_seedance_engine"}, {"from": "d_4brain", "to": "b_seosona_bootstrap"}, {"from": "d_4brain", "to": "b_skill_registry"}, {"from": "d_4brain", "to": "b_spec_lint"}, {"from": "d_4brain", "to": "b_template_generator"}, {"from": "d_4brain", "to": "b_template_picker"}, {"from": "d_4brain", "to": "b_transcript_fix"}, {"from": "d_4brain", "to": "b_video_engine"}, {"from": "d_4brain", "to": "b_video_integration_audit"}, {"from": "d_4brain", "to": "b_workflow_router"}, {"from": "p_0", "to": "b_script_writer"}, {"from": "p_1", "to": "b_workflow_router"}, {"from": "p_2", "to": "b_effect_library"}, {"from": "p_3", "to": "b_factory_brain"}, {"from": "p_4", "to": "b_video_engine"}, {"from": "p_5", "to": "b_native_composer"}, {"from": "d_1agents", "to": "ag_analytics_feedback_agent"}, {"from": "d_1agents", "to": "ag_carousel_writer_agent"}, {"from": "d_1agents", "to": "ag_hermes_agent"}, {"from": "d_1agents", "to": "ag_publisher_agent"}, {"from": "d_1agents", "to": "ag_repurposer_agent"}, {"from": "d_1agents", "to": "ag_scraper_agent"}, {"from": "d_1agents", "to": "ag_seo_optimizer"}, {"from": "d_1agents", "to": "ag_seo_writer_agent"}, {"from": "d_1agents", "to": "ag_social_media_agent"}, {"from": "d_1agents", "to": "ag_trend_jacking_agent"}, {"from": "d_1agents", "to": "pe_orchestrator_agent"}, {"from": "d_1agents", "to": "pe_researcher"}, {"from": "d_1agents", "to": "pe_scout"}, {"from": "d_1agents", "to": "pe_security-auditor"}, {"from": "d_1agents", "to": "pe_visual_designer"}, {"from": "d_agentsskills", "to": "sk_capability-analyst"}, {"from": "d_agentsskills", "to": "sk_embedded-captions"}, {"from": "d_agentsskills", "to": "sk_faceless-explainer"}, {"from": "d_agentsskills", "to": "sk_factory-strategist"}, {"from": "d_agentsskills", "to": "sk_general-video"}, {"from": "d_agentsskills", "to": "sk_graphic-overlays"}, {"from": "d_agentsskills", "to": "sk_heygen-native-api"}, {"from": "d_agentsskills", "to": "sk_heygen-skills"}, {"from": "d_agentsskills", "to": "sk_hyperframes"}, {"from": "d_agentsskills", "to": "sk_hyperframes-animation"}, {"from": "d_agentsskills", "to": "sk_hyperframes-cli"}, {"from": "d_agentsskills", "to": "sk_hyperframes-core"}, {"from": "d_agentsskills", "to": "sk_hyperframes-creative"}, {"from": "d_agentsskills", "to": "sk_hyperframes-media"}, {"from": "d_agentsskills", "to": "sk_hyperframes-registry"}, {"from": "d_agentsskills", "to": "sk_motion-graphics"}, {"from": "d_agentsskills", "to": "sk_pr-to-video"}, {"from": "d_agentsskills", "to": "sk_product-launch-video"}, {"from": "d_agentsskills", "to": "sk_remotion-to-hyperframes"}, {"from": "d_agentsskills", "to": "sk_scene-composer"}, {"from": "d_agentsskills", "to": "sk_seedance-prompt-director"}, {"from": "d_agentsskills", "to": "sk_seosona-news-maker"}, {"from": "d_agentsskills", "to": "sk_seosona-video-operator"}, {"from": "d_agentsskills", "to": "sk_talking-head-video-editor"}, {"from": "d_agentsskills", "to": "sk_video-discovery"}, {"from": "d_agentsskills", "to": "sk_video-evaluator"}, {"from": "d_agentsskills", "to": "sk_video-seo-metadata"}, {"from": "d_agentsskills", "to": "sk_website-to-video"}, {"from": "d_2skills", "to": "sm_bgm_sourcer"}, {"from": "d_2skills", "to": "sm_broll_sourcer"}, {"from": "d_2skills", "to": "sm_carousel_maker"}, {"from": "d_2skills", "to": "sm_element_maker"}, {"from": "d_2skills", "to": "sm_image_sourcer"}, {"from": "d_2skills", "to": "sm_srt_maker"}, {"from": "d_2skills", "to": "sm_thumbnail_maker"}, {"from": "d_2skills", "to": "sm_video_clipper"}, {"from": "d_2skills", "to": "sm_voice_cloner"}, {"from": "d_2skills", "to": "sm_yt_downloader"}, {"from": "d_7assets", "to": "tp__auto_agency-agents"}, {"from": "d_7assets", "to": "tp__auto_gemini-watermark-remover"}, {"from": "d_7assets", "to": "tp__auto_tabfm"}, {"from": "d_7assets", "to": "tp_ai-news-flash"}, {"from": "d_7assets", "to": "tp_benchmark-news"}, {"from": "d_7assets", "to": "tp_case-study"}, {"from": "d_7assets", "to": "tp_data-news"}, {"from": "d_7assets", "to": "tp_deep-tutorial"}, {"from": "d_7assets", "to": "tp_faq"}, {"from": "d_7assets", "to": "tp_insight-explainer"}, {"from": "d_7assets", "to": "tp_launch"}, {"from": "d_7assets", "to": "tp_listicle-top5"}, {"from": "d_7assets", "to": "tp_myth-buster"}, {"from": "d_7assets", "to": "tp_opinion-insight"}, {"from": "d_7assets", "to": "tp_quick-tip"}, {"from": "d_7assets", "to": "tp_repo-showcase"}, {"from": "d_7assets", "to": "tp_resource-list"}, {"from": "d_7assets", "to": "tp_seo-explainer"}, {"from": "d_7assets", "to": "tp_tool-walkthrough"}, {"from": "d_7assets", "to": "tp_transformation"}, {"from": "d_7assets", "to": "tp_trend-alert"}, {"from": "d_7assets", "to": "tp_tutorial-gittree"}, {"from": "d_7assets", "to": "tp_versus-deep"}, {"from": "b_native_composer", "to": "co_alert"}, {"from": "b_native_composer", "to": "co_badges"}, {"from": "b_native_composer", "to": "co_bars"}, {"from": "b_native_composer", "to": "co_bignum"}, {"from": "b_native_composer", "to": "co_callout"}, {"from": "b_native_composer", "to": "co_chart"}, {"from": "b_native_composer", "to": "co_chat"}, {"from": "b_native_composer", "to": "co_checklist"}, {"from": "b_native_composer", "to": "co_chiprow"}, {"from": "b_native_composer", "to": "co_codecard"}, {"from": "b_native_composer", "to": "co_compare"}, {"from": "b_native_composer", "to": "co_cta"}, {"from": "b_native_composer", "to": "co_divider"}, {"from": "b_native_composer", "to": "co_donut"}, {"from": "b_native_composer", "to": "co_feature"}, {"from": "b_native_composer", "to": "co_filetree"}, {"from": "b_native_composer", "to": "co_gauge"}, {"from": "b_native_composer", "to": "co_gittree"}, {"from": "b_native_composer", "to": "co_hub"}, {"from": "b_native_composer", "to": "co_icongrid"}, {"from": "b_native_composer", "to": "co_linechart"}, {"from": "b_native_composer", "to": "co_lower-third"}, {"from": "b_native_composer", "to": "co_mockup"}, {"from": "b_native_composer", "to": "co_notification"}, {"from": "b_native_composer", "to": "co_people"}, {"from": "b_native_composer", "to": "co_phone"}, {"from": "b_native_composer", "to": "co_photocard"}, {"from": "b_native_composer", "to": "co_pie"}, {"from": "b_native_composer", "to": "co_quote"}, {"from": "b_native_composer", "to": "co_repo"}, {"from": "b_native_composer", "to": "co_ring"}, {"from": "b_native_composer", "to": "co_social"}, {"from": "b_native_composer", "to": "co_stats"}, {"from": "b_native_composer", "to": "co_steps"}, {"from": "b_native_composer", "to": "co_tabs"}, {"from": "b_native_composer", "to": "co_terminal"}, {"from": "b_native_composer", "to": "co_timeline"}, {"from": "b_native_composer", "to": "co_tip"}, {"from": "b_effect_library", "to": "fx_t_slide-up"}, {"from": "b_effect_library", "to": "fx_t_rise-fade"}, {"from": "b_effect_library", "to": "fx_t_zoom"}, {"from": "b_effect_library", "to": "fx_t_drop"}, {"from": "b_effect_library", "to": "fx_t_dissolve"}, {"from": "b_effect_library", "to": "fx_t_wipe-up"}, {"from": "b_effect_library", "to": "fx_te_rise"}, {"from": "b_effect_library", "to": "fx_te_word-up"}, {"from": "b_effect_library", "to": "fx_te_char-cascade"}, {"from": "b_effect_library", "to": "fx_te_line-mask"}, {"from": "b_effect_library", "to": "fx_te_clip-wipe"}, {"from": "b_effect_library", "to": "fx_te_word-pop"}, {"from": "b_effect_library", "to": "fx_te_drop"}, {"from": "b_effect_library", "to": "fx_te_shimmer"}, {"from": "b_effect_library", "to": "fx_e_light-leak"}, {"from": "b_effect_library", "to": "fx_e_bloom"}, {"from": "b_effect_library", "to": "fx_x_fade"}, {"from": "b_effect_library", "to": "fx_x_slide-left"}, {"from": "b_effect_library", "to": "fx_x_lift"}, {"from": "b_effect_library", "to": "fx_x_shrink"}, {"from": "b_effect_library", "to": "fx_x_sink"}, {"from": "d_2knowledge", "to": "dk_banner-design"}, {"from": "d_2knowledge", "to": "dk_brand"}, {"from": "d_2knowledge", "to": "dk_competitor-alternatives"}, {"from": "d_2knowledge", "to": "dk_content-strategy"}, {"from": "d_2knowledge", "to": "dk_copy-editing"}, {"from": "d_2knowledge", "to": "dk_copywriting"}, {"from": "d_2knowledge", "to": "dk_design-system"}, {"from": "d_2knowledge", "to": "dk_frontend-design"}, {"from": "d_2knowledge", "to": "dk_geo-aeo"}, {"from": "d_2knowledge", "to": "dk_make-interfaces-feel-better"}, {"from": "d_2knowledge", "to": "dk_marketing-psychology"}, {"from": "d_2knowledge", "to": "dk_ogilvy"}, {"from": "d_2knowledge", "to": "dk_page-cro"}, {"from": "d_2knowledge", "to": "dk_programmatic-seo"}, {"from": "d_2knowledge", "to": "dk_schema-markup"}, {"from": "d_2knowledge", "to": "dk_seo-audit"}, {"from": "d_2knowledge", "to": "dk_stop-slop"}, {"from": "d_2knowledge", "to": "dk_ui-styling"}, {"from": "d_2knowledge", "to": "dk_web-design-guidelines"}, {"from": "d_7assets", "to": "as_sfx_impact"}, {"from": "d_7assets", "to": "as_sfx_pops"}, {"from": "d_7assets", "to": "as_sfx_riser"}, {"from": "d_7assets", "to": "as_sfx_shutter"}, {"from": "d_7assets", "to": "as_sfx_tick"}, {"from": "d_7assets", "to": "as_sfx_transition"}, {"from": "d_7assets", "to": "as_sfx_transitions"}, {"from": "d_7assets", "to": "as_sfx_typing"}, {"from": "d_7assets", "to": "as_sfx_ui"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_0b27116c"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_0cbb2cb4"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_0fb3904c"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_1137771e"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_1e9d835f"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_23618b11"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_721515fb"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_85eec172"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_9eab0e99"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_b7ce88ce"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_d23b4e48"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_efc48adc"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_f4b1002f"}, {"from": "d_7assets", "to": "as_bgm_bgm_insight_f64818a3"}, {"from": "d_7assets", "to": "as_bgm_bgm_news"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_049dcb5a"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_088f75ba"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_0a0c84cb"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_0a5ed498"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_15cab838"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_1abeb440"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_29b2e6c6"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_2b7b5aba"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_2cc6d3ac"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_2e2f4932"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_2ebea6a9"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_415e8190"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_4b433fc1"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_4c3c4546"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_4f276363"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_51699ec3"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_59124d0d"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_613dcb6c"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_6250bd19"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_674ec1ba"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_7d84687d"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_81c3d828"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_8339d9ae"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_837681e7"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_8b3a3b80"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_8f9400e5"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_97fac48d"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_9a70470f"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_a469563d"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_a600ad13"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_abe52d61"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_b933b651"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_b95ef15c"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_ba0097d7"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_bae60905"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_c828896c"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_d7056ca9"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_d85bd288"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_df5e356a"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_e0874d31"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_f47e89f2"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_f5ee93b7"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_f6d9bdec"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_f70a0c13"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_fbeb33c8"}, {"from": "d_7assets", "to": "as_bgm_bgm_news_ff3caf3a"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_08afa539"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_0ef3b8f6"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_374e2f69"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_3a6e6cf4"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_45bc4dac"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_497641d1"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_5f6d7c07"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_69777514"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_6b4da456"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_7a640600"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_7c8230e7"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_83c6500b"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_981ef495"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_af014918"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_b88eafe0"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_ba3f6b27"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_bea5df20"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_cd203141"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_d23c911c"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_e65ea951"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_edcd5b7d"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_f0538fa8"}, {"from": "d_7assets", "to": "as_bgm_bgm_tech_f8e1d55b"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_06e1ec65"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_15d1c6de"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_16e92a77"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_324d9ec8"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_3ce4aefe"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_41dc2fb6"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_422af94d"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_4321d16f"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_4414dcee"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_5282669e"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_89a6a5c8"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_92833034"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_9e4855dd"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_aa3a457d"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_b695781a"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_bae27a62"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_be7c413f"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_c76b4d71"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_cfec4c3a"}, {"from": "d_7assets", "to": "as_bgm_bgm_upbeat_d93365c4"}];
+  // ===== KNOWLEDGE_GRAPH_DATA_END =====
+
+  // ---------- GROUP STYLES ----------
+  const groups = {
+    dir:         {color:{background:'#2A5BDA',border:'#1E4CC4'}, font:{color:'#fff',size:15,face:'Be Vietnam Pro',bold:true}, shape:'box', margin:10},
+    brain:       {color:{background:'#93A9F5',border:'#1E4CC4'}, font:{size:12}},
+    pipeline:    {color:{background:'#E2724D',border:'#B9502E'}, font:{color:'#fff',size:13,bold:true}, shape:'diamond'},
+    sopcat:      {color:{background:'#CBD5E1',border:'#64748B'}, font:{size:12,bold:true}},
+    sopVideo:    {color:{background:'#FCE7E1',border:'#E2724D'}, font:{size:9}},
+    sopVoice:    {color:{background:'#FEF3C7',border:'#D97706'}, font:{size:9}},
+    sopRender:   {color:{background:'#DBEAFE',border:'#2563EB'}, font:{size:9}},
+    sopLearning: {color:{background:'#DCFCE7',border:'#16A34A'}, font:{size:9}},
+    sopMaps:     {color:{background:'#EDE9FE',border:'#7C3AED'}, font:{size:9}},
+    sopPublish:  {color:{background:'#FCE7F3',border:'#DB2777'}, font:{size:9}},
+    sopDesign:   {color:{background:'#E0F2FE',border:'#0284C7'}, font:{size:9}},
+    sopInfra:    {color:{background:'#F1F5F9',border:'#475569'}, font:{size:9}},
+    agent:       {color:{background:'#16A34A',border:'#15803D'}, font:{color:'#fff',size:11}},
+    persona:     {color:{background:'#5EEAD4',border:'#0D9488'}, font:{size:11}},
+    skill:       {color:{background:'#0EA5E9',border:'#0369A1'}, font:{color:'#fff',size:10}},
+    template:    {color:{background:'#F59E0B',border:'#B45309'}, font:{size:10}},
+    component:   {color:{background:'#C4B5FD',border:'#7C3AED'}, font:{size:9}},
+    asset:       {color:{background:'#CBD5E1',border:'#64748B'}, font:{size:9}},
+    domainskill: {color:{background:'#F9A8D4',border:'#DB2777'}, font:{size:9}},
+    repocat:     {color:{background:'#94A3B8',border:'#475569'}, font:{size:11,bold:true,color:'#fff'}},
+    repoBuilt:   {color:{background:'#22C55E',border:'#15803D'}, font:{size:8}},
+    repoRef:     {color:{background:'#60A5FA',border:'#1D4ED8'}, font:{size:8}},
+    repoSkip:    {color:{background:'#CBD5E1',border:'#64748B'}, font:{size:8}},
+    repoRej:     {color:{background:'#F87171',border:'#B91C1C'}, font:{size:8}},
+    repoBacklog: {color:{background:'#FDBA74',border:'#C2410C'}, font:{size:8}},
+    repoOwn:     {color:{background:'#FDE047',border:'#CA8A04'}, font:{size:12,bold:true}, shape:'star'}
+  };
+
+  const container = document.getElementById('graph');
+  const nodeSet = new vis.DataSet(nodes);
+  const edgeSet = new vis.DataSet(edges);
+  const options = {
+    groups: groups,
+    nodes:{shape:'dot', scaling:{min:6,max:26}, font:{face:'Be Vietnam Pro'}},
+    edges:{color:{color:'#DCE3F5', highlight:'#2A5BDA'}, width:1, smooth:{type:'continuous'}},
+    physics:{barnesHut:{gravitationalConstant:-9000, springLength:110, springConstant:0.02, damping:0.25}, stabilization:{iterations:250}},
+    layout:{improvedLayout:false},
+    interaction:{hover:true, tooltipDelay:120}
+  };
+  const network = new vis.Network(container, {nodes:nodeSet, edges:edgeSet}, options);
+  window.__graphDebug = {nodeCount: nodes.length, edgeCount: edges.length, nodes, edges, network}; // console inspection aid
+
+  // legend
+  const legendDefs = [
+    ["Directory","#2A5BDA"], ["Brain module","#93A9F5"], ["Pipeline","#E2724D"], ["SOP category","#CBD5E1"],
+    ["SOP (by domain)","#94A3B8"], ["Agent","#16A34A"], ["Persona","#5EEAD4"], ["Skill","#0EA5E9"],
+    ["Template","#F59E0B"], ["Component","#C4B5FD"], ["Asset","#CBD5E1"], ["Domain skill","#F9A8D4"],
+    ["Repo category","#94A3B8"], ["Repo: BUILT","#22C55E"], ["Repo: REFERENCE","#60A5FA"], ["Repo: SKIP/REJECTED","#CBD5E1"],
+    ["Repo: backlog (untouched)","#FDBA74"], ["★ Repo CỦA BẠN (chưa đụng)","#FDE047"]
+  ];
+  document.getElementById('glegend').innerHTML = legendDefs.map(([l,c])=>
+    '<span><i style="background:'+c+'"></i>'+l+'</span>').join('');
+
+  // search → select + fit matched nodes (robust across vis-network versions)
+  document.getElementById('gsearch').addEventListener('input', function(e){
+    const q = e.target.value.trim().toLowerCase();
+    if(!q){ network.unselectAll(); return; }
+    const matched = nodes.filter(n=>n.label.toLowerCase().includes(q)).map(n=>n.id);
+    network.selectNodes(matched);
+    if(matched.length) network.fit({nodes:matched, animation:{duration:400}});
+  });
+  document.getElementById('gfit').addEventListener('click', ()=> network.fit({animation:{duration:400}}));
+  document.getElementById('greset').addEventListener('click', ()=>{
+    document.getElementById('gsearch').value=''; network.unselectAll(); network.fit({animation:{duration:400}});
+  });
+})();
+</script>
+</body>
+</html>

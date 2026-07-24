@@ -1,0 +1,82 @@
+{
+  "audit_name": "audit_video_factory_20260711_1958",
+  "system": "SEOSONA Video — Autonomous Video Production Factory",
+  "generated": "2026-07-11T19:58:00+07:00",
+  "mode": "read-only (no source/config modified)",
+  "auditor": "independent system auditor (Claude Code)",
+  "git": {
+    "branch": "main",
+    "head_commit": "87c6bb753ced7816c9200cafc4da1d8c8f1191da",
+    "head_short": "87c6bb7",
+    "note": "HEAD advanced from 2ceb3fd to 87c6bb7 (EDL auto-cut commit) just before the STOP kill-switch was placed"
+  },
+  "runtime_versions": {
+    "node": "v22.22.3",
+    "npm": "10.9.8",
+    "python": "3.11.15",
+    "ffprobe": "8.1.1 (Gyan build, on PATH)",
+    "render_engine": "hyperframes@0.7.24 + ffmpeg-static",
+    "database": "none (JSON/JSONL/YAML on disk)",
+    "queue": "file/process-based (queue_processor.py)",
+    "containers": "none (no Docker/compose)"
+  },
+  "files": [
+    { "name": "00_EXECUTIVE_SUMMARY.md", "purpose": "what the system does, works vs missing, top blockers, first step" },
+    { "name": "01_SYSTEM_TREE.md", "purpose": "curated tier 0-9 tree with roles + entry points + callers" },
+    { "name": "02_TECH_STACK_AND_SERVICES.md", "purpose": "stack, provider integrations + status, ENV var names, LLM cascade" },
+    { "name": "03_WORKFLOW_AND_NODE_MAP.md", "purpose": "actual pipeline mermaid + node table + orphaned nodes + data-loss points" },
+    { "name": "04_DATA_CONTRACTS.md", "purpose": "stage schemas, redacted example payloads, contract defects" },
+    { "name": "05_EXECUTION_TRACE.md", "purpose": "last runs, ffprobe-verified outputs, log errors, end-to-end proof" },
+    { "name": "06_FAILURE_ANALYSIS.md", "purpose": "BLOCKER/HIGH/MEDIUM/LOW issues with evidence + verify steps" },
+    { "name": "07_VIDEO_QUALITY_GAPS.md", "purpose": "10-criterion 0-4 scorecard against Video-Factory standard" },
+    { "name": "08_GAPS_VS_TARGET_FACTORY.md", "purpose": "keep/reconnect/build/remove + shortest-path fix order" },
+    { "name": "09_EVIDENCE_INDEX.md", "purpose": "all evidence paths (no secrets)" },
+    { "name": "10_REPRODUCE_CURRENT_STATE.md", "purpose": "prereqs, happy-path commands, expected output, failure points" },
+    { "name": "audit_manifest.json", "purpose": "machine-readable index of this audit" },
+    { "name": "screenshots/api_health.json", "purpose": "live dashboard health snapshot" },
+    { "name": "screenshots/api_metrics.json", "purpose": "live dashboard metrics snapshot" },
+    { "name": "screenshots/api_factory-metrics.json", "purpose": "live factory metrics snapshot" },
+    { "name": "screenshots/api_system-stats.json", "purpose": "live system stats snapshot" },
+    { "name": "screenshots/api_process-status.json", "purpose": "live process status snapshot" },
+    { "name": "screenshots/dashboard_index.html", "purpose": "rendered dashboard markup" },
+    { "name": "screenshots/dashboard_server.log", "purpose": "dashboard server stdout" }
+  ],
+  "health_check": {
+    "renders_recorded": 30,
+    "renders_ok": 28,
+    "videos_on_disk": 45,
+    "avg_quality_score": 97.2,
+    "quality_pass_pct": 100.0,
+    "quality_gate": 85,
+    "caption_sync_real_pct": 75.0,
+    "wpm_observed_range": "212-228",
+    "wpm_healthy_band": "130-180",
+    "end_to_end_render_success": true,
+    "ever_published_real": false,
+    "publish_receipts": "dry-run only",
+    "learning_ledger_total_videos": 1,
+    "autonomous_loop_state": "PAUSED (0_INPUT_INBOX/STOP present)",
+    "production_queue": "empty placeholders",
+    "dashboard_port": 5050,
+    "dashboard_http_status": 200
+  },
+  "blockers": [
+    { "id": "BLOCKER-1", "title": "Open feedback loop: never published, analytics ingest is a stub", "evidence": "logs/publish/receipts.jsonl (dry-run only); performance_ingest.py:47 return None; learning/ledger.json total_videos:1" },
+    { "id": "BLOCKER-2", "title": "Cinematic/generative engines unwired or venv-blocked", "evidence": "seedance_engine/lipsync_service have no pipeline caller; .venv-musetalk/-sadtalker/-liveportrait missing" },
+    { "id": "HIGH-1", "title": "QA gate passes craft-flawed videos (shallow metrics + ffprobe PATH fragility)", "evidence": "quality_scorer.py:58 bare ffprobe, :117 partial credit; WPM 212-228 self-scores PASS" },
+    { "id": "HIGH-2", "title": "Off-brand backup voice (VieNeu) used in production", "evidence": "factory_metrics records show vieneu:*; OmniVoice GPU path inactive" },
+    { "id": "HIGH-3", "title": "Topic path discards verified Script and re-runs LLM", "evidence": "topic_to_video.py:164 -> route(text); video_engine.py:369 re-plan" }
+  ],
+  "top_working": [
+    "native_composer.make_video render chokepoint reliably ships valid 1080x1920 H.264+AAC MP4s",
+    "script_writer 6-stage + traceability gate over a 6-tier LLM cascade with keyless offline floor",
+    "operations layer: queue_processor, daily scheduler, loop_guard+STOP, factory_metrics recorder, Flask dashboard"
+  ],
+  "top_missing": [
+    "craft-aware QA metrics (pacing/legibility/occlusion/loudness)",
+    "real publish + real performance analytics to close the OODA loop",
+    "talking-head + generative b-roll wired as first-class factory archetypes"
+  ],
+  "first_step": "Replace/augment quality_scorer with craft metrics (bundled ffprobe + enforce 130-180 WPM + caption/loudness/variety) so the factory can distinguish a good video from a merely-passable one.",
+  "status": "AUDIT COMPLETE — WAITING FOR EXTERNAL ARCHITECT REVIEW"
+}

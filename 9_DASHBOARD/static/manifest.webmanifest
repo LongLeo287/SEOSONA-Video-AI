@@ -1,0 +1,13 @@
+{
+  "name": "SEOSONA Video — Control Dashboard",
+  "short_name": "SEOSONA",
+  "description": "Manage the entire SEOSONA Video factory: system map, second brain, health, production, learning.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F4F7FF",
+  "theme_color": "#2A5BDA",
+  "icons": [
+    { "src": "/static/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

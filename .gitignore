@@ -206,3 +206,14 @@ test_carousel_v2/
 
 # Orphaned assets of the removed avatar/mascot subsystem (see commit 10ab777) — do not track
 7_ASSETS/brand/SEOSONA/mascot_poses/
+
+# Large binary asset stores — too big for git, kept on disk only
+7_ASSETS/brand/SEOSONA PROFILE IMG/
+7_ASSETS/voice/reference/
+7_ASSETS/voice/profiles/*.OLD-*
+# Dead avatar/talking-head subsystem style refs (subsystem removed in 10ab777)
+2_KNOWLEDGE/style_references/talking_head/
+# Scratch design-frame refs + stray renders
+pl/
+# Dead bench harness (imports removed engines)
+scripts/bench_asr_tts_vi.py

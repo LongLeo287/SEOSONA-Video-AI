@@ -1,0 +1,133 @@
+{
+ "name": "v2_phase0_fixtures",
+ "created": "2026-07-14",
+ "note": "Ground-truth set for V2 Phase-1 contract + golden tests. Files are IMMUTABLE references — verify sha256 before use.",
+ "fixtures": [
+  {
+   "id": "fx01_faceless_news_fresh",
+   "path": "8_WORKSPACE/ai-14all/ai-14all - SEOSONA.mp4",
+   "kind": "final_video",
+   "why": "E2E render on the CONSOLIDATED pipeline (2026-07-14): OmniVoice + PhoWhisper-large + HyperFrames",
+   "bytes": 15983551,
+   "sha256": "786554ce8bcc70a8318b0931b23d22d152b20d3aa66f282d87330b568a6bfd84",
+   "duration_s": 53.4,
+   "streams": [
+    "Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, p",
+    "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp,",
+    "Data: bin_data (text / 0x74786574), 0 kb/s"
+   ]
+  },
+  {
+   "id": "fx02_faceless_news_toby",
+   "path": "8_WORKSPACE/TOBY_LABS_NEWS/FINAL.mp4",
+   "kind": "final_video",
+   "why": "pre-consolidation faceless news render — regression baseline",
+   "bytes": 17726715,
+   "sha256": "e33867d2f9c1e245cde344f37671463211d8076e59c043933c76c20336529d3d",
+   "duration_s": 47.0,
+   "streams": [
+    "Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, p",
+    "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp,",
+    "Data: bin_data (text / 0x74786574), 0 kb/s"
+   ]
+  },
+  {
+   "id": "fx03_faceless_news_selfsuff",
+   "path": "8_WORKSPACE/NEWS_SELFSUFF/FINAL.mp4",
+   "kind": "final_video",
+   "why": "faceless news, different template rotation",
+   "bytes": 14994223,
+   "sha256": "9513ab93d32aea7baf94e4bb8c8daf424dc2cf9aabc744b982b4d24a28b5b733",
+   "duration_s": 82.8,
+   "streams": [
+    "Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, p",
+    "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp,"
+   ]
+  },
+  {
+   "id": "fx04_repo_video_promptschat",
+   "path": "8_WORKSPACE/prompts.chat/prompts.chat - SEOSONA.mp4",
+   "kind": "final_video",
+   "why": "repo→video path with real homepage screenshot",
+   "bytes": 14832072,
+   "sha256": "a2513c48570f4e58579c40754383d1bb90ffe2f8d2f912645e691b1af7221b30",
+   "duration_s": 55.3,
+   "streams": [
+    "Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, p",
+    "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp,",
+    "Data: bin_data (text / 0x74786574), 0 kb/s"
+   ]
+  },
+  {
+   "id": "fx05_talking_head_reel",
+   "path": "8_WORKSPACE/adsbootcamp_11_07/_reasm_cache.mp4",
+   "kind": "footage_video",
+   "why": "talking-head source-locked footage (priority production line)",
+   "bytes": 72966088,
+   "sha256": "5c032bfc11f6681b232749ddbc06802c95181555530f92e9d01f1318976592bf",
+   "duration_s": 96.33,
+   "streams": [
+    "Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, p"
+   ]
+  },
+  {
+   "id": "fx06_real_speech_short",
+   "path": "7_ASSETS/voice/training/cqa_omnivoice/clips/cqa000000.wav",
+   "kind": "speech_audio",
+   "why": "real CQA speech 14s — ASR fixture (transcript NOT gold; PhoWhisper-derived)",
+   "bytes": 668204,
+   "sha256": "04f5dab79f57bf5a079ee827f4c181a6c284958c63b5375fb132606818b910cc",
+   "duration_s": 13.92,
+   "streams": [
+    "Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, 1 channe"
+   ]
+  },
+  {
+   "id": "fx07_real_speech_dense",
+   "path": "7_ASSETS/voice/training/cqa_omnivoice/clips/cqa000400.wav",
+   "kind": "speech_audio",
+   "why": "real CQA speech 13.4s, dense/fast delivery — the clip that exposed the defective medium-ct2 collapse",
+   "bytes": 644204,
+   "sha256": "a8c325535bda284dd713343c3a4b64d4551f07023c29f6f11e23900975eff287",
+   "duration_s": 13.42,
+   "streams": [
+    "Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, 1 channe"
+   ]
+  },
+  {
+   "id": "fx08_brand_voice_ref",
+   "path": "7_ASSETS/voice/profiles/cqa_omnivoice_ref.wav",
+   "kind": "speech_audio",
+   "why": "THE brand-voice clone reference (with sibling .txt transcript)",
+   "bytes": 401324,
+   "sha256": "c709d2f4c5414898f64f097ec101898ebdee489951748efb821c0771f9a4074a",
+   "duration_s": 8.36,
+   "streams": [
+    "Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, 1 channe"
+   ]
+  },
+  {
+   "id": "fx09_tts_gold_sentence",
+   "path": "8_WORKSPACE/benchmarks/asr_tts_20260714/tts/omni_zs/s01.wav",
+   "kind": "tts_audio",
+   "why": "gold-text TTS output — round-trip WER fixture (known text s01)",
+   "bytes": 197804,
+   "sha256": "e9371b1d2c0d1131f8cbd29a36259e99980ac3a91ed55ec24e26b4ffa9bec50d",
+   "duration_s": 4.12,
+   "streams": [
+    "Audio: pcm_s16le ([1][0][0][0] / 0x0001), 24000 Hz, 1 channe"
+   ]
+  },
+  {
+   "id": "fx10_thumbnail",
+   "path": "8_WORKSPACE/ai-14all/Thumbnail/thumbnail_frame.png",
+   "kind": "image",
+   "why": "thumbnail artifact from the consolidated pipeline",
+   "bytes": 733136,
+   "sha256": "ed2abcd710cd0f4d85a8783dd720209e50834ae3b62bb5a78239b99ef83265b2",
+   "duration_s": null,
+   "streams": []
+  }
+ ],
+ "missing": []
+}
