@@ -6,9 +6,9 @@
 <title>SEOSONA Video AI — dây chuyền sản xuất video vận hành bằng AI</title>
 <meta name="description" content="Hệ sản xuất video tự động: kiến trúc bốn lớp, 10 đặc vụ AI, 34 quy trình vận hành, 913 file khung xử lý. Từ ý tưởng tới video hoàn chỉnh." />
 <meta name="author" content="Hà Đình Long" />
-<meta name="theme-color" content="#0c0a09" />
+<meta name="theme-color" content="#0a0806" />
 <link rel="canonical" href="https://seosona-video-ai.vercel.app/" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='5' fill='%23f2683a'/><circle cx='16' cy='6' r='2.4' fill='%23fcd34d'/><circle cx='26' cy='16' r='2.4' fill='%23fcd34d'/><circle cx='16' cy='26' r='2.4' fill='%23fcd34d'/><circle cx='6' cy='16' r='2.4' fill='%23fcd34d'/></svg>" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%230a0806'/><rect x='4' y='9' width='24' height='14' rx='2' fill='%23f2683a'/><rect x='6' y='5' width='3' height='3' fill='%23fcd34d'/><rect x='13' y='5' width='3' height='3' fill='%23fcd34d'/><rect x='20' y='5' width='3' height='3' fill='%23fcd34d'/></svg>" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="SEOSONA Video AI" />
 <meta property="og:title" content="SEOSONA Video AI — dây chuyền sản xuất video vận hành bằng AI" />
@@ -23,416 +23,292 @@
 <meta name="twitter:image" content="https://seosona-video-ai.vercel.app/cover.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" />
 <style>
 *,*::before,*::after{box-sizing:border-box}
 :root{
-  --bg:#0c0a09; --panel:#151211; --panel-2:#1c1817; --line:#282221; --line-2:#3a302e;
-  --text:#fafaf9; --muted:#a8a29e; --dim:#78716c;
-  --a1:#f2683a; --a2:#fcd34d;
-  --ease:cubic-bezier(.16,1,.3,1);
+  --bg:#0a0806; --film:#12100d; --film-2:#1a1613; --line:#272119; --line-2:#3b3126;
+  --text:#fdf9f3; --muted:#b3a693; --dim:#7d7161;
+  --hot:#f2683a; --gold:#fcd34d; --ease:cubic-bezier(.16,1,.3,1);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{max-width:100%;height:auto;display:block}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:'Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
 a{color:inherit}
 svg{display:block}
-.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
-h1,h2,h3{letter-spacing:-.022em}
-:focus-visible{outline:2px solid var(--a2);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1080px,100% - 2.4rem);margin-inline:auto}
+h1,h2,h3{letter-spacing:-.03em;font-weight:800}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
 
-.ticker{background:linear-gradient(90deg,color-mix(in srgb,var(--a1) 18%,transparent),
-  color-mix(in srgb,var(--a2) 9%,transparent));
-  border-bottom:1px solid var(--line);font-size:.8rem;color:var(--muted);
-  text-align:center;padding:.5rem 1rem}
-.ticker b{color:var(--a2);font-weight:700}
-.bar{position:sticky;top:0;z-index:50;padding:.7rem 0;
-  background:rgba(12,10,9,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.bar-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  width:min(1120px,100% - 2.5rem);margin-inline:auto}
-.brand{display:inline-flex;align-items:center;gap:.6rem;min-height:44px;
-  font-weight:700;font-size:.95rem;text-decoration:none}
-.brand .logo{flex-shrink:0;transition:transform .5s var(--ease)}
-.brand:hover .logo{transform:rotate(90deg)}
-.bar-links{display:flex;align-items:center;gap:.35rem}
-.bar-links a{padding:.5rem .8rem;font-size:.85rem;color:var(--muted);text-decoration:none;
-  border-radius:8px;transition:color .25s var(--ease),background .25s var(--ease)}
-.bar-links a:hover{color:var(--text);background:var(--panel)}
-.bar-cta{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.05rem;
-  border-radius:999px;border:1px solid var(--line-2);background:var(--panel);
-  font-size:.85rem;font-weight:600;text-decoration:none;color:var(--text)!important;
+/* ---------- thanh trên: kiểu slate quay phim ---------- */
+.slate{display:flex;align-items:center;gap:.9rem;padding:.7rem 0;
+  border-bottom:1px solid var(--line);background:var(--film);
+  position:sticky;top:0;z-index:50}
+.slate-in{display:flex;align-items:center;gap:.9rem;
+  width:min(1080px,100% - 2.4rem);margin-inline:auto;font-size:.8rem}
+.clap{width:26px;height:20px;flex-shrink:0;border-radius:3px;overflow:hidden;
+  background:repeating-linear-gradient(115deg,#fdf9f3 0 6px,#0a0806 6px 12px)}
+.slate b{font-weight:800;letter-spacing:-.01em}
+.slate .meta{color:var(--dim);font-family:ui-monospace,Menlo,monospace;font-size:.74rem}
+.slate a{margin-left:auto;padding:.4rem .9rem;border-radius:4px;background:var(--hot);
+  color:#0a0806;font-weight:700;text-decoration:none;font-size:.8rem;
+  transition:transform .2s var(--ease),box-shadow .2s}
+.slate a:hover{transform:translateY(-1px);box-shadow:0 8px 20px -10px var(--hot)}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(2.5rem,6vw,4.5rem) 0 0;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:auto -20% -30% -20%;height:70%;
+  background:radial-gradient(50% 60% at 50% 100%,rgba(242,104,58,.2),transparent 70%);
+  pointer-events:none}
+.hero .wrap{position:relative}
+.tag{display:inline-flex;align-items:center;gap:.5rem;font-family:ui-monospace,Menlo,monospace;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+  margin:0 0 1.2rem}
+.tag::before{content:'●';color:var(--hot);animation:rec 1.8s ease-in-out infinite}
+@keyframes rec{50%{opacity:.25}}
+h1{font-size:clamp(2rem,5.4vw,3.7rem);line-height:1.04;margin:0 0 1.1rem;max-width:17ch}
+h1 .hl{color:var(--hot)}
+.lede{color:var(--muted);font-size:clamp(1rem,1.9vw,1.16rem);max-width:58ch;margin:0 0 1.8rem}
+.acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:2.4rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.5rem;border-radius:6px;
+  font-size:.92rem;font-weight:700;text-decoration:none;border:1px solid transparent;
+  transition:transform .22s var(--ease),background .22s,border-color .22s,box-shadow .22s}
+.btn:hover{transform:translateY(-2px)}
+.btn.pri{background:var(--hot);color:#0a0806}
+.btn.pri:hover{box-shadow:0 14px 32px -14px var(--hot)}
+.btn.sec{border-color:var(--line-2);color:var(--text)}
+.btn.sec:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ---------- dải film trôi ngang ---------- */
+.strip{position:relative;padding:.9rem 0;margin-bottom:clamp(2rem,5vw,3rem);
+  background:var(--film);border-block:1px solid var(--line);overflow:hidden}
+/* Lỗ răng cưa hai mép — vẽ bằng gradient lặp, không cần ảnh. */
+.strip::before,.strip::after{content:'';position:absolute;left:0;right:0;height:11px;
+  background:repeating-linear-gradient(90deg,transparent 0 9px,
+    var(--bg) 9px 21px);opacity:.85;z-index:2}
+.strip::before{top:0}
+.strip::after{bottom:0}
+.strip-in{display:flex;gap:.7rem;width:max-content;padding-block:.8rem;
+  animation:roll 46s linear infinite}
+.strip:hover .strip-in{animation-play-state:paused}
+@keyframes roll{to{transform:translateX(-50%)}}
+.fr{width:210px;flex-shrink:0;aspect-ratio:16/9;border:1px solid var(--line-2);
+  border-radius:3px;background:linear-gradient(150deg,var(--film-2),#0d0b09);
+  padding:.75rem .85rem;display:flex;flex-direction:column;justify-content:space-between;
   transition:border-color .25s var(--ease),transform .25s var(--ease)}
-.bar-cta:hover{border-color:var(--a1);transform:translateY(-1px)}
+.fr:hover{border-color:var(--hot);transform:translateY(-3px)}
+.fr .no{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;color:var(--hot);
+  letter-spacing:.1em}
+.fr b{font-size:.95rem;line-height:1.25}
+.fr em{font-style:normal;font-size:.75rem;color:var(--dim);line-height:1.4}
 
-.hero{position:relative;padding:clamp(2.5rem,6vw,4.5rem) 0 clamp(2rem,5vw,3rem);overflow:hidden}
-.hero::before{content:'';position:absolute;inset:-25% -10% auto -10%;height:130%;z-index:0;
-  pointer-events:none;
-  background:radial-gradient(45% 40% at 15% 6%,color-mix(in srgb,var(--a1) 22%,transparent),transparent 70%),
-             radial-gradient(38% 34% at 85% 3%,color-mix(in srgb,var(--a2) 12%,transparent),transparent 70%);
-  animation:drift 22s ease-in-out infinite alternate}
-@keyframes drift{to{transform:translate3d(2.5%,1.5%,0) scale(1.07)}}
-.hero .wrap{position:relative;z-index:1}
-.hero-grid{display:grid;gap:clamp(2rem,5vw,3.5rem);align-items:center;
-  grid-template-columns:minmax(0,1fr) minmax(0,1.02fr)}
-.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.74rem;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--a2);margin:0 0 1.1rem;
-  padding:.35rem .9rem .35rem .65rem;border-radius:999px;
-  border:1px solid color-mix(in srgb,var(--a2) 30%,transparent);
-  background:color-mix(in srgb,var(--a1) 8%,transparent)}
-.dot{width:7px;height:7px;border-radius:50%;background:#4ade80;
-  box-shadow:0 0 0 0 rgba(74,222,128,.55);animation:pulse 2.4s ease-out infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
-h1{font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.06;font-weight:700;margin:0 0 1.15rem}
-h1 .hl{background:linear-gradient(90deg,var(--a1),var(--a2));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.tagline{font-size:clamp(1rem,1.9vw,1.15rem);color:var(--muted);margin:0 0 1.8rem;max-width:54ch}
-.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:1.6rem}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.5rem;border-radius:999px;
-  font-size:.94rem;font-weight:600;text-decoration:none;border:1px solid transparent;
-  transform:translateY(var(--lift,0)) scale(var(--press,1));
-  transition:transform .25s var(--ease),background .25s var(--ease),
-             border-color .25s var(--ease),box-shadow .25s var(--ease)}
-.btn:hover{--lift:-2px}
-.btn:active{--press:.97}
-.btn-primary{background:var(--a1);color:#0c0a09}
-.btn-primary:hover{box-shadow:0 12px 32px -12px color-mix(in srgb,var(--a1) 70%,transparent)}
-.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--text)}
-.btn-ghost:hover{border-color:var(--a1);background:color-mix(in srgb,var(--a1) 8%,transparent)}
-.hero-facts{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;font-size:.85rem;color:var(--dim)}
-.hero-facts b{color:var(--text);font-weight:700}
-
-.marquee{border-block:1px solid var(--line);padding:1.05rem 0;overflow:hidden;
-  background:linear-gradient(180deg,#100c0b,#0c0a09)}
-.marquee-in{display:flex;width:max-content;animation:slide 38s linear infinite}
-.marquee:hover .marquee-in{animation-play-state:paused}
-@keyframes slide{to{transform:translateX(-50%)}}
-.marquee span{display:inline-flex;align-items:center;gap:.65rem;padding-inline:1.8rem;
-  font-size:.93rem;font-weight:600;color:#5f5853;white-space:nowrap;
-  transition:color .3s var(--ease)}
-.marquee span::before{content:'';width:6px;height:6px;border-radius:1px;background:var(--line-2);
-  transform:rotate(45deg);transition:background .3s var(--ease)}
-.marquee span:hover{color:var(--a2)}
-.marquee span:hover::before{background:var(--a1)}
-
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;
-  background:var(--line);border-block:1px solid var(--line)}
-.stat{background:var(--bg);padding:1.6rem 1.2rem;text-align:center}
-.stat b{display:block;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1;font-weight:800;
-  background:linear-gradient(90deg,var(--a1),var(--a2));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+/* ---------- số liệu như bảng đọc máy ---------- */
+.gauges{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--film)}
+.ga{padding:1.05rem 1.15rem;border-right:1px solid var(--line)}
+.ga:last-child{border-right:0}
+.ga b{display:block;font-size:1.75rem;font-weight:800;color:var(--gold);line-height:1.15;
   font-variant-numeric:tabular-nums}
-.stat span{display:block;margin-top:.5rem;font-size:.82rem;color:var(--dim);line-height:1.4}
+.ga span{font-size:.73rem;color:var(--dim);letter-spacing:.06em;font-weight:600}
 
-section{padding:clamp(3rem,7vw,5rem) 0}
-.head{max-width:58ch;margin-bottom:2.4rem}
-.kicker{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--a1);margin:0 0 .8rem}
-h2{font-size:clamp(1.5rem,3.3vw,2.2rem);line-height:1.2;margin:0 0 .8rem}
-.head p{color:var(--muted);margin:0;font-size:1.05rem}
+/* ---------- mục ---------- */
+section{padding:clamp(2.8rem,6vw,4.5rem) 0}
+.shot{font-family:ui-monospace,Menlo,monospace;font-size:.72rem;letter-spacing:.14em;
+  color:var(--hot);margin:0 0 .6rem}
+h2{font-size:clamp(1.5rem,3.3vw,2.2rem);line-height:1.18;margin:0 0 .7rem;max-width:22ch}
+.sub{color:var(--muted);max-width:64ch;margin:0 0 2rem;font-size:1rem}
 
-.vis{border:1px solid var(--line-2);border-radius:18px;padding:1.6rem;
-  background:radial-gradient(70% 90% at 25% 10%,color-mix(in srgb,var(--a1) 7%,transparent),transparent 70%),
-             var(--panel)}
-
-.spec{display:grid}
-.spec .sp-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-  padding:.85rem .2rem;border-top:1px solid var(--line)}
-.spec .sp-row:first-child{border-top:0;padding-top:0}
-.spec span{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
-.spec b{font-size:1rem;font-weight:700;text-align:right}
-.spec .sp-row:hover b{color:var(--a2)}
-
-/* --- bon lop xep chong (Video AI) --- */
-.stackv{display:grid;gap:.7rem}
-.ly{display:flex;align-items:center;gap:1rem;padding:1.05rem 1.2rem;border-radius:14px;
-  border:1px solid var(--line-2);background:var(--panel-2);
-  margin-left:calc(var(--i) * clamp(0px,2.2vw,26px));
-  animation:lyIn .7s var(--ease) both;animation-delay:calc(var(--i) * .12s);
-  transition:border-color .3s var(--ease),transform .3s var(--ease)}
-.ly:hover{border-color:var(--a1);transform:translateX(4px)}
-@keyframes lyIn{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
-.ly-ic{flex-shrink:0;color:var(--a2)}
-.ly-ic .ic{width:24px;height:24px}
-.ly-t{display:flex;flex-direction:column;min-width:130px}
-.ly-t b{font-size:1rem}
-.ly-t em{font-style:normal;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+/* ---------- bốn track trên trục thời gian ---------- */
+.tl{border:1px solid var(--line);border-radius:8px;background:var(--film);padding:1.1rem}
+.ruler{display:flex;justify-content:space-between;font-family:ui-monospace,Menlo,monospace;
+  font-size:.66rem;color:var(--dim);padding:0 0 .6rem;border-bottom:1px solid var(--line);
+  margin-bottom:.8rem}
+.trk{display:grid;grid-template-columns:150px 1fr;gap:1rem;align-items:center;
+  margin-bottom:.55rem}
+.trk-lb b{display:block;font-size:.92rem;line-height:1.2}
+.trk-lb em{font-style:normal;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--dim)}
-.ly-d{font-size:.88rem;color:var(--muted);margin-left:auto;text-align:right}
+.trk-bar{position:relative;height:38px;border-radius:5px;background:#0d0b09;
+  border:1px solid var(--line)}
+.trk-bar i{position:absolute;top:4px;bottom:4px;left:calc(var(--s) * 1%);
+  width:calc(var(--w) * 1%);border-radius:3px;display:flex;align-items:center;
+  padding-inline:.7rem;font-size:.74rem;color:#0a0806;font-weight:600;white-space:nowrap;
+  overflow:hidden;
+  background:linear-gradient(90deg,var(--hot),var(--gold));
+  transform-origin:0 50%;animation:grow 1s var(--ease) both;
+  animation-delay:calc(var(--i) * .13s)}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.playhead{position:absolute;top:0;bottom:0;width:1px;background:var(--gold);
+  left:0;animation:scrub 9s linear infinite;box-shadow:0 0 8px var(--gold)}
+@keyframes scrub{to{left:100%}}
+.tl-wrap{position:relative}
 
-/* --- bo nao va ve tinh (OS) --- */
-.hub{display:grid;gap:1.1rem;justify-items:center;text-align:center}
-.orbits,.sats{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
-.orb,.sat{padding:.5rem 1rem;border-radius:999px;font-size:.85rem;font-weight:600;
-  border:1px solid var(--line-2);background:var(--panel-2);color:var(--muted);
-  animation:fadeUp .6s var(--ease) both;animation-delay:calc(var(--i) * .08s);
-  transition:color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
-.orb:hover,.sat:hover{color:var(--text);border-color:var(--a1);transform:translateY(-2px)}
-.sat{border-style:dashed}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.core{padding:1.5rem 2rem;border-radius:18px;position:relative;
-  background:linear-gradient(140deg,var(--a1),color-mix(in srgb,var(--a2) 70%,var(--a1)));
-  color:#0c0a09;box-shadow:0 0 60px -14px color-mix(in srgb,var(--a1) 60%,transparent)}
-.core b{display:block;font-size:1.25rem;font-weight:800;letter-spacing:-.02em}
-.core em{font-style:normal;font-size:.8rem;opacity:.72;font-weight:600}
-.core::before,.core::after{content:'';position:absolute;left:50%;width:1px;height:18px}
-.core::before{top:-18px;background:linear-gradient(transparent,var(--line-2))}
-.core::after{bottom:-18px;background:linear-gradient(var(--line-2),transparent)}
+/* ---------- đặc vụ, đánh số như cảnh quay ---------- */
+.cast{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:8px;overflow:hidden}
+.mem{display:grid;grid-template-columns:44px 170px 1fr;gap:1rem;align-items:center;
+  padding:.85rem 1.1rem;background:var(--film);transition:background .25s var(--ease)}
+.mem:hover{background:var(--film-2)}
+.mem .n{font-family:ui-monospace,Menlo,monospace;font-size:.75rem;color:var(--hot)}
+.mem b{font-size:.94rem}
+.mem em{font-style:normal;font-size:.87rem;color:var(--muted)}
 
-/* --- component that (UX-UI) --- */
-.showcase{display:grid;gap:.85rem}
-.sc-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;padding:.75rem .95rem;
-  border-radius:12px;border:1px solid var(--line);background:var(--panel-2)}
-.sc-lb{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--dim);width:82px;flex-shrink:0}
-.dm-btn{padding:.42rem 1rem;border-radius:9px;font-size:.82rem;font-weight:700;cursor:default;
-  transition:transform .2s var(--ease),filter .2s var(--ease)}
-.dm-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
-.dm-btn.p{background:var(--a1);color:#08111f}
-.dm-btn.g{background:transparent;border:1px solid var(--line-2);color:var(--text)}
-.dm-btn.o{background:transparent;color:var(--dim)}
-.dm-bd{padding:.2rem .65rem;border-radius:999px;font-size:.72rem;font-weight:700}
-.dm-bd.ok{background:rgba(74,222,128,.14);color:#6ee7a0}
-.dm-bd.wa{background:rgba(252,211,77,.14);color:#fcd34d}
-.dm-bd.er{background:rgba(239,68,68,.14);color:#f87171}
-.dm-pg{flex:1;min-width:110px;height:7px;border-radius:99px;background:var(--line);overflow:hidden}
-.dm-pg i{display:block;height:100%;width:var(--w);border-radius:99px;
-  background:linear-gradient(90deg,var(--a1),var(--a2));transform-origin:0 50%;
-  animation:grow2 1.6s var(--ease) both}
-@keyframes grow2{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.dm-pc{font-size:.8rem;font-weight:800;color:var(--a2);font-variant-numeric:tabular-nums}
-.dm-to{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .9rem;border-radius:10px;
-  background:#0f1c2e;border:1px solid #1e3a5f;font-size:.82rem;color:#cfe3ff}
-.dm-to i{width:7px;height:7px;border-radius:50%;background:#4ade80;flex-shrink:0;
-  animation:pulse 2s ease-out infinite}
-.sw{width:26px;height:26px;border-radius:7px;transition:transform .25s var(--ease)}
-.sw:hover{transform:scale(1.15) rotate(6deg)}
-.sc-note{margin:.3rem 0 0;font-size:.8rem;color:var(--dim)}
+/* ---------- quy trình ---------- */
+.sops{display:flex;flex-wrap:wrap;gap:.45rem}
+.sops span{padding:.45rem 1rem;border-radius:4px;font-size:.85rem;color:var(--muted);
+  border:1px solid var(--line);background:var(--film);
+  transition:color .25s,border-color .25s,transform .25s var(--ease)}
+.sops span:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
+.stack{display:flex;flex-wrap:wrap;gap:.45rem}
+.stack span{padding:.4rem .9rem;border-radius:999px;font-size:.83rem;color:var(--dim);
+  border:1px solid var(--line-2);transition:color .25s,border-color .25s}
+.stack span:hover{color:var(--hot);border-color:var(--hot)}
 
-/* --- tam daemon (OmniClaw) --- */
-.daemons{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(min(210px,100%),1fr))}
-.dm{padding:.9rem 1rem;border-radius:12px;border:1px solid var(--line-2);background:var(--panel-2);
-  border-left-width:3px;animation:fadeUp .6s var(--ease) both;
-  animation-delay:calc(var(--i) * .07s);
-  transition:transform .25s var(--ease),background .25s var(--ease)}
-.dm:hover{transform:translateY(-3px);background:#221c1a}
-.dm code{display:block;font-size:.74rem;color:var(--dim);font-family:ui-monospace,Menlo,monospace}
-.dm b{display:block;font-size:.92rem;margin:.15rem 0 .1rem}
-.dm em{font-style:normal;font-size:.8rem;color:var(--muted)}
-.dm.dept-daemons{border-left-color:var(--a1)}
-.dm.dept-security{border-left-color:#f87171}
-.dm.dept-health{border-left-color:#4ade80}
-.dept-key{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1rem;font-size:.78rem;
-  color:var(--dim)}
-.dept-key .k{display:inline-flex;align-items:center;gap:.45rem;
-  font-family:ui-monospace,Menlo,monospace}
-.dept-key .k::before{content:'';width:11px;height:3px;border-radius:2px}
-.dept-key .daemons::before{background:var(--a1)}
-.dept-key .security::before{background:#f87171}
-.dept-key .health::before{background:#4ade80}
-
-/* --- luoi noi dung --- */
-.cells{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr))}
-.cell{display:flex;gap:.8rem;padding:1rem 1.15rem;border-radius:12px;border:1px solid var(--line);
-  background:var(--panel);transition:border-color .25s var(--ease),transform .25s var(--ease)}
-.cell:hover{border-color:var(--line-2);transform:translateY(-2px)}
-.cell .no{font-size:.72rem;font-weight:800;color:var(--a1);flex-shrink:0;padding-top:.15rem;
-  font-variant-numeric:tabular-nums}
-.cell b{display:block;font-size:.93rem;margin-bottom:.15rem}
-.cell em{font-style:normal;font-size:.85rem;color:var(--muted)}
-
-.feats{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr))}
-.feat{position:relative;overflow:hidden;padding:1.6rem 1.5rem;border:1px solid var(--line);
-  border-radius:16px;background:var(--panel);
-  transition:border-color .3s var(--ease),transform .3s var(--ease),background .3s var(--ease)}
-.feat::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;
-  background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),
-    color-mix(in srgb,var(--a1) 13%,transparent),transparent 66%);
-  transition:opacity .3s var(--ease)}
-.feat:hover{border-color:var(--line-2);transform:translateY(-3px);background:var(--panel-2)}
-.feat:hover::after{opacity:1}
-.feat .ic{width:26px;height:26px;color:var(--a1);margin-bottom:.9rem;
-  transition:transform .35s var(--ease)}
-.feat:hover .ic{transform:scale(1.12) rotate(-4deg)}
-.feat .n{position:absolute;top:1.3rem;right:1.4rem;font-size:.7rem;font-weight:800;
-  letter-spacing:.1em;color:rgba(255,255,255,.12)}
-.feat h3{font-size:1.03rem;margin:0 0 .5rem}
-.feat p{margin:0;font-size:.92rem;color:var(--muted)}
-
-.chips{display:flex;flex-wrap:wrap;gap:.5rem}
-.chip{padding:.45rem 1rem;border-radius:10px;font-size:.85rem;font-weight:500;
-  background:var(--panel);border:1px solid var(--line);color:var(--muted);
-  transition:color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
-.chip:hover{color:var(--text);border-color:var(--a1);transform:translateY(-2px)}
-
-.limits{border:1px solid var(--line);border-left:3px solid var(--a2);border-radius:16px;
-  background:var(--panel);padding:1.9rem 1.8rem}
-.limit{padding:1.1rem 0;border-top:1px solid var(--line)}
-.limit:first-of-type{border-top:0;padding-top:0}
-.limit h3{font-size:1rem;margin:0 0 .4rem;color:var(--a2)}
-.limit p{margin:0;font-size:.93rem;color:var(--muted)}
-
-.faq{display:grid;gap:.6rem;max-width:74ch}
-details{border:1px solid var(--line);border-radius:14px;background:var(--panel);
-  transition:border-color .25s var(--ease)}
-details[open]{border-color:var(--line-2)}
-summary{cursor:pointer;list-style:none;padding:1.05rem 1.3rem;font-weight:600;font-size:.97rem;
-  display:flex;align-items:center;justify-content:space-between;gap:1rem}
+/* ---------- giới hạn + hỏi đáp ---------- */
+.lims{border-left:3px solid var(--gold);padding-left:1.4rem}
+.lim{padding:1rem 0;border-top:1px solid var(--line)}
+.lim:first-child{border-top:0;padding-top:0}
+.lim b{display:block;color:var(--gold);font-size:1rem;margin-bottom:.2rem}
+.lim p{margin:0;color:var(--muted);font-size:.92rem}
+details{border:1px solid var(--line);border-radius:6px;background:var(--film);
+  margin-bottom:.5rem}
+summary{cursor:pointer;list-style:none;padding:.95rem 1.1rem;font-weight:700;font-size:.95rem;
+  display:flex;justify-content:space-between;gap:1rem}
 summary::-webkit-details-marker{display:none}
-summary::after{content:'';width:9px;height:9px;flex-shrink:0;
-  border-right:2px solid var(--dim);border-bottom:2px solid var(--dim);
-  transform:rotate(45deg) translateY(-2px);transition:transform .3s var(--ease)}
-details[open] summary::after{transform:rotate(-135deg) translateY(-2px);border-color:var(--a2)}
-details p{margin:0;padding:0 1.3rem 1.15rem;color:var(--muted);font-size:.93rem}
+summary::after{content:'▸';color:var(--hot);flex-shrink:0;transition:transform .3s var(--ease)}
+details[open] summary::after{transform:rotate(90deg)}
+details p{margin:0;padding:0 1.1rem 1rem;color:var(--muted);font-size:.9rem}
 
-.cta{text-align:center;border-top:1px solid var(--line)}
-.cta h2{margin-bottom:.8rem}
-.cta p{color:var(--muted);max-width:52ch;margin:0 auto 2rem}
-.cta .actions{justify-content:center;margin-bottom:0}
-footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--dim);font-size:.85rem}
-.foot-in{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
-.foot-brand{display:flex;align-items:center;gap:.6rem;color:var(--muted);font-weight:600}
-footer a{display:inline-block;padding:.5rem .15rem;color:var(--muted);text-decoration:none;
-  transition:color .25s var(--ease)}
-footer a:hover{color:var(--a1)}
+.end{border-top:1px solid var(--line);text-align:center}
+.end .acts{justify-content:center}
+footer{border-top:1px solid var(--line);padding:1.7rem 0;color:var(--dim);font-size:.83rem}
+.foot{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between}
+footer a{color:var(--muted);text-decoration:none;padding:.3rem 0}
+footer a:hover{color:var(--hot)}
 
-.rise{opacity:0;transform:translateY(24px);
-  transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rise{opacity:0;transform:translateY(18px);
+  transition:opacity .65s var(--ease),transform .65s var(--ease)}
 .rise.in{opacity:1;transform:none}
-.hero .eyebrow,.hero h1,.hero .tagline,.hero .actions,.hero .hero-facts{
-  opacity:0;animation:riseIn .85s var(--ease) forwards}
-.hero .eyebrow{animation-delay:.05s}
-.hero h1{animation-delay:.13s}
-.hero .tagline{animation-delay:.22s}
-.hero .actions{animation-delay:.31s}
-.hero .hero-facts{animation-delay:.4s}
-@keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;transform:scaleX(0);
-  transform-origin:0 50%;background:linear-gradient(90deg,var(--a1),var(--a2))}
-@supports (animation-timeline:scroll()){
-  .progress{animation:grow linear;animation-timeline:scroll(root block)}
-  @keyframes grow{to{transform:scaleX(1)}}
-}
-@media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .bar-links{display:none}
-  .ly{margin-left:0;flex-wrap:wrap}
-  .ly-d{margin-left:0;text-align:left;width:100%}
+@media (max-width:760px){
+  .trk{grid-template-columns:1fr;gap:.3rem}
+  .mem{grid-template-columns:36px 1fr;gap:.6rem}
+  .mem em{grid-column:2}
 }
 @media (max-width:640px){
-  .actions{flex-direction:column;align-items:stretch}
+  .acts{flex-direction:column;align-items:stretch}
   .btn{justify-content:center}
-  .limits{padding:1.4rem 1.25rem}
-  .sc-lb{width:100%}
+  .ga{border-right:0;border-bottom:1px solid var(--line)}
 }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareSourceCode", "name": "SEOSONA Video AI", "description": "Hệ sản xuất video tự động: kiến trúc bốn lớp, 10 đặc vụ AI, 34 quy trình vận hành, 913 file khung xử lý. Từ ý tưởng tới video hoàn chỉnh.", "url": "https://seosona-video-ai.vercel.app/", "image": "https://seosona-video-ai.vercel.app/cover.jpg", "codeRepository": "https://github.com/LongLeo287/SEOSONA-Video-AI", "programmingLanguage": ["Python", "FFmpeg", "Puppeteer", "Whisper", "VieNeu-TTS", "HyperFrames", "MCP", "Google Drive API", "YouTube API"], "author": {"@type": "Person", "name": "Hà Đình Long", "alternateName": "Long Leo", "url": "https://portfolio-long-leo.vercel.app/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Nó tự làm ra video hoàn chỉnh được không?", "acceptedAnswer": {"@type": "Answer", "text": "Được, với những định dạng đã có quy trình sẵn như video tin tức hay video không mặt. Nhưng đầu ra vẫn cần người duyệt — hệ tối ưu cho tốc độ, không thay được con mắt biên tập."}}, {"@type": "Question", "name": "Vì sao chia làm bốn lớp?", "acceptedAnswer": {"@type": "Answer", "text": "Để đổi một phần không kéo sập phần khác. Bộ kết xuất thay đổi liên tục theo công cụ mới, còn phần nghiên cứu và viết kịch bản thì ổn định — nhốt chúng chung một chỗ là mỗi lần đổi công cụ lại phải sửa cả hệ."}}, {"@type": "Question", "name": "34 quy trình vận hành là gì?", "acceptedAnswer": {"@type": "Answer", "text": "Là tài liệu quy định cách làm từng loại nội dung: chuẩn thẩm mỹ, thứ tự các bước, điều kiện dừng. Chúng giữ cho đầu ra tự động không trôi khỏi chuẩn qua thời gian."}}, {"@type": "Question", "name": "Có chạy được trên máy người khác không?", "acceptedAnswer": {"@type": "Answer", "text": "Mã nguồn mở nên tải về được, nhưng phải tự cấu hình các tài khoản dịch vụ và đường dẫn. Không phải cài là chạy."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareSourceCode", "name": "SEOSONA Video AI", "description": "Hệ sản xuất video tự động: kiến trúc bốn lớp, 10 đặc vụ AI, 34 quy trình vận hành, 913 file khung xử lý. Từ ý tưởng tới video hoàn chỉnh.", "url": "https://seosona-video-ai.vercel.app/", "image": "https://seosona-video-ai.vercel.app/cover.jpg", "codeRepository": "https://github.com/LongLeo287/SEOSONA-Video-AI", "programmingLanguage": ["Python"], "author": {"@type": "Person", "name": "Hà Đình Long", "alternateName": "Long Leo", "url": "https://portfolio-long-leo.vercel.app/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Nó tự làm ra video hoàn chỉnh được không?", "acceptedAnswer": {"@type": "Answer", "text": "Được, với những định dạng đã có quy trình sẵn như video tin tức hay video không mặt. Nhưng đầu ra vẫn cần người duyệt — hệ tối ưu cho tốc độ, không thay được con mắt biên tập."}}, {"@type": "Question", "name": "Vì sao chia làm bốn lớp?", "acceptedAnswer": {"@type": "Answer", "text": "Để đổi một phần không kéo sập phần khác. Bộ kết xuất thay đổi liên tục theo công cụ mới, còn phần nghiên cứu và viết kịch bản thì ổn định — nhốt chúng chung một chỗ là mỗi lần đổi công cụ lại phải sửa cả hệ."}}, {"@type": "Question", "name": "34 quy trình vận hành là gì?", "acceptedAnswer": {"@type": "Answer", "text": "Tài liệu quy định cách làm từng loại nội dung: chuẩn thẩm mỹ, thứ tự các bước, điều kiện dừng. Chúng giữ cho đầu ra tự động không trôi khỏi chuẩn qua thời gian."}}, {"@type": "Question", "name": "Có chạy được trên máy người khác không?", "acceptedAnswer": {"@type": "Answer", "text": "Mã nguồn mở nên tải về được, nhưng phải tự cấu hình các tài khoản dịch vụ và đường dẫn. Không phải cài là chạy."}}]}]}</script>
 </head>
 <body>
-<div class="progress" aria-hidden="true"></div>
-<div class="ticker">Kiến trúc <b>bốn lớp</b> · <b>10</b> đặc vụ AI · <b>2.352</b> file trong repo</div>
 
-<nav class="bar">
-  <div class="bar-in">
-    <a class="brand" href="#top"><svg class="logo" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2683a"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs><rect x="1.4" y="1.4" width="29.2" height="29.2" rx="9" fill="none" stroke="url(#bg)" stroke-width="2"/><circle cx="16" cy="16" r="4.2" fill="url(#bg)"/><circle cx="16" cy="7.4" r="2" fill="url(#bg)" opacity=".65"/><circle cx="24.6" cy="16" r="2" fill="url(#bg)" opacity=".65"/><circle cx="16" cy="24.6" r="2" fill="url(#bg)" opacity=".65"/><circle cx="7.4" cy="16" r="2" fill="url(#bg)" opacity=".65"/></svg> SEOSONA Video AI</a>
-    <div class="bar-links">
-      <a href="#kien-truc">Kiến trúc</a>
-      <a href="#ben-trong">Bên trong</a>
-      <a href="#tinh-nang">Tính năng</a>
-      <a href="#gioi-han">Giới hạn</a>
-      <a href="#hoi-dap">Hỏi đáp</a>
-    </div>
-    <a class="bar-cta" href="https://github.com/LongLeo287/SEOSONA-Video-AI" target="_blank" rel="noopener">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-      Mã nguồn
-    </a>
+<div class="slate">
+  <div class="slate-in">
+    <span class="clap" aria-hidden="true"></span>
+    <b>SEOSONA Video AI</b>
+    <span class="meta">4 LỚP · 10 ĐẶC VỤ · 34 SOP</span>
+    <a href="https://github.com/LongLeo287/SEOSONA-Video-AI" target="_blank" rel="noopener">Mã nguồn ↗</a>
   </div>
-</nav>
+</div>
 
-<header class="hero" id="top">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow"><span class="dot"></span> Nhà máy sản xuất video</p>
-      <h1>Phần lặp đi lặp lại thì <span class="hl">giao cho máy</span>,<br />người giữ lại phần quyết định</h1>
-      <p class="tagline">Cắt, chèn chữ, lồng tiếng, kết xuất, đặt tên file — những bước ngốn nhiều thời gian nhất khi dựng video lại chẳng liên quan gì tới sáng tạo. Hệ này đóng gói chúng thành quy trình chạy được.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="https://github.com/LongLeo287/SEOSONA-Video-AI" target="_blank" rel="noopener">Xem mã nguồn ↗</a>
-        <a class="btn btn-ghost" href="#kien-truc">Xem kiến trúc</a>
-      </div>
-      <div class="hero-facts"><span><b>10</b> đặc vụ AI</span><span><b>34</b> quy trình vận hành</span><span><b>913</b> file khung xử lý</span></div>
+<header class="hero">
+  <div class="wrap">
+    <p class="tag">Nhà máy sản xuất video</p>
+    <h1>Phần lặp đi lặp lại thì <span class="hl">giao cho máy</span></h1>
+    <p class="lede">
+      Cắt, chèn chữ, lồng tiếng, kết xuất, đặt tên file — những bước ngốn nhiều thời gian
+      nhất khi dựng video lại chẳng liên quan gì tới sáng tạo. Hệ này đóng gói chúng thành
+      quy trình chạy được, còn người giữ lại phần quyết định.
+    </p>
+    <div class="acts">
+      <a class="btn pri" href="https://github.com/LongLeo287/SEOSONA-Video-AI" target="_blank" rel="noopener">Xem mã nguồn ↗</a>
+      <a class="btn sec" href="#kien-truc">Xem kiến trúc bốn lớp</a>
     </div>
-    <div class="vis"><div class="spec"><div class="sp-row"><span>Ngôn ngữ</span><b>Python</b></div><div class="sp-row"><span>Kiến trúc</span><b>4 lớp</b></div><div class="sp-row"><span>Đặc vụ AI</span><b>10</b></div><div class="sp-row"><span>Quy trình vận hành</span><b>34</b></div><div class="sp-row"><span>File trong repo</span><b>2.352</b></div><div class="sp-row"><span>Giấy phép</span><b>MIT</b></div></div></div>
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true"><div class="marquee-in"><span>Python</span><span>FFmpeg</span><span>Puppeteer</span><span>Whisper</span><span>VieNeu-TTS</span><span>HyperFrames</span><span>MCP</span><span>Google Drive API</span><span>YouTube API</span><span>Python</span><span>FFmpeg</span><span>Puppeteer</span><span>Whisper</span><span>VieNeu-TTS</span><span>HyperFrames</span><span>MCP</span><span>Google Drive API</span><span>YouTube API</span></div></div>
-<div class="stats"><div class="stat"><b data-to="10" data-suffix="">0</b><span>đặc vụ AI trong dây chuyền</span></div><div class="stat"><b data-to="34" data-suffix="">0</b><span>quy trình vận hành</span></div><div class="stat"><b data-to="913" data-suffix="">0</b><span>file khung xử lý</span></div><div class="stat"><b data-to="2352" data-suffix="">0</b><span>file trong toàn repo</span></div></div>
+<div class="strip" aria-label="Chín bước của dây chuyền sản xuất">
+  <div class="strip-in"><div class="fr"><span class="no">01</span><div><b>Nghiên cứu</b><br /><em>bám xu hướng, gom tư liệu</em></div></div><div class="fr"><span class="no">02</span><div><b>Kịch bản</b><br /><em>viết theo giọng thương hiệu</em></div></div><div class="fr"><span class="no">03</span><div><b>Hình ảnh</b><br /><em>sinh cảnh, giữ nhân vật nhất quán</em></div></div><div class="fr"><span class="no">04</span><div><b>Lồng tiếng</b><br /><em>định tuyến giữa nhiều bộ đọc</em></div></div><div class="fr"><span class="no">05</span><div><b>Dựng</b><br /><em>cắt, chèn chữ, chuyển cảnh</em></div></div><div class="fr"><span class="no">06</span><div><b>Kết xuất</b><br /><em>9 bộ render, nhiều tỉ lệ khung</em></div></div><div class="fr"><span class="no">07</span><div><b>Thumbnail</b><br /><em>quy trình riêng cho ảnh đại diện</em></div></div><div class="fr"><span class="no">08</span><div><b>Đăng</b><br /><em>YouTube và Google Drive</em></div></div><div class="fr"><span class="no">09</span><div><b>Đo</b><br /><em>số liệu quay ngược vào vòng cải tiến</em></div></div><div class="fr"><span class="no">01</span><div><b>Nghiên cứu</b><br /><em>bám xu hướng, gom tư liệu</em></div></div><div class="fr"><span class="no">02</span><div><b>Kịch bản</b><br /><em>viết theo giọng thương hiệu</em></div></div><div class="fr"><span class="no">03</span><div><b>Hình ảnh</b><br /><em>sinh cảnh, giữ nhân vật nhất quán</em></div></div><div class="fr"><span class="no">04</span><div><b>Lồng tiếng</b><br /><em>định tuyến giữa nhiều bộ đọc</em></div></div><div class="fr"><span class="no">05</span><div><b>Dựng</b><br /><em>cắt, chèn chữ, chuyển cảnh</em></div></div><div class="fr"><span class="no">06</span><div><b>Kết xuất</b><br /><em>9 bộ render, nhiều tỉ lệ khung</em></div></div><div class="fr"><span class="no">07</span><div><b>Thumbnail</b><br /><em>quy trình riêng cho ảnh đại diện</em></div></div><div class="fr"><span class="no">08</span><div><b>Đăng</b><br /><em>YouTube và Google Drive</em></div></div><div class="fr"><span class="no">09</span><div><b>Đo</b><br /><em>số liệu quay ngược vào vòng cải tiến</em></div></div></div>
+</div>
+
+<div class="wrap">
+  <div class="gauges">
+    <div class="ga"><b data-to="10">0</b><span>ĐẶC VỤ AI</span></div>
+    <div class="ga"><b data-to="34">0</b><span>QUY TRÌNH VẬN HÀNH</span></div>
+    <div class="ga"><b data-to="913">0</b><span>FILE KHUNG XỬ LÝ</span></div>
+    <div class="ga"><b data-to="2352">0</b><span>FILE TRONG REPO</span></div>
+  </div>
+</div>
 
 <main>
   <section class="wrap" id="kien-truc">
-    <div class="head">
-      <p class="kicker rise">Kiến trúc</p>
-      <h2 class="rise">Bốn lớp tách bạch, đổi một lớp không kéo sập ba lớp còn lại</h2>
-      <p class="rise">Mỗi lớp có ranh giới riêng và giao tiếp qua hợp đồng cố định. Muốn đổi bộ kết xuất thì chỉ đụng lớp Rendering, phần nghiên cứu và viết kịch bản không biết gì về chuyện đó.</p>
+    <p class="shot rise">CẢNH 01 — KIẾN TRÚC</p>
+    <h2 class="rise">Bốn lớp chạy chồng lấn, không nối tiếp</h2>
+    <p class="sub rise">Lớp sau bắt đầu khi lớp trước còn đang chạy — giống các track trong
+      một timeline dựng phim. Đổi bộ kết xuất thì chỉ đụng track cuối, phần nghiên cứu và
+      viết kịch bản không biết gì về chuyện đó.</p>
+    <div class="tl rise">
+      <div class="ruler"><span>00:00</span><span>25%</span><span>50%</span><span>75%</span><span>HOÀN TẤT</span></div>
+      <div class="tl-wrap">
+        <div class="trk"><div class="trk-lb"><b>Nhận thức</b><em>Cognitive</em></div><div class="trk-bar"><i style="--s:0;--w:34;--i:0">nghiên cứu · ý tưởng · kịch bản</i></div></div><div class="trk"><div class="trk-lb"><b>Thực thi</b><em>Execution</em></div><div class="trk-bar"><i style="--s:18;--w:46;--i:1">10 đặc vụ · 7 kỹ năng Python</i></div></div><div class="trk"><div class="trk-lb"><b>Luồng công việc</b><em>Workflow</em></div><div class="trk-bar"><i style="--s:40;--w:40;--i:2">21 luồng · 34 quy trình vận hành</i></div></div><div class="trk"><div class="trk-lb"><b>Kết xuất</b><em>Rendering</em></div><div class="trk-bar"><i style="--s:62;--w:38;--i:3">9 bộ render · FFmpeg · TTS · Whisper</i></div></div>
+        <span class="playhead" aria-hidden="true"></span>
+      </div>
     </div>
-    <div class="vis rise"><div class="stackv" role="img" aria-label="Bốn lớp kiến trúc xếp chồng"><div class="ly" style="--i:0"><span class="ly-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3a3 3 0 0 0-3 3 3 3 0 0 0-1 5.8A3 3 0 0 0 7 18a3 3 0 0 0 5 1 3 3 0 0 0 5-1 3 3 0 0 0 2-6.2A3 3 0 0 0 18 6a3 3 0 0 0-3-3 3 3 0 0 0-3 1.5A3 3 0 0 0 9 3ZM12 5v14"/></svg></span><span class="ly-t"><b>Nhận thức</b><em>Cognitive</em></span><span class="ly-d">nghiên cứu, lên ý tưởng, viết kịch bản</span></div><div class="ly" style="--i:1"><span class="ly-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v3H9zM5 6h14v12H5zM9 11h.01M15 11h.01M9 15h6M2 10v4M22 10v4"/></svg></span><span class="ly-t"><b>Thực thi</b><em>Execution</em></span><span class="ly-d">10 đặc vụ AI, 7 kỹ năng Python</span></div><div class="ly" style="--i:2"><span class="ly-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5h4v4H6zM14 15h4v4h-4zM14 5h4v4h-4zM10 7h4M8 9v6h6M6 15h4v4H6z"/></svg></span><span class="ly-t"><b>Luồng công việc</b><em>Workflow</em></span><span class="ly-d">21 luồng, 34 quy trình vận hành</span></div><div class="ly" style="--i:3"><span class="ly-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7zM3 7l9 5 9-5M12 12v10"/></svg></span><span class="ly-t"><b>Kết xuất</b><em>Rendering</em></span><span class="ly-d">9 bộ render, FFmpeg, TTS, Whisper</span></div></div></div>
-  </section>
-
-  <section class="wrap" id="ben-trong">
-    <div class="head">
-      <p class="kicker rise">Đội hình</p>
-      <h2 class="rise">Mười đặc vụ, mỗi con một vai</h2>
-    </div>
-    <div class="cells"><div class="cell"><span class="no">01</span><div><b>Hermes</b><em>điều phối toàn dây chuyền, có cả bản chạy nền lẫn điều khiển qua Telegram</em></div></div><div class="cell"><span class="no">02</span><div><b>Scraper</b><em>thu thập tư liệu và nguồn tham khảo</em></div></div><div class="cell"><span class="no">03</span><div><b>Trend Jacking</b><em>theo dõi xu hướng để bám sóng đúng lúc</em></div></div><div class="cell"><span class="no">04</span><div><b>SEO Writer</b><em>viết nội dung tối ưu tìm kiếm</em></div></div><div class="cell"><span class="no">05</span><div><b>Carousel Writer</b><em>viết nội dung dạng nhiều trang cho mạng xã hội</em></div></div><div class="cell"><span class="no">06</span><div><b>Social Media</b><em>biên tập lại cho từng nền tảng</em></div></div><div class="cell"><span class="no">07</span><div><b>Repurposer</b><em>phân tích phụ đề, cắt lại video dài thành video ngắn</em></div></div><div class="cell"><span class="no">08</span><div><b>SEO Optimizer</b><em>tối ưu tiêu đề, mô tả, thẻ cho YouTube</em></div></div><div class="cell"><span class="no">09</span><div><b>Publisher</b><em>đăng lên YouTube và Google Drive</em></div></div><div class="cell"><span class="no">10</span><div><b>Analytics Feedback</b><em>đọc số liệu sau khi đăng, đưa ngược vào vòng cải tiến</em></div></div></div>
-  </section>
-
-  <section class="wrap" id="tinh-nang">
-    <div class="head">
-      <p class="kicker rise">Tính năng</p>
-      <h2 class="rise">Những gì có trong repo</h2>
-    </div>
-    <div class="feats"><article class="feat rise"><span class="n">01</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5ZM3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg><h3>Bốn lớp tách bạch</h3><p>Nhận thức, Thực thi, Luồng công việc và Kết xuất có ranh giới rõ. Sửa một lớp không phải kiểm lại ba lớp còn lại.</p></article><article class="feat rise"><span class="n">02</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v3H9zM5 6h14v12H5zM9 11h.01M15 11h.01M9 15h6M2 10v4M22 10v4"/></svg><h3>Mười đặc vụ nối vào một pipeline</h3><p>Mỗi đặc vụ giữ đúng một vai và bàn giao theo hợp đồng cố định, thay vì mỗi con chạy một kiểu rồi tự thoả thuận với nhau.</p></article><article class="feat rise"><span class="n">03</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h7a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-7a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h7z"/></svg><h3>34 quy trình vận hành viết sẵn</h3><p>Video tin tức, video không mặt, video khoá học, talking head, thumbnail, lồng tiếng — mỗi loại một quy trình đã mổ xẻ chi tiết.</p></article><article class="feat rise"><span class="n">04</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3ZM5 11a7 7 0 0 0 14 0M12 18v3"/></svg><h3>Lồng tiếng và bóc băng</h3><p>Định tuyến giữa nhiều bộ đọc giọng, cộng Whisper để bóc phụ đề và kiểm lại chất lượng caption.</p></article><article class="feat rise"><span class="n">05</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg><h3>Vòng tự cải tiến</h3><p>Số liệu sau khi đăng được đưa ngược vào hệ để chỉnh quy trình — không phải chờ người ngồi đọc báo cáo rồi sửa tay.</p></article><article class="feat rise"><span class="n">06</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0zM12 18v4"/></svg><h3>Nối vào SEOSONA OS</h3><p>Dùng chung kho tri thức và bộ luật của bộ não trung tâm thay vì tự nuôi một bản riêng.</p></article></div>
   </section>
 
   <section class="wrap">
-    <div class="head">
-      <p class="kicker rise">Công nghệ</p>
-      <h2 class="rise">Dựng bằng gì</h2>
-    </div>
-    <div class="chips rise"><span class="chip">Python</span><span class="chip">FFmpeg</span><span class="chip">Puppeteer</span><span class="chip">Whisper</span><span class="chip">VieNeu-TTS</span><span class="chip">HyperFrames</span><span class="chip">MCP</span><span class="chip">Google Drive API</span><span class="chip">YouTube API</span></div>
+    <p class="shot rise">CẢNH 02 — ĐỘI HÌNH</p>
+    <h2 class="rise">Mười đặc vụ, mỗi con một vai</h2>
+    <p class="sub rise">Bàn giao theo hợp đồng cố định, không phải mỗi con chạy một kiểu rồi
+      tự thoả thuận với nhau.</p>
+    <div class="cast rise"><div class="mem"><span class="n">01</span><b>Hermes</b><em>điều phối toàn dây chuyền, có bản chạy nền và bản điều khiển qua Telegram</em></div><div class="mem"><span class="n">02</span><b>Scraper</b><em>thu thập tư liệu và nguồn tham khảo</em></div><div class="mem"><span class="n">03</span><b>Trend Jacking</b><em>theo dõi xu hướng để bám sóng đúng lúc</em></div><div class="mem"><span class="n">04</span><b>SEO Writer</b><em>viết nội dung tối ưu tìm kiếm</em></div><div class="mem"><span class="n">05</span><b>Carousel Writer</b><em>viết nội dung nhiều trang cho mạng xã hội</em></div><div class="mem"><span class="n">06</span><b>Social Media</b><em>biên tập lại cho từng nền tảng</em></div><div class="mem"><span class="n">07</span><b>Repurposer</b><em>phân tích phụ đề, cắt video dài thành video ngắn</em></div><div class="mem"><span class="n">08</span><b>SEO Optimizer</b><em>tối ưu tiêu đề, mô tả và thẻ cho YouTube</em></div><div class="mem"><span class="n">09</span><b>Publisher</b><em>đăng lên YouTube và Google Drive</em></div><div class="mem"><span class="n">10</span><b>Analytics Feedback</b><em>đọc số liệu sau khi đăng, đưa ngược vào vòng cải tiến</em></div></div>
   </section>
 
-  <section class="wrap" id="gioi-han">
-    <div class="head">
-      <p class="kicker rise">Nói trước cho rõ</p>
-      <h2 class="rise">Ba giới hạn bạn nên biết</h2>
-      <p class="rise">Đây là dự án cá nhân đang phát triển, không phải sản phẩm thương mại. Nói thẳng thì đỡ mất thời gian của cả hai bên.</p>
-    </div>
-    <div class="limits rise"><div class="limit"><h3>Đây là hệ thống nội bộ, không phải sản phẩm cài đặt</h3><p>Không có bộ cài, không có giao diện đồ hoạ. Muốn dùng phải đọc tài liệu kiến trúc rồi tự nối các mảnh vào quy trình của mình.</p></div><div class="limit"><h3>Phụ thuộc vào nhiều dịch vụ bên ngoài</h3><p>Bộ đọc giọng, mô hình sinh ảnh, API đăng bài — mỗi cái một tài khoản và một hạn mức riêng. Hệ chỉ điều phối, không đi kèm cái nào.</p></div><div class="limit"><h3>Tự động hoá phần lặp, không tự động hoá phần hay</h3><p>Nó lo cắt ghép, kết xuất và đặt tên file. Ý tưởng, giọng điệu và quyết định giữ hay bỏ vẫn là việc của người.</p></div></div>
+  <section class="wrap">
+    <p class="shot rise">CẢNH 03 — QUY TRÌNH</p>
+    <h2 class="rise">34 quy trình vận hành viết sẵn</h2>
+    <p class="sub rise">Chúng quy định chuẩn thẩm mỹ, thứ tự các bước và điều kiện dừng —
+      thứ giữ cho đầu ra tự động không trôi khỏi chuẩn qua thời gian.</p>
+    <div class="sops rise"><span>Video tin tức</span><span>Video không mặt</span><span>Talking head</span><span>Video khoá học</span><span>Video quảng cáo</span><span>Carousel</span><span>Thumbnail</span><span>Lồng tiếng và nhân bản giọng</span><span>Cắt lại video dài</span><span>Giọng thương hiệu</span><span>Kiểm tra trước khi đăng</span><span>Vận hành kênh YouTube</span></div>
   </section>
 
-  <section class="wrap" id="hoi-dap">
-    <div class="head">
-      <p class="kicker rise">Hỏi đáp</p>
-      <h2 class="rise">Câu hỏi thường gặp</h2>
-    </div>
-    <div class="faq"><details open><summary>Nó tự làm ra video hoàn chỉnh được không?</summary><p>Được, với những định dạng đã có quy trình sẵn như video tin tức hay video không mặt. Nhưng đầu ra vẫn cần người duyệt — hệ tối ưu cho tốc độ, không thay được con mắt biên tập.</p></details><details><summary>Vì sao chia làm bốn lớp?</summary><p>Để đổi một phần không kéo sập phần khác. Bộ kết xuất thay đổi liên tục theo công cụ mới, còn phần nghiên cứu và viết kịch bản thì ổn định — nhốt chúng chung một chỗ là mỗi lần đổi công cụ lại phải sửa cả hệ.</p></details><details><summary>34 quy trình vận hành là gì?</summary><p>Là tài liệu quy định cách làm từng loại nội dung: chuẩn thẩm mỹ, thứ tự các bước, điều kiện dừng. Chúng giữ cho đầu ra tự động không trôi khỏi chuẩn qua thời gian.</p></details><details><summary>Có chạy được trên máy người khác không?</summary><p>Mã nguồn mở nên tải về được, nhưng phải tự cấu hình các tài khoản dịch vụ và đường dẫn. Không phải cài là chạy.</p></details></div>
+  <section class="wrap">
+    <p class="shot rise">CẢNH 04 — CÔNG NGHỆ</p>
+    <h2 class="rise">Dựng bằng gì</h2>
+    <div class="stack rise"><span>Python</span><span>FFmpeg</span><span>Puppeteer</span><span>Whisper</span><span>VieNeu-TTS</span><span>HyperFrames</span><span>MCP</span><span>Google Drive API</span><span>YouTube API</span></div>
   </section>
 
-  <section class="wrap cta">
-    <h2 class="rise">Mã nguồn mở, đọc được toàn bộ</h2>
-    <p class="rise">Không có bản trả phí, không có phần đóng. Tất cả nằm trên GitHub.</p>
-    <div class="actions rise">
-      <a class="btn btn-primary" href="https://github.com/LongLeo287/SEOSONA-Video-AI" target="_blank" rel="noopener">Xem trên GitHub ↗</a>
-      <a class="btn btn-ghost" href="https://portfolio-long-leo.vercel.app/#labs">Các dự án khác của Long Leo</a>
+  <section class="wrap">
+    <p class="shot rise">CẢNH 05 — NÓI TRƯỚC CHO RÕ</p>
+    <h2 class="rise">Ba giới hạn bạn nên biết</h2>
+    <div class="lims rise"><div class="lim"><b>Hệ thống nội bộ, không phải sản phẩm cài đặt</b><p>Không bộ cài, không giao diện đồ hoạ. Muốn dùng phải đọc tài liệu kiến trúc rồi tự nối các mảnh vào quy trình của mình.</p></div><div class="lim"><b>Phụ thuộc nhiều dịch vụ bên ngoài</b><p>Bộ đọc giọng, mô hình sinh ảnh, API đăng bài — mỗi cái một tài khoản và một hạn mức riêng. Hệ chỉ điều phối, không đi kèm cái nào.</p></div><div class="lim"><b>Tự động hoá phần lặp, không tự động hoá phần hay</b><p>Nó lo cắt ghép, kết xuất và đặt tên file. Ý tưởng, giọng điệu và quyết định giữ hay bỏ vẫn là việc của người.</p></div></div>
+  </section>
+
+  <section class="wrap">
+    <p class="shot rise">CẢNH 06 — HỎI ĐÁP</p>
+    <h2 class="rise">Câu hỏi thường gặp</h2>
+    <div class="rise"><details open><summary>Nó tự làm ra video hoàn chỉnh được không?</summary><p>Được, với những định dạng đã có quy trình sẵn như video tin tức hay video không mặt. Nhưng đầu ra vẫn cần người duyệt — hệ tối ưu cho tốc độ, không thay được con mắt biên tập.</p></details><details><summary>Vì sao chia làm bốn lớp?</summary><p>Để đổi một phần không kéo sập phần khác. Bộ kết xuất thay đổi liên tục theo công cụ mới, còn phần nghiên cứu và viết kịch bản thì ổn định — nhốt chúng chung một chỗ là mỗi lần đổi công cụ lại phải sửa cả hệ.</p></details><details><summary>34 quy trình vận hành là gì?</summary><p>Tài liệu quy định cách làm từng loại nội dung: chuẩn thẩm mỹ, thứ tự các bước, điều kiện dừng. Chúng giữ cho đầu ra tự động không trôi khỏi chuẩn qua thời gian.</p></details><details><summary>Có chạy được trên máy người khác không?</summary><p>Mã nguồn mở nên tải về được, nhưng phải tự cấu hình các tài khoản dịch vụ và đường dẫn. Không phải cài là chạy.</p></details></div>
+  </section>
+
+  <section class="end">
+    <div class="wrap">
+      <h2 class="rise" style="max-width:none">Mã nguồn mở, đọc được toàn bộ</h2>
+      <p class="sub rise" style="margin-inline:auto">Cả bốn lớp, mười đặc vụ và ba mươi tư quy trình đều nằm trên GitHub.</p>
+      <div class="acts rise">
+        <a class="btn pri" href="https://github.com/LongLeo287/SEOSONA-Video-AI" target="_blank" rel="noopener">Xem trên GitHub ↗</a>
+        <a class="btn sec" href="https://portfolio-long-leo.vercel.app/#labs">Các dự án khác của Long Leo</a>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap foot-in">
-    <span class="foot-brand"><svg class="logo" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2683a"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs><rect x="1.4" y="1.4" width="29.2" height="29.2" rx="9" fill="none" stroke="url(#bg)" stroke-width="2"/><circle cx="16" cy="16" r="4.2" fill="url(#bg)"/><circle cx="16" cy="7.4" r="2" fill="url(#bg)" opacity=".65"/><circle cx="24.6" cy="16" r="2" fill="url(#bg)" opacity=".65"/><circle cx="16" cy="24.6" r="2" fill="url(#bg)" opacity=".65"/><circle cx="7.4" cy="16" r="2" fill="url(#bg)" opacity=".65"/></svg> SEOSONA Video AI</span>
+  <div class="wrap foot">
     <span>© 2026 Hà Đình Long — Long Leo</span>
     <span><a href="https://portfolio-long-leo.vercel.app/">Portfolio</a> · <a href="https://github.com/LongLeo287/SEOSONA-Video-AI" target="_blank" rel="noopener">GitHub</a></span>
   </div>
@@ -441,42 +317,24 @@ footer a:hover{color:var(--a1)}
 <script>
 var io=new IntersectionObserver(function(es){
   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-},{rootMargin:'0px 0px -10% 0px',threshold:.08});
+},{rootMargin:'0px 0px -8% 0px',threshold:.06});
 document.querySelectorAll('.rise').forEach(function(el,i){
-  el.style.transitionDelay=(Math.min(i%6,5)*55)+'ms'; io.observe(el);
+  el.style.transitionDelay=(Math.min(i%5,4)*55)+'ms'; io.observe(el);
 });
-
-// Dem theo thoi gian that chu khong theo so khung hinh, nen may yeu van dung dung luc.
 var cio=new IntersectionObserver(function(es){
   es.forEach(function(e){
     if(!e.isIntersecting) return;
     cio.unobserve(e.target);
-    var el=e.target, to=+el.dataset.to, suf=el.dataset.suffix||'', t0=0, dur=1200;
-    if(!to){ el.textContent='0'+suf; return; }
+    var el=e.target,to=+el.dataset.to,t0=0,dur=1100;
     requestAnimationFrame(function step(t){
       if(!t0) t0=t;
-      var p=Math.min((t-t0)/dur,1), e2=1-Math.pow(1-p,3);
-      el.textContent=Math.round(to*e2).toLocaleString('vi-VN')+suf;
+      var p=Math.min((t-t0)/dur,1);
+      el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString('vi-VN');
       if(p<1) requestAnimationFrame(step);
     });
   });
 },{threshold:.5});
 document.querySelectorAll('[data-to]').forEach(function(el){ cio.observe(el); });
-
-var pend=null,fr=0;
-if(matchMedia('(pointer:fine)').matches){
-  document.querySelectorAll('.feat').forEach(function(c){
-    c.addEventListener('pointermove',function(ev){
-      pend=[c,ev];
-      if(!fr) fr=requestAnimationFrame(function(){
-        fr=0; if(!pend) return;
-        var el=pend[0],e=pend[1],r=el.getBoundingClientRect();
-        el.style.setProperty('--mx',(e.clientX-r.left)+'px');
-        el.style.setProperty('--my',(e.clientY-r.top)+'px');
-      });
-    });
-  });
-}
 </script>
 </body>
 </html>
