@@ -28,7 +28,7 @@
 *,*::before,*::after{box-sizing:border-box}
 :root{
   --bg:#0a0806; --film:#12100d; --film-2:#1a1613; --line:#272119; --line-2:#3b3126;
-  --text:#fdf9f3; --muted:#b3a693; --dim:#7d7161;
+  --text:#fdf9f3; --muted:#b3a693; --dim:#8f8170;
   --hot:#f2683a; --gold:#fcd34d; --ease:cubic-bezier(.16,1,.3,1);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -189,6 +189,41 @@ footer{border-top:1px solid var(--line);padding:1.7rem 0;color:var(--dim);font-s
 footer a{color:var(--muted);text-decoration:none;padding:.3rem 0}
 footer a:hover{color:var(--hot)}
 
+/* Hạt phim: một lớp phủ mảnh dịch chuyển liên tục. Dùng transform nên
+   không buộc trình duyệt vẽ lại nền mỗi khung hình. */
+body::after{content:'';position:fixed;inset:-150%;z-index:2;pointer-events:none;
+  opacity:.035;
+  background-image:radial-gradient(#fff 1px,transparent 1px),
+                   radial-gradient(#fff 1px,transparent 1px);
+  background-size:3px 3px,5px 5px;background-position:0 0,2px 2px;
+  animation:grain 1.1s steps(4) infinite}
+@keyframes grain{
+  0%{transform:translate(0,0)} 25%{transform:translate(-3px,2px)}
+  50%{transform:translate(2px,-3px)} 75%{transform:translate(-2px,-2px)}
+  100%{transform:translate(0,0)}
+}
+
+/* Rung khung nhẹ — máy chiếu phim thật không bao giờ đứng yên tuyệt đối. */
+.strip-in{animation:roll 46s linear infinite,weave 2.7s ease-in-out infinite}
+@keyframes weave{50%{transform:translateY(1.2px)}}
+
+/* Khung phim nhấp nháy độ sáng rất nhẹ, lệch pha theo vị trí. */
+.fr{animation:flick 3.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * .21s)}
+@keyframes flick{45%{filter:brightness(1.07)}}
+
+/* Thanh tiến độ đọc trang, kẻ như dải film. */
+.prog{position:fixed;top:0;left:0;height:3px;width:100%;z-index:70;transform:scaleX(0);
+  transform-origin:0 50%;
+  background:repeating-linear-gradient(90deg,var(--hot) 0 8px,var(--gold) 8px 14px)}
+@supports (animation-timeline:scroll()){
+  .prog{animation:pgrow linear;animation-timeline:scroll(root block)}
+  @keyframes pgrow{to{transform:scaleX(1)}}
+}
+
+/* Số cảnh trong bảng đội hình sáng lên khi rê chuột cả hàng. */
+.mem:hover .n{color:var(--gold);transform:scale(1.15)}
+.mem .n{transition:color .25s var(--ease),transform .25s var(--ease);display:inline-block}
+
 .rise{opacity:0;transform:translateY(18px);
   transition:opacity .65s var(--ease),transform .65s var(--ease)}
 .rise.in{opacity:1;transform:none}
@@ -206,6 +241,8 @@ footer a:hover{color:var(--hot)}
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareSourceCode", "name": "SEOSONA Video AI", "description": "Hệ sản xuất video tự động: kiến trúc bốn lớp, 10 đặc vụ AI, 34 quy trình vận hành, 913 file khung xử lý. Từ ý tưởng tới video hoàn chỉnh.", "url": "https://seosona-video-ai.vercel.app/", "image": "https://seosona-video-ai.vercel.app/cover.jpg", "codeRepository": "https://github.com/LongLeo287/SEOSONA-Video-AI", "programmingLanguage": ["Python"], "author": {"@type": "Person", "name": "Hà Đình Long", "alternateName": "Long Leo", "url": "https://portfolio-long-leo.vercel.app/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Nó tự làm ra video hoàn chỉnh được không?", "acceptedAnswer": {"@type": "Answer", "text": "Được, với những định dạng đã có quy trình sẵn như video tin tức hay video không mặt. Nhưng đầu ra vẫn cần người duyệt — hệ tối ưu cho tốc độ, không thay được con mắt biên tập."}}, {"@type": "Question", "name": "Vì sao chia làm bốn lớp?", "acceptedAnswer": {"@type": "Answer", "text": "Để đổi một phần không kéo sập phần khác. Bộ kết xuất thay đổi liên tục theo công cụ mới, còn phần nghiên cứu và viết kịch bản thì ổn định — nhốt chúng chung một chỗ là mỗi lần đổi công cụ lại phải sửa cả hệ."}}, {"@type": "Question", "name": "34 quy trình vận hành là gì?", "acceptedAnswer": {"@type": "Answer", "text": "Tài liệu quy định cách làm từng loại nội dung: chuẩn thẩm mỹ, thứ tự các bước, điều kiện dừng. Chúng giữ cho đầu ra tự động không trôi khỏi chuẩn qua thời gian."}}, {"@type": "Question", "name": "Có chạy được trên máy người khác không?", "acceptedAnswer": {"@type": "Answer", "text": "Mã nguồn mở nên tải về được, nhưng phải tự cấu hình các tài khoản dịch vụ và đường dẫn. Không phải cài là chạy."}}]}]}</script>
 </head>
 <body>
+
+<div class="prog" aria-hidden="true"></div>
 
 <div class="slate">
   <div class="slate-in">
@@ -233,7 +270,7 @@ footer a:hover{color:var(--hot)}
 </header>
 
 <div class="strip" aria-label="Chín bước của dây chuyền sản xuất">
-  <div class="strip-in"><div class="fr"><span class="no">01</span><div><b>Nghiên cứu</b><br /><em>bám xu hướng, gom tư liệu</em></div></div><div class="fr"><span class="no">02</span><div><b>Kịch bản</b><br /><em>viết theo giọng thương hiệu</em></div></div><div class="fr"><span class="no">03</span><div><b>Hình ảnh</b><br /><em>sinh cảnh, giữ nhân vật nhất quán</em></div></div><div class="fr"><span class="no">04</span><div><b>Lồng tiếng</b><br /><em>định tuyến giữa nhiều bộ đọc</em></div></div><div class="fr"><span class="no">05</span><div><b>Dựng</b><br /><em>cắt, chèn chữ, chuyển cảnh</em></div></div><div class="fr"><span class="no">06</span><div><b>Kết xuất</b><br /><em>9 bộ render, nhiều tỉ lệ khung</em></div></div><div class="fr"><span class="no">07</span><div><b>Thumbnail</b><br /><em>quy trình riêng cho ảnh đại diện</em></div></div><div class="fr"><span class="no">08</span><div><b>Đăng</b><br /><em>YouTube và Google Drive</em></div></div><div class="fr"><span class="no">09</span><div><b>Đo</b><br /><em>số liệu quay ngược vào vòng cải tiến</em></div></div><div class="fr"><span class="no">01</span><div><b>Nghiên cứu</b><br /><em>bám xu hướng, gom tư liệu</em></div></div><div class="fr"><span class="no">02</span><div><b>Kịch bản</b><br /><em>viết theo giọng thương hiệu</em></div></div><div class="fr"><span class="no">03</span><div><b>Hình ảnh</b><br /><em>sinh cảnh, giữ nhân vật nhất quán</em></div></div><div class="fr"><span class="no">04</span><div><b>Lồng tiếng</b><br /><em>định tuyến giữa nhiều bộ đọc</em></div></div><div class="fr"><span class="no">05</span><div><b>Dựng</b><br /><em>cắt, chèn chữ, chuyển cảnh</em></div></div><div class="fr"><span class="no">06</span><div><b>Kết xuất</b><br /><em>9 bộ render, nhiều tỉ lệ khung</em></div></div><div class="fr"><span class="no">07</span><div><b>Thumbnail</b><br /><em>quy trình riêng cho ảnh đại diện</em></div></div><div class="fr"><span class="no">08</span><div><b>Đăng</b><br /><em>YouTube và Google Drive</em></div></div><div class="fr"><span class="no">09</span><div><b>Đo</b><br /><em>số liệu quay ngược vào vòng cải tiến</em></div></div></div>
+  <div class="strip-in"><div class="fr" style="--i:0"><span class="no">01</span><div><b>Nghiên cứu</b><br /><em>bám xu hướng, gom tư liệu</em></div></div><div class="fr" style="--i:1"><span class="no">02</span><div><b>Kịch bản</b><br /><em>viết theo giọng thương hiệu</em></div></div><div class="fr" style="--i:2"><span class="no">03</span><div><b>Hình ảnh</b><br /><em>sinh cảnh, giữ nhân vật nhất quán</em></div></div><div class="fr" style="--i:3"><span class="no">04</span><div><b>Lồng tiếng</b><br /><em>định tuyến giữa nhiều bộ đọc</em></div></div><div class="fr" style="--i:4"><span class="no">05</span><div><b>Dựng</b><br /><em>cắt, chèn chữ, chuyển cảnh</em></div></div><div class="fr" style="--i:5"><span class="no">06</span><div><b>Kết xuất</b><br /><em>9 bộ render, nhiều tỉ lệ khung</em></div></div><div class="fr" style="--i:6"><span class="no">07</span><div><b>Thumbnail</b><br /><em>quy trình riêng cho ảnh đại diện</em></div></div><div class="fr" style="--i:7"><span class="no">08</span><div><b>Đăng</b><br /><em>YouTube và Google Drive</em></div></div><div class="fr" style="--i:8"><span class="no">09</span><div><b>Đo</b><br /><em>số liệu quay ngược vào vòng cải tiến</em></div></div><div class="fr" style="--i:0"><span class="no">01</span><div><b>Nghiên cứu</b><br /><em>bám xu hướng, gom tư liệu</em></div></div><div class="fr" style="--i:1"><span class="no">02</span><div><b>Kịch bản</b><br /><em>viết theo giọng thương hiệu</em></div></div><div class="fr" style="--i:2"><span class="no">03</span><div><b>Hình ảnh</b><br /><em>sinh cảnh, giữ nhân vật nhất quán</em></div></div><div class="fr" style="--i:3"><span class="no">04</span><div><b>Lồng tiếng</b><br /><em>định tuyến giữa nhiều bộ đọc</em></div></div><div class="fr" style="--i:4"><span class="no">05</span><div><b>Dựng</b><br /><em>cắt, chèn chữ, chuyển cảnh</em></div></div><div class="fr" style="--i:5"><span class="no">06</span><div><b>Kết xuất</b><br /><em>9 bộ render, nhiều tỉ lệ khung</em></div></div><div class="fr" style="--i:6"><span class="no">07</span><div><b>Thumbnail</b><br /><em>quy trình riêng cho ảnh đại diện</em></div></div><div class="fr" style="--i:7"><span class="no">08</span><div><b>Đăng</b><br /><em>YouTube và Google Drive</em></div></div><div class="fr" style="--i:8"><span class="no">09</span><div><b>Đo</b><br /><em>số liệu quay ngược vào vòng cải tiến</em></div></div></div>
 </div>
 
 <div class="wrap">
