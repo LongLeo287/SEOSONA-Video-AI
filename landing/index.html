@@ -141,9 +141,14 @@ h2{font-size:clamp(1.5rem,3.3vw,2.2rem);line-height:1.18;margin:0 0 .7rem;max-wi
   transform-origin:0 50%;animation:grow 1s var(--ease) both;
   animation-delay:calc(var(--i) * .13s)}
 @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.playhead{position:absolute;top:0;bottom:0;width:1px;background:var(--gold);
-  left:0;animation:scrub 9s linear infinite;box-shadow:0 0 8px var(--gold)}
-@keyframes scrub{to{left:100%}}
+/* Đầu đọc chạy bằng transform, KHÔNG bằng left: động tới left buộc trình
+   duyệt tính lại bố cục mỗi khung hình. Mẹo: cho phần tử rộng bằng cả khung
+   rồi vẽ vạch sáng ở mép trái, lúc đó translateX(100%) đi đúng một khung. */
+.playhead{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,var(--gold) 0 1px,transparent 1px);
+  filter:drop-shadow(0 0 6px var(--gold));
+  animation:scrub 9s linear infinite}
+@keyframes scrub{to{transform:translateX(100%)}}
 .tl-wrap{position:relative}
 
 /* ---------- đặc vụ, đánh số như cảnh quay ---------- */
