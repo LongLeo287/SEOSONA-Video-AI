@@ -1,3 +1,5 @@
+**[▶ Xem trang giới thiệu dự án](https://seosona-video-ai.vercel.app)**
+
 <div align="center">
   <img src="7_ASSETS/brand/logos/Seosona_Logo.png" alt="SEOSONA Video Autonomous Factory Banner" width="50%">
 
