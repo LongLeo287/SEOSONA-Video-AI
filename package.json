@@ -51,7 +51,9 @@
     "factory:metrics": "node scripts/seosona-python.cjs 4_BRAIN/factory_metrics.py",
     "build:desktop": "node scripts/build_desktop_app.cjs",
     "test": "npm run seosona:doctor",
-    "capcut:export": "node scripts/seosona-python.cjs 4_BRAIN/capcut_export.py"
+    "capcut:export": "node scripts/seosona-python.cjs 4_BRAIN/capcut_export.py",
+    "brand:manifest": "node scripts/brand-kit/build-asset-manifest.mjs",
+    "brand:validate": "node scripts/brand-kit/validate-brand-kit.mjs"
   },
   "keywords": [],
   "author": "",

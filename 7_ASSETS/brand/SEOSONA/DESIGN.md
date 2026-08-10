@@ -1,190 +1,134 @@
-# SEOSONA Video — Design System (brand contract)
+# SEOSONA Unified Design Contract
 
-Machine-readable brand law for every SEOSONA faceless video. Modeled on the
-Open Design `DESIGN.md` format (150 brand systems, Apache-2.0) and adapted for
-**9:16 motion**, not web pages. Any agent or generator producing a SEOSONA frame
-MUST obey this file. It is the single source of truth that lets an LLM write HTML
-per request while staying on brand. Pairs with the motion vocabulary in
-`2_KNOWLEDGE/hyperframes/craft/` and the playbook in `9_PROMPTS/MASTER_VIDEO_SPEC.md`.
+**Version:** 1.0.0
 
----
+**Canonical machine source:** [`brand-kit.v1.json`](brand-kit.v1.json)
 
-## 1. Visual Theme & Atmosphere
+**Asset provenance:** [`asset-manifest.v1.json`](asset-manifest.v1.json)
 
-Professional, reputable, market-leading SEO/Marketing brand. Clean, bright,
-confident — an authority that teaches. **100% Light Mode. Dark mode is forbidden.**
+This document is the human-facing guide for SEOSONA social posts, carousels,
+and compatible Video scenes. The JSON BrandKit is authoritative whenever a
+generator, validator, or older design note disagrees with this guide.
 
-**Key Characteristics:**
-- Bright, airy surfaces; generous whitespace; one decisive accent per scene.
-- Vertical 9:16 (1080×1920, 30fps) for TikTok / Shorts / Reels.
-- Calm structure + lively micro-motion. Content reveals progressively, in sync
-  with narration — never dumped all at once.
-- Crossfades that never blank (old scene exits before next mounts).
-- Real content and real data only — no lorem ipsum, no fabricated numbers/stars.
+## Identity
 
----
+- Brand name: **SEOSONA**.
+- Tagline: **Share to be shared more**.
+- Use the intact primary logo identified by `identity.logoAsset`.
+- Never redraw, crop, recolor, outline, or generate a replacement logo or
+  wordmark.
 
-## 2. Color Palette & Roles
+## Color roles
 
-### Primary
-- **Brand Blue** (`#2A5BDA`): primary accent, default headings/CTA, trust.
-- **Coral** (`#E2724D`): secondary accent, energy/highlight, "important" beats.
-- **Green** (`#16A34A`): tertiary accent, success/positive, logo dot.
+| Role | Token | Value |
+|---|---|---:|
+| Identity blue | `identityBlue` | `#003CA6` |
+| Cobalt hero start | `heroBlueStart` | `#182FB3` |
+| Cobalt hero end | `heroBlueEnd` | `#1F31B7` |
+| Logo green | `identityGreen` | `#00FF00` |
+| Main canvas | `canvasWhite` | `#FFFFFF` |
+| Alternate canvas | `canvasMist` | `#F6F8FD` |
+| Primary ink | `inkPrimary` | `#111B3F` |
+| Secondary ink | `inkSecondary` | `#667085` |
+| Subtle line | `lineSubtle` | `#E2E8F0` |
 
-### Accent rotation (do not hardcode one accent)
-Each scene gets a rotated accent so a template never renders identical twice:
-`blue → green → orange`, derived from a stable hash of the output name
-(`_auto_shift` / `_rotate_acc` in `native_composer.py`). Within a scene, ONE accent hue.
+Status colors in `brand-kit.v1.json` describe verified data state only. Coral,
+arbitrary accent rotation, broad green panels, neon cyan, purple gradients,
+and generic cyberpunk palettes are not SEOSONA identity colors.
 
-### Surface & Background
-- **Pure White** (`#FFFFFF`): primary canvas, cards.
-- **Mist** (`#F8FAFC`): secondary surface, subtle zone separation.
-- **Hero gradient** (heroes only): `linear-gradient(157deg, {accent} 0%, #16224A 165%)`
-  with white text — the one place white-on-color is allowed.
+## Typography
 
-### Text / Ink
-- **Ink** (`#0F172A`): all body + headings on light surfaces.
-- **Slate** (`#475569`): secondary copy, labels, footer meta.
-- White (`#FFFFFF`): only inside a hero gradient or on an accent-filled pill.
+Use **Be Vietnam Pro** for every Vietnamese and Latin string. Production font
+files and allowed weights are identified in the asset manifest.
 
-### Semantic
-- Positive → green `#16A34A`. Caution/energy → coral `#E2724D`. Info → blue `#2A5BDA`.
-- No new colors per element. Tint neutrals toward the scene accent, never dead gray.
+- Headlines: weight 800 or 900, sentence case, tight line height, no more than
+  four lines on a square slide.
+- Kicker or taxonomy label: weight 600 or 700, uppercase, expanded tracking.
+- Body: weight 500 and concise.
+- Data labels: weight 600; verified numbers may use 700 or 800.
 
----
+Do not substitute Poppins, Inter, Druk, Anton, or AI-generated lettering.
 
-## 3. Typography Rules
+## Visual modes
 
-### Font Family
-- **Display + Text:** `Be Vietnam Pro` (full Vietnamese diacritics — non-negotiable).
-  Weights on disk: `BVP-Black` 900, `BVP-XBold` 800, `BVP-Bold` 700,
-  `BVP-SemiBold` 600, `BVP-Medium` 500.
-- Never substitute Latin-only display fonts (Druk/Anton/Inter) — they break diacritics.
+### Light editorial
 
-### Hierarchy (9:16, 1080px wide)
-- **Hero / big number:** 900, 120–220px, tight leading.
-- **Scene heading (2-tone h1/h2):** 800, 64–88px. h1 ink, h2 accent (or reverse in hero).
-- **Kicker pill:** 700, 24–28px, uppercase, tracked +2–4%.
-- **Body / list item:** 500–600, 30–40px. Sub-label: 500, 22–26px slate.
-- **Karaoke caption:** 600, 36px (single track, bottom pill). Never larger.
-- **Footer:** 500, ~24px slate.
+This is the default mode for explanations, processes, data, comparisons, and
+educational content. Use white or mist canvas, subtle blue ambient geometry,
+white cards, hairline dividers, controlled elevation, and restrained dot-grid
+texture.
 
-### Principles
-- Weight ladder does the emphasis; avoid more than 3 sizes per scene.
-- One sentence per beat — headlines are short, never paragraphs in a frame.
+### Cobalt hero
 
----
+Cobalt is allowed only for a cover, CTA, or one decisive emphasis slide. Use
+white headline text, at most one pale-blue emphasized phrase, a subtle dot
+texture, and a small intact logo. A carousel normally contains no more than one
+cobalt hero slide.
 
-## 4. Component Stylings
+This is a branded hero treatment, not permission for black dashboards, neon,
+or generic dark mode.
 
-14 brand components (`native_composer.py`): bignum, repo, compare, terminal, steps,
-badges, gittree, cta, stats, quote, tip, feature, chart, mockup.
+## Square social composition
 
-- **Cards / tiles:** white on mist, radius 20–28px, soft shadow
-  `0 8px 40px rgba(15,23,42,.10)`. No left-edge accent stripes (AI tell).
-- **Pills (kicker / CTA / badge):** accent-filled or accent-outline, radius 999px,
-  padding 12–18px × 22–38px. CTA pill uses accent fill + white text.
-- **Big number:** tabular-nums, paired with an accent-tinted radial glow or fill bar
-  (a number must never float alone — see `craft/data-in-motion.md`).
-- **Chart:** GSAP + CSS/SVG bars only. No pie charts, no gridlines/legends,
-  no 6-panel dashboards, no chart-library output. 2–3 related bars max.
-- **Karaoke:** single bottom pill, **navy background** (`#16224A`), white text; the
-  active (spoken) word flips to the scene accent + weight 800, passed words go light
-  gray `#E5E7EB`. One track only — never two subtitles at once.
-- **Footer (persistent):** `● SEOSONA AI · Share to be shared more` — green dot,
-  brand name bold, tagline slate. Sits at bottom ~230px.
+- Canvas: 1080 by 1080 with a 72px quiet edge.
+- Logo: small, top-left, with clear whitespace.
+- Metadata or pagination: compact marker at top-right or bottom-right.
+- Headline: left-aligned in the upper half.
+- Proof: cards, rows, or one diagram in the lower half.
+- Footer: `SEOSONA · Share to be shared more`.
+- Oversized translucent numbers are reserved for real sequences.
 
----
+## Approved components
 
-## 5. Layout Principles
+- `cover_dark`
+- `explain_light`
+- `numbered_principle`
+- `process_steps`
+- `data_table`
+- `comparison_split`
+- `proof_cards`
+- `mascot_callout`
 
-### Frame & Safe Zones (9:16)
-- Canvas 1080×1920. Keep all content within ~80px side margins.
-- **Bottom UI safe zone ~160px** (platform controls). Karaoke pill at `bottom:300px`,
-  footer at `bottom:230px` — never below.
-- Persistent logo top-left; kicker pill top area; heading upper-third; component mid.
+Detailed component contracts are stored in `componentRules` inside the
+canonical JSON. Do not invent a new visual family silently; version the
+BrandKit when a new family is approved.
 
-### Composition
-- Anchor content to an edge + add a second focal point (label, data bar, divider).
-  Never a single centered block floating in empty space.
-- Zone-based layouts (top metadata bar, full-width body) over centered stacks.
-- Background is never empty: 2–3 ambient decoratives (accent radial glow breathing,
-  oversized ghost word at 4–6% opacity drifting, hairline rule pulsing).
+## Mascot
 
-### Border Radius Scale
-- Pills 999px · cards/tiles 20–28px · inner chips 12–16px · media frames 16px.
+Use only named pose assets allowlisted by the BrandKit. The mascot is optional
+and may appear once as an explanatory accent or CTA anchor. It never replaces
+the primary logo and never implies an unverified claim.
 
----
+Choose poses semantically: thinking for diagnosis, talk-explain for a
+framework, thumbs-up for verified completion, and celebrate for a real
+milestone.
 
-## 6. Depth & Elevation
+## Reference boundaries
 
-- Light, soft elevation only: `0 8px 40px rgba(15,23,42,.08–.12)`. No harsh drop shadows.
-- Decorative depth from accent-tinted radial glows (low opacity) and faded oversized
-  type bleeding off-frame — all with slow ambient GSAP motion (breathe/drift/pulse).
-- No glassmorphism, no neon glows, no dark vignettes.
+- `carousel SEOSONA` is the canonical social visual reference for hierarchy,
+  pacing, covers, CTA slides, cards, footer, and pagination.
+- `carousel Chí Quyết Academy` is **reference-only** for sequence and comparison
+  structure. Its logo, coral palette, mascot, and copy style are excluded from
+  SEOSONA production output.
+- Legacy Video and frame-pack notes must conform to this BrandKit when their
+  colors, fonts, or light/dark rules conflict.
 
----
+## Content Factory and Flow boundary
 
-## 7. Do's and Don'ts
+Flow is a pixel worker for text-free scene imagery, editorial atmosphere, or a
+bounded visual subject. Flow must not render Vietnamese text, logo assets or
+wordmarks, statistics, citations, or UI labels. A deterministic compositor
+owns those elements and applies the exact BrandKit tokens after image
+generation.
 
-### Do
-- Light surfaces, one rotated accent per scene, exact brand hex values.
-- Reveal content progressively in sync with the voice; one pop SFX per reveal.
-- Vary entrance direction + ease per item (see `craft/motion-recipes-seosona.md`).
-- Real data, real screenshots, Vietnamese-correct text via the lexicon.
-- Keep captions inside safe zones; single karaoke track.
+Every visual job must carry the BrandKit version and digest, one approved mode,
+one approved component, an explicit asset allowlist, and the complete negative
+rules. Receipts must retain that provenance so an exported post can be traced
+back to the exact design contract.
 
-### Don't
-- ❌ Dark mode, neon, cyan-on-black, purple→blue gradients (all forbidden).
-- ❌ Gradient text, left-edge accent stripes, identical card grids (AI tells).
-- ❌ Latin-only display fonts (breaks Vietnamese diacritics).
-- ❌ Pie charts, multi-axis charts, 6-panel dashboards, chart-library output.
-- ❌ Two subtitles at once; oversized captions; content below the safe zone.
-- ❌ Fabricated numbers, fake star counts, placeholder images.
+## Release gate
 
----
-
-## 8. Platform / Output Behavior
-
-- **Aspect:** 9:16 (1080×1920) primary. Talking-head engine also supports 16:9.
-- **Duration:** 45–60s standard (8–12 sentences). Auto-pace atempo if voice > ~64s.
-- **Audio:** voice-dominant + BGM sidechain-ducked + per-component SFX.
-  Final mix `alimiter → loudnorm (-14 LUFS) → aresample=48000`. **Output MUST be
-  48 kHz AAC** (96 kHz silently fails on many players — see [[raw-mp4-path-bug]]
-  and the sample-rate fix).
-- **Voice:** VieNeu clone of the brand reference (`seosona_ref13.wav`), male, single
-  consistent take, English/acronyms via the pronunciation lexicon.
-- **Captions:** SRT for upload kept in `_captions_upload/` (not auto-loaded by players).
-
----
-
-## 9. Agent Prompt Guide (how an LLM generates on-brand HTML per request)
-
-This is the Open Design model: the agent writes a fresh HTML/CSS+GSAP scene per
-request; THIS file keeps it on brand. When prompting a generator:
-
-### Quick Color Reference
-```
-blue   #2A5BDA   coral  #E2724D   green  #16A34A
-ink    #0F172A   slate  #475569   white  #FFFFFF   mist #F8FAFC
-hero gradient: linear-gradient(157deg, {accent} 0%, #16224A 165%)
-```
-
-### Standing instructions to inject into any generation prompt
-- "Light mode only. Use the SEOSONA palette above. One rotated accent for this scene: `{accent}`."
-- "Be Vietnam Pro for all text. 9:16, 1080×1920, respect the 160px bottom safe zone."
-- "Real content, real data. Progressive reveal synced to narration. 2–3 ambient
-  background decoratives. Vary entrance direction + ease per item."
-- "No dark mode, no neon, no gradient text, no pie charts, no left-edge stripes."
-
-### Iteration Guide
-- Too flat? → add background depth (glow + ghost word + hairline), give the big number
-  a fill bar, vary the eases (`craft/motion-recipes-seosona.md`).
-- Feels off-brand? → re-check accent is one of the three brand hues; kill any neon/dark.
-- Feels generic/AI? → break the centered stack, anchor to an edge, add a second focal point.
-
-### Known Gaps
-- Lexicon doesn't yet cover every English term (e.g. `content`, `ranking`,
-  `Search Console`) — extend `news_video_standards.CORE_PRONUNCIATION_LEXICON` as needed.
-
-Related: [[master-video-spec]] · [[brand-colors-light-only]] · [[render-engine-video-engine]] · `2_KNOWLEDGE/hyperframes/craft/SEOSONA-INDEX.md`
+Run `npm run brand:manifest` after approved assets change, then run
+`npm run brand:validate`. Promotion requires matching hashes and dimensions,
+resolvable Be Vietnam Pro files, zero Academy assets in the production
+allowlist, and a visual QA sample for each approved component family.

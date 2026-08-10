@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0",
+  "id": "seosona",
+  "version": "1.0.0",
+  "status": "canonical",
+  "identity": {
+    "name": "SEOSONA",
+    "tagline": "Share to be shared more",
+    "logoAsset": "logo.primary",
+    "logoPolicy": "Use the intact source asset. Never generate, recolor, crop, outline, or replace it with a wordmark."
+  },
+  "palette": {
+    "identityBlue": "#003CA6",
+    "heroBlueStart": "#182FB3",
+    "heroBlueEnd": "#1F31B7",
+    "identityGreen": "#00FF00",
+    "canvasWhite": "#FFFFFF",
+    "canvasMist": "#F6F8FD",
+    "inkPrimary": "#111B3F",
+    "inkSecondary": "#667085",
+    "lineSubtle": "#E2E8F0",
+    "statusPositive": "#3A9B5A",
+    "statusCaution": "#B88416",
+    "statusNegative": "#C84A4A"
+  },
+  "typography": {
+    "family": "Be Vietnam Pro",
+    "assets": {
+      "body": "font.bevietnampro.medium",
+      "label": "font.bevietnampro.semibold",
+      "data": "font.bevietnampro.bold",
+      "headline": "font.bevietnampro.extrabold",
+      "display": "font.bevietnampro.black"
+    },
+    "rules": {
+      "headline": "Weight 800 or 900, sentence case, tight line height, maximum four lines on square social slides.",
+      "label": "Weight 600 or 700, uppercase, expanded tracking.",
+      "body": "Weight 500, concise, never a paragraph wall.",
+      "data": "Labels at weight 600; verified numbers may use 700 or 800."
+    }
+  },
+  "layout": {
+    "socialSquare": {
+      "width": 1080,
+      "height": 1080,
+      "quietEdge": 72,
+      "logoPosition": "top-left",
+      "metadataPositions": ["top-right", "bottom-right"],
+      "headlineZone": "upper-half",
+      "proofZone": "lower-half",
+      "footer": "SEOSONA · Share to be shared more"
+    }
+  },
+  "visualModes": {
+    "lightEditorial": {
+      "default": true,
+      "canvas": ["canvasWhite", "canvasMist"],
+      "uses": ["explainer", "process", "data", "comparison", "education"],
+      "rules": ["faint dot grid", "subtle blue ambient geometry", "white cards", "hairline dividers", "soft elevation"]
+    },
+    "cobaltHero": {
+      "default": false,
+      "canvas": ["heroBlueStart", "heroBlueEnd"],
+      "uses": ["cover", "CTA", "single decisive emphasis"],
+      "maxPerCarousel": 1,
+      "rules": ["white headline", "at most one pale-blue emphasized phrase", "subtle dot texture", "small intact logo"]
+    }
+  },
+  "components": [
+    "cover_dark",
+    "explain_light",
+    "numbered_principle",
+    "process_steps",
+    "data_table",
+    "comparison_split",
+    "proof_cards",
+    "mascot_callout"
+  ],
+  "componentRules": {
+    "cover_dark": "Cobalt hero with one claim, brief support line, and one CTA.",
+    "explain_light": "Kicker, large title, underline, and up to three proof cards.",
+    "numbered_principle": "Oversized two-digit index, one principle, evidence card, and optional cobalt takeaway strip.",
+    "process_steps": "Three to seven ordered steps with compact numbered markers.",
+    "data_table": "Honest before-after or categorized data; status colors describe verified state only.",
+    "comparison_split": "Two controlled panels separated by one VS token.",
+    "proof_cards": "One to three concise cards with evidence references.",
+    "mascot_callout": "One approved pose used as an explanatory accent or CTA anchor."
+  },
+  "mascot": {
+    "optional": true,
+    "catalogAsset": "mascot.catalog",
+    "allowedPoseAssets": [
+      "mascot.pose.thinking",
+      "mascot.pose.talk-explain",
+      "mascot.pose.thumbs-up",
+      "mascot.pose.celebrate"
+    ],
+    "semanticRules": {
+      "mascot.pose.thinking": "diagnosis",
+      "mascot.pose.talk-explain": "framework explanation",
+      "mascot.pose.thumbs-up": "verified completion",
+      "mascot.pose.celebrate": "real milestone"
+    }
+  },
+  "flowBoundary": {
+    "role": "pixel_worker",
+    "generate": ["text-free scene imagery", "editorial atmosphere", "bounded visual subject"],
+    "deterministicCompositorOwns": ["Vietnamese copy", "logo", "statistics", "citations", "UI labels"],
+    "requiredVisualJobFields": ["brandKitRef", "mode", "component", "allowedAssets", "negativeRules"]
+  },
+  "negativeRules": [
+    "Do not render Vietnamese or Latin copy inside Flow-generated imagery.",
+    "Do not generate logos, wordmarks, or logo lookalikes.",
+    "Do not generate statistics, citations, or UI labels.",
+    "Do not use Chí Quyết Academy logos, mascots, coral palette, or copy style.",
+    "Do not use #E2724D, broad green panels, cyan neon, purple gradients, cyberpunk, or generic dark dashboards.",
+    "Do not use Poppins, Inter, Druk, Anton, or AI-generated font substitutes.",
+    "Do not fabricate claims, proof, sources, or status colors.",
+    "Do not place the mascot on every slide or use it as the primary logo."
+  ],
+  "assetManifest": "asset-manifest.v1.json",
+  "provenance": {
+    "designSpec": "docs/superpowers/specs/2026-08-10-seosona-unified-brand-kit-design.md",
+    "sourcePriority": ["primary logo", "SEOSONA carousel references", "local Be Vietnam Pro files", "Academy structure references", "legacy design documents"]
+  }
+}

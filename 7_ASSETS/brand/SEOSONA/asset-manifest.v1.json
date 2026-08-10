@@ -1,0 +1,480 @@
+{
+  "schemaVersion": "1.0",
+  "brandKitVersion": "1.0.0",
+  "pathPolicy": "repo_relative_posix",
+  "generatedFrom": [
+    "7_ASSETS/brand/logos/Seosona_Logo.png",
+    "7_ASSETS/brand/fonts/BeVietnamPro-*.ttf",
+    "7_ASSETS/brand/SEOSONA/mascot_poses/named/",
+    "7_ASSETS/brand/SEOSONA/carousel SEOSONA/",
+    "7_ASSETS/brand/SEOSONA/carousel Chí Quyết Academy/"
+  ],
+  "assets": [
+    {
+      "id": "logo.primary",
+      "path": "7_ASSETS/brand/logos/Seosona_Logo.png",
+      "kind": "logo",
+      "usage": "allow",
+      "sha256": "c8252e083b5b55c4a46c71f97b7c7cd2ff1892a4c6c637e0544ae1cbbeeacccd",
+      "bytes": 114264,
+      "width": 2464,
+      "height": 911
+    },
+    {
+      "id": "font.bevietnampro.regular",
+      "path": "7_ASSETS/brand/fonts/BeVietnamPro-Regular.ttf",
+      "kind": "font",
+      "usage": "allow",
+      "sha256": "cb6f53d6fd56316356c55b067474d9621c27b7182b124063b8f6eab6acef63bd",
+      "bytes": 131660
+    },
+    {
+      "id": "font.bevietnampro.medium",
+      "path": "7_ASSETS/brand/fonts/BeVietnamPro-Medium.ttf",
+      "kind": "font",
+      "usage": "allow",
+      "sha256": "f493144cb53c78c6f0819bc9b73de274486618ac609bc92b3b79d4efc76f95c6",
+      "bytes": 134668
+    },
+    {
+      "id": "font.bevietnampro.semibold",
+      "path": "7_ASSETS/brand/fonts/BeVietnamPro-SemiBold.ttf",
+      "kind": "font",
+      "usage": "allow",
+      "sha256": "04db63d2a82dd4bb35ba25e00dab1d12febcd0e917856b174b71a24d6f0c9afa",
+      "bytes": 135420
+    },
+    {
+      "id": "font.bevietnampro.bold",
+      "path": "7_ASSETS/brand/fonts/BeVietnamPro-Bold.ttf",
+      "kind": "font",
+      "usage": "allow",
+      "sha256": "2fe6c3f9dbb65f61554d530c16b2eb4ec32ca437dc8f9999a6ec0f6403b30bfe",
+      "bytes": 139012
+    },
+    {
+      "id": "font.bevietnampro.extrabold",
+      "path": "7_ASSETS/brand/fonts/BeVietnamPro-ExtraBold.ttf",
+      "kind": "font",
+      "usage": "allow",
+      "sha256": "10fcb42b9cee8e30918843416676ae059e8f77fe439d0c3a4350617ef9f77a75",
+      "bytes": 138372
+    },
+    {
+      "id": "font.bevietnampro.black",
+      "path": "7_ASSETS/brand/fonts/BeVietnamPro-Black.ttf",
+      "kind": "font",
+      "usage": "allow",
+      "sha256": "7e7cb663fd30c299e8582cd2789b14a48ffb124a351f0069e29cf53167e847a5",
+      "bytes": 141312
+    },
+    {
+      "id": "mascot.catalog",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/catalog.json",
+      "kind": "catalog",
+      "usage": "allow",
+      "sha256": "4aec9733ee1d59b37dc03d5131a7ad41149289e6b9716fe0f1920e4a2eac1527",
+      "bytes": 744
+    },
+    {
+      "id": "mascot.pose.arms-crossed",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/arms_crossed.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "7caeef351d95184d7c0b6800b1167a9853fa629775b32641f57fd4611934e35b",
+      "bytes": 208275,
+      "width": 320,
+      "height": 631
+    },
+    {
+      "id": "mascot.pose.arms-wide",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/arms_wide.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "e0e14ad60a58e74625ac2b4ce1338f5bd027531fa969ebc5951a16426d7e7012",
+      "bytes": 274440,
+      "width": 791,
+      "height": 630
+    },
+    {
+      "id": "mascot.pose.celebrate",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/celebrate.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "78c12d14d0ef23d34d20d5ada1396ac5eab0af05370ff5c93fd5bfae76cba522",
+      "bytes": 264335,
+      "width": 528,
+      "height": 656
+    },
+    {
+      "id": "mascot.pose.count-2",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/count_2.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "0e9f5c3fa0697f52d00d1822561cfc9d636dc385a57ac566ca98838ca2d07591",
+      "bytes": 243573,
+      "width": 432,
+      "height": 630
+    },
+    {
+      "id": "mascot.pose.count-3",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/count_3.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "abdd3fc0565b38d640db85bf0d914c67e1caf4cc2edb2c1988f4fed6537d2ce6",
+      "bytes": 245919,
+      "width": 434,
+      "height": 630
+    },
+    {
+      "id": "mascot.pose.expr-happy",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/expr_happy.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "0a5fbee7c2f33d1e3a159e350fb6006e8141634d0ae1a4858630949c8d2c851c",
+      "bytes": 525047,
+      "width": 608,
+      "height": 949
+    },
+    {
+      "id": "mascot.pose.expr-serious",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/expr_serious.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "0ea76e192407fed0961330b40f513c8f254c28f233c07e18a10acac582756d36",
+      "bytes": 487576,
+      "width": 557,
+      "height": 934
+    },
+    {
+      "id": "mascot.pose.expr-surprised",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/expr_surprised.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "fb9e752ee95b0063fa676b4ae806b29ffdd224fbb14bb23babb8aa47674668c5",
+      "bytes": 508708,
+      "width": 582,
+      "height": 937
+    },
+    {
+      "id": "mascot.pose.hand-chest",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/hand_chest.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "7391979c0e5c6bc2bd729d991d62b6e8ab60f10914de2876a1e44559e31f61d3",
+      "bytes": 326690,
+      "width": 419,
+      "height": 812
+    },
+    {
+      "id": "mascot.pose.idle",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/idle.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "5b409d79b9ca47a824009a7d01bc46cbca2773dc42c5d41ffa28757c106f6e84",
+      "bytes": 222587,
+      "width": 350,
+      "height": 662
+    },
+    {
+      "id": "mascot.pose.ok-sign",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/ok_sign.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "7e76fb40eb5670f0830a31e1e20e16d5dcc368353e68d59cc9af2b4809f45957",
+      "bytes": 256719,
+      "width": 453,
+      "height": 626
+    },
+    {
+      "id": "mascot.pose.point-left",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/point_left.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "650111adb620a8773f87c75216f89e900aae7e5aa7aa1ba4afee50c47bcfed23",
+      "bytes": 203233,
+      "width": 319,
+      "height": 657
+    },
+    {
+      "id": "mascot.pose.point-right",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/point_right.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "2f36eb11619ae3e67c5b98d2a19106a22f35eaef92c2d76bfb4070a082cada84",
+      "bytes": 239904,
+      "width": 481,
+      "height": 656
+    },
+    {
+      "id": "mascot.pose.point-up",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/point_up.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "66518c883a7c6391520f1dfecac19101c6c750f7c0a35099ef288ce03ea13b6a",
+      "bytes": 240491,
+      "width": 434,
+      "height": 630
+    },
+    {
+      "id": "mascot.pose.shrug",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/shrug.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "0aeac776367812bbad8c4c5985444882763df4f8a0073ab20465d7cb340dce40",
+      "bytes": 258311,
+      "width": 659,
+      "height": 656
+    },
+    {
+      "id": "mascot.pose.talk-explain",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/talk_explain.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "93c11dbe3926095843279625379c79a815ae8929d0149f8baf86447d017debc5",
+      "bytes": 372101,
+      "width": 578,
+      "height": 812
+    },
+    {
+      "id": "mascot.pose.thinking",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/thinking.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "19647876a4726df07b23ba92bae175a8418d72fe1da8aa925782c6cc5b5f7e3f",
+      "bytes": 200751,
+      "width": 310,
+      "height": 656
+    },
+    {
+      "id": "mascot.pose.thumbs-double",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/thumbs_double.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "8495aa5a02139f0d0753574fef8b8dd9ae258a69c255e17f0b1390202a309117",
+      "bytes": 245497,
+      "width": 448,
+      "height": 626
+    },
+    {
+      "id": "mascot.pose.thumbs-up",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/thumbs_up.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "25c60cda5ea01a8b06e36cbc1aca572a16962a44de5472428a5ff0fa89110c28",
+      "bytes": 231079,
+      "width": 403,
+      "height": 625
+    },
+    {
+      "id": "mascot.pose.wave",
+      "path": "7_ASSETS/brand/SEOSONA/mascot_poses/named/wave.png",
+      "kind": "mascot_pose",
+      "usage": "allow",
+      "sha256": "291da5176ec802198521bc3f60741791184c0deeaec8395d378b9b2363aea439",
+      "bytes": 245312,
+      "width": 452,
+      "height": 631
+    },
+    {
+      "id": "reference.seosona.carousel.716150697-122183363000873695-6367407936795615032-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/716150697_122183363000873695_6367407936795615032_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "af164b2de6d3bb764b3352a54a0150ba8b22d71bd9d02ae6b83ae88f23577442",
+      "bytes": 107262,
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "id": "reference.seosona.carousel.717914415-122183368148873695-1639992584881736811-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/717914415_122183368148873695_1639992584881736811_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "827885243292d5880536ffb43bce639aa6529550e5e75e2e01eed4346083ea7e",
+      "bytes": 97743,
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "id": "reference.seosona.carousel.719150203-122183362994873695-8428708885842784428-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/719150203_122183362994873695_8428708885842784428_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "7a341df29ba68880284f784e411c80c0f98ab30374929b692656b83bb4a232b9",
+      "bytes": 108601,
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "id": "reference.seosona.carousel.719573466-122183362880873695-9218357927647345196-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/719573466_122183362880873695_9218357927647345196_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "0a7fbe09398370871aa3d5ed7a2065db1c5a5dc3583f22c4adc8f7df4b98afba",
+      "bytes": 128119,
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "id": "reference.seosona.carousel.720147561-122183740388873695-2419249450948495181-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/720147561_122183740388873695_2419249450948495181_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "c5708bbf836d56a1e7a334fc5da4757ef3aea1dc84fe97b7f73f3a951568646f",
+      "bytes": 98975,
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "id": "reference.seosona.carousel.720449007-122184161900873695-7137892997105320701-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/720449007_122184161900873695_7137892997105320701_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "48c1d0320c18eb8665c685002daa150d1d908f8ff80e760c60ee1d9360f94808",
+      "bytes": 226007,
+      "width": 1800,
+      "height": 1800
+    },
+    {
+      "id": "reference.seosona.carousel.721035617-122184162818873695-5021960772434664152-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/721035617_122184162818873695_5021960772434664152_n.png",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "504cfa0e137aca585e8ffe7f5a3de20b7856688c0d59fa21330fadc87dbbf2d1",
+      "bytes": 656304,
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "id": "reference.seosona.carousel.722313872-122184162812873695-2484504538107322386-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/722313872_122184162812873695_2484504538107322386_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "c7d5649182715f7a4cbddeb49a3cdc80ecd0cfcc491aec6bcf15b3aa0cc591e2",
+      "bytes": 92261,
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "id": "reference.seosona.carousel.723587727-122184162848873695-6827563727251046850-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/723587727_122184162848873695_6827563727251046850_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "2168bb84b346a90d7f7ad96ed0e5c0c8513bbb56468dc8b84acd23551f9d5e56",
+      "bytes": 93359,
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "id": "reference.seosona.carousel.724321132-122184542048873695-6094662026878713480-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/724321132_122184542048873695_6094662026878713480_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "3e6926790ede2141ae48a2b401aa53f6d57783c838e5cbb38958f2c56030c391",
+      "bytes": 101979,
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "id": "reference.seosona.carousel.724824661-122185266110873695-4447094010314707746-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/724824661_122185266110873695_4447094010314707746_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "e0cc9e6eb14ee80fd3b0d06bef90189876bebc4bbb1f3636acbfde00da835efb",
+      "bytes": 225940,
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "id": "reference.seosona.carousel.725025657-122185018088873695-2732860443837569096-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/725025657_122185018088873695_2732860443837569096_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "902522e5961cc43233afe36353fb33a5e6f268a644b1ba056487a28347b91b38",
+      "bytes": 304975,
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "id": "reference.seosona.carousel.726432432-122185266050873695-6545899004913692494-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/726432432_122185266050873695_6545899004913692494_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "d0fc7a5a2d6dc1bb2df271d5dfaf7ae660c350a349548b99c743f9410cf51031",
+      "bytes": 197731,
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "id": "reference.seosona.carousel.726660074-122185266056873695-3207323266222782412-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/726660074_122185266056873695_3207323266222782412_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "c0d0a52cd7721aea692f5b7c12d4d6fb89f0521e8317c083f25512218e1fe23a",
+      "bytes": 172449,
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "id": "reference.seosona.carousel.726997028-122185266218873695-7824032025807799262-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel SEOSONA/726997028_122185266218873695_7824032025807799262_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "da85da11f331842cc22d008b4cdac359855506f7deced80ea9029013c977b1e7",
+      "bytes": 217229,
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "id": "reference.academy.carousel.721951117-122182326128800562-3921749375849999582-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel Chí Quyết Academy/721951117_122182326128800562_3921749375849999582_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "f04db3801554061d15684a221b6cedaf488f9b58574d89295f3a7c824fceb2b2",
+      "bytes": 89735,
+      "width": 1065,
+      "height": 1065
+    },
+    {
+      "id": "reference.academy.carousel.724397114-122182326134800562-2766501125648455196-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel Chí Quyết Academy/724397114_122182326134800562_2766501125648455196_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "4baf9fb49c9e6079caad777a7dc4a66bc60137f6c76f85e7a07fefff99be249e",
+      "bytes": 82584,
+      "width": 1065,
+      "height": 1065
+    },
+    {
+      "id": "reference.academy.carousel.726294983-122182326140800562-9153422262345440848-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel Chí Quyết Academy/726294983_122182326140800562_9153422262345440848_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "e1bcdf790c34c1986b72388ff47e8d692cf66ec88d565defdf18f1bd43ebc1bf",
+      "bytes": 82342,
+      "width": 1065,
+      "height": 1065
+    },
+    {
+      "id": "reference.academy.carousel.726295149-122182326236800562-5365152627519895108-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel Chí Quyết Academy/726295149_122182326236800562_5365152627519895108_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "01c4f94d2000934308d9720d3521e113e5b2ff3fa3b93d0d9f58a46b7545e40b",
+      "bytes": 102571,
+      "width": 1065,
+      "height": 1065
+    },
+    {
+      "id": "reference.academy.carousel.726548941-122182326200800562-1913999368989960505-n",
+      "path": "7_ASSETS/brand/SEOSONA/carousel Chí Quyết Academy/726548941_122182326200800562_1913999368989960505_n.jpg",
+      "kind": "visual_reference",
+      "usage": "reference_only",
+      "sha256": "9867271dafae6f03d564a8206562f82b16f95451ff59228491dd24bd9347933f",
+      "bytes": 93425,
+      "width": 1065,
+      "height": 1065
+    }
+  ]
+}
