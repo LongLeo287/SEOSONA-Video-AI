@@ -26,6 +26,22 @@ function digest(buffer) {
   return createHash("sha256").update(buffer).digest("hex");
 }
 
+function canonicalize(value) {
+  if (Array.isArray(value)) return value.map(canonicalize);
+  if (value && typeof value === "object") {
+    return Object.keys(value).sort().reduce((output, key) => {
+      output[key] = canonicalize(value[key]);
+      return output;
+    }, {});
+  }
+  return value;
+}
+
+function canonicalJsonDigest(buffer) {
+  const value = JSON.parse(buffer.toString("utf8"));
+  return digest(Buffer.from(JSON.stringify(canonicalize(value))));
+}
+
 function isPortableBrandPath(assetPath) {
   if (typeof assetPath !== "string") return false;
   if (path.isAbsolute(assetPath) || /^[a-zA-Z]:[\\/]/.test(assetPath)) return false;
@@ -146,8 +162,8 @@ export async function validateBrandKit({ brandKitFile, manifestFile, repoRoot })
   return {
     valid: errors.length === 0,
     errors,
-    brandKitDigest: digest(brandKitBuffer),
-    manifestDigest: digest(manifestBuffer),
+    brandKitDigest: canonicalJsonDigest(brandKitBuffer),
+    manifestDigest: canonicalJsonDigest(manifestBuffer),
     checkedAssets,
   };
 }

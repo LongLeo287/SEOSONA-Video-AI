@@ -51,6 +51,24 @@ test("canonical BrandKit validates approved tokens and assets", async () => {
   assert.ok(result.checkedAssets >= 10);
 });
 
+test("BrandKit digest is invariant to JSON formatting and line endings", async () => {
+  const canonical = await validateCanonical();
+  const tempRoot = await mkdtemp(path.join(tmpdir(), "seosona-brand-kit-format-"));
+  const parsed = JSON.parse(await readFile(brandKitFile, "utf8"));
+  const reformattedFile = path.join(tempRoot, "brand-kit.v1.json");
+  const reformatted = `${JSON.stringify(parsed, null, 4)}\n`.replace(/\n/g, "\r\n");
+  await writeFile(reformattedFile, reformatted, "utf8");
+
+  const result = await validateBrandKit({
+    brandKitFile: reformattedFile,
+    manifestFile,
+    repoRoot,
+  });
+
+  assert.equal(result.valid, true, result.errors.join("\n"));
+  assert.equal(result.brandKitDigest, canonical.brandKitDigest);
+});
+
 test("manifest rejects a path outside the brand asset root", async () => {
   const result = await validateWithManifestMutation((manifest) => {
     manifest.assets[0].path = "package.json";

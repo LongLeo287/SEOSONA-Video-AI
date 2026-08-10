@@ -8,8 +8,8 @@
 
 ## Provenance
 
-- BrandKit SHA-256: `4a678f77b800dcbc5509ce15786d2a3cf426ce6297691f05ed7bd2bd90654f14`
-- Asset manifest SHA-256: `64fdf481e68178aba15029cb7615d0951418c9487dda76e9fc0cdd47bde040c7`
+- Canonical BrandKit SHA-256: `4ecb0a7ac2d49c65d96739f2fa31492863c716b477868b130142c482d289a927`
+- Canonical asset manifest SHA-256: `0cf49d370c9fc30fba29954458d7a25d5efbd48b6de640336500d424612b14cc`
 - Verified assets: 48
 - Inventory: primary logo, six Be Vietnam Pro production fonts, named mascot
   catalog and 20 pose files, 15 SEOSONA carousel references, and five Chí
